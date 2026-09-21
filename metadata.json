@@ -1,0 +1,6 @@
+{
+  "name": "Lớp Tiếng Anh Cô Nghi",
+  "description": "Nền tảng LMS Parent-centric tối giản cho Lớp Tiếng Anh Cô Nghi",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
