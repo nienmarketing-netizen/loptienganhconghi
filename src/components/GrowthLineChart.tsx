@@ -27,7 +27,7 @@ export const GrowthLineChart: React.FC<GrowthLineChartProps> = ({ student }) => 
   const scoreDiff = (latestClassScore - baselineScore).toFixed(1);
 
   return (
-    <div className="soft-ui-embossed rounded-2xl sm:rounded-3xl p-4 sm:p-5 space-y-4">
+    <div className="soft-ui-embossed rounded-lg sm:rounded-xl p-4 sm:p-5 space-y-4">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-2 border-b border-[#b2c2d4]/40">
         <div>
@@ -48,7 +48,7 @@ export const GrowthLineChart: React.FC<GrowthLineChartProps> = ({ student }) => 
 
       <div>
         {/* Quick summary metrics - Recessed Well */}
-        <div className="grid grid-cols-3 gap-2 mb-4 p-3 soft-ui-debossed rounded-xl text-center">
+        <div className="grid grid-cols-3 gap-2 mb-4 p-3 soft-ui-debossed rounded-lg text-center">
           <div>
             <span className="text-xs text-[#666666] font-semibold block">Điểm đầu vào</span>
             <span className="text-base sm:text-xl font-bold text-rose-600 tracking-[-0.02em] mt-0.5 block">
@@ -116,7 +116,7 @@ export const GrowthLineChart: React.FC<GrowthLineChartProps> = ({ student }) => 
                   if (active && payload && payload.length) {
                     const point = payload[0]?.payload;
                     return (
-                      <div className="bg-[#2d3436] text-white p-3 rounded-xl shadow-[var(--shadow-floating)] border border-white/20 text-xs space-y-1.5 min-w-[160px] font-mono">
+                      <div className="bg-[#2d3436] text-white p-3 rounded-lg shadow-[var(--shadow-floating)] border border-white/20 text-xs space-y-1.5 min-w-[160px] font-mono">
                         <div className="font-bold text-amber-400 border-b border-white/10 pb-1 flex justify-between items-center">
                           <span>{label}</span>
                           {point?.note && (
@@ -187,7 +187,7 @@ export const GrowthLineChart: React.FC<GrowthLineChartProps> = ({ student }) => 
         </div>
 
         {/* Footnote explanation for parents - Recessed well */}
-        <div className="flex items-start gap-2 mt-3 text-xs text-[#666666] soft-ui-debossed p-3 rounded-xl leading-relaxed">
+        <div className="flex items-start gap-2 mt-3 text-xs text-[#666666] soft-ui-debossed p-3 rounded-lg leading-relaxed">
           <Info className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
           <p className="mb-0">
             Đường nét đứt màu xám đậm là <strong className="text-[#1a1a1a] font-semibold">Điểm thi trên trường</strong>, còn đường nét liền màu đỏ là <strong className="text-[#ff4757] font-semibold">Điểm bài test tại lớp</strong>. Biểu đồ đi lên chứng minh sự thẩm thấu kiến thức và tính bền vững khi làm bài thi trên trường.

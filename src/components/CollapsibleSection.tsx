@@ -12,6 +12,7 @@ interface CollapsibleSectionProps {
   subtitle?: string;
   badge?: React.ReactNode;
   children: React.ReactNode;
+  roundedClassName?: string;
 }
 
 export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
@@ -25,7 +26,11 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
   subtitle,
   badge,
   children,
+  roundedClassName,
 }) => {
+  const effectiveRounded = roundedClassName || "rounded-lg sm:rounded-xl";
+  const effectiveIconRounded = "rounded-md sm:rounded-lg";
+
   return (
     <section id={id} className="scroll-mt-24">
       {!isOpen ? (
@@ -35,11 +40,11 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
           type="button"
           onClick={onToggle}
           aria-expanded={false}
-          className="relative w-full flex items-center justify-between gap-2 sm:gap-3 px-4 py-3.5 sm:px-6 sm:py-4 soft-ui-embossed rounded-2xl sm:rounded-3xl hover:shadow-[var(--shadow-floating)] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[var(--shadow-pressed)] text-left transition-all duration-200 cursor-pointer min-h-[60px] sm:min-h-[68px]"
+          className={`relative w-full flex items-center justify-between gap-2 sm:gap-3 px-4 py-3.5 sm:px-6 sm:py-4 soft-ui-embossed ${effectiveRounded} hover:shadow-[var(--shadow-floating)] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[var(--shadow-pressed)] text-left transition-all duration-200 cursor-pointer min-h-[60px] sm:min-h-[68px]`}
         >
           <div className="flex items-start sm:items-center gap-2.5 sm:gap-3.5 min-w-0 flex-1">
             <div
-              className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0 soft-ui-convex text-[#ff4757] mt-0.5 sm:mt-0"
+              className={`w-9 h-9 sm:w-11 sm:h-11 ${effectiveIconRounded} flex items-center justify-center shrink-0 soft-ui-convex text-[#ff4757] mt-0.5 sm:mt-0`}
             >
               <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#ff4757]" />
             </div>
@@ -72,10 +77,10 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
               <div className="w-1 h-5 rounded-full bg-[#b8c6d8] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.25)]" />
             </div>
 
-            <span className="text-xs font-semibold text-[#1a1a1a] soft-ui-convex px-2.5 py-1 rounded-lg hidden md:inline leading-tight">
+            <span className="text-xs font-semibold text-[#1a1a1a] soft-ui-convex px-2.5 py-1 rounded-md hidden md:inline leading-tight">
               Mở khóa
             </span>
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl soft-ui-convex flex items-center justify-center text-[#1a1a1a] shrink-0">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg soft-ui-convex flex items-center justify-center text-[#1a1a1a] shrink-0">
               <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </div>
           </div>
@@ -84,11 +89,11 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
         /* Open State: Sub-header with Collapse Toggle + Children */
         <div className="space-y-3 animate-in fade-in duration-200">
           <div
-            className="relative flex items-center justify-between gap-2 px-4 py-3 sm:px-5 sm:py-3.5 rounded-2xl soft-ui-embossed"
+            className={`relative flex items-center justify-between gap-2 px-4 py-3 sm:px-5 sm:py-3.5 ${effectiveRounded} soft-ui-embossed`}
           >
             <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
               <div
-                className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center shrink-0 soft-ui-convex text-[#ff4757]"
+                className={`w-8 h-8 sm:w-9 sm:h-9 ${effectiveIconRounded} flex items-center justify-center shrink-0 soft-ui-convex text-[#ff4757]`}
               >
                 <Icon className="w-4 h-4 text-[#ff4757]" />
               </div>
@@ -109,7 +114,7 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
               id={`btn-accordion-collapse-${id}`}
               type="button"
               onClick={onToggle}
-              className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-xl soft-ui-convex text-[#1a1a1a] active:shadow-[var(--shadow-pressed-sm)] hover:text-[#ff4757] hover:-translate-y-0.5 active:translate-y-0.5 transition-all cursor-pointer shrink-0 min-h-[34px] mr-1 leading-tight"
+              className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-md sm:rounded-lg soft-ui-convex text-[#1a1a1a] active:shadow-[var(--shadow-pressed-sm)] hover:text-[#ff4757] hover:-translate-y-0.5 active:translate-y-0.5 transition-all cursor-pointer shrink-0 min-h-[34px] mr-1 leading-tight"
             >
               <span>Thu gọn</span>
               <ChevronUp className="w-3.5 h-3.5 text-[#ff4757]" />

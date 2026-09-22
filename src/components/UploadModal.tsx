@@ -99,13 +99,13 @@ export const UploadModal: React.FC<UploadModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-lg bg-[#e0e5ec] rounded-2xl sm:rounded-3xl shadow-[var(--shadow-floating)] border border-white/80 border-b-[#babecc] border-r-[#babecc] overflow-hidden flex flex-col max-h-[92vh] animate-in zoom-in-95 duration-150"
+        className="relative w-full max-w-lg bg-[#e0e5ec] rounded-lg sm:rounded-xl shadow-[var(--shadow-floating)] border border-white/80 border-b-[#babecc] border-r-[#babecc] overflow-hidden flex flex-col max-h-[92vh] animate-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header - Bevel Bar */}
         <div className="bg-[#2d3436] px-4 sm:px-6 py-3.5 sm:py-4 text-white flex items-center justify-between gap-3 border-b border-white/20 relative">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="w-9 h-9 rounded-xl bg-[#1e2528] border border-white/10 flex items-center justify-center text-[#ff4757] shrink-0 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)]">
+            <div className="w-9 h-9 rounded-lg bg-[#1e2528] border border-white/10 flex items-center justify-center text-[#ff4757] shrink-0 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)]">
               <Camera className="w-5 h-5" />
             </div>
             <div className="min-w-0">
@@ -121,7 +121,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
           <button
             id="btn-close-upload-modal"
             onClick={onClose}
-            className="w-8 h-8 rounded-lg bg-[#1e2528] hover:bg-[#ff4757] text-slate-200 hover:text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 border border-white/10"
+            className="w-8 h-8 rounded-md bg-[#1e2528] hover:bg-[#ff4757] text-slate-200 hover:text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 border border-white/10"
             aria-label="Đóng"
           >
             <X className="w-4 h-4" />
@@ -131,7 +131,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
         {/* Content Body */}
         <div className="p-4 sm:p-6 overflow-y-auto space-y-4">
           {/* Info pill - Recessed Well */}
-          <div className="text-xs bg-[#d1d9e6] border border-[#babecc]/60 p-3 sm:p-3.5 rounded-2xl shadow-[var(--shadow-recessed-sm)] space-y-2">
+          <div className="text-xs bg-[#d1d9e6] border border-[#babecc]/60 p-3 sm:p-3.5 rounded-lg sm:rounded-xl shadow-[var(--shadow-recessed-sm)] space-y-2">
             <div>
               <span className="text-[#666666] block text-xs font-medium">Học sinh</span>
               <span className="font-bold text-[#1a1a1a] text-sm block break-words mt-0.5">
@@ -180,9 +180,9 @@ export const UploadModal: React.FC<UploadModalProps> = ({
               type="button"
               id="btn-take-photo"
               onClick={() => cameraInputRef.current?.click()}
-              className="flex flex-col items-center justify-center gap-1.5 p-3.5 rounded-2xl bg-[#e0e5ec] hover:bg-[#d8e0ec] border border-white/90 border-b-[#babecc] border-r-[#babecc] text-[#1a1a1a] shadow-[var(--shadow-card-sm)] transition-all cursor-pointer group active:translate-y-[1px]"
+              className="flex flex-col items-center justify-center gap-1.5 p-3.5 rounded-lg sm:rounded-xl bg-[#e0e5ec] hover:bg-[#d8e0ec] border border-white/90 border-b-[#babecc] border-r-[#babecc] text-[#1a1a1a] shadow-[var(--shadow-card-sm)] transition-all cursor-pointer group active:translate-y-[1px]"
             >
-              <div className="w-10 h-10 rounded-xl bg-[#ff4757] text-white flex items-center justify-center shadow-[var(--shadow-accent-sm)]">
+              <div className="w-10 h-10 rounded-lg bg-[#ff4757] text-white flex items-center justify-center shadow-[var(--shadow-accent-sm)]">
                 <Camera className="w-5 h-5" />
               </div>
               <span className="font-semibold text-xs sm:text-sm leading-tight">Chụp ảnh ngay</span>
@@ -203,9 +203,9 @@ export const UploadModal: React.FC<UploadModalProps> = ({
               type="button"
               id="btn-choose-from-gallery"
               onClick={() => fileInputRef.current?.click()}
-              className="flex flex-col items-center justify-center gap-1.5 p-3.5 rounded-2xl bg-[#e0e5ec] hover:bg-[#d8e0ec] border border-white/90 border-b-[#babecc] border-r-[#babecc] text-[#1a1a1a] shadow-[var(--shadow-card-sm)] transition-all cursor-pointer group active:translate-y-[1px]"
+              className="flex flex-col items-center justify-center gap-1.5 p-3.5 rounded-lg sm:rounded-xl bg-[#e0e5ec] hover:bg-[#d8e0ec] border border-white/90 border-b-[#babecc] border-r-[#babecc] text-[#1a1a1a] shadow-[var(--shadow-card-sm)] transition-all cursor-pointer group active:translate-y-[1px]"
             >
-              <div className="w-10 h-10 rounded-xl bg-[#2d3436] text-white flex items-center justify-center shadow-[var(--shadow-card-sm)]">
+              <div className="w-10 h-10 rounded-lg bg-[#2d3436] text-white flex items-center justify-center shadow-[var(--shadow-card-sm)]">
                 <UploadCloud className="w-5 h-5" />
               </div>
               <span className="font-semibold text-xs sm:text-sm leading-tight">Chọn từ thư viện</span>
@@ -214,7 +214,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
           </div>
 
           {/* Quick Mock Presets for fast testing in preview */}
-          <div className="bg-[#d1d9e6] border border-[#babecc]/60 p-3 rounded-2xl shadow-[var(--shadow-recessed-sm)]">
+          <div className="bg-[#d1d9e6] border border-[#babecc]/60 p-3 rounded-lg sm:rounded-xl shadow-[var(--shadow-recessed-sm)]">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-semibold text-[#666666] flex items-center gap-1">
                 <Sparkles className="w-3.5 h-3.5 text-[#ff4757]" />
@@ -227,7 +227,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
                   key={idx}
                   type="button"
                   onClick={() => handleAddSample(item.url)}
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-[#e0e5ec] border border-white/90 shadow-[var(--shadow-card-sm)] text-xs font-semibold text-[#1a1a1a] hover:text-[#ff4757] transition-colors cursor-pointer active:translate-y-[1px] leading-tight"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md sm:rounded-lg bg-[#e0e5ec] border border-white/90 shadow-[var(--shadow-card-sm)] text-xs font-semibold text-[#1a1a1a] hover:text-[#ff4757] transition-colors cursor-pointer active:translate-y-[1px] leading-tight"
                 >
                   <FileImage className="w-3.5 h-3.5 text-[#ff4757]" />
                   <span>+ {item.name}</span>
@@ -252,7 +252,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
                 {images.map((imgSrc, index) => (
                   <div
                     key={index}
-                    className="relative group rounded-xl overflow-hidden border border-white/80 border-b-[#babecc] border-r-[#babecc] bg-[#1e2528] aspect-3/4 shadow-[var(--shadow-card-sm)]"
+                    className="relative group rounded-lg overflow-hidden border border-white/80 border-b-[#babecc] border-r-[#babecc] bg-[#1e2528] aspect-3/4 shadow-[var(--shadow-card-sm)]"
                   >
                     <img
                       src={imgSrc}
@@ -275,7 +275,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
               </div>
             </div>
           ) : (
-            <div className="border border-[#babecc]/60 rounded-2xl p-4 text-center text-[#666666] text-xs bg-[#d1d9e6] shadow-[var(--shadow-recessed-sm)] leading-relaxed">
+            <div className="border border-[#babecc]/60 rounded-lg sm:rounded-xl p-4 text-center text-[#666666] text-xs bg-[#d1d9e6] shadow-[var(--shadow-recessed-sm)] leading-relaxed">
               <AlertCircle className="w-6 h-6 mx-auto mb-1 text-[#ff4757]" />
               Chưa có ảnh nào được tải lên. Ba mẹ hãy bấm chụp ảnh hoặc chọn ảnh mẫu phía trên.
             </div>
@@ -292,13 +292,13 @@ export const UploadModal: React.FC<UploadModalProps> = ({
               value={note}
               onChange={(e) => setNote(e.target.value)}
               placeholder="VD: Con đã làm xong bài và kiểm tra lại từ vựng. Nhờ Cô Nghi xem kỹ giúp con câu 5 và câu 8..."
-              className="w-full text-xs sm:text-sm p-3 rounded-2xl border border-[#babecc] shadow-[var(--shadow-recessed-sm)] focus:outline-none focus:border-[#ff4757] text-[#1a1a1a] placeholder-[#888888] resize-none bg-[#d1d9e6]"
+              className="w-full text-xs sm:text-sm p-3 rounded-lg sm:rounded-xl border border-[#babecc] shadow-[var(--shadow-recessed-sm)] focus:outline-none focus:border-[#ff4757] text-[#1a1a1a] placeholder-[#888888] resize-none bg-[#d1d9e6]"
             />
           </div>
 
           {/* Success state banner if submitted */}
           {submittedSuccess && (
-            <div className="bg-emerald-100 border border-emerald-400 text-emerald-950 p-3 rounded-2xl flex items-center gap-2.5 animate-in fade-in duration-150 shadow-[inset_1px_1px_2px_#ffffff]">
+            <div className="bg-emerald-100 border border-emerald-400 text-emerald-950 p-3 rounded-lg sm:rounded-xl flex items-center gap-2.5 animate-in fade-in duration-150 shadow-[inset_1px_1px_2px_#ffffff]">
               <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
               <div className="text-xs leading-relaxed">
                 <span className="font-semibold block">Nộp bài thành công!</span>
@@ -314,7 +314,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
             type="button"
             onClick={onClose}
             disabled={isSubmitting}
-            className="px-4 py-2.5 rounded-xl text-[#1a1a1a] bg-[#e0e5ec] border border-white/90 shadow-[var(--shadow-card-sm)] hover:bg-[#d8e0ec] font-semibold text-xs sm:text-sm transition-all active:translate-y-[1px] cursor-pointer leading-tight"
+            className="px-4 py-2.5 rounded-md sm:rounded-lg text-[#1a1a1a] bg-[#e0e5ec] border border-white/90 shadow-[var(--shadow-card-sm)] hover:bg-[#d8e0ec] font-semibold text-xs sm:text-sm transition-all active:translate-y-[1px] cursor-pointer leading-tight"
           >
             Đóng lại
           </button>
@@ -324,7 +324,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
             id="btn-confirm-submit-assignment"
             onClick={handleSubmit}
             disabled={images.length === 0 || isSubmitting || submittedSuccess}
-            className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl text-white font-semibold text-xs sm:text-sm transition-all border border-white/30 leading-tight ${
+            className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-5 rounded-md sm:rounded-lg text-white font-semibold text-xs sm:text-sm transition-all border border-white/30 leading-tight ${
               images.length === 0 || isSubmitting || submittedSuccess
                 ? "bg-[#babecc] cursor-not-allowed text-[#666666]"
                 : "bg-[#ff4757] hover:bg-[#ff3344] active:translate-y-[1px] shadow-[var(--shadow-accent)] cursor-pointer"

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   BookOpen,
   Menu,
@@ -54,6 +54,32 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("tong-quan");
   const [copiedLink, setCopiedLink] = useState(false);
+  const menuContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        menuContainerRef.current &&
+        !menuContainerRef.current.contains(event.target as Node)
+      ) {
+        setMobileMenuOpen(false);
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    if (mobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [mobileMenuOpen]);
 
   const copyTeacherUrl = () => {
     const url = `${window.location.origin}/giao-vien`;
@@ -119,7 +145,13 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
 
   return (
     <header className="sticky top-0 z-40 bg-[#e0e5ec]/95 backdrop-blur-md border-b border-white/80 shadow-[0_4px_14px_rgba(166,183,203,0.4)] transition-all duration-200">
-      <div className="max-w-md md:max-w-4xl lg:max-w-5xl mx-auto px-3 sm:px-6">
+      <div
+        className={`w-full mx-auto transition-all ${
+          currentRoute === "admin"
+            ? "max-w-5xl px-3 sm:px-6"
+            : "max-w-md md:max-w-2xl lg:max-w-3xl px-3.5 sm:px-5"
+        }`}
+      >
         <div className="flex items-center justify-between h-16 gap-2 sm:gap-3">
           {/* Logo & Brand Name */}
           <div
@@ -132,7 +164,7 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
             }}
             className="flex items-center gap-2 sm:gap-2.5 cursor-pointer group shrink-0"
           >
-            <div className="w-10 h-10 rounded-xl soft-ui-convex flex items-center justify-center text-[#ff4757] group-hover:shadow-[var(--shadow-floating)] transition-all">
+            <div className="w-10 h-10 rounded-lg soft-ui-convex flex items-center justify-center text-[#ff4757] group-hover:shadow-[var(--shadow-floating)] transition-all">
               <BookOpen className="w-5 h-5 text-[#ff4757]" />
             </div>
             <div>
@@ -159,83 +191,48 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
             </div>
           </div>
 
-          {/* Desktop Navigation & Actions */}
-          <div className="hidden md:flex items-center gap-2.5">
-            {/* If Student Route: Show Only Student Section Navigation */}
-            {currentRoute === "student" && (
-              <nav className="flex items-center gap-1 soft-ui-debossed p-1 rounded-xl text-xs font-semibold">
-                {NAV_ITEMS.filter(
-                  (item) => item.id !== "tong-quan" && item.id !== "lien-he"
-                ).map((item) => {
-                  const isActive = activeSection === item.id;
-                  const Icon = item.icon;
-                  return (
-                    <button
-                      key={item.id}
-                      onClick={() => scrollToSection(item.id)}
-                      className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg transition-all duration-150 whitespace-nowrap cursor-pointer leading-tight ${
-                        isActive
-                          ? "soft-ui-convex text-[#ff4757] font-semibold"
-                          : "text-[#666666] hover:text-[#1a1a1a]"
-                      }`}
-                      title={item.label}
-                    >
-                      <Icon
-                        className={`w-3.5 h-3.5 ${
-                          isActive ? "text-[#ff4757]" : "text-[#666666]"
-                        }`}
-                      />
-                      <span className="hidden lg:inline">{item.label}</span>
-                      <span className="inline lg:hidden">{item.shortLabel || item.label}</span>
-                    </button>
-                  );
-                })}
-              </nav>
-            )}
-
-            {/* If Teacher Route (Admin): Show dedicated Teacher Portal Badge, Copy Link & Parent Preview Button */}
-            {currentRoute === "admin" && (
-              <div className="flex items-center gap-2">
-                <div className="flex items-center gap-2 bg-[#d1d9e6] border border-[#babecc]/60 px-3 py-1.5 rounded-xl shadow-[var(--shadow-recessed-sm)] text-xs">
-                  <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
-                  <span className="text-[#666666] font-medium">Link Cổng:</span>
-                  <span className="font-bold font-mono text-[#1a1a1a]">/giao-vien</span>
-                </div>
-
-                <button
-                  type="button"
-                  id="btn-copy-teacher-link"
-                  onClick={copyTeacherUrl}
-                  className="soft-ui-convex min-h-[36px] px-3 py-1.5 rounded-xl text-xs font-semibold text-[#1a1a1a] flex items-center gap-1.5 cursor-pointer active:translate-y-[1px] transition-all"
-                  title="Sao chép đường dẫn trực tiếp Cổng Giáo Viên"
-                >
-                  {copiedLink ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-emerald-600" />
-                      <span className="text-emerald-700 font-bold">Đã chép link!</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3.5 h-3.5 text-[#ff4757]" />
-                      <span>Chép link Cổng</span>
-                    </>
-                  )}
-                </button>
-
-                <button
-                  type="button"
-                  id="btn-view-parent-portal"
-                  onClick={() => onNavigateToStudent(currentStudent.slug)}
-                  className="bg-[#2d3436] hover:bg-[#1a1a1a] text-white min-h-[36px] px-3.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 shadow-[4px_4px_8px_rgba(0,0,0,0.25)] border border-white/20 cursor-pointer active:translate-y-[1px] transition-all"
-                >
-                  <ExternalLink className="w-3.5 h-3.5 text-[#ff4757]" />
-                  <span>Mở Cổng Phụ Huynh</span>
-                </button>
+          {/* Desktop Navigation & Actions for Admin */}
+          {currentRoute === "admin" && (
+            <div className="hidden md:flex items-center gap-2.5">
+              <div className="flex items-center gap-2 bg-[#d1d9e6] border border-[#babecc]/60 px-3 py-1.5 rounded-lg shadow-[var(--shadow-recessed-sm)] text-xs">
+                <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
+                <span className="text-[#666666] font-medium">Link Cổng:</span>
+                <span className="font-bold font-mono text-[#1a1a1a]">/giao-vien</span>
               </div>
-            )}
-          </div>
 
-          {/* Right Action: Mobile Controls */}
+              <button
+                type="button"
+                id="btn-copy-teacher-link"
+                onClick={copyTeacherUrl}
+                className="soft-ui-convex min-h-[36px] px-3 py-1.5 rounded-lg text-xs font-semibold text-[#1a1a1a] flex items-center gap-1.5 cursor-pointer active:translate-y-[1px] transition-all"
+                title="Sao chép đường dẫn trực tiếp Cổng Giáo Viên"
+              >
+                {copiedLink ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                    <span className="text-emerald-700 font-bold">Đã chép link!</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3.5 h-3.5 text-[#ff4757]" />
+                    <span>Chép link Cổng</span>
+                  </>
+                )}
+              </button>
+
+              <button
+                type="button"
+                id="btn-view-parent-portal"
+                onClick={() => onNavigateToStudent(currentStudent.slug)}
+                className="bg-[#2d3436] hover:bg-[#1a1a1a] text-white min-h-[36px] px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-[4px_4px_8px_rgba(0,0,0,0.25)] border border-white/20 cursor-pointer active:translate-y-[1px] transition-all"
+              >
+                <ExternalLink className="w-3.5 h-3.5 text-[#ff4757]" />
+                <span>Mở Cổng Phụ Huynh</span>
+              </button>
+            </div>
+          )}
+
+          {/* Right Action: Mobile Controls & Student Pop-up Menu */}
           <div className="relative flex items-center gap-1.5 sm:gap-2">
             {/* If Teacher Route (Admin) on Mobile: Show Copy Link & View Parent Button */}
             {currentRoute === "admin" && (
@@ -244,7 +241,7 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                   type="button"
                   id="btn-mobile-copy-link"
                   onClick={copyTeacherUrl}
-                  className="min-h-[40px] px-2.5 py-1.5 rounded-xl soft-ui-convex text-xs font-semibold flex items-center gap-1 text-[#1a1a1a] active:translate-y-[1px]"
+                  className="min-h-[40px] px-2.5 py-1.5 rounded-lg soft-ui-convex text-xs font-semibold flex items-center gap-1 text-[#1a1a1a] active:translate-y-[1px]"
                   title="Sao chép link /giao-vien"
                 >
                   {copiedLink ? (
@@ -261,7 +258,7 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                   type="button"
                   id="btn-mobile-open-student-portal"
                   onClick={() => onNavigateToStudent(currentStudent.slug)}
-                  className="min-h-[40px] px-3 py-1.5 rounded-xl bg-[#2d3436] text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm border border-white/20 active:translate-y-[1px]"
+                  className="min-h-[40px] px-3 py-1.5 rounded-lg bg-[#2d3436] text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm border border-white/20 active:translate-y-[1px]"
                 >
                   <User className="w-3.5 h-3.5 text-[#ff4757]" />
                   <span>Phụ Huynh</span>
@@ -269,59 +266,87 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
               </div>
             )}
 
-            {/* Mobile Hamburger Button for Student Portal */}
+            {/* If Student Route: Unified Pop-up Menu for both PC and Mobile */}
             {currentRoute === "student" && (
-              <button
-                id="btn-toggle-mobile-menu"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2 rounded-xl text-[#1e293b] soft-ui-convex min-h-[42px] min-w-[42px] flex items-center justify-center cursor-pointer active:translate-y-[1px]"
-                aria-label="Mở menu"
-              >
-                {mobileMenuOpen ? (
-                  <X className="w-5 h-5 text-[#ff4757]" />
-                ) : (
-                  <Menu className="w-5 h-5" />
+              <div className="relative" ref={menuContainerRef}>
+                <button
+                  type="button"
+                  id="btn-toggle-nav-menu"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className={`w-10 h-10 sm:w-11 sm:h-11 rounded-lg transition-all flex items-center justify-center cursor-pointer active:translate-y-[1px] ${
+                    mobileMenuOpen
+                      ? "bg-[#dbe4ee] text-[#ff4757] shadow-[var(--shadow-recessed-sm)] border border-[#a8b8cc]/70"
+                      : "soft-ui-convex text-[#1a1a1a] hover:text-[#ff4757]"
+                  }`}
+                  aria-expanded={mobileMenuOpen}
+                  aria-haspopup="true"
+                  aria-label="Mục lục học vụ"
+                  title="Mục lục học vụ"
+                >
+                  {mobileMenuOpen ? (
+                    <X className="w-5 h-5 text-[#ff4757]" />
+                  ) : (
+                    <Menu className="w-5 h-5 text-[#ff4757]" />
+                  )}
+                </button>
+
+                {/* Pop-up Navigation Menu (Floating for PC and Mobile) */}
+                {mobileMenuOpen && (
+                  <div
+                    id="popup-nav-menu"
+                    className="absolute right-0 top-full mt-2 w-72 sm:w-80 max-w-[calc(100vw-24px)] rounded-xl bg-[#e0e5ec] border border-white/90 p-2.5 shadow-[var(--shadow-floating)] z-50 animate-in fade-in zoom-in-95 duration-150"
+                  >
+                    <div className="flex items-center justify-between px-2.5 py-1.5 mb-1.5 border-b border-[#babecc]/50">
+                      <span className="text-[11px] font-bold font-mono text-[#4a5568] uppercase tracking-wider">
+                        CHUYỂN NHANH TỚI PHẦN
+                      </span>
+                      <span className="text-[10px] font-bold font-mono text-[#ff4757] bg-[#ff4757]/10 px-2 py-0.5 rounded-md border border-[#ff4757]/20">
+                        {NAV_ITEMS.length} MỤC
+                      </span>
+                    </div>
+
+                    <div className="space-y-1">
+                      {NAV_ITEMS.map((item) => {
+                        const isActive = activeSection === item.id;
+                        const Icon = item.icon;
+                        return (
+                          <button
+                            key={item.id}
+                            onClick={() => scrollToSection(item.id)}
+                            className={`w-full min-h-[40px] flex items-center justify-between px-3 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer text-left active:translate-y-[1px] ${
+                              isActive
+                                ? "bg-[#dbe4ee] text-[#ff4757] shadow-[var(--shadow-recessed-sm)] border border-[#a8b8cc]/60"
+                                : "text-[#1a1a1a] hover:bg-[#d8e0ec] hover:text-[#ff4757]"
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <div
+                                className={`p-1.5 rounded-md shrink-0 ${
+                                  isActive
+                                    ? "bg-[#ff4757] text-white shadow-[var(--shadow-accent)]"
+                                    : "bg-[#d1d9e6] text-[#4a5568] shadow-[var(--shadow-recessed-sm)]"
+                                }`}
+                              >
+                                <Icon className="w-4 h-4" />
+                              </div>
+                              <span className="font-semibold text-xs leading-tight">
+                                {item.label}
+                              </span>
+                            </div>
+                            {isActive && (
+                              <span className="w-2 h-2 rounded-full bg-[#ff4757] shadow-[0_0_6px_#ff4757]" />
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
                 )}
-              </button>
+              </div>
             )}
           </div>
         </div>
       </div>
-
-      {/* Mobile Drawer Dropdown if hamburger is opened */}
-      {mobileMenuOpen && currentRoute === "student" && (
-        <div className="md:hidden border-t border-white/80 soft-ui-embossed px-4 py-3 space-y-1.5 shadow-[0_8px_16px_rgba(166,183,203,0.4)] animate-in slide-in-from-top-2 duration-150">
-          <div className="text-[11px] font-bold font-mono text-[#4a5568] uppercase tracking-wider px-3 py-1">
-            CHUYỂN NHANH TỚI PHẦN
-          </div>
-          {NAV_ITEMS.map((item) => {
-            const isActive = activeSection === item.id;
-            const Icon = item.icon;
-            return (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`w-full min-h-[44px] flex items-center justify-start px-3 py-2.5 rounded-xl text-sm font-bold transition-all cursor-pointer active:translate-y-[1px] ${
-                  isActive
-                    ? "bg-[#dbe4ee] text-[#ff4757] shadow-[var(--shadow-recessed-sm)] border border-[#a8b8cc]/60"
-                    : "text-[#2d3436] hover:bg-[#f1f5f9]"
-                }`}
-              >
-                <div className="flex items-center gap-2.5">
-                  <div
-                    className={`p-1.5 rounded-lg ${
-                      isActive ? "bg-[#ff4757] text-white shadow-[var(--shadow-accent)]" : "bg-[#dbe4ee] text-[#4a5568] shadow-[var(--shadow-recessed-sm)]"
-                    }`}
-                  >
-                    <Icon className="w-4 h-4" />
-                  </div>
-                  <span>{item.label}</span>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-      )}
     </header>
   );
 };

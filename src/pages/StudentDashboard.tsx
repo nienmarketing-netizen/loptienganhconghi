@@ -235,11 +235,11 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
 
       {/* 6. Teacher Support & Zalo Quick Contact (Section thông thường) */}
       <section id="lien-he" className="scroll-mt-24 pt-3">
-        <div className="relative rounded-2xl bg-gradient-to-br from-indigo-900 via-slate-900 to-slate-950 text-white p-4 sm:p-5 pt-6 sm:pt-6 shadow-lg border border-indigo-800/40 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+        <div className="relative rounded-lg sm:rounded-xl bg-gradient-to-br from-indigo-900 via-slate-900 to-slate-950 text-white p-4 sm:p-5 pt-6 sm:pt-6 shadow-lg border border-indigo-800/40 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           {/* Corner badge: half outside, half inside */}
           <div
             id="badge-contact-corner"
-            className="absolute -top-5 left-5 sm:left-6 w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-500 to-blue-500 text-white flex items-center justify-center shadow-lg shadow-indigo-950/50 ring-4 ring-slate-50 border border-indigo-300/40 z-10"
+            className="absolute -top-5 left-5 sm:left-6 w-10 h-10 rounded-lg bg-gradient-to-tr from-indigo-500 to-blue-500 text-white flex items-center justify-center shadow-lg shadow-indigo-950/50 ring-4 ring-slate-50 border border-indigo-300/40 z-10"
           >
             <MessageCircle className="w-5 h-5 text-white fill-white/20" />
           </div>
@@ -258,7 +258,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
             href="https://zalo.me"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 !text-white text-xs font-semibold py-2.5 px-4 rounded-xl shadow-md transition-all active:scale-95 shrink-0 min-h-[40px] leading-tight"
+            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 !text-white text-xs font-semibold py-2.5 px-4 rounded-lg shadow-md transition-all active:scale-95 shrink-0 min-h-[40px] leading-tight"
           >
             <PhoneCall className="w-3.5 h-3.5 !text-white" />
             <span className="!text-white font-semibold">Nhắn Zalo Cô Nghi</span>

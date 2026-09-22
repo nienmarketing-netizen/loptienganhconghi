@@ -136,7 +136,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="relative bg-[#e0e5ec] w-full max-w-3xl rounded-2xl sm:rounded-3xl shadow-[var(--shadow-floating)] border border-white/80 border-b-[#babecc] border-r-[#babecc] overflow-hidden flex flex-col max-h-[92vh] animate-in zoom-in-95 duration-200"
+        className="relative bg-[#e0e5ec] w-full max-w-3xl rounded-lg sm:rounded-xl shadow-[var(--shadow-floating)] border border-white/80 border-b-[#babecc] border-r-[#babecc] overflow-hidden flex flex-col max-h-[92vh] animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Corner Screws */}
@@ -167,7 +167,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="w-8 h-8 rounded-lg bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white flex items-center justify-center transition-colors cursor-pointer border border-white/10 mr-1"
+            className="w-8 h-8 rounded-md bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white flex items-center justify-center transition-colors cursor-pointer border border-white/10 mr-1"
             aria-label="Đóng"
           >
             <X className="w-4 h-4" />
@@ -184,7 +184,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
                   key={m.id}
                   type="button"
                   onClick={() => setActiveMaterialId(m.id)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold font-mono transition-all flex items-center gap-2 whitespace-nowrap cursor-pointer shrink-0 active:translate-y-[1px] ${
+                  className={`px-3 py-1.5 rounded-md sm:rounded-lg text-xs font-bold font-mono transition-all flex items-center gap-2 whitespace-nowrap cursor-pointer shrink-0 active:translate-y-[1px] ${
                     isActive
                       ? "bg-[#ff4757] text-white shadow-[var(--shadow-accent-sm)] border border-white/30"
                       : "bg-[#e0e5ec] text-[#2d3436] hover:bg-[#d8e0ec] border border-white/90 shadow-[var(--shadow-card-sm)]"
@@ -216,7 +216,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
               {/* Type 1: VIDEO VIEWER */}
               {activeMaterial.type === "video" && (
                 <div className="space-y-4">
-                  <div className="relative rounded-2xl overflow-hidden bg-[#1e2528] border-2 border-[#2d3436] shadow-[inset_2px_2px_6px_rgba(0,0,0,0.8)] aspect-video flex items-center justify-center">
+                  <div className="relative rounded-lg sm:rounded-xl overflow-hidden bg-[#1e2528] border-2 border-[#2d3436] shadow-[inset_2px_2px_6px_rgba(0,0,0,0.8)] aspect-video flex items-center justify-center">
                     <video
                       ref={videoRef}
                       src={activeMaterial.url}
@@ -229,7 +229,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
                     </video>
                   </div>
 
-                  <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-[var(--shadow-recessed-sm)]">
+                  <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-lg sm:rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-[var(--shadow-recessed-sm)]">
                     <div className="space-y-1 font-mono">
                       <div className="flex items-center gap-2">
                         <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-[#2d3436] text-white">
@@ -259,7 +259,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
                     <button
                       type="button"
                       onClick={() => handleDownloadMaterial(activeMaterial)}
-                      className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#ff4757] hover:bg-[#ff3344] text-white font-bold font-mono text-xs shadow-[var(--shadow-accent)] transition-all shrink-0 cursor-pointer active:translate-y-[1px] border border-white/30"
+                      className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md sm:rounded-lg bg-[#ff4757] hover:bg-[#ff3344] text-white font-bold font-mono text-xs shadow-[var(--shadow-accent)] transition-all shrink-0 cursor-pointer active:translate-y-[1px] border border-white/30"
                     >
                       {downloadSuccessItem === activeMaterial.id ? (
                         <>
@@ -292,10 +292,10 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
                   />
 
                   {/* Sleek Custom Audio Card - Industrial Deck Chassis */}
-                  <div className="bg-[#1e2528] text-white rounded-3xl p-5 sm:p-6 shadow-[inset_2px_2px_8px_rgba(0,0,0,0.8),0_4px_16px_rgba(0,0,0,0.4)] border border-white/10 space-y-5 font-mono">
+                  <div className="bg-[#1e2528] text-white rounded-lg sm:rounded-xl p-5 sm:p-6 shadow-[inset_2px_2px_8px_rgba(0,0,0,0.8),0_4px_16px_rgba(0,0,0,0.4)] border border-white/10 space-y-5 font-mono">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2.5">
-                        <div className="w-10 h-10 rounded-xl bg-[#2d3436] border border-white/10 flex items-center justify-center text-[#ff4757] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)]">
+                        <div className="w-10 h-10 rounded-lg bg-[#2d3436] border border-white/10 flex items-center justify-center text-[#ff4757] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)]">
                           <Headphones className="w-5 h-5" />
                         </div>
                         <div>
@@ -308,7 +308,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-1.5 text-xs bg-[#2d3436] px-2.5 py-1 rounded-lg text-[#a3b1c6] border border-white/10">
+                      <div className="flex items-center gap-1.5 text-xs bg-[#2d3436] px-2.5 py-1 rounded-md text-[#a3b1c6] border border-white/10">
                         <Volume2 className="w-3.5 h-3.5 text-[#ff4757]" />
                         <span>MP3 HD</span>
                       </div>
@@ -332,7 +332,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
                         step="0.1"
                         value={audioProgress}
                         onChange={handleSeekAudio}
-                        className="w-full h-2 bg-[#2d3436] rounded-lg appearance-none cursor-pointer accent-[#ff4757]"
+                        className="w-full h-2 bg-[#2d3436] rounded-md appearance-none cursor-pointer accent-[#ff4757]"
                       />
                       <div className="flex items-center justify-between text-xs text-[#a3b1c6] font-mono">
                         <span>{currentTimeText}</span>
@@ -346,7 +346,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
                         <button
                           type="button"
                           onClick={handleRewind5s}
-                          className="p-2.5 rounded-xl bg-[#2d3436] hover:bg-[#3d4447] text-white border border-white/10 transition-colors cursor-pointer flex items-center gap-1 text-xs font-mono"
+                          className="p-2.5 rounded-md sm:rounded-lg bg-[#2d3436] hover:bg-[#3d4447] text-white border border-white/10 transition-colors cursor-pointer flex items-center gap-1 text-xs font-mono"
                           title="Lùi 5 giây"
                         >
                           <RotateCcw className="w-4 h-4" />
@@ -356,7 +356,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
                         <button
                           type="button"
                           onClick={togglePlayAudio}
-                          className="w-12 h-12 rounded-xl bg-[#ff4757] hover:bg-[#ff3344] text-white flex items-center justify-center shadow-[var(--shadow-accent)] border border-white/30 transition-all active:translate-y-[1px] cursor-pointer"
+                          className="w-12 h-12 rounded-lg bg-[#ff4757] hover:bg-[#ff3344] text-white flex items-center justify-center shadow-[var(--shadow-accent)] border border-white/30 transition-all active:translate-y-[1px] cursor-pointer"
                         >
                           {isPlayingAudio ? (
                             <Pause className="w-6 h-6" />
@@ -366,13 +366,13 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
                         </button>
 
                         {/* Speed selector */}
-                        <div className="flex items-center gap-1 bg-[#2d3436] p-1 rounded-xl text-xs font-mono border border-white/10">
+                        <div className="flex items-center gap-1 bg-[#2d3436] p-1 rounded-lg text-xs font-mono border border-white/10">
                           {[0.8, 1.0, 1.2].map((rate) => (
                             <button
                               key={rate}
                               type="button"
                               onClick={() => handleChangePlaybackRate(rate)}
-                              className={`px-2 py-1 rounded-lg transition-colors cursor-pointer ${
+                              className={`px-2 py-1 rounded-md transition-colors cursor-pointer ${
                                 playbackRate === rate
                                   ? "bg-[#ff4757] text-white"
                                   : "text-[#a3b1c6] hover:text-white"
@@ -387,7 +387,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
                       <button
                         type="button"
                         onClick={() => handleDownloadMaterial(activeMaterial)}
-                        className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#2d3436] hover:bg-[#3d4447] text-white font-bold font-mono text-xs border border-white/15 transition-all cursor-pointer active:translate-y-[1px]"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md sm:rounded-lg bg-[#2d3436] hover:bg-[#3d4447] text-white font-bold font-mono text-xs border border-white/15 transition-all cursor-pointer active:translate-y-[1px]"
                       >
                         {downloadSuccessItem === activeMaterial.id ? (
                           <>
@@ -404,7 +404,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
                     </div>
                   </div>
 
-                  <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-2xl p-4 text-xs text-[#2d3436] flex items-start gap-2.5 shadow-[var(--shadow-recessed-sm)] font-mono">
+                  <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-lg sm:rounded-xl p-4 text-xs text-[#2d3436] flex items-start gap-2.5 shadow-[var(--shadow-recessed-sm)] font-mono">
                     <Info className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
                     <div>
                       <span className="font-bold">Mẹo từ Cô Nghi:</span> Ba mẹ có thể cho con nghe lại từ 2 - 3 lần ở tốc độ 0.8x để nắm chắc từng phụ âm đuôi (/s/, /z/, /ed/), sau đó tăng lên 1.0x để con luyện phản xạ nghe tự nhiên.
@@ -417,7 +417,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
               {activeMaterial.type === "pdf" && (
                 <div className="space-y-4">
                   {/* Worksheet Preview Card */}
-                  <div className="border border-white/80 border-b-[#babecc] border-r-[#babecc] rounded-3xl p-5 sm:p-6 bg-[#e0e5ec] shadow-[var(--shadow-card)] space-y-4 font-mono">
+                  <div className="border border-white/80 border-b-[#babecc] border-r-[#babecc] rounded-lg sm:rounded-xl p-5 sm:p-6 bg-[#e0e5ec] shadow-[var(--shadow-card)] space-y-4 font-mono">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#babecc]/60">
                       <div>
                         <div className="flex items-center gap-2">
@@ -437,7 +437,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
                         <button
                           type="button"
                           onClick={() => handleDownloadMaterial(activeMaterial)}
-                          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#ff4757] hover:bg-[#ff3344] text-white font-bold text-xs shadow-[var(--shadow-accent)] transition-all cursor-pointer active:translate-y-[1px] border border-white/30"
+                          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md sm:rounded-lg bg-[#ff4757] hover:bg-[#ff3344] text-white font-bold text-xs shadow-[var(--shadow-accent)] transition-all cursor-pointer active:translate-y-[1px] border border-white/30"
                         >
                           {downloadSuccessItem === activeMaterial.id ? (
                             <>
@@ -455,7 +455,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
                     </div>
 
                     {/* Printable Sheet Mock Preview */}
-                    <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-2xl p-5 shadow-[var(--shadow-recessed-sm)] font-mono text-xs space-y-3">
+                    <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-lg sm:rounded-xl p-5 shadow-[var(--shadow-recessed-sm)] font-mono text-xs space-y-3">
                       <div className="flex justify-between items-start border-b border-[#babecc]/60 pb-3">
                         <div>
                           <div className="font-black text-[#2d3436] text-sm">LỚP TIẾNG ANH CÔ NGHI</div>
@@ -471,17 +471,17 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
                         </div>
                       </div>
 
-                      <div className="bg-[#e0e5ec] border border-white/90 rounded-xl p-3 text-[#2d3436] shadow-[var(--shadow-card-sm)]">
+                      <div className="bg-[#e0e5ec] border border-white/90 rounded-lg p-3 text-[#2d3436] shadow-[var(--shadow-card-sm)]">
                         <span className="font-bold block mb-0.5 text-[#ff4757]">📌 Hướng dẫn làm bài:</span>
                         <span>Ba mẹ in phiếu hoặc cho con chép câu trả lời vào vở Tiếng Anh chuyên đề. Sau khi làm xong, chụp lại ảnh trang vở gửi cô qua Cổng Phụ Huynh để được chấm điểm chi tiết.</span>
                       </div>
 
                       <div className="space-y-2.5 pt-1">
-                        <div className="p-2.5 rounded-xl bg-[#e0e5ec] border border-white/90 shadow-[var(--shadow-card-sm)]">
+                        <div className="p-2.5 rounded-lg bg-[#e0e5ec] border border-white/90 shadow-[var(--shadow-card-sm)]">
                           <span className="font-bold text-[#2d3436] block">Part 1: Vocabulary & Grammar Mastery</span>
                           <span className="text-[#4a5568] text-[11px]">Bóc tách thành phần câu (S - V - O - M) và tìm bẫy ngữ pháp.</span>
                         </div>
-                        <div className="p-2.5 rounded-xl bg-[#e0e5ec] border border-white/90 shadow-[var(--shadow-card-sm)]">
+                        <div className="p-2.5 rounded-lg bg-[#e0e5ec] border border-white/90 shadow-[var(--shadow-card-sm)]">
                           <span className="font-bold text-[#2d3436] block">Part 2: Speaking / Writing Focus</span>
                           <span className="text-[#4a5568] text-[11px]">Luyện đọc to thành tiếng theo file Audio MP3 đính kèm và quay video thuyết trình ngắn.</span>
                         </div>
@@ -502,7 +502,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
               {materials.map((m) => (
                 <div
                   key={m.id}
-                  className={`p-3 rounded-2xl border transition-all flex items-center justify-between gap-2 ${
+                  className={`p-3 rounded-lg sm:rounded-xl border transition-all flex items-center justify-between gap-2 ${
                     m.id === activeMaterial?.id
                       ? "border-white/90 bg-[#d1d9e6] shadow-[var(--shadow-recessed-sm)]"
                       : "border-white/80 border-b-[#babecc] border-r-[#babecc] bg-[#e0e5ec] shadow-[var(--shadow-card-sm)] hover:bg-[#d8e0ec]"
@@ -513,7 +513,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
                     onClick={() => setActiveMaterialId(m.id)}
                   >
                     <div
-                      className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 bg-[#d1d9e6] border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)] text-[#ff4757]"
+                      className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-[#d1d9e6] border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)] text-[#ff4757]"
                     >
                       {m.type === "video" && <Video className="w-4 h-4" />}
                       {m.type === "mp3" && <Headphones className="w-4 h-4" />}
@@ -532,7 +532,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
                   <button
                     type="button"
                     onClick={() => handleDownloadMaterial(m)}
-                    className="p-1.5 rounded-lg text-[#4a5568] hover:text-[#ff4757] bg-[#e0e5ec] border border-white/90 shadow-[var(--shadow-card-sm)] active:translate-y-[1px] transition-colors cursor-pointer"
+                    className="p-1.5 rounded-md text-[#4a5568] hover:text-[#ff4757] bg-[#e0e5ec] border border-white/90 shadow-[var(--shadow-card-sm)] active:translate-y-[1px] transition-colors cursor-pointer"
                     title={`Tải ${m.type.toUpperCase()}`}
                   >
                     <Download className="w-3.5 h-3.5" />
@@ -548,7 +548,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded-xl text-[#2d3436] bg-[#e0e5ec] border border-white/90 shadow-[var(--shadow-card-sm)] hover:bg-[#d8e0ec] font-bold text-xs transition-all active:translate-y-[1px] cursor-pointer"
+            className="px-4 py-2 rounded-md sm:rounded-lg text-[#2d3436] bg-[#e0e5ec] border border-white/90 shadow-[var(--shadow-card-sm)] hover:bg-[#d8e0ec] font-bold text-xs transition-all active:translate-y-[1px] cursor-pointer"
           >
             Đóng
           </button>
@@ -557,7 +557,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
             <button
               type="button"
               onClick={() => onDownloadPDF(assignment)}
-              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#ff4757] hover:bg-[#ff3344] text-white font-bold text-xs shadow-[var(--shadow-accent)] transition-all active:translate-y-[1px] cursor-pointer border border-white/30"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-md sm:rounded-lg bg-[#ff4757] hover:bg-[#ff3344] text-white font-bold text-xs shadow-[var(--shadow-accent)] transition-all active:translate-y-[1px] cursor-pointer border border-white/30"
             >
               <Download className="w-3.5 h-3.5 text-white" />
               <span>Tải phiếu bài tập (.PDF)</span>

@@ -23,7 +23,7 @@ export const DiagnosticRadarBlock: React.FC<DiagnosticRadarBlockProps> = ({ stud
   const diagnosis = student.teacherDiagnosis;
 
   return (
-    <div className="rounded-2xl sm:rounded-3xl soft-ui-embossed p-4 sm:p-6 space-y-4 sm:space-y-5">
+    <div className="rounded-lg sm:rounded-xl soft-ui-embossed p-4 sm:p-6 space-y-4 sm:space-y-5">
       {/* Section Header */}
       <div className="flex items-center justify-between gap-2 border-b border-[#b2c2d4]/40 pb-3">
         <div>
@@ -44,7 +44,7 @@ export const DiagnosticRadarBlock: React.FC<DiagnosticRadarBlockProps> = ({ stud
       {/* Grid: Radar Chart + Teacher Diagnostic Card */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-stretch">
         {/* Left: Recharts Radar Chart */}
-        <div className="md:col-span-6 soft-ui-embossed-sm rounded-2xl p-4 flex flex-col justify-between">
+        <div className="md:col-span-6 soft-ui-embossed-sm rounded-lg sm:rounded-xl p-4 flex flex-col justify-between">
           <div className="pb-2 border-b border-[#b2c2d4]/40">
             <div className="text-xs sm:text-sm font-bold text-[#1a1a1a] tracking-[-0.015em] flex items-center justify-between">
               <span>Đa giác năng lực (5 trục)</span>
@@ -100,7 +100,7 @@ export const DiagnosticRadarBlock: React.FC<DiagnosticRadarBlockProps> = ({ stud
                       if (active && payload && payload.length) {
                         const dataItem = payload[0]?.payload;
                         return (
-                          <div className="bg-[#2d3436] text-white p-2.5 rounded-xl text-xs space-y-1 shadow-[var(--shadow-floating)] border border-white/20 font-mono">
+                          <div className="bg-[#2d3436] text-white p-2.5 rounded-lg text-xs space-y-1 shadow-[var(--shadow-floating)] border border-white/20 font-mono">
                             <div className="font-bold text-amber-300">{dataItem.subject}</div>
                             <div className="text-slate-300">
                               Đầu vào: <span className="text-white font-mono">{dataItem.baseline}/100</span>
@@ -133,7 +133,7 @@ export const DiagnosticRadarBlock: React.FC<DiagnosticRadarBlockProps> = ({ stud
         </div>
 
         {/* Right: Card Nhận xét của giáo viên ngày đầu nhập học */}
-        <div className="md:col-span-6 soft-ui-embossed-sm rounded-2xl p-4 flex flex-col justify-between space-y-3">
+        <div className="md:col-span-6 soft-ui-embossed-sm rounded-lg sm:rounded-xl p-4 flex flex-col justify-between space-y-3">
           <div className="pb-2 border-b border-[#b0c0d2]/40">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-[#ff4757] flex items-center gap-1.5 leading-tight">
@@ -159,7 +159,7 @@ export const DiagnosticRadarBlock: React.FC<DiagnosticRadarBlockProps> = ({ stud
                 <span className="w-2 h-2 rounded-full bg-rose-500" />
                 <span>Chẩn đoán điểm nghẽn ban đầu:</span>
               </div>
-              <div className="text-[#1a1a1a] soft-ui-debossed p-3 rounded-xl text-xs sm:text-sm leading-relaxed font-normal">
+              <div className="text-[#1a1a1a] soft-ui-debossed p-3 rounded-lg text-xs sm:text-sm leading-relaxed font-normal">
                 {diagnosis.initialObservations}
               </div>
             </div>
@@ -170,13 +170,13 @@ export const DiagnosticRadarBlock: React.FC<DiagnosticRadarBlockProps> = ({ stud
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                 <span>Giải pháp Cô Nghi đã áp dụng:</span>
               </div>
-              <div className="text-[#1a1a1a] soft-ui-debossed p-3 rounded-xl text-xs sm:text-sm leading-relaxed font-normal">
+              <div className="text-[#1a1a1a] soft-ui-debossed p-3 rounded-lg text-xs sm:text-sm leading-relaxed font-normal">
                 {diagnosis.breakthroughAction}
               </div>
             </div>
 
             {/* Message to Parents - Skool Blockquote */}
-            <div className="p-3 soft-ui-convex rounded-xl text-[#1a1a1a] space-y-1.5">
+            <div className="p-3 soft-ui-convex rounded-lg text-[#1a1a1a] space-y-1.5">
               <div className="flex items-center gap-1.5 font-semibold text-xs text-[#ff4757]">
                 <MessageSquareHeart className="w-3.5 h-3.5 text-[#ff4757]" />
                 <span>Lời nhắn riêng cho ba mẹ:</span>

@@ -22,7 +22,7 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
   const percentage = Math.min(100, Math.round((currentTokens / maxTokens) * 100));
 
   return (
-    <div className="relative overflow-hidden soft-ui-embossed rounded-2xl sm:rounded-3xl p-4 sm:p-6 space-y-4">
+    <div className="relative overflow-hidden soft-ui-embossed rounded-lg sm:rounded-xl p-4 sm:p-6 space-y-4">
       {/* Title & Badge */}
       <div className="flex items-center justify-between gap-2 pb-2 border-b border-[#b2c2d4]/40">
         <div>
@@ -33,14 +33,14 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
           <p className="text-xs text-[#666666] font-normal mt-0.5">Tích lũy nỗ lực đổi quà thưởng lớn</p>
         </div>
 
-        <div className="flex items-center gap-1.5 soft-ui-convex text-[#1a1a1a] text-xs font-semibold px-3 py-1.5 rounded-lg leading-tight">
+        <div className="flex items-center gap-1.5 soft-ui-convex text-[#1a1a1a] text-xs font-semibold px-3 py-1.5 rounded-md leading-tight">
           <Award className="w-3.5 h-3.5 text-[#ff4757]" />
           <span>100 Tokens</span>
         </div>
       </div>
 
       {/* Large Progress Display - Recessed Well */}
-      <div className="soft-ui-debossed rounded-2xl p-4 sm:p-5 space-y-3">
+      <div className="soft-ui-debossed rounded-lg sm:rounded-xl p-4 sm:p-5 space-y-3">
         <div className="flex items-baseline justify-between gap-2">
           <div>
             <span className="text-xs font-semibold text-[#666666] block">
@@ -58,7 +58,7 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
           </div>
 
           <div className="text-right">
-            <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-800 bg-emerald-100/90 px-2.5 py-1 rounded-lg border border-emerald-400 leading-tight">
+            <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-800 bg-emerald-100/90 px-2.5 py-1 rounded-md border border-emerald-400 leading-tight">
               <Sparkles className="w-3 h-3 text-emerald-600 animate-spin" style={{ animationDuration: "3s" }} />
               <span>{percentage}% hoàn thành</span>
             </span>
@@ -90,7 +90,7 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
         </div>
 
         {/* Next Target Item Callout */}
-        <div className="flex items-center justify-between text-xs soft-ui-convex rounded-xl p-2.5 text-[#1a1a1a]">
+        <div className="flex items-center justify-between text-xs soft-ui-convex rounded-md sm:rounded-lg p-2.5 text-[#1a1a1a]">
           <div className="flex items-center gap-2 truncate">
             <span className="text-base">🎯</span>
             <span className="truncate">
@@ -115,7 +115,7 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
           id="btn-view-token-history"
           variant="outline"
           onClick={onOpenHistory}
-          className="w-full flex items-center justify-center gap-2 font-semibold text-xs sm:text-sm h-11 rounded-xl leading-tight"
+          className="w-full flex items-center justify-center gap-2 font-semibold text-xs sm:text-sm h-11 rounded-md sm:rounded-lg leading-tight"
         >
           <History className="w-4 h-4 text-[#ff4757]" />
           <span>Lịch sử nhận điểm</span>
@@ -125,7 +125,7 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
           id="btn-view-reward-store"
           variant="default"
           onClick={onOpenStore}
-          className="w-full flex items-center justify-center gap-2 text-xs sm:text-sm h-11 rounded-xl font-semibold leading-tight"
+          className="w-full flex items-center justify-center gap-2 text-xs sm:text-sm h-11 rounded-md sm:rounded-lg font-semibold leading-tight"
         >
           <Gift className="w-4 h-4" />
           <span>Cửa hàng đổi quà</span>

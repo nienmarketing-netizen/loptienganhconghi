@@ -10,7 +10,7 @@ interface HeaderGreetingProps {
 
 export const HeaderGreeting: React.FC<HeaderGreetingProps> = ({ student }) => {
   return (
-    <header className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-[#1e293b] text-white p-4 sm:p-6 shadow-[var(--shadow-card)] border border-slate-700/60">
+    <header className="relative overflow-hidden rounded-lg sm:rounded-xl bg-[#1e293b] text-white p-4 sm:p-6 shadow-[var(--shadow-card)] border border-slate-700/60">
       {/* Top telemetry bar */}
       <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-widest text-slate-300 pb-2 sm:pb-3 mb-3 border-b border-white/10 px-1">
         <div className="flex items-center gap-1.5">
@@ -28,11 +28,11 @@ export const HeaderGreeting: React.FC<HeaderGreetingProps> = ({ student }) => {
       <div className="flex items-start gap-3.5 sm:gap-4 px-1">
         {/* Student Avatar - Crisp & Bright Clean Bezel */}
         <div className="relative shrink-0">
-          <div className="p-1 rounded-2xl bg-white shadow-md border-2 border-white/90">
+          <div className="p-1 rounded-lg sm:rounded-xl bg-white shadow-md border-2 border-white/90">
             <img
               src={student.avatar}
               alt={student.fullName}
-              className="w-13 h-13 sm:w-16 sm:h-16 rounded-xl object-cover"
+              className="w-13 h-13 sm:w-16 sm:h-16 rounded-md sm:rounded-lg object-cover"
             />
           </div>
           <span className="absolute -bottom-1 -right-1 bg-[#ff4757] text-white text-[10px] font-extrabold font-mono px-2 py-0.5 rounded-md shadow-[var(--shadow-accent)] border border-white/40">

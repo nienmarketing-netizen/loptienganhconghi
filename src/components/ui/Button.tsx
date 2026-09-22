@@ -9,7 +9,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "default", size = "default", id, children, ...props }, ref) => {
     const baseClasses =
-      "inline-flex items-center justify-center font-bold tracking-wide transition-all duration-150 active:translate-y-[2px] disabled:opacity-50 disabled:pointer-events-none select-none rounded-xl text-xs sm:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff4757]/60 cursor-pointer";
+      "inline-flex items-center justify-center font-bold tracking-wide transition-all duration-150 active:translate-y-[2px] disabled:opacity-50 disabled:pointer-events-none select-none rounded-lg text-xs sm:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff4757]/60 cursor-pointer";
 
     const variantClasses = {
       default: "bg-[#2d3436] text-white shadow-[4px_4px_8px_rgba(0,0,0,0.25),-2px_-2px_6px_rgba(255,255,255,0.1)] active:shadow-[inset_3px_3px_6px_rgba(0,0,0,0.5),inset_-2px_-2px_6px_rgba(255,255,255,0.1)] border border-white/10",
@@ -22,9 +22,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const sizeClasses = {
       default: "min-h-[42px] px-4 py-2",
-      sm: "min-h-[34px] px-3 py-1 text-xs rounded-lg",
-      lg: "min-h-[48px] px-6 py-2.5 text-base rounded-2xl",
-      icon: "min-h-[38px] min-w-[38px] p-0 rounded-xl",
+      sm: "min-h-[34px] px-3 py-1 text-xs rounded-md",
+      lg: "min-h-[48px] px-6 py-2.5 text-base rounded-lg sm:rounded-xl",
+      icon: "min-h-[38px] min-w-[38px] p-0 rounded-lg",
     };
 
     return (

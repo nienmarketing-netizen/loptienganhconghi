@@ -72,13 +72,13 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
         onClick={onClose}
       >
       <div
-        className="relative w-full max-w-2xl bg-[#e0e5ec] rounded-2xl sm:rounded-3xl shadow-[var(--shadow-floating)] border border-white/80 border-b-[#babecc] border-r-[#babecc] overflow-hidden flex flex-col max-h-[92vh] animate-in zoom-in-95 duration-150"
+        className="relative w-full max-w-2xl bg-[#e0e5ec] rounded-lg sm:rounded-xl shadow-[var(--shadow-floating)] border border-white/80 border-b-[#babecc] border-r-[#babecc] overflow-hidden flex flex-col max-h-[92vh] animate-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
         <div className="bg-[#2d3436] px-4 sm:px-6 py-3.5 text-white flex items-center justify-between gap-3 border-b border-white/20 relative">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="w-9 h-9 rounded-xl bg-[#1e2528] border border-white/10 flex items-center justify-center text-[#ff4757] shrink-0 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)]">
+            <div className="w-9 h-9 rounded-lg bg-[#1e2528] border border-white/10 flex items-center justify-center text-[#ff4757] shrink-0 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)]">
               <Award className="w-5 h-5" />
             </div>
             <div className="min-w-0">
@@ -95,7 +95,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
           <div className="flex items-center gap-1.5">
             <button
               onClick={handleShareResult}
-              className="hidden sm:flex items-center gap-1 text-xs font-semibold bg-[#1e2528] hover:bg-[#3d4447] text-slate-200 hover:text-white px-2.5 py-1.5 rounded-lg border border-white/10 transition-colors cursor-pointer leading-tight"
+              className="hidden sm:flex items-center gap-1 text-xs font-semibold bg-[#1e2528] hover:bg-[#3d4447] text-slate-200 hover:text-white px-2.5 py-1.5 rounded-md border border-white/10 transition-colors cursor-pointer leading-tight"
               title="Sao chép kết quả"
             >
               {copiedLink ? (
@@ -113,7 +113,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
             <button
               id="btn-close-review-modal"
               onClick={onClose}
-              className="w-8 h-8 rounded-lg bg-[#1e2528] hover:bg-[#ff4757] flex items-center justify-center text-[#a3b1c6] hover:text-white transition-colors cursor-pointer border border-white/10"
+              className="w-8 h-8 rounded-md bg-[#1e2528] hover:bg-[#ff4757] flex items-center justify-center text-[#a3b1c6] hover:text-white transition-colors cursor-pointer border border-white/10"
               aria-label="Đóng"
             >
               <X className="w-4 h-4" />
@@ -124,10 +124,10 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
         {/* Modal Body */}
         <div className="p-3.5 sm:p-5 overflow-y-auto space-y-4 text-[#1a1a1a]">
           {/* Top Score Banner - Recessed Well */}
-          <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-2xl p-3.5 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-[var(--shadow-recessed-sm)]">
+          <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-lg sm:rounded-xl p-3.5 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-[var(--shadow-recessed-sm)]">
             <div className="flex items-center gap-3.5 text-left w-full sm:w-auto">
               {/* Big Red Score Badge */}
-              <div className="relative shrink-0 flex flex-col items-center justify-center w-16 h-16 rounded-2xl bg-[#ff4757] text-white shadow-[var(--shadow-accent-sm)] border border-white/30">
+              <div className="relative shrink-0 flex flex-col items-center justify-center w-16 h-16 rounded-lg bg-[#ff4757] text-white shadow-[var(--shadow-accent-sm)] border border-white/30">
                 <span className="text-xl sm:text-2xl font-bold font-mono leading-none tracking-tight">
                   {graded.score}
                 </span>
@@ -174,7 +174,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
           {/* LỜI NHẬN XÉT CỦA CÔ */}
           <div
             id="teacher-written-feedback-card"
-            className="rounded-2xl bg-[#e0e5ec] border border-white/90 border-b-[#babecc] border-r-[#babecc] p-3.5 sm:p-4.5 shadow-[var(--shadow-card-sm)] space-y-3"
+            className="rounded-lg sm:rounded-xl bg-[#e0e5ec] border border-white/90 border-b-[#babecc] border-r-[#babecc] p-3.5 sm:p-4.5 shadow-[var(--shadow-card-sm)] space-y-3"
           >
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-3">
@@ -199,7 +199,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
               </div>
             </div>
 
-            <div className="bg-[#d1d9e6] rounded-xl p-3.5 sm:p-4 border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)] text-[#1a1a1a] text-xs sm:text-sm leading-relaxed flex items-start gap-2.5">
+            <div className="bg-[#d1d9e6] rounded-lg p-3.5 sm:p-4 border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)] text-[#1a1a1a] text-xs sm:text-sm leading-relaxed flex items-start gap-2.5">
               <MessageSquareQuote className="w-5 h-5 text-[#ff4757] shrink-0 mt-0.5" />
               <p className="font-normal text-[#1a1a1a] italic leading-relaxed">
                 "{graded.voiceTranscript}"
@@ -208,10 +208,10 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
           </div>
 
           {/* SLIDE HÌNH ẢNH SỬA BÀI TẠI LỚP & TAKE NOTE BÚT ĐỎ CỦA HỌC SINH */}
-          <div className="border border-white/80 border-b-[#babecc] border-r-[#babecc] rounded-2xl overflow-hidden bg-[#e0e5ec] shadow-[var(--shadow-card-sm)] space-y-0">
+          <div className="border border-white/80 border-b-[#babecc] border-r-[#babecc] rounded-lg sm:rounded-xl overflow-hidden bg-[#e0e5ec] shadow-[var(--shadow-card-sm)] space-y-0">
             {/* Header banner */}
             <div className="bg-[#d1d9e6] border-b border-[#babecc]/60 px-4 py-2.5 flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-lg bg-[#e0e5ec] text-[#ff4757] border border-white/90 flex items-center justify-center shrink-0 shadow-xs">
+              <div className="w-7 h-7 rounded-md bg-[#e0e5ec] text-[#ff4757] border border-white/90 flex items-center justify-center shrink-0 shadow-xs">
                 <Camera className="w-3.5 h-3.5" />
               </div>
               <h4 className="text-xs sm:text-sm font-bold text-[#1a1a1a] tracking-[-0.015em]">
@@ -265,7 +265,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                       e.stopPropagation();
                       setActiveSlide((prev) => (prev > 0 ? prev - 1 : images.length - 1));
                     }}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/90 hover:bg-[#ff4757] text-[#1e293b] hover:text-white flex items-center justify-center border border-slate-200 shadow-md transition-all active:scale-90 cursor-pointer"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white/90 hover:bg-[#ff4757] text-[#1e293b] hover:text-white flex items-center justify-center border border-slate-200 shadow-md transition-all active:scale-90 cursor-pointer"
                     title="Trang trước"
                     aria-label="Trang trước"
                   >
@@ -277,7 +277,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                       e.stopPropagation();
                       setActiveSlide((prev) => (prev < images.length - 1 ? prev + 1 : 0));
                     }}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/90 hover:bg-[#ff4757] text-[#1e293b] hover:text-white flex items-center justify-center border border-slate-200 shadow-md transition-all active:scale-90 cursor-pointer"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white/90 hover:bg-[#ff4757] text-[#1e293b] hover:text-white flex items-center justify-center border border-slate-200 shadow-md transition-all active:scale-90 cursor-pointer"
                     title="Trang tiếp theo"
                     aria-label="Trang tiếp theo"
                   >
@@ -320,13 +320,13 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
               {graded.corrections.map((corr, idx) => (
                 <div
                   key={idx}
-                  className="rounded-2xl border border-white/80 border-b-[#babecc] border-r-[#babecc] bg-[#e0e5ec] p-3 sm:p-3.5 space-y-2 text-xs shadow-[var(--shadow-card-sm)]"
+                  className="rounded-lg sm:rounded-xl border border-white/80 border-b-[#babecc] border-r-[#babecc] bg-[#e0e5ec] p-3 sm:p-3.5 space-y-2 text-xs shadow-[var(--shadow-card-sm)]"
                 >
                   <p className="font-semibold text-[#1a1a1a] text-xs sm:text-sm">
                     {corr.question}
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pt-1">
-                    <div className="p-2.5 rounded-xl bg-[#d1d9e6] border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)] text-[#666666]">
+                    <div className="p-2.5 rounded-lg bg-[#d1d9e6] border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)] text-[#666666]">
                       <span className="text-xs font-medium text-[#666666] block">
                         Bài con đã chọn
                       </span>
@@ -334,7 +334,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                         {corr.studentAnswer}
                       </span>
                     </div>
-                    <div className="p-2.5 rounded-xl bg-[#d1d9e6] border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)] text-emerald-900">
+                    <div className="p-2.5 rounded-lg bg-[#d1d9e6] border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)] text-emerald-900">
                       <span className="text-xs font-medium text-emerald-700 block">
                         Đáp án chuẩn Cô Nghi
                       </span>
@@ -343,7 +343,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                       </span>
                     </div>
                   </div>
-                  <p className="text-xs text-[#1a1a1a] bg-[#d1d9e6] p-2.5 rounded-xl border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)] leading-relaxed">
+                  <p className="text-xs text-[#1a1a1a] bg-[#d1d9e6] p-2.5 rounded-lg border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)] leading-relaxed">
                     💡 <strong className="text-[#ff4757] font-semibold">Mẹo của Cô Nghi:</strong> {corr.explanation}
                   </p>
                 </div>
@@ -357,7 +357,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#ff4757] hover:bg-[#ff3344] text-white font-semibold text-xs sm:text-sm transition-all shadow-[var(--shadow-accent)] active:translate-y-[1px] cursor-pointer ml-auto border border-white/30 leading-tight"
+            className="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-[#ff4757] hover:bg-[#ff3344] text-white font-semibold text-xs sm:text-sm transition-all shadow-[var(--shadow-accent)] active:translate-y-[1px] cursor-pointer ml-auto border border-white/30 leading-tight"
           >
             Đã xem xong
           </button>
@@ -392,7 +392,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
             <button
               type="button"
               onClick={() => setLightboxZoom((z) => Math.max(0.6, z - 0.25))}
-              className="p-2 rounded-lg bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white transition-colors cursor-pointer border border-white/10 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.4)]"
+              className="p-2 rounded-md bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white transition-colors cursor-pointer border border-white/10 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.4)]"
               title="Thu nhỏ"
             >
               <ZoomOut className="w-4 h-4" />
@@ -403,7 +403,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
             <button
               type="button"
               onClick={() => setLightboxZoom((z) => Math.min(3.0, z + 0.25))}
-              className="p-2 rounded-lg bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white transition-colors cursor-pointer border border-white/10 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.4)]"
+              className="p-2 rounded-md bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white transition-colors cursor-pointer border border-white/10 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.4)]"
               title="Phóng to"
             >
               <ZoomIn className="w-4 h-4" />
@@ -411,7 +411,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
             <button
               type="button"
               onClick={() => setLightboxZoom(1)}
-              className="p-2 rounded-lg bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white transition-colors cursor-pointer border border-white/10 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.4)]"
+              className="p-2 rounded-md bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white transition-colors cursor-pointer border border-white/10 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.4)]"
               title="Đặt lại kích thước 100%"
             >
               <RotateCcw className="w-4 h-4" />
@@ -422,7 +422,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
             <button
               type="button"
               onClick={() => setIsLightboxOpen(false)}
-              className="p-2 rounded-lg bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white transition-colors cursor-pointer border border-white/10"
+              className="p-2 rounded-md bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white transition-colors cursor-pointer border border-white/10"
               title="Đóng xem chi tiết"
             >
               <X className="w-5 h-5" />
@@ -444,7 +444,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                   setActiveSlide((prev) => (prev > 0 ? prev - 1 : images.length - 1));
                   setLightboxZoom(1);
                 }}
-                className="fixed left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-xl bg-[#2d3436]/90 hover:bg-[#ff4757] text-white flex items-center justify-center border border-white/20 shadow-[var(--shadow-floating)] transition-all active:translate-y-[1px] cursor-pointer"
+                className="fixed left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-lg bg-[#2d3436]/90 hover:bg-[#ff4757] text-white flex items-center justify-center border border-white/20 shadow-[var(--shadow-floating)] transition-all active:translate-y-[1px] cursor-pointer"
                 title="Trang trước"
               >
                 <ChevronLeft className="w-6 h-6" />
@@ -455,7 +455,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                   setActiveSlide((prev) => (prev < images.length - 1 ? prev + 1 : 0));
                   setLightboxZoom(1);
                 }}
-                className="fixed right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-xl bg-[#2d3436]/90 hover:bg-[#ff4757] text-white flex items-center justify-center border border-white/20 shadow-[var(--shadow-floating)] transition-all active:translate-y-[1px] cursor-pointer"
+                className="fixed right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-lg bg-[#2d3436]/90 hover:bg-[#ff4757] text-white flex items-center justify-center border border-white/20 shadow-[var(--shadow-floating)] transition-all active:translate-y-[1px] cursor-pointer"
                 title="Trang tiếp theo"
               >
                 <ChevronRight className="w-6 h-6" />

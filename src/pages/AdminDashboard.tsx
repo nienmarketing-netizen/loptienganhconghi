@@ -240,19 +240,19 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         {toasts.map((t) => (
           <div
             key={t.id}
-            className="pointer-events-auto p-3.5 sm:p-4 rounded-2xl bg-[#2d3436] text-white border border-white/20 border-b-black/40 border-r-black/40 shadow-[var(--shadow-floating)] flex items-start gap-3 transition-all animate-in slide-in-from-top-4 duration-200"
+            className="pointer-events-auto p-3.5 sm:p-4 rounded-lg sm:rounded-xl bg-[#2d3436] text-white border border-white/20 border-b-black/40 border-r-black/40 shadow-[var(--shadow-floating)] flex items-start gap-3 transition-all animate-in slide-in-from-top-4 duration-200"
           >
             <div className="shrink-0 pt-0.5">
               {t.type === "token" ? (
-                <div className="w-8 h-8 rounded-xl bg-[#1e2528] text-amber-400 border border-white/10 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)] flex items-center justify-center font-bold font-mono">
+                <div className="w-8 h-8 rounded-lg bg-[#1e2528] text-amber-400 border border-white/10 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)] flex items-center justify-center font-bold font-mono">
                   <Coins className="w-4 h-4" />
                 </div>
               ) : t.type === "success" ? (
-                <div className="w-8 h-8 rounded-xl bg-[#1e2528] text-emerald-400 border border-white/10 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)] flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#1e2528] text-emerald-400 border border-white/10 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)] flex items-center justify-center">
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
               ) : (
-                <div className="w-8 h-8 rounded-xl bg-[#1e2528] text-[#ff4757] border border-white/10 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)] flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#1e2528] text-[#ff4757] border border-white/10 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)] flex items-center justify-center">
                   <Bell className="w-4 h-4" />
                 </div>
               )}
@@ -286,7 +286,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       </div>
 
       {/* Hero Banner for Teacher Portal */}
-      <div className="rounded-3xl bg-gradient-to-br from-indigo-900 via-slate-900 to-indigo-950 text-white p-4 sm:p-6 shadow-md border border-indigo-800/60 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="rounded-lg sm:rounded-xl bg-gradient-to-br from-indigo-900 via-slate-900 to-indigo-950 text-white p-4 sm:p-6 shadow-md border border-indigo-800/60 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1.5">
           <div className="flex items-center gap-2">
             <span className="text-[11px] font-bold uppercase tracking-wider text-amber-300 bg-amber-400/20 px-2.5 py-0.5 rounded-full border border-amber-400/30 flex items-center gap-1">
@@ -313,7 +313,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               navigator.clipboard.writeText(url);
               addToast("info", "Đã sao chép link Cổng Giáo Viên!", url);
             }}
-            className="min-h-[44px] px-3.5 py-2 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs flex items-center justify-center gap-2 border border-white/20 transition-all cursor-pointer"
+            className="min-h-[44px] px-3.5 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-semibold text-xs flex items-center justify-center gap-2 border border-white/20 transition-all cursor-pointer"
             title="Sao chép link Cổng Giáo Viên để lưu hoặc ghim vào thanh dấu trang"
           >
             <Copy className="w-4 h-4 text-amber-300" />
@@ -325,7 +325,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             type="button"
             id="btn-batch-zalo-reminder"
             onClick={handleBatchZaloReminder}
-            className="w-full sm:w-auto min-h-[44px] px-4 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-700/30 active:scale-95 transition-all cursor-pointer"
+            className="w-full sm:w-auto min-h-[44px] px-4 py-2.5 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-700/30 active:scale-95 transition-all cursor-pointer"
           >
             <Send className="w-4 h-4" />
             <span>Nhắc Zalo tất cả ({totalUnsubmittedCount} bài chưa nộp)</span>
@@ -335,8 +335,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
       {/* Quick Class Stats Pill Row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-3 sm:p-3.5 shadow-xs flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center font-bold shrink-0">
+        <div className="bg-white border border-slate-200/90 rounded-lg sm:rounded-xl p-3 sm:p-3.5 shadow-xs flex items-center gap-3">
+          <div className="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center font-bold shrink-0">
             <Users className="w-5 h-5" />
           </div>
           <div>
@@ -349,8 +349,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           </div>
         </div>
 
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-3 sm:p-3.5 shadow-xs flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center font-bold shrink-0">
+        <div className="bg-white border border-slate-200/90 rounded-lg sm:rounded-xl p-3 sm:p-3.5 shadow-xs flex items-center gap-3">
+          <div className="w-10 h-10 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center font-bold shrink-0">
             <AlertCircle className="w-5 h-5" />
           </div>
           <div>
@@ -363,8 +363,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           </div>
         </div>
 
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-3 sm:p-3.5 shadow-xs flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center font-bold shrink-0">
+        <div className="bg-white border border-slate-200/90 rounded-lg sm:rounded-xl p-3 sm:p-3.5 shadow-xs flex items-center gap-3">
+          <div className="w-10 h-10 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center font-bold shrink-0">
             <Clock className="w-5 h-5" />
           </div>
           <div>
@@ -377,8 +377,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           </div>
         </div>
 
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-3 sm:p-3.5 shadow-xs flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold shrink-0">
+        <div className="bg-white border border-slate-200/90 rounded-lg sm:rounded-xl p-3 sm:p-3.5 shadow-xs flex items-center gap-3">
+          <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold shrink-0">
             <Award className="w-5 h-5" />
           </div>
           <div>
@@ -393,7 +393,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       </div>
 
       {/* Control Bar: Search & Filter Tabs */}
-      <div className="bg-white rounded-2xl border border-slate-200/90 p-3 sm:p-4 shadow-xs space-y-3">
+      <div className="bg-white rounded-lg sm:rounded-xl border border-slate-200/90 p-3 sm:p-4 shadow-xs space-y-3">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
           {/* Search Box */}
           <div className="relative flex-1">
@@ -403,7 +403,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Tìm theo tên học sinh, trường, lớp..."
-              className="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 text-xs sm:text-sm text-slate-800 placeholder-slate-400 min-h-[42px]"
+              className="w-full pl-9 pr-3 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 text-xs sm:text-sm text-slate-800 placeholder-slate-400 min-h-[42px]"
             />
           </div>
 
@@ -412,7 +412,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             <button
               type="button"
               onClick={() => setFilterMode("all")}
-              className={`min-h-[40px] px-3 py-1.5 rounded-xl whitespace-nowrap transition-colors cursor-pointer ${
+              className={`min-h-[40px] px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors cursor-pointer ${
                 filterMode === "all"
                   ? "bg-slate-900 text-white font-bold"
                   : "bg-slate-100 text-slate-600 hover:bg-slate-200"
@@ -423,7 +423,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             <button
               type="button"
               onClick={() => setFilterMode("has_unsubmitted")}
-              className={`min-h-[40px] px-3 py-1.5 rounded-xl whitespace-nowrap transition-colors cursor-pointer flex items-center gap-1 ${
+              className={`min-h-[40px] px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors cursor-pointer flex items-center gap-1 ${
                 filterMode === "has_unsubmitted"
                   ? "bg-amber-600 text-white font-bold"
                   : "bg-amber-50 text-amber-800 hover:bg-amber-100"
@@ -435,7 +435,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             <button
               type="button"
               onClick={() => setFilterMode("has_pending_grading")}
-              className={`min-h-[40px] px-3 py-1.5 rounded-xl whitespace-nowrap transition-colors cursor-pointer flex items-center gap-1 ${
+              className={`min-h-[40px] px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors cursor-pointer flex items-center gap-1 ${
                 filterMode === "has_pending_grading"
                   ? "bg-sky-600 text-white font-bold"
                   : "bg-sky-50 text-sky-800 hover:bg-sky-100"
@@ -447,7 +447,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             <button
               type="button"
               onClick={() => setFilterMode("ready_for_reward")}
-              className={`min-h-[40px] px-3 py-1.5 rounded-xl whitespace-nowrap transition-colors cursor-pointer flex items-center gap-1 ${
+              className={`min-h-[40px] px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors cursor-pointer flex items-center gap-1 ${
                 filterMode === "ready_for_reward"
                   ? "bg-emerald-600 text-white font-bold"
                   : "bg-emerald-50 text-emerald-800 hover:bg-emerald-100"
@@ -489,7 +489,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             return (
               <div
                 key={student.id}
-                className="bg-white rounded-2xl border border-slate-200/90 p-3.5 sm:p-5 shadow-xs hover:border-indigo-300 transition-all space-y-3"
+                className="bg-white rounded-lg sm:rounded-xl border border-slate-200/90 p-3.5 sm:p-5 shadow-xs hover:border-indigo-300 transition-all space-y-3"
               >
                 {/* Top Row: Student Profile & Tokens Badge */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -498,7 +498,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     <img
                       src={student.avatar}
                       alt={student.fullName}
-                      className="w-12 h-12 rounded-2xl object-cover ring-2 ring-amber-400 shrink-0 shadow-xs"
+                      className="w-12 h-12 rounded-lg object-cover ring-2 ring-amber-400 shrink-0 shadow-xs"
                     />
                     <div>
                       <div className="flex items-center gap-2 flex-wrap">
@@ -548,7 +548,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 </div>
 
                 {/* Middle Row: Assignment Status Overview */}
-                <div className="bg-slate-50/80 rounded-xl p-2.5 sm:p-3 border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                <div className="bg-slate-50/80 rounded-lg p-2.5 sm:p-3 border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="font-bold text-slate-600">Bài tập tuần:</span>
                     {unsubmitted.length > 0 ? (
@@ -599,7 +599,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                             isScoringActive ? null : student.slug
                           )
                         }
-                        className={`min-h-[44px] px-4 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5 transition-all cursor-pointer font-mono active:translate-y-[1px] ${
+                        className={`min-h-[44px] px-4 py-2 rounded-lg font-bold text-xs sm:text-sm flex items-center gap-1.5 transition-all cursor-pointer font-mono active:translate-y-[1px] ${
                           isScoringActive
                             ? "bg-[#ff4757] text-white shadow-[var(--shadow-recessed-sm)] border border-white/20"
                             : "bg-[#e0e5ec] hover:bg-[#d8e0ec] text-[#ff4757] border border-white/90 shadow-[var(--shadow-card-sm)]"
@@ -612,7 +612,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       {/* Popover / Dropdown các lý do tính sẵn - Soft UI Tactile Card */}
                       {isScoringActive && (
                         <div
-                          className="absolute left-0 top-12 z-40 w-72 sm:w-80 bg-[#e0e5ec] rounded-2xl shadow-[var(--shadow-floating)] border border-white/80 border-b-[#babecc] border-r-[#babecc] p-3 space-y-2.5 animate-in fade-in zoom-in-95 duration-150"
+                          className="absolute left-0 top-12 z-40 w-72 sm:w-80 bg-[#e0e5ec] rounded-lg sm:rounded-xl shadow-[var(--shadow-floating)] border border-white/80 border-b-[#babecc] border-r-[#babecc] p-3 space-y-2.5 animate-in fade-in zoom-in-95 duration-150"
                           onClick={(e) => e.stopPropagation()}
                         >
                           <div className="flex items-center justify-between pb-2 border-b border-[#babecc]/50">
@@ -637,7 +637,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                                 onClick={() =>
                                   handleQuickScore(student, opt.points, opt.reason)
                                 }
-                                className="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#e0e5ec] border border-white/80 border-b-[#babecc] border-r-[#babecc] shadow-[var(--shadow-card-sm)] hover:shadow-[var(--shadow-card)] transition-all text-left cursor-pointer active:translate-y-[1px] min-h-[44px]"
+                                className="w-full flex items-center justify-between p-2.5 rounded-lg bg-[#e0e5ec] border border-white/80 border-b-[#babecc] border-r-[#babecc] shadow-[var(--shadow-card-sm)] hover:shadow-[var(--shadow-card)] transition-all text-left cursor-pointer active:translate-y-[1px] min-h-[44px]"
                               >
                                 <div className="flex items-center gap-2.5">
                                   <span className="text-base">{opt.icon}</span>
@@ -650,7 +650,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                                     </div>
                                   </div>
                                 </div>
-                                <span className="text-xs font-mono font-black text-[#ff4757] bg-[#d1d9e6] border border-[#babecc]/60 px-2 py-0.5 rounded-lg shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)]">
+                                <span className="text-xs font-mono font-black text-[#ff4757] bg-[#d1d9e6] border border-[#babecc]/60 px-2 py-0.5 rounded-md shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)]">
                                   +{opt.points}T
                                 </span>
                               </button>
@@ -666,12 +666,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                               value={customAmount}
                               onChange={(e) => setCustomAmount(e.target.value)}
                               placeholder="+ Khác..."
-                              className="w-24 px-2.5 py-1.5 rounded-xl bg-[#d1d9e6] border border-[#babecc] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.12)] text-xs font-mono text-[#1a1a1a] focus:outline-none focus:bg-[#e0e5ec]"
+                              className="w-24 px-2.5 py-1.5 rounded-lg bg-[#d1d9e6] border border-[#babecc] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.12)] text-xs font-mono text-[#1a1a1a] focus:outline-none focus:bg-[#e0e5ec]"
                             />
                             <button
                               type="button"
                               onClick={() => handleCustomScore(student)}
-                              className="flex-1 py-1.5 px-3 bg-[#ff4757] hover:bg-[#ff3848] text-white rounded-xl text-xs font-bold font-mono shadow-[var(--shadow-accent-sm)] active:translate-y-[1px] transition-all cursor-pointer"
+                              className="flex-1 py-1.5 px-3 bg-[#ff4757] hover:bg-[#ff3848] text-white rounded-lg text-xs font-bold font-mono shadow-[var(--shadow-accent-sm)] active:translate-y-[1px] transition-all cursor-pointer"
                             >
                               Cộng ngay
                             </button>
@@ -685,7 +685,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       type="button"
                       id={`btn-zalo-reminder-${student.id}`}
                       onClick={() => handleSendZaloReminder(student)}
-                      className="min-h-[44px] px-3.5 py-2 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-800 font-bold text-xs sm:text-sm border border-sky-200 flex items-center gap-1.5 transition-colors active:scale-95 cursor-pointer"
+                      className="min-h-[44px] px-3.5 py-2 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-800 font-bold text-xs sm:text-sm border border-sky-200 flex items-center gap-1.5 transition-colors active:scale-95 cursor-pointer"
                     >
                       <MessageCircle className="w-4 h-4 text-sky-600" />
                       <span>Gửi nhắc nhở Zalo</span>
@@ -696,7 +696,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   <button
                     type="button"
                     onClick={() => onViewStudentPortal(student.slug)}
-                    className="min-h-[44px] px-3 py-2 rounded-xl text-slate-600 hover:text-indigo-900 hover:bg-slate-100 font-semibold text-xs flex items-center gap-1 transition-colors cursor-pointer"
+                    className="min-h-[44px] px-3 py-2 rounded-lg text-slate-600 hover:text-indigo-900 hover:bg-slate-100 font-semibold text-xs flex items-center gap-1 transition-colors cursor-pointer"
                   >
                     <span>Cổng Phụ Huynh</span>
                     <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
@@ -707,7 +707,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           })}
 
           {filteredStudents.length === 0 && (
-            <div className="bg-white rounded-2xl border border-slate-200 p-8 text-center text-slate-400 text-xs sm:text-sm">
+            <div className="bg-white rounded-lg sm:rounded-xl border border-slate-200 p-8 text-center text-slate-400 text-xs sm:text-sm">
               Không tìm thấy học sinh nào phù hợp với bộ lọc.
             </div>
           )}

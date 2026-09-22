@@ -39,7 +39,7 @@ export function Dialog({ open, onOpenChange, children, id, className }: DialogPr
     >
       <div
         className={cn(
-          "relative w-full max-w-lg max-h-[92vh] flex flex-col bg-[#e0e5ec] rounded-2xl sm:rounded-3xl shadow-[var(--shadow-floating)] border border-white/80 border-b-[#babecc] border-r-[#babecc] overflow-hidden transform transition-all duration-150 animate-in zoom-in-95",
+          "relative w-full max-w-lg max-h-[92vh] flex flex-col bg-[#e0e5ec] rounded-lg sm:rounded-xl shadow-[var(--shadow-floating)] border border-white/80 border-b-[#babecc] border-r-[#babecc] overflow-hidden transform transition-all duration-150 animate-in zoom-in-95",
           className
         )}
         onClick={(e) => e.stopPropagation()}
@@ -78,7 +78,7 @@ export function DialogCloseButton({ onClose, id }: { onClose: () => void; id?: s
       id={id}
       type="button"
       onClick={onClose}
-      className="w-8 h-8 rounded-lg bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 border border-white/10"
+      className="w-8 h-8 rounded-md bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 border border-white/10"
       aria-label="Đóng"
     >
       <X className="w-4 h-4" />
