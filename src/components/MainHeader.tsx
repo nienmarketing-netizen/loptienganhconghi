@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import {
   BookOpen,
   Menu,
@@ -72,10 +73,14 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
     };
 
     if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
       document.addEventListener("mousedown", handleClickOutside);
       document.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.body.style.overflow = "";
     }
     return () => {
+      document.body.style.overflow = "";
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleKeyDown);
     };
@@ -144,7 +149,11 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
   }, [currentRoute]);
 
   return (
-    <header className="sticky top-0 z-40 bg-[#e0e5ec]/95 backdrop-blur-md border-b border-white/80 shadow-[0_4px_14px_rgba(166,183,203,0.4)] transition-all duration-200">
+    <header
+      className={`sticky top-0 ${
+        mobileMenuOpen ? "z-50" : "z-40"
+      } bg-[#e0e5ec]/95 backdrop-blur-md border-b border-white/80 shadow-[0_4px_14px_rgba(166,183,203,0.4)] transition-all duration-200`}
+    >
       <div
         className={`w-full mx-auto transition-all ${
           currentRoute === "admin"
@@ -162,7 +171,9 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                 scrollToSection("tong-quan");
               }
             }}
-            className="flex items-center gap-2 sm:gap-2.5 cursor-pointer group shrink-0"
+            className={`flex items-center gap-2 sm:gap-2.5 cursor-pointer group shrink-0 transition-all duration-200 ${
+              mobileMenuOpen ? "opacity-35 blur-[0.5px] pointer-events-none" : "opacity-100"
+            }`}
           >
             <div className="w-10 h-10 rounded-lg soft-ui-convex flex items-center justify-center text-[#ff4757] group-hover:shadow-[var(--shadow-floating)] transition-all">
               <BookOpen className="w-5 h-5 text-[#ff4757]" />
@@ -269,13 +280,26 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
             {/* If Student Route: Unified Pop-up Menu for both PC and Mobile */}
             {currentRoute === "student" && (
               <div className="relative" ref={menuContainerRef}>
+                {/* Full-screen Backdrop: làm tối và mờ toàn bộ website */}
+                {mobileMenuOpen &&
+                  createPortal(
+                    <div
+                      id="popup-nav-backdrop"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="fixed inset-0 bg-[#0b1329]/40 backdrop-blur-[3px] z-40 transition-all duration-200 animate-in fade-in cursor-pointer"
+                      aria-label="Đóng bảng mục lục học vụ"
+                      title="Bấm ra ngoài để đóng"
+                    />,
+                    document.body
+                  )}
+
                 <button
                   type="button"
                   id="btn-toggle-nav-menu"
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  className={`w-10 h-10 sm:w-11 sm:h-11 rounded-lg transition-all flex items-center justify-center cursor-pointer active:translate-y-[1px] ${
+                  className={`w-10 h-10 sm:w-11 sm:h-11 rounded-lg transition-all flex items-center justify-center cursor-pointer active:translate-y-[1px] relative z-50 ${
                     mobileMenuOpen
-                      ? "bg-[#dbe4ee] text-[#ff4757] shadow-[var(--shadow-recessed-sm)] border border-[#a8b8cc]/70"
+                      ? "bg-[#dbe4ee] text-[#ff4757] shadow-[var(--shadow-recessed-sm)] border border-[#a8b8cc]/70 ring-2 ring-[#ff4757]/25"
                       : "soft-ui-convex text-[#1a1a1a] hover:text-[#ff4757]"
                   }`}
                   aria-expanded={mobileMenuOpen}
@@ -294,7 +318,7 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                 {mobileMenuOpen && (
                   <div
                     id="popup-nav-menu"
-                    className="absolute right-0 top-full mt-2 w-72 sm:w-80 max-w-[calc(100vw-24px)] rounded-xl bg-[#e0e5ec] border border-white/90 p-2.5 shadow-[var(--shadow-floating)] z-50 animate-in fade-in zoom-in-95 duration-150"
+                    className="absolute right-0 top-full mt-2 w-72 sm:w-80 max-w-[calc(100vw-24px)] rounded-xl bg-[#e0e5ec] border border-white/95 p-2.5 shadow-[var(--shadow-floating)] z-50 animate-in fade-in zoom-in-95 duration-150 ring-1 ring-black/5"
                   >
                     <div className="flex items-center justify-between px-2.5 py-1.5 mb-1.5 border-b border-[#babecc]/50">
                       <span className="text-[11px] font-bold font-mono text-[#4a5568] uppercase tracking-wider">

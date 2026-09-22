@@ -120,9 +120,9 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
               <ChevronUp className="w-3.5 h-3.5 text-[#ff4757]" />
             </button>
 
-            {/* Downward mechanical pointer notch */}
+            {/* Downward tactile mechanical pointer notch (Mũi tên kết nối Soft-UI dập nổi) */}
             <div
-              className="absolute -bottom-1.5 left-7 w-3 h-3 rotate-45 border-r border-b bg-[#dbe4ee] border-[#b0c0d2] z-10 pointer-events-none shadow-[2px_2px_3px_rgba(0,0,0,0.05)]"
+              className="absolute -bottom-[7px] left-8 sm:left-[38px] -translate-x-1/2 w-3.5 h-3.5 rotate-45 rounded-br-[2.5px] soft-ui-pointer z-20 pointer-events-none transition-all duration-200 animate-in fade-in zoom-in-75 slide-in-from-top-1"
               aria-hidden="true"
             />
           </div>
