@@ -27,20 +27,20 @@ export function Progress({
       aria-valuemin={0}
       aria-valuemax={max}
       className={cn(
-        "relative h-4 w-full overflow-hidden rounded-full bg-slate-100 p-0.5 shadow-inner",
+        "relative h-5 w-full overflow-hidden rounded-full bg-[#d1d9e6] p-1 shadow-[inset_3px_3px_6px_#babecc,inset_-3px_-3px_6px_#ffffff] border border-[#babecc]/50",
         className
       )}
       {...props}
     >
       <div
         className={cn(
-          "h-full rounded-full transition-all duration-700 ease-out bg-gradient-to-r from-amber-400 via-orange-500 to-amber-500 shadow-sm relative overflow-hidden",
+          "h-full rounded-full transition-all duration-700 ease-out bg-gradient-to-r from-[#ff4757] via-[#ff6b81] to-[#ff4757] shadow-[0_0_8px_rgba(255,71,87,0.5)] relative overflow-hidden",
           indicatorClassName
         )}
         style={{ width: `${percentage}%` }}
       >
         {showStripes && (
-          <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.2)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.2)_50%,rgba(255,255,255,0.2)_75%,transparent_75%,transparent)] bg-[length:1rem_1rem] animate-[move-stripes_2s_linear_infinite]" />
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.25)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.25)_50%,rgba(255,255,255,0.25)_75%,transparent_75%,transparent)] bg-[length:0.875rem_0.875rem]" />
         )}
       </div>
     </div>

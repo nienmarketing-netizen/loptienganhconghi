@@ -7,9 +7,10 @@ export interface DialogProps {
   onOpenChange: (open: boolean) => void;
   children: React.ReactNode;
   id?: string;
+  className?: string;
 }
 
-export function Dialog({ open, onOpenChange, children, id }: DialogProps) {
+export function Dialog({ open, onOpenChange, children, id, className }: DialogProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && open) {
@@ -33,11 +34,14 @@ export function Dialog({ open, onOpenChange, children, id }: DialogProps) {
   return (
     <div
       id={id}
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200"
       onClick={() => onOpenChange(false)}
     >
       <div
-        className="w-full sm:max-w-lg max-h-[88vh] flex flex-col bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/80 overflow-hidden transform transition-all duration-200 animate-in slide-in-from-bottom sm:slide-in-from-bottom-4"
+        className={cn(
+          "relative w-full max-w-lg max-h-[92vh] flex flex-col bg-[#e0e5ec] rounded-2xl sm:rounded-3xl shadow-[var(--shadow-floating)] border border-white/80 border-b-[#babecc] border-r-[#babecc] overflow-hidden transform transition-all duration-150 animate-in zoom-in-95",
+          className
+        )}
         onClick={(e) => e.stopPropagation()}
       >
         {children}
@@ -48,7 +52,13 @@ export function Dialog({ open, onOpenChange, children, id }: DialogProps) {
 
 export function DialogHeader({ className, children, id }: { className?: string; children: React.ReactNode; id?: string }) {
   return (
-    <div id={id} className={cn("p-5 pb-3 border-b border-slate-100 flex items-center justify-between", className)}>
+    <div
+      id={id}
+      className={cn(
+        "bg-[#2d3436] px-4 sm:px-6 py-3.5 sm:py-4 text-white flex items-center justify-between gap-3 border-b border-white/20 relative shrink-0",
+        className
+      )}
+    >
       {children}
     </div>
   );
@@ -56,9 +66,9 @@ export function DialogHeader({ className, children, id }: { className?: string; 
 
 export function DialogTitle({ className, children, id }: { className?: string; children: React.ReactNode; id?: string }) {
   return (
-    <h2 id={id} className={cn("text-lg font-bold text-slate-900", className)}>
+    <h3 id={id} className={cn("text-sm sm:text-base font-bold !text-white tracking-[-0.015em] leading-snug", className)}>
       {children}
-    </h2>
+    </h3>
   );
 }
 
@@ -68,18 +78,19 @@ export function DialogCloseButton({ onClose, id }: { onClose: () => void; id?: s
       id={id}
       type="button"
       onClick={onClose}
-      className="rounded-full p-1.5 text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
+      className="w-8 h-8 rounded-lg bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 border border-white/10"
       aria-label="Đóng"
     >
-      <X className="w-5 h-5" />
+      <X className="w-4 h-4" />
     </button>
   );
 }
 
 export function DialogContent({ className, children, id }: { className?: string; children: React.ReactNode; id?: string }) {
   return (
-    <div id={id} className={cn("p-5 overflow-y-auto space-y-4", className)}>
+    <div id={id} className={cn("p-4 sm:p-6 overflow-y-auto space-y-4 text-[#1a1a1a]", className)}>
       {children}
     </div>
   );
 }
+

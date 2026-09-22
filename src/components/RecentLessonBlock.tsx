@@ -23,30 +23,31 @@ export const RecentLessonBlock: React.FC<RecentLessonBlockProps> = ({
   return (
     <div
       id="recent-lesson-summary"
-      className="bg-white rounded-3xl border border-slate-200/90 p-4 sm:p-5 shadow-xs transition-all space-y-3.5"
+      className="soft-ui-embossed rounded-2xl sm:rounded-3xl p-4 sm:p-5 transition-all space-y-4 relative"
     >
       {/* Top Header: Badge & Date */}
-      <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100">
+      <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#b2c2d4]/40">
         <div>
-          <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-            THÔNG TIN BUỔI HỌC MỚI NHẤT
-          </h3>
-          <span className="text-sm font-extrabold text-slate-900 tracking-tight">
+          <div className="text-[12px] font-semibold text-[#ff4757] flex items-center gap-1.5 tracking-[-0.01em]">
+            <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
+            <span>Thông tin buổi học mới nhất</span>
+          </div>
+          <h3 className="text-sm sm:text-lg font-bold text-[#1a1a1a] tracking-[-0.015em] mt-0.5">
             {lesson.lessonName}
-          </span>
+          </h3>
         </div>
 
         <div className="flex items-center gap-2">
           {/* Date Badge */}
-          <div className="inline-flex items-center gap-1.5 bg-slate-100/90 text-slate-800 text-xs font-semibold px-2.5 py-1 rounded-full border border-slate-200/80">
-            <Calendar className="w-3.5 h-3.5 text-slate-500" />
+          <div className="inline-flex items-center gap-1.5 soft-ui-convex text-[#1a1a1a] text-xs font-semibold px-3 py-1.5 rounded-lg leading-tight">
+            <Calendar className="w-3.5 h-3.5 text-[#ff4757]" />
             <span>{lesson.date}</span>
           </div>
 
           {/* Attendance Status */}
           {lesson.attendanceStatus && (
-            <div className="hidden xs:inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-full">
-              <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0" />
+            <div className="hidden xs:inline-flex items-center gap-1 text-xs font-semibold text-emerald-800 bg-emerald-100/90 border border-emerald-400 px-2.5 py-1 rounded-lg leading-tight">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
               <span>{lesson.attendanceStatus}</span>
             </div>
           )}
@@ -55,25 +56,25 @@ export const RecentLessonBlock: React.FC<RecentLessonBlockProps> = ({
 
       {/* Grid: Nội dung học & Điểm số buổi học */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        {/* Nội dung bài học (2 columns on sm) */}
-        <div className="sm:col-span-2 bg-slate-50/80 rounded-2xl p-3.5 border border-slate-200/70 flex flex-col justify-between">
+        {/* Nội dung bài học (2 columns on sm) - Recessed well */}
+        <div className="sm:col-span-2 soft-ui-debossed rounded-2xl p-4 flex flex-col justify-between space-y-3">
           <div className="space-y-1.5">
-            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
-              <BookOpen className="w-3.5 h-3.5 text-indigo-600" />
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-[#1a1a1a] tracking-[-0.01em]">
+              <BookOpen className="w-3.5 h-3.5 text-[#ff4757]" />
               <span>Nội dung đã học tại lớp:</span>
             </div>
-            <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
+            <p className="text-sm text-[#1a1a1a] leading-relaxed font-normal">
               {lesson.topic}
             </p>
           </div>
 
           {lesson.skillsLearned && lesson.skillsLearned.length > 0 && (
-            <div className="flex flex-wrap items-center gap-1.5 pt-2.5 mt-2.5 border-t border-slate-200/60">
-              <span className="text-[11px] text-slate-500 font-medium">Trọng tâm:</span>
+            <div className="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-[#b2c2d4]/40">
+              <span className="text-xs text-[#666666] font-medium">Trọng tâm:</span>
               {lesson.skillsLearned.map((skill, idx) => (
                 <span
                   key={idx}
-                  className="bg-white text-slate-700 border border-slate-200 text-[11px] font-medium px-2 py-0.5 rounded-md shadow-2xs"
+                  className="soft-ui-convex text-[#1a1a1a] text-xs font-medium px-2.5 py-1 rounded-md leading-tight"
                 >
                   {skill}
                 </span>
@@ -83,28 +84,28 @@ export const RecentLessonBlock: React.FC<RecentLessonBlockProps> = ({
         </div>
 
         {/* Điểm số kiểm tra (1 column on sm) */}
-        <div className="bg-gradient-to-br from-amber-50 to-orange-50/60 rounded-2xl p-3.5 border border-amber-200/70 flex flex-col justify-between text-center sm:text-left">
+        <div className="soft-ui-embossed-sm rounded-2xl p-4 flex flex-col justify-between text-center sm:text-left">
           <div className="space-y-1">
-            <div className="flex items-center justify-center sm:justify-start gap-1 text-xs font-bold text-amber-900">
-              <Award className="w-3.5 h-3.5 text-amber-600" />
+            <div className="flex items-center justify-center sm:justify-start gap-1 text-xs font-semibold text-[#1a1a1a] tracking-[-0.01em]">
+              <Award className="w-3.5 h-3.5 text-[#ff4757]" />
               <span>Điểm số tại lớp:</span>
             </div>
-            <p className="text-[11px] text-amber-800/80 leading-tight">
+            <p className="text-xs text-[#666666] leading-tight">
               {lesson.score.label}
             </p>
           </div>
 
-          <div className="my-1.5">
+          <div className="my-2">
             <div className="flex items-baseline justify-center sm:justify-start gap-1">
-              <span className="text-3xl font-black text-amber-950 tracking-tight">
+              <span className="text-3xl font-bold text-[#ff4757] tracking-[-0.02em] leading-none">
                 {lesson.score.value.toFixed(1)}
               </span>
-              <span className="text-xs font-bold text-amber-700">
+              <span className="text-xs font-semibold text-[#666666]">
                 /{lesson.score.maxScore}
               </span>
             </div>
             {lesson.score.ratingBadge && (
-              <span className="inline-block mt-1 bg-white/90 text-amber-900 font-bold text-[10px] sm:text-[11px] px-2 py-0.5 rounded-full border border-amber-300 shadow-2xs">
+              <span className="inline-block mt-1.5 bg-amber-100 text-amber-950 font-semibold text-xs px-2.5 py-0.5 rounded-lg border border-amber-300">
                 {lesson.score.ratingBadge}
               </span>
             )}
@@ -113,14 +114,14 @@ export const RecentLessonBlock: React.FC<RecentLessonBlockProps> = ({
       </div>
 
       {/* Đánh giá / Lời phê của Cô Nghi */}
-      <div className="bg-white rounded-2xl p-3.5 border border-slate-200/80 bg-gradient-to-r from-indigo-50/40 via-white to-amber-50/30 space-y-1.5">
-        <div className="flex items-center gap-1.5 text-xs font-bold text-slate-800">
-          <MessageSquareQuote className="w-4 h-4 text-indigo-600" />
+      <div className="soft-ui-debossed rounded-2xl p-4 space-y-2">
+        <div className="flex items-center gap-1.5 text-xs font-semibold text-[#1a1a1a]">
+          <MessageSquareQuote className="w-4 h-4 text-[#ff4757]" />
           <span>Đánh giá & Nhận xét của Cô Nghi:</span>
         </div>
-        <p className="text-xs sm:text-sm text-slate-700 leading-relaxed italic pl-1 border-l-2 border-indigo-400">
+        <blockquote className="text-sm text-[#1a1a1a] leading-relaxed italic pl-3 border-l-3 border-[#ff4757]/80 my-1">
           "{lesson.teacherFeedback}"
-        </p>
+        </blockquote>
       </div>
 
       {/* Khu vực Hình ảnh & Video học tập của học sinh tại lớp */}

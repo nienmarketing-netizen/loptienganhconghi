@@ -180,22 +180,22 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
   return (
     <div
       id="classroom-media-section"
-      className="bg-white rounded-2xl p-3.5 sm:p-4 border border-slate-200/90 shadow-2xs space-y-3"
+      className="soft-ui-embossed-sm rounded-2xl p-3.5 sm:p-4 space-y-3"
     >
       {/* Header Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2.5 pb-2.5 border-b border-slate-100">
+      <div className="flex flex-wrap items-center justify-between gap-2.5 pb-2.5 border-b border-[#b2c2d4]/40">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center shrink-0 border border-indigo-100">
-            <Camera className="w-4 h-4" />
+          <div className="w-8 h-8 rounded-xl soft-ui-convex text-[#ff4757] flex items-center justify-center shrink-0">
+            <Camera className="w-4 h-4 text-[#ff4757]" />
           </div>
           <div>
-            <h4 className="text-xs sm:text-sm font-bold text-slate-900 flex items-center gap-1.5">
-              <span>Hình ảnh & Video học tập tại lớp</span>
-              <span className="text-[10px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-200/80 px-2 py-0.2 rounded-full font-mono">
+            <h4 className="text-xs sm:text-sm font-bold text-[#1a1a1a] flex items-center gap-1.5 tracking-[-0.015em]">
+              <span>Hình ảnh & video học tập tại lớp</span>
+              <span className="text-xs font-semibold text-white bg-[#ff4757] px-2 py-0.5 rounded leading-tight shadow-[var(--shadow-accent-sm)]">
                 {mediaList.length}
               </span>
             </h4>
-            <p className="text-[11px] text-slate-500 mt-0.5">
+            <p className="text-xs text-[#666666] mt-0.5 font-normal">
               Cô Nghi ghi lại khoảnh khắc học tập thực tế để phụ huynh tiện theo dõi
             </p>
           </div>
@@ -209,7 +209,7 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
             setUploadSuccessMsg("");
             setIsModalOpen(true);
           }}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-bold text-xs shadow-xs transition-all active:scale-95 cursor-pointer"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#ff4757] hover:bg-[#ff3344] text-white font-semibold text-xs shadow-[var(--shadow-accent)] transition-all active:translate-y-[1px] cursor-pointer border border-white/30 leading-tight"
         >
           <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
           <span>Thêm ảnh / video</span>
@@ -218,17 +218,17 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
 
       {/* Media Cards Grid */}
       {mediaList.length === 0 ? (
-        <div className="text-center py-6 px-4 bg-slate-50/75 rounded-xl border border-dashed border-slate-200 space-y-2">
-          <div className="w-10 h-10 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto">
-            <Film className="w-5 h-5" />
+        <div className="text-center py-6 px-4 soft-ui-debossed rounded-xl space-y-2">
+          <div className="w-10 h-10 rounded-full soft-ui-convex text-[#475569] flex items-center justify-center mx-auto">
+            <Film className="w-5 h-5 text-[#ff4757]" />
           </div>
-          <p className="text-xs text-slate-600 font-medium">
+          <p className="text-xs text-[#475569] font-mono font-medium">
             Chưa có hình ảnh hoặc video nào được tải lên cho buổi học này.
           </p>
           <button
             type="button"
             onClick={() => setIsModalOpen(true)}
-            className="text-xs font-bold text-indigo-600 hover:text-indigo-800 underline underline-offset-2 cursor-pointer"
+            className="text-xs font-bold font-mono text-[#ff4757] hover:underline cursor-pointer"
           >
             Bấm vào đây để tải lên ảnh hoặc video của học sinh
           </button>
@@ -247,26 +247,23 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
                     setActiveImage(item);
                   }
                 }}
-                className="group relative rounded-xl overflow-hidden border border-slate-200 bg-slate-900 shadow-2xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
+                className="group relative rounded-xl overflow-hidden soft-ui-convex hover:shadow-[var(--shadow-floating)] transition-all cursor-pointer flex flex-col justify-between"
               >
-                {/* Media Preview Container */}
-                <div className="relative aspect-video w-full bg-slate-950 overflow-hidden flex items-center justify-center">
+                {/* Media Preview Container - Bright, Clean & Vivid */}
+                <div className="relative aspect-video w-full bg-slate-100 overflow-hidden flex items-center justify-center">
                   <img
                     src={item.thumbnail || item.url}
                     alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-90 group-hover:opacity-100"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-100"
                   />
-
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30 pointer-events-none" />
 
                   {/* Top Badges */}
                   <div className="absolute top-2 left-2 flex items-center gap-1.5">
                     <span
-                      className={`inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-md backdrop-blur-md shadow-xs ${
+                      className={`inline-flex items-center gap-1 text-[10px] font-bold font-mono px-2 py-0.5 rounded-md shadow-xs ${
                         isVideo
-                          ? "bg-rose-600/90 text-white"
-                          : "bg-indigo-600/90 text-white"
+                          ? "bg-[#ff4757] text-white"
+                          : "bg-white/95 text-[#1e293b] border border-slate-200 shadow-xs"
                       }`}
                     >
                       {isVideo ? (
@@ -283,7 +280,7 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
                     </span>
 
                     {item.tag && (
-                      <span className="text-[10px] font-semibold text-slate-200 bg-black/60 backdrop-blur-md px-1.5 py-0.5 rounded-md border border-white/10">
+                      <span className="text-[10px] font-bold font-mono text-slate-800 bg-white/90 backdrop-blur-xs px-1.5 py-0.5 rounded-md border border-slate-200 shadow-xs">
                         {item.tag}
                       </span>
                     )}
@@ -293,7 +290,7 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
                   <button
                     type="button"
                     onClick={(e) => handleDeleteMedia(item.id, e)}
-                    className="absolute top-2 right-2 w-7 h-7 rounded-lg bg-black/60 hover:bg-rose-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+                    className="absolute top-2 right-2 w-7 h-7 rounded-lg bg-black/40 hover:bg-[#ff4757] text-white flex items-center justify-center transition-colors cursor-pointer backdrop-blur-xs"
                     title="Xóa ảnh/video này"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
@@ -302,7 +299,7 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
                   {/* Play Button Overlay (for Videos) */}
                   {isVideo && (
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      <div className="w-11 h-11 rounded-full bg-rose-600/95 text-white flex items-center justify-center shadow-lg group-hover:scale-110 group-active:scale-95 transition-all">
+                      <div className="w-11 h-11 rounded-full bg-[#ff4757] text-white flex items-center justify-center shadow-[var(--shadow-accent)] group-hover:scale-110 group-active:scale-95 transition-all border border-white/40">
                         <Play className="w-5 h-5 fill-white ml-0.5" />
                       </div>
                     </div>
@@ -310,28 +307,28 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
 
                   {/* View Fullscreen Overlay (for Images) */}
                   {!isVideo && (
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30 pointer-events-none">
-                      <div className="w-9 h-9 rounded-full bg-white/90 text-slate-900 flex items-center justify-center shadow-md">
-                        <Maximize2 className="w-4 h-4" />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20 pointer-events-none">
+                      <div className="w-9 h-9 rounded-full bg-white text-[#1e293b] flex items-center justify-center shadow-md">
+                        <Maximize2 className="w-4 h-4 text-[#ff4757]" />
                       </div>
                     </div>
                   )}
 
                   {/* Video Duration */}
                   {isVideo && item.duration && (
-                    <div className="absolute bottom-2 right-2 bg-black/80 backdrop-blur-xs text-white text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border border-white/15">
+                    <div className="absolute bottom-2 right-2 bg-black/75 text-white text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border border-white/20">
                       {item.duration}
                     </div>
                   )}
                 </div>
 
                 {/* Card Footer Info */}
-                <div className="p-2.5 bg-white text-slate-800 space-y-1">
-                  <h5 className="text-xs font-bold text-slate-900 line-clamp-1 leading-snug group-hover:text-indigo-600 transition-colors">
+                <div className="p-2.5 bg-white text-[#1e293b] space-y-1 border-t border-slate-100">
+                  <h5 className="text-xs font-bold text-[#1e293b] line-clamp-1 leading-snug group-hover:text-[#ff4757] transition-colors">
                     {item.title}
                   </h5>
-                  <div className="flex items-center justify-between text-[10px] text-slate-500">
-                    <span className="flex items-center gap-1 font-medium">
+                  <div className="flex items-center justify-between text-[10px] text-[#475569] font-mono">
+                    <span className="flex items-center gap-1 font-semibold">
                       <span>{item.uploadedBy || "Cô Nghi"}</span>
                     </span>
                     <span>{item.timestamp || lessonDate}</span>
@@ -346,58 +343,61 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
       {/* TEACHER UPLOAD MODAL */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-xs animate-in fade-in duration-150"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150"
           onClick={() => setIsModalOpen(false)}
         >
           <div
-            className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[92vh] animate-in zoom-in-95 duration-150"
+            className="relative w-full max-w-lg bg-[#e0e5ec] rounded-2xl sm:rounded-3xl shadow-[var(--shadow-floating)] border border-white/80 border-b-[#babecc] border-r-[#babecc] overflow-hidden flex flex-col max-h-[92vh] animate-in zoom-in-95 duration-150"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Header */}
-            <div className="p-4 bg-gradient-to-r from-indigo-900 via-slate-900 to-indigo-950 text-white flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-indigo-600/30 border border-indigo-400/40 text-indigo-300 flex items-center justify-center">
+            {/* Modal Header - Industrial Bevel Bar */}
+            <div className="bg-[#2d3436] px-4 sm:px-6 py-3.5 sm:py-4 text-white flex items-center justify-between gap-3 border-b border-white/20 relative shrink-0">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="w-9 h-9 rounded-xl bg-[#1e2528] border border-white/10 flex items-center justify-center text-[#ff4757] shrink-0 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)]">
                   <Camera className="w-5 h-5" />
                 </div>
-                <div>
-                  <h3 className="text-sm font-bold text-white">
-                    Thêm hình ảnh / video học tập của học sinh
+                <div className="min-w-0">
+                  <div className="text-xs font-medium text-[#a3b1c6] flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
+                    <span>Kho lưu trữ hình ảnh buổi học</span>
+                  </div>
+                  <h3 className="text-sm sm:text-base font-bold !text-white tracking-[-0.015em] leading-snug truncate">
+                    Thêm ảnh / video của {studentName}
                   </h3>
-                  <p className="text-[11px] text-indigo-200">
-                    Dành cho học sinh: {studentName} • Buổi ngày {lessonDate}
-                  </p>
                 </div>
               </div>
 
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
+                className="w-8 h-8 rounded-lg bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 border border-white/10"
+                aria-label="Đóng"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Modal Tabs */}
-            <div className="flex border-b border-slate-200 bg-slate-50 px-4 pt-2 gap-2 text-xs font-bold">
+            {/* Modal Tabs - Tactile Recessed Bar */}
+            <div className="flex border-b border-[#babecc]/60 bg-[#d1d9e6] px-4 py-2 gap-2 text-xs font-bold shadow-[var(--shadow-recessed-sm)]">
               <button
                 type="button"
                 onClick={() => setModalTab("file")}
-                className={`pb-2.5 px-3 border-b-2 transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 active:translate-y-[1px] ${
                   modalTab === "file"
-                    ? "border-indigo-600 text-indigo-700"
-                    : "border-transparent text-slate-500 hover:text-slate-800"
+                    ? "bg-[#ff4757] text-white shadow-[var(--shadow-accent-sm)] border border-white/30"
+                    : "bg-[#e0e5ec] text-[#2d3436] hover:bg-[#d8e0ec] border border-white/90 shadow-[var(--shadow-card-sm)]"
                 }`}
               >
-                Tải lên từ máy tính / điện thoại
+                <Upload className="w-3.5 h-3.5" />
+                <span>Tải lên từ thiết bị</span>
               </button>
               <button
                 type="button"
                 onClick={() => setModalTab("template")}
-                className={`pb-2.5 px-3 border-b-2 transition-all cursor-pointer flex items-center gap-1 ${
+                className={`px-3 py-1.5 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 active:translate-y-[1px] ${
                   modalTab === "template"
-                    ? "border-indigo-600 text-indigo-700"
-                    : "border-transparent text-slate-500 hover:text-slate-800"
+                    ? "bg-[#ff4757] text-white shadow-[var(--shadow-accent-sm)] border border-white/30"
+                    : "bg-[#e0e5ec] text-[#2d3436] hover:bg-[#d8e0ec] border border-white/90 shadow-[var(--shadow-card-sm)]"
                 }`}
               >
                 <Sparkles className="w-3.5 h-3.5 text-amber-500" />
@@ -406,17 +406,17 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
             </div>
 
             {/* Modal Body */}
-            <div className="p-4 overflow-y-auto space-y-4">
+            <div className="p-4 sm:p-5 overflow-y-auto space-y-4 text-[#1a1a1a]">
               {uploadSuccessMsg ? (
-                <div className="py-8 text-center space-y-2 bg-emerald-50 rounded-2xl border border-emerald-200">
-                  <div className="w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center mx-auto shadow-md">
+                <div className="py-8 text-center space-y-2 bg-[#d1d9e6] rounded-2xl border border-emerald-500/60 shadow-[var(--shadow-recessed-sm)] p-4">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-600 text-white flex items-center justify-center mx-auto shadow-[var(--shadow-card-sm)]">
                     <Check className="w-6 h-6 stroke-[3]" />
                   </div>
-                  <h4 className="text-sm font-bold text-emerald-900">
+                  <h4 className="text-sm font-bold text-[#1a1a1a]">
                     {uploadSuccessMsg}
                   </h4>
-                  <p className="text-xs text-emerald-700">
-                    Phụ huynh đã có thể xem video/hình ảnh mới nhất của con.
+                  <p className="text-xs text-[#4a5568]">
+                    Phụ huynh đã có thể xem video/hình ảnh mới nhất của con trên bảng điều khiển.
                   </p>
                 </div>
               ) : modalTab === "file" ? (
@@ -430,19 +430,19 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
                     className="hidden"
                   />
 
-                  {/* Dropzone / Upload Trigger */}
+                  {/* Dropzone / Upload Trigger - Recessed Well */}
                   <div
                     onClick={() => fileInputRef.current?.click()}
                     className={`border-2 border-dashed rounded-2xl p-5 text-center cursor-pointer transition-all ${
                       selectedFileUrl
-                        ? "border-indigo-500 bg-indigo-50/50"
-                        : "border-slate-300 hover:border-indigo-400 bg-slate-50/70 hover:bg-indigo-50/20"
+                        ? "border-[#ff4757] bg-[#e0e5ec] shadow-[var(--shadow-card-sm)]"
+                        : "border-[#babecc] hover:border-[#ff4757] bg-[#d1d9e6] shadow-[var(--shadow-recessed-sm)]"
                     }`}
                   >
                     {selectedFileUrl ? (
                       <div className="space-y-2">
                         {newType === "video" ? (
-                          <div className="w-full max-h-44 rounded-xl overflow-hidden bg-black flex items-center justify-center">
+                          <div className="w-full max-h-44 rounded-xl overflow-hidden bg-black flex items-center justify-center border border-white/20">
                             <video
                               src={selectedFileUrl}
                               controls
@@ -453,26 +453,26 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
                           <img
                             src={selectedFileUrl}
                             alt="Xem trước"
-                            className="w-full max-h-44 object-contain rounded-xl bg-black/5"
+                            className="w-full max-h-44 object-contain rounded-xl bg-black/10 border border-[#babecc]/60"
                           />
                         )}
-                        <p className="text-xs font-bold text-indigo-700">
+                        <p className="text-xs font-bold text-[#ff4757] font-mono">
                           ✔ Đã chọn: {selectedFileName}
                         </p>
-                        <p className="text-[11px] text-slate-500">
+                        <p className="text-[11px] text-[#666666]">
                           Bấm để đổi file khác
                         </p>
                       </div>
                     ) : (
                       <div className="space-y-2 py-2">
-                        <div className="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center mx-auto shadow-2xs">
+                        <div className="w-12 h-12 rounded-2xl bg-[#e0e5ec] border border-white/90 shadow-[var(--shadow-card-sm)] text-[#ff4757] flex items-center justify-center mx-auto">
                           <Upload className="w-6 h-6" />
                         </div>
                         <div>
-                          <p className="text-xs font-bold text-slate-800">
+                          <p className="text-xs font-bold text-[#1a1a1a]">
                             Bấm để tải lên ảnh hoặc video từ thiết bị
                           </p>
-                          <p className="text-[11px] text-slate-500 mt-0.5">
+                          <p className="text-[11px] text-[#666666] mt-0.5 font-mono">
                             Hỗ trợ định dạng MP4, MOV, JPG, PNG, WEBP
                           </p>
                         </div>
@@ -482,7 +482,7 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
 
                   {/* Title Input */}
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-700">
+                    <label className="text-xs font-bold text-[#4a5568]">
                       Tiêu đề / Lời ghi chú của cô:
                     </label>
                     <input
@@ -490,13 +490,13 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
                       value={newTitle}
                       onChange={(e) => setNewTitle(e.target.value)}
                       placeholder={`Ví dụ: ${studentName} tự tin thuyết trình bài tập...`}
-                      className="w-full text-xs sm:text-sm px-3 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      className="w-full text-xs sm:text-sm px-3 py-2 rounded-xl bg-[#d1d9e6] border border-[#babecc] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.12)] text-[#1a1a1a] focus:outline-none focus:bg-[#e0e5ec]"
                     />
                   </div>
 
                   {/* Category Tag Selection */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-700">
+                    <label className="text-xs font-bold text-[#4a5568]">
                       Chủ đề hoạt động:
                     </label>
                     <div className="flex flex-wrap gap-1.5">
@@ -514,8 +514,8 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
                           onClick={() => setNewTag(tag)}
                           className={`text-xs font-semibold px-2.5 py-1 rounded-lg border transition-all cursor-pointer ${
                             newTag === tag
-                              ? "bg-indigo-600 text-white border-indigo-600 shadow-2xs"
-                              : "bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200"
+                              ? "bg-[#ff4757] text-white border-white/30 shadow-[var(--shadow-accent-sm)]"
+                              : "bg-[#e0e5ec] text-[#4a5568] border-white/80 border-b-[#babecc] border-r-[#babecc] shadow-[var(--shadow-card-sm)] hover:bg-[#d8e0ec]"
                           }`}
                         >
                           {tag}
@@ -527,7 +527,7 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
               ) : (
                 /* Templates Tab */
                 <div className="space-y-2.5">
-                  <p className="text-xs text-slate-600 font-medium">
+                  <p className="text-xs text-[#666666] font-medium">
                     Chọn nhanh một khoảnh khắc mẫu để thêm ngay vào buổi học của con:
                   </p>
                   <div className="space-y-2">
@@ -535,9 +535,9 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
                       <div
                         key={i}
                         onClick={() => handleAddFromTemplate(tpl)}
-                        className="flex items-center gap-3 p-2.5 rounded-xl border border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 transition-all cursor-pointer"
+                        className="flex items-center gap-3 p-2.5 rounded-xl bg-[#e0e5ec] border border-white/80 border-b-[#babecc] border-r-[#babecc] shadow-[var(--shadow-card-sm)] hover:shadow-[var(--shadow-card)] transition-all cursor-pointer"
                       >
-                        <div className="relative w-16 h-12 rounded-lg overflow-hidden bg-slate-900 shrink-0">
+                        <div className="relative w-16 h-12 rounded-lg overflow-hidden bg-slate-900 shrink-0 border border-white/20">
                           <img
                             src={tpl.thumbnail || tpl.url}
                             alt={tpl.title}
@@ -552,25 +552,25 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-1.5">
                             <span
-                              className={`text-[10px] font-bold px-1.5 py-0.2 rounded ${
+                              className={`text-[10px] font-bold px-1.5 py-0.2 rounded font-mono ${
                                 tpl.type === "video"
-                                  ? "bg-rose-100 text-rose-800"
-                                  : "bg-indigo-100 text-indigo-800"
+                                  ? "bg-[#d1d9e6] text-[#ff4757] border border-[#ff4757]/30"
+                                  : "bg-[#d1d9e6] text-[#4a5568] border border-[#babecc]/60"
                               }`}
                             >
                               {tpl.type === "video" ? "Video" : "Ảnh"}
                             </span>
-                            <span className="text-[10px] font-medium text-slate-500">
+                            <span className="text-[10px] font-medium text-[#666666]">
                               {tpl.tag}
                             </span>
                           </div>
-                          <p className="text-xs font-bold text-slate-800 truncate mt-0.5">
+                          <p className="text-xs font-bold text-[#1a1a1a] truncate mt-0.5">
                             {tpl.title}
                           </p>
                         </div>
                         <button
                           type="button"
-                          className="px-2.5 py-1 rounded-lg bg-indigo-600 text-white font-bold text-[11px] shrink-0"
+                          className="px-3 py-1.5 rounded-lg bg-[#ff4757] hover:bg-[#ff3848] text-white font-mono font-bold text-[11px] shadow-[var(--shadow-accent-sm)] active:translate-y-[1px] shrink-0 cursor-pointer"
                         >
                           Chọn
                         </button>
@@ -583,11 +583,11 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
 
             {/* Modal Footer */}
             {!uploadSuccessMsg && modalTab === "file" && (
-              <div className="p-3 sm:p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-end gap-2">
+              <div className="p-3 sm:p-4 bg-[#d1d9e6] border-t border-[#babecc]/60 flex items-center justify-end gap-2 shrink-0">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-200 text-xs font-bold transition-colors cursor-pointer"
+                  className="px-4 py-2 rounded-xl bg-[#e0e5ec] hover:bg-[#d8e0ec] text-[#4a5568] border border-white/90 shadow-[var(--shadow-card-sm)] text-xs font-bold transition-all cursor-pointer active:translate-y-[1px]"
                 >
                   Hủy
                 </button>
@@ -595,7 +595,7 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
                   type="button"
                   onClick={handleAddMedia}
                   disabled={!selectedFileUrl || isUploading}
-                  className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white text-xs font-bold shadow-xs transition-all active:scale-95 cursor-pointer flex items-center gap-1.5"
+                  className="px-4 py-2 rounded-xl bg-[#ff4757] hover:bg-[#ff3848] disabled:opacity-50 text-white text-xs font-bold font-mono shadow-[var(--shadow-accent-sm)] transition-all active:translate-y-[1px] cursor-pointer flex items-center gap-1.5"
                 >
                   {isUploading ? (
                     <span>Đang tải lên...</span>
@@ -615,33 +615,35 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
       {/* FULLSCREEN VIDEO PLAYER MODAL FOR PARENTS */}
       {activeVideo && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/90 backdrop-blur-md animate-in fade-in duration-150"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/80 backdrop-blur-md animate-in fade-in duration-150"
           onClick={() => setActiveVideo(null)}
         >
           <div
-            className="relative w-full max-w-2xl bg-slate-950 rounded-3xl overflow-hidden border border-white/20 shadow-2xl flex flex-col"
+            className="relative w-full max-w-2xl bg-[#1e2528] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 shadow-[var(--shadow-floating)] flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Video Header */}
-            <div className="p-3.5 sm:p-4 bg-slate-900 border-b border-white/10 flex items-center justify-between text-white">
-              <div className="flex items-center gap-2 min-w-0">
-                <div className="w-7 h-7 rounded-lg bg-rose-600 text-white flex items-center justify-center shrink-0">
-                  <Play className="w-3.5 h-3.5 fill-white ml-0.5" />
+            {/* Video Header - Industrial Bevel */}
+            <div className="p-3.5 sm:p-4 bg-[#2d3436] border-b border-white/10 flex items-center justify-between text-white">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-8 h-8 rounded-lg bg-[#1e2528] border border-white/10 text-[#ff4757] flex items-center justify-center shrink-0 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)]">
+                  <Play className="w-3.5 h-3.5 fill-[#ff4757]" />
                 </div>
                 <div className="min-w-0">
-                  <h4 className="text-xs sm:text-sm font-bold truncate">
+                  <div className="text-[10px] text-[#a3b1c6] font-mono flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full led-indicator-orange animate-pulse" />
+                    <span>VIDEO THỰC TẾ LỚP HỌC</span>
+                  </div>
+                  <h4 className="text-xs sm:text-sm font-bold truncate text-white">
                     {activeVideo.title}
                   </h4>
-                  <p className="text-[10px] sm:text-[11px] text-slate-400">
-                    Video của {studentName} • {activeVideo.uploadedBy || "Cô Nghi"} quay tại lớp
-                  </p>
                 </div>
               </div>
 
               <button
                 type="button"
                 onClick={() => setActiveVideo(null)}
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-rose-600 text-white flex items-center justify-center transition-colors cursor-pointer shrink-0"
+                className="w-8 h-8 rounded-lg bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 border border-white/10"
+                aria-label="Đóng"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -659,8 +661,9 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
             </div>
 
             {/* Video Footer Note */}
-            <div className="p-3 bg-slate-900 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
-              <span className="font-semibold text-amber-300">
+            <div className="p-3 bg-[#2d3436] border-t border-white/10 flex items-center justify-between text-xs text-[#a3b1c6] font-mono">
+              <span className="font-semibold text-amber-400 flex items-center gap-1">
+                <Sparkles className="w-3.5 h-3.5" />
                 {activeVideo.tag || "Video học tập tại lớp"}
               </span>
               <span>Thời lượng: {activeVideo.duration || "0:45"}</span>
@@ -672,25 +675,30 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
       {/* FULLSCREEN IMAGE VIEWER MODAL FOR PARENTS */}
       {activeImage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/90 backdrop-blur-md animate-in fade-in duration-150"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/80 backdrop-blur-md animate-in fade-in duration-150"
           onClick={() => setActiveImage(null)}
         >
           <div
-            className="relative w-full max-w-3xl bg-slate-950 rounded-3xl overflow-hidden border border-white/20 shadow-2xl flex flex-col max-h-[92vh]"
+            className="relative w-full max-w-3xl bg-[#1e2528] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 shadow-[var(--shadow-floating)] flex flex-col max-h-[92vh]"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header */}
-            <div className="p-3 sm:p-4 bg-slate-900 border-b border-white/10 flex items-center justify-between text-white">
+            {/* Header - Industrial Bevel */}
+            <div className="p-3 sm:p-4 bg-[#2d3436] border-b border-white/10 flex items-center justify-between text-white">
               <div>
-                <h4 className="text-xs sm:text-sm font-bold">{activeImage.title}</h4>
-                <p className="text-[10px] text-slate-400">
+                <div className="text-[10px] text-[#a3b1c6] font-mono flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full led-indicator-orange animate-pulse" />
+                  <span>ẢNH HOẠT ĐỘNG TẠI LỚP</span>
+                </div>
+                <h4 className="text-xs sm:text-sm font-bold text-white">{activeImage.title}</h4>
+                <p className="text-[10px] text-[#a3b1c6]">
                   {studentName} • {activeImage.uploadedBy || "Cô Nghi chụp tại lớp"}
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setActiveImage(null)}
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-rose-600 text-white flex items-center justify-center transition-colors cursor-pointer"
+                className="w-8 h-8 rounded-lg bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 border border-white/10"
+                aria-label="Đóng"
               >
                 <X className="w-4 h-4" />
               </button>

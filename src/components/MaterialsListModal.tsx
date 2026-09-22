@@ -47,24 +47,25 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/70 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[92vh] animate-in zoom-in-95 duration-150"
+        className="relative w-full max-w-lg bg-[#e0e5ec] rounded-2xl sm:rounded-3xl shadow-[var(--shadow-floating)] border border-white/80 border-b-[#babecc] border-r-[#babecc] overflow-hidden flex flex-col max-h-[92vh] animate-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header - Matching UploadModal layout and style with indigo theme */}
-        <div className="bg-gradient-to-r from-indigo-600 via-indigo-700 to-blue-600 px-4 sm:px-5 py-3.5 sm:py-4 text-white flex items-center justify-between gap-3">
+        {/* Header - Industrial Bevel Bar */}
+        <div className="bg-[#2d3436] px-4 sm:px-6 py-3.5 sm:py-4 text-white flex items-center justify-between gap-3 border-b border-white/20 relative">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-[#1e2528] border border-white/10 flex items-center justify-center text-[#ff4757] shrink-0 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)]">
               <FolderDown className="w-5 h-5" />
             </div>
             <div className="min-w-0">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-200 block">
-                Tài liệu bài tập ({materials.length})
-              </span>
-              <h3 className="text-xs sm:text-sm md:text-base font-bold leading-snug break-words">
+              <div className="text-xs font-medium text-[#a3b1c6] flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
+                <span>Tài liệu bài tập ({materials.length})</span>
+              </div>
+              <h3 className="text-sm sm:text-base font-bold text-white tracking-[-0.015em] leading-snug break-words">
                 {assignment.title}
               </h3>
             </div>
@@ -72,48 +73,48 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
           <button
             id="btn-close-materials-modal"
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center text-white transition-colors cursor-pointer shrink-0"
+            className="w-8 h-8 rounded-lg bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 border border-white/10"
             aria-label="Đóng"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Content Body */}
-        <div className="p-4 sm:p-6 overflow-y-auto space-y-4">
-          {/* Info pill identical to UploadModal */}
-          <div className="text-xs bg-slate-50 border border-slate-200/80 p-3 sm:p-3.5 rounded-2xl space-y-2">
+        <div className="p-4 sm:p-6 overflow-y-auto space-y-4 text-[#1a1a1a]">
+          {/* Info pill - Recessed Well */}
+          <div className="text-xs bg-[#d1d9e6] border border-[#babecc]/60 p-3 sm:p-3.5 rounded-2xl shadow-[var(--shadow-recessed-sm)] space-y-2">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
-                <span className="text-slate-500 block text-[11px]">Học sinh</span>
-                <span className="font-bold text-slate-900 text-sm block break-words">
+                <span className="text-[#666666] block text-xs font-medium">Học sinh</span>
+                <span className="font-bold text-[#1a1a1a] text-sm block break-words">
                   {studentName}
                 </span>
               </div>
-              <span className="self-start sm:self-center text-[11px] font-bold px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-200">
+              <span className="self-start sm:self-center text-xs font-semibold px-2.5 py-1 rounded-md bg-[#e0e5ec] text-[#1a1a1a] border border-white/90 shadow-[var(--shadow-card-sm)] leading-tight">
                 {assignment.unit}
               </span>
             </div>
 
-            <div className="pt-2 border-t border-slate-200/80 flex items-center justify-between text-[11px]">
-              <span className="text-slate-500 flex items-center gap-1">
-                <Calendar className="w-3 h-3 text-amber-600 shrink-0" />
+            <div className="pt-2 border-t border-[#babecc]/50 flex items-center justify-between text-xs">
+              <span className="text-[#666666] flex items-center gap-1 font-medium">
+                <Calendar className="w-3.5 h-3.5 text-[#ff4757] shrink-0" />
                 Hạn chót nộp:
               </span>
-              <span className="font-bold text-slate-800">
+              <span className="font-semibold text-[#ff4757]">
                 {assignment.deadline}
               </span>
             </div>
           </div>
 
-          {/* Teacher note card */}
-          <div className="bg-indigo-50/70 border border-indigo-100 rounded-2xl p-3.5 text-xs text-indigo-950 flex items-start gap-2.5">
-            <Sparkles className="w-4 h-4 text-indigo-600 shrink-0 mt-0.5" />
+          {/* Teacher note card - Beveled card */}
+          <div className="bg-[#e0e5ec] border border-white/90 border-b-[#babecc] border-r-[#babecc] rounded-2xl p-3.5 text-xs text-[#1a1a1a] shadow-[var(--shadow-card-sm)] flex items-start gap-2.5">
+            <Sparkles className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
             <div className="space-y-0.5">
-              <span className="font-bold block text-indigo-900">
+              <span className="font-bold text-[#1a1a1a] block tracking-[-0.015em]">
                 Hướng dẫn từ Cô Nghi:
               </span>
-              <p className="text-indigo-800/90 leading-relaxed text-[11px] sm:text-xs">
+              <p className="text-[#666666] leading-relaxed text-xs font-normal">
                 Các con mở tài liệu đính kèm bên dưới để chuẩn bị bài. Có thể xem video thị phạm hoặc nghe file audio nhiều lần trước khi làm bài tập nhé!
               </p>
             </div>
@@ -121,9 +122,9 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
 
           {/* List of materials */}
           <div className="space-y-2.5">
-            <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-slate-500 px-0.5">
-              <span>Danh sách tài liệu ({materials.length})</span>
-              <span className="text-[10px] text-slate-400 font-medium lowercase">chạm để xem / nghe</span>
+            <div className="flex items-center justify-between text-xs px-0.5">
+              <span className="font-bold text-[#1a1a1a] tracking-[-0.015em]">Danh sách tài liệu ({materials.length})</span>
+              <span className="text-[#666666] font-normal">chạm để xem / nghe</span>
             </div>
 
             {materials.map((mat) => {
@@ -134,7 +135,7 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
               return (
                 <div
                   key={mat.id}
-                  className="p-3.5 rounded-2xl border border-slate-200/90 bg-white hover:border-indigo-300 hover:shadow-md hover:shadow-indigo-500/5 transition-all flex items-center justify-between gap-3"
+                  className="p-3.5 rounded-2xl border border-white/90 border-b-[#babecc] border-r-[#babecc] bg-[#e0e5ec] shadow-[var(--shadow-card-sm)] flex items-center justify-between gap-3"
                 >
                   <button
                     type="button"
@@ -142,13 +143,7 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
                     className="flex items-center gap-3 text-left min-w-0 flex-1 cursor-pointer group"
                   >
                     <div
-                      className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 shadow-xs ${
-                        isVideo
-                          ? "bg-sky-100 text-sky-700"
-                          : isAudio
-                          ? "bg-indigo-100 text-indigo-700"
-                          : "bg-rose-100 text-rose-700"
-                      }`}
+                      className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-[#d1d9e6] border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)] text-[#ff4757]"
                     >
                       {isVideo && <Video className="w-5 h-5" />}
                       {isAudio && <Headphones className="w-5 h-5" />}
@@ -158,26 +153,20 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2 mb-0.5">
                         <span
-                          className={`text-[10px] font-extrabold px-2 py-0.5 rounded-md uppercase tracking-wider ${
-                            isVideo
-                              ? "bg-sky-100 text-sky-800"
-                              : isAudio
-                              ? "bg-indigo-100 text-indigo-800"
-                              : "bg-rose-100 text-rose-800"
-                          }`}
+                          className="text-xs font-semibold px-1.5 py-0.5 rounded bg-[#d1d9e6] text-[#1a1a1a] border border-[#babecc]/60 leading-tight"
                         >
                           {isVideo ? "Video bài giảng" : isAudio ? "Audio MP3" : "Phiếu đề bài (PDF)"}
                         </span>
                         {mat.duration && (
-                          <span className="text-[11px] text-slate-500 font-semibold">
+                          <span className="text-xs text-[#666666] font-medium">
                             {mat.duration}
                           </span>
                         )}
                       </div>
-                      <h4 className="text-xs sm:text-sm font-bold text-slate-900 truncate group-hover:text-indigo-600 transition-colors">
+                      <h4 className="text-xs sm:text-sm font-semibold text-[#1a1a1a] truncate group-hover:text-[#ff4757] transition-colors">
                         {mat.title}
                       </h4>
-                      <span className="text-[11px] text-slate-400 font-medium">
+                      <span className="text-xs text-[#666666] font-normal block mt-0.5">
                         Dung lượng: {mat.fileSize || "1.2 MB"}
                       </span>
                     </div>
@@ -187,16 +176,16 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
                     <button
                       type="button"
                       onClick={() => onSelectMaterial(mat.id)}
-                      className="px-3 py-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold transition-all cursor-pointer border border-indigo-200/80 active:scale-95 flex items-center gap-1"
+                      className="px-3 py-1.5 rounded-xl bg-[#e0e5ec] hover:bg-[#d8e0ec] text-[#1a1a1a] text-xs font-semibold transition-all cursor-pointer border border-white/90 shadow-[var(--shadow-card-sm)] active:translate-y-[1px] flex items-center gap-1 leading-tight"
                     >
                       <span>{isVideo ? "Xem" : isAudio ? "Nghe" : "Mở"}</span>
-                      <ExternalLink className="w-3 h-3" />
+                      <ExternalLink className="w-3 h-3 text-[#ff4757]" />
                     </button>
 
                     <button
                       type="button"
                       onClick={() => handleDownload(mat)}
-                      className="p-2 rounded-xl text-slate-400 hover:text-indigo-600 hover:bg-slate-100 transition-colors cursor-pointer"
+                      className="p-2 rounded-xl text-[#666666] hover:text-[#ff4757] bg-[#e0e5ec] border border-white/90 shadow-[var(--shadow-card-sm)] active:translate-y-[1px] transition-colors cursor-pointer"
                       title="Tải về máy"
                     >
                       <Download className="w-4 h-4" />
@@ -209,11 +198,11 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
         </div>
 
         {/* Footer identical in style to UploadModal */}
-        <div className="p-4 sm:p-5 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-3">
+        <div className="p-4 sm:p-5 bg-[#e0e5ec] border-t border-[#babecc]/50 flex items-center justify-between gap-3">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 font-bold text-xs sm:text-sm transition-colors cursor-pointer"
+            className="px-4 py-2.5 rounded-xl text-[#1a1a1a] bg-[#e0e5ec] border border-white/90 shadow-[var(--shadow-card-sm)] hover:bg-[#d8e0ec] font-semibold text-xs sm:text-sm transition-all active:translate-y-[1px] cursor-pointer leading-tight"
           >
             Đóng
           </button>
@@ -221,7 +210,7 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
           <button
             type="button"
             onClick={onOpenFullPlayer}
-            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-indigo-600/25 flex items-center gap-2 transition-all cursor-pointer active:scale-95"
+            className="px-5 py-2.5 rounded-xl bg-[#ff4757] hover:bg-[#ff3344] text-white font-semibold text-xs sm:text-sm shadow-[var(--shadow-accent)] flex items-center gap-2 transition-all cursor-pointer active:translate-y-[1px] border border-white/30 leading-tight"
           >
             <FolderDown className="w-4 h-4" />
             <span>Mở toàn bộ trình phát</span>

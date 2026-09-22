@@ -19,6 +19,7 @@ import {
   TrendingUp,
   FileCheck,
   Award,
+  Copy,
 } from "lucide-react";
 import { StudentProfile, Assignment } from "../types";
 
@@ -239,42 +240,46 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         {toasts.map((t) => (
           <div
             key={t.id}
-            className={`pointer-events-auto p-3.5 sm:p-4 rounded-2xl shadow-xl border backdrop-blur-md flex items-start gap-3 transition-all animate-in slide-in-from-top-4 duration-200 ${
-              t.type === "token"
-                ? "bg-amber-900/95 text-white border-amber-500/50 shadow-amber-900/30"
-                : t.type === "success"
-                ? "bg-emerald-950/95 text-white border-emerald-500/50 shadow-emerald-950/30"
-                : "bg-slate-900/95 text-white border-slate-700 shadow-slate-900/30"
-            }`}
+            className="pointer-events-auto p-3.5 sm:p-4 rounded-2xl bg-[#2d3436] text-white border border-white/20 border-b-black/40 border-r-black/40 shadow-[var(--shadow-floating)] flex items-start gap-3 transition-all animate-in slide-in-from-top-4 duration-200"
           >
             <div className="shrink-0 pt-0.5">
               {t.type === "token" ? (
-                <div className="w-8 h-8 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center font-bold font-mono">
+                <div className="w-8 h-8 rounded-xl bg-[#1e2528] text-amber-400 border border-white/10 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)] flex items-center justify-center font-bold font-mono">
                   <Coins className="w-4 h-4" />
                 </div>
               ) : t.type === "success" ? (
-                <div className="w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-xl bg-[#1e2528] text-emerald-400 border border-white/10 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)] flex items-center justify-center">
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
               ) : (
-                <div className="w-8 h-8 rounded-xl bg-blue-500 text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-xl bg-[#1e2528] text-[#ff4757] border border-white/10 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)] flex items-center justify-center">
                   <Bell className="w-4 h-4" />
                 </div>
               )}
             </div>
             <div className="flex-1 min-w-0">
-              <h5 className="font-extrabold text-xs sm:text-sm leading-tight text-white">
-                {t.title}
-              </h5>
-              <p className="text-[11px] sm:text-xs text-slate-200 mt-0.5 leading-snug">
+              <div className="flex items-center gap-1.5 mb-0.5">
+                <span className={`w-1.5 h-1.5 rounded-full ${
+                  t.type === "token"
+                    ? "bg-amber-400 shadow-[0_0_6px_#f59e0b]"
+                    : t.type === "success"
+                    ? "bg-emerald-400 shadow-[0_0_6px_#10b981]"
+                    : "led-indicator-orange"
+                }`} />
+                <h5 className="font-extrabold text-xs sm:text-sm leading-tight text-white font-mono">
+                  {t.title}
+                </h5>
+              </div>
+              <p className="text-[11px] sm:text-xs text-[#a3b1c6] mt-0.5 leading-snug font-sans">
                 {t.description}
               </p>
             </div>
             <button
               onClick={() => removeToast(t.id)}
-              className="text-white/60 hover:text-white p-1 rounded-lg transition-colors cursor-pointer"
+              className="w-6 h-6 rounded-md bg-[#1e2528] hover:bg-[#ff4757] hover:text-white text-[#a3b1c6] flex items-center justify-center transition-colors cursor-pointer border border-white/10 shrink-0"
+              aria-label="Đóng thông báo"
             >
-              <X className="w-4 h-4" />
+              <X className="w-3.5 h-3.5" />
             </button>
           </div>
         ))}
@@ -289,17 +294,33 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               Cổng Quản Lý Lớp Học • Dành Cho Cô Nghi
             </span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-black tracking-tight text-white">
+          <h2 className="text-base sm:text-2xl font-black tracking-tight !text-white">
             Admin Dashboard: Chấm Điểm 1 Chạm & Quản Lý Học Vụ
           </h2>
-          <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
+          <p className="text-xs sm:text-sm text-slate-200 max-w-xl font-normal">
             Tối ưu thao tác vuốt chạm trên Tablet & Điện thoại. Thưởng Tokens
             ngay trong giờ học và gửi nhắc nhở Zalo đến phụ huynh chỉ với 1 bấm.
           </p>
         </div>
 
-        {/* Global Batch Action */}
-        <div className="shrink-0 flex items-center gap-2">
+        {/* Global Actions & Dedicated Portal URL Info */}
+        <div className="shrink-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+          <button
+            type="button"
+            id="btn-copy-portal-url-hero"
+            onClick={() => {
+              const url = `${window.location.origin}/giao-vien`;
+              navigator.clipboard.writeText(url);
+              addToast("info", "Đã sao chép link Cổng Giáo Viên!", url);
+            }}
+            className="min-h-[44px] px-3.5 py-2 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs flex items-center justify-center gap-2 border border-white/20 transition-all cursor-pointer"
+            title="Sao chép link Cổng Giáo Viên để lưu hoặc ghim vào thanh dấu trang"
+          >
+            <Copy className="w-4 h-4 text-amber-300" />
+            <span className="font-mono text-amber-200">/giao-vien</span>
+            <span className="text-white/80">(Chép link)</span>
+          </button>
+
           <button
             type="button"
             id="btn-batch-zalo-reminder"
@@ -481,7 +502,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     />
                     <div>
                       <div className="flex items-center gap-2 flex-wrap">
-                        <h4 className="text-sm sm:text-base font-extrabold text-slate-900">
+                        <h4 className="text-xs sm:text-base font-extrabold text-slate-900">
                           {student.fullName}
                         </h4>
                         <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded-md bg-slate-100 text-slate-600">
@@ -578,30 +599,30 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                             isScoringActive ? null : student.slug
                           )
                         }
-                        className={`min-h-[44px] px-4 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5 transition-all shadow-sm active:scale-95 cursor-pointer ${
+                        className={`min-h-[44px] px-4 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5 transition-all cursor-pointer font-mono active:translate-y-[1px] ${
                           isScoringActive
-                            ? "bg-amber-600 text-white ring-2 ring-amber-300"
-                            : "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-amber-500/20"
+                            ? "bg-[#ff4757] text-white shadow-[var(--shadow-recessed-sm)] border border-white/20"
+                            : "bg-[#e0e5ec] hover:bg-[#d8e0ec] text-[#ff4757] border border-white/90 shadow-[var(--shadow-card-sm)]"
                         }`}
                       >
                         <Plus className="w-4 h-4 stroke-[3]" />
                         <span>+ Tokens (1 chạm)</span>
                       </button>
 
-                      {/* Popover / Dropdown các lý do tính sẵn */}
+                      {/* Popover / Dropdown các lý do tính sẵn - Soft UI Tactile Card */}
                       {isScoringActive && (
                         <div
-                          className="absolute left-0 top-12 z-40 w-72 sm:w-80 bg-white rounded-2xl shadow-2xl border border-slate-200 p-2.5 space-y-2 animate-in fade-in zoom-in-95 duration-150"
+                          className="absolute left-0 top-12 z-40 w-72 sm:w-80 bg-[#e0e5ec] rounded-2xl shadow-[var(--shadow-floating)] border border-white/80 border-b-[#babecc] border-r-[#babecc] p-3 space-y-2.5 animate-in fade-in zoom-in-95 duration-150"
                           onClick={(e) => e.stopPropagation()}
                         >
-                          <div className="flex items-center justify-between px-1 border-b border-slate-100 pb-1.5">
-                            <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
-                              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-                              Thưởng điểm cho {student.fullName.split(" ").slice(-1)[0]}
+                          <div className="flex items-center justify-between pb-2 border-b border-[#babecc]/50">
+                            <span className="text-[11px] font-bold text-[#4a5568] uppercase font-mono tracking-wider flex items-center gap-1.5">
+                              <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
+                              Thưởng điểm: {student.fullName.split(" ").slice(-1)[0]}
                             </span>
                             <button
                               onClick={() => setActiveScoringStudentSlug(null)}
-                              className="text-slate-400 hover:text-slate-600 p-1"
+                              className="w-6 h-6 rounded-md bg-[#d1d9e6] hover:bg-[#ff4757] hover:text-white text-[#666666] flex items-center justify-center border border-[#babecc]/60 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)] transition-colors cursor-pointer"
                             >
                               <X className="w-3.5 h-3.5" />
                             </button>
@@ -616,20 +637,20 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                                 onClick={() =>
                                   handleQuickScore(student, opt.points, opt.reason)
                                 }
-                                className="w-full flex items-center justify-between p-2.5 rounded-xl hover:bg-amber-50/80 border border-slate-100 hover:border-amber-200 transition-colors text-left group cursor-pointer active:scale-[0.98] min-h-[44px]"
+                                className="w-full flex items-center justify-between p-2.5 rounded-xl bg-[#e0e5ec] border border-white/80 border-b-[#babecc] border-r-[#babecc] shadow-[var(--shadow-card-sm)] hover:shadow-[var(--shadow-card)] transition-all text-left cursor-pointer active:translate-y-[1px] min-h-[44px]"
                               >
                                 <div className="flex items-center gap-2.5">
                                   <span className="text-base">{opt.icon}</span>
                                   <div>
-                                    <div className="font-bold text-xs text-slate-800 group-hover:text-amber-900">
+                                    <div className="font-bold text-xs text-[#1a1a1a]">
                                       {opt.label}
                                     </div>
-                                    <div className="text-[10px] text-slate-400 line-clamp-1">
+                                    <div className="text-[10px] text-[#666666] line-clamp-1">
                                       {opt.reason}
                                     </div>
                                   </div>
                                 </div>
-                                <span className="text-xs font-mono font-black text-amber-600 bg-amber-100/90 px-2 py-0.5 rounded-lg">
+                                <span className="text-xs font-mono font-black text-[#ff4757] bg-[#d1d9e6] border border-[#babecc]/60 px-2 py-0.5 rounded-lg shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)]">
                                   +{opt.points}T
                                 </span>
                               </button>
@@ -637,7 +658,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                           </div>
 
                           {/* Custom Amount Field */}
-                          <div className="pt-2 border-t border-slate-100 flex items-center gap-1.5">
+                          <div className="pt-2 border-t border-[#babecc]/50 flex items-center gap-1.5">
                             <input
                               type="number"
                               min="1"
@@ -645,12 +666,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                               value={customAmount}
                               onChange={(e) => setCustomAmount(e.target.value)}
                               placeholder="+ Khác..."
-                              className="w-24 px-2.5 py-1.5 rounded-xl border border-slate-200 text-xs font-mono focus:outline-none focus:ring-1 focus:ring-amber-500"
+                              className="w-24 px-2.5 py-1.5 rounded-xl bg-[#d1d9e6] border border-[#babecc] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.12)] text-xs font-mono text-[#1a1a1a] focus:outline-none focus:bg-[#e0e5ec]"
                             />
                             <button
                               type="button"
                               onClick={() => handleCustomScore(student)}
-                              className="flex-1 py-1.5 px-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition-colors cursor-pointer"
+                              className="flex-1 py-1.5 px-3 bg-[#ff4757] hover:bg-[#ff3848] text-white rounded-xl text-xs font-bold font-mono shadow-[var(--shadow-accent-sm)] active:translate-y-[1px] transition-all cursor-pointer"
                             >
                               Cộng ngay
                             </button>

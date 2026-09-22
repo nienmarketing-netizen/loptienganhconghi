@@ -95,24 +95,25 @@ export const UploadModal: React.FC<UploadModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/70 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[92vh] animate-in zoom-in-95 duration-150"
+        className="relative w-full max-w-lg bg-[#e0e5ec] rounded-2xl sm:rounded-3xl shadow-[var(--shadow-floating)] border border-white/80 border-b-[#babecc] border-r-[#babecc] overflow-hidden flex flex-col max-h-[92vh] animate-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
-        <div className="bg-gradient-to-r from-amber-500 to-orange-500 px-4 sm:px-5 py-3.5 sm:py-4 text-white flex items-center justify-between gap-3">
+        {/* Header - Bevel Bar */}
+        <div className="bg-[#2d3436] px-4 sm:px-6 py-3.5 sm:py-4 text-white flex items-center justify-between gap-3 border-b border-white/20 relative">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-[#1e2528] border border-white/10 flex items-center justify-center text-[#ff4757] shrink-0 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)]">
               <Camera className="w-5 h-5" />
             </div>
             <div className="min-w-0">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-100 block">
-                {assignment.status === "submitted" ? "Bài đã nộp (Chờ cô chấm)" : "Nộp bài tập về nhà"}
-              </span>
-              <h3 className="text-xs sm:text-sm md:text-base font-bold leading-snug break-words">
+              <div className="text-xs font-medium text-slate-200 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
+                <span>{assignment.status === "submitted" ? "Bài đã nộp (Chờ cô chấm)" : "Nộp bài tập về nhà"}</span>
+              </div>
+              <h3 className="text-sm sm:text-base font-bold !text-white tracking-[-0.015em] leading-snug break-words">
                 {assignment.title}
               </h3>
             </div>
@@ -120,41 +121,41 @@ export const UploadModal: React.FC<UploadModalProps> = ({
           <button
             id="btn-close-upload-modal"
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center text-white transition-colors cursor-pointer shrink-0"
+            className="w-8 h-8 rounded-lg bg-[#1e2528] hover:bg-[#ff4757] text-slate-200 hover:text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 border border-white/10"
             aria-label="Đóng"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Content Body */}
         <div className="p-4 sm:p-6 overflow-y-auto space-y-4">
-          {/* Info pill */}
-          <div className="text-xs bg-slate-50 border border-slate-200/80 p-3 sm:p-3.5 rounded-2xl space-y-2">
+          {/* Info pill - Recessed Well */}
+          <div className="text-xs bg-[#d1d9e6] border border-[#babecc]/60 p-3 sm:p-3.5 rounded-2xl shadow-[var(--shadow-recessed-sm)] space-y-2">
             <div>
-              <span className="text-slate-500 block text-[11px]">Học sinh</span>
-              <span className="font-bold text-slate-900 text-sm block break-words">
+              <span className="text-[#666666] block text-xs font-medium">Học sinh</span>
+              <span className="font-bold text-[#1a1a1a] text-sm block break-words mt-0.5">
                 {studentName}
               </span>
             </div>
 
-            <div className="pt-2 border-t border-slate-200/80 flex items-center justify-between text-[11px]">
-              <span className="text-slate-500 flex items-center gap-1">
-                <Calendar className="w-3 h-3 text-amber-600 shrink-0" />
+            <div className="pt-2 border-t border-[#babecc]/50 flex items-center justify-between text-xs">
+              <span className="text-[#666666] flex items-center gap-1 font-medium">
+                <Calendar className="w-3.5 h-3.5 text-[#ff4757] shrink-0" />
                 Hạn chót nộp:
               </span>
-              <span className="font-semibold text-amber-700">
+              <span className="font-semibold text-[#ff4757]">
                 {assignment.deadline?.replace(/(\b\d{1,2}\/\d{1,2})\b(?!\/\d{2,4})/g, "$1/2026")}
               </span>
             </div>
 
             {(assignment.status === "submitted" || !!assignment.submittedAt) && (
-              <div className="pt-2 border-t border-slate-200/80 flex items-center justify-between text-[11px]">
-                <span className="text-slate-500 flex items-center gap-1">
-                  <Clock className="w-3 h-3 text-emerald-600 shrink-0" />
+              <div className="pt-2 border-t border-[#babecc]/50 flex items-center justify-between text-xs">
+                <span className="text-[#666666] flex items-center gap-1 font-medium">
+                  <Clock className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                   Đã nộp lúc:
                 </span>
-                <span className="font-semibold text-emerald-900">
+                <span className="font-semibold text-emerald-800">
                   {assignment.submittedAt
                     ? assignment.submittedAt.replace(/(\b\d{1,2}\/\d{1,2})\b(?!\/\d{2,4})/g, "$1/2026")
                     : "19:45 Thứ Sáu, 20/09/2026"}
@@ -179,13 +180,13 @@ export const UploadModal: React.FC<UploadModalProps> = ({
               type="button"
               id="btn-take-photo"
               onClick={() => cameraInputRef.current?.click()}
-              className="flex flex-col items-center justify-center gap-1.5 p-3.5 rounded-2xl bg-amber-50 hover:bg-amber-100/80 border-2 border-dashed border-amber-300 text-amber-900 transition-all cursor-pointer group active:scale-95"
+              className="flex flex-col items-center justify-center gap-1.5 p-3.5 rounded-2xl bg-[#e0e5ec] hover:bg-[#d8e0ec] border border-white/90 border-b-[#babecc] border-r-[#babecc] text-[#1a1a1a] shadow-[var(--shadow-card-sm)] transition-all cursor-pointer group active:translate-y-[1px]"
             >
-              <div className="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center group-hover:scale-105 transition-transform shadow-sm">
+              <div className="w-10 h-10 rounded-xl bg-[#ff4757] text-white flex items-center justify-center shadow-[var(--shadow-accent-sm)]">
                 <Camera className="w-5 h-5" />
               </div>
-              <span className="font-bold text-xs sm:text-sm">Chụp ảnh ngay</span>
-              <span className="text-[10px] text-amber-700">Dùng máy ảnh điện thoại</span>
+              <span className="font-semibold text-xs sm:text-sm leading-tight">Chụp ảnh ngay</span>
+              <span className="text-xs text-[#666666] font-normal">Dùng máy ảnh</span>
             </button>
 
             {/* Gallery Upload Input */}
@@ -202,21 +203,21 @@ export const UploadModal: React.FC<UploadModalProps> = ({
               type="button"
               id="btn-choose-from-gallery"
               onClick={() => fileInputRef.current?.click()}
-              className="flex flex-col items-center justify-center gap-1.5 p-3.5 rounded-2xl bg-indigo-50 hover:bg-indigo-100/80 border-2 border-dashed border-indigo-300 text-indigo-900 transition-all cursor-pointer group active:scale-95"
+              className="flex flex-col items-center justify-center gap-1.5 p-3.5 rounded-2xl bg-[#e0e5ec] hover:bg-[#d8e0ec] border border-white/90 border-b-[#babecc] border-r-[#babecc] text-[#1a1a1a] shadow-[var(--shadow-card-sm)] transition-all cursor-pointer group active:translate-y-[1px]"
             >
-              <div className="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center group-hover:scale-105 transition-transform shadow-sm">
+              <div className="w-10 h-10 rounded-xl bg-[#2d3436] text-white flex items-center justify-center shadow-[var(--shadow-card-sm)]">
                 <UploadCloud className="w-5 h-5" />
               </div>
-              <span className="font-bold text-xs sm:text-sm">Chọn từ thư viện</span>
-              <span className="text-[10px] text-indigo-700">Tải ảnh bài tập có sẵn</span>
+              <span className="font-semibold text-xs sm:text-sm leading-tight">Chọn từ thư viện</span>
+              <span className="text-xs text-[#666666] font-normal">Tải ảnh bài tập</span>
             </button>
           </div>
 
           {/* Quick Mock Presets for fast testing in preview */}
-          <div className="bg-slate-50 border border-slate-200/70 p-3 rounded-2xl">
+          <div className="bg-[#d1d9e6] border border-[#babecc]/60 p-3 rounded-2xl shadow-[var(--shadow-recessed-sm)]">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
-                <Sparkles className="w-3 h-3 text-amber-500" />
+              <span className="text-xs font-semibold text-[#666666] flex items-center gap-1">
+                <Sparkles className="w-3.5 h-3.5 text-[#ff4757]" />
                 Ảnh mẫu chụp vở mẫu (Test nhanh)
               </span>
             </div>
@@ -226,9 +227,9 @@ export const UploadModal: React.FC<UploadModalProps> = ({
                   key={idx}
                   type="button"
                   onClick={() => handleAddSample(item.url)}
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-white hover:bg-amber-50 border border-slate-200 hover:border-amber-300 text-[11px] font-medium text-slate-700 hover:text-amber-900 transition-colors cursor-pointer"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-[#e0e5ec] border border-white/90 shadow-[var(--shadow-card-sm)] text-xs font-semibold text-[#1a1a1a] hover:text-[#ff4757] transition-colors cursor-pointer active:translate-y-[1px] leading-tight"
                 >
-                  <FileImage className="w-3.5 h-3.5 text-amber-600" />
+                  <FileImage className="w-3.5 h-3.5 text-[#ff4757]" />
                   <span>+ {item.name}</span>
                 </button>
               ))}
@@ -238,12 +239,12 @@ export const UploadModal: React.FC<UploadModalProps> = ({
           {/* Preview of Uploaded Images */}
           {images.length > 0 ? (
             <div className="space-y-2">
-              <div className="flex items-center justify-between text-xs text-slate-600">
-                <span className="font-bold">
+              <div className="flex items-center justify-between text-xs text-[#1a1a1a]">
+                <span className="font-semibold">
                   Đã chọn {images.length} trang ảnh bài tập:
                 </span>
-                <span className="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5" /> Ảnh rõ nét
+                <span className="text-xs text-emerald-800 font-semibold flex items-center gap-1">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> Ảnh rõ nét
                 </span>
               </div>
 
@@ -251,20 +252,20 @@ export const UploadModal: React.FC<UploadModalProps> = ({
                 {images.map((imgSrc, index) => (
                   <div
                     key={index}
-                    className="relative group rounded-xl overflow-hidden border-2 border-amber-300 bg-slate-100 aspect-3/4 shadow-xs"
+                    className="relative group rounded-xl overflow-hidden border border-white/80 border-b-[#babecc] border-r-[#babecc] bg-[#1e2528] aspect-3/4 shadow-[var(--shadow-card-sm)]"
                   >
                     <img
                       src={imgSrc}
                       alt={`Bài tập trang ${index + 1}`}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute top-1.5 left-1.5 bg-slate-900/80 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">
+                    <div className="absolute top-1.5 left-1.5 bg-[#2d3436]/90 text-white text-xs font-semibold px-2 py-0.5 rounded border border-white/20">
                       Trang {index + 1}
                     </div>
                     <button
                       type="button"
                       onClick={() => handleRemoveImage(index)}
-                      className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-rose-600 text-white flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity cursor-pointer shadow-sm"
+                      className="absolute top-1.5 right-1.5 w-6 h-6 rounded-md bg-[#ff4757] text-white flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity cursor-pointer shadow-sm"
                       title="Xóa ảnh này"
                     >
                       <Trash2 className="w-3 h-3" />
@@ -274,33 +275,33 @@ export const UploadModal: React.FC<UploadModalProps> = ({
               </div>
             </div>
           ) : (
-            <div className="border border-slate-200 rounded-2xl p-4 text-center text-slate-400 text-xs bg-slate-50/50">
-              <AlertCircle className="w-6 h-6 mx-auto mb-1 text-slate-300" />
+            <div className="border border-[#babecc]/60 rounded-2xl p-4 text-center text-[#666666] text-xs bg-[#d1d9e6] shadow-[var(--shadow-recessed-sm)] leading-relaxed">
+              <AlertCircle className="w-6 h-6 mx-auto mb-1 text-[#ff4757]" />
               Chưa có ảnh nào được tải lên. Ba mẹ hãy bấm chụp ảnh hoặc chọn ảnh mẫu phía trên.
             </div>
           )}
 
           {/* Note to Teacher */}
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-slate-700 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5 sm:gap-2">
+            <label className="text-xs font-semibold text-[#1a1a1a] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5 sm:gap-2">
               <span>Lời nhắn kèm của con hoặc phụ huynh (tùy chọn):</span>
-              <span className="text-[11px] font-normal text-slate-400">Tối đa 200 từ</span>
+              <span className="text-xs font-normal text-[#666666]">Tối đa 200 từ</span>
             </label>
             <textarea
               rows={2}
               value={note}
               onChange={(e) => setNote(e.target.value)}
               placeholder="VD: Con đã làm xong bài và kiểm tra lại từ vựng. Nhờ Cô Nghi xem kỹ giúp con câu 5 và câu 8..."
-              className="w-full text-xs sm:text-sm p-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500 text-slate-800 placeholder-slate-400 resize-none bg-slate-50/50"
+              className="w-full text-xs sm:text-sm p-3 rounded-2xl border border-[#babecc] shadow-[var(--shadow-recessed-sm)] focus:outline-none focus:border-[#ff4757] text-[#1a1a1a] placeholder-[#888888] resize-none bg-[#d1d9e6]"
             />
           </div>
 
           {/* Success state banner if submitted */}
           {submittedSuccess && (
-            <div className="bg-emerald-50 border border-emerald-300 text-emerald-800 p-3 rounded-2xl flex items-center gap-2.5 animate-in fade-in duration-150">
+            <div className="bg-emerald-100 border border-emerald-400 text-emerald-950 p-3 rounded-2xl flex items-center gap-2.5 animate-in fade-in duration-150 shadow-[inset_1px_1px_2px_#ffffff]">
               <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-              <div className="text-xs">
-                <span className="font-bold block">Nộp bài thành công!</span>
+              <div className="text-xs leading-relaxed">
+                <span className="font-semibold block">Nộp bài thành công!</span>
                 Cô Nghi đã nhận được bài tập và sẽ chấm điểm sớm nhất cho con.
               </div>
             </div>
@@ -308,12 +309,12 @@ export const UploadModal: React.FC<UploadModalProps> = ({
         </div>
 
         {/* Footer Actions */}
-        <div className="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between gap-3">
+        <div className="p-4 bg-[#e0e5ec] border-t border-[#babecc]/50 flex items-center justify-between gap-3">
           <button
             type="button"
             onClick={onClose}
             disabled={isSubmitting}
-            className="px-4 py-3 rounded-2xl text-slate-600 hover:bg-slate-200/70 font-semibold text-xs sm:text-sm transition-colors cursor-pointer"
+            className="px-4 py-2.5 rounded-xl text-[#1a1a1a] bg-[#e0e5ec] border border-white/90 shadow-[var(--shadow-card-sm)] hover:bg-[#d8e0ec] font-semibold text-xs sm:text-sm transition-all active:translate-y-[1px] cursor-pointer leading-tight"
           >
             Đóng lại
           </button>
@@ -323,10 +324,10 @@ export const UploadModal: React.FC<UploadModalProps> = ({
             id="btn-confirm-submit-assignment"
             onClick={handleSubmit}
             disabled={images.length === 0 || isSubmitting || submittedSuccess}
-            className={`flex-1 flex items-center justify-center gap-2 py-3 px-5 rounded-2xl text-white font-bold text-xs sm:text-sm shadow-md transition-all ${
+            className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl text-white font-semibold text-xs sm:text-sm transition-all border border-white/30 leading-tight ${
               images.length === 0 || isSubmitting || submittedSuccess
-                ? "bg-slate-300 cursor-not-allowed text-slate-500"
-                : "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 active:scale-[0.98] shadow-amber-500/25 cursor-pointer"
+                ? "bg-[#babecc] cursor-not-allowed text-[#666666]"
+                : "bg-[#ff4757] hover:bg-[#ff3344] active:translate-y-[1px] shadow-[var(--shadow-accent)] cursor-pointer"
             }`}
           >
             {isSubmitting ? (

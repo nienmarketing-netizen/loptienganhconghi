@@ -29,59 +29,64 @@ export const RewardStoreModal: React.FC<RewardStoreModalProps> = ({ open, onClos
   return (
     <Dialog open={open} onOpenChange={onClose} id="modal-reward-store">
       <DialogHeader>
-        <div className="flex items-center gap-2">
-          <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-orange-100 text-orange-800">
-            <Gift className="w-4 h-4" />
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="w-9 h-9 rounded-xl bg-[#1e2528] border border-white/10 flex items-center justify-center text-[#ff4757] shrink-0 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)]">
+            <Gift className="w-5 h-5" />
           </div>
-          <div>
+          <div className="min-w-0">
+            <div className="text-xs font-medium text-[#a3b1c6] flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
+              <span>Chương trình đổi thưởng nỗ lực</span>
+            </div>
             <DialogTitle>Cửa Hàng 100 Tokens</DialogTitle>
-            <p className="text-xs text-slate-500">Động lực học tập tích cực cho học sinh cấp 2</p>
           </div>
         </div>
         <DialogCloseButton onClose={onClose} id="btn-close-reward-store" />
       </DialogHeader>
 
       <DialogContent>
-        {/* Header Balance Banner */}
-        <div className="p-4 bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl text-white shadow-md relative overflow-hidden">
+        {/* Header Balance Banner - Industrial Hardware Console Bar */}
+        <div className="p-4 bg-[#2d3436] rounded-2xl text-white border border-white/10 shadow-[var(--shadow-recessed-sm)] relative overflow-hidden">
           <div className="flex items-center justify-between relative z-10">
             <div>
-              <span className="text-xs text-amber-100 block font-medium">
-                Kho token của {student.fullName.split(" ").slice(-2).join(" ")}
+              <span className="text-xs text-[#a3b1c6] block font-mono font-medium">
+                KHO TOKEN CỦA {student.fullName.split(" ").slice(-2).join(" ").toUpperCase()}
               </span>
               <div className="flex items-baseline gap-1.5 mt-0.5">
-                <span className="text-3xl font-black font-mono">{currentTokens}</span>
-                <span className="text-sm font-semibold text-amber-200">/ 100 Tokens</span>
+                <span className="text-3xl font-black font-mono text-[#ff4757] drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]">
+                  {currentTokens}
+                </span>
+                <span className="text-sm font-semibold font-mono text-[#a3b1c6]">/ 100 Tokens</span>
               </div>
             </div>
-            <div className="w-10 h-10 rounded-2xl bg-white/20 flex items-center justify-center text-xl backdrop-blur-xs">
+            <div className="w-11 h-11 rounded-2xl bg-[#1e2528] border border-white/10 flex items-center justify-center text-2xl shadow-[inset_1px_1px_3px_rgba(0,0,0,0.7)]">
               🎁
             </div>
           </div>
-          <div className="mt-2 text-[11px] text-amber-100 flex items-center gap-1">
-            <Sparkles className="w-3.5 h-3.5 text-amber-200" />
-            <span>Đạt 100 Tokens để mở khóa Đại Thưởng Vé Phim CGV!</span>
+          <div className="mt-2 text-[11px] text-[#a3b1c6] flex items-center gap-1.5 pt-2 border-t border-white/10">
+            <Sparkles className="w-3.5 h-3.5 text-[#ff4757] shrink-0" />
+            <span>Tích lũy đạt 100 Tokens để mở khóa Đại Thưởng Vé Phim CGV!</span>
           </div>
         </div>
 
         {/* Feedback when user tried claiming */}
         {redeemedRewardId && (
-          <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-xs flex items-center justify-between animate-in fade-in duration-200">
-            <div className="flex items-center gap-2">
-              <Check className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>
-                Chúc mừng con! Cô Nghi đã nhận yêu cầu đổi món quà này và sẽ trao tận tay con tại buổi học tới!
-              </span>
+          <div className="p-3.5 bg-[#d1d9e6] border border-emerald-500/60 rounded-xl text-[#1a1a1a] text-xs flex items-center gap-2.5 shadow-[var(--shadow-recessed-sm)] animate-in fade-in duration-200">
+            <div className="w-6 h-6 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0">
+              <Check className="w-4 h-4 stroke-[3]" />
             </div>
+            <span>
+              <strong>Chúc mừng con!</strong> Cô Nghi đã nhận yêu cầu đổi món quà này và sẽ trao tận tay con tại buổi học tới!
+            </span>
           </div>
         )}
 
         {/* Reward Items List */}
         <div className="space-y-3 pt-1">
-          <div className="flex items-center justify-between text-xs font-bold text-slate-700 uppercase tracking-wider px-1">
+          <div className="flex items-center justify-between text-xs font-bold text-[#666666] uppercase tracking-wider px-1">
             <span>Danh sách phần thưởng:</span>
-            <span className="text-[11px] text-slate-600 font-normal lowercase">
-              (cần từ 35 - 100 tokens)
+            <span className="text-[11px] text-[#888888] font-normal lowercase">
+              (mở khóa từ 35 - 100 tokens)
             </span>
           </div>
 
@@ -96,36 +101,37 @@ export const RewardStoreModal: React.FC<RewardStoreModalProps> = ({ open, onClos
                   key={reward.id}
                   className={`p-3.5 rounded-2xl border transition-all flex items-center justify-between gap-3 ${
                     canAfford
-                      ? "bg-white border-amber-200/90 hover:border-amber-300 shadow-xs"
-                      : "bg-slate-50/70 border-slate-200/70 opacity-80"
+                      ? "bg-[#e0e5ec] border-white/80 border-b-[#babecc] border-r-[#babecc] shadow-[var(--shadow-card-sm)] hover:shadow-[var(--shadow-card)]"
+                      : "bg-[#e0e5ec]/60 border-[#babecc]/50 shadow-[var(--shadow-card-sm)] opacity-75"
                   }`}
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="w-11 h-11 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center text-2xl shrink-0">
+                    <div className="w-11 h-11 rounded-xl bg-[#d1d9e6] border border-[#babecc]/60 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.15)] flex items-center justify-center text-2xl shrink-0">
                       {reward.emoji}
                     </div>
 
                     <div className="min-w-0">
                       <div className="flex items-center gap-1.5 flex-wrap">
-                        <h4 className="text-xs sm:text-sm font-bold text-slate-900 leading-snug truncate">
+                        <h4 className="text-xs sm:text-sm font-bold text-[#1a1a1a] leading-snug truncate">
                           {reward.name}
                         </h4>
                         {reward.tag && (
-                          <Badge
-                            variant={reward.tokensCost === 100 ? "amber" : "secondary"}
-                            className="text-[10px] py-0 px-1.5"
-                          >
+                          <span className={`text-[10px] py-0.5 px-2 rounded font-mono font-bold ${
+                            reward.tokensCost === 100 
+                              ? "bg-[#ff4757] text-white shadow-[var(--shadow-accent-sm)]" 
+                              : "bg-[#d1d9e6] text-[#4a5568] border border-[#babecc]/60"
+                          }`}>
                             {reward.tag}
-                          </Badge>
+                          </span>
                         )}
                       </div>
-                      <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
+                      <p className="text-[11px] text-[#666666] line-clamp-1 mt-0.5">
                         {reward.description}
                       </p>
-                      <div className="mt-1 flex items-center gap-1.5 text-xs font-bold font-mono text-amber-700">
-                        <span>{reward.tokensCost} Tokens</span>
+                      <div className="mt-1 flex items-center gap-1.5 text-xs font-bold font-mono">
+                        <span className="text-[#ff4757]">{reward.tokensCost} Tokens</span>
                         {!canAfford && (
-                          <span className="text-[10px] text-slate-600 font-normal font-sans">
+                          <span className="text-[10px] text-[#888888] font-normal font-sans">
                             (cần thêm {needMore})
                           </span>
                         )}
@@ -135,22 +141,21 @@ export const RewardStoreModal: React.FC<RewardStoreModalProps> = ({ open, onClos
 
                   <div className="shrink-0">
                     {isClaimed ? (
-                      <Badge variant="success" className="py-1.5 px-2.5 text-xs font-semibold">
-                        <Check className="w-3.5 h-3.5 mr-1" />
+                      <span className="inline-flex items-center gap-1 py-1.5 px-2.5 text-xs font-semibold rounded-xl bg-[#d1d9e6] text-emerald-700 border border-emerald-400/50 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)]">
+                        <Check className="w-3.5 h-3.5" />
                         Đã chọn
-                      </Badge>
+                      </span>
                     ) : canAfford ? (
-                      <Button
-                        size="sm"
-                        variant="amber"
+                      <button
+                        type="button"
                         onClick={() => handleClaimReward(reward)}
-                        className="text-xs font-bold rounded-xl shadow-xs"
+                        className="px-3.5 py-1.5 bg-[#ff4757] hover:bg-[#ff3848] text-white text-xs font-bold font-mono rounded-xl shadow-[var(--shadow-accent-sm)] active:translate-y-[1px] transition-all cursor-pointer"
                       >
                         Đổi ngay
-                      </Button>
+                      </button>
                     ) : (
-                      <div className="flex items-center gap-1 text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-1 rounded-lg">
-                        <Lock className="w-3 h-3 text-slate-600" />
+                      <div className="flex items-center gap-1 text-[11px] font-medium text-[#666666] bg-[#d1d9e6] border border-[#babecc]/60 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)] px-2.5 py-1 rounded-lg">
+                        <Lock className="w-3 h-3 text-[#888888]" />
                         <span>Chưa đủ</span>
                       </div>
                     )}
@@ -161,11 +166,11 @@ export const RewardStoreModal: React.FC<RewardStoreModalProps> = ({ open, onClos
           </div>
         </div>
 
-        {/* Parent note about Gamification philosophy */}
-        <div className="bg-amber-50/60 p-3 rounded-xl border border-amber-200/60 text-[11px] text-amber-900 flex items-start gap-2">
-          <HelpCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+        {/* Parent note about Gamification philosophy - Recessed Well */}
+        <div className="bg-[#d1d9e6] p-3 rounded-xl border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)] text-[11px] text-[#4a5568] flex items-start gap-2">
+          <HelpCircle className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
           <span>
-            <strong>Quy chế đổi quà Cô Nghi:</strong> Học sinh tích lũy token qua thái độ học tập, điểm test và làm BTVN. Quà được trao trực tiếp tại lớp để vinh danh tinh thần kiên trì của con.
+            <strong className="text-[#1a1a1a]">Quy chế đổi quà Cô Nghi:</strong> Học sinh tích lũy token qua thái độ học tập, điểm test và làm BTVN. Quà được trao trực tiếp tại lớp để vinh danh tinh thần kiên trì của con.
           </span>
         </div>
       </DialogContent>

@@ -7,20 +7,20 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 
 export function Badge({ className, variant = "default", children, id, ...props }: BadgeProps) {
   const variantClasses = {
-    default: "bg-slate-900 text-white border-transparent",
-    secondary: "bg-slate-100 text-slate-800 border-transparent",
-    success: "bg-emerald-50 text-emerald-700 border-emerald-200/70",
-    warning: "bg-amber-50 text-amber-700 border-amber-200/70",
-    amber: "bg-amber-100/80 text-amber-900 border-amber-300/60",
-    indigo: "bg-indigo-50 text-indigo-700 border-indigo-200/70",
-    outline: "text-slate-700 border-slate-200 bg-white",
+    default: "bg-[#2d3436] text-white border-white/20 shadow-[1px_1px_2px_rgba(0,0,0,0.2)]",
+    secondary: "bg-[#e0e5ec] text-[#2d3436] border-[#babecc] shadow-[inset_1px_1px_2px_#ffffff,inset_-1px_-1px_2px_#babecc]",
+    success: "bg-emerald-100/90 text-emerald-950 border-emerald-400 shadow-[inset_1px_1px_2px_rgba(255,255,255,0.8)]",
+    warning: "bg-amber-100/90 text-amber-950 border-amber-400 shadow-[inset_1px_1px_2px_rgba(255,255,255,0.8)]",
+    amber: "bg-amber-100 text-amber-950 border-amber-400/80 shadow-[inset_1px_1px_2px_rgba(255,255,255,0.8)]",
+    indigo: "bg-[#d1d9e6] text-indigo-950 border-indigo-300 shadow-[inset_1px_1px_2px_rgba(255,255,255,0.8)]",
+    outline: "text-[#2d3436] border-[#babecc] bg-[#e0e5ec] shadow-[inset_1px_1px_2px_#ffffff]",
   };
 
   return (
     <span
       id={id}
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium whitespace-nowrap transition-colors",
+        "inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-0.5 text-xs font-bold font-mono tracking-wide whitespace-nowrap transition-colors select-none",
         variantClasses[variant],
         className
       )}
@@ -30,3 +30,4 @@ export function Badge({ className, variant = "default", children, id, ...props }
     </span>
   );
 }
+

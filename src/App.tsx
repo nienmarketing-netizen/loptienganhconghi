@@ -12,8 +12,19 @@ export default function App() {
 
   // Helper to get initial route
   const getInitialRoute = (): "student" | "admin" => {
-    const pathname = window.location.pathname;
-    if (pathname.startsWith("/admin")) {
+    const pathname = window.location.pathname.toLowerCase();
+    const search = window.location.search.toLowerCase();
+    const hash = window.location.hash.toLowerCase();
+    if (
+      pathname.startsWith("/giao-vien") ||
+      pathname.startsWith("/admin") ||
+      pathname.startsWith("/teacher") ||
+      search.includes("portal=giao-vien") ||
+      search.includes("portal=admin") ||
+      search.includes("portal=teacher") ||
+      hash.includes("giao-vien") ||
+      hash.includes("admin")
+    ) {
       return "admin";
     }
     return "student";
@@ -47,7 +58,7 @@ export default function App() {
   // Navigation handlers
   const handleNavigateToAdmin = () => {
     setCurrentRoute("admin");
-    window.history.pushState({ route: "admin" }, "", "/admin/dashboard");
+    window.history.pushState({ route: "admin" }, "", "/giao-vien");
   };
 
   const handleNavigateToStudent = (slug?: string) => {
@@ -57,7 +68,7 @@ export default function App() {
     window.history.pushState(
       { route: "student", slug: targetSlug },
       "",
-      `/student/${targetSlug}`
+      targetSlug ? `/student/${targetSlug}` : "/"
     );
   };
 
@@ -130,7 +141,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-100/70 text-slate-800 antialiased font-sans flex flex-col selection:bg-amber-400 selection:text-slate-900">
+    <div className="min-h-screen bg-[#d2dbe7] text-[#1e293b] antialiased font-sans flex flex-col selection:bg-[#ff4757] selection:text-white">
       {/* Main Header with Logo, Portal Switcher, and Section Navigation */}
       <MainHeader
         currentRoute={currentRoute}
@@ -150,7 +161,10 @@ export default function App() {
             onViewStudentPortal={(slug) => handleNavigateToStudent(slug)}
           />
         ) : (
-          <StudentDashboard student={currentStudent} />
+          <StudentDashboard
+            student={currentStudent}
+            onNavigateToAdmin={handleNavigateToAdmin}
+          />
         )}
       </main>
     </div>

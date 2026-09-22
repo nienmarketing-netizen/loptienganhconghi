@@ -14,7 +14,7 @@ export const TokenHistoryModal: React.FC<TokenHistoryModalProps> = ({ open, onCl
   const getCategoryIcon = (category: TokenHistoryItem["category"]) => {
     switch (category) {
       case "homework":
-        return <BookOpen className="w-3.5 h-3.5 text-blue-600" />;
+        return <BookOpen className="w-3.5 h-3.5 text-[#ff4757]" />;
       case "speaking":
         return <Mic className="w-3.5 h-3.5 text-purple-600" />;
       case "test":
@@ -35,40 +35,48 @@ export const TokenHistoryModal: React.FC<TokenHistoryModalProps> = ({ open, onCl
   return (
     <Dialog open={open} onOpenChange={onClose} id="modal-token-history">
       <DialogHeader>
-        <div className="flex items-center gap-2">
-          <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-amber-100 text-amber-800">
-            <History className="w-4 h-4" />
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="w-9 h-9 rounded-xl bg-[#1e2528] border border-white/10 flex items-center justify-center text-[#ff4757] shrink-0 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)]">
+            <History className="w-5 h-5" />
           </div>
-          <div>
+          <div className="min-w-0">
+            <div className="text-xs font-medium text-[#a3b1c6] flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
+              <span>Hệ thống tích lũy điểm thưởng</span>
+            </div>
             <DialogTitle>Lịch Sử Tích Lũy Token</DialogTitle>
-            <p className="text-xs text-slate-500">Mọi nỗ lực của con đều được ghi nhận minh bạch</p>
           </div>
         </div>
         <DialogCloseButton onClose={onClose} id="btn-close-token-history" />
       </DialogHeader>
 
       <DialogContent>
-        {/* Token Balance Summary Bar */}
-        <div className="flex items-center justify-between p-3.5 bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl border border-amber-200/80">
+        {/* Token Balance Summary Bar - Recessed Tactile Well */}
+        <div className="flex items-center justify-between p-3.5 sm:p-4 bg-[#d1d9e6] border border-[#babecc]/60 rounded-2xl shadow-[var(--shadow-recessed-sm)]">
           <div>
-            <span className="text-[11px] text-slate-500 block">Số dư hiện tại</span>
-            <span className="text-2xl font-black text-slate-900 font-mono">
-              {student.gamification.currentTokens}{" "}
-              <span className="text-sm font-bold text-amber-600">Tokens</span>
-            </span>
+            <span className="text-[11px] text-[#666666] font-medium block">Số dư hiện tại</span>
+            <div className="flex items-baseline gap-1.5 mt-0.5">
+              <span className="text-2xl sm:text-3xl font-black text-[#1a1a1a] font-mono tracking-tight">
+                {student.gamification.currentTokens}
+              </span>
+              <span className="text-xs font-bold text-[#ff4757] font-mono">Tokens</span>
+            </div>
           </div>
           <div className="text-right">
-            <span className="text-[11px] text-slate-500 block">Tổng tích lũy từ đầu kỳ</span>
-            <Badge variant="success" className="font-mono text-xs font-bold py-1">
+            <span className="text-[11px] text-[#666666] font-medium block">Tổng tích lũy từ đầu kỳ</span>
+            <span className="inline-flex items-center gap-1 font-mono text-xs font-bold px-2.5 py-1 rounded-lg bg-[#e0e5ec] text-emerald-700 border border-white/90 shadow-[var(--shadow-card-sm)] mt-1">
               +{totalEarned} Tokens
-            </Badge>
+            </span>
           </div>
         </div>
 
         {/* History Item Timeline */}
         <div className="space-y-2.5 pt-1">
-          <div className="text-xs font-bold text-slate-700 uppercase tracking-wider px-1">
-            Nhật ký ghi nhận gần đây:
+          <div className="flex items-center justify-between text-xs font-bold text-[#666666] uppercase tracking-wider px-1">
+            <span>Nhật ký ghi nhận gần đây:</span>
+            <span className="text-[11px] text-[#888888] font-normal lowercase">
+              ({student.tokenHistory.length} lần ghi nhận)
+            </span>
           </div>
 
           <div className="space-y-2">
@@ -77,26 +85,26 @@ export const TokenHistoryModal: React.FC<TokenHistoryModalProps> = ({ open, onCl
               return (
                 <div
                   key={item.id}
-                  className="flex items-start justify-between gap-3 p-3 rounded-xl bg-slate-50/80 hover:bg-slate-50 border border-slate-100 transition-colors"
+                  className="flex items-start justify-between gap-3 p-3 rounded-xl bg-[#e0e5ec] border border-white/80 border-b-[#babecc] border-r-[#babecc] shadow-[var(--shadow-card-sm)] hover:shadow-[var(--shadow-card)] transition-all"
                 >
                   <div className="flex items-start gap-2.5 min-w-0">
-                    <div className="mt-0.5 p-1.5 rounded-lg bg-white shadow-xs border border-slate-200/60 shrink-0">
+                    <div className="mt-0.5 p-1.5 rounded-lg bg-[#d1d9e6] border border-[#babecc]/60 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.15)] shrink-0">
                       {getCategoryIcon(item.category)}
                     </div>
                     <div className="min-w-0">
-                      <p className="text-xs font-semibold text-slate-800 leading-snug">
+                      <p className="text-xs font-semibold text-[#1a1a1a] leading-snug">
                         {item.reason}
                       </p>
-                      <span className="text-[11px] text-slate-400 block mt-0.5">{item.date}</span>
+                      <span className="text-[11px] text-[#666666] block mt-0.5">{item.date}</span>
                     </div>
                   </div>
 
                   <div className="shrink-0 text-right">
                     <span
-                      className={`inline-flex items-center gap-1 font-mono font-bold text-xs px-2 py-0.5 rounded-md ${
+                      className={`inline-flex items-center gap-1 font-mono font-bold text-xs px-2.5 py-0.5 rounded-md border ${
                         isEarned
-                          ? "bg-emerald-50 text-emerald-700 border border-emerald-200/60"
-                          : "bg-rose-50 text-rose-700 border border-rose-200/60"
+                          ? "bg-[#d1d9e6] text-emerald-700 border-emerald-300/60 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)]"
+                          : "bg-[#d1d9e6] text-rose-700 border-rose-300/60 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)]"
                       }`}
                     >
                       {isEarned ? (

@@ -6,7 +6,7 @@ export function Card({ className, children, id, ...props }: React.HTMLAttributes
     <div
       id={id}
       className={cn(
-        "rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all duration-200",
+        "rounded-2xl bg-[#e0e5ec] shadow-[var(--shadow-card)] border border-white/80 border-b-[#babecc]/70 border-r-[#babecc]/70 transition-all duration-200 relative",
         className
       )}
       {...props}
@@ -18,7 +18,7 @@ export function Card({ className, children, id, ...props }: React.HTMLAttributes
 
 export function CardHeader({ className, children, id, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div id={id} className={cn("flex flex-col space-y-1.5 p-5 pb-3", className)} {...props}>
+    <div id={id} className={cn("flex flex-col space-y-1.5 p-4 sm:p-5 pb-3", className)} {...props}>
       {children}
     </div>
   );
@@ -28,7 +28,7 @@ export function CardTitle({ className, children, id, ...props }: React.HTMLAttri
   return (
     <h3
       id={id}
-      className={cn("font-semibold text-slate-900 tracking-tight text-lg leading-none", className)}
+      className={cn("font-bold text-[#2d3436] tracking-tight text-base sm:text-lg leading-none drop-shadow-[0_1px_0_#ffffff]", className)}
       {...props}
     >
       {children}
@@ -38,7 +38,7 @@ export function CardTitle({ className, children, id, ...props }: React.HTMLAttri
 
 export function CardDescription({ className, children, id, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
   return (
-    <p id={id} className={cn("text-xs text-slate-500 leading-relaxed", className)} {...props}>
+    <p id={id} className={cn("text-xs text-[#4a5568] leading-relaxed", className)} {...props}>
       {children}
     </p>
   );
@@ -46,7 +46,7 @@ export function CardDescription({ className, children, id, ...props }: React.HTM
 
 export function CardContent({ className, children, id, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div id={id} className={cn("p-5 pt-0", className)} {...props}>
+    <div id={id} className={cn("p-4 sm:p-5 pt-0", className)} {...props}>
       {children}
     </div>
   );
@@ -54,8 +54,9 @@ export function CardContent({ className, children, id, ...props }: React.HTMLAtt
 
 export function CardFooter({ className, children, id, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div id={id} className={cn("flex items-center p-5 pt-0", className)} {...props}>
+    <div id={id} className={cn("flex items-center p-4 sm:p-5 pt-0", className)} {...props}>
       {children}
     </div>
   );
 }
+

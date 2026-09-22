@@ -237,19 +237,20 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
   };
 
   return (
-    <div className="rounded-3xl bg-white border border-slate-200/90 p-4 sm:p-6 shadow-xs space-y-4 sm:space-y-5">
+    <div className="relative rounded-2xl sm:rounded-3xl soft-ui-embossed p-4 sm:p-5 space-y-4">
       {/* Section Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3.5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#b2c2d4]/40 pb-3 pt-1">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-base sm:text-lg font-black text-slate-900 tracking-tight">
-              Bài tập tuần này
+            <h3 className="text-sm sm:text-base font-bold text-[#1a1a1a] tracking-[-0.015em] flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
+              <span>Bài tập tuần này</span>
             </h3>
-            <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-200">
+            <span className="text-xs font-semibold px-2 py-0.5 rounded-lg soft-ui-convex text-[#1a1a1a]">
               {assignments.length} bài
             </span>
           </div>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs text-[#666666] font-normal mt-0.5">
             Tải phiếu bài tập, nộp ảnh chụp vở và xem cô sửa bài trực tiếp
           </p>
         </div>
@@ -257,29 +258,29 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
         {/* Quick summary badges */}
         <div className="flex items-center gap-1.5 self-start sm:self-center">
           {countNotDone > 0 && (
-            <span className="text-[11px] font-bold px-2.5 py-1 rounded-xl bg-amber-50 text-amber-800 border border-amber-200 flex items-center gap-1">
+            <span className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-amber-50 text-amber-900 border border-amber-300 shadow-[inset_1px_1px_2px_#ffffff] flex items-center gap-1.5 leading-tight">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-              {countNotDone} chưa làm
+              <span>{countNotDone} chưa làm</span>
             </span>
           )}
           {countGraded > 0 && (
-            <span className="text-[11px] font-bold px-2.5 py-1 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1">
-              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-              {countGraded} đã chấm
+            <span className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-300 shadow-[inset_1px_1px_2px_#ffffff] flex items-center gap-1.5 leading-tight">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              <span>{countGraded} đã chấm</span>
             </span>
           )}
         </div>
       </div>
 
-      {/* Filter Tabs - Designed with touch-friendly 44px height for easy mobile tapping */}
-      <div className="flex items-center gap-1.5 bg-slate-100/90 p-1 rounded-2xl overflow-x-auto no-scrollbar text-xs font-semibold">
+      {/* Filter Tabs - Recessed Well */}
+      <div className="flex items-center gap-1.5 soft-ui-debossed p-1 rounded-xl overflow-x-auto no-scrollbar text-xs font-semibold">
         <button
           type="button"
           onClick={() => setFilterStatus("all")}
-          className={`px-3.5 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center justify-center ${
+          className={`px-3.5 py-2 rounded-lg transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center justify-center leading-tight ${
             filterStatus === "all"
-              ? "bg-white text-slate-900 shadow-xs font-bold"
-              : "text-slate-600 hover:text-slate-900"
+              ? "soft-ui-convex text-[#1a1a1a] font-semibold"
+              : "text-[#666666] hover:text-[#1a1a1a]"
           }`}
         >
           Tất cả ({assignments.length})
@@ -288,10 +289,10 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
         <button
           type="button"
           onClick={() => setFilterStatus("not_done")}
-          className={`px-3.5 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center gap-1.5 ${
+          className={`px-3.5 py-2 rounded-lg transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center gap-1.5 leading-tight ${
             filterStatus === "not_done"
-              ? "bg-white text-amber-900 shadow-xs font-bold"
-              : "text-slate-600 hover:text-slate-900"
+              ? "soft-ui-convex text-amber-900 font-semibold"
+              : "text-[#666666] hover:text-[#1a1a1a]"
           }`}
         >
           <span className="w-2 h-2 rounded-full bg-amber-500" />
@@ -301,10 +302,10 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
         <button
           type="button"
           onClick={() => setFilterStatus("submitted")}
-          className={`px-3.5 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center gap-1.5 ${
+          className={`px-3.5 py-2 rounded-lg transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center gap-1.5 leading-tight ${
             filterStatus === "submitted"
-              ? "bg-white text-sky-900 shadow-xs font-bold"
-              : "text-slate-600 hover:text-slate-900"
+              ? "soft-ui-convex text-sky-900 font-semibold"
+              : "text-[#666666] hover:text-[#1a1a1a]"
           }`}
         >
           <span className="w-2 h-2 rounded-full bg-sky-500" />
@@ -314,10 +315,10 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
         <button
           type="button"
           onClick={() => setFilterStatus("graded")}
-          className={`px-3.5 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center gap-1.5 ${
+          className={`px-3.5 py-2 rounded-lg transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center gap-1.5 leading-tight ${
             filterStatus === "graded"
-              ? "bg-white text-emerald-900 shadow-xs font-bold"
-              : "text-slate-600 hover:text-slate-900"
+              ? "soft-ui-convex text-emerald-900 font-semibold"
+              : "text-[#666666] hover:text-[#1a1a1a]"
           }`}
         >
           <span className="w-2 h-2 rounded-full bg-emerald-500" />
@@ -336,29 +337,23 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
           return (
             <div
               key={asg.id}
-              className={`rounded-2xl border p-4 sm:p-5 transition-all relative ${
-                isNotDone
-                  ? "bg-gradient-to-br from-white to-amber-50/30 border-amber-200/90 shadow-xs hover:border-amber-300"
-                  : isSubmitted
-                  ? "bg-gradient-to-br from-white to-sky-50/30 border-sky-200/80 shadow-xs hover:border-sky-300"
-                  : "bg-gradient-to-br from-white to-emerald-50/40 border-emerald-200 shadow-xs hover:border-emerald-300"
-              }`}
+              className="rounded-2xl p-4 sm:p-5 soft-ui-embossed-sm hover:shadow-[var(--shadow-floating)] transition-all relative space-y-3"
             >
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3">
-                <div className="space-y-1">
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                <div className="space-y-1.5">
                   {/* Unit badge & Token reward */}
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-[11px] font-bold px-2 py-0.5 rounded-lg bg-slate-100 text-slate-700">
+                    <span className="text-xs font-semibold px-2.5 py-0.5 rounded-md soft-ui-convex text-[#1a1a1a] leading-tight">
                       {asg.unit}
                     </span>
-                    <span className="text-[11px] font-bold text-amber-700 bg-amber-100/80 px-2 py-0.5 rounded-lg flex items-center gap-1">
-                      <Coins className="w-3 h-3 text-amber-600" />
+                    <span className="text-xs font-semibold text-amber-800 bg-amber-100/90 px-2.5 py-0.5 rounded-md border border-amber-300 flex items-center gap-1 leading-tight">
+                      <Coins className="w-3.5 h-3.5 text-amber-600" />
                       +{asg.tokensReward} Tokens
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h4 className="text-sm sm:text-base font-extrabold text-slate-900 leading-snug">
+                  <h4 className="text-xs sm:text-base font-bold text-[#1a1a1a] tracking-[-0.015em] leading-snug">
                     {asg.title}
                   </h4>
                 </div>
@@ -366,19 +361,19 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                 {/* Status Badge */}
                 <div className="shrink-0 self-start">
                   {isNotDone && (
-                    <span className="inline-flex items-center gap-1.5 text-xs font-extrabold px-3 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-lg bg-amber-100 text-amber-900 border border-amber-300 leading-tight">
                       <AlertCircle className="w-3.5 h-3.5 text-amber-700" />
                       <span>Chưa làm</span>
                     </span>
                   )}
                   {isSubmitted && (
-                    <span className="inline-flex items-center gap-1.5 text-xs font-extrabold px-3 py-1 rounded-full bg-sky-100 text-sky-900 border border-sky-300">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-lg bg-sky-100 text-sky-900 border border-sky-300 leading-tight">
                       <Clock className="w-3.5 h-3.5 text-sky-700" />
                       <span>Đã nộp</span>
                     </span>
                   )}
                   {isGraded && (
-                    <span className="inline-flex items-center gap-1.5 text-xs font-extrabold px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-lg bg-emerald-100 text-emerald-900 border border-emerald-300 leading-tight">
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
                       <span>Đã chấm • {asg.gradedDetails?.score}đ</span>
                     </span>
@@ -386,49 +381,97 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                 </div>
               </div>
 
-              {/* Deadline and status note */}
-              <div className="space-y-1.5 text-xs text-slate-500 py-2 border-t border-slate-100 w-full">
-                <div className="flex items-center justify-between text-[11px] sm:text-xs">
-                  <span className="text-slate-500 flex items-center gap-1.5 font-medium">
-                    <Calendar className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                    Hạn chót:
-                  </span>
-                  <span
-                    className={
-                      isNotDone ? "text-amber-700 font-bold" : "text-slate-700 font-semibold"
-                    }
-                  >
-                    {formatDeadlineText(asg.deadline)}
-                  </span>
+              {/* Deadline, Score and Status Banner - Recessed Well according to AGENTS.md Section 4 */}
+              <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-2xl p-3.5 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-[var(--shadow-recessed-sm)]">
+                <div className="flex items-center gap-3.5 text-left w-full sm:w-auto">
+                  {/* Khối Điểm số / Huy hiệu San Hô Đỏ Nổi Khối */}
+                  {isGraded ? (
+                    <div className="relative shrink-0 flex flex-col items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#ff4757] text-white shadow-[var(--shadow-accent-sm)] border border-white/30">
+                      <span className="text-xl sm:text-2xl font-bold font-mono leading-none tracking-tight">
+                        {asg.gradedDetails?.score || 9.5}
+                      </span>
+                      <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wider opacity-90">
+                        / {asg.gradedDetails?.maxScore || 10} điểm
+                      </span>
+                    </div>
+                  ) : isSubmitted ? (
+                    <div className="relative shrink-0 flex flex-col items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-sky-600 text-white shadow-[0_4px_12px_rgba(2,132,199,0.35)] border border-white/30">
+                      <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-white mb-0.5" />
+                      <span className="text-[9px] sm:text-[10px] font-bold font-mono uppercase tracking-wider leading-none">
+                        ĐÃ NỘP
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="relative shrink-0 flex flex-col items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#ff4757] text-white shadow-[var(--shadow-accent-sm)] border border-white/30">
+                      <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-white mb-0.5" />
+                      <span className="text-[9px] sm:text-[10px] font-bold font-mono uppercase tracking-wider leading-none">
+                        HẠN NỘP
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Thông tin học sinh, Token & Nhận xét / Thời hạn */}
+                  <div>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-xs sm:text-sm font-bold text-[#1a1a1a]">
+                        {isGraded ? student.fullName : isSubmitted ? student.fullName : "Nhiệm vụ tuần này"}
+                      </span>
+                      {isGraded ? (
+                        <span className="inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-900 border border-emerald-300 leading-tight">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                          +{asg.tokensReward} Tokens
+                        </span>
+                      ) : isSubmitted ? (
+                        <span className="inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-md bg-sky-100 text-sky-900 border border-sky-300 leading-tight">
+                          <Clock className="w-3.5 h-3.5 text-sky-700" />
+                          Đang chờ cô chấm
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-md bg-amber-100 text-amber-900 border border-amber-300 leading-tight">
+                          <AlertCircle className="w-3.5 h-3.5 text-amber-700" />
+                          Chưa hoàn thành
+                        </span>
+                      )}
+                    </div>
+                    <p className={`text-xs sm:text-sm font-semibold mt-0.5 ${
+                      isSubmitted ? "text-sky-800" : "text-[#ff4757]"
+                    }`}>
+                      {isGraded
+                        ? (asg.gradedDetails?.feedbackTitle || "Xuất sắc! Bóc tách cấu trúc câu rất chắc")
+                        : isSubmitted
+                        ? "Bài tập đã gửi thành công • Cô Nghi đang xem và sửa bài"
+                        : `${formatDeadlineText(asg.deadline)} • Nhớ nộp đúng hạn để nhận +${asg.tokensReward} Tokens`}
+                    </p>
+                  </div>
                 </div>
 
-                {isSubmitted && (
-                  <div className="flex items-center justify-between text-[11px] sm:text-xs pt-1.5 border-t border-slate-100/80">
-                    <span className="text-slate-500 flex items-center gap-1.5 font-medium">
-                      <Clock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                      Nộp lúc:
+                {/* Cột thông tin phụ bên phải (Giáo viên, Ngày chấm / Thời gian nộp / Hạn chót) */}
+                <div className="shrink-0 w-full sm:w-auto flex flex-col justify-center sm:items-end gap-1.5 border-t sm:border-t-0 pt-2.5 sm:pt-0 border-[#babecc]/50 sm:border-l sm:border-[#babecc]/50 sm:pl-4">
+                  <div className="flex items-center justify-between sm:justify-end gap-1.5 w-full sm:w-auto text-xs">
+                    <span className="text-[#666666] font-medium">
+                      {isGraded ? "Giáo viên chấm:" : "Giáo viên phụ trách:"}
                     </span>
-                    <span className="text-sky-700 font-semibold">
-                      {asg.submittedAt || "19:45 Thứ Sáu, 20/09/2026"}
+                    <span className="font-semibold text-[#1a1a1a]">Cô Nghi</span>
+                  </div>
+                  <div className="flex items-center justify-between sm:justify-end gap-1.5 w-full sm:w-auto text-xs">
+                    <span className="text-[#666666] font-medium">
+                      {isGraded ? "Ngày chấm:" : isSubmitted ? "Thời gian nộp:" : "Hạn chót:"}
+                    </span>
+                    <span className={`font-semibold ${
+                      isNotDone ? "text-[#ff4757] font-mono" : "text-[#1a1a1a]"
+                    }`}>
+                      {isGraded
+                        ? "16/09/2026"
+                        : isSubmitted
+                        ? (asg.submittedAt || "19:45 Thứ Sáu, 20/09/2026")
+                        : asg.deadline}
                     </span>
                   </div>
-                )}
-
-                {isGraded && (
-                  <div className="flex items-center justify-between text-[11px] sm:text-xs pt-1.5 border-t border-slate-100/80">
-                    <span className="text-slate-500 flex items-center gap-1.5 font-medium">
-                      <Clock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                      Nộp lúc:
-                    </span>
-                    <span className="text-emerald-700 font-semibold">
-                      {asg.submittedAt || "19:15 Chủ Nhật, 15/09/2026"}
-                    </span>
-                  </div>
-                )}
+                </div>
               </div>
 
               {/* ACTION BUTTONS */}
-              <div className="mt-3 pt-3 border-t border-slate-100/90 flex flex-wrap items-center gap-2.5">
+              <div className="pt-1 flex flex-wrap items-center gap-2.5">
                 {/* 1. Nút "Tài liệu" & Nút "Chụp ảnh / Nộp bài" (Nếu trạng thái là Chưa làm) */}
                 {isNotDone && (
                   <>
@@ -436,10 +479,10 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                       type="button"
                       id={`btn-materials-${asg.id}`}
                       onClick={() => setSelectedForMaterialsList(asg)}
-                      className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 transition-all active:scale-95 cursor-pointer"
+                      className="inline-flex items-center justify-center gap-2 min-h-[42px] px-4 py-2 rounded-xl font-semibold text-xs soft-ui-convex text-[#1a1a1a] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px] transition-all cursor-pointer leading-tight"
                       title="Bấm để xem danh sách tài liệu đính kèm"
                     >
-                      <FolderDown className="w-4 h-4 text-indigo-600" />
+                      <FolderDown className="w-4 h-4 text-[#ff4757]" />
                       <span>Tài liệu ({materials.length})</span>
                     </button>
 
@@ -448,7 +491,7 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                       type="button"
                       id={`btn-submit-photo-${asg.id}`}
                       onClick={() => setSelectedForUpload(asg)}
-                      className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 min-h-[44px] px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold text-xs sm:text-sm shadow-md shadow-amber-500/25 transition-all active:scale-95 cursor-pointer ml-auto"
+                      className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 min-h-[42px] px-5 py-2 rounded-xl bg-[#ff4757] hover:bg-[#e03949] text-white font-semibold text-xs shadow-[var(--shadow-accent)] active:shadow-[var(--shadow-accent-pressed)] active:translate-y-[1px] transition-all cursor-pointer ml-auto leading-tight"
                     >
                       <Camera className="w-4 h-4" />
                       <span>Nộp bài</span>
@@ -463,9 +506,9 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                       type="button"
                       id={`btn-materials-submitted-${asg.id}`}
                       onClick={() => setSelectedForMaterialsList(asg)}
-                      className="inline-flex items-center gap-1.5 text-xs text-indigo-700 hover:text-indigo-900 font-semibold px-2.5 py-1.5 rounded-lg hover:bg-indigo-50 transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1.5 text-xs text-[#1a1a1a] hover:text-[#ff4757] font-semibold px-3 py-1.5 rounded-lg soft-ui-convex transition-all cursor-pointer leading-tight"
                     >
-                      <FolderDown className="w-3.5 h-3.5 text-indigo-600" />
+                      <FolderDown className="w-3.5 h-3.5 text-[#ff4757]" />
                       <span>Tài liệu & đề bài ({materials.length})</span>
                     </button>
 
@@ -473,9 +516,9 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                       type="button"
                       id={`btn-view-submission-${asg.id}`}
                       onClick={() => setSelectedForUpload(asg)}
-                      className="inline-flex items-center justify-center gap-1.5 min-h-[42px] px-4 py-2 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-200 font-bold text-xs transition-colors cursor-pointer ml-auto"
+                      className="inline-flex items-center justify-center gap-1.5 min-h-[40px] px-4 py-2 rounded-xl soft-ui-convex text-sky-900 active:shadow-[var(--shadow-pressed-sm)] font-semibold text-xs transition-all cursor-pointer ml-auto leading-tight"
                     >
-                      <Eye className="w-3.5 h-3.5" />
+                      <Eye className="w-3.5 h-3.5 text-sky-600" />
                       <span>Xem bài đã nộp / Bổ sung</span>
                     </button>
                   </div>
@@ -488,9 +531,9 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                       type="button"
                       id={`btn-materials-graded-${asg.id}`}
                       onClick={() => setSelectedForMaterialsList(asg)}
-                      className="inline-flex items-center gap-1.5 text-xs text-indigo-700 hover:text-indigo-900 font-semibold px-2.5 py-1.5 rounded-lg hover:bg-indigo-50 transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1.5 text-xs text-[#1a1a1a] hover:text-[#ff4757] font-semibold px-3 py-1.5 rounded-lg soft-ui-convex transition-all cursor-pointer leading-tight"
                     >
-                      <FolderDown className="w-3.5 h-3.5 text-indigo-600" />
+                      <FolderDown className="w-3.5 h-3.5 text-[#ff4757]" />
                       <span>Tài liệu & đề bài ({materials.length})</span>
                     </button>
 
@@ -498,7 +541,7 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                       type="button"
                       id={`btn-view-graded-${asg.id}`}
                       onClick={() => setSelectedForReview(asg)}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[44px] px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white font-bold text-xs sm:text-sm shadow-md shadow-emerald-700/20 transition-all active:scale-95 cursor-pointer ml-auto"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-[0_4px_10px_rgba(5,150,105,0.3)] active:translate-y-[1px] transition-all cursor-pointer ml-auto border border-emerald-400 leading-tight"
                     >
                       <FileCheck className="w-4 h-4" />
                       <span>Xem bài đã chấm & nhận xét</span>
@@ -512,7 +555,7 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
         })}
 
         {filteredAssignments.length === 0 && (
-          <div className="py-8 text-center text-slate-400 text-xs">
+          <div className="py-8 text-center text-[#475569] text-xs font-mono">
             Không có bài tập nào trong mục này.
           </div>
         )}

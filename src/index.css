@@ -1,1 +1,461 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+:root {
+  --chassis: #e0e5ec;
+  --card-surface: #e0e5ec;
+  --card-surface-hover: #e8eef5;
+  --card-surface-subtle: #dbe3ed;
+  --panel: #e0e5ec;
+  --recessed: #d4dde8;
+  
+  /* Skool Typography Color Tokens */
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --text-muted: #737373;
+  --text-light: #8c8c8c;
+  --link-color: #2563eb;
+  --link-hover: #1d4ed8;
+  
+  --accent: #ff4757;
+  --accent-dark: #e03949;
+  --border-shadow: #b2c2d4;
+  --border-highlight: #ffffff;
+  
+  /* Neumorphic 3D Embossed (Dập nổi) - Dual light/shadow on #e0e5ec */
+  --shadow-card: 
+    9px 9px 18px #b4c3d4, 
+    2px 2px 5px rgba(160, 175, 195, 0.4), 
+    -9px -9px 18px #ffffff, 
+    -2px -2px 5px #ffffff,
+    inset 1px 1px 1.5px rgba(255, 255, 255, 0.95),
+    inset -1px -1px 1.5px rgba(160, 175, 195, 0.25);
+
+  --shadow-card-sm: 
+    5px 5px 12px #b6c5d6, 
+    1.5px 1.5px 3px rgba(160, 175, 195, 0.35), 
+    -5px -5px 12px #ffffff, 
+    -1px -1px 3px #ffffff,
+    inset 1px 1px 1px rgba(255, 255, 255, 0.95),
+    inset -1px -1px 1px rgba(160, 175, 195, 0.2);
+
+  --shadow-floating: 
+    14px 14px 28px #a8b9cc, 
+    4px 4px 10px rgba(150, 170, 190, 0.45), 
+    -14px -14px 28px #ffffff, 
+    -3px -3px 8px #ffffff,
+    inset 1.5px 1.5px 2px rgba(255, 255, 255, 0.95),
+    inset -1.5px -1.5px 2px rgba(160, 175, 195, 0.25);
+
+  /* Neumorphic Debossed (Dập chìm / Lõm) */
+  --shadow-pressed: 
+    inset 5px 5px 10px #b2c1d3, 
+    inset -5px -5px 10px #ffffff;
+
+  --shadow-pressed-sm: 
+    inset 3px 3px 7px #b2c1d3, 
+    inset -3px -3px 7px #ffffff;
+
+  --shadow-recessed: 
+    inset 5px 5px 10px #b0c0d2, 
+    inset -5px -5px 10px #ffffff;
+
+  --shadow-recessed-sm: 
+    inset 3px 3px 6px #b0c0d2, 
+    inset -3px -3px 6px #ffffff;
+
+  --shadow-accent: 
+    5px 5px 14px rgba(235, 55, 75, 0.4), 
+    -4px -4px 10px #ffffff,
+    inset 1px 1px 1px rgba(255, 255, 255, 0.6);
+
+  --shadow-accent-pressed: 
+    inset 4px 4px 8px rgba(140, 25, 38, 0.6), 
+    inset -3px -3px 6px rgba(255, 130, 140, 0.4);
+
+  --shadow-glow-accent: 0 0 10px 2px rgba(255, 71, 87, 0.55);
+  --shadow-glow-green: 0 0 10px 2px rgba(34, 197, 94, 0.65);
+}
+
+/* 
+ * SKOOL TYPOGRAPHY CORE RULES 
+ * 1. System Font Stack (system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif)
+ * 2. Base font size 16px, paragraph line-height 1.55, UI line-height 1.22
+ * 3. Headings negative letter-spacing (-0.015em), weight 600-700
+ * 4. Colors: text-primary #1a1a1a, text-secondary #666666
+ */
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--chassis);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: 
+    radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 90% 90%, rgba(175, 190, 210, 0.4) 0%, transparent 55%);
+  background-attachment: fixed;
+}
+
+/* Headings: font-weight 600 or 700, slightly negative tracking (-0.015em to -0.02em), inherits text color cleanly */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  color: inherit;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: 1.75rem; /* 28px */
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.375rem; /* 22px */
+  letter-spacing: -0.018em;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.125rem; /* 18px */
+  letter-spacing: -0.015em;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1rem; /* 16px */
+  letter-spacing: -0.012em;
+  font-weight: 600;
+}
+
+/* Responsive mobile heading scale: refined, compact, and balanced */
+@media (max-width: 640px) {
+  h1, .h1 {
+    font-size: 1.1875rem; /* 19px */
+    letter-spacing: -0.018em;
+  }
+  h2, .h2 {
+    font-size: 1.0625rem; /* 17px */
+    letter-spacing: -0.016em;
+  }
+  h3, .h3 {
+    font-size: 0.9375rem; /* 15px */
+    letter-spacing: -0.014em;
+  }
+  h4, .h4 {
+    font-size: 0.875rem; /* 14px */
+    letter-spacing: -0.012em;
+  }
+}
+
+/* Paragraphs & Reading text */
+p {
+  line-height: 1.55;
+  color: inherit;
+}
+
+/* UI Controls: buttons, menu items, badges, tabs have tighter line-height (1.2 to 1.25) */
+button,
+input,
+select,
+textarea,
+.btn,
+.badge,
+.tab-btn,
+nav,
+[role="tab"] {
+  line-height: 1.22;
+  font-family: inherit;
+}
+
+/* Inline typography rules per Skool */
+strong, b {
+  font-weight: 600;
+  color: inherit;
+}
+
+/* Highlight (Mark) per Skool */
+mark,
+.skool-mark {
+  background-color: #fef08a; /* Light pastel yellow */
+  color: var(--text-primary);
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+}
+
+/* Mention style: light blue background, dark blue text, border-radius: 4px, small padding */
+.mention,
+.skool-mention {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 0.15em 0.45em;
+  line-height: 1.2;
+}
+
+/* Links: only inline links or designated skool-link classes, buttons/custom tags inherit color */
+a.skool-link,
+p a:not([class]) {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.15s ease, text-decoration 0.15s ease;
+}
+
+a.skool-link:hover,
+p a:not([class]):hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+/* Guarantee crisp white text on dark surfaces & modal headers */
+[class*="bg-slate-900"],
+[class*="bg-slate-950"],
+[class*="bg-[#1e293b]"],
+[class*="bg-[#2d3436]"] {
+  color: #ffffff;
+}
+
+[class*="bg-slate-900"] h1, [class*="bg-slate-900"] h2, [class*="bg-slate-900"] h3, [class*="bg-slate-900"] h4,
+[class*="bg-slate-950"] h1, [class*="bg-slate-950"] h2, [class*="bg-slate-950"] h3, [class*="bg-slate-950"] h4,
+[class*="bg-[#1e293b]"] h1, [class*="bg-[#1e293b]"] h2, [class*="bg-[#1e293b]"] h3, [class*="bg-[#1e293b]"] h4,
+[class*="bg-[#2d3436]"] h1, [class*="bg-[#2d3436]"] h2, [class*="bg-[#2d3436]"] h3, [class*="bg-[#2d3436]"] h4 {
+  color: #ffffff !important;
+}
+
+/* Blockquote per Skool: thin grey left border, muted text or slight italic */
+blockquote,
+.skool-blockquote {
+  border-left: 3px solid #d1d5db;
+  color: var(--text-secondary);
+  font-style: italic;
+  padding-left: 0.875rem;
+  margin: 0.75rem 0;
+  line-height: 1.55;
+}
+
+/* Utility classes matching Skool text hierarchy */
+.text-skool-primary {
+  color: #1a1a1a !important;
+}
+
+.text-skool-secondary {
+  color: #666666 !important;
+}
+
+.text-skool-muted {
+  color: #737373 !important;
+}
+
+/* Hide any legacy screw dots completely */
+.screw-dot {
+  display: none !important;
+}
+
+/* Monospace font utility for system codes & telemetry only */
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Disable corner screw pattern overlays */
+.industrial-screws,
+.industrial-screws-sm {
+  background-image: none !important;
+}
+
+/* 
+ * TRUE NEUMORPHIC EMBOSSED CARDS (DẬP NỔI TỪ BACKGROUND)
+ * Surface gradient transitions from soft highlight to soft shade on #e0e5ec base
+ */
+.industrial-card,
+.neumorph-3d,
+.neumorph-card,
+.soft-ui-card,
+.soft-ui-embossed {
+  background: linear-gradient(145deg, #eff5fc 0%, #d4e0ec 100%) !important;
+  box-shadow: var(--shadow-card) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.9) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.9) !important;
+  border-bottom: 1px solid rgba(175, 190, 208, 0.45) !important;
+  border-right: 1px solid rgba(175, 190, 208, 0.45) !important;
+  transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.industrial-card-sm,
+.neumorph-3d-sm,
+.soft-ui-card-sm,
+.soft-ui-embossed-sm {
+  background: linear-gradient(145deg, #eff5fc 0%, #d6e2ed 100%) !important;
+  box-shadow: var(--shadow-card-sm) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.9) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.9) !important;
+  border-bottom: 1px solid rgba(175, 190, 208, 0.4) !important;
+  border-right: 1px solid rgba(175, 190, 208, 0.4) !important;
+  transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Soft UI Raised (Convex) Pill & Controls */
+.soft-ui-convex {
+  background: linear-gradient(145deg, #f2f7fd 0%, #d3dfeb 100%) !important;
+  box-shadow: var(--shadow-card-sm) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.95);
+  border-left: 1px solid rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(170, 185, 205, 0.45);
+  border-right: 1px solid rgba(170, 185, 205, 0.45);
+}
+
+/* Soft UI Inset / Debossed (Lõm dập chìm xuống bề mặt) */
+.industrial-recessed,
+.soft-ui-debossed {
+  background: #d7e1ec !important;
+  box-shadow: var(--shadow-recessed) !important;
+  border-top: 1px solid rgba(160, 175, 195, 0.4) !important;
+  border-left: 1px solid rgba(160, 175, 195, 0.4) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.85) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.85) !important;
+}
+
+.industrial-recessed-dark {
+  background: #cdd8e5 !important;
+  box-shadow: var(--shadow-recessed) !important;
+}
+
+.industrial-recessed-sm,
+.soft-ui-debossed-sm {
+  background: #d7e1ec !important;
+  box-shadow: var(--shadow-recessed-sm) !important;
+  border-top: 1px solid rgba(160, 175, 195, 0.35) !important;
+  border-left: 1px solid rgba(160, 175, 195, 0.35) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.8) !important;
+}
+
+.industrial-pressed,
+.soft-ui-pressed {
+  box-shadow: var(--shadow-pressed) !important;
+}
+
+.industrial-floating,
+.soft-ui-floating {
+  box-shadow: var(--shadow-floating) !important;
+}
+
+/* Tactile Buttons */
+.btn-tactile-primary {
+  background: #ff4757;
+  color: #ffffff;
+  box-shadow: var(--shadow-accent);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.btn-tactile-primary:hover {
+  background: #ff3344;
+  box-shadow: 6px 6px 16px rgba(166, 50, 60, 0.5), -6px -6px 14px rgba(255, 120, 130, 0.5);
+}
+.btn-tactile-primary:active {
+  transform: translateY(2px);
+  box-shadow: var(--shadow-accent-pressed);
+}
+
+.btn-tactile-secondary {
+  background: linear-gradient(145deg, #f0f6fc 0%, #d4e0eb 100%) !important;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-card-sm);
+  border-top: 1px solid rgba(255, 255, 255, 0.95);
+  border-left: 1px solid rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(175, 190, 208, 0.45);
+  border-right: 1px solid rgba(175, 190, 208, 0.45);
+  transition: all 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.btn-tactile-secondary:hover {
+  color: var(--accent);
+  box-shadow: var(--shadow-floating);
+  transform: translateY(-1px);
+}
+.btn-tactile-secondary:active {
+  transform: translateY(1px);
+  box-shadow: var(--shadow-pressed);
+}
+
+/* Stamped / Embossed effect */
+.embossed-text {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.debossed-text {
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* LED Status Glows */
+.led-indicator-green {
+  background-color: #22c55e;
+  box-shadow: var(--shadow-glow-green);
+}
+
+.led-indicator-orange {
+  background-color: #ff4757;
+  box-shadow: var(--shadow-glow-accent);
+}
+
+/* Clean Display Utility - Zero scanlines or artificial noise */
+.crt-screen {
+  position: relative;
+}
+.crt-screen::before {
+  display: none !important;
+}
+
+/* Custom Scrollbars in industrial style */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #e1e7f0;
+  box-shadow: inset 1px 1px 3px rgba(0,0,0,0.08);
+}
+::-webkit-scrollbar-thumb {
+  background: #b5c2d3;
+  border-radius: 4px;
+  border: 1px solid #eef2f7;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9aaaba;
+}
+
+/* Continuous slow ticker marquee for long badges/telemetry */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-slow {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee-scroll 20s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-slow:hover,
+.animate-marquee-slow:active {
+  animation-play-state: paused;
+}
