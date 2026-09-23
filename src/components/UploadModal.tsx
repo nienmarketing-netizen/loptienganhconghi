@@ -481,7 +481,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
               <>
                 <Send className="w-4 h-4" />
                 <span>
-                  Nộp bài ngay cho Cô Nghi ({mediaList.length} tệp: Ảnh/Video/Audio)
+                  Nộp bài ngay ({mediaList.length} tệp)
                 </span>
               </>
             )}
