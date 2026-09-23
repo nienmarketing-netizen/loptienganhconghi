@@ -77,6 +77,88 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
   const [activeImage, setActiveImage] = useState<LessonMediaItem | null>(null);
   const [activeLightboxIndex, setActiveLightboxIndex] = useState<number | null>(null);
   const [isPaused, setIsPaused] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
+  const userInteractionTimeoutRef = useRef<number | null>(null);
+  const isDraggingRef = useRef(false);
+  const startXRef = useRef(0);
+  const scrollLeftRef = useRef(0);
+  const hasMovedRef = useRef(false);
+
+  // Manual scroll helper
+  const handleManualScroll = (direction: "left" | "right") => {
+    if (!scrollContainerRef.current) return;
+    setIsUserInteracting(true);
+    if (userInteractionTimeoutRef.current) clearTimeout(userInteractionTimeoutRef.current);
+    userInteractionTimeoutRef.current = window.setTimeout(() => {
+      setIsUserInteracting(false);
+    }, 6000);
+
+    const scrollAmount = 300;
+    scrollContainerRef.current.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
+  // Auto scroll effect when user is not manually interacting
+  useEffect(() => {
+    const el = scrollContainerRef.current;
+    if (!el || mediaList.length <= 1) return;
+
+    let animationFrameId: number;
+    const speed = 0.65; // pixels per frame
+
+    const step = () => {
+      if (!isPaused && !isUserInteracting && !isDraggingRef.current && el) {
+        el.scrollLeft += speed;
+        // When halfway (first full duplicate batch passed), loop seamlessly back to start
+        const halfWidth = el.scrollWidth / 2;
+        if (halfWidth > 0 && el.scrollLeft >= halfWidth) {
+          el.scrollLeft -= halfWidth;
+        }
+      }
+      animationFrameId = requestAnimationFrame(step);
+    };
+
+    animationFrameId = requestAnimationFrame(step);
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      if (userInteractionTimeoutRef.current) clearTimeout(userInteractionTimeoutRef.current);
+    };
+  }, [isPaused, isUserInteracting, mediaList.length]);
+
+  // Mouse drag to scroll
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    isDraggingRef.current = true;
+    hasMovedRef.current = false;
+    startXRef.current = e.pageX - el.offsetLeft;
+    scrollLeftRef.current = el.scrollLeft;
+    setIsUserInteracting(true);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDraggingRef.current || !scrollContainerRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startXRef.current) * 1.5;
+    if (Math.abs(walk) > 4) {
+      hasMovedRef.current = true;
+    }
+    scrollContainerRef.current.scrollLeft = scrollLeftRef.current - walk;
+  };
+
+  const handleMouseUpOrLeave = () => {
+    if (isDraggingRef.current) {
+      isDraggingRef.current = false;
+      if (userInteractionTimeoutRef.current) clearTimeout(userInteractionTimeoutRef.current);
+      userInteractionTimeoutRef.current = window.setTimeout(() => {
+        setIsUserInteracting(false);
+      }, 5000);
+    }
+  };
 
   // Keyboard navigation for Fullscreen Album Lightbox
   useEffect(() => {
@@ -253,17 +335,48 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
           </button>
         </div>
       ) : (
-        <div className="relative overflow-hidden rounded-lg sm:rounded-xl p-1 bg-[#dbe4ee]/35 border border-[#babecc]/50 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] group/slider">
-          {/* Edge gradient masks for seamless entering/exiting effect */}
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-[#e0e5ec] via-[#e0e5ec]/80 to-transparent z-10" />
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-[#e0e5ec] via-[#e0e5ec]/80 to-transparent z-10" />
+        <div className="relative rounded-lg sm:rounded-xl p-1 bg-[#dbe4ee]/35 border border-[#babecc]/50 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] group/slider">
+          {/* Edge gradient masks */}
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-6 sm:w-12 bg-gradient-to-r from-[#e0e5ec] via-[#e0e5ec]/70 to-transparent z-10" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-6 sm:w-12 bg-gradient-to-l from-[#e0e5ec] via-[#e0e5ec]/70 to-transparent z-10" />
 
-          {/* Continuous Infinite Sliding Track */}
+          {/* Manual Scroll Control Buttons */}
+          <button
+            type="button"
+            onClick={() => handleManualScroll("left")}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white/90 text-[#1a1a1a] shadow-md border border-[#babecc]/50 flex items-center justify-center opacity-0 group-hover/slider:opacity-100 transition-opacity hover:bg-white hover:text-[#ff4757] cursor-pointer"
+            aria-label="Cuộn sang trái"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => handleManualScroll("right")}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white/90 text-[#1a1a1a] shadow-md border border-[#babecc]/50 flex items-center justify-center opacity-0 group-hover/slider:opacity-100 transition-opacity hover:bg-white hover:text-[#ff4757] cursor-pointer"
+            aria-label="Cuộn sang phải"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+
+          {/* Interactive Scrollable Track */}
           <div
-            className="flex items-stretch gap-3.5 animate-media-slide py-1 w-max"
+            ref={scrollContainerRef}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUpOrLeave}
+            onMouseLeave={handleMouseUpOrLeave}
+            onTouchStart={() => setIsUserInteracting(true)}
+            onTouchEnd={() => {
+              if (userInteractionTimeoutRef.current) clearTimeout(userInteractionTimeoutRef.current);
+              userInteractionTimeoutRef.current = window.setTimeout(() => {
+                setIsUserInteracting(false);
+              }, 4000);
+            }}
+            onMouseEnter={() => setIsPaused(true)}
+            className="flex items-stretch gap-3.5 py-1 overflow-x-auto select-none cursor-grab active:cursor-grabbing scrollbar-none"
             style={{
-              animationDuration: `${slideDuration}s`,
-              animationPlayState: isPaused ? "paused" : undefined,
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
             }}
           >
             {slideItems.map((item, idx) => {
@@ -272,6 +385,7 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
                 <div
                   key={`${item.id}-slide-${idx}`}
                   onClick={() => {
+                    if (hasMovedRef.current) return;
                     setActiveLightboxIndex(idx % mediaList.length);
                   }}
                   className="group relative rounded-lg overflow-hidden soft-ui-convex hover:shadow-[var(--shadow-floating)] transition-all cursor-pointer flex flex-col justify-between w-64 sm:w-72 md:w-80 shrink-0 select-none border border-white/80 border-b-[#babecc]/70 border-r-[#babecc]/70"
