@@ -422,20 +422,17 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                 {/* Status Badge */}
                 <div className="shrink-0 self-start">
                   {isNotDone && (
-                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-md bg-amber-100 text-amber-900 border border-amber-300 leading-tight">
-                      <AlertCircle className="w-3.5 h-3.5 text-amber-700" />
+                    <span className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-md bg-amber-100 text-amber-900 border border-amber-300 leading-tight">
                       <span>Chưa làm</span>
                     </span>
                   )}
                   {isSubmitted && (
-                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-md bg-sky-100 text-sky-900 border border-sky-300 leading-tight">
-                      <Clock className="w-3.5 h-3.5 text-sky-700" />
+                    <span className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-md bg-sky-100 text-sky-900 border border-sky-300 leading-tight">
                       <span>Đã nộp</span>
                     </span>
                   )}
                   {isGraded && (
-                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-md bg-emerald-100 text-emerald-900 border border-emerald-300 leading-tight">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
+                    <span className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-md bg-emerald-100 text-emerald-900 border border-emerald-300 leading-tight">
                       <span>Đã chấm • {asg.gradedDetails?.score}đ</span>
                     </span>
                   )}

@@ -7,7 +7,6 @@ import {
   Video,
   Download,
   Calendar,
-  Sparkles,
   ExternalLink,
 } from "lucide-react";
 import { Assignment, AssignmentMaterial } from "../types";
@@ -108,8 +107,7 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
           </div>
 
           {/* Teacher note card - Beveled card */}
-          <div className="bg-[#e0e5ec] border border-white/90 border-b-[#babecc] border-r-[#babecc] rounded-lg sm:rounded-xl p-3.5 text-xs text-[#1a1a1a] shadow-[var(--shadow-card-sm)] flex items-start gap-2.5">
-            <Sparkles className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
+          <div className="bg-[#e0e5ec] border border-white/90 border-b-[#babecc] border-r-[#babecc] rounded-lg sm:rounded-xl p-3.5 text-xs text-[#1a1a1a] shadow-[var(--shadow-card-sm)]">
             <div className="space-y-0.5">
               <span className="font-bold text-[#1a1a1a] block tracking-[-0.015em]">
                 Hướng dẫn từ Cô Nghi:

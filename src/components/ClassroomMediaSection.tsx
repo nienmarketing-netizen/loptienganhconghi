@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Video,
   Image as ImageIcon,
@@ -15,6 +15,8 @@ import {
   Check,
   Eye,
   Calendar,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { LessonMediaItem } from "../types";
 
@@ -73,7 +75,30 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeVideo, setActiveVideo] = useState<LessonMediaItem | null>(null);
   const [activeImage, setActiveImage] = useState<LessonMediaItem | null>(null);
+  const [activeLightboxIndex, setActiveLightboxIndex] = useState<number | null>(null);
   const [isPaused, setIsPaused] = useState(false);
+
+  // Keyboard navigation for Fullscreen Album Lightbox
+  useEffect(() => {
+    if (activeLightboxIndex === null) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        setActiveLightboxIndex((prev) =>
+          prev !== null ? (prev - 1 + mediaList.length) % mediaList.length : null
+        );
+      } else if (e.key === "ArrowRight") {
+        setActiveLightboxIndex((prev) =>
+          prev !== null ? (prev + 1) % mediaList.length : null
+        );
+      } else if (e.key === "Escape") {
+        setActiveLightboxIndex(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeLightboxIndex, mediaList.length]);
 
   // Form states for uploading / adding new media
   const [modalTab, setModalTab] = useState<"file" | "template">("file");
@@ -286,11 +311,7 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
                 <div
                   key={`${item.id}-slide-${idx}`}
                   onClick={() => {
-                    if (isVideo) {
-                      setActiveVideo(item);
-                    } else {
-                      setActiveImage(item);
-                    }
+                    setActiveLightboxIndex(idx % mediaList.length);
                   }}
                   className="group relative rounded-lg overflow-hidden soft-ui-convex hover:shadow-[var(--shadow-floating)] transition-all cursor-pointer flex flex-col justify-between w-64 sm:w-72 md:w-80 shrink-0 select-none border border-white/80 border-b-[#babecc]/70 border-r-[#babecc]/70"
                 >
@@ -370,7 +391,7 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
 
                   {/* Card Footer Info */}
                   <div className="p-2.5 bg-white text-[#1e293b] border-t border-slate-100">
-                    <h5 className="text-xs font-bold text-[#1e293b] line-clamp-1 leading-snug group-hover:text-[#ff4757] transition-colors">
+                    <h5 className="text-xs font-normal text-[#1e293b] leading-snug group-hover:text-[#ff4757] transition-colors">
                       {item.title}
                     </h5>
                   </div>
@@ -653,105 +674,155 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
         </div>
       )}
 
-      {/* FULLSCREEN VIDEO PLAYER MODAL FOR PARENTS */}
-      {activeVideo && (
+      {/* UNIFIED FULLSCREEN ALBUM LIGHTBOX MODAL WITH CAROUSEL & THUMBNAIL STRIP */}
+      {activeLightboxIndex !== null && mediaList[activeLightboxIndex] && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/80 backdrop-blur-md animate-in fade-in duration-150"
-          onClick={() => setActiveVideo(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/90 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={() => setActiveLightboxIndex(null)}
         >
           <div
-            className="relative w-full max-w-2xl bg-[#1e2528] rounded-lg sm:rounded-xl overflow-hidden border border-white/20 shadow-[var(--shadow-floating)] flex flex-col"
+            className="relative w-full max-w-5xl bg-[#1e2528] rounded-xl overflow-hidden border border-white/20 shadow-[var(--shadow-floating)] flex flex-col h-[90vh] sm:h-[88vh]"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Video Header - Industrial Bevel */}
-            <div className="p-3.5 sm:p-4 bg-[#2d3436] border-b border-white/10 flex items-center justify-between text-white">
-              <div className="flex items-center gap-2.5 min-w-0">
-                <div className="w-8 h-8 rounded-md bg-[#1e2528] border border-white/10 text-[#ff4757] flex items-center justify-center shrink-0 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)]">
-                  <Play className="w-3.5 h-3.5 fill-[#ff4757]" />
+            {/* Header */}
+            <div className="px-3 py-2.5 sm:px-4 sm:py-3 bg-[#2d3436] border-b border-white/10 flex items-center justify-between text-white shrink-0">
+              <div className="flex items-center gap-2.5 min-w-0 pr-2">
+                <div className="w-8 h-8 rounded-lg bg-[#ff4757]/20 border border-[#ff4757]/40 flex items-center justify-center text-[#ff4757] shrink-0">
+                  <Film className="w-4 h-4" />
                 </div>
                 <div className="min-w-0">
-                  <div className="text-[10px] text-[#a3b1c6] font-mono flex items-center gap-1.5">
+                  <div className="text-[11px] text-[#a3b1c6] font-mono flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full led-indicator-orange animate-pulse" />
-                    <span>VIDEO THỰC TẾ LỚP HỌC</span>
+                    <span>ALBUM LỚP HỌC</span>
+                    <span className="bg-[#ff4757] text-white text-[10px] font-bold px-2 py-0.5 rounded-full font-mono shadow-xs">
+                      {activeLightboxIndex + 1} / {mediaList.length}
+                    </span>
                   </div>
-                  <h4 className="text-xs sm:text-sm font-bold truncate text-white">
-                    {activeVideo.title}
+                  <h4 className="text-xs sm:text-sm font-bold text-white truncate max-w-xs sm:max-w-xl">
+                    {mediaList[activeLightboxIndex].title}
                   </h4>
                 </div>
               </div>
 
-              <button
-                type="button"
-                onClick={() => setActiveVideo(null)}
-                className="w-8 h-8 rounded-md bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 border border-white/10"
-                aria-label="Đóng"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Video Player */}
-            <div className="relative aspect-video w-full bg-black flex items-center justify-center">
-              <video
-                src={activeVideo.url}
-                controls
-                autoPlay
-                playsInline
-                className="w-full h-full object-contain"
-              />
-            </div>
-
-            {/* Video Footer Note */}
-            <div className="p-3 bg-[#2d3436] border-t border-white/10 flex items-center justify-between text-xs text-[#a3b1c6] font-mono">
-              <span className="font-semibold text-amber-400 flex items-center gap-1">
-                <Sparkles className="w-3.5 h-3.5" />
-                {activeVideo.tag || "Video học tập tại lớp"}
-              </span>
-              <span>Thời lượng: {activeVideo.duration || "0:45"}</span>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* FULLSCREEN IMAGE VIEWER MODAL FOR PARENTS */}
-      {activeImage && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/80 backdrop-blur-md animate-in fade-in duration-150"
-          onClick={() => setActiveImage(null)}
-        >
-          <div
-            className="relative w-full max-w-3xl bg-[#1e2528] rounded-lg sm:rounded-xl overflow-hidden border border-white/20 shadow-[var(--shadow-floating)] flex flex-col max-h-[92vh]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Header - Industrial Bevel */}
-            <div className="p-3 sm:p-4 bg-[#2d3436] border-b border-white/10 flex items-center justify-between text-white">
-              <div>
-                <div className="text-[10px] text-[#a3b1c6] font-mono flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full led-indicator-orange animate-pulse" />
-                  <span>ẢNH HOẠT ĐỘNG TẠI LỚP</span>
-                </div>
-                <h4 className="text-xs sm:text-sm font-bold text-white">{activeImage.title}</h4>
-                <p className="text-[10px] text-[#a3b1c6]">
-                  {studentName} • {activeImage.uploadedBy || "Cô Nghi chụp tại lớp"}
-                </p>
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setActiveLightboxIndex(null)}
+                  className="w-8 h-8 rounded-md bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white flex items-center justify-center transition-colors cursor-pointer border border-white/10"
+                  aria-label="Đóng album"
+                >
+                  <X className="w-4.5 h-4.5" />
+                </button>
               </div>
-              <button
-                type="button"
-                onClick={() => setActiveImage(null)}
-                className="w-8 h-8 rounded-md bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 border border-white/10"
-                aria-label="Đóng"
-              >
-                <X className="w-4 h-4" />
-              </button>
             </div>
 
-            {/* Image display */}
-            <div className="flex-1 overflow-auto p-2 flex items-center justify-center bg-black">
-              <img
-                src={activeImage.url}
-                alt={activeImage.title}
-                className="max-h-[75vh] w-auto object-contain rounded-lg"
-              />
+            {/* Main Stage Display (Image or Video) + Nav Buttons */}
+            <div className="relative flex-1 bg-black/95 overflow-hidden flex items-center justify-center group/stage">
+              {/* Previous Button */}
+              {mediaList.length > 1 && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveLightboxIndex((prev) =>
+                      prev !== null ? (prev - 1 + mediaList.length) % mediaList.length : null
+                    );
+                  }}
+                  className="absolute left-2 sm:left-4 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-[#ff4757] text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-lg active:scale-95"
+                  title="Ảnh/Video trước (Phím ←)"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+              )}
+
+              {/* Main Content View */}
+              <div className="w-full h-full p-2 sm:p-4 flex items-center justify-center">
+                {mediaList[activeLightboxIndex].type === "video" ? (
+                  <video
+                    key={mediaList[activeLightboxIndex].id}
+                    src={mediaList[activeLightboxIndex].url}
+                    controls
+                    autoPlay
+                    playsInline
+                    className="max-h-full max-w-full object-contain rounded-lg shadow-2xl"
+                  />
+                ) : (
+                  <img
+                    key={mediaList[activeLightboxIndex].id}
+                    src={mediaList[activeLightboxIndex].url}
+                    alt={mediaList[activeLightboxIndex].title}
+                    className="max-h-full max-w-full object-contain rounded-lg shadow-2xl select-none"
+                  />
+                )}
+              </div>
+
+              {/* Next Button */}
+              {mediaList.length > 1 && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveLightboxIndex((prev) =>
+                      prev !== null ? (prev + 1) % mediaList.length : null
+                    );
+                  }}
+                  className="absolute right-2 sm:right-4 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-[#ff4757] text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all cursor-pointer shadow-lg active:scale-95"
+                  title="Ảnh/Video tiếp theo (Phím →)"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              )}
+            </div>
+
+            {/* Bottom Album Bar & Scrollable Thumbnail Strip */}
+            <div className="bg-[#2d3436] border-t border-white/10 p-2 sm:p-3 shrink-0 flex flex-col gap-2">
+              <div className="flex items-center justify-between text-[11px] text-[#a3b1c6] font-mono px-1">
+                <span className="truncate font-semibold text-white flex items-center gap-2">
+                  {mediaList[activeLightboxIndex].tag && (
+                    <span className="text-[#ff4757] bg-[#ff4757]/15 px-2 py-0.5 rounded border border-[#ff4757]/30 text-[10px]">
+                      {mediaList[activeLightboxIndex].tag}
+                    </span>
+                  )}
+                  <span className="truncate">{mediaList[activeLightboxIndex].title}</span>
+                </span>
+                <span className="hidden sm:inline-block shrink-0 text-[10px] text-[#a3b1c6]">
+                  Phím <kbd className="bg-white/10 px-1 py-0.5 rounded text-white">←</kbd> <kbd className="bg-white/10 px-1 py-0.5 rounded text-white">→</kbd> chuyển bài • <kbd className="bg-white/10 px-1 py-0.5 rounded text-white">ESC</kbd> đóng
+                </span>
+              </div>
+
+              {/* Album Scrollable Thumbnail Strip */}
+              <div className="flex items-center gap-2 overflow-x-auto py-1 px-0.5 custom-scrollbar">
+                {mediaList.map((item, idx) => {
+                  const isActive = idx === activeLightboxIndex;
+                  const isVid = item.type === "video";
+                  return (
+                    <button
+                      key={`album-thumb-${item.id}-${idx}`}
+                      type="button"
+                      onClick={() => setActiveLightboxIndex(idx)}
+                      className={`relative shrink-0 w-16 h-12 sm:w-20 sm:h-14 rounded-lg overflow-hidden transition-all cursor-pointer border ${
+                        isActive
+                          ? "ring-2 ring-[#ff4757] border-white scale-105 z-10 opacity-100 shadow-[0_0_12px_rgba(255,71,87,0.7)]"
+                          : "border-white/20 opacity-60 hover:opacity-100 hover:border-white/60"
+                      }`}
+                    >
+                      <img
+                        src={item.thumbnail || item.url}
+                        alt={item.title}
+                        className="w-full h-full object-cover"
+                      />
+                      {isVid && (
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                          <Play className="w-3.5 h-3.5 fill-white text-white" />
+                        </div>
+                      )}
+                      <div className="absolute bottom-0 inset-x-0 bg-black/70 text-[9px] text-white font-mono text-center truncate px-0.5 py-0.2">
+                        {idx + 1}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
