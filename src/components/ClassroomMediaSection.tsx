@@ -233,45 +233,6 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
             </h4>
           </div>
         </div>
-
-        {/* Action Controls */}
-        <div className="flex items-center gap-2">
-          {mediaList.length > 0 && (
-            <button
-              type="button"
-              id="btn-toggle-slide-pause"
-              onClick={() => setIsPaused((prev) => !prev)}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md sm:rounded-lg soft-ui-convex text-[#1a1a1a] hover:text-[#ff4757] font-semibold text-xs transition-all active:translate-y-[1px] cursor-pointer"
-              title={isPaused ? "Bấm để tiếp tục cuộn tự động" : "Bấm để tạm dừng cuộn"}
-            >
-              {isPaused ? (
-                <>
-                  <Play className="w-3.5 h-3.5 text-[#ff4757] fill-[#ff4757]" />
-                  <span className="hidden sm:inline">Phát tiếp</span>
-                </>
-              ) : (
-                <>
-                  <Pause className="w-3.5 h-3.5 text-[#ff4757]" />
-                  <span className="hidden sm:inline">Tạm dừng</span>
-                </>
-              )}
-            </button>
-          )}
-
-          {/* Teacher Upload Action Button */}
-          <button
-            type="button"
-            id="btn-teacher-add-media"
-            onClick={() => {
-              setUploadSuccessMsg("");
-              setIsModalOpen(true);
-            }}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md sm:rounded-lg bg-[#ff4757] hover:bg-[#ff3344] text-white font-semibold text-xs shadow-[var(--shadow-accent)] transition-all active:translate-y-[1px] cursor-pointer border border-white/30 leading-tight"
-          >
-            <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
-            <span>Thêm ảnh / video</span>
-          </button>
-        </div>
       </div>
 
       {/* Media Cards Continuous Slide Carousel */}
@@ -325,33 +286,13 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
                     />
 
                     {/* Top Badges */}
-                    <div className="absolute top-2 left-2 flex items-center gap-1.5 z-10">
-                      <span
-                        className={`inline-flex items-center gap-1 text-[10px] font-bold font-mono px-2 py-0.5 rounded-md shadow-xs ${
-                          isVideo
-                            ? "bg-[#ff4757] text-white"
-                            : "bg-white/95 text-[#1e293b] border border-slate-200 shadow-xs"
-                        }`}
-                      >
-                        {isVideo ? (
-                          <>
-                            <Video className="w-2.5 h-2.5" />
-                            <span>Video</span>
-                          </>
-                        ) : (
-                          <>
-                            <ImageIcon className="w-2.5 h-2.5" />
-                            <span>Hình ảnh</span>
-                          </>
-                        )}
-                      </span>
-
-                      {item.tag && (
+                    {item.tag && (
+                      <div className="absolute top-2 left-2 flex items-center gap-1.5 z-10">
                         <span className="text-[10px] font-bold font-mono text-slate-800 bg-white/90 backdrop-blur-xs px-1.5 py-0.5 rounded-md border border-slate-200 shadow-xs">
                           {item.tag}
                         </span>
-                      )}
-                    </div>
+                      </div>
+                    )}
 
                     {/* Delete Button (Teacher management) */}
                     <button
@@ -698,9 +639,6 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
                       {activeLightboxIndex + 1} / {mediaList.length}
                     </span>
                   </div>
-                  <h4 className="text-xs sm:text-sm font-bold text-white truncate max-w-xs sm:max-w-xl">
-                    {mediaList[activeLightboxIndex].title}
-                  </h4>
                 </div>
               </div>
 
@@ -776,15 +714,17 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
 
             {/* Bottom Album Bar & Scrollable Thumbnail Strip */}
             <div className="bg-[#2d3436] border-t border-white/10 p-2 sm:p-3 shrink-0 flex flex-col gap-2">
-              <div className="flex items-center justify-between text-[11px] text-[#a3b1c6] font-mono px-1">
-                <span className="truncate font-semibold text-white flex items-center gap-2">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 text-xs text-[#a3b1c6] font-mono px-1">
+                <div className="font-medium text-white flex items-start sm:items-center gap-2 flex-wrap">
                   {mediaList[activeLightboxIndex].tag && (
-                    <span className="text-[#ff4757] bg-[#ff4757]/15 px-2 py-0.5 rounded border border-[#ff4757]/30 text-[10px]">
+                    <span className="text-[#ff4757] bg-[#ff4757]/15 px-2 py-0.5 rounded border border-[#ff4757]/30 text-[10px] shrink-0 font-bold">
                       {mediaList[activeLightboxIndex].tag}
                     </span>
                   )}
-                  <span className="truncate">{mediaList[activeLightboxIndex].title}</span>
-                </span>
+                  <span className="text-white text-xs sm:text-sm font-semibold break-words leading-relaxed">
+                    {mediaList[activeLightboxIndex].title}
+                  </span>
+                </div>
                 <span className="hidden sm:inline-block shrink-0 text-[10px] text-[#a3b1c6]">
                   Phím <kbd className="bg-white/10 px-1 py-0.5 rounded text-white">←</kbd> <kbd className="bg-white/10 px-1 py-0.5 rounded text-white">→</kbd> chuyển bài • <kbd className="bg-white/10 px-1 py-0.5 rounded text-white">ESC</kbd> đóng
                 </span>
