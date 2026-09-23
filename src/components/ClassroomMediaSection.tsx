@@ -160,6 +160,61 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
     }
   };
 
+  // Touch / Trackpad swipe handling for Lightbox
+  const lightboxTouchStartX = useRef<number | null>(null);
+  const lightboxTouchStartY = useRef<number | null>(null);
+  const lightboxWheelTimeout = useRef<number | null>(null);
+
+  const handleLightboxTouchStart = (e: React.TouchEvent) => {
+    lightboxTouchStartX.current = e.touches[0].clientX;
+    lightboxTouchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleLightboxTouchEnd = (e: React.TouchEvent) => {
+    if (lightboxTouchStartX.current === null || lightboxTouchStartY.current === null) return;
+    const diffX = e.changedTouches[0].clientX - lightboxTouchStartX.current;
+    const diffY = e.changedTouches[0].clientY - lightboxTouchStartY.current;
+
+    // Only swipe if horizontal move is significant and greater than vertical move
+    if (Math.abs(diffX) > 45 && Math.abs(diffX) > Math.abs(diffY)) {
+      if (diffX > 0) {
+        // Swipe Right -> Previous item
+        setActiveLightboxIndex((prev) =>
+          prev !== null ? (prev - 1 + mediaList.length) % mediaList.length : null
+        );
+      } else {
+        // Swipe Left -> Next item
+        setActiveLightboxIndex((prev) =>
+          prev !== null ? (prev + 1) % mediaList.length : null
+        );
+      }
+    }
+    lightboxTouchStartX.current = null;
+    lightboxTouchStartY.current = null;
+  };
+
+  // Trackpad 2-finger horizontal swipe
+  const handleLightboxWheel = (e: React.WheelEvent) => {
+    if (Math.abs(e.deltaX) > 35 && Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+      if (lightboxWheelTimeout.current) return;
+      lightboxWheelTimeout.current = window.setTimeout(() => {
+        lightboxWheelTimeout.current = null;
+      }, 400);
+
+      if (e.deltaX > 0) {
+        // Wheel Right -> Next
+        setActiveLightboxIndex((prev) =>
+          prev !== null ? (prev + 1) % mediaList.length : null
+        );
+      } else {
+        // Wheel Left -> Previous
+        setActiveLightboxIndex((prev) =>
+          prev !== null ? (prev - 1 + mediaList.length) % mediaList.length : null
+        );
+      }
+    }
+  };
+
   // Keyboard navigation for Fullscreen Album Lightbox
   useEffect(() => {
     if (activeLightboxIndex === null) return;
@@ -769,7 +824,12 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
             </div>
 
             {/* Main Stage Display (Image or Video) + Nav Buttons */}
-            <div className="relative flex-1 bg-black/95 overflow-hidden flex items-center justify-center group/stage">
+            <div
+              onTouchStart={handleLightboxTouchStart}
+              onTouchEnd={handleLightboxTouchEnd}
+              onWheel={handleLightboxWheel}
+              className="relative flex-1 bg-black/95 overflow-hidden flex items-center justify-center group/stage select-none touch-pan-y"
+            >
               {/* Previous Button */}
               {mediaList.length > 1 && (
                 <button
