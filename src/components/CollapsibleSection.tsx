@@ -40,7 +40,7 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
           type="button"
           onClick={onToggle}
           aria-expanded={false}
-          className={`relative w-full flex items-center justify-between gap-2 sm:gap-3 px-4 py-3.5 sm:px-6 sm:py-4 soft-ui-embossed ${effectiveRounded} hover:shadow-[var(--shadow-floating)] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[var(--shadow-pressed)] text-left transition-all duration-200 cursor-pointer min-h-[60px] sm:min-h-[68px]`}
+          className={`group relative w-full flex items-center justify-between gap-2 sm:gap-3 px-4 py-3.5 sm:px-6 sm:py-4 soft-ui-embossed ${effectiveRounded} hover:shadow-[var(--shadow-floating)] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[var(--shadow-pressed)] text-left transition-all duration-200 cursor-pointer min-h-[60px] sm:min-h-[68px]`}
         >
           <div className="flex items-start sm:items-center gap-2.5 sm:gap-3.5 min-w-0 flex-1">
             <div
@@ -77,11 +77,10 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
               <div className="w-1 h-5 rounded-full bg-[#b8c6d8] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.25)]" />
             </div>
 
-            <span className="text-xs font-semibold text-[#1a1a1a] soft-ui-convex px-2.5 py-1 rounded-md hidden md:inline leading-tight">
-              Mở khóa
-            </span>
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg soft-ui-convex flex items-center justify-center text-[#1a1a1a] shrink-0">
-              <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            {/* Unified Expand Action matching the Collapse button */}
+            <div className="flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-1.5 rounded-md sm:rounded-lg soft-ui-convex text-[#1a1a1a] group-hover:text-[#ff4757] transition-all shrink-0 min-h-[34px] leading-tight">
+              <span className="hidden sm:inline">Mở khóa</span>
+              <ChevronDown className="w-3.5 h-3.5 text-[#ff4757]" />
             </div>
           </div>
         </button>

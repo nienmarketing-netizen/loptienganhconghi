@@ -4,6 +4,7 @@ import {
   Image as ImageIcon,
   Plus,
   Play,
+  Pause,
   Trash2,
   Maximize2,
   X,
@@ -72,6 +73,7 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeVideo, setActiveVideo] = useState<LessonMediaItem | null>(null);
   const [activeImage, setActiveImage] = useState<LessonMediaItem | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
 
   // Form states for uploading / adding new media
   const [modalTab, setModalTab] = useState<"file" | "template">("file");
@@ -177,6 +179,15 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
     }
   };
 
+  // Ensure enough items to create an infinite continuous seamless sliding loop
+  const minItemsForLoop = 4;
+  const repeatCount = Math.max(1, Math.ceil(minItemsForLoop / Math.max(1, mediaList.length)));
+  const baseItems = Array.from({ length: repeatCount }, () => mediaList).flat();
+  // Duplicate baseItems into 2 identical halves for the 0% -> -50% translateX continuous loop
+  const slideItems = [...baseItems, ...baseItems];
+  // Calculate a slow, relaxed speed: ~8.5s per unique card, minimum 36s
+  const slideDuration = Math.max(36, baseItems.length * 8.5);
+
   return (
     <div
       id="classroom-media-section"
@@ -195,28 +206,50 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
                 {mediaList.length}
               </span>
             </h4>
-            <p className="text-xs text-[#666666] mt-0.5 font-normal">
-              Cô Nghi ghi lại khoảnh khắc học tập thực tế để phụ huynh tiện theo dõi
-            </p>
           </div>
         </div>
 
-        {/* Teacher Upload Action Button */}
-        <button
-          type="button"
-          id="btn-teacher-add-media"
-          onClick={() => {
-            setUploadSuccessMsg("");
-            setIsModalOpen(true);
-          }}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md sm:rounded-lg bg-[#ff4757] hover:bg-[#ff3344] text-white font-semibold text-xs shadow-[var(--shadow-accent)] transition-all active:translate-y-[1px] cursor-pointer border border-white/30 leading-tight"
-        >
-          <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
-          <span>Thêm ảnh / video</span>
-        </button>
+        {/* Action Controls */}
+        <div className="flex items-center gap-2">
+          {mediaList.length > 0 && (
+            <button
+              type="button"
+              id="btn-toggle-slide-pause"
+              onClick={() => setIsPaused((prev) => !prev)}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md sm:rounded-lg soft-ui-convex text-[#1a1a1a] hover:text-[#ff4757] font-semibold text-xs transition-all active:translate-y-[1px] cursor-pointer"
+              title={isPaused ? "Bấm để tiếp tục cuộn tự động" : "Bấm để tạm dừng cuộn"}
+            >
+              {isPaused ? (
+                <>
+                  <Play className="w-3.5 h-3.5 text-[#ff4757] fill-[#ff4757]" />
+                  <span className="hidden sm:inline">Phát tiếp</span>
+                </>
+              ) : (
+                <>
+                  <Pause className="w-3.5 h-3.5 text-[#ff4757]" />
+                  <span className="hidden sm:inline">Tạm dừng</span>
+                </>
+              )}
+            </button>
+          )}
+
+          {/* Teacher Upload Action Button */}
+          <button
+            type="button"
+            id="btn-teacher-add-media"
+            onClick={() => {
+              setUploadSuccessMsg("");
+              setIsModalOpen(true);
+            }}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md sm:rounded-lg bg-[#ff4757] hover:bg-[#ff3344] text-white font-semibold text-xs shadow-[var(--shadow-accent)] transition-all active:translate-y-[1px] cursor-pointer border border-white/30 leading-tight"
+          >
+            <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
+            <span>Thêm ảnh / video</span>
+          </button>
+        </div>
       </div>
 
-      {/* Media Cards Grid */}
+      {/* Media Cards Continuous Slide Carousel */}
       {mediaList.length === 0 ? (
         <div className="text-center py-6 px-4 soft-ui-debossed rounded-lg space-y-2">
           <div className="w-10 h-10 rounded-full soft-ui-convex text-[#475569] flex items-center justify-center mx-auto">
@@ -234,109 +267,117 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {mediaList.map((item) => {
-            const isVideo = item.type === "video";
-            return (
-              <div
-                key={item.id}
-                onClick={() => {
-                  if (isVideo) {
-                    setActiveVideo(item);
-                  } else {
-                    setActiveImage(item);
-                  }
-                }}
-                className="group relative rounded-lg overflow-hidden soft-ui-convex hover:shadow-[var(--shadow-floating)] transition-all cursor-pointer flex flex-col justify-between"
-              >
-                {/* Media Preview Container - Bright, Clean & Vivid */}
-                <div className="relative aspect-video w-full bg-slate-100 overflow-hidden flex items-center justify-center">
-                  <img
-                    src={item.thumbnail || item.url}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-100"
-                  />
+        <div className="relative overflow-hidden rounded-lg sm:rounded-xl p-1 bg-[#dbe4ee]/35 border border-[#babecc]/50 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] group/slider">
+          {/* Edge gradient masks for seamless entering/exiting effect */}
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-[#e0e5ec] via-[#e0e5ec]/80 to-transparent z-10" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-[#e0e5ec] via-[#e0e5ec]/80 to-transparent z-10" />
 
-                  {/* Top Badges */}
-                  <div className="absolute top-2 left-2 flex items-center gap-1.5">
-                    <span
-                      className={`inline-flex items-center gap-1 text-[10px] font-bold font-mono px-2 py-0.5 rounded-md shadow-xs ${
-                        isVideo
-                          ? "bg-[#ff4757] text-white"
-                          : "bg-white/95 text-[#1e293b] border border-slate-200 shadow-xs"
-                      }`}
-                    >
-                      {isVideo ? (
-                        <>
-                          <Video className="w-2.5 h-2.5" />
-                          <span>Video</span>
-                        </>
-                      ) : (
-                        <>
-                          <ImageIcon className="w-2.5 h-2.5" />
-                          <span>Hình ảnh</span>
-                        </>
-                      )}
-                    </span>
+          {/* Continuous Infinite Sliding Track */}
+          <div
+            className="flex items-stretch gap-3.5 animate-media-slide py-1 w-max"
+            style={{
+              animationDuration: `${slideDuration}s`,
+              animationPlayState: isPaused ? "paused" : undefined,
+            }}
+          >
+            {slideItems.map((item, idx) => {
+              const isVideo = item.type === "video";
+              return (
+                <div
+                  key={`${item.id}-slide-${idx}`}
+                  onClick={() => {
+                    if (isVideo) {
+                      setActiveVideo(item);
+                    } else {
+                      setActiveImage(item);
+                    }
+                  }}
+                  className="group relative rounded-lg overflow-hidden soft-ui-convex hover:shadow-[var(--shadow-floating)] transition-all cursor-pointer flex flex-col justify-between w-64 sm:w-72 md:w-80 shrink-0 select-none border border-white/80 border-b-[#babecc]/70 border-r-[#babecc]/70"
+                >
+                  {/* Media Preview Container - Bright, Clean & Vivid */}
+                  <div className="relative aspect-video w-full bg-slate-900/10 overflow-hidden flex items-center justify-center">
+                    <img
+                      src={item.thumbnail || item.url}
+                      alt={item.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-100"
+                    />
 
-                    {item.tag && (
-                      <span className="text-[10px] font-bold font-mono text-slate-800 bg-white/90 backdrop-blur-xs px-1.5 py-0.5 rounded-md border border-slate-200 shadow-xs">
-                        {item.tag}
+                    {/* Top Badges */}
+                    <div className="absolute top-2 left-2 flex items-center gap-1.5 z-10">
+                      <span
+                        className={`inline-flex items-center gap-1 text-[10px] font-bold font-mono px-2 py-0.5 rounded-md shadow-xs ${
+                          isVideo
+                            ? "bg-[#ff4757] text-white"
+                            : "bg-white/95 text-[#1e293b] border border-slate-200 shadow-xs"
+                        }`}
+                      >
+                        {isVideo ? (
+                          <>
+                            <Video className="w-2.5 h-2.5" />
+                            <span>Video</span>
+                          </>
+                        ) : (
+                          <>
+                            <ImageIcon className="w-2.5 h-2.5" />
+                            <span>Hình ảnh</span>
+                          </>
+                        )}
                       </span>
+
+                      {item.tag && (
+                        <span className="text-[10px] font-bold font-mono text-slate-800 bg-white/90 backdrop-blur-xs px-1.5 py-0.5 rounded-md border border-slate-200 shadow-xs">
+                          {item.tag}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Delete Button (Teacher management) */}
+                    <button
+                      type="button"
+                      onClick={(e) => handleDeleteMedia(item.id, e)}
+                      className="absolute top-2 right-2 w-7 h-7 rounded-lg bg-black/40 hover:bg-[#ff4757] text-white flex items-center justify-center transition-colors cursor-pointer backdrop-blur-xs z-10"
+                      title="Xóa ảnh/video này"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+
+                    {/* Play Button Overlay (for Videos) */}
+                    {isVideo && (
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div className="w-11 h-11 rounded-full bg-[#ff4757] text-white flex items-center justify-center shadow-[var(--shadow-accent)] group-hover:scale-110 group-active:scale-95 transition-all border border-white/40">
+                          <Play className="w-5 h-5 fill-white ml-0.5" />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* View Fullscreen Overlay (for Images) */}
+                    {!isVideo && (
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20 pointer-events-none">
+                        <div className="w-9 h-9 rounded-full bg-white text-[#1e293b] flex items-center justify-center shadow-md">
+                          <Maximize2 className="w-4 h-4 text-[#ff4757]" />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Video Duration */}
+                    {isVideo && item.duration && (
+                      <div className="absolute bottom-2 right-2 bg-black/75 text-white text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border border-white/20 z-10">
+                        {item.duration}
+                      </div>
                     )}
                   </div>
 
-                  {/* Delete Button (Teacher management) */}
-                  <button
-                    type="button"
-                    onClick={(e) => handleDeleteMedia(item.id, e)}
-                    className="absolute top-2 right-2 w-7 h-7 rounded-lg bg-black/40 hover:bg-[#ff4757] text-white flex items-center justify-center transition-colors cursor-pointer backdrop-blur-xs"
-                    title="Xóa ảnh/video này"
-                  >
-                    <Trash2 className="w-3.5 h-3.5" />
-                  </button>
-
-                  {/* Play Button Overlay (for Videos) */}
-                  {isVideo && (
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      <div className="w-11 h-11 rounded-full bg-[#ff4757] text-white flex items-center justify-center shadow-[var(--shadow-accent)] group-hover:scale-110 group-active:scale-95 transition-all border border-white/40">
-                        <Play className="w-5 h-5 fill-white ml-0.5" />
-                      </div>
-                    </div>
-                  )}
-
-                  {/* View Fullscreen Overlay (for Images) */}
-                  {!isVideo && (
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20 pointer-events-none">
-                      <div className="w-9 h-9 rounded-full bg-white text-[#1e293b] flex items-center justify-center shadow-md">
-                        <Maximize2 className="w-4 h-4 text-[#ff4757]" />
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Video Duration */}
-                  {isVideo && item.duration && (
-                    <div className="absolute bottom-2 right-2 bg-black/75 text-white text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border border-white/20">
-                      {item.duration}
-                    </div>
-                  )}
-                </div>
-
-                {/* Card Footer Info */}
-                <div className="p-2.5 bg-white text-[#1e293b] space-y-1 border-t border-slate-100">
-                  <h5 className="text-xs font-bold text-[#1e293b] line-clamp-1 leading-snug group-hover:text-[#ff4757] transition-colors">
-                    {item.title}
-                  </h5>
-                  <div className="flex items-center justify-between text-[10px] text-[#475569] font-mono">
-                    <span className="flex items-center gap-1 font-semibold">
-                      <span>{item.uploadedBy || "Cô Nghi"}</span>
-                    </span>
-                    <span>{item.timestamp || lessonDate}</span>
+                  {/* Card Footer Info */}
+                  <div className="p-2.5 bg-white text-[#1e293b] border-t border-slate-100">
+                    <h5 className="text-xs font-bold text-[#1e293b] line-clamp-1 leading-snug group-hover:text-[#ff4757] transition-colors">
+                      {item.title}
+                    </h5>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       )}
 

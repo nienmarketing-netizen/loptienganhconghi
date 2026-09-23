@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { RecentLessonInfo } from "../types";
 import { ClassroomMediaSection } from "./ClassroomMediaSection";
+import { formatDateWithDayOfWeek } from "../lib/dateUtils";
 
 interface RecentLessonBlockProps {
   lesson?: RecentLessonInfo;
@@ -41,7 +42,7 @@ export const RecentLessonBlock: React.FC<RecentLessonBlockProps> = ({
           {/* Date Badge */}
           <div className="inline-flex items-center gap-1.5 soft-ui-convex text-[#1a1a1a] text-xs font-semibold px-3 py-1.5 rounded-md leading-tight">
             <Calendar className="w-3.5 h-3.5 text-[#ff4757]" />
-            <span>{lesson.date}</span>
+            <span>{formatDateWithDayOfWeek(lesson.date)}</span>
           </div>
 
           {/* Attendance Status */}
@@ -128,7 +129,7 @@ export const RecentLessonBlock: React.FC<RecentLessonBlockProps> = ({
       <ClassroomMediaSection
         initialMedia={lesson.mediaItems}
         studentName={studentName}
-        lessonDate={lesson.date}
+        lessonDate={formatDateWithDayOfWeek(lesson.date)}
       />
     </div>
   );

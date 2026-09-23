@@ -13,6 +13,7 @@ import {
   Calendar,
 } from "lucide-react";
 import { Assignment } from "../types";
+import { formatWithCorrectDayOfWeek } from "../lib/dateUtils";
 
 interface UploadModalProps {
   assignment: Assignment;
@@ -145,7 +146,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
                 Hạn chót nộp:
               </span>
               <span className="font-semibold text-[#ff4757]">
-                {assignment.deadline?.replace(/(\b\d{1,2}\/\d{1,2})\b(?!\/\d{2,4})/g, "$1/2026")}
+                {formatWithCorrectDayOfWeek(assignment.deadline || "")}
               </span>
             </div>
 
@@ -157,8 +158,8 @@ export const UploadModal: React.FC<UploadModalProps> = ({
                 </span>
                 <span className="font-semibold text-emerald-800">
                   {assignment.submittedAt
-                    ? assignment.submittedAt.replace(/(\b\d{1,2}\/\d{1,2})\b(?!\/\d{2,4})/g, "$1/2026")
-                    : "19:45 Thứ Sáu, 20/09/2026"}
+                    ? formatWithCorrectDayOfWeek(assignment.submittedAt)
+                    : "19:45 Chủ Nhật, 20/09/2026"}
                 </span>
               </div>
             )}

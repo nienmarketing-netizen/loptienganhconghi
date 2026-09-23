@@ -473,3 +473,42 @@ blockquote,
 .animate-marquee-slow:active {
   animation-play-state: paused;
 }
+
+/* Continuous slow slide track for classroom media gallery */
+@keyframes media-slide-continuous {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-media-slide {
+  display: flex;
+  width: max-content;
+  animation: media-slide-continuous 36s linear infinite;
+  will-change: transform;
+}
+
+.animate-media-slide:hover,
+.animate-media-slide:active {
+  animation-play-state: paused;
+}
+
+/* Mobile tab scroll indicator - blinking & nudging right */
+@keyframes blink-nudge-right {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(3px);
+  }
+}
+
+.animate-blink-nudge {
+  animation: blink-nudge-right 1.25s ease-in-out infinite;
+}
+

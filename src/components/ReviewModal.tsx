@@ -20,6 +20,7 @@ import {
   RotateCcw,
 } from "lucide-react";
 import { Assignment } from "../types";
+import { formatWithCorrectDayOfWeek } from "../lib/dateUtils";
 
 interface ReviewModalProps {
   assignment: Assignment;
@@ -164,8 +165,8 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                 </span>
                 <span className="font-semibold text-[#1a1a1a]">
                   {assignment.submittedAt
-                    ? assignment.submittedAt.replace(/(\b\d{1,2}\/\d{1,2})\b(?!\/\d{2,4})/g, "$1/2026")
-                    : "19:15 Chủ Nhật, 15/09/2026"}
+                    ? formatWithCorrectDayOfWeek(assignment.submittedAt)
+                    : "19:15 Thứ Ba, 15/09/2026"}
                 </span>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   BookOpen,
   Calendar,
@@ -27,6 +27,10 @@ import { UploadModal } from "./UploadModal";
 import { ReviewModal } from "./ReviewModal";
 import { MaterialPreviewModal } from "./MaterialPreviewModal";
 import { MaterialsListModal } from "./MaterialsListModal";
+import {
+  formatWithCorrectDayOfWeek,
+  getVietnameseDayOfWeek,
+} from "../lib/dateUtils";
 
 interface AssignmentListProps {
   student: StudentProfile;
@@ -59,6 +63,28 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
 
   const assignments = student.assignments || [];
 
+  const tabsContainerRef = useRef<HTMLDivElement>(null);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const checkTabsScroll = () => {
+    if (!tabsContainerRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = tabsContainerRef.current;
+    // Show arrow if overflow exists and user hasn't scrolled to the far right end
+    setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 10);
+  };
+
+  useEffect(() => {
+    checkTabsScroll();
+    const handleResize = () => checkTabsScroll();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [assignments.length]);
+
+  const handleScrollRight = () => {
+    if (!tabsContainerRef.current) return;
+    tabsContainerRef.current.scrollBy({ left: 120, behavior: "smooth" });
+  };
+
   const filteredAssignments = assignments.filter((asg) => {
     if (filterStatus === "all") return true;
     return asg.status === filterStatus;
@@ -71,7 +97,7 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
   const formatDeadlineText = (deadline: string) => {
     if (!deadline) return "";
     let text = deadline.includes(":") ? deadline : `21:00 ${deadline}`;
-    return text.replace(/(\b\d{1,2}\/\d{1,2})\b(?!\/\d{2,4})/g, "$1/2026");
+    return formatWithCorrectDayOfWeek(text);
   };
 
   // Helper to get attached materials for an assignment (only actual attached files)
@@ -215,7 +241,8 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
     const timeStr = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
     const dayStr = String(now.getDate()).padStart(2, "0");
     const monthStr = String(now.getMonth() + 1).padStart(2, "0");
-    const submittedTime = `${timeStr}, ${dayStr}/${monthStr}/2026`;
+    const dayOfWeek = getVietnameseDayOfWeek(now);
+    const submittedTime = `${timeStr} ${dayOfWeek}, ${dayStr}/${monthStr}/2026`;
 
     const updated = assignments.map((a) => {
       if (a.id === assignmentId) {
@@ -273,57 +300,91 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
       </div>
 
       {/* Filter Tabs - Recessed Well */}
-      <div className="flex items-center gap-1.5 soft-ui-debossed p-1 rounded-lg overflow-x-auto no-scrollbar text-xs font-semibold">
-        <button
-          type="button"
-          onClick={() => setFilterStatus("all")}
-          className={`px-3.5 py-2 rounded-md transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center justify-center leading-tight ${
-            filterStatus === "all"
-              ? "soft-ui-convex text-[#1a1a1a] font-semibold"
-              : "text-[#666666] hover:text-[#1a1a1a]"
-          }`}
+      <div className="relative">
+        <div
+          ref={tabsContainerRef}
+          onScroll={checkTabsScroll}
+          className="flex items-center gap-1.5 soft-ui-debossed p-1 rounded-lg overflow-x-auto no-scrollbar text-xs font-semibold scroll-smooth"
         >
-          Tất cả ({assignments.length})
-        </button>
+          <button
+            type="button"
+            onClick={(e) => {
+              setFilterStatus("all");
+              e.currentTarget.scrollIntoView({ behavior: "smooth", inline: "nearest", block: "nearest" });
+            }}
+            className={`px-3.5 py-2 rounded-md transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center justify-center leading-tight ${
+              filterStatus === "all"
+                ? "soft-ui-convex text-[#1a1a1a] font-semibold"
+                : "text-[#666666] hover:text-[#1a1a1a]"
+            }`}
+          >
+            Tất cả ({assignments.length})
+          </button>
 
-        <button
-          type="button"
-          onClick={() => setFilterStatus("not_done")}
-          className={`px-3.5 py-2 rounded-md transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center gap-1.5 leading-tight ${
-            filterStatus === "not_done"
-              ? "soft-ui-convex text-amber-900 font-semibold"
-              : "text-[#666666] hover:text-[#1a1a1a]"
-          }`}
-        >
-          <span className="w-2 h-2 rounded-full bg-amber-500" />
-          <span>Chưa làm ({countNotDone})</span>
-        </button>
+          <button
+            type="button"
+            onClick={(e) => {
+              setFilterStatus("not_done");
+              e.currentTarget.scrollIntoView({ behavior: "smooth", inline: "nearest", block: "nearest" });
+            }}
+            className={`px-3.5 py-2 rounded-md transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center gap-1.5 leading-tight ${
+              filterStatus === "not_done"
+                ? "soft-ui-convex text-amber-900 font-semibold"
+                : "text-[#666666] hover:text-[#1a1a1a]"
+            }`}
+          >
+            <span className="w-2 h-2 rounded-full bg-amber-500" />
+            <span>Chưa làm ({countNotDone})</span>
+          </button>
 
-        <button
-          type="button"
-          onClick={() => setFilterStatus("submitted")}
-          className={`px-3.5 py-2 rounded-md transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center gap-1.5 leading-tight ${
-            filterStatus === "submitted"
-              ? "soft-ui-convex text-sky-900 font-semibold"
-              : "text-[#666666] hover:text-[#1a1a1a]"
-          }`}
-        >
-          <span className="w-2 h-2 rounded-full bg-sky-500" />
-          <span>Đã nộp ({countSubmitted})</span>
-        </button>
+          <button
+            type="button"
+            onClick={(e) => {
+              setFilterStatus("submitted");
+              e.currentTarget.scrollIntoView({ behavior: "smooth", inline: "nearest", block: "nearest" });
+            }}
+            className={`px-3.5 py-2 rounded-md transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center gap-1.5 leading-tight ${
+              filterStatus === "submitted"
+                ? "soft-ui-convex text-sky-900 font-semibold"
+                : "text-[#666666] hover:text-[#1a1a1a]"
+            }`}
+          >
+            <span className="w-2 h-2 rounded-full bg-sky-500" />
+            <span>Đã nộp ({countSubmitted})</span>
+          </button>
 
-        <button
-          type="button"
-          onClick={() => setFilterStatus("graded")}
-          className={`px-3.5 py-2 rounded-md transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center gap-1.5 leading-tight ${
-            filterStatus === "graded"
-              ? "soft-ui-convex text-emerald-900 font-semibold"
-              : "text-[#666666] hover:text-[#1a1a1a]"
-          }`}
-        >
-          <span className="w-2 h-2 rounded-full bg-emerald-500" />
-          <span>Đã chấm ({countGraded})</span>
-        </button>
+          <button
+            type="button"
+            onClick={(e) => {
+              setFilterStatus("graded");
+              e.currentTarget.scrollIntoView({ behavior: "smooth", inline: "nearest", block: "nearest" });
+            }}
+            className={`px-3.5 py-2 rounded-md transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center gap-1.5 leading-tight ${
+              filterStatus === "graded"
+                ? "soft-ui-convex text-emerald-900 font-semibold"
+                : "text-[#666666] hover:text-[#1a1a1a]"
+            }`}
+          >
+            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            <span>Đã chấm ({countGraded})</span>
+          </button>
+        </div>
+
+        {/* Mobile Navigation Hint: Blinking and nudging right arrow indicating more tabs are available behind */}
+        {canScrollRight && (
+          <button
+            type="button"
+            id="btn-scroll-tabs-more"
+            onClick={handleScrollRight}
+            className="sm:hidden absolute right-0.5 top-0.5 bottom-0.5 flex items-center justify-end pl-8 pr-1.5 rounded-r-lg bg-gradient-to-l from-[#d7e1ec] via-[#d7e1ec]/90 to-transparent cursor-pointer z-10 select-none group transition-opacity duration-200"
+            aria-label="Cuộn xem thêm các tab bài tập phía sau"
+            title="Còn tab phía sau, bấm hoặc vuốt sang để xem"
+          >
+            <div className="w-6 h-6 rounded-md soft-ui-convex flex items-center justify-center text-[#ff4757] border border-white/60 shadow-[0_1px_4px_rgba(255,71,87,0.3)] animate-blink-nudge">
+              <ChevronRight className="w-3.5 h-3.5 stroke-[2.5]" />
+            </div>
+          </button>
+        )}
       </div>
 
       {/* Assignment Cards List */}
@@ -343,10 +404,10 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                 <div className="space-y-1.5">
                   {/* Unit badge & Token reward */}
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-xs font-semibold px-2.5 py-0.5 rounded-md soft-ui-convex text-[#1a1a1a] leading-tight">
+                    <span className="text-xs font-semibold px-2.5 py-1.5 rounded-md soft-ui-convex text-[#1a1a1a] leading-tight">
                       {asg.unit}
                     </span>
-                    <span className="text-xs font-semibold text-amber-800 bg-amber-100/90 px-2.5 py-0.5 rounded-md border border-amber-300 flex items-center gap-1 leading-tight">
+                    <span className="text-xs font-semibold text-amber-800 bg-amber-100/90 px-2.5 py-1.5 rounded-md border border-amber-300 flex items-center gap-1 leading-tight">
                       <Coins className="w-3.5 h-3.5 text-amber-600" />
                       +{asg.tokensReward} Tokens
                     </span>
@@ -381,134 +442,100 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                 </div>
               </div>
 
-              {/* Deadline, Score and Status Banner - Recessed Well according to AGENTS.md Section 4 */}
-              <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-lg sm:rounded-xl p-3.5 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-[var(--shadow-recessed-sm)]">
-                <div className="flex items-center gap-3.5 text-left w-full sm:w-auto">
-                  {/* Khối Điểm số / Huy hiệu San Hô Đỏ Nổi Khối */}
-                  {isGraded ? (
-                    <div className="relative shrink-0 flex flex-col items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-lg sm:rounded-xl bg-[#ff4757] text-white shadow-[var(--shadow-accent-sm)] border border-white/30">
-                      <span className="text-xl sm:text-2xl font-bold font-mono leading-none tracking-tight">
-                        {asg.gradedDetails?.score || 9.5}
-                      </span>
-                      <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wider opacity-90">
-                        / {asg.gradedDetails?.maxScore || 10} điểm
-                      </span>
-                    </div>
-                  ) : isSubmitted ? (
-                    <div className="relative shrink-0 flex flex-col items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-lg sm:rounded-xl bg-sky-600 text-white shadow-[0_4px_12px_rgba(2,132,199,0.35)] border border-white/30">
-                      <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-white mb-0.5" />
-                      <span className="text-[9px] sm:text-[10px] font-bold font-mono uppercase tracking-wider leading-none">
-                        ĐÃ NỘP
-                      </span>
-                    </div>
-                  ) : (
-                    <div className="relative shrink-0 flex flex-col items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-lg sm:rounded-xl bg-[#ff4757] text-white shadow-[var(--shadow-accent-sm)] border border-white/30">
-                      <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-white mb-0.5" />
-                      <span className="text-[9px] sm:text-[10px] font-bold font-mono uppercase tracking-wider leading-none">
-                        HẠN NỘP
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Thông tin học sinh, Token & Nhận xét / Thời hạn */}
-                  <div>
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-xs sm:text-sm font-bold text-[#1a1a1a]">
-                        {isGraded ? student.fullName : isSubmitted ? student.fullName : "Nhiệm vụ tuần này"}
-                      </span>
-                      {isGraded ? (
-                        <span className="inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-900 border border-emerald-300 leading-tight">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                          +{asg.tokensReward} Tokens
-                        </span>
-                      ) : isSubmitted ? (
-                        <span className="inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-md bg-sky-100 text-sky-900 border border-sky-300 leading-tight">
-                          <Clock className="w-3.5 h-3.5 text-sky-700" />
-                          Đang chờ cô chấm
-                        </span>
-                      ) : (
-                        <span className="inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-md bg-amber-100 text-amber-900 border border-amber-300 leading-tight">
-                          <AlertCircle className="w-3.5 h-3.5 text-amber-700" />
-                          Chưa hoàn thành
-                        </span>
-                      )}
-                    </div>
-                    <p className={`text-xs sm:text-sm font-semibold mt-0.5 ${
-                      isSubmitted ? "text-sky-800" : "text-[#ff4757]"
-                    }`}>
-                      {isGraded
-                        ? (asg.gradedDetails?.feedbackTitle || "Xuất sắc! Bóc tách cấu trúc câu rất chắc")
+              {/* Deadline / Submission Time - Clean Recessed Well */}
+              <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-lg sm:rounded-xl px-3.5 py-2.5 sm:px-4 sm:py-3 flex items-center justify-between gap-2.5 shadow-[var(--shadow-recessed-sm)]">
+                <div className="flex items-center gap-2.5 text-left min-w-0">
+                  <div
+                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg soft-ui-convex flex items-center justify-center shrink-0 ${
+                      isNotDone
+                        ? "text-[#ff4757]"
                         : isSubmitted
-                        ? "Bài tập đã gửi thành công • Cô Nghi đang xem và sửa bài"
-                        : `${formatDeadlineText(asg.deadline)} • Nhớ nộp đúng hạn để nhận +${asg.tokensReward} Tokens`}
-                    </p>
+                        ? "text-sky-600"
+                        : "text-emerald-600"
+                    }`}
+                  >
+                    {isNotDone ? (
+                      <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ff4757]" />
+                    ) : isSubmitted ? (
+                      <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-600" />
+                    ) : (
+                      <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600" />
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-1.5 flex-wrap text-xs sm:text-sm">
+                    <span className="text-[#666666] font-medium">
+                      {isNotDone ? "Hạn chót nộp bài:" : "Thời gian nộp bài:"}
+                    </span>
+                    <span
+                      className={`font-bold font-mono tracking-tight ${
+                        isNotDone
+                          ? "text-[#ff4757]"
+                          : isSubmitted
+                          ? "text-sky-800"
+                          : "text-[#1a1a1a]"
+                      }`}
+                    >
+                      {isNotDone
+                        ? formatDeadlineText(asg.deadline)
+                        : formatWithCorrectDayOfWeek(
+                            asg.submittedAt ||
+                              (isGraded
+                                ? "19:15 Thứ Ba, 15/09/2026"
+                                : "19:45 Chủ Nhật, 20/09/2026")
+                          )}
+                    </span>
                   </div>
                 </div>
 
-                {/* Cột thông tin phụ bên phải (Giáo viên, Ngày chấm / Thời gian nộp / Hạn chót) */}
-                <div className="shrink-0 w-full sm:w-auto flex flex-col justify-center sm:items-end gap-1.5 border-t sm:border-t-0 pt-2.5 sm:pt-0 border-[#babecc]/50 sm:border-l sm:border-[#babecc]/50 sm:pl-4">
-                  <div className="flex items-center justify-between sm:justify-end gap-1.5 w-full sm:w-auto text-xs">
-                    <span className="text-[#666666] font-medium">
-                      {isGraded ? "Giáo viên chấm:" : "Giáo viên phụ trách:"}
-                    </span>
-                    <span className="font-semibold text-[#1a1a1a]">Cô Nghi</span>
+                {isGraded && (
+                  <div className="hidden sm:flex items-center gap-1.5 text-xs text-[#666666] shrink-0 font-medium border-l border-[#babecc]/60 pl-3">
+                    <span>Ngày chấm:</span>
+                    <span className="font-semibold text-[#1a1a1a]">Thứ Tư, 16/09/2026</span>
                   </div>
-                  <div className="flex items-center justify-between sm:justify-end gap-1.5 w-full sm:w-auto text-xs">
-                    <span className="text-[#666666] font-medium">
-                      {isGraded ? "Ngày chấm:" : isSubmitted ? "Thời gian nộp:" : "Hạn chót:"}
-                    </span>
-                    <span className={`font-semibold ${
-                      isNotDone ? "text-[#ff4757] font-mono" : "text-[#1a1a1a]"
-                    }`}>
-                      {isGraded
-                        ? "16/09/2026"
-                        : isSubmitted
-                        ? (asg.submittedAt || "19:45 Thứ Sáu, 20/09/2026")
-                        : asg.deadline}
-                    </span>
-                  </div>
-                </div>
+                )}
               </div>
 
               {/* ACTION BUTTONS */}
-              <div className="pt-1 flex flex-wrap items-center gap-2.5">
+              <div className="pt-1">
                 {/* 1. Nút "Tài liệu" & Nút "Chụp ảnh / Nộp bài" (Nếu trạng thái là Chưa làm) */}
                 {isNotDone && (
-                  <>
+                  <div className="w-full flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
                     <button
                       type="button"
                       id={`btn-materials-${asg.id}`}
                       onClick={() => setSelectedForMaterialsList(asg)}
-                      className="inline-flex items-center justify-center gap-2 min-h-[42px] px-4 py-2 rounded-md sm:rounded-lg font-semibold text-xs soft-ui-convex text-[#1a1a1a] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px] transition-all cursor-pointer leading-tight"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-4 py-2 rounded-md sm:rounded-lg font-semibold text-xs soft-ui-convex text-[#1a1a1a] hover:text-[#ff4757] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px] transition-all cursor-pointer leading-tight"
                       title="Bấm để xem danh sách tài liệu đính kèm"
                     >
-                      <FolderDown className="w-4 h-4 text-[#ff4757]" />
-                      <span>Tài liệu ({materials.length})</span>
+                      <FolderDown className="w-4 h-4 text-[#ff4757] shrink-0" />
+                      <span>Tài liệu & đề bài ({materials.length})</span>
                     </button>
 
-                    {/* Nút "Nộp bài" */}
                     <button
                       type="button"
                       id={`btn-submit-photo-${asg.id}`}
                       onClick={() => setSelectedForUpload(asg)}
-                      className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 min-h-[42px] px-5 py-2 rounded-md sm:rounded-lg bg-[#ff4757] hover:bg-[#e03949] text-white font-semibold text-xs shadow-[var(--shadow-accent)] active:shadow-[var(--shadow-accent-pressed)] active:translate-y-[1px] transition-all cursor-pointer ml-auto leading-tight"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-5 py-2 rounded-md sm:rounded-lg bg-[#ff4757] hover:bg-[#e03949] text-white font-semibold text-xs shadow-[var(--shadow-accent)] active:shadow-[var(--shadow-accent-pressed)] active:translate-y-[1px] transition-all cursor-pointer border border-white/30 sm:ml-auto leading-tight"
                     >
-                      <Camera className="w-4 h-4" />
-                      <span>Nộp bài</span>
+                      <Camera className="w-4 h-4 shrink-0" />
+                      <span>Chụp ảnh nộp bài</span>
+                      <ChevronRight className="w-4 h-4 opacity-80 shrink-0" />
                     </button>
-                  </>
+                  </div>
                 )}
 
                 {/* Status: Đã nộp -> Có thể mở modal tài liệu hoặc xem ảnh/video đã nộp */}
                 {isSubmitted && (
-                  <div className="w-full flex items-center justify-between gap-2 flex-wrap">
+                  <div className="w-full flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
                     <button
                       type="button"
                       id={`btn-materials-submitted-${asg.id}`}
                       onClick={() => setSelectedForMaterialsList(asg)}
-                      className="inline-flex items-center gap-1.5 text-xs text-[#1a1a1a] hover:text-[#ff4757] font-semibold px-3 py-1.5 rounded-md soft-ui-convex transition-all cursor-pointer leading-tight"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-4 py-2 rounded-md sm:rounded-lg font-semibold text-xs soft-ui-convex text-[#1a1a1a] hover:text-[#ff4757] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px] transition-all cursor-pointer leading-tight"
+                      title="Bấm để xem danh sách tài liệu đính kèm"
                     >
-                      <FolderDown className="w-3.5 h-3.5 text-[#ff4757]" />
+                      <FolderDown className="w-4 h-4 text-[#ff4757] shrink-0" />
                       <span>Tài liệu & đề bài ({materials.length})</span>
                     </button>
 
@@ -516,10 +543,11 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                       type="button"
                       id={`btn-view-submission-${asg.id}`}
                       onClick={() => setSelectedForUpload(asg)}
-                      className="inline-flex items-center justify-center gap-1.5 min-h-[40px] px-4 py-2 rounded-md sm:rounded-lg soft-ui-convex text-sky-900 active:shadow-[var(--shadow-pressed-sm)] font-semibold text-xs transition-all cursor-pointer ml-auto leading-tight"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-5 py-2 rounded-md sm:rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs shadow-[0_4px_10px_rgba(2,132,199,0.3)] active:translate-y-[1px] transition-all cursor-pointer border border-sky-400 sm:ml-auto leading-tight"
                     >
-                      <Eye className="w-3.5 h-3.5 text-sky-600" />
+                      <Eye className="w-4 h-4 shrink-0" />
                       <span>Xem bài đã nộp / Bổ sung</span>
+                      <ChevronRight className="w-4 h-4 opacity-80 shrink-0" />
                     </button>
                   </div>
                 )}
@@ -531,9 +559,10 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                       type="button"
                       id={`btn-materials-graded-${asg.id}`}
                       onClick={() => setSelectedForMaterialsList(asg)}
-                      className="inline-flex items-center gap-1.5 text-xs text-[#1a1a1a] hover:text-[#ff4757] font-semibold px-3 py-1.5 rounded-md soft-ui-convex transition-all cursor-pointer leading-tight"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-4 py-2 rounded-md sm:rounded-lg font-semibold text-xs soft-ui-convex text-[#1a1a1a] hover:text-[#ff4757] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px] transition-all cursor-pointer leading-tight"
+                      title="Bấm để xem danh sách tài liệu đính kèm"
                     >
-                      <FolderDown className="w-3.5 h-3.5 text-[#ff4757]" />
+                      <FolderDown className="w-4 h-4 text-[#ff4757] shrink-0" />
                       <span>Tài liệu & đề bài ({materials.length})</span>
                     </button>
 
@@ -541,11 +570,11 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                       type="button"
                       id={`btn-view-graded-${asg.id}`}
                       onClick={() => setSelectedForReview(asg)}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-5 py-2 rounded-md sm:rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-[0_4px_10px_rgba(5,150,105,0.3)] active:translate-y-[1px] transition-all cursor-pointer ml-auto border border-emerald-400 leading-tight"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-5 py-2 rounded-md sm:rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-[0_4px_10px_rgba(5,150,105,0.3)] active:translate-y-[1px] transition-all cursor-pointer border border-emerald-400 sm:ml-auto leading-tight"
                     >
-                      <FileCheck className="w-4 h-4" />
+                      <FileCheck className="w-4 h-4 shrink-0" />
                       <span>Xem bài đã chấm & nhận xét</span>
-                      <ChevronRight className="w-4 h-4 opacity-80" />
+                      <ChevronRight className="w-4 h-4 opacity-80 shrink-0" />
                     </button>
                   </div>
                 )}
