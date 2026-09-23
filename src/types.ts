@@ -105,10 +105,24 @@ export interface GradedCorrection {
   explanation: string;
 }
 
+export interface GradedMediaItem {
+  id: string;
+  type: "image" | "video" | "audio";
+  url: string;
+  title: string;
+  subtitle?: string;
+  badge?: string;
+  tag?: string;
+  duration?: string;
+  thumbnail?: string;
+  uploadedBy?: string; // e.g. "Cô Nghi upload", "Học sinh tự sửa & nộp"
+}
+
 export interface GradedWorkDetails {
   gradedImage: string;
   gradedImages?: string[];
   gradedImageCaptions?: string[];
+  mediaItems?: GradedMediaItem[];
   score: number;
   maxScore: number;
   feedbackTitle: string;

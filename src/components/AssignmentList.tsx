@@ -5,6 +5,7 @@ import {
   Clock,
   Download,
   Camera,
+  UploadCloud,
   CheckCircle2,
   FileCheck,
   AlertCircle,
@@ -515,8 +516,8 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                       onClick={() => setSelectedForUpload(asg)}
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-5 py-2 rounded-md sm:rounded-lg bg-[#ff4757] hover:bg-[#e03949] text-white font-semibold text-xs shadow-[var(--shadow-accent)] active:shadow-[var(--shadow-accent-pressed)] active:translate-y-[1px] transition-all cursor-pointer border border-white/30 sm:ml-auto leading-tight"
                     >
-                      <Camera className="w-4 h-4 shrink-0" />
-                      <span>Chụp ảnh nộp bài</span>
+                      <UploadCloud className="w-4 h-4 shrink-0" />
+                      <span>Tải file lên nộp bài</span>
                       <ChevronRight className="w-4 h-4 opacity-80 shrink-0" />
                     </button>
                   </div>

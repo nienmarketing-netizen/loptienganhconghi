@@ -252,7 +252,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
                         {activeMaterial.title}
                       </h4>
                       <p className="text-xs text-[#4a5568]">
-                        💡 Lời dặn Cô Nghi: Con xem kỹ khẩu hình miệng và bật âm đuôi trước khi quay video nộp bài nhé!
+                        💡 <span className="font-bold text-[#ff4757]" style={{ color: "#ff4757" }}>Lời dặn Cô Nghi:</span> Con xem kỹ khẩu hình miệng và bật âm đuôi trước khi quay video nộp bài nhé!
                       </p>
                     </div>
 
