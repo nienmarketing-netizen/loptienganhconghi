@@ -66,7 +66,7 @@ export const MOCK_STUDENTS: Record<string, StudentProfile> = {
       variant: "success",
     },
     gamification: {
-      currentTokens: 85,
+      currentTokens: 50,
       maxTokens: 100,
       targetRewardName: "Vé xem phim",
     },
