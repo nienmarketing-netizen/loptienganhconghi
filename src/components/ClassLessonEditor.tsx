@@ -532,9 +532,6 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                 <span className="text-xs sm:text-sm font-bold text-[#1a1a1a] tracking-tight">
                   6. Bài tập về nhà:
                 </span>
-                <span className="text-[11px] text-[#666666] block sm:inline sm:ml-2 font-normal">
-                  (Đồng bộ vào mục bài tập của tất cả học sinh trong lớp)
-                </span>
               </div>
             </div>
 
