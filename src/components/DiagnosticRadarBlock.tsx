@@ -6,7 +6,6 @@ import {
   PolarAngleAxis,
   PolarRadiusAxis,
   Radar,
-  Legend,
   Tooltip,
 } from "recharts";
 import { Stethoscope, Calendar, CheckCircle2, MessageSquareHeart, Award } from "lucide-react";
@@ -73,26 +72,20 @@ export const DiagnosticRadarBlock: React.FC<DiagnosticRadarBlockProps> = ({ stud
 
                   {/* Vùng điểm đầu vào */}
                   <Radar
-                    name="Ngày đầu nhập học"
+                    name="Đầu vào"
                     dataKey="baseline"
-                    stroke="#a3b1c6"
-                    fill="#a3b1c6"
-                    fillOpacity={0.35}
+                    stroke="#d4af37"
+                    fill="#FFF3C6"
+                    fillOpacity={0.7}
                   />
 
                   {/* Vùng điểm hiện tại */}
                   <Radar
-                    name="Năng lực hiện tại"
+                    name="Hiện tại"
                     dataKey="current"
                     stroke="#ff4757"
                     fill="#ff4757"
                     fillOpacity={0.45}
-                  />
-
-                  <Legend
-                    verticalAlign="bottom"
-                    iconType="circle"
-                    wrapperStyle={{ paddingTop: "8px", fontSize: "11px" }}
                   />
 
                   <Tooltip
@@ -121,12 +114,12 @@ export const DiagnosticRadarBlock: React.FC<DiagnosticRadarBlockProps> = ({ stud
             {/* Radar Quick Legend Highlights */}
             <div className="w-full flex items-center justify-around pt-2 border-t border-[#b0c0d2]/40 text-[11px] text-[#4a5568] font-mono">
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#a3b1c6]" />
-                <span>Đầu vào (Vùng kim loại)</span>
+                <span className="w-2.5 h-2.5 rounded-full bg-[#FFF3C6] border border-[#d4af37]" />
+                <span className="font-semibold text-[#1a1a1a]">Đầu vào</span>
               </span>
               <span className="flex items-center gap-1.5 font-bold text-[#ff4757]">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#ff4757]" />
-                <span>Hiện tại (Bứt phá)</span>
+                <span>Hiện tại</span>
               </span>
             </div>
           </div>
@@ -135,12 +128,12 @@ export const DiagnosticRadarBlock: React.FC<DiagnosticRadarBlockProps> = ({ stud
         {/* Right: Card Nhận xét của giáo viên ngày đầu nhập học */}
         <div className="md:col-span-6 soft-ui-embossed-sm rounded-lg sm:rounded-xl p-4 flex flex-col justify-between space-y-3">
           <div className="pb-2 border-b border-[#b0c0d2]/40">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 sm:gap-2">
               <span className="text-xs font-semibold text-[#ff4757] flex items-center gap-1.5 leading-tight">
-                <Calendar className="w-3.5 h-3.5 text-[#ff4757]" />
-                Nhập học ngày: {diagnosis.admissionDate}
+                <Calendar className="w-3.5 h-3.5 text-[#ff4757] shrink-0" />
+                <span>Nhập học ngày: {diagnosis.admissionDate}</span>
               </span>
-              <span className="text-xs font-semibold px-2 py-0.5 rounded-md bg-rose-100 text-rose-800 border border-rose-300 leading-tight">
+              <span className="self-start sm:self-auto text-xs font-semibold px-2 py-0.5 rounded-md bg-rose-100 text-rose-800 border border-rose-300 leading-tight">
                 Đầu vào: {diagnosis.baselineOverallScore}/10
               </span>
             </div>
@@ -186,7 +179,7 @@ export const DiagnosticRadarBlock: React.FC<DiagnosticRadarBlockProps> = ({ stud
               </blockquote>
               <div className="pt-1 text-right">
                 <span className="skool-mention text-xs">
-                  @Cô Nghi (Giáo viên chủ nhiệm) ✍️
+                  @Cô Nghi ✍️
                 </span>
               </div>
             </div>
