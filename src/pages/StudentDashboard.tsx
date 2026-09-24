@@ -118,7 +118,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
           subtitle={`${activeStudentProfile.recentLesson.lessonName} • Ngày ${activeStudentProfile.recentLesson.date}`}
           badge={
             <div className="flex items-center gap-1.5">
-              <span className="inline-flex items-center gap-1 text-xs font-bold font-mono text-amber-950 bg-amber-100 border border-amber-300 px-2.5 py-0.5 rounded-md leading-tight whitespace-nowrap">
+              <span className="inline-flex items-center gap-1 text-xs font-semibold text-amber-950 bg-amber-100 border border-amber-300 px-2.5 py-0.5 rounded-md leading-tight whitespace-nowrap">
                 ⭐ {activeStudentProfile.recentLesson.score.value.toFixed(1)}/10
               </span>
               {activeStudentProfile.recentLesson.mediaItems &&
@@ -183,7 +183,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
         title="Tích luỹ và đổi thưởng"
         subtitle={`Mục tiêu đổi quà: ${activeStudentProfile.gamification.targetRewardName}`}
         badge={
-          <span className="inline-flex items-center text-xs font-bold font-mono text-amber-950 bg-amber-100 border border-amber-300 px-2.5 py-0.5 rounded-md leading-tight whitespace-nowrap">
+          <span className="inline-flex items-center text-xs font-semibold text-amber-950 bg-amber-100 border border-amber-300 px-2.5 py-0.5 rounded-md leading-tight whitespace-nowrap">
             {activeStudentProfile.gamification.currentTokens}/100 Tokens
           </span>
         }
@@ -206,7 +206,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
         title="Biểu đồ điểm số và tiến bộ"
         subtitle="So sánh bài kiểm tra lớp Cô Nghi và bài thi học kỳ tại trường"
         badge={
-          <span className="inline-flex items-center text-xs font-bold font-mono text-emerald-950 bg-emerald-100 border border-emerald-300 px-2.5 py-0.5 rounded-md leading-tight whitespace-nowrap">
+          <span className="inline-flex items-center text-xs font-semibold text-emerald-950 bg-emerald-100 border border-emerald-300 px-2.5 py-0.5 rounded-md leading-tight whitespace-nowrap">
             Điểm mới nhất: {latestScore}đ
           </span>
         }
