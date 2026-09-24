@@ -53,7 +53,7 @@ export const AVAILABLE_REWARDS: RewardItem[] = [
 
 export const MOCK_STUDENTS: Record<string, StudentProfile> = {
   "hoang-nam": {
-    id: "STU-001",
+    id: "G7-T24C1-01",
     slug: "hoang-nam",
     fullName: "Nguyễn Hoàng Nam",
     parentSalutation: "mẹ bé Hoàng Nam",
@@ -418,7 +418,7 @@ export const MOCK_STUDENTS: Record<string, StudentProfile> = {
     },
   },
   "ha-my": {
-    id: "STU-002",
+    id: "G8-T35C1-05",
     slug: "ha-my",
     fullName: "Lê Trần Hà My",
     parentSalutation: "mẹ bé Hà My",
@@ -582,7 +582,7 @@ export const MOCK_STUDENTS: Record<string, StudentProfile> = {
     },
   },
   "duc-minh": {
-    id: "STU-003",
+    id: "G6-T7CC1-03",
     slug: "duc-minh",
     fullName: "Trần Đức Minh",
     parentSalutation: "ba bé Đức Minh",

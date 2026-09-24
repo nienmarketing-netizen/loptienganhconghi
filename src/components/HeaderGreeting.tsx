@@ -3,12 +3,15 @@ import { School } from "lucide-react";
 import { StudentProfile } from "../types";
 import { Badge } from "./ui/Badge";
 import { MarqueeText } from "./MarqueeText";
+import { parseStudentCode } from "../lib/studentUtils";
 
 interface HeaderGreetingProps {
   student: StudentProfile;
 }
 
 export const HeaderGreeting: React.FC<HeaderGreetingProps> = ({ student }) => {
+  const parsedCode = parseStudentCode(student.id);
+
   return (
     <header className="relative overflow-hidden rounded-lg sm:rounded-xl bg-[#1e293b] text-white p-4 sm:p-6 shadow-[var(--shadow-card)] border border-slate-700/60">
       {/* Top telemetry bar */}
@@ -50,11 +53,23 @@ export const HeaderGreeting: React.FC<HeaderGreetingProps> = ({ student }) => {
             {student.fullName}
           </h2>
 
-          <div className="text-xs text-slate-200 mt-0.5 flex items-center gap-1.5 font-normal">
+          <div className="text-xs text-slate-200 mt-0.5 flex items-center gap-1.5 font-normal flex-wrap">
             <span className="text-slate-200 font-medium">Mã học sinh:</span>
-            <span className="text-amber-300 font-semibold bg-black/50 px-1.5 py-0.5 rounded border border-white/20 text-xs font-mono">
+            <span
+              title={
+                parsedCode
+                  ? `${parsedCode.grade} • ${parsedCode.daysLabel} • ${parsedCode.shiftLabel} (STT ${parsedCode.sequence})`
+                  : student.id
+              }
+              className="text-amber-300 font-bold bg-black/50 px-2 py-0.5 rounded border border-white/20 text-xs font-mono tracking-wider shadow-xs inline-flex items-center gap-1"
+            >
               {student.id}
             </span>
+            {parsedCode && (
+              <span className="text-[11px] text-slate-300 bg-white/10 px-1.5 py-0.5 rounded border border-white/10 font-normal">
+                {parsedCode.daysLabel} • {parsedCode.shift}
+              </span>
+            )}
           </div>
 
           <div className="flex items-center gap-1.5 text-xs text-slate-200 mt-1 font-normal">
