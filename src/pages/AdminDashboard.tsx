@@ -341,6 +341,29 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     }
   ).length;
 
+  // Student counts for each filter category
+  const unsubmittedStudentsCount = React.useMemo(() => {
+    return classFilteredStudents.filter((s) =>
+      (s.assignments || []).some((a) => a.status === "not_done")
+    ).length;
+  }, [classFilteredStudents]);
+
+  const pendingGradingStudentsCount = React.useMemo(() => {
+    return classFilteredStudents.filter((s) =>
+      (s.assignments || []).some((a) => a.status === "submitted")
+    ).length;
+  }, [classFilteredStudents]);
+
+  const readyForRewardStudentsCount = React.useMemo(() => {
+    return classFilteredStudents.filter((s) => {
+      const studentTokens =
+        s.tokenHistory && s.tokenHistory.length > 0
+          ? s.tokenHistory.reduce((sum, item) => sum + item.tokens, 0)
+          : s.gamification.currentTokens;
+      return studentTokens >= 80;
+    }).length;
+  }, [classFilteredStudents]);
+
   return (
     <div className="w-full max-w-5xl mx-auto px-3 sm:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6">
       {/* Toast Notification Container (Floating Top-Right on desktop, Top Center on mobile) */}
@@ -632,6 +655,26 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         </div>
       </div>
 
+      {/* KHU VỰC NHẬP LIỆU TỔNG QUAN BUỔI HỌC CỦA LỚP (ĐỒNG BỘ SANG CỔNG PHỤ HUYNH) */}
+      <ClassLessonEditor
+        currentClassName={selectedClass}
+        targetStudents={classFilteredStudents}
+        onSyncLessonToStudents={async (updatedList, summary) => {
+          if (onSaveMultipleStudents) {
+            await onSaveMultipleStudents(updatedList);
+          } else if (onSaveStudent) {
+            for (const s of updatedList) {
+              await onSaveStudent(s);
+            }
+          }
+          addToast(
+            "success",
+            "Đã đồng bộ thông tin buổi học!",
+            `Đã cập nhật "${summary.name}" (${summary.date}) cho ${updatedList.length} học sinh.`
+          );
+        }}
+      />
+
       {/* Control Bar: Search & Filter Tabs */}
       <div className="bg-[#d1d9e6] rounded-xl sm:rounded-2xl border border-[#babecc]/60 p-2.5 sm:p-3 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06),inset_-1px_-1px_2px_rgba(255,255,255,0.6)] space-y-2">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
@@ -670,7 +713,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               }`}
             >
               <AlertCircle className="w-3.5 h-3.5" />
-              <span>Chưa nộp bài</span>
+              <span>Chưa nộp bài ({unsubmittedStudentsCount})</span>
             </button>
             <button
               type="button"
@@ -682,7 +725,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               }`}
             >
               <Clock className="w-3.5 h-3.5" />
-              <span>Cần chấm điểm</span>
+              <span>Cần chấm điểm ({pendingGradingStudentsCount})</span>
             </button>
             <button
               type="button"
@@ -694,31 +737,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               }`}
             >
               <Coins className="w-3.5 h-3.5" />
-              <span>Đổi quà</span>
+              <span>Đổi quà ({readyForRewardStudentsCount})</span>
             </button>
           </div>
         </div>
       </div>
-
-      {/* KHU VỰC NHẬP LIỆU TỔNG QUAN BUỔI HỌC CỦA LỚP (ĐỒNG BỘ SANG CỔNG PHỤ HUYNH) */}
-      <ClassLessonEditor
-        currentClassName={selectedClass}
-        targetStudents={classFilteredStudents}
-        onSyncLessonToStudents={async (updatedList, summary) => {
-          if (onSaveMultipleStudents) {
-            await onSaveMultipleStudents(updatedList);
-          } else if (onSaveStudent) {
-            for (const s of updatedList) {
-              await onSaveStudent(s);
-            }
-          }
-          addToast(
-            "success",
-            "Đã đồng bộ thông tin buổi học!",
-            `Đã cập nhật "${summary.name}" (${summary.date}) cho ${updatedList.length} học sinh.`
-          );
-        }}
-      />
 
       {/* DANH SÁCH HỌC SINH (Optimized for Touch: Tablet Table & Mobile Cards) */}
       <div className="space-y-3">
@@ -840,13 +863,6 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       </span>
                     )}
                   </div>
-
-                  {/* List titles of pending assignments */}
-                  {unsubmitted.length > 0 && (
-                    <div className="text-[11px] text-[#666666] italic break-words">
-                      Chưa nộp: {unsubmitted[0].title}
-                    </div>
-                  )}
                 </div>
 
                 {/* Bottom Row: 1-Touch Action Buttons (Touch-Friendly min-h-[44px]) */}

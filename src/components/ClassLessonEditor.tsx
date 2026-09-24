@@ -45,7 +45,7 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
   targetStudents,
   onSyncLessonToStudents,
 }) => {
-  const [isExpanded, setIsExpanded] = useState<boolean>(true);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   // 3. Các ô dữ liệu để trống cho giáo viên tự nhập
   const [lessonName, setLessonName] = useState<string>("");
@@ -279,17 +279,24 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
   return (
     <div
       id="section-class-lesson-editor"
-      className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-xl sm:rounded-2xl p-3.5 sm:p-5 shadow-[var(--shadow-recessed-sm)] space-y-4 transition-all"
+      className={`bg-[#d1d9e6] border border-[#babecc]/60 rounded-xl sm:rounded-2xl p-3.5 sm:p-5 shadow-[var(--shadow-recessed-sm)] transition-all ${
+        isExpanded ? "space-y-4" : ""
+      }`}
     >
       {/* Header bar */}
-      <div className="flex items-center justify-between gap-3 pb-2.5 border-b border-[#babecc]/50">
+      <div
+        onClick={() => setIsExpanded(!isExpanded)}
+        className={`flex items-center justify-between gap-3 cursor-pointer select-none group ${
+          isExpanded ? "pb-2.5 border-b border-[#babecc]/50" : ""
+        }`}
+      >
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-[#ff4757] text-white flex items-center justify-center font-bold shadow-[var(--shadow-accent-sm)] shrink-0">
             <BookOpen className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-xs sm:text-sm font-bold text-[#1a1a1a] tracking-tight">
+              <span className="text-xs sm:text-sm font-bold text-[#1a1a1a] tracking-tight group-hover:text-[#ff4757] transition-colors">
                 Nhập liệu tổng quan buổi học của lớp
               </span>
               <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded-md bg-[#2d3436] text-white shadow-xs">
@@ -301,7 +308,10 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
 
         <button
           type="button"
-          onClick={() => setIsExpanded(!isExpanded)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsExpanded(!isExpanded);
+          }}
           className="p-1.5 rounded-lg soft-ui-convex hover:text-[#ff4757] text-slate-700 transition-all cursor-pointer shrink-0"
           title={isExpanded ? "Thu gọn form" : "Mở rộng form"}
           aria-label={isExpanded ? "Thu gọn form" : "Mở rộng form"}
