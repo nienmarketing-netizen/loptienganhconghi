@@ -20,8 +20,13 @@ import {
   FileCheck,
   Award,
   Copy,
+  Download,
+  Database,
 } from "lucide-react";
 import { StudentProfile, Assignment } from "../types";
+import { NewStudentModal } from "../components/NewStudentModal";
+import { GradingModal } from "../components/GradingModal";
+import { exportStudentsToCSV } from "../lib/exportUtils";
 
 interface AdminDashboardProps {
   students: Record<string, StudentProfile>;
@@ -30,6 +35,8 @@ interface AdminDashboardProps {
     tokensToAdd: number,
     reason: string
   ) => void;
+  onSaveStudent?: (student: StudentProfile) => Promise<void> | void;
+  onDeleteStudent?: (slug: string) => Promise<void> | void;
   onViewStudentPortal: (slug: string) => void;
 }
 
@@ -97,6 +104,8 @@ const PRESET_SCORING_OPTIONS: ScoringOption[] = [
 export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   students,
   onUpdateStudentTokens,
+  onSaveStudent,
+  onDeleteStudent,
   onViewStudentPortal,
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -108,6 +117,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   >(null);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
   const [customAmount, setCustomAmount] = useState<string>("");
+
+  // Modals for Data Entry (Giai đoạn 1, 2, 3)
+  const [isNewStudentModalOpen, setIsNewStudentModalOpen] = useState(false);
+  const [gradingStudent, setGradingStudent] = useState<StudentProfile | null>(null);
 
   const studentList = Object.values(students);
 
@@ -304,31 +317,68 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         </div>
 
         {/* Global Actions & Dedicated Portal URL Info */}
-        <div className="shrink-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+        <div className="shrink-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 flex-wrap">
+          {/* Nút Thêm Học Sinh Mới (Giai đoạn 1: Đầu vào) */}
           <button
             type="button"
-            id="btn-copy-portal-url-hero"
-            onClick={() => {
-              const url = `${window.location.origin}/giao-vien`;
-              navigator.clipboard.writeText(url);
-              addToast("info", "Đã sao chép link Cổng Giáo Viên!", url);
-            }}
-            className="min-h-[44px] px-3.5 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-semibold text-xs flex items-center justify-center gap-2 border border-white/20 transition-all cursor-pointer"
-            title="Sao chép link Cổng Giáo Viên để lưu hoặc ghim vào thanh dấu trang"
+            id="btn-add-new-student"
+            onClick={() => setIsNewStudentModalOpen(true)}
+            className="min-h-[44px] px-4 py-2.5 rounded-lg bg-[#ff4757] hover:bg-[#e03949] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[var(--shadow-accent)] border border-white/30 active:scale-95 transition-all cursor-pointer"
           >
-            <Copy className="w-4 h-4 text-amber-300" />
-            <span className="font-mono text-amber-200">/giao-vien</span>
-            <span className="text-white/80">(Chép link)</span>
+            <Plus className="w-4 h-4 stroke-[3]" />
+            <span>+ Thêm học sinh (GĐ 1: Đầu vào)</span>
+          </button>
+
+          {/* Nút Xuất file Excel (.csv) */}
+          <button
+            type="button"
+            id="btn-export-excel"
+            onClick={() => {
+              exportStudentsToCSV(students);
+              addToast("success", "Đã xuất file bảng điểm Excel!", "File CSV chuẩn tiếng Việt UTF-8 đã được tải về máy.");
+            }}
+            className="min-h-[44px] px-3.5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-emerald-400/40 shadow-sm active:scale-95 transition-all cursor-pointer"
+            title="Tải toàn bộ danh sách điểm số và học sinh ra file Excel / Google Sheets"
+          >
+            <Download className="w-4 h-4" />
+            <span>Xuất Excel</span>
           </button>
 
           <button
             type="button"
             id="btn-batch-zalo-reminder"
             onClick={handleBatchZaloReminder}
-            className="w-full sm:w-auto min-h-[44px] px-4 py-2.5 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-700/30 active:scale-95 transition-all cursor-pointer"
+            className="w-full sm:w-auto min-h-[44px] px-4 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-slate-600 shadow-sm active:scale-95 transition-all cursor-pointer"
           >
-            <Send className="w-4 h-4" />
-            <span>Nhắc Zalo tất cả ({totalUnsubmittedCount} bài chưa nộp)</span>
+            <Send className="w-4 h-4 text-emerald-400" />
+            <span>Nhắc Zalo ({totalUnsubmittedCount} bài)</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Database Connection Status Bar */}
+      <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-xl px-3.5 py-2 flex items-center justify-between text-xs shadow-[var(--shadow-recessed-sm)]">
+        <div className="flex items-center gap-2">
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+          <span className="font-semibold text-[#1a1a1a]">
+            Cơ sở dữ liệu đám mây: <span className="text-emerald-700 font-bold font-mono">Firebase Firestore (Realtime)</span>
+          </span>
+          <span className="hidden sm:inline text-[#666666] text-[11px]">
+            • Dữ liệu tự động đồng bộ tức thì cho phụ huynh
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => {
+              const url = `${window.location.origin}/giao-vien`;
+              navigator.clipboard.writeText(url);
+              addToast("info", "Đã sao chép link Cổng Giáo Viên!", url);
+            }}
+            className="text-[11px] font-mono text-[#666666] hover:text-[#1a1a1a] flex items-center gap-1 cursor-pointer"
+          >
+            <Copy className="w-3 h-3 text-[#ff4757]" />
+            <span>Link Giáo Viên: /giao-vien</span>
           </button>
         </div>
       </div>
@@ -680,19 +730,31 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       )}
                     </div>
 
-                    {/* 2. NÚT GỬI NHẮC NHỞ ZALO */}
+                    {/* 2. NÚT NHẬP ĐIỂM & BUỔI HỌC (GIAI ĐOẠN 2 & 3) */}
+                    <button
+                      type="button"
+                      id={`btn-grading-${student.id}`}
+                      onClick={() => setGradingStudent(student)}
+                      className="min-h-[44px] px-3.5 py-2 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-xs sm:text-sm border border-emerald-300 flex items-center gap-1.5 transition-colors active:scale-95 cursor-pointer"
+                      title="Cập nhật điểm kiểm tra, bài học mới và đánh giá 5 trục Radar"
+                    >
+                      <FileCheck className="w-4 h-4 text-emerald-600" />
+                      <span>Nhập điểm & Buổi học</span>
+                    </button>
+
+                    {/* 3. NÚT GỬI NHẮC NHỞ ZALO */}
                     <button
                       type="button"
                       id={`btn-zalo-reminder-${student.id}`}
                       onClick={() => handleSendZaloReminder(student)}
-                      className="min-h-[44px] px-3.5 py-2 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-800 font-bold text-xs sm:text-sm border border-sky-200 flex items-center gap-1.5 transition-colors active:scale-95 cursor-pointer"
+                      className="min-h-[44px] px-3 py-2 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-800 font-bold text-xs sm:text-sm border border-sky-200 flex items-center gap-1.5 transition-colors active:scale-95 cursor-pointer"
                     >
                       <MessageCircle className="w-4 h-4 text-sky-600" />
-                      <span>Gửi nhắc nhở Zalo</span>
+                      <span>Nhắc Zalo</span>
                     </button>
                   </div>
 
-                  {/* 3. NÚT XEM CỔNG PHỤ HUYNH */}
+                  {/* 4. NÚT XEM CỔNG PHỤ HUYNH */}
                   <button
                     type="button"
                     onClick={() => onViewStudentPortal(student.slug)}
@@ -713,6 +775,40 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           )}
         </div>
       </div>
+
+      {/* MODAL GIAI ĐOẠN 1: THÊM HỌC SINH MỚI (ĐẦU VÀO) */}
+      <NewStudentModal
+        isOpen={isNewStudentModalOpen}
+        onClose={() => setIsNewStudentModalOpen(false)}
+        existingSlugs={Object.keys(students)}
+        onSave={async (newStudent) => {
+          if (onSaveStudent) {
+            await onSaveStudent(newStudent);
+          }
+          addToast(
+            "success",
+            `Đã thêm học sinh ${newStudent.fullName}!`,
+            `Mã ${newStudent.id} đã được khởi tạo và lưu trữ trên Firebase.`
+          );
+        }}
+      />
+
+      {/* MODAL GIAI ĐOẠN 2 & 3: NHẬP ĐIỂM BUỔI HỌC & ĐÁNH GIÁ ĐỊNH KỲ */}
+      <GradingModal
+        isOpen={gradingStudent !== null}
+        onClose={() => setGradingStudent(null)}
+        student={gradingStudent}
+        onSave={async (updatedStudent) => {
+          if (onSaveStudent) {
+            await onSaveStudent(updatedStudent);
+          }
+          addToast(
+            "success",
+            `Đã cập nhật dữ liệu học vụ ${updatedStudent.fullName}!`,
+            `Dữ liệu điểm số & 5 trục năng lực đã đồng bộ lên Firebase.`
+          );
+        }}
+      />
     </div>
   );
 };

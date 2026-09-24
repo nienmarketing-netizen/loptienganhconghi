@@ -1,0 +1,39 @@
+{
+  "entities": {
+    "students": {
+      "title": "Students",
+      "description": "Student profiles and academic performance records",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Student structured ID e.g. G8-T35C1-05" },
+        "slug": { "type": "string", "description": "URL friendly slug" },
+        "fullName": { "type": "string", "description": "Full student name" },
+        "parentSalutation": { "type": "string", "description": "Parent greeting e.g. mẹ bé Hoàng Nam" },
+        "parentPhone": { "type": "string", "description": "Zalo / parent phone" },
+        "schoolClass": { "type": "string", "description": "School and regular class" },
+        "currentGrade": { "type": "number", "description": "Grade number e.g. 7, 8" },
+        "currentTerm": { "type": "string", "description": "Current term e.g. Học kỳ 1 (2026 - 2027)" },
+        "academicYear": { "type": "string", "description": "Academic year" },
+        "totalTokens": { "type": "number", "description": "Current total reward tokens" },
+        "rewardGoal": { "type": "string", "description": "Target gift for student" },
+        "targetTokens": { "type": "number", "description": "Target tokens to redeem gift" },
+        "baselineScore": { "type": "number", "description": "Starting entry score" },
+        "currentScore": { "type": "number", "description": "Latest score" },
+        "radarBaseline": { "type": "object", "description": "5-axis baseline scores (0-100)" },
+        "radarCurrent": { "type": "object", "description": "5-axis current scores (0-100)" },
+        "scoreHistory": { "type": "array", "description": "Progress score records" },
+        "assignments": { "type": "array", "description": "Homework and assignment records" },
+        "mediaGallery": { "type": "array", "description": "Class photos and video links" },
+        "teacherNotes": { "type": "string", "description": "Teacher overall note" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp of last update" }
+      },
+      "required": ["id", "slug", "fullName"]
+    }
+  },
+  "rules": [
+    {
+      "collection": "students",
+      "allow": "read, write"
+    }
+  ]
+}

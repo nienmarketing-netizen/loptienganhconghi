@@ -4,11 +4,28 @@ import { StudentProfile } from "./types";
 import { StudentDashboard } from "./pages/StudentDashboard";
 import { AdminDashboard } from "./pages/AdminDashboard";
 import { MainHeader } from "./components/MainHeader";
+import {
+  seedInitialStudentsIfEmpty,
+  subscribeToStudents,
+  saveStudentToFirebase,
+  deleteStudentFromFirebase,
+} from "./lib/firebase";
 
 export default function App() {
   // Global state for students to allow reactive live scoring
   const [studentsMap, setStudentsMap] =
     useState<Record<string, StudentProfile>>(MOCK_STUDENTS);
+
+  // Initialize and subscribe to Firebase Firestore
+  useEffect(() => {
+    seedInitialStudentsIfEmpty();
+    const unsubscribe = subscribeToStudents((data) => {
+      if (data && Object.keys(data).length > 0) {
+        setStudentsMap(data);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   // Helper to get initial route
   const getInitialRoute = (): "student" | "admin" => {
@@ -82,52 +99,71 @@ export default function App() {
   };
 
   // Quick 1-touch scoring function
-  const handleUpdateStudentTokens = (
+  const handleUpdateStudentTokens = async (
     studentSlug: string,
     tokensToAdd: number,
     reason: string
   ) => {
-    setStudentsMap((prev) => {
-      const student = prev[studentSlug];
-      if (!student) return prev;
+    const student = studentsMap[studentSlug];
+    if (!student) return;
 
-      const newTokens = Math.min(
-        student.gamification.maxTokens,
-        student.gamification.currentTokens + tokensToAdd
-      );
+    const newTokens = Math.min(
+      student.gamification.maxTokens,
+      student.gamification.currentTokens + tokensToAdd
+    );
 
-      const now = new Date();
-      const timeStr = now.toLocaleTimeString("vi-VN", {
-        hour: "2-digit",
-        minute: "2-digit",
-      });
-      const dayStr = String(now.getDate()).padStart(2, "0");
-      const monthStr = String(now.getMonth() + 1).padStart(2, "0");
-      const dateStr = `${timeStr}, ${dayStr}/${monthStr}/2026`;
-
-      const newHistoryItem = {
-        id: `tk-${Date.now()}`,
-        date: dateStr,
-        reason,
-        tokens: tokensToAdd,
-        type: "earned" as const,
-        category: "bonus" as const,
-      };
-
-      const updatedStudent: StudentProfile = {
-        ...student,
-        gamification: {
-          ...student.gamification,
-          currentTokens: newTokens,
-        },
-        tokenHistory: [newHistoryItem, ...(student.tokenHistory || [])],
-      };
-
-      return {
-        ...prev,
-        [studentSlug]: updatedStudent,
-      };
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString("vi-VN", {
+      hour: "2-digit",
+      minute: "2-digit",
     });
+    const dayStr = String(now.getDate()).padStart(2, "0");
+    const monthStr = String(now.getMonth() + 1).padStart(2, "0");
+    const dateStr = `${timeStr}, ${dayStr}/${monthStr}/2026`;
+
+    const newHistoryItem = {
+      id: `tk-${Date.now()}`,
+      date: dateStr,
+      reason,
+      tokens: tokensToAdd,
+      type: "earned" as const,
+      category: "bonus" as const,
+    };
+
+    const updatedStudent: StudentProfile = {
+      ...student,
+      gamification: {
+        ...student.gamification,
+        currentTokens: newTokens,
+      },
+      tokenHistory: [newHistoryItem, ...(student.tokenHistory || [])],
+    };
+
+    setStudentsMap((prev) => ({
+      ...prev,
+      [studentSlug]: updatedStudent,
+    }));
+
+    await saveStudentToFirebase(updatedStudent);
+  };
+
+  // Full student profile save handler (persisting to Firebase Firestore)
+  const handleSaveStudent = async (student: StudentProfile) => {
+    setStudentsMap((prev) => ({
+      ...prev,
+      [student.slug]: student,
+    }));
+    await saveStudentToFirebase(student);
+  };
+
+  // Delete student profile handler
+  const handleDeleteStudent = async (slug: string) => {
+    setStudentsMap((prev) => {
+      const copy = { ...prev };
+      delete copy[slug];
+      return copy;
+    });
+    await deleteStudentFromFirebase(slug);
   };
 
   // Listen to popstate (browser back/forward navigation)
@@ -158,6 +194,8 @@ export default function App() {
           <AdminDashboard
             students={studentsMap}
             onUpdateStudentTokens={handleUpdateStudentTokens}
+            onSaveStudent={handleSaveStudent}
+            onDeleteStudent={handleDeleteStudent}
             onViewStudentPortal={(slug) => handleNavigateToStudent(slug)}
           />
         ) : (
