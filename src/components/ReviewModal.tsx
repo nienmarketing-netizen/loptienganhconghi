@@ -502,7 +502,10 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                     onMouseDown={handleMouseDown}
                     onMouseMove={handleMouseMove}
                     onMouseUp={handleMouseUpOrLeave}
-                    onMouseLeave={handleMouseUpOrLeave}
+                    onMouseLeave={() => {
+                      handleMouseUpOrLeave();
+                      setIsPaused(false);
+                    }}
                     onTouchStart={() => setIsUserInteracting(true)}
                     onTouchEnd={() => {
                       if (userInteractionTimeoutRef.current) clearTimeout(userInteractionTimeoutRef.current);
@@ -511,7 +514,6 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                       }, 4000);
                     }}
                     onMouseEnter={() => setIsPaused(true)}
-                    onMouseLeave={() => setIsPaused(false)}
                     className="flex items-stretch gap-3.5 py-1 overflow-x-auto select-none cursor-grab active:cursor-grabbing scrollbar-none"
                     style={{
                       scrollbarWidth: "none",

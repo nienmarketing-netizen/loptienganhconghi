@@ -3,34 +3,31 @@ import { StudentProfile, RewardItem } from "../types";
 export const AVAILABLE_REWARDS: RewardItem[] = [
   {
     id: "rew-1",
-    name: "Set 6 Bút Highlight Morandi Pastel",
+    name: "Set 6 bút highlight",
     tokensCost: 35,
     category: "stationery",
     description: "Tone màu dịu mắt để bé đánh dấu từ vựng và cấu trúc ngữ pháp",
     emoji: "🖍️",
-    tag: "Phổ biến",
   },
   {
     id: "rew-2",
-    name: "Sổ Tay Bullet Journal Từ Vựng Oxford",
+    name: "Sổ tay từ vựng",
     tokensCost: 50,
     category: "stationery",
     description: "Thiết kế bìa da có kẻ ô Cornell Note giúp ghi chép từ mới siêu tốc",
     emoji: "📓",
-    tag: "Được yêu thích",
   },
   {
     id: "rew-3",
-    name: "Truyện Song Ngữ 'Diary of a Wimpy Kid' (Tập 1)",
+    name: "Tập truyện song ngữ",
     tokensCost: 80,
     category: "book",
     description: "Bộ truyện hài hước giúp bé đọc tiếng Anh tự nhiên như người bản xứ",
     emoji: "📚",
-    tag: "Cô Nghi khuyên đọc",
   },
   {
     id: "rew-4",
-    name: "Hộp Bút Canvas Chống Thấm Nước Khắc Tên Bé",
+    name: "Hộp bút canvas",
     tokensCost: 65,
     category: "stationery",
     description: "Hộp bút đa ngăn tiện dụng, thêu tên học sinh kỷ niệm lớp Cô Nghi",
@@ -38,7 +35,7 @@ export const AVAILABLE_REWARDS: RewardItem[] = [
   },
   {
     id: "rew-5",
-    name: "Voucher Trà Sữa Phúc Long / Gong Cha",
+    name: "Trà sữa",
     tokensCost: 70,
     category: "entertainment",
     description: "Phần thưởng ngọt ngào sau chuỗi bài test đạt điểm 9-10",
@@ -46,12 +43,11 @@ export const AVAILABLE_REWARDS: RewardItem[] = [
   },
   {
     id: "rew-6",
-    name: "Vé Xem Phim Hoạt Hình CGV + Bắp Rang",
+    name: "Vé xem phim",
     tokensCost: 100,
     category: "entertainment",
     description: "Phần thưởng vinh danh chạm mốc 100 Tokens xuất sắc nhất lớp!",
     emoji: "🎬",
-    tag: "Đại Thưởng 100 Tokens",
   },
 ];
 
@@ -72,7 +68,7 @@ export const MOCK_STUDENTS: Record<string, StudentProfile> = {
     gamification: {
       currentTokens: 85,
       maxTokens: 100,
-      targetRewardName: "Vé Xem Phim Hoạt Hình CGV + Bắp Rang",
+      targetRewardName: "Vé xem phim",
     },
     growthHistory: [
       { period: "Đầu vào", classScore: 4.5, schoolScore: 5.0, note: "Test chẩn đoán ban đầu" },
@@ -437,7 +433,7 @@ export const MOCK_STUDENTS: Record<string, StudentProfile> = {
     gamification: {
       currentTokens: 95,
       maxTokens: 100,
-      targetRewardName: "Vé Xem Phim Hoạt Hình CGV + Bắp Rang",
+      targetRewardName: "Vé xem phim",
     },
     growthHistory: [
       { period: "Đầu vào", classScore: 6.0, schoolScore: 6.5, note: "Nghe tốt nhưng yếu ngữ pháp" },
@@ -601,7 +597,7 @@ export const MOCK_STUDENTS: Record<string, StudentProfile> = {
     gamification: {
       currentTokens: 70,
       maxTokens: 100,
-      targetRewardName: "Sổ Tay Bullet Journal Từ Vựng Oxford",
+      targetRewardName: "Sổ tay từ vựng",
     },
     growthHistory: [
       { period: "Đầu vào", classScore: 5.0, schoolScore: 5.5, note: "Chưa quen cách học cấp 2" },

@@ -1,5 +1,5 @@
 import React from "react";
-import { Coins, History, Gift, Sparkles, ChevronRight, Award } from "lucide-react";
+import { History, Gift, ChevronRight, Award } from "lucide-react";
 import { StudentProfile } from "../types";
 import { Card, CardContent } from "./ui/Card";
 import { Button } from "./ui/Button";
@@ -58,8 +58,7 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
           </div>
 
           <div className="text-right">
-            <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-800 bg-emerald-100/90 px-2.5 py-1 rounded-md border border-emerald-400 leading-tight">
-              <Sparkles className="w-3 h-3 text-emerald-600 animate-spin" style={{ animationDuration: "3s" }} />
+            <span className="inline-flex items-center text-xs font-semibold text-emerald-800 bg-emerald-100/90 px-2.5 py-1 rounded-md border border-emerald-400 leading-tight">
               <span>{percentage}% hoàn thành</span>
             </span>
             <p className="text-xs text-[#666666] mt-1 font-normal">
@@ -70,35 +69,58 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
           </div>
         </div>
 
-        {/* Large Mechanical Progress Bar */}
-        <div className="space-y-1.5">
-          <Progress
-            value={currentTokens}
-            max={maxTokens}
-            className="h-5 sm:h-6"
-            indicatorClassName="bg-[#ff4757]"
-            showStripes={true}
-          />
+        {/* Large Mechanical Progress Bar with Milestones */}
+        <div className="space-y-1.5 pt-1">
+          {/* Top Milestones: Token Counts */}
+          <div className="relative h-4 text-xs font-bold font-mono text-[#666666]">
+            <span className="absolute left-0 text-left">0</span>
+            <span className="absolute left-[35%] -translate-x-1/2 text-center">35</span>
+            <span className="absolute left-[70%] -translate-x-1/2 text-center">70</span>
+            <span className="absolute right-0 text-right text-[#ff4757]">100</span>
+          </div>
 
-          {/* Milestones markers under bar */}
-          <div className="flex justify-between text-[11px] font-semibold text-[#666666] px-1 pt-0.5">
-            <span>0 (Khởi đầu)</span>
-            <span>35 (Bút Highlight)</span>
-            <span>70 (Trà sữa)</span>
-            <span className="text-[#ff4757] font-bold">100 (Vé CGV 🎬)</span>
+          {/* Progress bar with delicate milestone indicator lines */}
+          <div className="relative flex items-center">
+            {/* Delicate vertical milestone tick lines */}
+            <div className="absolute inset-0 pointer-events-none z-10">
+              <div className="relative w-full h-full">
+                <span className="absolute left-0 -top-1 -bottom-1 w-[1.5px] bg-[#64748b]/50 rounded-full shadow-[0_0_1px_rgba(255,255,255,0.7)]" />
+                <span className="absolute left-[35%] -top-1 -bottom-1 w-[1.5px] -translate-x-1/2 bg-[#64748b]/50 rounded-full shadow-[0_0_1px_rgba(255,255,255,0.7)]" />
+                <span className="absolute left-[70%] -top-1 -bottom-1 w-[1.5px] -translate-x-1/2 bg-[#64748b]/50 rounded-full shadow-[0_0_1px_rgba(255,255,255,0.7)]" />
+                <span className="absolute right-0 -top-1 -bottom-1 w-[1.5px] bg-[#64748b]/50 rounded-full shadow-[0_0_1px_rgba(255,255,255,0.7)]" />
+              </div>
+            </div>
+
+            <Progress
+              value={currentTokens}
+              max={maxTokens}
+              className="h-5 sm:h-6"
+              indicatorClassName="bg-[#ff4757]"
+              showStripes={true}
+            />
+          </div>
+
+          {/* Bottom Milestones: Reward Icons */}
+          <div className="relative h-5 sm:h-6 text-sm sm:text-base leading-none pt-0.5 select-none">
+            <span className="absolute left-0 text-left" title="Khởi đầu">🌱</span>
+            <span className="absolute left-[35%] -translate-x-1/2 text-center" title="Bút highlight">🖍️</span>
+            <span className="absolute left-[70%] -translate-x-1/2 text-center" title="Trà sữa">🧋</span>
+            <span className="absolute right-0 text-right" title="Vé xem phim">🎬</span>
           </div>
         </div>
 
         {/* Next Target Item Callout */}
-        <div className="flex items-center justify-between text-xs soft-ui-convex rounded-md sm:rounded-lg p-2.5 text-[#1a1a1a]">
-          <div className="flex items-center gap-2 truncate">
-            <span className="text-base">🎯</span>
-            <span className="truncate">
-              Mục tiêu hiện tại:{" "}
-              <strong className="text-[#1a1a1a] font-semibold">
+        <div className="flex items-center justify-between text-xs soft-ui-convex rounded-md sm:rounded-lg p-2.5 sm:p-3 text-[#1a1a1a]">
+          <div className="flex items-center gap-2.5 min-w-0 pr-2">
+            <span className="text-base shrink-0">🎯</span>
+            <div className="flex flex-col min-w-0">
+              <span className="text-[11px] sm:text-xs text-[#666666] font-medium leading-tight">
+                Mục tiêu hiện tại:
+              </span>
+              <strong className="text-xs sm:text-sm text-[#1a1a1a] font-bold truncate leading-snug">
                 {student.gamification.targetRewardName}
               </strong>
-            </span>
+            </div>
           </div>
           <button
             onClick={onOpenStore}
@@ -109,8 +131,8 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
         </div>
       </div>
 
-      {/* Action Buttons */}
-      <div className="grid grid-cols-2 gap-3 pt-1">
+      {/* Action Buttons - 2 rows on mobile (full width), 2 columns on desktop */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
         <Button
           id="btn-view-token-history"
           variant="outline"
@@ -123,11 +145,11 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
 
         <Button
           id="btn-view-reward-store"
-          variant="default"
+          variant="amber"
           onClick={onOpenStore}
-          className="w-full flex items-center justify-center gap-2 text-xs sm:text-sm h-11 rounded-md sm:rounded-lg font-semibold leading-tight"
+          className="w-full flex items-center justify-center gap-2 text-xs sm:text-sm h-11 rounded-md sm:rounded-lg font-semibold leading-tight bg-[#ff4757] hover:bg-[#e03949] text-white border border-white/70 ring-1 ring-white/50 shadow-[0_0_14px_rgba(255,255,255,0.85),var(--shadow-accent)] active:shadow-[var(--shadow-accent-pressed)] transition-all"
         >
-          <Gift className="w-4 h-4" />
+          <Gift className="w-4 h-4 text-white" />
           <span>Cửa hàng đổi quà</span>
         </Button>
       </div>

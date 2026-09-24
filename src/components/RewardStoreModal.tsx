@@ -65,7 +65,7 @@ export const RewardStoreModal: React.FC<RewardStoreModalProps> = ({ open, onClos
           </div>
           <div className="mt-2 text-[11px] text-[#a3b1c6] flex items-center gap-1.5 pt-2 border-t border-white/10">
             <Sparkles className="w-3.5 h-3.5 text-[#ff4757] shrink-0" />
-            <span>Tích lũy đạt 100 Tokens để mở khóa Đại Thưởng Vé Phim CGV!</span>
+            <span>Tích lũy đạt 100 Tokens để mở khóa Giải thưởng lớn là Vé Xem Phim!</span>
           </div>
         </div>
 
@@ -83,7 +83,7 @@ export const RewardStoreModal: React.FC<RewardStoreModalProps> = ({ open, onClos
 
         {/* Reward Items List */}
         <div className="space-y-3 pt-1">
-          <div className="flex items-center justify-between text-xs font-bold text-[#666666] uppercase tracking-wider px-1">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between items-start gap-0.5 sm:gap-2 text-xs font-bold text-[#666666] uppercase tracking-wider px-1">
             <span>Danh sách phần thưởng:</span>
             <span className="text-[11px] text-[#888888] font-normal lowercase">
               (mở khóa từ 35 - 100 tokens)
@@ -111,23 +111,9 @@ export const RewardStoreModal: React.FC<RewardStoreModalProps> = ({ open, onClos
                     </div>
 
                     <div className="min-w-0">
-                      <div className="flex items-center gap-1.5 flex-wrap">
-                        <h4 className="text-xs sm:text-sm font-bold text-[#1a1a1a] leading-snug truncate">
-                          {reward.name}
-                        </h4>
-                        {reward.tag && (
-                          <span className={`text-[10px] py-0.5 px-2 rounded-md font-mono font-bold ${
-                            reward.tokensCost === 100 
-                              ? "bg-[#ff4757] text-white shadow-[var(--shadow-accent-sm)]" 
-                              : "bg-[#d1d9e6] text-[#4a5568] border border-[#babecc]/60"
-                          }`}>
-                            {reward.tag}
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-[11px] text-[#666666] line-clamp-1 mt-0.5">
-                        {reward.description}
-                      </p>
+                      <h4 className="text-xs sm:text-sm font-bold text-[#1a1a1a] leading-snug truncate">
+                        {reward.name}
+                      </h4>
                       <div className="mt-1 flex items-center gap-1.5 text-xs font-bold font-mono">
                         <span className="text-[#ff4757]">{reward.tokensCost} Tokens</span>
                         {!canAfford && (
@@ -170,7 +156,7 @@ export const RewardStoreModal: React.FC<RewardStoreModalProps> = ({ open, onClos
         <div className="bg-[#d1d9e6] p-3 rounded-lg sm:rounded-xl border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)] text-[11px] text-[#4a5568] flex items-start gap-2">
           <HelpCircle className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
           <span>
-            <strong className="text-[#1a1a1a]">Quy chế đổi quà Cô Nghi:</strong> Học sinh tích lũy token qua thái độ học tập, điểm test và làm BTVN. Quà được trao trực tiếp tại lớp để vinh danh tinh thần kiên trì của con.
+            <strong className="text-[#1a1a1a]">Quy chế đổi quà:</strong> Học sinh tích lũy token qua thái độ học tập, điểm test và làm bài tập về nhà. Quà được trao trực tiếp tại lớp để vinh danh tinh thần kiên trì của con.
           </span>
         </div>
       </DialogContent>
