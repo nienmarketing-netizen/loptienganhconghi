@@ -40,6 +40,19 @@ export async function seedInitialStudentsIfEmpty(): Promise<void> {
           updatedAt: new Date().toISOString(),
         });
       }
+    } else {
+      // Update default students with refreshed tokenHistory if exists
+      for (const [key, student] of Object.entries(MOCK_STUDENTS)) {
+        const docRef = doc(db, STUDENTS_COLLECTION, student.slug || key);
+        await setDoc(
+          docRef,
+          {
+            ...student,
+            updatedAt: new Date().toISOString(),
+          },
+          { merge: true }
+        );
+      }
     }
   } catch (error) {
     console.error("Error seeding initial students to Firestore:", error);

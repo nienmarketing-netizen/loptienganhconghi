@@ -56,9 +56,12 @@ export function getStudentTokenBalance(student?: {
   gamification?: { currentTokens?: number };
 }): number {
   if (!student) return 0;
+  if (student.gamification?.currentTokens !== undefined) {
+    return student.gamification.currentTokens;
+  }
   if (student.tokenHistory && student.tokenHistory.length > 0) {
     return student.tokenHistory.reduce((sum, item) => sum + (item.tokens || 0), 0);
   }
-  return student.gamification?.currentTokens ?? 0;
+  return 0;
 }
 

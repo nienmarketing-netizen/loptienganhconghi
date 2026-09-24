@@ -133,12 +133,16 @@ export default function App() {
       date: dateStr,
       reason,
       tokens: tokensToAdd,
-      type: "earned" as const,
-      category: "bonus" as const,
+      type: (tokensToAdd >= 0 ? "earned" : "spent") as "earned" | "spent",
+      category: (reason.toLowerCase().includes("đổi thưởng") || reason.toLowerCase().includes("mốc") || reason.toLowerCase().includes("chiếc nón")
+        ? "reward"
+        : tokensToAdd >= 0
+        ? "bonus"
+        : "discipline") as "bonus" | "reward" | "discipline" | "homework" | "test" | "speaking",
     };
 
     const newHistory = [newHistoryItem, ...(student.tokenHistory || [])];
-    const newTokens = newHistory.reduce((sum, item) => sum + item.tokens, 0);
+    const newTokens = Math.max(0, (student.gamification?.currentTokens ?? 70) + tokensToAdd);
 
     const updatedStudent: StudentProfile = {
       ...student,
@@ -225,6 +229,7 @@ export default function App() {
           <StudentDashboard
             student={currentStudent}
             onNavigateToAdmin={handleNavigateToAdmin}
+            onUpdateStudentTokens={handleUpdateStudentTokens}
           />
         )}
       </main>

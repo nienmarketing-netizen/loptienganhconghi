@@ -56,51 +56,96 @@ interface ScoringOption {
   label: string;
   reason: string;
   icon: string;
-  color: string;
+  group: string;
 }
 
 const PRESET_SCORING_OPTIONS: ScoringOption[] = [
+  // Nhóm 1: Chuyên cần & Kỷ luật
   {
-    points: 10,
-    label: "+10 (Làm đủ bài)",
-    reason: "Hoàn thành đầy đủ bài tập tuần này",
-    icon: "📝",
-    color: "bg-amber-500 hover:bg-amber-600 text-white",
-  },
-  {
-    points: 5,
-    label: "+5 (Đi học đúng giờ)",
-    reason: "Đến lớp đúng giờ và chuẩn bị bài chu đáo",
+    points: 1,
+    label: "+1 Đi học đúng giờ & đủ",
+    reason: "Đi học đúng giờ và đầy đủ",
     icon: "⏰",
-    color: "bg-emerald-500 hover:bg-emerald-600 text-white",
+    group: "Chuyên cần & Kỷ luật",
   },
   {
-    points: 15,
-    label: "+15 (Top Quizizz)",
-    reason: "Đạt Top 3 minigame Quizizz từ vựng trên lớp",
-    icon: "🏆",
-    color: "bg-indigo-500 hover:bg-indigo-600 text-white",
+    points: 1,
+    label: "+1 Làm đầy đủ bài tập",
+    reason: "Làm đầy đủ bài tập được giao",
+    icon: "📝",
+    group: "Chuyên cần & Kỷ luật",
   },
   {
-    points: 10,
-    label: "+10 (Phát biểu hăng hái)",
-    reason: "Tích cực giơ tay tương tác trong giờ học",
-    icon: "🙋‍♂️",
-    color: "bg-sky-500 hover:bg-sky-600 text-white",
+    points: -1,
+    label: "-1 Nghỉ học 1 buổi",
+    reason: "Nghỉ học 1 buổi (không lý do/nghỉ học)",
+    icon: "⚠️",
+    group: "Chuyên cần & Kỷ luật",
+  },
+  // Nhóm 2: Tương tác & Học tập
+  {
+    points: 3,
+    label: "+3 Quizizz - Top 1",
+    reason: "Quizizz - Nhanh & đúng nhất (Top 1)",
+    icon: "🥇",
+    group: "Tương tác & Học tập",
   },
   {
-    points: 20,
-    label: "+20 (Điểm 10 kiểm tra)",
-    reason: "Đạt điểm 10 tuyệt đối bài kiểm tra bóc tách",
-    icon: "⭐",
-    color: "bg-rose-500 hover:bg-rose-600 text-white",
+    points: 2,
+    label: "+2 Quizizz - Top 2",
+    reason: "Quizizz - Nhanh & đúng nhì (Top 2)",
+    icon: "🥈",
+    group: "Tương tác & Học tập",
+  },
+  {
+    points: 1,
+    label: "+1 Quizizz - Top 3",
+    reason: "Quizizz - Nhanh & đúng ba (Top 3)",
+    icon: "🥉",
+    group: "Tương tác & Học tập",
+  },
+  {
+    points: 1,
+    label: "+1 Cold Call tốt",
+    reason: "Trả lời tốt khi bị gọi ngẫu nhiên (Cold Call)",
+    icon: "🎯",
+    group: "Tương tác & Học tập",
+  },
+  // Nhóm 3: Thưởng/Trừ Cột Mốc (Milestones)
+  {
+    points: 5,
+    label: "+5 Kickstart Bonus",
+    reason: "Kickstart Bonus (Thưởng đăng ký học)",
+    icon: "🚀",
+    group: "Cột mốc",
   },
   {
     points: 5,
-    label: "+5 (Vở ghi sạch đẹp)",
-    reason: "Ghi chép từ vựng và cấu trúc cẩn thận",
-    icon: "✨",
-    color: "bg-teal-500 hover:bg-teal-600 text-white",
+    label: "+5 Tăng điểm thi Giữa kỳ",
+    reason: "Tăng điểm thi Giữa kỳ trên trường",
+    icon: "📈",
+    group: "Cột mốc",
+  },
+  {
+    points: -5,
+    label: "-5 Giảm điểm thi Giữa kỳ",
+    reason: "Giảm điểm thi Giữa kỳ trên trường",
+    icon: "📉",
+    group: "Cột mốc",
+  },
+  {
+    points: 10,
+    label: "+10 Tăng điểm thi Cuối kỳ",
+    reason: "Tăng điểm thi Cuối kỳ trên trường",
+    icon: "⭐",
+    group: "Cột mốc",
+  },
+  {
+    points: -10,
+    label: "-10 Giảm điểm thi Cuối kỳ",
+    reason: "Giảm điểm thi Cuối kỳ trên trường",
+    icon: "🔻",
+    group: "Cột mốc",
   },
 ];
 
@@ -233,9 +278,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     onUpdateStudentTokens(student.slug, points, reason);
     setActiveScoringStudentSlug(null);
 
+    const sign = points > 0 ? `+${points}` : `${points}`;
     addToast(
       "token",
-      `+${points} Tokens cho ${student.fullName}!`,
+      `${sign} Tokens cho ${student.fullName}!`,
       `Lý do: ${reason}. Tổng hiện tại: ${
         student.gamification.currentTokens + points
       }/100T`
@@ -312,7 +358,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         student.tokenHistory && student.tokenHistory.length > 0
           ? student.tokenHistory.reduce((sum, item) => sum + item.tokens, 0)
           : student.gamification.currentTokens;
-      return studentTokens >= 80;
+      return studentTokens >= 25;
     }
     return true;
   });
@@ -360,7 +406,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         s.tokenHistory && s.tokenHistory.length > 0
           ? s.tokenHistory.reduce((sum, item) => sum + item.tokens, 0)
           : s.gamification.currentTokens;
-      return studentTokens >= 80;
+      return studentTokens >= 25;
     }).length;
   }, [classFilteredStudents]);
 
@@ -908,32 +954,48 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                           </div>
 
                           {/* Quick 1-Touch Reasons List */}
-                          <div className="space-y-1.5">
-                            {PRESET_SCORING_OPTIONS.map((opt, i) => (
-                              <button
-                                key={i}
-                                type="button"
-                                onClick={() =>
-                                  handleQuickScore(student, opt.points, opt.reason)
-                                }
-                                className="w-full flex items-center justify-between p-2.5 rounded-lg bg-[#e0e5ec] border border-white/80 border-b-[#babecc] border-r-[#babecc] shadow-[var(--shadow-card-sm)] hover:shadow-[var(--shadow-card)] transition-all text-left cursor-pointer active:translate-y-[1px] min-h-[44px]"
-                              >
-                                <div className="flex items-center gap-2.5">
-                                  <span className="text-base">{opt.icon}</span>
-                                  <div>
-                                    <div className="font-bold text-xs text-[#1a1a1a]">
-                                      {opt.label}
-                                    </div>
-                                    <div className="text-[10px] text-[#666666] line-clamp-1">
-                                      {opt.reason}
-                                    </div>
+                          <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
+                            {["Chuyên cần & Kỷ luật", "Tương tác & Học tập", "Cột mốc"].map((groupName) => {
+                              const groupOpts = PRESET_SCORING_OPTIONS.filter((o) => o.group === groupName);
+                              return (
+                                <div key={groupName} className="space-y-1">
+                                  <div className="text-[10px] font-bold text-[#666666] uppercase tracking-wider px-1 pt-1">
+                                    {groupName}
                                   </div>
+                                  {groupOpts.map((opt, i) => (
+                                    <button
+                                      key={i}
+                                      type="button"
+                                      onClick={() =>
+                                        handleQuickScore(student, opt.points, opt.reason)
+                                      }
+                                      className="w-full flex items-center justify-between p-2 rounded-lg bg-[#e0e5ec] border border-white/80 border-b-[#babecc] border-r-[#babecc] shadow-[var(--shadow-card-sm)] hover:shadow-[var(--shadow-card)] transition-all text-left cursor-pointer active:translate-y-[1px]"
+                                    >
+                                      <div className="flex items-center gap-2">
+                                        <span className="text-base">{opt.icon}</span>
+                                        <div>
+                                          <div className="font-bold text-xs text-[#1a1a1a]">
+                                            {opt.label}
+                                          </div>
+                                          <div className="text-[10px] text-[#666666] line-clamp-1">
+                                            {opt.reason}
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <span
+                                        className={`text-xs font-mono font-black px-2 py-0.5 rounded-md shrink-0 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)] ${
+                                          opt.points > 0
+                                            ? "text-[#ff4757] bg-[#d1d9e6] border border-[#babecc]/60"
+                                            : "text-rose-700 bg-rose-100 border border-rose-300"
+                                        }`}
+                                      >
+                                        {opt.points > 0 ? `+${opt.points}` : opt.points}T
+                                      </span>
+                                    </button>
+                                  ))}
                                 </div>
-                                <span className="text-xs font-mono font-black text-[#ff4757] bg-[#d1d9e6] border border-[#babecc]/60 px-2 py-0.5 rounded-md shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)]">
-                                  +{opt.points}T
-                                </span>
-                              </button>
-                            ))}
+                              );
+                            })}
                           </div>
 
                           {/* Custom Amount Field */}

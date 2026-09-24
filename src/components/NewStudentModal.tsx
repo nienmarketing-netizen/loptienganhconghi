@@ -102,9 +102,9 @@ export const NewStudentModal: React.FC<NewStudentModalProps> = ({
           variant: "indigo",
         },
         gamification: {
-          currentTokens: 10,
+          currentTokens: 5,
           maxTokens: 100,
-          targetRewardName: targetRewardName.trim() || "Quà tặng tốt nghiệp",
+          targetRewardName: targetRewardName.trim() || "Thẻ Đặc Quyền / Sổ Flashcard",
         },
         growthHistory: [
           {
@@ -128,8 +128,8 @@ export const NewStudentModal: React.FC<NewStudentModalProps> = ({
           {
             id: `tk-${Date.now()}`,
             date: new Date().toLocaleDateString("vi-VN"),
-            reason: "Tặng 10 Tokens chào mừng nhập học lớp Cô Nghi",
-            tokens: 10,
+            reason: "Kickstart Bonus (Thưởng đăng ký học)",
+            tokens: 5,
             type: "earned",
             category: "bonus",
           },

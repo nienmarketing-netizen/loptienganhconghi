@@ -33,9 +33,11 @@ export const TokenHistoryModal: React.FC<TokenHistoryModalProps> = ({ open, onCl
     .reduce((sum, i) => sum + i.tokens, 0);
 
   const currentBalance =
-    student.tokenHistory && student.tokenHistory.length > 0
-      ? student.tokenHistory.reduce((sum, item) => sum + item.tokens, 0)
-      : student.gamification.currentTokens;
+    student.gamification?.currentTokens !== undefined
+      ? student.gamification.currentTokens
+      : (student.tokenHistory && student.tokenHistory.length > 0
+          ? student.tokenHistory.reduce((sum, item) => sum + item.tokens, 0)
+          : 70);
 
   return (
     <Dialog open={open} onOpenChange={onClose} id="modal-token-history">
@@ -49,7 +51,7 @@ export const TokenHistoryModal: React.FC<TokenHistoryModalProps> = ({ open, onCl
               <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
               <span>Hệ thống tích lũy điểm thưởng</span>
             </div>
-            <DialogTitle>Lịch Sử Tích Lũy Token</DialogTitle>
+            <DialogTitle>Lịch sử tích lũy token</DialogTitle>
           </div>
         </div>
         <DialogCloseButton onClose={onClose} id="btn-close-token-history" />
@@ -61,15 +63,15 @@ export const TokenHistoryModal: React.FC<TokenHistoryModalProps> = ({ open, onCl
           <div>
             <span className="text-[11px] text-[#666666] font-medium block">Số dư hiện tại</span>
             <div className="flex items-baseline gap-1.5 mt-0.5">
-              <span className="text-2xl sm:text-3xl font-black text-[#1a1a1a] font-mono tracking-tight">
+              <span className="text-2xl sm:text-3xl font-black text-[#1a1a1a] tracking-tight">
                 {currentBalance}
               </span>
-              <span className="text-xs font-bold text-[#ff4757] font-mono">Tokens</span>
+              <span className="text-xs font-bold text-[#ff4757]">Tokens</span>
             </div>
           </div>
           <div className="text-right">
-            <span className="text-[11px] text-[#666666] font-medium block">Tổng tích lũy từ đầu kỳ</span>
-            <span className="inline-flex items-center gap-1 font-mono text-xs font-bold px-2.5 py-1 rounded-md bg-[#e0e5ec] text-emerald-700 border border-white/90 shadow-[var(--shadow-card-sm)] mt-1">
+            <span className="text-[11px] text-[#666666] font-medium block">Ghi nhận gần đây</span>
+            <span className="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-md bg-[#e0e5ec] text-emerald-700 border border-white/90 shadow-[var(--shadow-card-sm)] mt-1">
               +{totalEarned} Tokens
             </span>
           </div>
@@ -77,9 +79,9 @@ export const TokenHistoryModal: React.FC<TokenHistoryModalProps> = ({ open, onCl
 
         {/* History Item Timeline */}
         <div className="space-y-2.5 pt-1">
-          <div className="flex items-center justify-between text-xs font-bold text-[#666666] uppercase tracking-wider px-1">
+          <div className="flex items-center justify-between text-xs font-semibold text-[#666666] px-1">
             <span>Nhật ký ghi nhận gần đây:</span>
-            <span className="text-[11px] text-[#888888] font-normal lowercase">
+            <span className="text-[11px] text-[#888888] font-normal">
               ({student.tokenHistory.length} lần ghi nhận)
             </span>
           </div>
@@ -106,7 +108,7 @@ export const TokenHistoryModal: React.FC<TokenHistoryModalProps> = ({ open, onCl
 
                   <div className="shrink-0 text-right">
                     <span
-                      className={`inline-flex items-center gap-1 font-mono font-bold text-xs px-2.5 py-0.5 rounded-md border ${
+                      className={`inline-flex items-center gap-1 font-semibold text-xs px-2.5 py-0.5 rounded-md border ${
                         isEarned
                           ? "bg-[#d1d9e6] text-emerald-700 border-emerald-300/60 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)]"
                           : "bg-[#d1d9e6] text-rose-700 border-rose-300/60 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)]"

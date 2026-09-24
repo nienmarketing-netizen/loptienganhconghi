@@ -28,11 +28,17 @@ import { CollapsibleSection } from "../components/CollapsibleSection";
 interface StudentDashboardProps {
   student: StudentProfile;
   onNavigateToAdmin?: () => void;
+  onUpdateStudentTokens?: (
+    studentSlug: string,
+    tokensToAdd: number,
+    reason: string
+  ) => Promise<void> | void;
 }
 
 export const StudentDashboard: React.FC<StudentDashboardProps> = ({
   student,
   onNavigateToAdmin,
+  onUpdateStudentTokens,
 }) => {
   const [showHistoryModal, setShowHistoryModal] = useState(false);
   const [showStoreModal, setShowStoreModal] = useState(false);
@@ -320,11 +326,16 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
         student={activeStudentProfile}
       />
 
-      {/* Modal 2: 100 Tokens Reward Store */}
+      {/* Modal 2: Reward Store with Reset Mechanics */}
       <RewardStoreModal
         open={showStoreModal}
         onClose={() => setShowStoreModal(false)}
         student={activeStudentProfile}
+        onRedeemReward={async (deltaTokens, reason) => {
+          if (onUpdateStudentTokens) {
+            await onUpdateStudentTokens(activeStudentProfile.slug, deltaTokens, reason);
+          }
+        }}
       />
     </div>
   );
