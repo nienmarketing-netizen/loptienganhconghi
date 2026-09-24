@@ -65,11 +65,6 @@ export const HeaderGreeting: React.FC<HeaderGreetingProps> = ({ student }) => {
             >
               {student.id}
             </span>
-            {parsedCode && (
-              <span className="text-[11px] text-slate-300 bg-white/10 px-1.5 py-0.5 rounded border border-white/10 font-normal">
-                {parsedCode.daysLabel} • {parsedCode.shift}
-              </span>
-            )}
           </div>
 
           <div className="flex items-center gap-1.5 text-xs text-slate-200 mt-1 font-normal">
