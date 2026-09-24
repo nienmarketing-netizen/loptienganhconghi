@@ -11,6 +11,7 @@ import {
   saveMultipleStudentsToFirebase,
   deleteStudentFromFirebase,
 } from "./lib/firebase";
+import { getStudentTokenBalance } from "./lib/studentUtils";
 
 export default function App() {
   // Global state for students to allow reactive live scoring
@@ -22,7 +23,17 @@ export default function App() {
     seedInitialStudentsIfEmpty();
     const unsubscribe = subscribeToStudents((data) => {
       if (data && Object.keys(data).length > 0) {
-        setStudentsMap(data);
+        const normalizedData: Record<string, StudentProfile> = {};
+        for (const [key, stu] of Object.entries(data)) {
+          normalizedData[key] = {
+            ...stu,
+            gamification: {
+              ...stu.gamification,
+              currentTokens: getStudentTokenBalance(stu),
+            },
+          };
+        }
+        setStudentsMap(normalizedData);
       }
     });
     return () => unsubscribe();
@@ -108,11 +119,6 @@ export default function App() {
     const student = studentsMap[studentSlug];
     if (!student) return;
 
-    const newTokens = Math.min(
-      student.gamification.maxTokens,
-      student.gamification.currentTokens + tokensToAdd
-    );
-
     const now = new Date();
     const timeStr = now.toLocaleTimeString("vi-VN", {
       hour: "2-digit",
@@ -131,13 +137,16 @@ export default function App() {
       category: "bonus" as const,
     };
 
+    const newHistory = [newHistoryItem, ...(student.tokenHistory || [])];
+    const newTokens = newHistory.reduce((sum, item) => sum + item.tokens, 0);
+
     const updatedStudent: StudentProfile = {
       ...student,
       gamification: {
         ...student.gamification,
         currentTokens: newTokens,
       },
-      tokenHistory: [newHistoryItem, ...(student.tokenHistory || [])],
+      tokenHistory: newHistory,
     };
 
     setStudentsMap((prev) => ({

@@ -16,8 +16,11 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
   onOpenHistory,
   onOpenStore,
 }) => {
-  const currentTokens = student.gamification.currentTokens;
-  const maxTokens = student.gamification.maxTokens;
+  const currentTokens =
+    student.tokenHistory && student.tokenHistory.length > 0
+      ? student.tokenHistory.reduce((sum, item) => sum + item.tokens, 0)
+      : student.gamification.currentTokens;
+  const maxTokens = student.gamification.maxTokens || 100;
   const remainingTokens = Math.max(0, maxTokens - currentTokens);
   const percentage = Math.min(100, Math.round((currentTokens / maxTokens) * 100));
 
@@ -35,7 +38,7 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
 
         <div className="flex items-center gap-1.5 soft-ui-convex text-[#1a1a1a] text-xs font-semibold px-3 py-1.5 rounded-md leading-tight">
           <Award className="w-3.5 h-3.5 text-[#ff4757]" />
-          <span>100 Tokens</span>
+          <span>{currentTokens} Tokens</span>
         </div>
       </div>
 

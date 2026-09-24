@@ -14,6 +14,7 @@ import {
   Camera,
 } from "lucide-react";
 import { StudentProfile, Assignment } from "../types";
+import { getStudentTokenBalance } from "../lib/studentUtils";
 import { HeaderGreeting } from "../components/HeaderGreeting";
 import { RecentLessonBlock } from "../components/RecentLessonBlock";
 import { GamificationBlock } from "../components/GamificationBlock";
@@ -184,7 +185,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
         subtitle={`Mục tiêu đổi quà: ${activeStudentProfile.gamification.targetRewardName}`}
         badge={
           <span className="inline-flex items-center text-xs font-semibold text-amber-950 bg-amber-100 border border-amber-300 px-2.5 py-0.5 rounded-md leading-tight whitespace-nowrap">
-            {activeStudentProfile.gamification.currentTokens}/100 Tokens
+            {getStudentTokenBalance(activeStudentProfile)}/100 Tokens
           </span>
         }
       >

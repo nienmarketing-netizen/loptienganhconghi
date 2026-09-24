@@ -488,6 +488,14 @@ export const MOCK_STUDENTS: Record<string, StudentProfile> = {
         type: "earned",
         category: "discipline",
       },
+      {
+        id: "tk-hm-4",
+        date: "05/09/2026",
+        reason: "Tích lũy xuất sắc từ các bài kiểm tra và phát biểu tuần 1-3",
+        tokens: 60,
+        type: "earned",
+        category: "test",
+      },
     ],
     assignments: [
       {
@@ -642,6 +650,14 @@ export const MOCK_STUDENTS: Record<string, StudentProfile> = {
         tokens: 10,
         type: "earned",
         category: "speaking",
+      },
+      {
+        id: "tk-dm-3",
+        date: "08/09/2026",
+        reason: "Tích lũy từ tuần lễ định hướng và bài tập đầu khóa",
+        tokens: 50,
+        type: "earned",
+        category: "test",
       },
     ],
     assignments: [

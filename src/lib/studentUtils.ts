@@ -50,3 +50,15 @@ export function parseStudentCode(code: string): ParsedStudentCode | null {
     raw: code.trim(),
   };
 }
+
+export function getStudentTokenBalance(student?: {
+  tokenHistory?: { tokens: number }[];
+  gamification?: { currentTokens?: number };
+}): number {
+  if (!student) return 0;
+  if (student.tokenHistory && student.tokenHistory.length > 0) {
+    return student.tokenHistory.reduce((sum, item) => sum + (item.tokens || 0), 0);
+  }
+  return student.gamification?.currentTokens ?? 0;
+}
+

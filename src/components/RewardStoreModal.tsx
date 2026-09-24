@@ -14,7 +14,10 @@ interface RewardStoreModalProps {
 }
 
 export const RewardStoreModal: React.FC<RewardStoreModalProps> = ({ open, onClose, student }) => {
-  const currentTokens = student.gamification.currentTokens;
+  const currentTokens =
+    student.tokenHistory && student.tokenHistory.length > 0
+      ? student.tokenHistory.reduce((sum, item) => sum + item.tokens, 0)
+      : student.gamification.currentTokens;
   const [redeemedRewardId, setRedeemedRewardId] = useState<string | null>(null);
 
   const handleClaimReward = (reward: RewardItem) => {

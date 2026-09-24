@@ -3,6 +3,7 @@ import { Link2, Check, Share2, Users } from "lucide-react";
 import { StudentProfile } from "../types";
 import { MOCK_STUDENTS } from "../data/mockStudents";
 import { Button } from "./ui/Button";
+import { getStudentTokenBalance } from "../lib/studentUtils";
 
 interface MagicLinkBarProps {
   currentStudent: StudentProfile;
@@ -84,7 +85,7 @@ export const MagicLinkBar: React.FC<MagicLinkBarProps> = ({
                       : "bg-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-700/70"
                   }`}
                 >
-                  {stu.fullName.split(" ").slice(-2).join(" ")} ({stu.gamification.currentTokens}T)
+                  {stu.fullName.split(" ").slice(-2).join(" ")} ({getStudentTokenBalance(stu)}T)
                 </button>
               );
             })}

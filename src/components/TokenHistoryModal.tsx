@@ -32,6 +32,11 @@ export const TokenHistoryModal: React.FC<TokenHistoryModalProps> = ({ open, onCl
     .filter((i) => i.tokens > 0)
     .reduce((sum, i) => sum + i.tokens, 0);
 
+  const currentBalance =
+    student.tokenHistory && student.tokenHistory.length > 0
+      ? student.tokenHistory.reduce((sum, item) => sum + item.tokens, 0)
+      : student.gamification.currentTokens;
+
   return (
     <Dialog open={open} onOpenChange={onClose} id="modal-token-history">
       <DialogHeader>
@@ -57,7 +62,7 @@ export const TokenHistoryModal: React.FC<TokenHistoryModalProps> = ({ open, onCl
             <span className="text-[11px] text-[#666666] font-medium block">Số dư hiện tại</span>
             <div className="flex items-baseline gap-1.5 mt-0.5">
               <span className="text-2xl sm:text-3xl font-black text-[#1a1a1a] font-mono tracking-tight">
-                {student.gamification.currentTokens}
+                {currentBalance}
               </span>
               <span className="text-xs font-bold text-[#ff4757] font-mono">Tokens</span>
             </div>
