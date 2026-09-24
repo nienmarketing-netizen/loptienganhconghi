@@ -27,6 +27,8 @@ import { StudentProfile, Assignment } from "../types";
 import { NewStudentModal } from "../components/NewStudentModal";
 import { GradingModal } from "../components/GradingModal";
 import { exportStudentsToCSV } from "../lib/exportUtils";
+import { DAYS_MAPPING, SHIFT_MAPPING } from "../lib/studentUtils";
+import { ClassLessonEditor } from "../components/ClassLessonEditor";
 
 interface AdminDashboardProps {
   students: Record<string, StudentProfile>;
@@ -36,6 +38,7 @@ interface AdminDashboardProps {
     reason: string
   ) => void;
   onSaveStudent?: (student: StudentProfile) => Promise<void> | void;
+  onSaveMultipleStudents?: (students: StudentProfile[]) => Promise<void> | void;
   onDeleteStudent?: (slug: string) => Promise<void> | void;
   onViewStudentPortal: (slug: string) => void;
 }
@@ -105,6 +108,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   students,
   onUpdateStudentTokens,
   onSaveStudent,
+  onSaveMultipleStudents,
   onDeleteStudent,
   onViewStudentPortal,
 }) => {
@@ -112,6 +116,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   const [filterMode, setFilterMode] = useState<
     "all" | "has_unsubmitted" | "ready_for_reward" | "has_pending_grading"
   >("all");
+  const [selectedClass, setSelectedClass] = useState<string>("ALL");
   const [activeScoringStudentSlug, setActiveScoringStudentSlug] = useState<
     string | null
   >(null);
@@ -123,6 +128,75 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   const [gradingStudent, setGradingStudent] = useState<StudentProfile | null>(null);
 
   const studentList = Object.values(students);
+
+  // Helper to extract student's class code: [KHỐI]-[NGÀY][CA] (VD: K7-T24C1, K8-T35C1, K6-T7CC1)
+  const getStudentClassInfo = (student: StudentProfile) => {
+    // 1. Try matching student ID formatted like G7-T24C1-01 or K7-T24C1-01
+    const idMatch = student.id?.match(/^(?:G|K)?(\d+)[-_]?(T\w+?)(C\d+)(?:-\d+)?$/i);
+    if (idMatch) {
+      const [, gradeNum, daysCode, shiftCode] = idMatch;
+      const upperDays = daysCode.toUpperCase();
+      const upperShift = shiftCode.toUpperCase();
+      const code = `K${gradeNum}-${upperDays}${upperShift}`;
+      const daysName =
+        DAYS_MAPPING[upperDays] || (upperDays === "T7C" ? "Thứ 7-Chủ Nhật" : upperDays);
+      const shiftName =
+        upperShift === "C1"
+          ? "Ca 1 (17h30)"
+          : upperShift === "C2"
+          ? "Ca 2 (19h30)"
+          : upperShift === "C3"
+          ? "Ca 3 (14h00)"
+          : upperShift;
+      return {
+        code,
+        gradeLabel: `Khối ${gradeNum}`,
+        daysLabel: daysName,
+        shiftLabel: shiftName,
+        subLabel: `${daysName} • ${upperShift}`,
+      };
+    }
+
+    // 2. Fallback: Parse from student.grade string if present
+    const gradeNumMatch = student.grade?.match(/(?:Lớp|Khối|K)\s*(\d+)/i);
+    const gradeNum = gradeNumMatch ? gradeNumMatch[1] : "7";
+    return {
+      code: `K${gradeNum}-CHUNG`,
+      gradeLabel: `Khối ${gradeNum}`,
+      daysLabel: "Lớp chung",
+      shiftLabel: "Chung",
+      subLabel: `Khối ${gradeNum} • Lịch học chung`,
+    };
+  };
+
+  // Available classes dynamically extracted from registered students
+  const availableClasses = React.useMemo(() => {
+    const classMap = new Map<
+      string,
+      {
+        code: string;
+        gradeLabel: string;
+        subLabel: string;
+        count: number;
+      }
+    >();
+
+    studentList.forEach((student) => {
+      const info = getStudentClassInfo(student);
+      if (!classMap.has(info.code)) {
+        classMap.set(info.code, {
+          code: info.code,
+          gradeLabel: info.gradeLabel,
+          subLabel: info.subLabel,
+          count: 1,
+        });
+      } else {
+        classMap.get(info.code)!.count += 1;
+      }
+    });
+
+    return Array.from(classMap.values()).sort((a, b) => a.code.localeCompare(b.code));
+  }, [studentList]);
 
   // Helper toast dispatcher
   const addToast = (
@@ -194,25 +268,36 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     );
   };
 
-  // Batch reminder for all unsubmitted
+  // Batch reminder for unsubmitted in current class filter
   const handleBatchZaloReminder = () => {
-    const studentsWithUnsubmitted = studentList.filter((s) =>
+    const studentsWithUnsubmitted = classFilteredStudents.filter((s) =>
       (s.assignments || []).some((a) => a.status === "not_done")
     );
 
     addToast(
       "info",
       `Đã gửi lời nhắc Zalo đồng loạt!`,
-      `Đã gửi tin nhắn tự động đến phụ huynh của ${studentsWithUnsubmitted.length} học sinh chưa nộp bài tập tuần này.`
+      `Đã gửi tin nhắn tự động đến phụ huynh của ${studentsWithUnsubmitted.length} học sinh chưa nộp bài tập (${
+        selectedClass === "ALL" ? "Toàn bộ các lớp" : `Lớp ${selectedClass}`
+      }).`
     );
   };
 
-  // Filter students
-  const filteredStudents = studentList.filter((student) => {
+  // 1. Filter students by selected class [KHỐI]-[NGÀY][CA]
+  const classFilteredStudents = React.useMemo(() => {
+    if (selectedClass === "ALL") return studentList;
+    return studentList.filter(
+      (s) => getStudentClassInfo(s).code === selectedClass
+    );
+  }, [studentList, selectedClass]);
+
+  // 2. Filter students by search and filterMode
+  const filteredStudents = classFilteredStudents.filter((student) => {
     const matchesSearch =
       student.fullName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       student.school.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      student.grade.toLowerCase().includes(searchQuery.toLowerCase());
+      student.grade.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      student.id.toLowerCase().includes(searchQuery.toLowerCase());
 
     if (!matchesSearch) return false;
 
@@ -228,21 +313,21 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     return true;
   });
 
-  // Calculate quick class statistics
-  const totalStudents = studentList.length;
-  const totalUnsubmittedCount = studentList.reduce((acc, curr) => {
+  // 3. Calculate quick class statistics based on current class filter
+  const totalStudentsInClass = classFilteredStudents.length;
+  const totalUnsubmittedCount = classFilteredStudents.reduce((acc, curr) => {
     return (
       acc +
       (curr.assignments || []).filter((a) => a.status === "not_done").length
     );
   }, 0);
-  const totalPendingGradingCount = studentList.reduce((acc, curr) => {
+  const totalPendingGradingCount = classFilteredStudents.reduce((acc, curr) => {
     return (
       acc +
       (curr.assignments || []).filter((a) => a.status === "submitted").length
     );
   }, 0);
-  const near100TokensCount = studentList.filter(
+  const near100TokensCount = classFilteredStudents.filter(
     (s) => s.gamification.currentTokens >= 80
   ).length;
 
@@ -299,34 +384,25 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       </div>
 
       {/* Hero Banner for Teacher Portal */}
-      <div className="rounded-lg sm:rounded-xl bg-gradient-to-br from-indigo-900 via-slate-900 to-indigo-950 text-white p-4 sm:p-6 shadow-md border border-indigo-800/60 flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="space-y-1.5">
-          <div className="flex items-center gap-2">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-amber-300 bg-amber-400/20 px-2.5 py-0.5 rounded-full border border-amber-400/30 flex items-center gap-1">
-              <Sparkles className="w-3 h-3 text-amber-400" />
-              Cổng Quản Lý Lớp Học • Dành Cho Cô Nghi
-            </span>
-          </div>
-          <h2 className="text-base sm:text-2xl font-black tracking-tight !text-white">
-            Admin Dashboard: Chấm Điểm 1 Chạm & Quản Lý Học Vụ
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-200 max-w-xl font-normal">
-            Tối ưu thao tác vuốt chạm trên Tablet & Điện thoại. Thưởng Tokens
-            ngay trong giờ học và gửi nhắc nhở Zalo đến phụ huynh chỉ với 1 bấm.
-          </p>
+      <div className="rounded-lg sm:rounded-xl bg-gradient-to-br from-indigo-900 via-slate-900 to-indigo-950 text-white p-3.5 sm:p-5 shadow-md border border-indigo-800/60 flex flex-col gap-3.5 sm:gap-4">
+        {/* Hàng 1: Badge tiêu đề */}
+        <div className="flex items-center">
+          <span className="text-[11px] sm:text-xs font-semibold text-amber-300 bg-amber-400/20 px-3 py-1 rounded-full border border-amber-400/30 whitespace-nowrap inline-block tracking-normal">
+            Cổng quản lý lớp học dành cho giáo viên
+          </span>
         </div>
 
-        {/* Global Actions & Dedicated Portal URL Info */}
-        <div className="shrink-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 flex-wrap">
-          {/* Nút Thêm Học Sinh Mới (Giai đoạn 1: Đầu vào) */}
+        {/* Hàng 2: Các nút hành động - Mobile: 1 cột (từ trên xuống), Tablet: 2 hàng (mỗi hàng 2 nút), PC: 1 hàng 4 nút */}
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5">
+          {/* Nút Thêm học sinh mới */}
           <button
             type="button"
             id="btn-add-new-student"
             onClick={() => setIsNewStudentModalOpen(true)}
-            className="min-h-[44px] px-4 py-2.5 rounded-lg bg-[#ff4757] hover:bg-[#e03949] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[var(--shadow-accent)] border border-white/30 active:scale-95 transition-all cursor-pointer"
+            className="w-full min-h-[44px] px-4 py-2.5 rounded-lg bg-[#ff4757] hover:bg-[#e03949] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[var(--shadow-accent)] border border-white/30 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
           >
             <Plus className="w-4 h-4 stroke-[3]" />
-            <span>+ Thêm học sinh (GĐ 1: Đầu vào)</span>
+            <span>Thêm học sinh mới</span>
           </button>
 
           {/* Nút Xuất file Excel (.csv) */}
@@ -337,105 +413,209 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               exportStudentsToCSV(students);
               addToast("success", "Đã xuất file bảng điểm Excel!", "File CSV chuẩn tiếng Việt UTF-8 đã được tải về máy.");
             }}
-            className="min-h-[44px] px-3.5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-emerald-400/40 shadow-sm active:scale-95 transition-all cursor-pointer"
+            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-emerald-400/40 shadow-sm active:scale-95 transition-all cursor-pointer whitespace-nowrap"
             title="Tải toàn bộ danh sách điểm số và học sinh ra file Excel / Google Sheets"
           >
             <Download className="w-4 h-4" />
             <span>Xuất Excel</span>
           </button>
 
+          {/* Nút Nhắc Zalo */}
           <button
             type="button"
             id="btn-batch-zalo-reminder"
             onClick={handleBatchZaloReminder}
-            className="w-full sm:w-auto min-h-[44px] px-4 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-slate-600 shadow-sm active:scale-95 transition-all cursor-pointer"
+            className="w-full min-h-[44px] px-4 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-slate-600 shadow-sm active:scale-95 transition-all cursor-pointer whitespace-nowrap"
           >
             <Send className="w-4 h-4 text-emerald-400" />
             <span>Nhắc Zalo ({totalUnsubmittedCount} bài)</span>
           </button>
+
+          {/* Nút Mở cổng phụ huynh */}
+          <button
+            type="button"
+            id="btn-view-parent-portal-hero"
+            onClick={() => {
+              const firstStudent = studentList[0];
+              if (firstStudent) {
+                onViewStudentPortal(firstStudent.slug);
+              }
+            }}
+            className="w-full min-h-[44px] px-4 py-2.5 rounded-lg bg-[#2d3436] hover:bg-[#1a1a1a] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-white/20 shadow-md active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+          >
+            <ExternalLink className="w-4 h-4 text-[#ff4757] shrink-0" />
+            <span>Mở cổng phụ huynh</span>
+          </button>
         </div>
       </div>
 
-      {/* Database Connection Status Bar */}
-      <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-xl px-3.5 py-2 flex items-center justify-between text-xs shadow-[var(--shadow-recessed-sm)]">
-        <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
-          <span className="font-semibold text-[#1a1a1a]">
-            Cơ sở dữ liệu đám mây: <span className="text-emerald-700 font-bold font-mono">Firebase Firestore (Realtime)</span>
-          </span>
-          <span className="hidden sm:inline text-[#666666] text-[11px]">
-            • Dữ liệu tự động đồng bộ tức thì cho phụ huynh
-          </span>
+      {/* KHU VỰC GALLERY NÚT BẤM CHỌN LỚP HỌC • FILTER THEO [KHỐI]-[NGÀY][CA] */}
+      <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-[var(--shadow-recessed-sm)] space-y-2.5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-1.5 border-b border-[#babecc]/50">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-[#e0e5ec] text-[#2d3436] flex items-center justify-center font-bold shadow-[var(--shadow-convex-sm)] border border-white/60 shrink-0">
+              <GraduationCap className="w-4 h-4 text-[#ff4757]" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-xs sm:text-sm font-bold text-[#1a1a1a] tracking-tight">
+                  Lọc dữ liệu theo lớp học
+                </span>
+                <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-white/70 text-[#2d3436] border border-white/80 shadow-2xs">
+                  [KHỐI]-[NGÀY][CA]
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 self-start sm:self-auto">
+            {selectedClass !== "ALL" ? (
+              <div className="flex items-center gap-1.5">
+                <span className="text-[11px] text-[#666666] font-medium">Đang lọc:</span>
+                <span className="inline-flex items-center gap-1 text-xs font-bold font-mono px-2 py-0.5 rounded-md bg-[#ff4757] text-white shadow-xs border border-white/30">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  {selectedClass} ({classFilteredStudents.length} HS)
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setSelectedClass("ALL")}
+                  className="text-[11px] font-semibold text-[#ff4757] hover:underline cursor-pointer ml-1"
+                >
+                  Xóa lọc
+                </button>
+              </div>
+            ) : (
+              <span className="text-[11px] text-[#666666] font-medium flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_rgba(16,185,129,0.8)]" />
+                Đang xem: <strong className="text-[#1a1a1a]">Tất cả các lớp ({studentList.length} HS)</strong>
+              </span>
+            )}
+          </div>
         </div>
-        <div className="flex items-center gap-2">
+
+        {/* Gallery Nút Bấm Lựa Chọn Lớp Học */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5">
+          {/* Nút: Tất cả các lớp */}
           <button
             type="button"
-            onClick={() => {
-              const url = `${window.location.origin}/giao-vien`;
-              navigator.clipboard.writeText(url);
-              addToast("info", "Đã sao chép link Cổng Giáo Viên!", url);
-            }}
-            className="text-[11px] font-mono text-[#666666] hover:text-[#1a1a1a] flex items-center gap-1 cursor-pointer"
+            id="btn-filter-class-all"
+            onClick={() => setSelectedClass("ALL")}
+            className={`min-h-[40px] px-2.5 py-1.5 rounded-lg sm:rounded-xl text-left flex items-center justify-between transition-all cursor-pointer ${
+              selectedClass === "ALL"
+                ? "bg-[#ff4757] text-white shadow-[var(--shadow-accent)] border border-white/40 ring-2 ring-[#ff4757]/30 scale-[1.01]"
+                : "soft-ui-convex bg-[#e0e5ec] text-[#1a1a1a] hover:bg-[#d8e0ec] border border-white/60 shadow-[var(--shadow-card-sm)] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px]"
+            }`}
           >
-            <Copy className="w-3 h-3 text-[#ff4757]" />
-            <span>Link Giáo Viên: /giao-vien</span>
+            <span className="text-[9px] sm:text-[10px] font-black font-mono tracking-tight flex items-center gap-1 truncate">
+              <Users className="w-3 h-3 shrink-0" />
+              TẤT CẢ LỚP
+            </span>
+            <span
+              className={`text-[8px] sm:text-[9px] font-bold font-mono px-1.5 py-0.5 rounded shrink-0 leading-none ${
+                selectedClass === "ALL"
+                  ? "bg-white/20 text-white border border-white/30"
+                  : "bg-[#d1d9e6] text-[#2d3436] border border-[#babecc]/50"
+              }`}
+            >
+              {studentList.length} HS
+            </span>
           </button>
+
+          {/* Nút các lớp học theo cấu trúc chuẩn [KHỐI]-[NGÀY][CA] */}
+          {availableClasses.map((cls) => {
+            const isSelected = selectedClass === cls.code;
+            return (
+              <button
+                key={cls.code}
+                type="button"
+                id={`btn-filter-class-${cls.code}`}
+                onClick={() => setSelectedClass(cls.code)}
+                className={`min-h-[40px] px-2.5 py-1.5 rounded-lg sm:rounded-xl text-left flex items-center justify-between transition-all cursor-pointer ${
+                  isSelected
+                    ? "bg-[#ff4757] text-white shadow-[var(--shadow-accent)] border border-white/40 ring-2 ring-[#ff4757]/30 scale-[1.01]"
+                    : "soft-ui-convex bg-[#e0e5ec] text-[#1a1a1a] hover:bg-[#d8e0ec] border border-white/60 shadow-[var(--shadow-card-sm)] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px]"
+                }`}
+              >
+                <div className="flex items-center gap-1.5 min-w-0">
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                      isSelected
+                        ? "bg-white shadow-[0_0_4px_#ffffff]"
+                        : "bg-emerald-500 shadow-[0_0_3px_#10b981]"
+                    }`}
+                  />
+                  <span className="text-[9px] sm:text-[10px] font-black font-mono tracking-tight truncate">
+                    {cls.code}
+                  </span>
+                </div>
+                <span
+                  className={`text-[8px] sm:text-[9px] font-bold font-mono px-1.5 py-0.5 rounded shrink-0 leading-none ${
+                    isSelected
+                      ? "bg-white/20 text-white border border-white/30"
+                      : "bg-[#d1d9e6] text-[#2d3436] border border-[#babecc]/50"
+                  }`}
+                >
+                  {cls.count} HS
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
       {/* Quick Class Stats Pill Row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
-        <div className="bg-white border border-slate-200/90 rounded-lg sm:rounded-xl p-3 sm:p-3.5 shadow-xs flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center font-bold shrink-0">
-            <Users className="w-5 h-5" />
+        <div className="bg-white border border-slate-200/90 rounded-lg sm:rounded-xl p-2.5 sm:p-3 shadow-xs flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center font-bold shrink-0">
+            <Users className="w-4 h-4" />
           </div>
           <div>
-            <span className="text-[11px] text-slate-500 font-medium block">
+            <span className="text-[9px] sm:text-[10px] text-slate-500 font-medium block leading-tight">
               Sĩ số lớp
             </span>
-            <span className="text-base sm:text-lg font-black text-slate-900 font-mono">
-              {totalStudents} học sinh
+            <span className="text-xs sm:text-sm font-black text-slate-900 font-mono leading-tight">
+              {totalStudentsInClass} học sinh
             </span>
           </div>
         </div>
 
-        <div className="bg-white border border-slate-200/90 rounded-lg sm:rounded-xl p-3 sm:p-3.5 shadow-xs flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center font-bold shrink-0">
-            <AlertCircle className="w-5 h-5" />
+        <div className="bg-white border border-slate-200/90 rounded-lg sm:rounded-xl p-2.5 sm:p-3 shadow-xs flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center font-bold shrink-0">
+            <AlertCircle className="w-4 h-4" />
           </div>
           <div>
-            <span className="text-[11px] text-slate-500 font-medium block">
+            <span className="text-[9px] sm:text-[10px] text-slate-500 font-medium block leading-tight">
               Chưa nộp bài
             </span>
-            <span className="text-base sm:text-lg font-black text-amber-700 font-mono">
+            <span className="text-xs sm:text-sm font-black text-amber-700 font-mono leading-tight">
               {totalUnsubmittedCount} bài tập
             </span>
           </div>
         </div>
 
-        <div className="bg-white border border-slate-200/90 rounded-lg sm:rounded-xl p-3 sm:p-3.5 shadow-xs flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center font-bold shrink-0">
-            <Clock className="w-5 h-5" />
+        <div className="bg-white border border-slate-200/90 rounded-lg sm:rounded-xl p-2.5 sm:p-3 shadow-xs flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center font-bold shrink-0">
+            <Clock className="w-4 h-4" />
           </div>
           <div>
-            <span className="text-[11px] text-slate-500 font-medium block">
+            <span className="text-[9px] sm:text-[10px] text-slate-500 font-medium block leading-tight">
               Chờ cô chấm
             </span>
-            <span className="text-base sm:text-lg font-black text-sky-700 font-mono">
+            <span className="text-xs sm:text-sm font-black text-sky-700 font-mono leading-tight">
               {totalPendingGradingCount} bài
             </span>
           </div>
         </div>
 
-        <div className="bg-white border border-slate-200/90 rounded-lg sm:rounded-xl p-3 sm:p-3.5 shadow-xs flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold shrink-0">
-            <Award className="w-5 h-5" />
+        <div className="bg-white border border-slate-200/90 rounded-lg sm:rounded-xl p-2.5 sm:p-3 shadow-xs flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold shrink-0">
+            <Award className="w-4 h-4" />
           </div>
           <div>
-            <span className="text-[11px] text-slate-500 font-medium block">
+            <span className="text-[9px] sm:text-[10px] text-slate-500 font-medium block leading-tight">
               Sắp chạm 100T
             </span>
-            <span className="text-base sm:text-lg font-black text-emerald-700 font-mono">
+            <span className="text-xs sm:text-sm font-black text-emerald-700 font-mono leading-tight">
               {near100TokensCount} học sinh
             </span>
           </div>
@@ -468,7 +648,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   : "bg-slate-100 text-slate-600 hover:bg-slate-200"
               }`}
             >
-              Tất cả ({studentList.length})
+              Tất cả ({classFilteredStudents.length})
             </button>
             <button
               type="button"
@@ -504,20 +684,40 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               }`}
             >
               <Coins className="w-3.5 h-3.5" />
-              <span>Đổi quà (&ge;80T)</span>
+              <span>Đổi quà</span>
             </button>
           </div>
         </div>
       </div>
 
+      {/* KHU VỰC NHẬP LIỆU TỔNG QUAN BUỔI HỌC CỦA LỚP (ĐỒNG BỘ SANG CỔNG PHỤ HUYNH) */}
+      <ClassLessonEditor
+        currentClassName={selectedClass}
+        targetStudents={classFilteredStudents}
+        onSyncLessonToStudents={async (updatedList, summary) => {
+          if (onSaveMultipleStudents) {
+            await onSaveMultipleStudents(updatedList);
+          } else if (onSaveStudent) {
+            for (const s of updatedList) {
+              await onSaveStudent(s);
+            }
+          }
+          addToast(
+            "success",
+            "Đã đồng bộ thông tin buổi học!",
+            `Đã cập nhật "${summary.name}" (${summary.date}) cho ${updatedList.length} học sinh.`
+          );
+        }}
+      />
+
       {/* DANH SÁCH HỌC SINH (Optimized for Touch: Tablet Table & Mobile Cards) */}
       <div className="space-y-3">
         {/* Header Label */}
-        <div className="flex items-center justify-between text-xs font-bold text-slate-500 uppercase tracking-wider px-1">
-          <span>
+        <div className="flex items-center justify-between text-xs px-1">
+          <span className="font-bold text-[#ff4757] text-xs sm:text-sm">
             Danh sách học sinh ({filteredStudents.length} học sinh)
           </span>
-          <span className="hidden sm:inline text-slate-400 font-normal">
+          <span className="hidden sm:inline text-slate-500 font-normal">
             Bấm "+ Tokens" để thưởng điểm 1 chạm
           </span>
         </div>
@@ -535,6 +735,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
             const isScoringActive =
               activeScoringStudentSlug === student.slug;
+
+            // Làm sạch hiển thị: Bỏ phần " - Nhóm ..." nếu có, chỉ giữ lại "Lớp X" hoặc "Khối X"
+            const cleanedGrade = (student.grade || "").replace(/\s*-\s*Nhóm.*$/i, "").trim();
 
             return (
               <div
@@ -563,7 +766,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                         </span>
                       </div>
                       <p className="text-xs text-slate-500 mt-0.5">
-                        {student.grade} • {student.school}
+                        {cleanedGrade || student.grade} • {student.school}
                       </p>
                     </div>
                   </div>

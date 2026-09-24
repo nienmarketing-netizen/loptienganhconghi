@@ -1,6 +1,8 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import {
-  getFirestore,
+  initializeFirestore,
+  persistentLocalCache,
+  persistentMultipleTabManager,
   collection,
   doc,
   setDoc,
@@ -13,7 +15,13 @@ import { StudentProfile } from "../types";
 import { MOCK_STUDENTS } from "../data/mockStudents";
 
 export const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
-export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
+
+// Initialize Firestore with robust local cache & multiple tab support
+export const db = initializeFirestore(app, {
+  localCache: persistentLocalCache({
+    tabManager: persistentMultipleTabManager(),
+  }),
+}, firebaseConfig.firestoreDatabaseId);
 
 const STUDENTS_COLLECTION = "students";
 
@@ -47,6 +55,7 @@ export function subscribeToStudents(
   const colRef = collection(db, STUDENTS_COLLECTION);
   return onSnapshot(
     colRef,
+    { includeMetadataChanges: true },
     (snapshot) => {
       if (snapshot.empty) {
         callback(MOCK_STUDENTS);
@@ -60,8 +69,10 @@ export function subscribeToStudents(
       callback(data);
     },
     (error) => {
-      console.error("Firestore snapshot error:", error);
-      // Fallback to mock data if offline or error
+      // If offline/unavailable, gracefully fallback to local mock data without breaking
+      if (error?.code !== "unavailable") {
+        console.warn("Firestore snapshot info:", error.message);
+      }
       callback(MOCK_STUDENTS);
     }
   );
@@ -71,21 +82,57 @@ export function subscribeToStudents(
  * Save or update a single student record
  */
 export async function saveStudentToFirebase(student: StudentProfile): Promise<void> {
-  const docRef = doc(db, STUDENTS_COLLECTION, student.slug);
-  await setDoc(
-    docRef,
-    {
-      ...student,
-      updatedAt: new Date().toISOString(),
-    },
-    { merge: true }
-  );
+  try {
+    const docRef = doc(db, STUDENTS_COLLECTION, student.slug);
+    await setDoc(
+      docRef,
+      {
+        ...student,
+        updatedAt: new Date().toISOString(),
+      },
+      { merge: true }
+    );
+  } catch (error: any) {
+    if (error?.code !== "unavailable") {
+      console.warn("Firestore write notice:", error?.message || error);
+    }
+  }
+}
+
+/**
+ * Save or update multiple student records at once (for class-wide synchronization)
+ */
+export async function saveMultipleStudentsToFirebase(students: StudentProfile[]): Promise<void> {
+  try {
+    await Promise.all(
+      students.map((student) =>
+        setDoc(
+          doc(db, STUDENTS_COLLECTION, student.slug),
+          {
+            ...student,
+            updatedAt: new Date().toISOString(),
+          },
+          { merge: true }
+        )
+      )
+    );
+  } catch (error: any) {
+    if (error?.code !== "unavailable") {
+      console.warn("Firestore batch write notice:", error?.message || error);
+    }
+  }
 }
 
 /**
  * Delete a student record
  */
 export async function deleteStudentFromFirebase(slug: string): Promise<void> {
-  const docRef = doc(db, STUDENTS_COLLECTION, slug);
-  await deleteDoc(docRef);
+  try {
+    const docRef = doc(db, STUDENTS_COLLECTION, slug);
+    await deleteDoc(docRef);
+  } catch (error: any) {
+    if (error?.code !== "unavailable") {
+      console.warn("Firestore delete notice:", error?.message || error);
+    }
+  }
 }

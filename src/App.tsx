@@ -8,6 +8,7 @@ import {
   seedInitialStudentsIfEmpty,
   subscribeToStudents,
   saveStudentToFirebase,
+  saveMultipleStudentsToFirebase,
   deleteStudentFromFirebase,
 } from "./lib/firebase";
 
@@ -147,6 +148,18 @@ export default function App() {
     await saveStudentToFirebase(updatedStudent);
   };
 
+  // Batch students profile save handler
+  const handleSaveMultipleStudents = async (updatedList: StudentProfile[]) => {
+    setStudentsMap((prev) => {
+      const copy = { ...prev };
+      updatedList.forEach((s) => {
+        copy[s.slug] = s;
+      });
+      return copy;
+    });
+    await saveMultipleStudentsToFirebase(updatedList);
+  };
+
   // Full student profile save handler (persisting to Firebase Firestore)
   const handleSaveStudent = async (student: StudentProfile) => {
     setStudentsMap((prev) => ({
@@ -195,6 +208,7 @@ export default function App() {
             students={studentsMap}
             onUpdateStudentTokens={handleUpdateStudentTokens}
             onSaveStudent={handleSaveStudent}
+            onSaveMultipleStudents={handleSaveMultipleStudents}
             onDeleteStudent={handleDeleteStudent}
             onViewStudentPortal={(slug) => handleNavigateToStudent(slug)}
           />

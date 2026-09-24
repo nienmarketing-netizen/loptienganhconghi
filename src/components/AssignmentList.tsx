@@ -418,6 +418,21 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                   <h4 className="text-xs sm:text-base font-bold text-[#1a1a1a] tracking-[-0.015em] leading-snug">
                     {asg.title}
                   </h4>
+
+                  {/* Nội dung bài tập chi tiết nếu có */}
+                  {asg.description && (
+                    <p className="text-xs sm:text-sm text-[#444] leading-relaxed font-normal">
+                      {asg.description}
+                    </p>
+                  )}
+
+                  {/* Hướng dẫn từ cô Nghi nếu có */}
+                  {asg.teacherInstruction && (
+                    <div className="bg-[#d1d9e6]/70 border border-[#babecc]/60 rounded-md p-2.5 text-xs text-[#1a1a1a] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.05)]">
+                      <span className="font-bold text-[#ff4757]">💡 Hướng dẫn từ cô Nghi:</span>{" "}
+                      <span>{asg.teacherInstruction}</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Status Badge */}

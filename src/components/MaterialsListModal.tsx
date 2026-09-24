@@ -12,6 +12,7 @@ import {
   Pause,
   RotateCcw,
   Volume2,
+  Image as ImageIcon,
 } from "lucide-react";
 import { Assignment, AssignmentMaterial } from "../types";
 import { useLockBodyScroll } from "../lib/useLockBodyScroll";
@@ -284,7 +285,8 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
     } else {
       const link = document.createElement("a");
       link.href = mat.url;
-      link.download = `${mat.title}.${mat.type === "mp3" ? "mp3" : "mp4"}`;
+      const ext = mat.type === "mp3" ? "mp3" : mat.type === "image" ? "jpg" : "mp4";
+      link.download = `${mat.title}.${ext}`;
       link.target = "_blank";
       document.body.appendChild(link);
       link.click();
@@ -295,6 +297,7 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
   const getFormatLabel = (type: string) => {
     if (type === "video") return "Video bài giảng";
     if (type === "mp3") return "Audio MP3";
+    if (type === "image") return "Hình ảnh tài liệu";
     return "Phiếu đề bài (PDF)";
   };
 
@@ -385,6 +388,7 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
               const isVideo = mat.type === "video";
               const isAudio = mat.type === "mp3";
               const isPdf = mat.type === "pdf";
+              const isImage = mat.type === "image";
               const isOpen = openMaterialId === mat.id;
 
               return (
@@ -405,6 +409,7 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
                         {isVideo && <Video className="w-5 h-5" />}
                         {isAudio && <Headphones className="w-5 h-5" />}
                         {isPdf && <FileText className="w-5 h-5" />}
+                        {isImage && <ImageIcon className="w-5 h-5" />}
                       </div>
 
                       {/* Only format label */}
@@ -424,7 +429,7 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
                     </div>
                   </button>
 
-                  {/* Dropdown Content: Integrated Audio/Video/PDF Player */}
+                  {/* Dropdown Content: Integrated Audio/Video/PDF/Image Player */}
                   {isOpen && (
                     <div className="p-3.5 sm:p-4 border-t border-[#babecc]/50 bg-[#e0e5ec] animate-in fade-in duration-150 space-y-3">
                       {/* Tiêu đề chủ đề của tài liệu */}
@@ -458,6 +463,22 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
                           fileSize={mat.fileSize}
                           onDownload={() => handleDownload(mat)}
                         />
+                      )}
+
+                      {isImage && (
+                        <div className="space-y-3">
+                          <div className="relative rounded-lg overflow-hidden border border-[#babecc] bg-slate-900 max-h-[360px] flex items-center justify-center shadow-xs">
+                            <img
+                              src={mat.url}
+                              alt={mat.title}
+                              className="w-full h-auto max-h-[360px] object-contain"
+                            />
+                          </div>
+                          <MaterialDownloadButton
+                            label={`Tải hình ảnh - ${mat.fileSize || "1.2 MB"}`}
+                            onDownload={() => handleDownload(mat)}
+                          />
+                        </div>
                       )}
                     </div>
                   )}

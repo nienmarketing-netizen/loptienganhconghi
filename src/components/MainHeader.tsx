@@ -204,78 +204,14 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
 
           {/* Desktop Navigation & Actions for Admin */}
           {currentRoute === "admin" && (
-            <div className="hidden md:flex items-center gap-2.5">
-              <div className="flex items-center gap-2 bg-[#d1d9e6] border border-[#babecc]/60 px-3 py-1.5 rounded-lg shadow-[var(--shadow-recessed-sm)] text-xs">
-                <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
-                <span className="text-[#666666] font-medium">Link Cổng:</span>
-                <span className="font-bold font-mono text-[#1a1a1a]">/giao-vien</span>
-              </div>
-
-              <button
-                type="button"
-                id="btn-copy-teacher-link"
-                onClick={copyTeacherUrl}
-                className="soft-ui-convex min-h-[36px] px-3 py-1.5 rounded-lg text-xs font-semibold text-[#1a1a1a] flex items-center gap-1.5 cursor-pointer active:translate-y-[1px] transition-all"
-                title="Sao chép đường dẫn trực tiếp Cổng Giáo Viên"
-              >
-                {copiedLink ? (
-                  <>
-                    <Check className="w-3.5 h-3.5 text-emerald-600" />
-                    <span className="text-emerald-700 font-bold">Đã chép link!</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-3.5 h-3.5 text-[#ff4757]" />
-                    <span>Chép link Cổng</span>
-                  </>
-                )}
-              </button>
-
-              <button
-                type="button"
-                id="btn-view-parent-portal"
-                onClick={() => onNavigateToStudent(currentStudent.slug)}
-                className="bg-[#2d3436] hover:bg-[#1a1a1a] text-white min-h-[36px] px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-[4px_4px_8px_rgba(0,0,0,0.25)] border border-white/20 cursor-pointer active:translate-y-[1px] transition-all"
-              >
-                <ExternalLink className="w-3.5 h-3.5 text-[#ff4757]" />
-                <span>Mở Cổng Phụ Huynh</span>
-              </button>
+            <div className="hidden sm:flex items-center">
+              {/* Nút Mở cổng phụ huynh đã được đưa xuống banner hero của trang quản trị */}
             </div>
           )}
 
           {/* Right Action: Mobile Controls & Student Pop-up Menu */}
           <div className="relative flex items-center gap-1.5 sm:gap-2">
-            {/* If Teacher Route (Admin) on Mobile: Show Copy Link & View Parent Button */}
-            {currentRoute === "admin" && (
-              <div className="flex md:hidden items-center gap-1.5">
-                <button
-                  type="button"
-                  id="btn-mobile-copy-link"
-                  onClick={copyTeacherUrl}
-                  className="min-h-[40px] px-2.5 py-1.5 rounded-lg soft-ui-convex text-xs font-semibold flex items-center gap-1 text-[#1a1a1a] active:translate-y-[1px]"
-                  title="Sao chép link /giao-vien"
-                >
-                  {copiedLink ? (
-                    <Check className="w-4 h-4 text-emerald-600" />
-                  ) : (
-                    <Copy className="w-4 h-4 text-[#ff4757]" />
-                  )}
-                  <span className="text-[11px] font-mono font-bold">
-                    {copiedLink ? "Đã chép" : "/giao-vien"}
-                  </span>
-                </button>
-
-                <button
-                  type="button"
-                  id="btn-mobile-open-student-portal"
-                  onClick={() => onNavigateToStudent(currentStudent.slug)}
-                  className="min-h-[40px] px-3 py-1.5 rounded-lg bg-[#2d3436] text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm border border-white/20 active:translate-y-[1px]"
-                >
-                  <User className="w-3.5 h-3.5 text-[#ff4757]" />
-                  <span>Phụ Huynh</span>
-                </button>
-              </div>
-            )}
+            {/* If Student Route: Unified Pop-up Menu for both PC and Mobile */}
 
             {/* If Student Route: Unified Pop-up Menu for both PC and Mobile */}
             {currentRoute === "student" && (

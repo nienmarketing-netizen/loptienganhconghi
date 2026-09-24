@@ -137,7 +137,7 @@ export type AssignmentSkillType = "all" | "listening" | "speaking" | "reading" |
 
 export interface AssignmentMaterial {
   id: string;
-  type: "pdf" | "mp3" | "video";
+  type: "pdf" | "mp3" | "video" | "image";
   title: string;
   url: string;
   duration?: string; // e.g. "02:45"
@@ -158,6 +158,8 @@ export interface Assignment {
   id: string;
   title: string;
   unit: string;
+  description?: string; // Nội dung bài tập chi tiết
+  teacherInstruction?: string; // Hướng dẫn từ cô Nghi
   skillType?: "writing" | "speaking" | "listening" | "reading";
   skillLabel?: string;
   deadline: string;
