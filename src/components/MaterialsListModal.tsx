@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   X,
   FolderDown,
@@ -14,6 +14,7 @@ import {
   Volume2,
 } from "lucide-react";
 import { Assignment, AssignmentMaterial } from "../types";
+import { useLockBodyScroll } from "../lib/useLockBodyScroll";
 
 interface MaterialsListModalProps {
   assignment: Assignment;
@@ -258,6 +259,18 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
   onClose,
   onDownloadPDF,
 }) => {
+  useLockBodyScroll(true);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
   // All dropdowns are closed by default, only open when user clicks
   const [openMaterialId, setOpenMaterialId] = useState<string | null>(null);
 
@@ -321,7 +334,7 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
         </div>
 
         {/* Content Body */}
-        <div className="p-4 sm:p-6 overflow-y-auto space-y-4 text-[#1a1a1a]">
+        <div className="p-4 sm:p-6 overflow-y-auto overscroll-contain space-y-4 text-[#1a1a1a]">
           {/* Info pill - Recessed Well */}
           <div className="text-xs bg-[#d1d9e6] border border-[#babecc]/60 p-3 sm:p-3.5 rounded-lg sm:rounded-xl shadow-[var(--shadow-recessed-sm)] space-y-2">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">

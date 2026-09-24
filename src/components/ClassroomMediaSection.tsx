@@ -19,6 +19,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { LessonMediaItem } from "../types";
+import { useLockBodyScroll } from "../lib/useLockBodyScroll";
 
 interface ClassroomMediaSectionProps {
   initialMedia?: LessonMediaItem[];
@@ -76,6 +77,8 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
   const [activeVideo, setActiveVideo] = useState<LessonMediaItem | null>(null);
   const [activeImage, setActiveImage] = useState<LessonMediaItem | null>(null);
   const [activeLightboxIndex, setActiveLightboxIndex] = useState<number | null>(null);
+
+  useLockBodyScroll(isModalOpen || activeLightboxIndex !== null);
   const [isPaused, setIsPaused] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isUserInteracting, setIsUserInteracting] = useState(false);
@@ -215,27 +218,33 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
     }
   };
 
-  // Keyboard navigation for Fullscreen Album Lightbox
+  // Keyboard navigation for Fullscreen Album Lightbox and Upload Modal
   useEffect(() => {
-    if (activeLightboxIndex === null) return;
+    if (activeLightboxIndex === null && !isModalOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") {
-        setActiveLightboxIndex((prev) =>
-          prev !== null ? (prev - 1 + mediaList.length) % mediaList.length : null
-        );
-      } else if (e.key === "ArrowRight") {
-        setActiveLightboxIndex((prev) =>
-          prev !== null ? (prev + 1) % mediaList.length : null
-        );
-      } else if (e.key === "Escape") {
-        setActiveLightboxIndex(null);
+      if (activeLightboxIndex !== null) {
+        if (e.key === "ArrowLeft") {
+          setActiveLightboxIndex((prev) =>
+            prev !== null ? (prev - 1 + mediaList.length) % mediaList.length : null
+          );
+        } else if (e.key === "ArrowRight") {
+          setActiveLightboxIndex((prev) =>
+            prev !== null ? (prev + 1) % mediaList.length : null
+          );
+        } else if (e.key === "Escape") {
+          setActiveLightboxIndex(null);
+        }
+      } else if (isModalOpen) {
+        if (e.key === "Escape") {
+          setIsModalOpen(false);
+        }
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeLightboxIndex, mediaList.length]);
+  }, [activeLightboxIndex, isModalOpen, mediaList.length]);
 
   // Form states for uploading / adding new media
   const [modalTab, setModalTab] = useState<"file" | "template">("file");
@@ -578,7 +587,7 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
             </div>
 
             {/* Modal Body */}
-            <div className="p-4 sm:p-5 overflow-y-auto space-y-4 text-[#1a1a1a]">
+            <div className="p-4 sm:p-5 overflow-y-auto overscroll-contain space-y-4 text-[#1a1a1a]">
               {uploadSuccessMsg ? (
                 <div className="py-8 text-center space-y-2 bg-[#d1d9e6] rounded-lg border border-emerald-500/60 shadow-[var(--shadow-recessed-sm)] p-4">
                   <div className="w-12 h-12 rounded-md sm:rounded-lg bg-emerald-600 text-white flex items-center justify-center mx-auto shadow-[var(--shadow-card-sm)]">

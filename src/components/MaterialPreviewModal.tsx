@@ -19,6 +19,7 @@ import {
   Info,
 } from "lucide-react";
 import { Assignment, AssignmentMaterial } from "../types";
+import { useLockBodyScroll } from "../lib/useLockBodyScroll";
 
 interface MaterialPreviewModalProps {
   assignment: Assignment;
@@ -37,6 +38,18 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
   onClose,
   onDownloadPDF,
 }) => {
+  useLockBodyScroll(true);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
   const [activeMaterialId, setActiveMaterialId] = useState<string>(
     initialMaterialId || (materials.length > 0 ? materials[0].id : "")
   );
@@ -210,7 +223,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
         )}
 
         {/* Modal Body */}
-        <div className="p-4 sm:p-6 overflow-y-auto flex-1 space-y-4">
+        <div className="p-4 sm:p-6 overflow-y-auto overscroll-contain flex-1 space-y-4">
           {activeMaterial && (
             <>
               {/* Type 1: VIDEO VIEWER */}

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   X,
   Camera,
@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { Assignment } from "../types";
 import { formatWithCorrectDayOfWeek } from "../lib/dateUtils";
+import { useLockBodyScroll } from "../lib/useLockBodyScroll";
 
 interface UploadModalProps {
   assignment: Assignment;
@@ -83,6 +84,17 @@ export const UploadModal: React.FC<UploadModalProps> = ({
   onClose,
   onSubmit,
 }) => {
+  useLockBodyScroll(true);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
   const [mediaList, setMediaList] = useState<UploadedMediaItem[]>(() => {
     if (assignment.submissionImages && assignment.submissionImages.length > 0) {
       return assignment.submissionImages.map((url, idx) => ({
@@ -209,7 +221,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
         </div>
 
         {/* Content Body */}
-        <div className="p-4 sm:p-6 overflow-y-auto space-y-4">
+        <div className="p-4 sm:p-6 overflow-y-auto overscroll-contain space-y-4">
           {/* Info pill - Recessed Well */}
           <div className="text-xs bg-[#d1d9e6] border border-[#babecc]/60 p-3 sm:p-3.5 rounded-lg sm:rounded-xl shadow-[var(--shadow-recessed-sm)] space-y-2">
             <div>

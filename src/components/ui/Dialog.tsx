@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { X } from "lucide-react";
 import { cn } from "../../lib/utils";
+import { useLockBodyScroll } from "../../lib/useLockBodyScroll";
 
 export interface DialogProps {
   open: boolean;
@@ -11,6 +12,8 @@ export interface DialogProps {
 }
 
 export function Dialog({ open, onOpenChange, children, id, className }: DialogProps) {
+  useLockBodyScroll(open);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && open) {
@@ -18,13 +21,9 @@ export function Dialog({ open, onOpenChange, children, id, className }: DialogPr
       }
     };
     if (open) {
-      document.body.style.overflow = "hidden";
       window.addEventListener("keydown", handleKeyDown);
-    } else {
-      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [open, onOpenChange]);
@@ -88,7 +87,7 @@ export function DialogCloseButton({ onClose, id }: { onClose: () => void; id?: s
 
 export function DialogContent({ className, children, id }: { className?: string; children: React.ReactNode; id?: string }) {
   return (
-    <div id={id} className={cn("p-4 sm:p-6 overflow-y-auto space-y-4 text-[#1a1a1a]", className)}>
+    <div id={id} className={cn("p-4 sm:p-6 overflow-y-auto overscroll-contain space-y-4 text-[#1a1a1a]", className)}>
       {children}
     </div>
   );

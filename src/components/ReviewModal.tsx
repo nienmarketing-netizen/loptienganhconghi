@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { Assignment, GradedMediaItem } from "../types";
 import { formatWithCorrectDayOfWeek } from "../lib/dateUtils";
+import { useLockBodyScroll } from "../lib/useLockBodyScroll";
 
 interface ReviewModalProps {
   assignment: Assignment;
@@ -35,6 +36,8 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
   studentName,
   onClose,
 }) => {
+  useLockBodyScroll(true);
+
   const graded = assignment.gradedDetails;
 
   // Build the initial list of media items (Images, Videos, Audios)
@@ -255,25 +258,29 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
 
   // Keyboard navigation (Arrow keys + Esc)
   useEffect(() => {
-    if (activeLightboxIndex === null) return;
-
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") {
-        setActiveLightboxIndex((prev) =>
-          prev !== null ? (prev - 1 + mediaList.length) % mediaList.length : null
-        );
-      } else if (e.key === "ArrowRight") {
-        setActiveLightboxIndex((prev) =>
-          prev !== null ? (prev + 1) % mediaList.length : null
-        );
-      } else if (e.key === "Escape") {
-        setActiveLightboxIndex(null);
+      if (activeLightboxIndex !== null) {
+        if (e.key === "ArrowLeft") {
+          setActiveLightboxIndex((prev) =>
+            prev !== null ? (prev - 1 + mediaList.length) % mediaList.length : null
+          );
+        } else if (e.key === "ArrowRight") {
+          setActiveLightboxIndex((prev) =>
+            prev !== null ? (prev + 1) % mediaList.length : null
+          );
+        } else if (e.key === "Escape") {
+          setActiveLightboxIndex(null);
+        }
+      } else {
+        if (e.key === "Escape") {
+          onClose();
+        }
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeLightboxIndex, mediaList.length]);
+  }, [activeLightboxIndex, mediaList.length, onClose]);
 
   const handleShareResult = () => {
     navigator.clipboard?.writeText(window.location.href);
@@ -358,7 +365,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
           </div>
 
           {/* Modal Body */}
-          <div className="p-3.5 sm:p-5 overflow-y-auto space-y-4 text-[#1a1a1a]">
+          <div className="p-3.5 sm:p-5 overflow-y-auto overscroll-contain space-y-4 text-[#1a1a1a]">
             {/* Top Score Banner - Recessed Well */}
             <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-lg sm:rounded-xl p-3.5 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-[var(--shadow-recessed-sm)]">
               <div className="flex items-center gap-3.5 text-left w-full sm:w-auto">
