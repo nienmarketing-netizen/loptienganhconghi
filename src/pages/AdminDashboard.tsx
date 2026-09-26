@@ -26,6 +26,7 @@ import {
 import { StudentProfile, Assignment } from "../types";
 import { NewStudentModal } from "../components/NewStudentModal";
 import { GradingModal } from "../components/GradingModal";
+import { TokenManagerModal } from "../components/TokenManagerModal";
 import { exportStudentsToCSV } from "../lib/exportUtils";
 import { DAYS_MAPPING, SHIFT_MAPPING } from "../lib/studentUtils";
 import { ClassLessonEditor } from "../components/ClassLessonEditor";
@@ -914,112 +915,17 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 {/* Bottom Row: 1-Touch Action Buttons (Touch-Friendly min-h-[44px]) */}
                 <div className="flex flex-wrap items-center justify-between gap-2.5 pt-1">
                   <div className="flex items-center gap-2 flex-wrap flex-1">
-                    {/* 1. NÚT QUICK SCORING "TOKEN" */}
-                    <div className="relative">
-                      <button
-                        type="button"
-                        id={`btn-open-scoring-${student.id}`}
-                        onClick={() =>
-                          setActiveScoringStudentSlug(
-                            isScoringActive ? null : student.slug
-                          )
-                        }
-                        className={`min-h-[44px] px-4 py-2 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5 transition-all cursor-pointer font-mono active:translate-y-[1px] ${
-                          isScoringActive
-                            ? "bg-[#ff4757] text-white shadow-[var(--shadow-recessed-sm)] border border-white/20"
-                            : "soft-ui-convex text-[#ff4757] border border-white/90 shadow-[var(--shadow-card-sm)] hover:bg-[#d8e0ec]"
-                        }`}
-                      >
-                        <Plus className="w-4 h-4 stroke-[3]" />
-                        <span>Token</span>
-                      </button>
-
-                      {/* Popover / Dropdown các lý do tính sẵn - Soft UI Tactile Card */}
-                      {isScoringActive && (
-                        <div
-                          className="absolute left-0 top-12 z-40 w-72 sm:w-80 bg-[#e0e5ec] rounded-lg sm:rounded-xl shadow-[var(--shadow-floating)] border border-white/80 border-b-[#babecc] border-r-[#babecc] p-3 space-y-2.5 animate-in fade-in zoom-in-95 duration-150"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <div className="flex items-center justify-between pb-2 border-b border-[#babecc]/50">
-                            <span className="text-[11px] font-bold text-[#4a5568] uppercase font-mono tracking-wider flex items-center gap-1.5">
-                              <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
-                              Thưởng điểm: {student.fullName.split(" ").slice(-1)[0]}
-                            </span>
-                            <button
-                              onClick={() => setActiveScoringStudentSlug(null)}
-                              className="w-6 h-6 rounded-md bg-[#d1d9e6] hover:bg-[#ff4757] hover:text-white text-[#666666] flex items-center justify-center border border-[#babecc]/60 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)] transition-colors cursor-pointer"
-                            >
-                              <X className="w-3.5 h-3.5" />
-                            </button>
-                          </div>
-
-                          {/* Quick 1-Touch Reasons List */}
-                          <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
-                            {["Chuyên cần & Kỷ luật", "Tương tác & Học tập", "Cột mốc"].map((groupName) => {
-                              const groupOpts = PRESET_SCORING_OPTIONS.filter((o) => o.group === groupName);
-                              return (
-                                <div key={groupName} className="space-y-1">
-                                  <div className="text-[10px] font-bold text-[#666666] uppercase tracking-wider px-1 pt-1">
-                                    {groupName}
-                                  </div>
-                                  {groupOpts.map((opt, i) => (
-                                    <button
-                                      key={i}
-                                      type="button"
-                                      onClick={() =>
-                                        handleQuickScore(student, opt.points, opt.reason)
-                                      }
-                                      className="w-full flex items-center justify-between p-2 rounded-lg bg-[#e0e5ec] border border-white/80 border-b-[#babecc] border-r-[#babecc] shadow-[var(--shadow-card-sm)] hover:shadow-[var(--shadow-card)] transition-all text-left cursor-pointer active:translate-y-[1px]"
-                                    >
-                                      <div className="flex items-center gap-2">
-                                        <span className="text-base">{opt.icon}</span>
-                                        <div>
-                                          <div className="font-bold text-xs text-[#1a1a1a]">
-                                            {opt.label}
-                                          </div>
-                                          <div className="text-[10px] text-[#666666] line-clamp-1">
-                                            {opt.reason}
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <span
-                                        className={`text-xs font-mono font-black px-2 py-0.5 rounded-md shrink-0 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)] ${
-                                          opt.points > 0
-                                            ? "text-[#ff4757] bg-[#d1d9e6] border border-[#babecc]/60"
-                                            : "text-rose-700 bg-rose-100 border border-rose-300"
-                                        }`}
-                                      >
-                                        {opt.points > 0 ? `+${opt.points}` : opt.points}T
-                                      </span>
-                                    </button>
-                                  ))}
-                                </div>
-                              );
-                            })}
-                          </div>
-
-                          {/* Custom Amount Field */}
-                          <div className="pt-2 border-t border-[#babecc]/50 flex items-center gap-1.5">
-                            <input
-                              type="number"
-                              min="1"
-                              max="100"
-                              value={customAmount}
-                              onChange={(e) => setCustomAmount(e.target.value)}
-                              placeholder="+ Khác..."
-                              className="w-24 px-2.5 py-1.5 rounded-lg bg-[#d1d9e6] border border-[#babecc] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.12)] text-xs font-mono text-[#1a1a1a] focus:outline-none focus:bg-[#e0e5ec]"
-                            />
-                            <button
-                              type="button"
-                              onClick={() => handleCustomScore(student)}
-                              className="flex-1 py-1.5 px-3 bg-[#ff4757] hover:bg-[#ff3848] text-white rounded-lg text-xs font-bold font-mono shadow-[var(--shadow-accent-sm)] active:translate-y-[1px] transition-all cursor-pointer"
-                            >
-                              Cộng ngay
-                            </button>
-                          </div>
-                        </div>
-                      )}
-                    </div>
+                    {/* 1. NÚT QUẢN LÝ / CỘNG TRỪ TOKEN (FULLSCREEN MODAL) */}
+                    <button
+                      type="button"
+                      id={`btn-open-scoring-${student.id}`}
+                      onClick={() => setActiveScoringStudentSlug(student.slug)}
+                      className="min-h-[44px] px-4 py-2 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5 transition-all cursor-pointer font-mono soft-ui-convex text-[#ff4757] border border-white/90 shadow-[var(--shadow-card-sm)] hover:bg-[#d8e0ec] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px]"
+                      title="Mở bảng cộng/trừ và chỉnh sửa token"
+                    >
+                      <Plus className="w-4 h-4 stroke-[3]" />
+                      <span>Token</span>
+                    </button>
 
                     {/* 2. NÚT NHẬP ĐIỂM & BUỔI HỌC (GIAI ĐOẠN 2 & 3) */}
                     <button
@@ -1099,6 +1005,15 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             `Dữ liệu điểm số & 5 trục năng lực đã đồng bộ lên Firebase.`
           );
         }}
+      />
+
+      {/* MODAL FULLSCREEN: QUẢN LÝ & CHỈNH SỬA TOKEN HỌC VỤ */}
+      <TokenManagerModal
+        isOpen={activeScoringStudentSlug !== null}
+        onClose={() => setActiveScoringStudentSlug(null)}
+        student={activeScoringStudentSlug ? students[activeScoringStudentSlug] : null}
+        onSaveStudent={onSaveStudent}
+        onAddToast={addToast}
       />
     </div>
   );
