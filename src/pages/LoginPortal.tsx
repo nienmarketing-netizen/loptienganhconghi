@@ -243,7 +243,6 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
                       if (parentError) setParentError("");
                     }}
                     placeholder="Ví dụ: G6-T7CC1-03"
-                    autoFocus
                     className="w-full pl-10 pr-4 py-3 bg-[#d1d9e6] border border-[#babecc]/80 rounded-xl text-[#1a1a1a] font-mono text-base font-bold uppercase tracking-wider placeholder:text-[#8892a0] placeholder:normal-case placeholder:font-normal placeholder:tracking-normal shadow-[var(--shadow-recessed-sm)] focus:outline-none focus:ring-2 focus:ring-[#ff4757]/60 focus:border-[#ff4757] transition-all"
                   />
                 </div>
@@ -299,8 +298,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
                       if (teacherError) setTeacherError("");
                     }}
                     placeholder="admin hoặc nguyenthiphuongnghi"
-                    autoFocus
-                    className="w-full pl-10 pr-4 py-3 bg-[#d1d9e6] border border-[#babecc]/80 rounded-xl text-[#1a1a1a] font-medium text-sm sm:text-base placeholder:text-[#8892a0] shadow-[var(--shadow-recessed-sm)] focus:outline-none focus:ring-2 focus:ring-[#ff4757]/60 focus:border-[#ff4757] transition-all"
+                    className="w-full pl-10 pr-4 py-3 bg-[#d1d9e6] border border-[#babecc]/80 rounded-xl text-[#1a1a1a] font-medium text-base placeholder:text-[#8892a0] shadow-[var(--shadow-recessed-sm)] focus:outline-none focus:ring-2 focus:ring-[#ff4757]/60 focus:border-[#ff4757] transition-all"
                   />
                 </div>
               </div>
@@ -326,7 +324,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
                       if (teacherError) setTeacherError("");
                     }}
                     placeholder="Nhập mật khẩu"
-                    className="w-full pl-10 pr-11 py-3 bg-[#d1d9e6] border border-[#babecc]/80 rounded-xl text-[#1a1a1a] font-medium text-sm sm:text-base placeholder:text-[#8892a0] shadow-[var(--shadow-recessed-sm)] focus:outline-none focus:ring-2 focus:ring-[#ff4757]/60 focus:border-[#ff4757] transition-all"
+                    className="w-full pl-10 pr-11 py-3 bg-[#d1d9e6] border border-[#babecc]/80 rounded-xl text-[#1a1a1a] font-medium text-base placeholder:text-[#8892a0] shadow-[var(--shadow-recessed-sm)] focus:outline-none focus:ring-2 focus:ring-[#ff4757]/60 focus:border-[#ff4757] transition-all"
                   />
                   <button
                     type="button"
@@ -350,40 +348,6 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
                   <span className="leading-snug">{teacherError}</span>
                 </div>
               )}
-
-              {/* Quick Fill Credentials for Convenience */}
-              <div className="bg-[#d8e0ec] rounded-xl p-2.5 border border-[#babecc]/50 text-xs text-[#555] space-y-1.5">
-                <span className="text-[11px] font-bold text-[#444] uppercase font-mono block">
-                  Tài khoản đăng nhập được cấp:
-                </span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setTeacherUsername("admin");
-                      setTeacherPassword("123456");
-                      setTeacherError("");
-                    }}
-                    className="p-1.5 rounded-lg bg-white/70 hover:bg-white text-left border border-white/80 text-[11px] font-mono cursor-pointer transition-colors"
-                  >
-                    <div className="font-bold text-[#1a1a1a]">admin</div>
-                    <div className="text-[#666]">Pass: 123456</div>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setTeacherUsername("nguyenthiphuongnghi");
-                      setTeacherPassword("123456");
-                      setTeacherError("");
-                    }}
-                    className="p-1.5 rounded-lg bg-white/70 hover:bg-white text-left border border-white/80 text-[11px] font-mono cursor-pointer transition-colors"
-                  >
-                    <div className="font-bold text-[#ff4757]">nguyenthiphuongnghi</div>
-                    <div className="text-[#666]">Pass: 123456</div>
-                  </button>
-                </div>
-              </div>
 
               {/* Submit CTA Button */}
               <div className="pt-2">
@@ -410,15 +374,35 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
 
       {/* Footer Support Info */}
       <div className="w-full max-w-lg mx-auto text-center mt-6 text-xs text-[#666666] relative z-10 space-y-1.5">
-        <p className="flex items-center justify-center gap-1.5">
-          <PhoneCall className="w-3.5 h-3.5 text-[#ff4757]" />
-          <span>Hỗ trợ phụ huynh & giải đáp: Cô Nghi</span>
-          <span className="text-[#a3b1c6]">•</span>
-          <span className="font-mono font-semibold text-[#1a1a1a]">0898 17 17 12</span>
-        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5">
+          <div className="flex items-center gap-1.5">
+            <PhoneCall className="w-3.5 h-3.5 text-[#ff4757] shrink-0" />
+            <span>Hỗ trợ phụ huynh & giải đáp:</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <span className="text-[#1a1a1a] font-medium">Cô Nghi:</span>
+            <a
+              href="tel:0898171712"
+              className="font-mono font-bold text-[#ff4757] hover:underline cursor-pointer inline-flex items-center active:opacity-80 transition-opacity"
+              title="Gọi ngay cho Cô Nghi"
+            >
+              0898 17 17 12
+            </a>
+          </div>
+        </div>
         <div className="text-[11px] text-[#8c98a9] leading-relaxed">
           <p>Bản quyền © 2026 Lớp Tiếng Anh Cô Nghi.</p>
-          <p>Hệ thống quản lý học vụ phát triển bởi nien.work</p>
+          <p>
+            Hệ thống quản lý học vụ phát triển bởi{" "}
+            <a
+              href="https://www.nien.work"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#666666] hover:text-[#ff4757] font-medium underline underline-offset-2 transition-colors cursor-pointer"
+            >
+              nien.work
+            </a>
+          </p>
         </div>
       </div>
     </div>
