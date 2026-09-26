@@ -235,7 +235,10 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
             {currentRoute === "student" && onNavigateToPortal && (
               <button
                 type="button"
-                onClick={onNavigateToPortal}
+                onClick={() => {
+                  localStorage.removeItem("current_authorized_student");
+                  onNavigateToPortal();
+                }}
                 className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg soft-ui-convex text-xs font-semibold text-[#666666] hover:text-[#ff4757] transition-all cursor-pointer active:translate-y-[1px]"
                 title="Đổi mã học sinh khác hoặc về cổng đăng nhập"
               >
@@ -338,6 +341,7 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                           type="button"
                           onClick={() => {
                             setMobileMenuOpen(false);
+                            localStorage.removeItem("current_authorized_student");
                             onNavigateToPortal();
                           }}
                           className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-bold text-[#ff4757] hover:bg-[#d8e0ec] transition-all cursor-pointer text-left active:translate-y-[1px]"

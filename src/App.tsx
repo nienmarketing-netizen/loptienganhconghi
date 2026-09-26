@@ -66,7 +66,18 @@ export default function App() {
     // Direct student portal routes: /student/:slug or /student/:code
     const match = pathname.match(/\/student\/([^/?#]+)/);
     if (match && match[1]) {
-      return "student";
+      const target = decodeURIComponent(match[1]).trim().toLowerCase();
+      // Allow if teacher is logged in or if this student was authenticated
+      const isTeacherAuthed = localStorage.getItem("teacher_session") === "true";
+      const isStudentAuthed =
+        localStorage.getItem(`student_auth_${target}`) === "true" ||
+        localStorage.getItem("current_authorized_student") === target;
+
+      if (isTeacherAuthed || isStudentAuthed) {
+        return "student";
+      }
+      // If not authenticated, route to Login Portal with student prompt
+      return "portal";
     }
 
     // Default root path: show Login Portal
@@ -114,6 +125,10 @@ export default function App() {
 
   const handleNavigateToStudent = (slug?: string) => {
     const targetSlug = slug || currentStudentSlug;
+    // Allow teacher viewing student portal
+    if (targetSlug) {
+      localStorage.setItem(`student_auth_${targetSlug}`, "true");
+    }
     setCurrentRoute("student");
     setCurrentStudentSlug(targetSlug);
     window.history.pushState(

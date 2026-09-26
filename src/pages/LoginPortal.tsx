@@ -53,6 +53,8 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
 
     // 1. Direct slug match
     if (studentsMap[cleanInput]) {
+      localStorage.setItem(`student_auth_${cleanInput}`, "true");
+      localStorage.setItem("current_authorized_student", cleanInput);
       onLoginParent(cleanInput);
       return;
     }
@@ -66,6 +68,8 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
     );
 
     if (foundStudent) {
+      localStorage.setItem(`student_auth_${foundStudent.slug}`, "true");
+      localStorage.setItem("current_authorized_student", foundStudent.slug);
       onLoginParent(foundStudent.slug);
     } else {
       setParentError(
