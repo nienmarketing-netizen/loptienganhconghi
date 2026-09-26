@@ -55,11 +55,14 @@ export const LuckyWheelModal: React.FC<LuckyWheelModalProps> = ({
 
     // Extra full rotations (between 5 and 7 rounds = 1800 - 2520 deg)
     const extraRounds = 5 + Math.floor(Math.random() * 3);
-    // Pointer is at the top (270 deg or 0 deg). With pointer at top (arrow pointing down):
+    // Pointer is at the top (270 deg in SVG coordinate space).
     // Target center angle of slice: chosenSlice * 45 + 22.5
     const targetAngle = chosenSlice * 45 + 22.5;
-    // Rotation so that the pointer lands on chosenSlice:
-    const totalRotation = rotationDegrees + extraRounds * 360 + (360 - targetAngle);
+    // Calculate rotation so that chosenSlice lands dead-center under the top pointer at 270 deg:
+    const targetLandingAngle = (270 - targetAngle + 360) % 360;
+    const currentMod = rotationDegrees % 360;
+    const delta = (targetLandingAngle - currentMod + 360) % 360;
+    const totalRotation = rotationDegrees + extraRounds * 360 + delta;
 
     setRotationDegrees(totalRotation);
 
@@ -123,8 +126,10 @@ export const LuckyWheelModal: React.FC<LuckyWheelModalProps> = ({
       <DialogContent>
         {/* Intro Rules Banner */}
         <div className="bg-[#2d3436] rounded-xl p-3.5 sm:p-4 text-white border border-white/10 shadow-[var(--shadow-recessed-sm)] space-y-2">
-          <div className="flex items-center justify-between text-xs font-mono">
-            <span className="text-[#a3b1c6]">HỌC SINH: {studentName.toUpperCase()}</span>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between items-start gap-1.5 text-xs">
+            <span className="text-[#a3b1c6] font-medium">
+              Học sinh: <strong className="text-white font-semibold">{studentName}</strong>
+            </span>
             <span className="font-bold text-[#ff4757] bg-[#1e2528] px-2 py-0.5 rounded border border-white/10">
               Số dư hiện tại: {currentTokens} Tokens
             </span>
@@ -167,48 +172,64 @@ export const LuckyWheelModal: React.FC<LuckyWheelModalProps> = ({
             >
               <svg viewBox="0 0 200 200" className="w-full h-full select-none pointer-events-none">
                 {/* 8 Slices (alternating colors) */}
-                {/* Slice 0: x2 (Emerald) */}
+                {/* Slice 0: Nhân đôi (Emerald) */}
                 <path d="M100,100 L200,100 A100,100 0 0,1 170.7,170.7 Z" fill="#10b981" />
-                {/* Slice 1: ÷2 (Rose) */}
+                {/* Slice 1: Chia đôi (Rose) */}
                 <path d="M100,100 L170.7,170.7 A100,100 0 0,1 100,200 Z" fill="#e11d48" />
-                {/* Slice 2: x2 (Emerald) */}
+                {/* Slice 2: Nhân đôi (Emerald) */}
                 <path d="M100,100 L100,200 A100,100 0 0,1 29.3,170.7 Z" fill="#059669" />
-                {/* Slice 3: ÷2 (Rose) */}
+                {/* Slice 3: Chia đôi (Rose) */}
                 <path d="M100,100 L29.3,170.7 A100,100 0 0,1 0,100 Z" fill="#be123c" />
-                {/* Slice 4: x2 (Emerald) */}
+                {/* Slice 4: Nhân đôi (Emerald) */}
                 <path d="M100,100 L0,100 A100,100 0 0,1 29.3,29.3 Z" fill="#10b981" />
-                {/* Slice 5: ÷2 (Rose) */}
+                {/* Slice 5: Chia đôi (Rose) */}
                 <path d="M100,100 L29.3,29.3 A100,100 0 0,1 100,0 Z" fill="#e11d48" />
-                {/* Slice 6: x2 (Emerald) */}
+                {/* Slice 6: Nhân đôi (Emerald) */}
                 <path d="M100,100 L100,0 A100,100 0 0,1 170.7,29.3 Z" fill="#059669" />
-                {/* Slice 7: ÷2 (Rose) */}
+                {/* Slice 7: Chia đôi (Rose) */}
                 <path d="M100,100 L170.7,29.3 A100,100 0 0,1 200,100 Z" fill="#be123c" />
 
-                {/* Text Labels inside slices */}
-                <text x="145" y="140" fill="#ffffff" fontSize="10" fontWeight="bold" textAnchor="middle" transform="rotate(22.5 100 100)">
-                  x2 (100T)
-                </text>
-                <text x="145" y="140" fill="#ffffff" fontSize="10" fontWeight="bold" textAnchor="middle" transform="rotate(67.5 100 100)">
-                  ÷2 (25T)
-                </text>
-                <text x="145" y="140" fill="#ffffff" fontSize="10" fontWeight="bold" textAnchor="middle" transform="rotate(112.5 100 100)">
-                  x2 (100T)
-                </text>
-                <text x="145" y="140" fill="#ffffff" fontSize="10" fontWeight="bold" textAnchor="middle" transform="rotate(157.5 100 100)">
-                  ÷2 (25T)
-                </text>
-                <text x="145" y="140" fill="#ffffff" fontSize="10" fontWeight="bold" textAnchor="middle" transform="rotate(202.5 100 100)">
-                  x2 (100T)
-                </text>
-                <text x="145" y="140" fill="#ffffff" fontSize="10" fontWeight="bold" textAnchor="middle" transform="rotate(247.5 100 100)">
-                  ÷2 (25T)
-                </text>
-                <text x="145" y="140" fill="#ffffff" fontSize="10" fontWeight="bold" textAnchor="middle" transform="rotate(292.5 100 100)">
-                  x2 (100T)
-                </text>
-                <text x="145" y="140" fill="#ffffff" fontSize="10" fontWeight="bold" textAnchor="middle" transform="rotate(337.5 100 100)">
-                  ÷2 (25T)
-                </text>
+                {/* Slices Text Labels: Nhân đôi (Green) / Chia đôi (Red) */}
+                <g transform="rotate(22.5 100 100)">
+                  <text x="156" y="100" fill="#ffffff" fontSize="9.5" fontWeight="bold" textAnchor="middle" dominantBaseline="central">
+                    Nhân đôi
+                  </text>
+                </g>
+                <g transform="rotate(67.5 100 100)">
+                  <text x="156" y="100" fill="#ffffff" fontSize="9.5" fontWeight="bold" textAnchor="middle" dominantBaseline="central">
+                    Chia đôi
+                  </text>
+                </g>
+                <g transform="rotate(112.5 100 100)">
+                  <text x="156" y="100" fill="#ffffff" fontSize="9.5" fontWeight="bold" textAnchor="middle" dominantBaseline="central">
+                    Nhân đôi
+                  </text>
+                </g>
+                <g transform="rotate(157.5 100 100)">
+                  <text x="156" y="100" fill="#ffffff" fontSize="9.5" fontWeight="bold" textAnchor="middle" dominantBaseline="central">
+                    Chia đôi
+                  </text>
+                </g>
+                <g transform="rotate(202.5 100 100)">
+                  <text x="156" y="100" fill="#ffffff" fontSize="9.5" fontWeight="bold" textAnchor="middle" dominantBaseline="central">
+                    Nhân đôi
+                  </text>
+                </g>
+                <g transform="rotate(247.5 100 100)">
+                  <text x="156" y="100" fill="#ffffff" fontSize="9.5" fontWeight="bold" textAnchor="middle" dominantBaseline="central">
+                    Chia đôi
+                  </text>
+                </g>
+                <g transform="rotate(292.5 100 100)">
+                  <text x="156" y="100" fill="#ffffff" fontSize="9.5" fontWeight="bold" textAnchor="middle" dominantBaseline="central">
+                    Nhân đôi
+                  </text>
+                </g>
+                <g transform="rotate(337.5 100 100)">
+                  <text x="156" y="100" fill="#ffffff" fontSize="9.5" fontWeight="bold" textAnchor="middle" dominantBaseline="central">
+                    Chia đôi
+                  </text>
+                </g>
 
                 {/* Center Hub */}
                 <circle cx="100" cy="100" r="24" fill="#2d3436" stroke="#ffffff" strokeWidth="3" />
