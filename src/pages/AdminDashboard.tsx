@@ -465,71 +465,6 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         ))}
       </div>
 
-      {/* Hero Banner for Teacher Portal */}
-      <div className="rounded-lg sm:rounded-xl bg-gradient-to-br from-indigo-900 via-slate-900 to-indigo-950 text-white p-3.5 sm:p-5 shadow-md border border-indigo-800/60 flex flex-col gap-3.5 sm:gap-4">
-        {/* Hàng 1: Badge tiêu đề */}
-        <div className="flex items-center">
-          <span className="text-[11px] sm:text-xs font-semibold text-amber-300 bg-amber-400/20 px-3 py-1 rounded-full border border-amber-400/30 whitespace-nowrap inline-block tracking-normal">
-            Cổng quản lý lớp học dành cho giáo viên
-          </span>
-        </div>
-
-        {/* Hàng 2: Các nút hành động - Mobile: 1 cột (từ trên xuống), Tablet: 2 hàng (mỗi hàng 2 nút), PC: 1 hàng 4 nút */}
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5">
-          {/* Nút Thêm học sinh mới */}
-          <button
-            type="button"
-            id="btn-add-new-student"
-            onClick={() => setIsNewStudentModalOpen(true)}
-            className="w-full min-h-[44px] px-4 py-2.5 rounded-lg bg-[#ff4757] hover:bg-[#e03949] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[var(--shadow-accent)] border border-white/30 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
-          >
-            <Plus className="w-4 h-4 stroke-[3]" />
-            <span>Thêm học sinh mới</span>
-          </button>
-
-          {/* Nút Xuất file Excel (.csv) */}
-          <button
-            type="button"
-            id="btn-export-excel"
-            onClick={() => {
-              exportStudentsToCSV(students);
-              addToast("success", "Đã xuất file bảng điểm Excel!", "File CSV chuẩn tiếng Việt UTF-8 đã được tải về máy.");
-            }}
-            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-emerald-400/40 shadow-sm active:scale-95 transition-all cursor-pointer whitespace-nowrap"
-            title="Tải toàn bộ danh sách điểm số và học sinh ra file Excel / Google Sheets"
-          >
-            <Download className="w-4 h-4" />
-            <span>Xuất Excel</span>
-          </button>
-
-          {/* Nút Nhắc Zalo */}
-          <button
-            type="button"
-            id="btn-batch-zalo-reminder"
-            onClick={handleBatchZaloReminder}
-            className="w-full min-h-[44px] px-4 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-slate-600 shadow-sm active:scale-95 transition-all cursor-pointer whitespace-nowrap"
-          >
-            <Send className="w-4 h-4 text-emerald-400" />
-            <span>Nhắc Zalo ({totalUnsubmittedCount} bài)</span>
-          </button>
-
-          {/* Nút Mở cổng phụ huynh */}
-          <button
-            type="button"
-            id="btn-view-parent-portal-hero"
-            onClick={() => {
-              const firstStudent = studentList[0];
-              if (firstStudent) {
-                onViewStudentPortal(firstStudent.slug);
-              }
-            }}
-            className="w-full min-h-[44px] px-4 py-2.5 rounded-lg bg-[#2d3436] hover:bg-[#1a1a1a] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-white/20 shadow-md active:scale-95 transition-all cursor-pointer whitespace-nowrap"
-          >
-            <ExternalLink className="w-4 h-4 text-[#ff4757] shrink-0" />
-            <span>Mở cổng phụ huynh</span>
-          </button>
-        </div>
-      </div>
 
       {/* KHU VỰC GALLERY NÚT BẤM CHỌN LỚP HỌC • FILTER THEO [KHỐI]-[NGÀY][CA] */}
       <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-[var(--shadow-recessed-sm)] space-y-2.5">
@@ -582,18 +517,18 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             type="button"
             id="btn-filter-class-all"
             onClick={() => setSelectedClass("ALL")}
-            className={`min-h-[40px] px-2.5 py-1.5 rounded-lg sm:rounded-xl text-left flex items-center justify-between transition-all cursor-pointer ${
+            className={`min-h-[44px] px-3 py-2 rounded-lg sm:rounded-xl text-left flex items-center justify-between transition-all cursor-pointer ${
               selectedClass === "ALL"
                 ? "bg-[#ff4757] text-white shadow-[var(--shadow-accent)] border border-white/40 ring-2 ring-[#ff4757]/30 scale-[1.01]"
                 : "soft-ui-convex bg-[#e0e5ec] text-[#1a1a1a] hover:bg-[#d8e0ec] border border-white/60 shadow-[var(--shadow-card-sm)] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px]"
             }`}
           >
-            <span className="text-[9px] sm:text-[10px] font-black font-mono tracking-tight flex items-center gap-1 truncate">
-              <Users className="w-3 h-3 shrink-0" />
-              TẤT CẢ LỚP
+            <span className="text-xs sm:text-[13px] font-black font-mono tracking-tight flex items-center gap-1.5 truncate">
+              <Users className="w-3.5 h-3.5 shrink-0" />
+              TẤT CẢ
             </span>
             <span
-              className={`text-[8px] sm:text-[9px] font-bold font-mono px-1.5 py-0.5 rounded shrink-0 leading-none ${
+              className={`text-[10px] sm:text-[11px] font-bold font-mono px-2 py-0.5 rounded shrink-0 leading-none ${
                 selectedClass === "ALL"
                   ? "bg-white/20 text-white border border-white/30"
                   : "bg-[#d1d9e6] text-[#2d3436] border border-[#babecc]/50"
@@ -612,7 +547,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 type="button"
                 id={`btn-filter-class-${cls.code}`}
                 onClick={() => setSelectedClass(cls.code)}
-                className={`min-h-[40px] px-2.5 py-1.5 rounded-lg sm:rounded-xl text-left flex items-center justify-between transition-all cursor-pointer ${
+                className={`min-h-[44px] px-3 py-2 rounded-lg sm:rounded-xl text-left flex items-center justify-between transition-all cursor-pointer ${
                   isSelected
                     ? "bg-[#ff4757] text-white shadow-[var(--shadow-accent)] border border-white/40 ring-2 ring-[#ff4757]/30 scale-[1.01]"
                     : "soft-ui-convex bg-[#e0e5ec] text-[#1a1a1a] hover:bg-[#d8e0ec] border border-white/60 shadow-[var(--shadow-card-sm)] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px]"
@@ -620,18 +555,18 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               >
                 <div className="flex items-center gap-1.5 min-w-0">
                   <span
-                    className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                    className={`w-2 h-2 rounded-full shrink-0 ${
                       isSelected
                         ? "bg-white shadow-[0_0_4px_#ffffff]"
                         : "bg-emerald-500 shadow-[0_0_3px_#10b981]"
                     }`}
                   />
-                  <span className="text-[9px] sm:text-[10px] font-black font-mono tracking-tight truncate">
+                  <span className="text-xs sm:text-[13px] font-black font-mono tracking-tight truncate">
                     {cls.code}
                   </span>
                 </div>
                 <span
-                  className={`text-[8px] sm:text-[9px] font-bold font-mono px-1.5 py-0.5 rounded shrink-0 leading-none ${
+                  className={`text-[10px] sm:text-[11px] font-bold font-mono px-2 py-0.5 rounded shrink-0 leading-none ${
                     isSelected
                       ? "bg-white/20 text-white border border-white/30"
                       : "bg-[#d1d9e6] text-[#2d3436] border border-[#babecc]/50"
@@ -977,6 +912,65 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               Không tìm thấy học sinh nào phù hợp với bộ lọc.
             </div>
           )}
+        </div>
+      </div>
+
+      {/* Hero Banner for Teacher Portal (Đưa xuống cuối trang) */}
+      <div className="rounded-lg sm:rounded-xl bg-gradient-to-br from-indigo-900 via-slate-900 to-indigo-950 text-white p-3.5 sm:p-5 shadow-md border border-indigo-800/60 mt-6">
+        {/* Các nút hành động - Mobile: 1 cột (từ trên xuống), Tablet: 2 hàng (mỗi hàng 2 nút), PC: 1 hàng 4 nút */}
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5">
+          {/* Nút Thêm học sinh mới */}
+          <button
+            type="button"
+            id="btn-add-new-student"
+            onClick={() => setIsNewStudentModalOpen(true)}
+            className="w-full min-h-[44px] px-4 py-2.5 rounded-lg bg-[#ff4757] hover:bg-[#e03949] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[var(--shadow-accent)] border border-white/30 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+          >
+            <Plus className="w-4 h-4 stroke-[3]" />
+            <span>Thêm học sinh mới</span>
+          </button>
+
+          {/* Nút Xuất file Excel (.csv) */}
+          <button
+            type="button"
+            id="btn-export-excel"
+            onClick={() => {
+              exportStudentsToCSV(students);
+              addToast("success", "Đã xuất file bảng điểm Excel!", "File CSV chuẩn tiếng Việt UTF-8 đã được tải về máy.");
+            }}
+            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-emerald-400/40 shadow-sm active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+            title="Tải toàn bộ danh sách điểm số và học sinh ra file Excel / Google Sheets"
+          >
+            <Download className="w-4 h-4" />
+            <span>Xuất Excel</span>
+          </button>
+
+          {/* Nút Nhắc Zalo */}
+          <button
+            type="button"
+            id="btn-batch-zalo-reminder"
+            onClick={handleBatchZaloReminder}
+            className="w-full min-h-[44px] px-4 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-slate-600 shadow-sm active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+          >
+            <Send className="w-4 h-4 text-emerald-400" />
+            <span>Nhắc Zalo ({totalUnsubmittedCount} bài)</span>
+          </button>
+
+          {/* Nút Mở cổng phụ huynh */}
+          <button
+            type="button"
+            id="btn-view-parent-portal-hero"
+            onClick={() => {
+              const firstStudent = studentList[0];
+              if (firstStudent) {
+                onViewStudentPortal(firstStudent.slug);
+              }
+            }}
+            className="w-full min-h-[44px] px-4 py-2.5 rounded-lg bg-[#2d3436] hover:bg-[#1a1a1a] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-white/20 shadow-md active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+          >
+            <ExternalLink className="w-4 h-4 text-[#ff4757] shrink-0" />
+            <span>Mở cổng phụ huynh</span>
+          </button>
         </div>
       </div>
 
