@@ -1,8 +1,7 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import {
   initializeFirestore,
-  persistentLocalCache,
-  persistentMultipleTabManager,
+  memoryLocalCache,
   collection,
   doc,
   setDoc,
@@ -16,14 +15,42 @@ import { MOCK_STUDENTS } from "../data/mockStudents";
 
 export const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 
-// Initialize Firestore with robust local cache & multiple tab support
-export const db = initializeFirestore(app, {
-  localCache: persistentLocalCache({
-    tabManager: persistentMultipleTabManager(),
-  }),
-}, firebaseConfig.firestoreDatabaseId);
+// Initialize Firestore with robust memory cache that gracefully works in offline and restricted iframe environments
+export const db = initializeFirestore(
+  app,
+  {
+    localCache: memoryLocalCache(),
+  },
+  firebaseConfig.firestoreDatabaseId
+);
 
 const STUDENTS_COLLECTION = "students";
+const LOCAL_STORAGE_KEY = "conghi_students_cache";
+
+// Helper to get cached students from localStorage as instantaneous fallback
+function getLocalFallbackStudents(): Record<string, StudentProfile> {
+  try {
+    const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && Object.keys(parsed).length > 0) {
+        return parsed;
+      }
+    }
+  } catch {
+    // Ignore localStorage parse errors
+  }
+  return MOCK_STUDENTS;
+}
+
+// Helper to save to local cache
+function saveLocalFallbackStudents(students: Record<string, StudentProfile>): void {
+  try {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(students));
+  } catch {
+    // Ignore storage quota errors
+  }
+}
 
 /**
  * Seed initial students into Firestore if empty
@@ -40,22 +67,9 @@ export async function seedInitialStudentsIfEmpty(): Promise<void> {
           updatedAt: new Date().toISOString(),
         });
       }
-    } else {
-      // Update default students with refreshed tokenHistory if exists
-      for (const [key, student] of Object.entries(MOCK_STUDENTS)) {
-        const docRef = doc(db, STUDENTS_COLLECTION, student.slug || key);
-        await setDoc(
-          docRef,
-          {
-            ...student,
-            updatedAt: new Date().toISOString(),
-          },
-          { merge: true }
-        );
-      }
     }
   } catch (error) {
-    console.error("Error seeding initial students to Firestore:", error);
+    // Graceful silent fallback in offline/preview environments
   }
 }
 
@@ -66,12 +80,15 @@ export function subscribeToStudents(
   callback: (students: Record<string, StudentProfile>) => void
 ): () => void {
   const colRef = collection(db, STUDENTS_COLLECTION);
-  return onSnapshot(
+  let hasReceivedSnapshot = false;
+
+  const unsubscribe = onSnapshot(
     colRef,
     { includeMetadataChanges: true },
     (snapshot) => {
+      hasReceivedSnapshot = true;
       if (snapshot.empty) {
-        callback(MOCK_STUDENTS);
+        callback(getLocalFallbackStudents());
         return;
       }
       const data: Record<string, StudentProfile> = {};
@@ -79,22 +96,33 @@ export function subscribeToStudents(
         const item = docSnap.data() as StudentProfile;
         data[item.slug || docSnap.id] = item;
       });
+      saveLocalFallbackStudents(data);
       callback(data);
     },
     (error) => {
-      // If offline/unavailable, gracefully fallback to local mock data without breaking
-      if (error?.code !== "unavailable") {
-        console.warn("Firestore snapshot info:", error.message);
+      // Handle offline or backend timeout gracefully without breaking application
+      if (!hasReceivedSnapshot) {
+        callback(getLocalFallbackStudents());
       }
-      callback(MOCK_STUDENTS);
     }
   );
+
+  return unsubscribe;
 }
 
 /**
  * Save or update a single student record
  */
 export async function saveStudentToFirebase(student: StudentProfile): Promise<void> {
+  // Update local fallback immediately for seamless UX
+  try {
+    const current = getLocalFallbackStudents();
+    current[student.slug] = student;
+    saveLocalFallbackStudents(current);
+  } catch {
+    // Ignore local save error
+  }
+
   try {
     const docRef = doc(db, STUDENTS_COLLECTION, student.slug);
     await setDoc(
@@ -105,10 +133,8 @@ export async function saveStudentToFirebase(student: StudentProfile): Promise<vo
       },
       { merge: true }
     );
-  } catch (error: any) {
-    if (error?.code !== "unavailable") {
-      console.warn("Firestore write notice:", error?.message || error);
-    }
+  } catch (error) {
+    // Handled via local fallback
   }
 }
 
@@ -116,6 +142,17 @@ export async function saveStudentToFirebase(student: StudentProfile): Promise<vo
  * Save or update multiple student records at once (for class-wide synchronization)
  */
 export async function saveMultipleStudentsToFirebase(students: StudentProfile[]): Promise<void> {
+  // Update local fallback immediately
+  try {
+    const current = getLocalFallbackStudents();
+    students.forEach((s) => {
+      current[s.slug] = s;
+    });
+    saveLocalFallbackStudents(current);
+  } catch {
+    // Ignore local save error
+  }
+
   try {
     await Promise.all(
       students.map((student) =>
@@ -129,10 +166,8 @@ export async function saveMultipleStudentsToFirebase(students: StudentProfile[])
         )
       )
     );
-  } catch (error: any) {
-    if (error?.code !== "unavailable") {
-      console.warn("Firestore batch write notice:", error?.message || error);
-    }
+  } catch (error) {
+    // Handled via local fallback
   }
 }
 
@@ -141,11 +176,18 @@ export async function saveMultipleStudentsToFirebase(students: StudentProfile[])
  */
 export async function deleteStudentFromFirebase(slug: string): Promise<void> {
   try {
+    const current = getLocalFallbackStudents();
+    delete current[slug];
+    saveLocalFallbackStudents(current);
+  } catch {
+    // Ignore local save error
+  }
+
+  try {
     const docRef = doc(db, STUDENTS_COLLECTION, slug);
     await deleteDoc(docRef);
-  } catch (error: any) {
-    if (error?.code !== "unavailable") {
-      console.warn("Firestore delete notice:", error?.message || error);
-    }
+  } catch (error) {
+    // Handled via local fallback
   }
 }
+

@@ -15,6 +15,7 @@ import {
   Copy,
   Check,
   ExternalLink,
+  LogOut,
 } from "lucide-react";
 import { StudentProfile } from "../types";
 
@@ -25,6 +26,7 @@ interface MainHeaderProps {
   onSelectStudent: (slug: string) => void;
   onNavigateToAdmin: () => void;
   onNavigateToStudent: (slug?: string) => void;
+  onNavigateToPortal?: () => void;
 }
 
 interface NavItem {
@@ -51,6 +53,7 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
   onSelectStudent: _onSelectStudent,
   onNavigateToAdmin,
   onNavigateToStudent,
+  onNavigateToPortal,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("tong-quan");
@@ -211,7 +214,35 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
 
           {/* Right Action: Mobile Controls & Student Pop-up Menu */}
           <div className="relative flex items-center gap-1.5 sm:gap-2">
-            {/* If Student Route: Unified Pop-up Menu for both PC and Mobile */}
+            {/* If Admin Route: Logout button */}
+            {currentRoute === "admin" && onNavigateToPortal && (
+              <button
+                type="button"
+                onClick={() => {
+                  localStorage.removeItem("teacher_session");
+                  localStorage.removeItem("teacher_user");
+                  onNavigateToPortal();
+                }}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg soft-ui-convex text-xs font-bold text-[#1a1a1a] hover:text-[#ff4757] transition-all cursor-pointer active:translate-y-[1px]"
+                title="Đăng xuất khỏi cổng giáo viên"
+              >
+                <LogOut className="w-3.5 h-3.5 text-[#ff4757]" />
+                <span className="hidden sm:inline">Đăng xuất</span>
+              </button>
+            )}
+
+            {/* If Student Route: Quick Switch Student Code button */}
+            {currentRoute === "student" && onNavigateToPortal && (
+              <button
+                type="button"
+                onClick={onNavigateToPortal}
+                className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg soft-ui-convex text-xs font-semibold text-[#666666] hover:text-[#ff4757] transition-all cursor-pointer active:translate-y-[1px]"
+                title="Đổi mã học sinh khác hoặc về cổng đăng nhập"
+              >
+                <LogOut className="w-3.5 h-3.5 text-[#ff4757]" />
+                <span>Đổi học sinh</span>
+              </button>
+            )}
 
             {/* If Student Route: Unified Pop-up Menu for both PC and Mobile */}
             {currentRoute === "student" && (
@@ -300,6 +331,26 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                         );
                       })}
                     </div>
+
+                    {onNavigateToPortal && (
+                      <div className="pt-2 mt-2 border-t border-[#babecc]/50">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setMobileMenuOpen(false);
+                            onNavigateToPortal();
+                          }}
+                          className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-bold text-[#ff4757] hover:bg-[#d8e0ec] transition-all cursor-pointer text-left active:translate-y-[1px]"
+                        >
+                          <div className="flex items-center gap-2.5">
+                            <div className="p-1.5 rounded-md bg-[#ff4757]/15 text-[#ff4757]">
+                              <LogOut className="w-4 h-4" />
+                            </div>
+                            <span className="font-bold">Đổi mã học sinh / Cổng đăng nhập</span>
+                          </div>
+                        </button>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
