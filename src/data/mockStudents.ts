@@ -55,7 +55,7 @@ export const MOCK_STUDENTS: Record<string, StudentProfile> = {
     fullName: "Nguyễn Hoàng Nam",
     parentSalutation: "mẹ bé Hoàng Nam",
     parentName: "Chị Thu Hương",
-    grade: "Lớp 7 - Nhóm Chuyên Ngữ A1",
+    grade: "Lớp 7",
     school: "THCS Trưng Vương",
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80",
     attitudeBadge: {
@@ -436,7 +436,7 @@ export const MOCK_STUDENTS: Record<string, StudentProfile> = {
     fullName: "Lê Trần Hà My",
     parentSalutation: "mẹ bé Hà My",
     parentName: "Cô Mai Anh",
-    grade: "Lớp 8 - K8 Luyện Đề Chuyên",
+    grade: "Lớp 8",
     school: "THCS Cầu Giấy",
     avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&auto=format&fit=crop&q=80",
     attitudeBadge: {
@@ -640,7 +640,7 @@ export const MOCK_STUDENTS: Record<string, StudentProfile> = {
     fullName: "Trần Đức Minh",
     parentSalutation: "ba bé Đức Minh",
     parentName: "Anh Quốc Bảo",
-    grade: "Lớp 6 - K6 Chuyển Cấp Vững Vàng",
+    grade: "Lớp 6",
     school: "THCS Ngô Sĩ Liên",
     avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&auto=format&fit=crop&q=80",
     attitudeBadge: {

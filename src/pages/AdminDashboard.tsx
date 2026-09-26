@@ -172,6 +172,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   // Modals for Data Entry (Giai đoạn 1, 2, 3)
   const [isNewStudentModalOpen, setIsNewStudentModalOpen] = useState(false);
   const [gradingStudent, setGradingStudent] = useState<StudentProfile | null>(null);
+  const [classLessonName, setClassLessonName] = useState<string>("");
+  const [classLessonDate, setClassLessonDate] = useState<string>("");
 
   const studentList = Object.values(students);
 
@@ -706,6 +708,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       <ClassLessonEditor
         currentClassName={selectedClass}
         targetStudents={classFilteredStudents}
+        onLessonNameChange={(name) => setClassLessonName(name)}
+        onLessonDateChange={(date) => setClassLessonDate(date)}
         onSyncLessonToStudents={async (updatedList, summary) => {
           if (onSaveMultipleStudents) {
             await onSaveMultipleStudents(updatedList);
@@ -816,8 +820,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             const isScoringActive =
               activeScoringStudentSlug === student.slug;
 
-            // Làm sạch hiển thị: Bỏ phần " - Nhóm ..." nếu có, chỉ giữ lại "Lớp X" hoặc "Khối X"
-            const cleanedGrade = (student.grade || "").replace(/\s*-\s*Nhóm.*$/i, "").trim();
+            // Làm sạch hiển thị: Bỏ phần "- K6 Chuyển Cấp...", "- Nhóm...", chỉ giữ lại "Lớp X" hoặc "Khối X"
+            const cleanedGrade = (student.grade || "")
+              .replace(/•.*$/i, "")
+              .replace(/\s*-\s*.*$/i, "")
+              .trim();
 
             return (
               <div
@@ -912,15 +919,15 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   </div>
                 </div>
 
-                {/* Bottom Row: 1-Touch Action Buttons (Touch-Friendly min-h-[44px]) */}
-                <div className="flex flex-wrap items-center justify-between gap-2.5 pt-1">
-                  <div className="flex items-center gap-2 flex-wrap flex-1">
+                {/* Bottom Row: 1-Touch Action Buttons (Touch-Friendly min-h-[44px], Full-width vertical on mobile) */}
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-2.5 pt-1 w-full">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-2 flex-1 w-full">
                     {/* 1. NÚT QUẢN LÝ / CỘNG TRỪ TOKEN (FULLSCREEN MODAL) */}
                     <button
                       type="button"
                       id={`btn-open-scoring-${student.id}`}
                       onClick={() => setActiveScoringStudentSlug(student.slug)}
-                      className="min-h-[44px] px-4 py-2 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5 transition-all cursor-pointer font-mono soft-ui-convex text-[#ff4757] border border-white/90 shadow-[var(--shadow-card-sm)] hover:bg-[#d8e0ec] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px]"
+                      className="w-full sm:w-auto min-h-[44px] px-4 py-2 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer font-mono soft-ui-convex text-[#ff4757] border border-white/90 shadow-[var(--shadow-card-sm)] hover:bg-[#d8e0ec] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px]"
                       title="Mở bảng cộng/trừ và chỉnh sửa token"
                     >
                       <Plus className="w-4 h-4 stroke-[3]" />
@@ -932,7 +939,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       type="button"
                       id={`btn-grading-${student.id}`}
                       onClick={() => setGradingStudent(student)}
-                      className="min-h-[44px] px-3.5 py-2 rounded-lg sm:rounded-xl soft-ui-convex text-[#1a1a1a] hover:bg-[#d8e0ec] font-bold text-xs sm:text-sm border border-white/90 shadow-[var(--shadow-card-sm)] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px] flex items-center gap-1.5 transition-all cursor-pointer"
+                      className="w-full sm:w-auto min-h-[44px] px-3.5 py-2 rounded-lg sm:rounded-xl soft-ui-convex text-[#1a1a1a] hover:bg-[#d8e0ec] font-bold text-xs sm:text-sm border border-white/90 shadow-[var(--shadow-card-sm)] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px] flex items-center justify-center gap-1.5 transition-all cursor-pointer"
                       title="Cập nhật điểm kiểm tra, bài học mới và đánh giá 5 trục Radar"
                     >
                       <FileCheck className="w-4 h-4 text-emerald-600" />
@@ -944,7 +951,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       type="button"
                       id={`btn-zalo-reminder-${student.id}`}
                       onClick={() => handleSendZaloReminder(student)}
-                      className="min-h-[44px] px-3.5 py-2 rounded-lg sm:rounded-xl soft-ui-convex text-[#1a1a1a] hover:bg-[#d8e0ec] font-bold text-xs sm:text-sm border border-white/90 shadow-[var(--shadow-card-sm)] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px] flex items-center gap-1.5 transition-all cursor-pointer"
+                      className="w-full sm:w-auto min-h-[44px] px-3.5 py-2 rounded-lg sm:rounded-xl soft-ui-convex text-[#1a1a1a] hover:bg-[#d8e0ec] font-bold text-xs sm:text-sm border border-white/90 shadow-[var(--shadow-card-sm)] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px] flex items-center justify-center gap-1.5 transition-all cursor-pointer"
                     >
                       <MessageCircle className="w-4 h-4 text-sky-600" />
                       <span>Nhắc Zalo</span>
@@ -955,7 +962,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   <button
                     type="button"
                     onClick={() => onViewStudentPortal(student.slug)}
-                    className="min-h-[44px] px-3.5 py-2 rounded-lg sm:rounded-xl bg-[#2d3436] hover:bg-[#1a1a1a] text-white font-bold text-xs flex items-center gap-1.5 border border-white/20 shadow-xs active:translate-y-[1px] transition-all cursor-pointer"
+                    className="w-full sm:w-auto min-h-[44px] px-3.5 py-2 rounded-lg sm:rounded-xl bg-[#2d3436] hover:bg-[#1a1a1a] text-white font-bold text-xs flex items-center justify-center gap-1.5 border border-white/20 shadow-xs active:translate-y-[1px] transition-all cursor-pointer"
                   >
                     <span>Cổng Phụ Huynh</span>
                     <ExternalLink className="w-3.5 h-3.5 text-[#ff4757]" />
@@ -995,6 +1002,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         isOpen={gradingStudent !== null}
         onClose={() => setGradingStudent(null)}
         student={gradingStudent}
+        defaultLessonName={classLessonName || gradingStudent?.recentLesson?.lessonName || ""}
+        defaultLessonDate={classLessonDate || gradingStudent?.recentLesson?.date || ""}
         onSave={async (updatedStudent) => {
           if (onSaveStudent) {
             await onSaveStudent(updatedStudent);

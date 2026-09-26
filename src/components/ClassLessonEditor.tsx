@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Calendar as CalendarIcon,
   BookOpen,
@@ -38,12 +38,16 @@ interface ClassLessonEditorProps {
     updatedStudents: StudentProfile[],
     lessonSummary: { name: string; date: string }
   ) => Promise<void> | void;
+  onLessonNameChange?: (name: string) => void;
+  onLessonDateChange?: (date: string) => void;
 }
 
 export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
   currentClassName,
   targetStudents,
   onSyncLessonToStudents,
+  onLessonNameChange,
+  onLessonDateChange,
 }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
@@ -58,6 +62,12 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
     const dd = String(today.getDate()).padStart(2, "0");
     return `${yyyy}-${mm}-${dd}`;
   });
+
+  useEffect(() => {
+    if (lessonDate && onLessonDateChange) {
+      onLessonDateChange(lessonDate);
+    }
+  }, []);
 
   const [topic, setTopic] = useState<string>("");
 
@@ -342,7 +352,10 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                 id="input-lesson-name"
                 type="text"
                 value={lessonName}
-                onChange={(e) => setLessonName(e.target.value)}
+                onChange={(e) => {
+                  setLessonName(e.target.value);
+                  onLessonNameChange?.(e.target.value);
+                }}
                 placeholder="Ví dụ: Phân tích và bóc tách đề chuyên"
                 className="w-full min-h-[42px] px-3 py-2 text-xs sm:text-sm rounded-lg bg-white border border-[#babecc] text-[#1a1a1a] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-2 focus:ring-[#ff4757]/40"
               />
@@ -366,7 +379,10 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                 id="input-lesson-date"
                 type="date"
                 value={lessonDate}
-                onChange={(e) => setLessonDate(e.target.value)}
+                onChange={(e) => {
+                  setLessonDate(e.target.value);
+                  onLessonDateChange?.(e.target.value);
+                }}
                 className="w-full min-h-[42px] px-3 py-2 text-xs sm:text-sm rounded-lg bg-white border border-[#babecc] text-[#1a1a1a] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-2 focus:ring-[#ff4757]/40 cursor-pointer font-mono"
               />
             </div>

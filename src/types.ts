@@ -33,7 +33,7 @@ export interface RadarCapabilityPoint {
 
 export interface LessonMediaItem {
   id: string;
-  type: "image" | "video";
+  type: "image" | "video" | "audio";
   url: string;
   thumbnail?: string;
   title: string;
