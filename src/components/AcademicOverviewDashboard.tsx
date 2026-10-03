@@ -238,8 +238,8 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
         </div>
       </div>
 
-      {/* 2. 4 Stat Metric Rows (Mobile: 1 cột; Tablet: 2 hàng 2 cột; Desktop PC: 4 cột) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 lg:gap-4">
+      {/* 2. 4 Stat Metric Rows (Mobile: 1 cột; Tablet & Desktop PC: 2 hàng 2 cột cân đối) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-2.5 sm:gap-3 lg:gap-4">
         {/* Row 1: Bài tập */}
         <div
           onClick={() => onToggleSection && onToggleSection("bai-tap")}
