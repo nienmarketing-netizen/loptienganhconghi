@@ -267,18 +267,18 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
   return (
     <div className="relative rounded-lg sm:rounded-xl soft-ui-embossed p-4 sm:p-5 space-y-4">
       {/* Section Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#b2c2d4]/40 pb-3 pt-1">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3 pt-1">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-sm sm:text-base font-bold text-[#1a1a1a] tracking-[-0.015em] flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
+            <h3 className="text-sm sm:text-base font-bold text-[#1e293b] tracking-[-0.015em] flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-[#0066ff] shadow-[0_0_8px_#0066ff] animate-pulse" />
               <span>Bài tập tuần này</span>
             </h3>
-            <span className="text-xs font-semibold px-2 py-0.5 rounded-md soft-ui-convex text-[#1a1a1a]">
+            <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-[#1e293b] border border-slate-200">
               {assignments.length} bài
             </span>
           </div>
-          <p className="text-xs text-[#666666] font-normal mt-0.5">
+          <p className="text-xs text-[#64748b] font-normal mt-0.5">
             Tải phiếu bài tập, nộp ảnh chụp vở và xem cô sửa bài trực tiếp
           </p>
         </div>
@@ -286,26 +286,26 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
         {/* Quick summary badges */}
         <div className="flex items-center gap-1.5 self-start sm:self-center">
           {countNotDone > 0 && (
-            <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-amber-50 text-amber-900 border border-amber-300 shadow-[inset_1px_1px_2px_#ffffff] flex items-center gap-1.5 leading-tight">
+            <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-50 text-amber-900 border border-amber-200 shadow-xs flex items-center gap-1.5 leading-tight">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
               <span>{countNotDone} chưa làm</span>
             </span>
           )}
           {countGraded > 0 && (
-            <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-300 shadow-[inset_1px_1px_2px_#ffffff] flex items-center gap-1.5 leading-tight">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+            <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-xs flex items-center gap-1.5 leading-tight">
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#4caf50]" />
               <span>{countGraded} đã chấm</span>
             </span>
           )}
         </div>
       </div>
 
-      {/* Filter Tabs - Recessed Well */}
+      {/* Filter Tabs - Clean Recessed Well */}
       <div className="relative">
         <div
           ref={tabsContainerRef}
           onScroll={checkTabsScroll}
-          className="flex items-center gap-1.5 soft-ui-debossed p-1 rounded-lg overflow-x-auto no-scrollbar text-xs font-semibold scroll-smooth"
+          className="flex items-center gap-1.5 bg-[#edf3fa] p-1 rounded-xl border border-slate-200/70 overflow-x-auto no-scrollbar text-xs font-semibold scroll-smooth"
         >
           <button
             type="button"
@@ -313,10 +313,10 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
               setFilterStatus("all");
               e.currentTarget.scrollIntoView({ behavior: "smooth", inline: "nearest", block: "nearest" });
             }}
-            className={`px-3.5 py-2 rounded-md transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center justify-center leading-tight ${
+            className={`px-3.5 py-2 rounded-lg transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center justify-center leading-tight ${
               filterStatus === "all"
-                ? "soft-ui-convex text-[#1a1a1a] font-semibold"
-                : "text-[#666666] hover:text-[#1a1a1a]"
+                ? "bg-white text-[#0066ff] font-bold shadow-xs border border-slate-200/80"
+                : "text-[#64748b] hover:text-[#1e293b]"
             }`}
           >
             Tất cả ({assignments.length})
@@ -328,10 +328,10 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
               setFilterStatus("not_done");
               e.currentTarget.scrollIntoView({ behavior: "smooth", inline: "nearest", block: "nearest" });
             }}
-            className={`px-3.5 py-2 rounded-md transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center gap-1.5 leading-tight ${
+            className={`px-3.5 py-2 rounded-lg transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center gap-1.5 leading-tight ${
               filterStatus === "not_done"
-                ? "soft-ui-convex text-amber-900 font-semibold"
-                : "text-[#666666] hover:text-[#1a1a1a]"
+                ? "bg-white text-amber-900 font-bold shadow-xs border border-slate-200/80"
+                : "text-[#64748b] hover:text-[#1e293b]"
             }`}
           >
             <span className="w-2 h-2 rounded-full bg-amber-500" />
@@ -344,13 +344,13 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
               setFilterStatus("submitted");
               e.currentTarget.scrollIntoView({ behavior: "smooth", inline: "nearest", block: "nearest" });
             }}
-            className={`px-3.5 py-2 rounded-md transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center gap-1.5 leading-tight ${
+            className={`px-3.5 py-2 rounded-lg transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center gap-1.5 leading-tight ${
               filterStatus === "submitted"
-                ? "soft-ui-convex text-sky-900 font-semibold"
-                : "text-[#666666] hover:text-[#1a1a1a]"
+                ? "bg-white text-blue-900 font-bold shadow-xs border border-slate-200/80"
+                : "text-[#64748b] hover:text-[#1e293b]"
             }`}
           >
-            <span className="w-2 h-2 rounded-full bg-sky-500" />
+            <span className="w-2 h-2 rounded-full bg-blue-500" />
             <span>Đã nộp ({countSubmitted})</span>
           </button>
 
@@ -360,28 +360,28 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
               setFilterStatus("graded");
               e.currentTarget.scrollIntoView({ behavior: "smooth", inline: "nearest", block: "nearest" });
             }}
-            className={`px-3.5 py-2 rounded-md transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center gap-1.5 leading-tight ${
+            className={`px-3.5 py-2 rounded-lg transition-all whitespace-nowrap cursor-pointer min-h-[38px] flex items-center gap-1.5 leading-tight ${
               filterStatus === "graded"
-                ? "soft-ui-convex text-emerald-900 font-semibold"
-                : "text-[#666666] hover:text-[#1a1a1a]"
+                ? "bg-white text-emerald-900 font-bold shadow-xs border border-slate-200/80"
+                : "text-[#64748b] hover:text-[#1e293b]"
             }`}
           >
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            <span className="w-2 h-2 rounded-full bg-[#4caf50]" />
             <span>Đã chấm ({countGraded})</span>
           </button>
         </div>
 
-        {/* Mobile Navigation Hint: Blinking and nudging right arrow indicating more tabs are available behind */}
+        {/* Mobile Navigation Hint */}
         {canScrollRight && (
           <button
             type="button"
             id="btn-scroll-tabs-more"
             onClick={handleScrollRight}
-            className="sm:hidden absolute right-0.5 top-0.5 bottom-0.5 flex items-center justify-end pl-8 pr-1.5 rounded-r-lg bg-gradient-to-l from-[#d7e1ec] via-[#d7e1ec]/90 to-transparent cursor-pointer z-10 select-none group transition-opacity duration-200"
+            className="sm:hidden absolute right-0.5 top-0.5 bottom-0.5 flex items-center justify-end pl-8 pr-1.5 rounded-r-xl bg-gradient-to-l from-[#edf3fa] via-[#edf3fa]/90 to-transparent cursor-pointer z-10 select-none group transition-opacity duration-200"
             aria-label="Cuộn xem thêm các tab bài tập phía sau"
             title="Còn tab phía sau, bấm hoặc vuốt sang để xem"
           >
-            <div className="w-6 h-6 rounded-md soft-ui-convex flex items-center justify-center text-[#ff4757] border border-white/60 shadow-[0_1px_4px_rgba(255,71,87,0.3)] animate-blink-nudge">
+            <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center text-[#0066ff] border border-blue-200 shadow-xs animate-blink-nudge">
               <ChevronRight className="w-3.5 h-3.5 stroke-[2.5]" />
             </div>
           </button>
@@ -405,31 +405,31 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                 <div className="space-y-1.5">
                   {/* Unit badge & Token reward */}
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-xs font-semibold px-2.5 py-1.5 rounded-md soft-ui-convex text-[#1a1a1a] leading-tight">
+                    <span className="text-xs font-semibold px-2.5 py-1.5 rounded-lg bg-slate-100 text-[#1e293b] border border-slate-200 leading-tight">
                       {asg.unit}
                     </span>
-                    <span className="text-xs font-semibold text-amber-800 bg-amber-100/90 px-2.5 py-1.5 rounded-md border border-amber-300 flex items-center gap-1 leading-tight">
-                      <Coins className="w-3.5 h-3.5 text-amber-600" />
+                    <span className="text-xs font-bold text-amber-900 bg-amber-50 px-2.5 py-1.5 rounded-lg border border-amber-300 flex items-center gap-1 leading-tight shadow-xs">
+                      <Coins className="w-3.5 h-3.5 text-[#ff9800]" />
                       +{asg.tokensReward} Tokens
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h4 className="text-xs sm:text-base font-bold text-[#1a1a1a] tracking-[-0.015em] leading-snug">
+                  <h4 className="text-xs sm:text-base font-bold text-[#1e293b] tracking-[-0.015em] leading-snug">
                     {asg.title}
                   </h4>
 
                   {/* Nội dung bài tập chi tiết nếu có */}
                   {asg.description && (
-                    <p className="text-xs sm:text-sm text-[#444] leading-relaxed font-normal">
+                    <p className="text-xs sm:text-sm text-[#64748b] leading-relaxed font-normal">
                       {asg.description}
                     </p>
                   )}
 
                   {/* Hướng dẫn từ cô Nghi nếu có */}
                   {asg.teacherInstruction && (
-                    <div className="bg-[#d1d9e6]/70 border border-[#babecc]/60 rounded-md p-2.5 text-xs text-[#1a1a1a] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.05)]">
-                      <span className="font-bold text-[#ff4757]">💡 Hướng dẫn từ cô Nghi:</span>{" "}
+                    <div className="bg-blue-50/70 border border-blue-200/60 rounded-xl p-3 text-xs text-[#1e293b]">
+                      <span className="font-bold text-[#0066ff]">💡 Hướng dẫn từ cô Nghi:</span>{" "}
                       <span>{asg.teacherInstruction}</span>
                     </div>
                   )}
@@ -456,37 +456,37 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
               </div>
 
               {/* Deadline / Submission Time - Clean Recessed Well */}
-              <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-lg sm:rounded-xl px-3.5 py-2.5 sm:px-4 sm:py-3 flex items-center justify-between gap-2.5 shadow-[var(--shadow-recessed-sm)]">
+              <div className="bg-[#edf3fa] border border-[#dbe4f0] rounded-xl px-3.5 py-2.5 sm:px-4 sm:py-3 flex items-center justify-between gap-2.5">
                 <div className="flex items-center gap-2.5 text-left min-w-0">
                   <div
-                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg soft-ui-convex flex items-center justify-center shrink-0 ${
+                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center shrink-0 ${
                       isNotDone
-                        ? "text-[#ff4757]"
+                        ? "text-[#ff9800]"
                         : isSubmitted
-                        ? "text-sky-600"
-                        : "text-emerald-600"
+                        ? "text-[#0066ff]"
+                        : "text-[#4caf50]"
                     }`}
                   >
                     {isNotDone ? (
-                      <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ff4757]" />
+                      <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ff9800]" />
                     ) : isSubmitted ? (
-                      <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-600" />
+                      <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0066ff]" />
                     ) : (
-                      <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600" />
+                      <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#4caf50]" />
                     )}
                   </div>
 
                   <div className="flex items-center gap-1.5 flex-wrap text-xs sm:text-sm">
-                    <span className="text-[#666666] font-medium">
+                    <span className="text-[#64748b] font-medium">
                       {isNotDone ? "Hạn chót nộp bài:" : "Thời gian nộp bài:"}
                     </span>
                     <span
                       className={`font-bold font-mono tracking-tight ${
                         isNotDone
-                          ? "text-[#ff4757]"
+                          ? "text-[#ff9800]"
                           : isSubmitted
-                          ? "text-sky-800"
-                          : "text-[#1a1a1a]"
+                          ? "text-blue-700"
+                          : "text-[#1e293b]"
                       }`}
                     >
                       {isNotDone
@@ -502,9 +502,9 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                 </div>
 
                 {isGraded && (
-                  <div className="hidden sm:flex items-center gap-1.5 text-xs text-[#666666] shrink-0 font-medium border-l border-[#babecc]/60 pl-3">
+                  <div className="hidden sm:flex items-center gap-1.5 text-xs text-[#64748b] shrink-0 font-medium border-l border-slate-200 pl-3">
                     <span>Ngày chấm:</span>
-                    <span className="font-semibold text-[#1a1a1a]">Thứ Tư, 16/09/2026</span>
+                    <span className="font-semibold text-[#1e293b]">Thứ Tư, 16/09/2026</span>
                   </div>
                 )}
               </div>
@@ -518,10 +518,10 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                       type="button"
                       id={`btn-materials-${asg.id}`}
                       onClick={() => setSelectedForMaterialsList(asg)}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-4 py-2 rounded-md sm:rounded-lg font-semibold text-xs soft-ui-convex text-[#1a1a1a] hover:text-[#ff4757] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px] transition-all cursor-pointer leading-tight"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-4 py-2 rounded-xl font-bold text-xs bg-white text-[#1e293b] border border-slate-200 hover:text-[#0066ff] hover:border-blue-200 active:translate-y-[1px] transition-all cursor-pointer leading-tight shadow-xs"
                       title="Bấm để xem danh sách tài liệu đính kèm"
                     >
-                      <FolderDown className="w-4 h-4 text-[#ff4757] shrink-0" />
+                      <FolderDown className="w-4 h-4 text-[#0066ff] shrink-0" />
                       <span>Tài liệu & đề bài ({materials.length})</span>
                     </button>
 
@@ -529,7 +529,7 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                       type="button"
                       id={`btn-submit-photo-${asg.id}`}
                       onClick={() => setSelectedForUpload(asg)}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-5 py-2 rounded-md sm:rounded-lg bg-[#ff4757] hover:bg-[#e03949] text-white font-semibold text-xs shadow-[var(--shadow-accent)] active:shadow-[var(--shadow-accent-pressed)] active:translate-y-[1px] transition-all cursor-pointer border border-white/30 sm:ml-auto leading-tight"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-5 py-2 rounded-xl bg-[#0066ff] hover:bg-[#0052cc] text-white font-bold text-xs shadow-[0_4px_14px_rgba(0,102,255,0.35)] active:translate-y-[1px] transition-all cursor-pointer border border-blue-400/30 sm:ml-auto leading-tight"
                     >
                       <UploadCloud className="w-4 h-4 shrink-0" />
                       <span>Tải file lên nộp bài</span>
@@ -545,10 +545,10 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                       type="button"
                       id={`btn-materials-submitted-${asg.id}`}
                       onClick={() => setSelectedForMaterialsList(asg)}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-4 py-2 rounded-md sm:rounded-lg font-semibold text-xs soft-ui-convex text-[#1a1a1a] hover:text-[#ff4757] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px] transition-all cursor-pointer leading-tight"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-4 py-2 rounded-xl font-bold text-xs bg-white text-[#1e293b] border border-slate-200 hover:text-[#0066ff] hover:border-blue-200 active:translate-y-[1px] transition-all cursor-pointer leading-tight shadow-xs"
                       title="Bấm để xem danh sách tài liệu đính kèm"
                     >
-                      <FolderDown className="w-4 h-4 text-[#ff4757] shrink-0" />
+                      <FolderDown className="w-4 h-4 text-[#0066ff] shrink-0" />
                       <span>Tài liệu & đề bài ({materials.length})</span>
                     </button>
 
@@ -556,7 +556,7 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                       type="button"
                       id={`btn-view-submission-${asg.id}`}
                       onClick={() => setSelectedForUpload(asg)}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-5 py-2 rounded-md sm:rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs shadow-[0_4px_10px_rgba(2,132,199,0.3)] active:translate-y-[1px] transition-all cursor-pointer border border-sky-400 sm:ml-auto leading-tight"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-[0_4px_14px_rgba(37,99,235,0.3)] active:translate-y-[1px] transition-all cursor-pointer border border-blue-400 sm:ml-auto leading-tight"
                     >
                       <Eye className="w-4 h-4 shrink-0" />
                       <span>Xem bài đã nộp / Bổ sung</span>
@@ -572,10 +572,10 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                       type="button"
                       id={`btn-materials-graded-${asg.id}`}
                       onClick={() => setSelectedForMaterialsList(asg)}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-4 py-2 rounded-md sm:rounded-lg font-semibold text-xs soft-ui-convex text-[#1a1a1a] hover:text-[#ff4757] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px] transition-all cursor-pointer leading-tight"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-4 py-2 rounded-xl font-bold text-xs bg-white text-[#1e293b] border border-slate-200 hover:text-[#0066ff] hover:border-blue-200 active:translate-y-[1px] transition-all cursor-pointer leading-tight shadow-xs"
                       title="Bấm để xem danh sách tài liệu đính kèm"
                     >
-                      <FolderDown className="w-4 h-4 text-[#ff4757] shrink-0" />
+                      <FolderDown className="w-4 h-4 text-[#0066ff] shrink-0" />
                       <span>Tài liệu & đề bài ({materials.length})</span>
                     </button>
 
@@ -583,7 +583,7 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                       type="button"
                       id={`btn-view-graded-${asg.id}`}
                       onClick={() => setSelectedForReview(asg)}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-5 py-2 rounded-md sm:rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-[0_4px_10px_rgba(5,150,105,0.3)] active:translate-y-[1px] transition-all cursor-pointer border border-emerald-400 sm:ml-auto leading-tight"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] px-5 py-2 rounded-xl bg-[#4caf50] hover:bg-[#43a047] text-white font-bold text-xs shadow-[0_4px_14px_rgba(76,175,80,0.35)] active:translate-y-[1px] transition-all cursor-pointer border border-emerald-400 sm:ml-auto leading-tight"
                     >
                       <FileCheck className="w-4 h-4 shrink-0" />
                       <span>Xem bài đã chấm & nhận xét</span>

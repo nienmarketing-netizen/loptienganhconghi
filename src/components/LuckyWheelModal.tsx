@@ -109,12 +109,12 @@ export const LuckyWheelModal: React.FC<LuckyWheelModalProps> = ({
     <Dialog open={open} onOpenChange={handleResetAndClose} id="modal-lucky-wheel">
       <DialogHeader>
         <div className="flex items-center gap-3 min-w-0">
-          <div className="w-9 h-9 rounded-lg bg-[#1e2528] border border-white/10 flex items-center justify-center text-[#ff4757] shrink-0 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)]">
-            <Sparkles className="w-5 h-5 text-amber-400" />
+          <div className="w-9 h-9 rounded-xl bg-white/15 border border-white/20 flex items-center justify-center text-white shrink-0 shadow-inner">
+            <Sparkles className="w-5 h-5 text-amber-300" />
           </div>
           <div className="min-w-0">
-            <div className="text-xs font-medium text-[#a3b1c6] flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+            <div className="text-xs font-semibold text-blue-100 flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse shadow-[0_0_6px_#f59e0b]" />
               <span>Thách đấu rủi ro - Mốc 50 Tokens</span>
             </div>
             <DialogTitle>Vòng Quay "Chiếc Nón Kỳ Diệu"</DialogTitle>
@@ -125,17 +125,17 @@ export const LuckyWheelModal: React.FC<LuckyWheelModalProps> = ({
 
       <DialogContent>
         {/* Intro Rules Banner */}
-        <div className="bg-[#2d3436] rounded-xl p-3.5 sm:p-4 text-white border border-white/10 shadow-[var(--shadow-recessed-sm)] space-y-2">
+        <div className="bg-gradient-to-r from-blue-900 via-indigo-950 to-slate-900 rounded-2xl p-4 text-white border border-blue-800/60 shadow-xs space-y-2">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between items-start gap-1.5 text-xs">
-            <span className="text-[#a3b1c6] font-medium">
-              Học sinh: <strong className="text-white font-semibold">{studentName}</strong>
+            <span className="text-slate-300 font-medium">
+              Học sinh: <strong className="text-white font-bold">{studentName}</strong>
             </span>
-            <span className="font-bold text-[#ff4757] bg-[#1e2528] px-2 py-0.5 rounded border border-white/10">
+            <span className="font-bold text-amber-300 bg-white/10 px-2.5 py-0.5 rounded-lg border border-white/20 font-mono">
               Số dư hiện tại: {currentTokens} Tokens
             </span>
           </div>
           <div className="text-xs text-slate-200 leading-relaxed">
-            <strong className="text-amber-400">Luật chơi:</strong> Khi quay Chiếc Nón Kỳ Diệu, con sẽ nhận được 1 trong 2 kết quả:
+            <strong className="text-amber-400 font-bold">Luật chơi:</strong> Khi quay Chiếc Nón Kỳ Diệu, con sẽ nhận được 1 trong 2 kết quả:
             <ul className="mt-1 space-y-1 pl-4 list-disc text-[11px] text-slate-300">
               <li>
                 <strong className="text-emerald-400">Ô Nhân Đôi:</strong> Lên thẳng <strong>100 Tokens</strong> để mở khóa ngay <strong>ĐẠI BẢO RƯƠNG</strong>!
@@ -153,12 +153,12 @@ export const LuckyWheelModal: React.FC<LuckyWheelModalProps> = ({
           <div className="relative w-64 h-64 sm:w-72 sm:h-72 flex items-center justify-center">
             {/* Top Pointer (Kim chỉ điểm) */}
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center filter drop-shadow-md">
-              <div className="w-5 h-7 bg-[#ff4757] border-2 border-white rounded-b-md shadow-lg" />
-              <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-t-[#ff4757]" />
+              <div className="w-5 h-7 bg-[#ff9800] border-2 border-white rounded-b-md shadow-lg" />
+              <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-t-[#ff9800]" />
             </div>
 
             {/* Recessed Outer Ring */}
-            <div className="absolute inset-0 rounded-full bg-[#d1d9e6] border-4 border-[#babecc] shadow-[inset_2px_2px_5px_rgba(0,0,0,0.3),inset_-2px_-2px_5px_rgba(255,255,255,0.8)]" />
+            <div className="absolute inset-0 rounded-full bg-slate-100 border-4 border-slate-200 shadow-inner" />
 
             {/* The Rotating Wheel SVG */}
             <div
@@ -310,7 +310,7 @@ export const LuckyWheelModal: React.FC<LuckyWheelModalProps> = ({
                 variant="default"
                 onClick={handleSpin}
                 disabled={isSpinning}
-                className="px-6 py-2.5 text-xs sm:text-sm font-bold min-h-[44px] flex items-center gap-2 bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[var(--shadow-accent)]"
+                className="px-6 py-2.5 text-xs sm:text-sm font-bold min-h-[44px] flex items-center gap-2 bg-gradient-to-r from-[#ff9800] to-[#ffb800] hover:from-amber-600 hover:to-orange-600 text-white shadow-md shadow-amber-500/25 rounded-xl border border-white/20 active:translate-y-[1px]"
               >
                 <RotateCw className={`w-4 h-4 ${isSpinning ? "animate-spin" : ""}`} />
                 <span>{isSpinning ? "Đang quay bánh xe..." : "Bắt Đầu Quay Chiếc Nón Kỳ Diệu"}</span>

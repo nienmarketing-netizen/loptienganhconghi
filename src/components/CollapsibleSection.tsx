@@ -34,24 +34,24 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
   return (
     <section id={id} className="scroll-mt-24">
       {!isOpen ? (
-        /* Collapsed State: Soft UI Embossed Block dập nổi từ background */
+        /* Collapsed State: Clean Floating Card */
         <button
           id={`btn-accordion-expand-${id}`}
           type="button"
           onClick={onToggle}
           aria-expanded={false}
-          className={`group relative w-full flex items-center justify-between gap-2 sm:gap-3 px-4 py-3.5 sm:px-6 sm:py-4 soft-ui-embossed ${effectiveRounded} hover:shadow-[var(--shadow-floating)] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[var(--shadow-pressed)] text-left transition-all duration-200 cursor-pointer min-h-[60px] sm:min-h-[68px]`}
+          className={`group relative w-full flex items-center justify-between gap-2 sm:gap-3 px-4 py-3.5 sm:px-6 sm:py-4 bg-white border border-slate-100 shadow-[0_4px_16px_rgba(15,45,90,0.05)] ${effectiveRounded} hover:shadow-[0_8px_24px_rgba(15,45,90,0.08)] hover:-translate-y-0.5 active:translate-y-0 text-left transition-all duration-200 cursor-pointer min-h-[60px] sm:min-h-[68px]`}
         >
           <div className="flex items-start sm:items-center gap-2.5 sm:gap-3.5 min-w-0 flex-1">
             <div
-              className={`w-9 h-9 sm:w-11 sm:h-11 ${effectiveIconRounded} flex items-center justify-center shrink-0 soft-ui-convex text-[#ff4757] mt-0.5 sm:mt-0`}
+              className={`w-9 h-9 sm:w-11 sm:h-11 ${effectiveIconRounded} flex items-center justify-center shrink-0 bg-blue-50 border border-blue-100 text-[#0066ff] group-hover:bg-[#0066ff] group-hover:text-white transition-all mt-0.5 sm:mt-0 shadow-xs`}
             >
-              <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#ff4757]" />
+              <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-current" />
             </div>
 
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                <h3 className="text-sm sm:text-base font-bold text-[#1a1a1a] tracking-[-0.015em] leading-snug">
+                <h3 className="text-sm sm:text-base font-bold text-[#1e293b] tracking-[-0.015em] leading-snug group-hover:text-[#0066ff] transition-colors">
                   {title}
                 </h3>
                 {badge && (
@@ -62,25 +62,18 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
               </div>
 
               {subtitle && (
-                <p className="text-[11px] sm:text-xs md:text-sm text-[#666666] mt-0.5 leading-relaxed break-words font-normal">
+                <p className="text-[11px] sm:text-xs md:text-sm text-[#64748b] mt-0.5 leading-relaxed break-words font-normal">
                   {subtitle}
                 </p>
               )}
             </div>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0 self-center pr-2">
-            {/* 3 Vertical Ventilation Grooves */}
-            <div className="hidden sm:flex items-center gap-1 opacity-70" aria-hidden="true">
-              <div className="w-1 h-5 rounded-full bg-[#b8c6d8] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.25)]" />
-              <div className="w-1 h-5 rounded-full bg-[#b8c6d8] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.25)]" />
-              <div className="w-1 h-5 rounded-full bg-[#b8c6d8] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.25)]" />
-            </div>
-
-            {/* Unified Expand Action matching the Collapse button */}
-            <div className="flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-1.5 rounded-md sm:rounded-lg soft-ui-convex text-[#1a1a1a] group-hover:text-[#ff4757] transition-all shrink-0 min-h-[34px] leading-tight">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0 self-center pr-1">
+            {/* Unified Expand Action */}
+            <div className="flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-[#1e293b] group-hover:text-[#0066ff] group-hover:border-blue-200 transition-all shrink-0 min-h-[34px] leading-tight shadow-xs">
               <span className="hidden sm:inline">Mở khóa</span>
-              <ChevronDown className="w-3.5 h-3.5 text-[#ff4757]" />
+              <ChevronDown className="w-3.5 h-3.5 text-[#0066ff]" />
             </div>
           </div>
         </button>
@@ -88,17 +81,17 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
         /* Open State: Sub-header with Collapse Toggle + Children */
         <div className="space-y-3 animate-in fade-in duration-200">
           <div
-            className={`relative flex items-center justify-between gap-2 px-4 py-3 sm:px-5 sm:py-3.5 ${effectiveRounded} soft-ui-embossed`}
+            className={`relative flex items-center justify-between gap-2 px-4 py-3 sm:px-5 sm:py-3.5 ${effectiveRounded} bg-white border border-slate-100 shadow-[0_4px_14px_rgba(15,45,90,0.05)]`}
           >
             <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
               <div
-                className={`w-8 h-8 sm:w-9 sm:h-9 ${effectiveIconRounded} flex items-center justify-center shrink-0 soft-ui-convex text-[#ff4757]`}
+                className={`w-8 h-8 sm:w-9 sm:h-9 ${effectiveIconRounded} flex items-center justify-center shrink-0 bg-blue-50 border border-blue-100 text-[#0066ff]`}
               >
-                <Icon className="w-4 h-4 text-[#ff4757]" />
+                <Icon className="w-4 h-4 text-[#0066ff]" />
               </div>
 
               <div className="min-w-0 flex-1 flex items-center gap-2 flex-wrap">
-                <h3 className="text-sm sm:text-base font-bold text-[#1a1a1a] tracking-[-0.015em] leading-snug">
+                <h3 className="text-sm sm:text-base font-bold text-[#1e293b] tracking-[-0.015em] leading-snug">
                   {title}
                 </h3>
                 {badge && (
@@ -113,17 +106,11 @@ export const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
               id={`btn-accordion-collapse-${id}`}
               type="button"
               onClick={onToggle}
-              className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-md sm:rounded-lg soft-ui-convex text-[#1a1a1a] active:shadow-[var(--shadow-pressed-sm)] hover:text-[#ff4757] hover:-translate-y-0.5 active:translate-y-0.5 transition-all cursor-pointer shrink-0 min-h-[34px] mr-1 leading-tight"
+              className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-[#1e293b] hover:text-[#0066ff] hover:border-blue-200 transition-all cursor-pointer shrink-0 min-h-[34px] mr-1 leading-tight shadow-xs"
             >
               <span>Thu gọn</span>
-              <ChevronUp className="w-3.5 h-3.5 text-[#ff4757]" />
+              <ChevronUp className="w-3.5 h-3.5 text-[#0066ff]" />
             </button>
-
-            {/* Downward tactile mechanical pointer notch (Mũi tên kết nối Soft-UI dập nổi) */}
-            <div
-              className="absolute -bottom-[7px] left-8 sm:left-[38px] -translate-x-1/2 w-3.5 h-3.5 rotate-45 rounded-br-[2.5px] soft-ui-pointer z-20 pointer-events-none transition-all duration-200 animate-in fade-in zoom-in-75 slide-in-from-top-1"
-              aria-hidden="true"
-            />
           </div>
 
           <div className="relative transition-all">

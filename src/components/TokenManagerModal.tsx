@@ -437,42 +437,42 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 bg-[#e0e5ec] text-[#1a1a1a] flex flex-col w-screen h-screen overflow-hidden select-none animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 bg-[#F4F7FC] text-slate-800 flex flex-col w-screen h-screen overflow-hidden select-none animate-in fade-in duration-200"
     >
-      {/* 1. TOP INDUSTRIAL HEADER */}
-      <header className="bg-[#2d3436] text-white px-4 sm:px-6 py-3 flex items-center justify-between shadow-md shrink-0 border-b border-[#1a1a1a]">
+      {/* 1. TOP MODERN EDTECH HEADER */}
+      <header className="bg-gradient-to-r from-[#0066FF] via-[#005bcc] to-[#0052CC] text-white px-4 sm:px-6 py-3 flex items-center justify-between shadow-md shrink-0 border-b border-blue-600/40">
         <div className="flex items-center gap-3">
           <div className="relative">
             <img
               src={currentStudent.avatar}
               alt={currentStudent.fullName}
-              className="w-11 h-11 rounded-xl object-cover ring-2 ring-white/30 border border-white/20 shrink-0"
+              className="w-11 h-11 rounded-2xl object-cover ring-2 ring-white/40 border border-white/30 shrink-0 bg-white"
             />
-            <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full led-indicator-orange animate-pulse" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-400 ring-2 ring-white animate-pulse" />
           </div>
           <div>
             <div className="flex items-center gap-2 flex-wrap">
               <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
                 {currentStudent.fullName}
               </h2>
-              <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-black/40 text-amber-300 border border-white/10">
+              <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded-lg bg-white/20 text-amber-300 border border-white/20">
                 {currentStudent.id}
               </span>
             </div>
-            <p className="text-xs text-neutral-300 font-medium">
+            <p className="text-xs text-blue-100 font-medium">
               Quản lý & Chỉnh sửa Token học vụ
             </p>
 
-            {/* YÊU CẦU 2: Hàng badge thể hiện "Số dư hiện tại..." ngay bên dưới thông tin học sinh */}
+            {/* Hàng badge thể hiện "Số dư hiện tại..." */}
             <div className="mt-1 flex items-center gap-2">
-              <div className="inline-flex items-center gap-1.5 bg-black/40 border border-white/15 px-2.5 py-0.5 rounded-lg shadow-inner">
-                <Coins className="w-3.5 h-3.5 text-amber-400" />
-                <span className="text-[11px] text-neutral-300 font-medium">
+              <div className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-xs border border-white/25 px-2.5 py-0.5 rounded-lg shadow-inner">
+                <Coins className="w-3.5 h-3.5 text-amber-300" />
+                <span className="text-[11px] text-blue-100 font-medium">
                   Số dư hiện tại:
                 </span>
                 <span className="font-mono text-xs font-bold text-white">
                   {currentTokens}{" "}
-                  <span className="text-[10px] text-amber-400 font-normal">
+                  <span className="text-[10px] text-amber-300 font-normal">
                     / 100 Tokens
                   </span>
                 </span>
@@ -486,7 +486,7 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-[#ff4757] text-white text-xs font-bold transition-all flex items-center gap-1.5 border border-white/20 shadow-xs cursor-pointer active:scale-95"
+            className="px-3.5 py-2 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs font-bold transition-all flex items-center gap-1.5 border border-white/20 shadow-xs cursor-pointer active:scale-95"
             title="Đóng (Esc)"
           >
             <X className="w-4 h-4 stroke-[2.5]" />
@@ -496,20 +496,20 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
       </header>
 
       {/* MOBILE TABS SWITCHER */}
-      <div className="lg:hidden flex border-b border-[#babecc]/60 bg-[#d1d9e6] px-3 pt-2 gap-2 shrink-0">
+      <div className="lg:hidden flex border-b border-slate-200 bg-white px-3 pt-2 gap-2 shrink-0">
         <button
           type="button"
           onClick={() => setActiveTab("add")}
           className={`flex-1 py-2 text-xs font-bold rounded-t-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
             activeTab === "add"
-              ? "bg-[#e0e5ec] text-[#ff4757] shadow-[var(--shadow-card-sm)] border-t border-x border-[#babecc]/60"
-              : "text-[#666666] hover:text-[#1a1a1a]"
+              ? "bg-[#F4F7FC] text-[#0066FF] border-b-2 border-[#0066FF] shadow-xs"
+              : "text-slate-500 hover:text-slate-800"
           }`}
         >
           <Plus className="w-3.5 h-3.5" />
           <span>1. Chọn Cộng/Trừ</span>
           {selectedCount > 0 && (
-            <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-[#ff4757] text-white font-mono">
+            <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-[#0066FF] text-white font-mono">
               {selectedCount}
             </span>
           )}
@@ -520,8 +520,8 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
           onClick={() => setActiveTab("history")}
           className={`flex-1 py-2 text-xs font-bold rounded-t-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
             activeTab === "history"
-              ? "bg-[#e0e5ec] text-[#ff4757] shadow-[var(--shadow-card-sm)] border-t border-x border-[#babecc]/60"
-              : "text-[#666666] hover:text-[#1a1a1a]"
+              ? "bg-[#F4F7FC] text-[#0066FF] border-b-2 border-[#0066FF] shadow-xs"
+              : "text-slate-500 hover:text-slate-800"
           }`}
         >
           <RotateCcw className="w-3.5 h-3.5" />
@@ -529,7 +529,7 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
         </button>
       </div>
 
-      {/* 2. MAIN CONTENT AREA (Scrolls independently, keeps footer sticky) */}
+      {/* 2. MAIN CONTENT AREA */}
       <main className="flex-1 overflow-hidden p-3 sm:p-5 max-w-7xl w-full mx-auto flex flex-col">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 flex-1 overflow-hidden">
           {/* ======================================================== */}
@@ -540,16 +540,16 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
               activeTab !== "add" ? "hidden lg:flex" : "flex"
             }`}
           >
-            <div className="flex items-center justify-between pb-2.5 mb-1 border-b border-[#babecc]/60 shrink-0">
+            <div className="flex items-center justify-between pb-2.5 mb-1 border-b border-slate-200/80 shrink-0">
               <div className="flex items-center gap-2">
-                <span className="w-6 h-6 rounded-lg bg-[#ff4757] text-white flex items-center justify-center font-bold text-xs font-mono shadow-[var(--shadow-accent-sm)]">
+                <span className="w-6 h-6 rounded-lg bg-gradient-to-r from-[#0066FF] to-[#0052CC] text-white flex items-center justify-center font-bold text-xs font-mono shadow-xs">
                   1
                 </span>
                 <div>
-                  <h3 className="text-xs sm:text-sm font-bold text-[#1a1a1a] tracking-tight">
+                  <h3 className="text-xs sm:text-sm font-bold text-slate-800 tracking-tight">
                     Bước 1: Bấm chọn các tiêu chí cần cộng/trừ
                   </h3>
-                  <p className="text-[11px] text-[#666666]">
+                  <p className="text-[11px] text-slate-500">
                     Có thể chọn cùng lúc nhiều ô. Bấm lại vào ô để bỏ chọn.
                   </p>
                 </div>
@@ -563,7 +563,7 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
                     setCustomPoints("");
                     setCustomReason("");
                   }}
-                  className="text-xs text-[#ff4757] hover:underline font-semibold cursor-pointer"
+                  className="text-xs text-[#0066FF] hover:underline font-semibold cursor-pointer"
                 >
                   Bỏ chọn tất cả ({selectedCount})
                 </button>
@@ -582,8 +582,8 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
                 );
                 return (
                   <div key={groupName} className="space-y-2">
-                    <div className="text-[11px] font-bold text-[#4a5568] uppercase font-mono tracking-wider flex items-center gap-1.5 px-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#ff4757]" />
+                    <div className="text-[11px] font-bold text-slate-500 uppercase font-mono tracking-wider flex items-center gap-1.5 px-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF]" />
                       {groupName}
                     </div>
 
@@ -597,27 +597,27 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
                             key={opt.id}
                             type="button"
                             onClick={() => toggleOption(opt.id)}
-                            className={`p-3 rounded-xl text-left transition-all cursor-pointer relative flex items-center justify-between gap-3 border ${
+                            className={`p-3 rounded-2xl text-left transition-all cursor-pointer relative flex items-center justify-between gap-3 border ${
                               isSelected
-                                ? "bg-[#fff1f2] border-[#ff4757] shadow-[var(--shadow-recessed-sm)] ring-2 ring-[#ff4757]/30"
-                                : "soft-ui-embossed-sm bg-[#e0e5ec] border-white/80 border-b-[#babecc] border-r-[#babecc] shadow-[var(--shadow-card-sm)] hover:bg-[#d8e0ec] active:translate-y-[1px]"
+                                ? "bg-blue-50/80 border-[#0066FF] shadow-sm ring-2 ring-blue-500/20"
+                                : "bg-white border-slate-200/80 shadow-xs hover:border-blue-400 hover:shadow-sm active:translate-y-[1px]"
                             }`}
                           >
                             <div className="flex items-center gap-2.5 min-w-0">
-                              <span className="text-xl shrink-0 p-1.5 rounded-lg bg-[#d1d9e6] border border-[#babecc]/50">
+                              <span className="text-xl shrink-0 p-2 rounded-xl bg-slate-50 border border-slate-200">
                                 {opt.icon}
                               </span>
                               <div className="min-w-0">
                                 <div
                                   className={`font-bold text-xs truncate ${
                                     isSelected
-                                      ? "text-[#ff4757]"
-                                      : "text-[#1a1a1a]"
+                                      ? "text-[#0066FF]"
+                                      : "text-slate-800"
                                   }`}
                                 >
                                   {opt.label}
                                 </div>
-                                <div className="text-[11px] text-[#666666] line-clamp-1">
+                                <div className="text-[11px] text-slate-500 line-clamp-1">
                                   {opt.reason}
                                 </div>
                               </div>
@@ -625,20 +625,20 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
 
                             <div className="flex items-center gap-1.5 shrink-0">
                               <span
-                                className={`text-xs font-mono font-black px-2 py-0.5 rounded-md shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)] ${
+                                className={`text-xs font-mono font-black px-2 py-0.5 rounded-lg border ${
                                   isNegative
-                                    ? "text-rose-700 bg-rose-100 border border-rose-300"
-                                    : "text-[#ff4757] bg-[#d1d9e6] border border-[#babecc]/60"
+                                    ? "text-rose-700 bg-rose-50 border-rose-200"
+                                    : "text-blue-700 bg-blue-50 border-blue-200"
                                 }`}
                               >
                                 {opt.points > 0 ? `+${opt.points}` : opt.points}T
                               </span>
 
                               <div
-                                className={`w-5 h-5 rounded-md flex items-center justify-center border transition-all ${
+                                className={`w-5 h-5 rounded-lg flex items-center justify-center border transition-all ${
                                   isSelected
-                                    ? "bg-[#ff4757] text-white border-[#ff4757]"
-                                    : "border-[#babecc] bg-[#d1d9e6]"
+                                    ? "bg-[#0066FF] text-white border-[#0066FF]"
+                                    : "border-slate-300 bg-slate-100"
                                 }`}
                               >
                                 {isSelected && (
@@ -655,14 +655,14 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
               })}
 
               {/* Custom Scoring Box */}
-              <div className="bg-[#d1d9e6] rounded-xl p-3 border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)] space-y-2 mt-2">
+              <div className="bg-white rounded-2xl p-3.5 border border-slate-200/80 shadow-xs space-y-2 mt-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#1a1a1a] flex items-center gap-1.5">
+                  <span className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5 text-amber-500" />
                     Hoặc nhập số Token tùy chỉnh:
                   </span>
                   {validCustomPoints !== 0 && (
-                    <span className="text-xs font-mono font-bold text-[#ff4757]">
+                    <span className="text-xs font-mono font-bold text-[#0066FF]">
                       Đã ghi nhận:{" "}
                       {validCustomPoints > 0
                         ? `+${validCustomPoints}`
@@ -677,10 +677,10 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
                     <button
                       type="button"
                       onClick={() => setCustomSign("+")}
-                      className={`px-2.5 py-1.5 rounded-lg font-bold font-mono text-xs cursor-pointer border ${
+                      className={`px-3 py-1.5 rounded-xl font-bold font-mono text-xs cursor-pointer border transition-colors ${
                         customSign === "+"
-                          ? "bg-[#ff4757] text-white border-white/30 shadow-xs"
-                          : "bg-[#e0e5ec] text-[#666666] border-[#babecc]"
+                          ? "bg-[#0066FF] text-white border-[#0066FF] shadow-xs"
+                          : "bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200"
                       }`}
                     >
                       + Cộng
@@ -688,10 +688,10 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
                     <button
                       type="button"
                       onClick={() => setCustomSign("-")}
-                      className={`px-2.5 py-1.5 rounded-lg font-bold font-mono text-xs cursor-pointer border ${
+                      className={`px-3 py-1.5 rounded-xl font-bold font-mono text-xs cursor-pointer border transition-colors ${
                         customSign === "-"
-                          ? "bg-rose-600 text-white border-white/30 shadow-xs"
-                          : "bg-[#e0e5ec] text-[#666666] border-[#babecc]"
+                          ? "bg-rose-600 text-white border-rose-600 shadow-xs"
+                          : "bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200"
                       }`}
                     >
                       - Trừ
@@ -705,7 +705,7 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
                     value={customPoints}
                     onChange={(e) => setCustomPoints(e.target.value)}
                     placeholder="Số lượng (VD: 3)"
-                    className="w-full sm:w-28 px-3 py-1.5 rounded-lg bg-[#e0e5ec] border border-[#babecc] text-xs font-mono text-[#1a1a1a] focus:outline-none focus:ring-1 focus:ring-[#ff4757] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)]"
+                    className="w-full sm:w-28 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-mono text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF]"
                   />
 
                   <input
@@ -713,7 +713,7 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
                     value={customReason}
                     onChange={(e) => setCustomReason(e.target.value)}
                     placeholder="Lý do (Tùy chọn, VD: Thưởng phụ đạo)"
-                    className="flex-1 px-3 py-1.5 rounded-lg bg-[#e0e5ec] border border-[#babecc] text-xs text-[#1a1a1a] focus:outline-none focus:ring-1 focus:ring-[#ff4757] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)]"
+                    className="flex-1 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF]"
                   />
                 </div>
               </div>
@@ -724,33 +724,33 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
           {/* CỘT PHẢI: TAB 2 - NHẬT KÝ & CHỈNH SỬA TOKEN HÔM NAY      */}
           {/* ======================================================== */}
           <div
-            className={`lg:col-span-5 flex flex-col h-full overflow-hidden bg-[#e0e5ec] rounded-2xl border border-white/80 border-b-[#babecc] border-r-[#babecc] p-3.5 shadow-[var(--shadow-card)] ${
+            className={`lg:col-span-5 flex flex-col h-full overflow-hidden bg-white rounded-2xl border border-slate-200/80 p-3.5 sm:p-4 shadow-xs ${
               activeTab !== "history" ? "hidden lg:flex" : "flex"
             }`}
           >
             {/* Header: Nhật ký hôm nay & Chỉnh sửa */}
-            <div className="flex items-center justify-between pb-2.5 border-b border-[#babecc]/60 shrink-0">
+            <div className="flex items-center justify-between pb-2.5 border-b border-slate-200/80 shrink-0">
               <div className="flex items-center gap-2">
-                <RotateCcw className="w-4 h-4 text-[#ff4757]" />
+                <RotateCcw className="w-4 h-4 text-[#0066FF]" />
                 <div>
-                  <h3 className="text-xs sm:text-sm font-bold text-[#1a1a1a] tracking-tight">
+                  <h3 className="text-xs sm:text-sm font-bold text-slate-800 tracking-tight">
                     Nhật ký & Chỉnh sửa token
                   </h3>
-                  <p className="text-[11px] text-[#666666]">
+                  <p className="text-[11px] text-slate-500">
                     Sửa số điểm theo Barem hoặc hoàn tác nếu giáo viên lỡ bấm nhầm
                   </p>
                 </div>
               </div>
 
-              {/* YÊU CẦU 4.1: Bộ lọc chính xác "Hôm nay ()" vs "Tất cả ()" */}
-              <div className="flex items-center gap-1 bg-[#d1d9e6] p-0.5 rounded-lg border border-[#babecc]/60">
+              {/* Bộ lọc "Hôm nay" vs "Tất cả" */}
+              <div className="flex items-center gap-1 bg-slate-100 p-0.5 rounded-xl border border-slate-200">
                 <button
                   type="button"
                   onClick={() => setHistoryFilter("today")}
-                  className={`px-2 py-1 rounded text-[11px] font-bold cursor-pointer transition-all ${
+                  className={`px-2 py-1 rounded-lg text-[11px] font-bold cursor-pointer transition-all ${
                     historyFilter === "today"
-                      ? "bg-[#ff4757] text-white shadow-xs"
-                      : "text-[#666666] hover:text-[#1a1a1a]"
+                      ? "bg-[#0066FF] text-white shadow-xs"
+                      : "text-slate-600 hover:text-slate-900"
                   }`}
                 >
                   Hôm nay ({todayEntries.length})
@@ -758,10 +758,10 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setHistoryFilter("all")}
-                  className={`px-2 py-1 rounded text-[11px] font-bold cursor-pointer transition-all ${
+                  className={`px-2 py-1 rounded-lg text-[11px] font-bold cursor-pointer transition-all ${
                     historyFilter === "all"
-                      ? "bg-[#ff4757] text-white shadow-xs"
-                      : "text-[#666666] hover:text-[#1a1a1a]"
+                      ? "bg-[#0066FF] text-white shadow-xs"
+                      : "text-slate-600 hover:text-slate-900"
                   }`}
                 >
                   Tất cả ({studentHistory.length})
@@ -805,21 +805,21 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
                     return (
                       <div
                         key={item.id}
-                        className="p-3.5 rounded-xl bg-white border-2 border-[#ff4757] shadow-md space-y-3 animate-in fade-in duration-150"
+                        className="p-3.5 rounded-2xl bg-white border-2 border-[#0066FF] shadow-md space-y-3 animate-in fade-in duration-150"
                       >
-                        <div className="flex items-center justify-between text-xs font-bold text-[#ff4757]">
+                        <div className="flex items-center justify-between text-xs font-bold text-[#0066FF]">
                           <span className="flex items-center gap-1.5">
                             <Edit2 className="w-3.5 h-3.5" />
                             Chỉnh sửa theo Barem:
                           </span>
-                          <span className="font-mono text-[11px] text-[#666666]">
+                          <span className="font-mono text-[11px] text-slate-500">
                             {item.date}
                           </span>
                         </div>
 
                         {/* Chọn tiêu chí từ Barem */}
                         <div className="space-y-1.5">
-                          <label className="text-[10px] font-bold text-[#4a5568] uppercase tracking-wider block">
+                          <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
                             Chọn lại mục quy định trong Barem:
                           </label>
                           <select
@@ -827,7 +827,7 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
                             onChange={(e) =>
                               setSelectedEditOptionId(e.target.value)
                             }
-                            className="w-full px-3 py-2 rounded-xl bg-[#d1d9e6] border border-[#babecc] text-xs font-bold text-[#1a1a1a] focus:outline-none focus:ring-2 focus:ring-[#ff4757] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] cursor-pointer"
+                            className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF] cursor-pointer"
                           >
                             {[
                               "Chuyên cần & Kỷ luật",
@@ -852,13 +852,13 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
                         </div>
 
                         {/* Preview chi tiết mục barem đã chọn */}
-                        <div className="p-2.5 rounded-xl bg-[#e0e5ec] border border-[#babecc]/60 flex items-center justify-between text-xs shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)]">
+                        <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs">
                           <div className="min-w-0 pr-2">
-                            <div className="font-bold text-[#1a1a1a] flex items-center gap-1.5 truncate">
+                            <div className="font-bold text-slate-800 flex items-center gap-1.5 truncate">
                               <span>{chosenBaremOpt.icon}</span>
                               <span>{chosenBaremOpt.label}</span>
                             </div>
-                            <div className="text-[11px] text-[#666666] line-clamp-1">
+                            <div className="text-[11px] text-slate-500 line-clamp-1">
                               {chosenBaremOpt.reason}
                             </div>
                           </div>
@@ -877,18 +877,18 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
                         </div>
 
                         {/* Nút hành động Lưu / Hủy */}
-                        <div className="flex items-center justify-end gap-2 pt-1 border-t border-neutral-100">
+                        <div className="flex items-center justify-end gap-2 pt-1 border-t border-slate-100">
                           <button
                             type="button"
                             onClick={() => setEditingItemId(null)}
-                            className="px-3 py-1.5 rounded-lg text-xs font-semibold text-[#666666] hover:bg-neutral-100 cursor-pointer"
+                            className="px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 cursor-pointer"
                           >
                             Hủy
                           </button>
                           <button
                             type="button"
                             onClick={() => handleSaveEditItem(item)}
-                            className="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#ff4757] hover:bg-[#e03949] text-white shadow-xs cursor-pointer flex items-center gap-1.5 active:translate-y-[1px]"
+                            className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#0066FF] hover:bg-[#0052CC] text-white shadow-xs cursor-pointer flex items-center gap-1.5 active:translate-y-[1px]"
                           >
                             <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                             <span>Lưu thay đổi</span>
@@ -901,25 +901,25 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
                   return (
                     <div
                       key={item.id}
-                      className="p-2.5 rounded-xl bg-[#e0e5ec] border border-white/80 border-b-[#babecc] border-r-[#babecc] shadow-[var(--shadow-card-sm)] flex items-center justify-between gap-2.5 hover:bg-[#d8e0ec] transition-all"
+                      className="p-2.5 sm:p-3 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-between gap-2.5 hover:border-blue-300 hover:shadow-sm transition-all"
                     >
                       <div className="flex items-center gap-2.5 min-w-0">
                         <span
-                          className={`font-mono text-xs font-black px-2 py-1 rounded-md shrink-0 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.08)] ${
+                          className={`font-mono text-xs font-black px-2 py-1 rounded-lg shrink-0 ${
                             isPositive
-                              ? "bg-emerald-100 text-emerald-800 border border-emerald-300"
-                              : "bg-rose-100 text-rose-800 border border-rose-300"
+                              ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                              : "bg-rose-50 text-rose-700 border border-rose-200"
                           }`}
                         >
                           {isPositive ? `+${item.tokens}` : item.tokens}T
                         </span>
 
                         <div className="min-w-0">
-                          <div className="text-xs font-bold text-[#1a1a1a] truncate">
+                          <div className="text-xs font-bold text-slate-800 truncate">
                             {item.reason}
                           </div>
-                          <div className="text-[10px] text-[#666666] flex items-center gap-1">
-                            <Clock className="w-2.5 h-2.5" />
+                          <div className="text-[10px] text-slate-500 flex items-center gap-1">
+                            <Clock className="w-2.5 h-2.5 text-slate-400" />
                             <span>{item.date}</span>
                           </div>
                         </div>
@@ -930,7 +930,7 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
                         <button
                           type="button"
                           onClick={() => handleStartEdit(item)}
-                          className="w-7 h-7 rounded-lg bg-[#d1d9e6] hover:bg-white text-[#4a5568] hover:text-[#1a1a1a] flex items-center justify-center border border-[#babecc]/60 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] cursor-pointer transition-colors"
+                          className="w-7 h-7 rounded-lg bg-slate-50 hover:bg-blue-50 text-slate-500 hover:text-[#0066FF] flex items-center justify-center border border-slate-200 cursor-pointer transition-colors"
                           title="Chỉnh sửa theo Barem"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
@@ -939,7 +939,7 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
                         <button
                           type="button"
                           onClick={() => handleDeleteHistoryItem(item)}
-                          className="w-7 h-7 rounded-lg bg-[#d1d9e6] hover:bg-rose-100 text-[#4a5568] hover:text-rose-700 flex items-center justify-center border border-[#babecc]/60 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] cursor-pointer transition-colors"
+                          className="w-7 h-7 rounded-lg bg-slate-50 hover:bg-rose-50 text-slate-500 hover:text-rose-600 flex items-center justify-center border border-slate-200 cursor-pointer transition-colors"
                           title="Hoàn tác / Xóa lượt này (cân bằng lại số dư)"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -955,17 +955,17 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
       </main>
 
       {/* ======================================================== */}
-      {/* YÊU CẦU 3.1: THANH STICKY DƯỚI ĐÁY POP-UP                 */}
+      {/* THANH STICKY DƯỚI ĐÁY POP-UP                             */}
       {/* ======================================================== */}
       <footer
-        className={`sticky bottom-0 z-30 shrink-0 w-full bg-[#d1d9e6] border-t border-[#babecc] px-4 py-3 sm:py-3.5 shadow-[0_-4px_12px_rgba(0,0,0,0.08)] ${
+        className={`sticky bottom-0 z-30 shrink-0 w-full bg-white border-t border-slate-200 px-4 py-3 sm:py-3.5 shadow-lg ${
           activeTab === "history" ? "hidden lg:block" : "block"
         }`}
       >
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-3 w-full sm:w-auto">
-            <div className="relative shrink-0 flex flex-col items-center justify-center w-14 h-14 rounded-xl bg-[#2d3436] text-white shadow-xs border border-white/20">
-              <span className="text-[10px] font-mono text-neutral-300 uppercase">
+            <div className="relative shrink-0 flex flex-col items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white shadow-md border border-white/10">
+              <span className="text-[10px] font-mono text-blue-200 uppercase">
                 Dự kiến
               </span>
               <span className="text-base sm:text-lg font-bold font-mono text-amber-300 leading-tight">
@@ -975,19 +975,19 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
 
             <div className="text-left">
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-xs sm:text-sm font-bold text-[#1a1a1a]">
+                <span className="text-xs sm:text-sm font-bold text-slate-800">
                   Đã chọn:{" "}
-                  <span className="text-[#ff4757] font-mono font-bold">
+                  <span className="text-[#0066FF] font-mono font-bold">
                     {selectedCount}
                   </span>{" "}
                   tiêu chí
                 </span>
                 {totalDelta !== 0 && (
                   <span
-                    className={`text-xs font-mono font-bold px-2 py-0.5 rounded-md border ${
+                    className={`text-xs font-mono font-bold px-2 py-0.5 rounded-lg border ${
                       totalDelta > 0
-                        ? "bg-emerald-100 text-emerald-800 border-emerald-300"
-                        : "bg-rose-100 text-rose-800 border-rose-300"
+                        ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                        : "bg-rose-50 text-rose-700 border-rose-200"
                     }`}
                   >
                     Biến động: {totalDelta > 0 ? `+${totalDelta}` : totalDelta}{" "}
@@ -996,17 +996,16 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
                 )}
               </div>
 
-              {/* YÊU CẦU 3.1: Phần text chuyển thành 2 hàng */}
               <div className="text-xs space-y-0.5 mt-1 font-medium leading-tight">
-                <div className="text-[#666666]">
+                <div className="text-slate-500">
                   Số dư hiện tại:{" "}
-                  <span className="font-bold text-[#1a1a1a] font-mono">
+                  <span className="font-bold text-slate-800 font-mono">
                     {currentTokens}T
                   </span>
                 </div>
-                <div className="text-[#1a1a1a]">
+                <div className="text-slate-800">
                   Sau cập nhật:{" "}
-                  <span className="font-bold text-[#ff4757] font-mono">
+                  <span className="font-bold text-[#0066FF] font-mono">
                     {projectedTokens}T
                   </span>
                 </div>
@@ -1019,21 +1018,20 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="py-2.5 px-4 rounded-xl soft-ui-convex text-[#666666] hover:text-[#1a1a1a] font-bold text-xs sm:text-sm border border-white/80 shadow-[var(--shadow-card-sm)] active:translate-y-[1px] transition-all cursor-pointer"
+              className="py-2.5 px-4 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-bold text-xs sm:text-sm border border-slate-200 transition-all cursor-pointer"
             >
               Hủy / Đóng
             </button>
 
-            {/* YÊU CẦU 3.2: Nút đổi text thành "Bấm để cộng...tokens" */}
             <button
               type="button"
               id="btn-confirm-apply-tokens"
               disabled={selectedCount === 0 || totalDelta === 0}
               onClick={handleApplyTokens}
-              className={`py-2.5 px-5 sm:px-7 rounded-xl font-bold font-mono text-xs sm:text-sm flex items-center justify-center gap-2 border border-white/30 transition-all cursor-pointer ${
+              className={`py-2.5 px-5 sm:px-7 rounded-xl font-bold font-mono text-xs sm:text-sm flex items-center justify-center gap-2 transition-all cursor-pointer ${
                 selectedCount > 0 && totalDelta !== 0
-                  ? "bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[var(--shadow-accent)] active:translate-y-[1px]"
-                  : "bg-[#babecc] text-[#666666] opacity-60 cursor-not-allowed border-transparent shadow-none"
+                  ? "bg-gradient-to-r from-[#0066FF] to-[#0052CC] hover:from-[#0052CC] hover:to-[#004099] text-white shadow-md shadow-blue-500/25 active:translate-y-[1px]"
+                  : "bg-slate-200 text-slate-400 opacity-60 cursor-not-allowed border-transparent shadow-none"
               }`}
             >
               <CheckCircle2 className="w-4 h-4 stroke-[2.5]" />

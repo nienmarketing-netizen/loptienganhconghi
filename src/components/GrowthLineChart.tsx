@@ -27,43 +27,43 @@ export const GrowthLineChart: React.FC<GrowthLineChartProps> = ({ student }) => 
   const scoreDiff = (latestClassScore - baselineScore).toFixed(1);
 
   return (
-    <div className="soft-ui-embossed rounded-lg sm:rounded-xl p-4 sm:p-5 space-y-4">
+    <div className="bg-white rounded-2xl border border-slate-100 p-4 sm:p-6 shadow-[0_8px_24px_rgba(15,45,90,0.06)] space-y-4">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-2 border-b border-[#b2c2d4]/40">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-3 border-b border-slate-100">
         <div>
-          <h3 className="text-xs sm:text-base font-bold text-[#1a1a1a] tracking-[-0.015em] flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
+          <h3 className="text-sm sm:text-base font-bold text-[#1e293b] tracking-[-0.015em] flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-[#0066ff] shadow-[0_0_8px_#0066ff] animate-pulse" />
             <span>Biểu đồ tăng trưởng điểm số</span>
           </h3>
-          <p className="text-xs text-[#666666] font-normal mt-0.5">
+          <p className="text-xs text-[#64748b] font-normal mt-0.5">
             Theo dõi sự tiến bộ giữa bài kiểm tra lớp Cô Nghi và bài thi trường
           </p>
         </div>
 
-        <Badge variant="success" className="self-start sm:self-auto py-1 px-3 font-semibold text-xs leading-tight">
-          <Award className="w-3.5 h-3.5 mr-1 text-emerald-600" />
+        <Badge variant="success" className="self-start sm:self-auto py-1 px-3 font-bold text-xs leading-tight rounded-full shadow-xs">
+          <Award className="w-3.5 h-3.5 mr-1 text-[#4caf50]" />
           <span>Tăng +{scoreDiff} điểm so với đầu vào</span>
         </Badge>
       </div>
 
       <div>
-        {/* Quick summary metrics - Recessed Well */}
-        <div className="grid grid-cols-3 gap-2 mb-4 p-3 soft-ui-debossed rounded-lg text-center">
-          <div>
-            <span className="text-xs text-[#666666] font-semibold block">Điểm đầu vào</span>
-            <span className="text-base sm:text-xl font-bold text-rose-600 tracking-[-0.02em] mt-0.5 block">
+        {/* Quick summary metrics - Modern Clean Cards */}
+        <div className="grid grid-cols-3 gap-2.5 mb-4 p-3 bg-[#edf3fa] border border-[#dbe4f0] rounded-xl text-center">
+          <div className="p-1">
+            <span className="text-[11px] sm:text-xs text-[#64748b] font-medium block">Điểm đầu vào</span>
+            <span className="text-base sm:text-2xl font-black text-rose-500 tracking-[-0.02em] mt-0.5 block">
               {baselineScore.toFixed(1)}
             </span>
           </div>
-          <div className="border-x border-[#babecc]/60">
-            <span className="text-xs text-[#666666] font-semibold block">Test tại lớp</span>
-            <span className="text-base sm:text-xl font-bold text-[#ff4757] tracking-[-0.02em] mt-0.5 block">
+          <div className="p-1 border-x border-slate-200/80">
+            <span className="text-[11px] sm:text-xs text-[#64748b] font-medium block">Test lớp Cô Nghi</span>
+            <span className="text-base sm:text-2xl font-black text-[#0066ff] tracking-[-0.02em] mt-0.5 block">
               {latestClassScore.toFixed(1)}
             </span>
           </div>
-          <div>
-            <span className="text-xs text-[#666666] font-semibold block">Thi trường</span>
-            <span className="text-base sm:text-xl font-bold text-[#1a1a1a] tracking-[-0.02em] mt-0.5 block">
+          <div className="p-1">
+            <span className="text-[11px] sm:text-xs text-[#64748b] font-medium block">Thi tại trường</span>
+            <span className="text-base sm:text-2xl font-black text-[#1e293b] tracking-[-0.02em] mt-0.5 block">
               {latestSchoolScore.toFixed(1)}
             </span>
           </div>
@@ -76,35 +76,35 @@ export const GrowthLineChart: React.FC<GrowthLineChartProps> = ({ student }) => 
               data={data}
               margin={{ top: 15, right: 15, left: -20, bottom: 5 }}
             >
-              <CartesianGrid strokeDasharray="3 3" stroke="#babecc" vertical={false} opacity={0.6} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} opacity={0.8} />
               
               <XAxis
                 dataKey="period"
-                stroke="#4a5568"
+                stroke="#64748b"
                 fontSize={11}
                 tickLine={false}
-                axisLine={{ stroke: "#babecc" }}
+                axisLine={{ stroke: "#e2e8f0" }}
               />
 
               <YAxis
                 domain={[0, 10]}
                 ticks={[0, 2, 4, 6, 8, 10]}
-                stroke="#4a5568"
+                stroke="#64748b"
                 fontSize={11}
                 tickLine={false}
-                axisLine={{ stroke: "#babecc" }}
+                axisLine={{ stroke: "#e2e8f0" }}
               />
 
               {/* Baseline Reference Line */}
               <ReferenceLine
                 y={baselineScore}
-                stroke="#ff4757"
+                stroke="#f43f5e"
                 strokeDasharray="4 4"
                 strokeWidth={1.5}
                 label={{
                   value: `Mốc đầu vào: ${baselineScore}`,
                   position: "insideBottomRight",
-                  fill: "#ff4757",
+                  fill: "#f43f5e",
                   fontSize: 10,
                   fontWeight: 700,
                   offset: 8,
@@ -116,33 +116,33 @@ export const GrowthLineChart: React.FC<GrowthLineChartProps> = ({ student }) => 
                   if (active && payload && payload.length) {
                     const point = payload[0]?.payload;
                     return (
-                      <div className="bg-[#2d3436] text-white p-3 rounded-lg shadow-[var(--shadow-floating)] border border-white/20 text-xs space-y-1.5 min-w-[160px] font-mono">
-                        <div className="font-bold text-amber-400 border-b border-white/10 pb-1 flex justify-between items-center">
+                      <div className="bg-white text-[#1e293b] p-3 rounded-2xl shadow-[0_12px_28px_rgba(15,45,90,0.12)] border border-slate-100 text-xs space-y-1.5 min-w-[170px]">
+                        <div className="font-bold text-[#0066ff] border-b border-slate-100 pb-1.5 flex justify-between items-center">
                           <span>{label}</span>
                           {point?.note && (
-                            <span className="text-[10px] text-slate-300 font-normal">Ghi chú</span>
+                            <span className="text-[10px] text-[#64748b] font-normal">Ghi chú</span>
                           )}
                         </div>
-                        <div className="flex items-center justify-between gap-3 text-rose-200">
-                          <span className="flex items-center gap-1.5">
-                            <span className="w-2 h-2 rounded-full bg-[#ff4757]" />
+                        <div className="flex items-center justify-between gap-3 text-blue-900">
+                          <span className="flex items-center gap-1.5 font-medium">
+                            <span className="w-2.5 h-2.5 rounded-full bg-[#0066ff]" />
                             <span>Test tại lớp:</span>
                           </span>
-                          <strong className="font-mono text-white text-sm">
+                          <strong className="font-mono text-[#0066ff] text-sm font-bold">
                             {point?.classScore} / 10
                           </strong>
                         </div>
-                        <div className="flex items-center justify-between gap-3 text-slate-300">
-                          <span className="flex items-center gap-1.5">
-                            <span className="w-2 h-2 rounded-full bg-[#a3b1c6]" />
+                        <div className="flex items-center justify-between gap-3 text-slate-700">
+                          <span className="flex items-center gap-1.5 font-medium">
+                            <span className="w-2.5 h-2.5 rounded-full bg-slate-400" />
                             <span>Thi trên trường:</span>
                           </span>
-                          <strong className="font-mono text-white text-sm">
+                          <strong className="font-mono text-[#1e293b] text-sm font-bold">
                             {point?.schoolScore} / 10
                           </strong>
                         </div>
                         {point?.note && (
-                          <div className="pt-1 text-[11px] text-slate-300 italic border-t border-white/10">
+                          <div className="pt-1.5 text-[11px] text-[#64748b] italic border-t border-slate-100">
                             💡 {point.note}
                           </div>
                         )}
@@ -165,10 +165,10 @@ export const GrowthLineChart: React.FC<GrowthLineChartProps> = ({ student }) => 
                 name="Điểm test tại lớp"
                 type="monotone"
                 dataKey="classScore"
-                stroke="#ff4757"
-                strokeWidth={3}
-                dot={{ fill: "#ff4757", r: 4, strokeWidth: 2, stroke: "#ffffff" }}
-                activeDot={{ r: 6, fill: "#ff3344", stroke: "#ffffff", strokeWidth: 3 }}
+                stroke="#0066ff"
+                strokeWidth={3.5}
+                dot={{ fill: "#0066ff", r: 4.5, strokeWidth: 2.5, stroke: "#ffffff" }}
+                activeDot={{ r: 7, fill: "#0052cc", stroke: "#ffffff", strokeWidth: 3 }}
               />
 
               {/* Line 2: Điểm thi trên trường */}
@@ -176,21 +176,21 @@ export const GrowthLineChart: React.FC<GrowthLineChartProps> = ({ student }) => 
                 name="Điểm thi trên trường"
                 type="monotone"
                 dataKey="schoolScore"
-                stroke="#2d3436"
+                stroke="#64748b"
                 strokeWidth={2.5}
                 strokeDasharray="4 2"
-                dot={{ fill: "#2d3436", r: 4, strokeWidth: 2, stroke: "#ffffff" }}
-                activeDot={{ r: 6, fill: "#1e2528", stroke: "#ffffff", strokeWidth: 3 }}
+                dot={{ fill: "#64748b", r: 4, strokeWidth: 2, stroke: "#ffffff" }}
+                activeDot={{ r: 6, fill: "#1e293b", stroke: "#ffffff", strokeWidth: 3 }}
               />
             </LineChart>
           </ResponsiveContainer>
         </div>
 
-        {/* Footnote explanation for parents - Recessed well */}
-        <div className="flex items-start gap-2 mt-3 text-xs text-[#666666] soft-ui-debossed p-3 rounded-lg leading-relaxed">
-          <Info className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
+        {/* Footnote explanation for parents */}
+        <div className="flex items-start gap-2 mt-3 text-xs text-[#64748b] bg-[#edf3fa] border border-[#dbe4f0] p-3 rounded-xl leading-relaxed">
+          <Info className="w-4 h-4 text-[#0066ff] shrink-0 mt-0.5" />
           <p className="mb-0">
-            Đường nét đứt màu xám đậm là <strong className="text-[#1a1a1a] font-semibold">Điểm thi trên trường</strong>, còn đường nét liền màu đỏ là <strong className="text-[#ff4757] font-semibold">Điểm bài test tại lớp</strong>. Biểu đồ đi lên chứng minh sự thẩm thấu kiến thức và tính bền vững khi làm bài thi trên trường.
+            Đường nét liền màu xanh là <strong className="text-[#0066ff] font-semibold">Điểm bài test tại lớp Cô Nghi</strong>, còn đường nét đứt là <strong className="text-[#1e293b] font-semibold">Điểm thi trên trường</strong>. Đồ thị đi lên phản ánh sự tiến bộ vững chắc và bứt phá của con.
           </p>
         </div>
       </div>

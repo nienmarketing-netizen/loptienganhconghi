@@ -155,7 +155,7 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
     <header
       className={`sticky top-0 ${
         mobileMenuOpen ? "z-50" : "z-40"
-      } bg-[#e0e5ec]/95 backdrop-blur-md border-b border-white/80 shadow-[0_4px_14px_rgba(166,183,203,0.4)] transition-all duration-200`}
+      } bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-[0_2px_10px_rgba(15,45,90,0.05)] transition-all duration-200`}
     >
       <div
         className={`w-full mx-auto transition-all ${
@@ -178,27 +178,27 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
               mobileMenuOpen ? "opacity-35 blur-[0.5px] pointer-events-none" : "opacity-100"
             }`}
           >
-            <div className="w-10 h-10 rounded-lg soft-ui-convex flex items-center justify-center text-[#ff4757] group-hover:shadow-[var(--shadow-floating)] transition-all">
-              <BookOpen className="w-5 h-5 text-[#ff4757]" />
+            <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200/80 flex items-center justify-center text-[#0066ff] group-hover:bg-[#0066ff] group-hover:text-white transition-all shadow-xs">
+              <BookOpen className="w-5 h-5 text-current" />
             </div>
             <div>
-              <h1 className="text-xs sm:text-base md:text-lg font-bold text-[#1a1a1a] tracking-[-0.015em] leading-tight group-hover:text-[#ff4757] transition-colors">
+              <h1 className="text-xs sm:text-base md:text-lg font-bold text-[#1e293b] tracking-[-0.015em] leading-tight group-hover:text-[#0066ff] transition-colors">
                 Lớp Tiếng Anh Cô Nghi
               </h1>
-              <div className="text-[10px] sm:text-[11px] font-normal text-[#666666] flex items-center gap-1.5 normal-case">
+              <div className="text-[10px] sm:text-[11px] font-normal text-[#64748b] flex items-center gap-1.5 normal-case">
                 {currentRoute === "admin" ? (
                   <>
-                    <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
-                    <span className="text-[#ff4757] font-semibold">Cổng giáo viên</span>
-                    <span className="text-[#a3b1c6]">/</span>
-                    <span className="text-[#666666]">Admin</span>
+                    <span className="w-2 h-2 rounded-full bg-[#0066ff] shadow-[0_0_8px_rgba(0,102,255,0.5)] animate-pulse" />
+                    <span className="text-[#0066ff] font-semibold">Cổng giáo viên</span>
+                    <span className="text-[#cbd5e1]">/</span>
+                    <span className="text-[#64748b]">Admin</span>
                   </>
                 ) : (
                   <>
-                    <span className="w-2 h-2 rounded-full led-indicator-green animate-pulse" />
-                    <span className="text-[#1a1a1a] font-semibold">Cổng phụ huynh</span>
-                    <span className="text-[#a3b1c6]">/</span>
-                    <span className="text-emerald-700 font-semibold">Online</span>
+                    <span className="w-2 h-2 rounded-full bg-[#4caf50] shadow-[0_0_8px_rgba(76,175,80,0.5)] animate-pulse" />
+                    <span className="text-[#1e293b] font-semibold">Cổng phụ huynh</span>
+                    <span className="text-[#cbd5e1]">/</span>
+                    <span className="text-emerald-600 font-semibold">Online</span>
                   </>
                 )}
               </div>
@@ -223,10 +223,10 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                   localStorage.removeItem("teacher_user");
                   onNavigateToPortal();
                 }}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-lg soft-ui-convex text-xs font-bold text-[#1a1a1a] hover:text-[#ff4757] transition-all cursor-pointer active:translate-y-[1px]"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs font-bold text-[#1e293b] hover:text-[#0066ff] hover:border-blue-200 transition-all cursor-pointer shadow-xs active:translate-y-[1px]"
                 title="Đăng xuất khỏi cổng giáo viên"
               >
-                <LogOut className="w-3.5 h-3.5 text-[#ff4757]" />
+                <LogOut className="w-3.5 h-3.5 text-[#0066ff]" />
                 <span className="hidden sm:inline">Đăng xuất</span>
               </button>
             )}
@@ -239,10 +239,10 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                   localStorage.removeItem("current_authorized_student");
                   onNavigateToPortal();
                 }}
-                className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg soft-ui-convex text-xs font-semibold text-[#666666] hover:text-[#ff4757] transition-all cursor-pointer active:translate-y-[1px]"
+                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-[#64748b] hover:text-[#0066ff] hover:border-blue-200 transition-all cursor-pointer shadow-xs active:translate-y-[1px]"
                 title="Đổi mã học sinh khác hoặc về cổng đăng nhập"
               >
-                <LogOut className="w-3.5 h-3.5 text-[#ff4757]" />
+                <LogOut className="w-3.5 h-3.5 text-[#0066ff]" />
                 <span>Đổi học sinh</span>
               </button>
             )}
@@ -267,10 +267,10 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                   type="button"
                   id="btn-toggle-nav-menu"
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  className={`w-10 h-10 sm:w-11 sm:h-11 rounded-lg transition-all flex items-center justify-center cursor-pointer active:translate-y-[1px] relative z-50 ${
+                  className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl transition-all flex items-center justify-center cursor-pointer active:translate-y-[1px] relative z-50 ${
                     mobileMenuOpen
-                      ? "bg-[#dbe4ee] text-[#ff4757] shadow-[var(--shadow-recessed-sm)] border border-[#a8b8cc]/70 ring-2 ring-[#ff4757]/25"
-                      : "soft-ui-convex text-[#1a1a1a] hover:text-[#ff4757]"
+                      ? "bg-blue-50 text-[#0066ff] border border-blue-200 shadow-sm ring-2 ring-[#0066ff]/20"
+                      : "bg-white border border-slate-200 text-[#1e293b] hover:text-[#0066ff] hover:border-blue-200 shadow-xs"
                   }`}
                   aria-expanded={mobileMenuOpen}
                   aria-haspopup="true"
@@ -278,9 +278,9 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                   title="Mục lục học vụ"
                 >
                   {mobileMenuOpen ? (
-                    <X className="w-5 h-5 text-[#ff4757]" />
+                    <X className="w-5 h-5 text-[#0066ff]" />
                   ) : (
-                    <Menu className="w-5 h-5 text-[#ff4757]" />
+                    <Menu className="w-5 h-5 text-[#0066ff]" />
                   )}
                 </button>
 
@@ -288,13 +288,13 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                 {mobileMenuOpen && (
                   <div
                     id="popup-nav-menu"
-                    className="absolute right-0 top-full mt-2 w-72 sm:w-80 max-w-[calc(100vw-24px)] rounded-xl bg-[#e0e5ec] border border-white/95 p-2.5 shadow-[var(--shadow-floating)] z-50 animate-in fade-in zoom-in-95 duration-150 ring-1 ring-black/5"
+                    className="absolute right-0 top-full mt-2 w-72 sm:w-80 max-w-[calc(100vw-24px)] rounded-2xl bg-white border border-slate-100 p-3 shadow-[0_16px_36px_rgba(15,45,90,0.12)] z-50 animate-in fade-in zoom-in-95 duration-150"
                   >
-                    <div className="flex items-center justify-between px-2.5 py-1.5 mb-1.5 border-b border-[#babecc]/50">
-                      <span className="text-[11px] font-bold font-mono text-[#4a5568] uppercase tracking-wider">
+                    <div className="flex items-center justify-between px-2.5 py-1.5 mb-2 border-b border-slate-100">
+                      <span className="text-[11px] font-bold font-mono text-[#64748b] uppercase tracking-wider">
                         CHUYỂN NHANH TỚI PHẦN
                       </span>
-                      <span className="text-[10px] font-bold font-mono text-[#ff4757] bg-[#ff4757]/10 px-2 py-0.5 rounded-md border border-[#ff4757]/20">
+                      <span className="text-[10px] font-bold font-mono text-[#0066ff] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200/60">
                         {NAV_ITEMS.length} MỤC
                       </span>
                     </div>
@@ -307,18 +307,18 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                           <button
                             key={item.id}
                             onClick={() => scrollToSection(item.id)}
-                            className={`w-full min-h-[40px] flex items-center justify-between px-3 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer text-left active:translate-y-[1px] ${
+                            className={`w-full min-h-[40px] flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer text-left active:translate-y-[1px] ${
                               isActive
-                                ? "bg-[#dbe4ee] text-[#ff4757] shadow-[var(--shadow-recessed-sm)] border border-[#a8b8cc]/60"
-                                : "text-[#1a1a1a] hover:bg-[#d8e0ec] hover:text-[#ff4757]"
+                                ? "bg-blue-50 text-[#0066ff] border border-blue-200/80 font-bold"
+                                : "text-[#1e293b] hover:bg-slate-50 hover:text-[#0066ff]"
                             }`}
                           >
                             <div className="flex items-center gap-2.5">
                               <div
-                                className={`p-1.5 rounded-md shrink-0 ${
+                                className={`p-1.5 rounded-lg shrink-0 ${
                                   isActive
-                                    ? "bg-[#ff4757] text-white shadow-[var(--shadow-accent)]"
-                                    : "bg-[#d1d9e6] text-[#4a5568] shadow-[var(--shadow-recessed-sm)]"
+                                    ? "bg-[#0066ff] text-white shadow-[0_2px_8px_rgba(0,102,255,0.3)]"
+                                    : "bg-slate-100 text-[#64748b]"
                                 }`}
                               >
                                 <Icon className="w-4 h-4" />
@@ -328,7 +328,7 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                               </span>
                             </div>
                             {isActive && (
-                              <span className="w-2 h-2 rounded-full bg-[#ff4757] shadow-[0_0_6px_#ff4757]" />
+                              <span className="w-2 h-2 rounded-full bg-[#0066ff] shadow-[0_0_6px_#0066ff]" />
                             )}
                           </button>
                         );
@@ -336,7 +336,7 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                     </div>
 
                     {onNavigateToPortal && (
-                      <div className="pt-2 mt-2 border-t border-[#babecc]/50">
+                      <div className="pt-2 mt-2 border-t border-slate-100">
                         <button
                           type="button"
                           onClick={() => {
@@ -344,10 +344,10 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                             localStorage.removeItem("current_authorized_student");
                             onNavigateToPortal();
                           }}
-                          className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-bold text-[#ff4757] hover:bg-[#d8e0ec] transition-all cursor-pointer text-left active:translate-y-[1px]"
+                          className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold text-[#0066ff] hover:bg-blue-50 transition-all cursor-pointer text-left active:translate-y-[1px]"
                         >
                           <div className="flex items-center gap-2.5">
-                            <div className="p-1.5 rounded-md bg-[#ff4757]/15 text-[#ff4757]">
+                            <div className="p-1.5 rounded-lg bg-blue-100 text-[#0066ff]">
                               <LogOut className="w-4 h-4" />
                             </div>
                             <span className="font-bold">Đổi mã học sinh / Cổng đăng nhập</span>

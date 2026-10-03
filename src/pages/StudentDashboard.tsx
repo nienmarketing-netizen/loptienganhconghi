@@ -112,6 +112,94 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
         <HeaderGreeting student={activeStudentProfile} />
       </section>
 
+      {/* Quick Overview Stat Cards (Inspired by Learnly & Lingora) */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
+        {/* Card 1: Bài tập */}
+        <div
+          onClick={() => toggleSection("bai-tap")}
+          className="bg-white rounded-2xl p-3.5 border border-slate-100 shadow-[0_4px_16px_rgba(15,45,90,0.05)] hover:shadow-md hover:border-blue-100 transition-all cursor-pointer group"
+        >
+          <div className="flex items-center justify-between text-[#64748b]">
+            <span className="font-semibold text-xs">Bài tập tuần</span>
+            <div className="w-7 h-7 rounded-xl bg-blue-50 flex items-center justify-center text-[#0066ff] group-hover:bg-[#0066ff] group-hover:text-white transition-all shadow-xs">
+              <FileText className="w-3.5 h-3.5" />
+            </div>
+          </div>
+          <div className="mt-2 flex items-baseline gap-1">
+            <span className="text-xl sm:text-2xl font-black text-[#1e293b]">
+              {activeStudentProfile.assignments?.length || 0}
+            </span>
+            <span className="text-xs text-[#64748b] font-medium">bài</span>
+          </div>
+          <span className="mt-1 block text-[11px] font-bold text-[#0066ff] truncate">
+            {notDoneCount > 0 ? `Còn ${notDoneCount} bài chưa nộp` : "Đã xong tất cả 🎉"}
+          </span>
+        </div>
+
+        {/* Card 2: Điểm gần nhất */}
+        <div
+          onClick={() => toggleSection("diem-so")}
+          className="bg-white rounded-2xl p-3.5 border border-slate-100 shadow-[0_4px_16px_rgba(15,45,90,0.05)] hover:shadow-md hover:border-blue-100 transition-all cursor-pointer group"
+        >
+          <div className="flex items-center justify-between text-[#64748b]">
+            <span className="font-semibold text-xs">Điểm gần nhất</span>
+            <div className="w-7 h-7 rounded-xl bg-blue-50 flex items-center justify-center text-[#0066ff] group-hover:bg-[#0066ff] group-hover:text-white transition-all shadow-xs">
+              <Sparkles className="w-3.5 h-3.5" />
+            </div>
+          </div>
+          <div className="mt-2 flex items-baseline gap-1">
+            <span className="text-xl sm:text-2xl font-black text-[#0066ff]">
+              {latestScore}
+            </span>
+            <span className="text-xs text-[#64748b] font-medium">/10</span>
+          </div>
+          <span className="mt-1 block text-[11px] font-bold text-[#4caf50] truncate">
+            Tiến bộ rõ rệt 📈
+          </span>
+        </div>
+
+        {/* Card 3: Kho Tokens */}
+        <div
+          onClick={() => toggleSection("gamification")}
+          className="bg-white rounded-2xl p-3.5 border border-slate-100 shadow-[0_4px_16px_rgba(15,45,90,0.05)] hover:shadow-md hover:border-amber-100 transition-all cursor-pointer group"
+        >
+          <div className="flex items-center justify-between text-[#64748b]">
+            <span className="font-semibold text-xs">Kho Tokens</span>
+            <div className="w-7 h-7 rounded-xl bg-amber-50 flex items-center justify-center text-[#ff9800] group-hover:bg-[#ff9800] group-hover:text-white transition-all shadow-xs">
+              <Coins className="w-3.5 h-3.5" />
+            </div>
+          </div>
+          <div className="mt-2 flex items-baseline gap-1">
+            <span className="text-xl sm:text-2xl font-black text-[#ff9800]">
+              {getStudentTokenBalance(activeStudentProfile)}
+            </span>
+            <span className="text-xs text-[#64748b] font-medium">/100</span>
+          </div>
+          <span className="mt-1 block text-[11px] font-bold text-amber-600 truncate">
+            {activeStudentProfile.gamification?.targetRewardName || "Đổi quà tặng 🎁"}
+          </span>
+        </div>
+
+        {/* Card 4: Chuỗi học Streak */}
+        <div className="bg-white rounded-2xl p-3.5 border border-slate-100 shadow-[0_4px_16px_rgba(15,45,90,0.05)]">
+          <div className="flex items-center justify-between text-[#64748b]">
+            <span className="font-semibold text-xs">Chuỗi chuyên cần</span>
+            <div className="w-7 h-7 rounded-xl bg-orange-50 flex items-center justify-center text-orange-500 shadow-xs">
+              🔥
+            </div>
+          </div>
+          <div className="mt-2 flex items-baseline gap-1">
+            <span className="text-xl sm:text-2xl font-black text-orange-500">
+              {activeStudentProfile.gamification?.streakDays || 7}
+            </span>
+            <span className="text-xs text-[#64748b] font-medium">Ngày</span>
+          </div>
+          <span className="mt-1 block text-[11px] font-bold text-orange-600 truncate">
+            Chăm chỉ liên tục ⚡
+          </span>
+        </div>
+      </div>
+
       {/* Thông tin buổi học mới nhất (Dropdown / Collapsible) */}
       {activeStudentProfile.recentLesson && (
         <CollapsibleSection

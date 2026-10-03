@@ -1,4 +1,5 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import {
   initializeFirestore,
   memoryLocalCache,
@@ -14,15 +15,78 @@ import { StudentProfile } from "../types";
 import { MOCK_STUDENTS } from "../data/mockStudents";
 
 export const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
+export const auth = getAuth(app);
 
-// Initialize Firestore with robust memory cache that gracefully works in offline and restricted iframe environments
+// Initialize Firestore with robust memory cache and forced long polling
+// to guarantee stable connectivity inside sandboxed iframes, cloud proxies, and preview environments
 export const db = initializeFirestore(
   app,
   {
     localCache: memoryLocalCache(),
+    experimentalForceLongPolling: true,
   },
   firebaseConfig.firestoreDatabaseId
 );
+
+export enum OperationType {
+  CREATE = "create",
+  UPDATE = "update",
+  DELETE = "delete",
+  LIST = "list",
+  GET = "get",
+  WRITE = "write",
+}
+
+export interface FirestoreErrorInfo {
+  error: string;
+  operationType: OperationType;
+  path: string | null;
+  authInfo: {
+    userId?: string | null;
+    email?: string | null;
+    emailVerified?: boolean | null;
+    isAnonymous?: boolean | null;
+    tenantId?: string | null;
+    providerInfo?: {
+      providerId?: string | null;
+      email?: string | null;
+    }[];
+  };
+}
+
+export function handleFirestoreError(
+  error: unknown,
+  operationType: OperationType,
+  path: string | null
+) {
+  const errMessage = error instanceof Error ? error.message : String(error);
+  const errInfo: FirestoreErrorInfo = {
+    error: errMessage,
+    authInfo: {
+      userId: auth.currentUser?.uid,
+      email: auth.currentUser?.email,
+      emailVerified: auth.currentUser?.emailVerified,
+      isAnonymous: auth.currentUser?.isAnonymous,
+      tenantId: auth.currentUser?.tenantId,
+      providerInfo:
+        auth.currentUser?.providerData?.map((provider) => ({
+          providerId: provider.providerId,
+          email: provider.email,
+        })) || [],
+    },
+    operationType,
+    path,
+  };
+
+  // Only throw if missing/insufficient permissions so diagnosing tools can capture permission errors,
+  // while allowing transient offline connectivity warnings to fall back gracefully without crashing UI
+  if (errMessage.toLowerCase().includes("permission") || (error as any)?.code === "permission-denied") {
+    console.error("Firestore Permission Error: ", JSON.stringify(errInfo));
+    throw new Error(JSON.stringify(errInfo));
+  } else {
+    console.warn("Firestore Operation Notice: ", JSON.stringify(errInfo));
+  }
+}
 
 const STUDENTS_COLLECTION = "students";
 const LOCAL_STORAGE_KEY = "conghi_students_cache";
@@ -69,7 +133,7 @@ export async function seedInitialStudentsIfEmpty(): Promise<void> {
       }
     }
   } catch (error) {
-    // Graceful silent fallback in offline/preview environments
+    handleFirestoreError(error, OperationType.LIST, STUDENTS_COLLECTION);
   }
 }
 
@@ -100,7 +164,7 @@ export function subscribeToStudents(
       callback(data);
     },
     (error) => {
-      // Handle offline or backend timeout gracefully without breaking application
+      handleFirestoreError(error, OperationType.GET, STUDENTS_COLLECTION);
       if (!hasReceivedSnapshot) {
         callback(getLocalFallbackStudents());
       }
@@ -134,7 +198,7 @@ export async function saveStudentToFirebase(student: StudentProfile): Promise<vo
       { merge: true }
     );
   } catch (error) {
-    // Handled via local fallback
+    handleFirestoreError(error, OperationType.WRITE, `${STUDENTS_COLLECTION}/${student.slug}`);
   }
 }
 
@@ -167,7 +231,7 @@ export async function saveMultipleStudentsToFirebase(students: StudentProfile[])
       )
     );
   } catch (error) {
-    // Handled via local fallback
+    handleFirestoreError(error, OperationType.WRITE, STUDENTS_COLLECTION);
   }
 }
 
@@ -187,7 +251,7 @@ export async function deleteStudentFromFirebase(slug: string): Promise<void> {
     const docRef = doc(db, STUDENTS_COLLECTION, slug);
     await deleteDoc(docRef);
   } catch (error) {
-    // Handled via local fallback
+    handleFirestoreError(error, OperationType.DELETE, `${STUDENTS_COLLECTION}/${slug}`);
   }
 }
 

@@ -87,6 +87,7 @@ export interface StudentProfile {
     currentTokens: number; // e.g. 85
     maxTokens: number; // 100
     targetRewardName: string; // Món quà bé đang tích lũy đổi
+    streakDays?: number; // Chuỗi ngày học chuyên cần
   };
   growthHistory: GrowthScorePoint[];
   radarCapabilities: RadarCapabilityPoint[];

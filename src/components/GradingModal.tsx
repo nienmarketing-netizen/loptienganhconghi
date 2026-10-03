@@ -503,40 +503,36 @@ export const GradingModal: React.FC<GradingModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs overflow-y-auto">
-      <div className="relative w-full max-w-2xl bg-[#e0e5ec] rounded-2xl shadow-[var(--shadow-floating)] border border-white/80 p-4 sm:p-6 my-auto text-[#1a1a1a]">
+      <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-100 p-4 sm:p-6 my-auto text-slate-800">
         {/* ======================================================== */}
-        {/* TIÊU ĐỀ MÀU ĐỎ SAN HÔ THƯƠNG HIỆU (#ff4757)              */}
-        {/* BỐ TRÍ TỪ TRÊN XUỐNG, KHÔNG CHIA CỘT                    */}
+        {/* TIÊU ĐỀ XANH DƯƠNG SÁNG (#0066FF)                        */}
         {/* ======================================================== */}
-        <div className="flex items-start justify-between pb-3.5 border-b border-[#babecc]/60">
+        <div className="flex items-start justify-between pb-3.5 border-b border-slate-100">
           <div className="space-y-1 text-left w-full">
             <div className="flex items-center gap-2 flex-wrap">
-              <h2
-                style={{ color: "#ff4757" }}
-                className="text-base sm:text-lg font-bold !text-[#ff4757] tracking-tight"
-              >
+              <h2 className="text-base sm:text-lg font-bold text-[#0066FF] tracking-tight">
                 Nhập liệu học vụ
               </h2>
               {/* Badge trạng thái Xem lại / Chỉnh sửa */}
               {viewMode === "review" ? (
-                <span className="inline-flex items-center gap-1 text-[10px] font-bold text-sky-800 bg-sky-100 px-2 py-0.5 rounded-md border border-sky-300">
+                <span className="inline-flex items-center gap-1 text-[10px] font-bold text-sky-800 bg-sky-50 px-2 py-0.5 rounded-lg border border-sky-200">
                   <Eye className="w-3 h-3 text-sky-600" />
                   Bản xem lại học vụ
                 </span>
               ) : (
-                <span className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-md border border-amber-300">
+                <span className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded-lg border border-amber-200">
                   <Edit3 className="w-3 h-3 text-amber-600" />
                   Đang chỉnh sửa dữ liệu
                 </span>
               )}
             </div>
-            <div className="text-xs sm:text-sm font-semibold text-[#1a1a1a]">
-              Tên học sinh: <span className="font-bold">{student.fullName}</span>
+            <div className="text-xs sm:text-sm font-semibold text-slate-800">
+              Tên học sinh: <span className="font-bold text-[#0066FF]">{student.fullName}</span>
             </div>
-            <div className="text-xs font-mono font-semibold text-[#4a5568]">
-              Mã học sinh: <span className="text-[#1a1a1a] font-bold">{student.id}</span>
+            <div className="text-xs font-mono font-semibold text-slate-500">
+              Mã học sinh: <span className="text-slate-800 font-bold">{student.id}</span>
             </div>
-            <p className="text-xs text-[#666666] font-normal">
+            <p className="text-xs text-slate-500 font-normal">
               Cập nhật buổi học mới và điểm số tiến bộ
             </p>
           </div>
@@ -546,17 +542,17 @@ export const GradingModal: React.FC<GradingModalProps> = ({
             <button
               type="button"
               onClick={() => setViewMode(viewMode === "edit" ? "review" : "edit")}
-              className="px-2.5 py-1.5 rounded-lg soft-ui-convex flex items-center gap-1.5 text-xs font-bold text-[#1a1a1a] hover:text-[#ff4757] transition-colors border border-white/80 cursor-pointer active:translate-y-[1px]"
+              className="px-2.5 py-1.5 rounded-xl bg-slate-50 hover:bg-slate-100 flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-[#0066FF] transition-colors border border-slate-200 cursor-pointer"
               title={viewMode === "edit" ? "Xem lại thông tin đã nhập" : "Quay lại chỉnh sửa"}
             >
               {viewMode === "edit" ? (
                 <>
-                  <Eye className="w-3.5 h-3.5 text-[#ff4757]" />
+                  <Eye className="w-3.5 h-3.5 text-[#0066FF]" />
                   <span className="hidden sm:inline">Xem lại</span>
                 </>
               ) : (
                 <>
-                  <Edit3 className="w-3.5 h-3.5 text-[#ff4757]" />
+                  <Edit3 className="w-3.5 h-3.5 text-[#0066FF]" />
                   <span className="hidden sm:inline">Chỉnh sửa</span>
                 </>
               )}
@@ -565,7 +561,7 @@ export const GradingModal: React.FC<GradingModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="w-8 h-8 rounded-lg soft-ui-convex flex items-center justify-center text-slate-500 hover:text-slate-800 transition-colors shrink-0 cursor-pointer active:translate-y-[1px]"
+              className="w-8 h-8 rounded-xl bg-slate-50 hover:bg-slate-100 flex items-center justify-center text-slate-500 hover:text-slate-800 transition-colors shrink-0 border border-slate-200 cursor-pointer"
               title="Đóng (Esc)"
             >
               <X className="w-4 h-4 stroke-[2.5]" />
@@ -573,11 +569,9 @@ export const GradingModal: React.FC<GradingModalProps> = ({
           </div>
         </div>
 
-        {/* ======================================================== */}
-        {/* BANNER THÔNG BÁO KHI ĐÃ LƯU THÀNH CÔNG VỚI TUỲ CHỌN XEM LẠI & SỬA */}
-        {/* ======================================================== */}
+        {/* BANNER THÔNG BÁO KHI ĐÃ LƯU THÀNH CÔNG */}
         {isSavedSuccess && (
-          <div className="mt-3.5 p-3 rounded-xl bg-emerald-50 border border-emerald-300 flex items-center justify-between gap-2 shadow-xs">
+          <div className="mt-3.5 p-3 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between gap-2 shadow-xs">
             <div className="flex items-center gap-2 text-xs text-emerald-900 font-semibold">
               <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>Đã lưu & đồng bộ học vụ thành công! Bạn có thể xem lại hoặc tiếp tục chỉnh sửa bên dưới.</span>
@@ -595,17 +589,15 @@ export const GradingModal: React.FC<GradingModalProps> = ({
           </div>
         )}
 
-        {/* ======================================================== */}
-        {/* TAB SWITCHER: CHẤM ĐIỂM BUỔI HỌC vs ĐÁNH GIÁ ĐỊNH KỲ      */}
-        {/* ======================================================== */}
-        <div className="flex items-center gap-2 mt-4 p-1 bg-[#d1d9e6] rounded-xl border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)]">
+        {/* TAB SWITCHER */}
+        <div className="flex items-center gap-2 mt-4 p-1 bg-slate-100 rounded-xl border border-slate-200">
           <button
             type="button"
             onClick={() => setActiveTab("lesson")}
             className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
               activeTab === "lesson"
-                ? "bg-[#ff4757] text-white shadow-[var(--shadow-accent-sm)]"
-                : "text-[#666666] hover:text-[#1a1a1a]"
+                ? "bg-[#0066FF] text-white shadow-xs"
+                : "text-slate-600 hover:text-slate-900"
             }`}
           >
             <BookOpen className="w-4 h-4" />
@@ -617,8 +609,8 @@ export const GradingModal: React.FC<GradingModalProps> = ({
             onClick={() => setActiveTab("periodic")}
             className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
               activeTab === "periodic"
-                ? "bg-[#ff4757] text-white shadow-[var(--shadow-accent-sm)]"
-                : "text-[#666666] hover:text-[#1a1a1a]"
+                ? "bg-[#0066FF] text-white shadow-xs"
+                : "text-slate-600 hover:text-slate-900"
             }`}
           >
             <TrendingUp className="w-4 h-4" />
@@ -626,9 +618,7 @@ export const GradingModal: React.FC<GradingModalProps> = ({
           </button>
         </div>
 
-        {/* ======================================================== */}
-        {/* NỘI DUNG CHÍNH: CHẾ ĐỘ NHẬP LIỆU (EDIT) HOẶC XEM LẠI (REVIEW) */}
-        {/* ======================================================== */}
+        {/* NỘI DUNG CHÍNH */}
         {viewMode === "edit" ? (
           /* FORM NHẬP LIỆU */
           <form onSubmit={handleSubmit} className="mt-4 space-y-4 max-h-[72vh] overflow-y-auto pr-1">
@@ -639,8 +629,8 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                   <div className="sm:col-span-2">
                     <div className="flex items-center justify-between mb-1">
-                      <label className="font-bold text-[#1a1a1a]">Tên bài học</label>
-                      <span className="text-[10px] text-[#ff4757] font-semibold">
+                      <label className="font-bold text-slate-800">Tên bài học</label>
+                      <span className="text-[10px] text-[#0066FF] font-semibold">
                         (Mặc định từ tổng quan lớp)
                       </span>
                     </div>
@@ -650,13 +640,13 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                       value={lessonName}
                       onChange={(e) => setLessonName(e.target.value)}
                       placeholder="Ví dụ: Phân tích và bóc tách đề chuyên"
-                      className="w-full px-3 py-2 rounded-lg bg-[#d1d9e6] border border-[#babecc] text-[#1a1a1a] font-semibold text-xs shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)] focus:outline-none focus:ring-1 focus:ring-[#ff4757]"
+                      className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF]"
                     />
                   </div>
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <label className="font-bold text-[#1a1a1a]">Ngày học</label>
-                      <span className="text-[10px] text-[#ff4757] font-semibold">
+                      <label className="font-bold text-slate-800">Ngày học</label>
+                      <span className="text-[10px] text-[#0066FF] font-semibold">
                         (Từ tổng quan lớp)
                       </span>
                     </div>
@@ -665,7 +655,7 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                       value={lessonDate}
                       onChange={(e) => setLessonDate(e.target.value)}
                       placeholder="DD/MM/YYYY"
-                      className="w-full px-3 py-2 rounded-lg bg-[#d1d9e6] border border-[#babecc] text-[#1a1a1a] font-mono text-xs shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)] focus:outline-none"
+                      className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF]"
                     />
                   </div>
                 </div>
@@ -673,7 +663,7 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                 {/* Điểm mini-test & Huy hiệu */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   <div>
-                    <label className="block font-medium text-[#1a1a1a] mb-1">
+                    <label className="block font-medium text-slate-800 mb-1">
                       Điểm mini-test (0 - 10)
                     </label>
                     <input
@@ -683,11 +673,11 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                       max="10"
                       value={scoreValue}
                       onChange={(e) => setScoreValue(parseFloat(e.target.value) || 0)}
-                      className="w-full px-3 py-2 rounded-lg bg-[#d1d9e6] border border-[#babecc] text-[#ff4757] font-mono font-bold text-sm shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)] focus:outline-none text-center"
+                      className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-[#0066FF] font-mono font-bold text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF] text-center"
                     />
                   </div>
                   <div>
-                    <label className="block font-medium text-[#1a1a1a] mb-1">
+                    <label className="block font-medium text-slate-800 mb-1">
                       Huy hiệu khen ngợi
                     </label>
                     <input
@@ -695,13 +685,13 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                       value={scoreBadge}
                       onChange={(e) => setScoreBadge(e.target.value)}
                       placeholder="VD: Top 3 của lớp ⭐"
-                      className="w-full px-3 py-2 rounded-lg bg-[#d1d9e6] border border-[#babecc] text-[#1a1a1a] text-xs shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)] focus:outline-none"
+                      className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF]"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block font-bold text-[#1a1a1a] mb-1">
+                  <label className="block font-bold text-slate-800 mb-1">
                     Lời nhận xét của Cô Nghi (Buổi học)
                   </label>
                   <textarea
@@ -710,27 +700,27 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                     value={teacherFeedback}
                     onChange={(e) => setTeacherFeedback(e.target.value)}
                     placeholder="Ghi nhận xét cụ thể để phụ huynh đọc được ngay..."
-                    className="w-full px-3 py-2 rounded-lg bg-[#d1d9e6] border border-[#babecc] text-[#1a1a1a] text-xs shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)] focus:outline-none"
+                    className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF]"
                   />
                 </div>
 
                 {/* CHỮA BÀI TẬP VỀ NHÀ */}
-                <div className="p-3.5 bg-[#d1d9e6] border border-[#babecc]/80 rounded-xl space-y-3 shadow-[var(--shadow-recessed-sm)]">
-                  <div className="flex items-center gap-2 pb-1.5 border-b border-[#babecc]/50">
-                    <FileCheck className="w-4 h-4 text-[#ff4757]" />
-                    <span className="font-bold text-[#1a1a1a] uppercase tracking-wider text-[11px] font-mono">
+                <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-2xl space-y-3">
+                  <div className="flex items-center gap-2 pb-1.5 border-b border-slate-200">
+                    <FileCheck className="w-4 h-4 text-[#0066FF]" />
+                    <span className="font-bold text-slate-800 uppercase tracking-wider text-[11px] font-mono">
                       Chữa bài tập về nhà
                     </span>
                   </div>
 
                   <div className="space-y-1">
-                    <label className="block font-bold text-[#1a1a1a] text-xs">
+                    <label className="block font-bold text-slate-800 text-xs">
                       Tên bài tập về nhà cần chữa:
                     </label>
                     <select
                       value={selectedHwId}
                       onChange={(e) => handleAssignmentChange(e.target.value)}
-                      className="w-full px-3 py-2 rounded-lg bg-white border border-[#babecc] text-[#1a1a1a] font-semibold text-xs focus:outline-none focus:ring-1 focus:ring-[#ff4757] shadow-xs cursor-pointer"
+                      className="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-slate-800 font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF] shadow-xs cursor-pointer"
                     >
                       {submittedAssignments.length > 0 ? (
                         submittedAssignments.map((a) => (
@@ -746,7 +736,7 @@ export const GradingModal: React.FC<GradingModalProps> = ({
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                     <div>
-                      <label className="block font-bold text-[#1a1a1a] text-xs mb-1">
+                      <label className="block font-bold text-slate-800 text-xs mb-1">
                         Điểm số (Thang 10):
                       </label>
                       <input
@@ -756,11 +746,11 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                         max="10"
                         value={hwScore}
                         onChange={(e) => setHwScore(parseFloat(e.target.value) || 0)}
-                        className="w-full px-3 py-2 rounded-lg bg-white border border-[#babecc] text-[#ff4757] font-mono font-bold text-sm shadow-xs focus:outline-none text-center"
+                        className="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-[#0066FF] font-mono font-bold text-sm shadow-xs focus:outline-none text-center"
                       />
                     </div>
                     <div className="sm:col-span-2">
-                      <label className="block font-bold text-[#1a1a1a] text-xs mb-1">
+                      <label className="block font-bold text-slate-800 text-xs mb-1">
                         Tiêu đề đánh giá ngắn:
                       </label>
                       <input
@@ -768,13 +758,13 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                         value={hwFeedbackTitle}
                         onChange={(e) => setHwFeedbackTitle(e.target.value)}
                         placeholder="VD: Xuất sắc! Bóc tách cấu trúc rất tốt ⭐"
-                        className="w-full px-3 py-2 rounded-lg bg-white border border-[#babecc] text-[#1a1a1a] text-xs shadow-xs focus:outline-none"
+                        className="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs shadow-xs focus:outline-none"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-1">
-                    <label className="block font-bold text-[#1a1a1a] text-xs">
+                    <label className="block font-bold text-slate-800 text-xs">
                       Nhận xét chữa bài của Cô Nghi:
                     </label>
                     <textarea
@@ -782,13 +772,13 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                       value={hwComment}
                       onChange={(e) => setHwComment(e.target.value)}
                       placeholder="Ghi nhận xét chi tiết, nhắc nhở lỗi sai hoặc khen ngợi con..."
-                      className="w-full px-3 py-2 rounded-lg bg-white border border-[#babecc] text-[#1a1a1a] text-xs shadow-xs focus:outline-none"
+                      className="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs shadow-xs focus:outline-none"
                     />
                   </div>
 
                   <div className="space-y-1.5 pt-1">
-                    <label className="font-bold text-[#1a1a1a] text-xs flex items-center gap-1.5">
-                      <Paperclip className="w-3.5 h-3.5 text-[#ff4757]" />
+                    <label className="font-bold text-slate-800 text-xs flex items-center gap-1.5">
+                      <Paperclip className="w-3.5 h-3.5 text-[#0066FF]" />
                       <span>File đính kèm chữa bài (Hình ảnh, video, audio):</span>
                     </label>
 
@@ -803,9 +793,9 @@ export const GradingModal: React.FC<GradingModalProps> = ({
 
                     <div
                       onClick={() => hwFileInputRef.current?.click()}
-                      className="p-3 border-2 border-dashed border-[#babecc] hover:border-[#ff4757] rounded-xl bg-white/60 hover:bg-white text-center cursor-pointer transition-all flex items-center justify-center gap-2 text-xs font-semibold text-[#666666] hover:text-[#1a1a1a]"
+                      className="p-3 border-2 border-dashed border-slate-300 hover:border-[#0066FF] rounded-xl bg-white hover:bg-blue-50/30 text-center cursor-pointer transition-all flex items-center justify-center gap-2 text-xs font-semibold text-slate-600 hover:text-[#0066FF]"
                     >
-                      <Upload className="w-4 h-4 text-[#ff4757]" />
+                      <Upload className="w-4 h-4 text-[#0066FF]" />
                       <span>Bấm vào đây để tải lên ảnh chấm bài / video / audio chữa bài</span>
                     </div>
 
@@ -814,29 +804,29 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                         {hwMediaList.map((item, idx) => (
                           <div
                             key={item.id}
-                            className="flex items-center justify-between p-2 rounded-lg bg-white border border-[#babecc]/60 shadow-xs"
+                            className="flex items-center justify-between p-2 rounded-xl bg-white border border-slate-200 shadow-xs"
                           >
                             <div className="flex items-center gap-2 min-w-0">
                               {item.type === "image" ? (
                                 <img
                                   src={item.url}
                                   alt="Thumbnail"
-                                  className="w-9 h-9 rounded object-cover border border-[#babecc]/60 shrink-0"
+                                  className="w-9 h-9 rounded-lg object-cover border border-slate-200 shrink-0"
                                 />
                               ) : item.type === "video" ? (
-                                <div className="w-9 h-9 rounded bg-slate-800 text-white flex items-center justify-center shrink-0">
+                                <div className="w-9 h-9 rounded-lg bg-slate-800 text-white flex items-center justify-center shrink-0">
                                   <Film className="w-4 h-4 text-sky-400" />
                                 </div>
                               ) : (
-                                <div className="w-9 h-9 rounded bg-amber-600 text-white flex items-center justify-center shrink-0">
+                                <div className="w-9 h-9 rounded-lg bg-amber-600 text-white flex items-center justify-center shrink-0">
                                   <Mic className="w-4 h-4" />
                                 </div>
                               )}
                               <div className="min-w-0">
-                                <span className="font-bold text-xs text-[#1a1a1a] truncate block">
+                                <span className="font-bold text-xs text-slate-800 truncate block">
                                   {item.title || `File chữa bài ${idx + 1}`}
                                 </span>
-                                <span className="text-[10px] text-[#666666] uppercase font-mono">
+                                <span className="text-[10px] text-slate-500 uppercase font-mono">
                                   Định dạng: {item.type}
                                 </span>
                               </div>
@@ -847,7 +837,7 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                               onClick={() =>
                                 setHwMediaList((prev) => prev.filter((m) => m.id !== item.id))
                               }
-                              className="p-1 text-slate-400 hover:text-rose-600 rounded cursor-pointer"
+                              className="p-1 text-slate-400 hover:text-rose-600 rounded-lg cursor-pointer"
                               title="Xóa file này"
                             >
                               <Trash2 className="w-3.5 h-3.5" />
@@ -860,15 +850,15 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                 </div>
 
                 {/* HÌNH ẢNH TẠI LỚP HỌC */}
-                <div className="p-3.5 bg-[#d1d9e6] border border-[#babecc]/80 rounded-xl space-y-2.5 shadow-[var(--shadow-recessed-sm)]">
-                  <div className="flex items-center gap-2 pb-1 border-b border-[#babecc]/50">
-                    <Film className="w-4 h-4 text-[#ff4757]" />
-                    <span className="font-bold text-[#1a1a1a] uppercase tracking-wider text-[11px] font-mono">
+                <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-2xl space-y-2.5">
+                  <div className="flex items-center gap-2 pb-1 border-b border-slate-200">
+                    <Film className="w-4 h-4 text-[#0066FF]" />
+                    <span className="font-bold text-slate-800 uppercase tracking-wider text-[11px] font-mono">
                       Hình ảnh & Video học tập tại lớp của con
                     </span>
                   </div>
 
-                  <p className="text-[11px] text-[#666666] leading-relaxed">
+                  <p className="text-[11px] text-slate-500 leading-relaxed">
                     Tùy chọn tải lên hình ảnh / video / audio thực tế của riêng {student.fullName} trong buổi học.
                     Phần này sẽ hiển thị kết hợp cùng với các hình ảnh chung của cả lớp ở cổng phụ huynh.
                   </p>
@@ -886,9 +876,9 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                     <button
                       type="button"
                       onClick={() => classroomMediaInputRef.current?.click()}
-                      className="w-full py-2 px-3 rounded-lg soft-ui-convex text-xs font-bold text-[#1a1a1a] hover:text-[#ff4757] flex items-center justify-center gap-1.5 border border-white/80 cursor-pointer active:translate-y-[1px]"
+                      className="w-full py-2 px-3 rounded-xl bg-white hover:bg-slate-100 text-xs font-bold text-slate-700 hover:text-[#0066FF] flex items-center justify-center gap-1.5 border border-slate-200 cursor-pointer transition-colors shadow-xs"
                     >
-                      <Upload className="w-3.5 h-3.5 text-[#ff4757]" />
+                      <Upload className="w-3.5 h-3.5 text-[#0066FF]" />
                       <span>Tải ảnh / video / audio của con</span>
                     </button>
                   </div>
@@ -898,20 +888,20 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                       {studentClassroomMedia.map((m) => (
                         <div
                           key={m.id}
-                          className="relative rounded-lg overflow-hidden border border-[#babecc] bg-white group p-1.5 shadow-xs"
+                          className="relative rounded-xl overflow-hidden border border-slate-200 bg-white group p-1.5 shadow-xs"
                         >
                           {m.type === "image" ? (
                             <img
                               src={m.url}
                               alt={m.title}
-                              className="w-full h-16 object-cover rounded"
+                              className="w-full h-16 object-cover rounded-lg"
                             />
                           ) : (
-                            <div className="w-full h-16 bg-slate-900 text-white rounded flex items-center justify-center">
+                            <div className="w-full h-16 bg-slate-900 text-white rounded-lg flex items-center justify-center">
                               <Film className="w-6 h-6 text-sky-400" />
                             </div>
                           )}
-                          <div className="text-[10px] font-bold text-[#1a1a1a] truncate mt-1">
+                          <div className="text-[10px] font-bold text-slate-800 truncate mt-1">
                             {m.title}
                           </div>
                           <button
@@ -935,78 +925,78 @@ export const GradingModal: React.FC<GradingModalProps> = ({
             ) : (
               /* TAB 2: ĐÁNH GIÁ ĐỊNH KỲ (5 TRỤC RADAR) */
               <div className="space-y-4 text-xs">
-                <div className="p-3.5 bg-[#d1d9e6] border border-[#babecc]/60 rounded-xl space-y-3 shadow-[var(--shadow-recessed-sm)]">
-                  <span className="font-bold text-[#1a1a1a] uppercase tracking-wider text-[11px] font-mono block">
+                <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-2xl space-y-3">
+                  <span className="font-bold text-slate-800 uppercase tracking-wider text-[11px] font-mono block">
                     Cập nhật 5 Trục Năng Lực Hiện Tại (Radar Current - Thang 0-100)
                   </span>
                   <div className="grid grid-cols-1 sm:grid-cols-5 gap-2 font-mono">
-                    <div className="p-2 rounded-lg bg-[#e0e5ec] border border-white/60">
-                      <span className="text-[10px] text-[#666666] block">Từ vựng: {radarVocab}đ</span>
+                    <div className="p-2 rounded-xl bg-white border border-slate-200">
+                      <span className="text-[10px] text-slate-500 block">Từ vựng: {radarVocab}đ</span>
                       <input
                         type="range"
                         min="10"
                         max="100"
                         value={radarVocab}
                         onChange={(e) => setRadarVocab(parseInt(e.target.value, 10))}
-                        className="w-full accent-[#ff4757]"
+                        className="w-full accent-[#0066FF]"
                       />
                     </div>
-                    <div className="p-2 rounded-lg bg-[#e0e5ec] border border-white/60">
-                      <span className="text-[10px] text-[#666666] block">Ngữ pháp: {radarGrammar}đ</span>
+                    <div className="p-2 rounded-xl bg-white border border-slate-200">
+                      <span className="text-[10px] text-slate-500 block">Ngữ pháp: {radarGrammar}đ</span>
                       <input
                         type="range"
                         min="10"
                         max="100"
                         value={radarGrammar}
                         onChange={(e) => setRadarGrammar(parseInt(e.target.value, 10))}
-                        className="w-full accent-[#ff4757]"
+                        className="w-full accent-[#0066FF]"
                       />
                     </div>
-                    <div className="p-2 rounded-lg bg-[#e0e5ec] border border-white/60">
-                      <span className="text-[10px] text-[#666666] block">Nghe hiểu: {radarListening}đ</span>
+                    <div className="p-2 rounded-xl bg-white border border-slate-200">
+                      <span className="text-[10px] text-slate-500 block">Nghe hiểu: {radarListening}đ</span>
                       <input
                         type="range"
                         min="10"
                         max="100"
                         value={radarListening}
                         onChange={(e) => setRadarListening(parseInt(e.target.value, 10))}
-                        className="w-full accent-[#ff4757]"
+                        className="w-full accent-[#0066FF]"
                       />
                     </div>
-                    <div className="p-2 rounded-lg bg-[#e0e5ec] border border-white/60">
-                      <span className="text-[10px] text-[#666666] block">Phát âm: {radarSpeaking}đ</span>
+                    <div className="p-2 rounded-xl bg-white border border-slate-200">
+                      <span className="text-[10px] text-slate-500 block">Phát âm: {radarSpeaking}đ</span>
                       <input
                         type="range"
                         min="10"
                         max="100"
                         value={radarSpeaking}
                         onChange={(e) => setRadarSpeaking(parseInt(e.target.value, 10))}
-                        className="w-full accent-[#ff4757]"
+                        className="w-full accent-[#0066FF]"
                       />
                     </div>
-                    <div className="p-2 rounded-lg bg-[#e0e5ec] border border-white/60">
-                      <span className="text-[10px] text-[#666666] block">Thái độ: {radarAttitude}đ</span>
+                    <div className="p-2 rounded-xl bg-white border border-slate-200">
+                      <span className="text-[10px] text-slate-500 block">Thái độ: {radarAttitude}đ</span>
                       <input
                         type="range"
                         min="10"
                         max="100"
                         value={radarAttitude}
                         onChange={(e) => setRadarAttitude(parseInt(e.target.value, 10))}
-                        className="w-full accent-[#ff4757]"
+                        className="w-full accent-[#0066FF]"
                       />
                     </div>
                   </div>
                 </div>
 
                 {/* Cột mốc & Điểm thi định kỳ */}
-                <div className="p-3.5 bg-[#d1d9e6] border border-[#babecc]/60 rounded-xl space-y-3 shadow-[var(--shadow-recessed-sm)]">
-                  <span className="font-bold text-[#1a1a1a] uppercase tracking-wider text-[11px] font-mono block">
+                <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-2xl space-y-3">
+                  <span className="font-bold text-slate-800 uppercase tracking-wider text-[11px] font-mono block">
                     Cột mốc & Điểm thi định kỳ
                   </span>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     <div>
-                      <label className="block font-bold text-[#1a1a1a] mb-1">
+                      <label className="block font-bold text-slate-800 mb-1">
                         Tên bài kiểm tra / Cột mốc
                       </label>
                       <input
@@ -1014,27 +1004,27 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                         value={examName}
                         onChange={(e) => setExamName(e.target.value)}
                         placeholder="VD: Kiểm tra Giữa kỳ 1"
-                        className="w-full px-3 py-2 rounded-lg bg-white border border-[#babecc] text-[#1a1a1a] text-xs shadow-xs focus:outline-none"
+                        className="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs shadow-xs focus:outline-none"
                       />
                     </div>
 
                     <div>
-                      <label className="block font-bold text-[#1a1a1a] mb-1 flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5 text-[#ff4757]" />
-                        <span>Ngày thi / Ngày đánh giá (Chọn lịch):</span>
+                      <label className="block font-bold text-slate-800 mb-1 flex items-center gap-1.5">
+                        <Calendar className="w-3.5 h-3.5 text-[#0066FF]" />
+                        <span>Ngày thi / Ngày đánh giá:</span>
                       </label>
                       <input
                         type="date"
                         value={periodicDate}
                         onChange={(e) => setPeriodicDate(e.target.value)}
-                        className="w-full px-3 py-2 rounded-lg bg-white border border-[#babecc] text-[#1a1a1a] font-mono text-xs shadow-xs focus:outline-none cursor-pointer"
+                        className="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-slate-800 font-mono text-xs shadow-xs focus:outline-none cursor-pointer"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     <div>
-                      <label className="block font-bold text-[#1a1a1a] mb-1">
+                      <label className="block font-bold text-slate-800 mb-1">
                         Điểm thi tại lớp (0 - 10)
                       </label>
                       <input
@@ -1044,12 +1034,12 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                         max="10"
                         value={classExamScore}
                         onChange={(e) => setClassExamScore(parseFloat(e.target.value) || 0)}
-                        className="w-full px-3 py-2 rounded-lg bg-white border border-[#babecc] text-[#ff4757] font-mono font-bold text-sm shadow-xs focus:outline-none text-center"
+                        className="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-[#0066FF] font-mono font-bold text-sm shadow-xs focus:outline-none text-center"
                       />
                     </div>
 
                     <div>
-                      <label className="block font-bold text-[#1a1a1a] mb-1">
+                      <label className="block font-bold text-slate-800 mb-1">
                         Điểm thi ở trường (0 - 10)
                       </label>
                       <input
@@ -1059,7 +1049,7 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                         max="10"
                         value={schoolExamScore}
                         onChange={(e) => setSchoolExamScore(parseFloat(e.target.value) || 0)}
-                        className="w-full px-3 py-2 rounded-lg bg-white border border-[#babecc] text-emerald-800 font-mono font-bold text-sm shadow-xs focus:outline-none text-center"
+                        className="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-emerald-800 font-mono font-bold text-sm shadow-xs focus:outline-none text-center"
                       />
                     </div>
                   </div>
@@ -1067,7 +1057,7 @@ export const GradingModal: React.FC<GradingModalProps> = ({
 
                 <div>
                   <div className="mb-1">
-                    <label className="block font-bold text-[#1a1a1a]">
+                    <label className="block font-bold text-slate-800">
                       Lời nhắn gửi riêng cho phụ huynh
                     </label>
                   </div>
@@ -1076,18 +1066,18 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                     value={parentMessage}
                     onChange={(e) => setParentMessage(e.target.value)}
                     placeholder="Ghi lời nhắn gửi riêng cho ba mẹ về năng lực, thái độ học tập và giải pháp tiếp theo của con..."
-                    className="w-full px-3 py-2 rounded-lg bg-[#d1d9e6] border border-[#babecc] text-[#1a1a1a] text-xs shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)] focus:outline-none leading-relaxed"
+                    className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF] leading-relaxed"
                   />
                 </div>
               </div>
             )}
 
             {/* Footer Buttons của Form Nhập liệu */}
-            <div className="flex items-center justify-between gap-2.5 pt-3 border-t border-[#babecc]/60 flex-wrap">
+            <div className="flex items-center justify-between gap-2.5 pt-3 border-t border-slate-100 flex-wrap">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 rounded-xl soft-ui-convex text-[#666666] hover:text-[#1a1a1a] font-semibold text-xs border border-white/80 cursor-pointer active:translate-y-[1px]"
+                className="px-4 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-semibold text-xs border border-slate-200 cursor-pointer"
               >
                 Đóng
               </button>
@@ -1097,7 +1087,7 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setViewMode("review")}
-                  className="px-3.5 py-2 rounded-xl soft-ui-convex text-sky-800 hover:text-sky-900 bg-sky-50/50 font-bold text-xs border border-sky-300 flex items-center gap-1.5 cursor-pointer active:translate-y-[1px]"
+                  className="px-3.5 py-2 rounded-xl text-sky-800 hover:text-sky-900 bg-sky-50 font-bold text-xs border border-sky-200 flex items-center gap-1.5 cursor-pointer"
                 >
                   <Eye className="w-4 h-4 text-sky-600" />
                   <span>Xem lại nội dung đã nhập</span>
@@ -1106,7 +1096,7 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-5 py-2.5 rounded-xl bg-[#ff4757] hover:bg-[#e03949] text-white font-bold text-xs shadow-[var(--shadow-accent)] border border-white/30 flex items-center gap-1.5 cursor-pointer active:translate-y-[1px] disabled:opacity-50"
+                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0066FF] to-[#0052CC] hover:from-[#0052CC] hover:to-[#004099] text-white font-bold text-xs shadow-md shadow-blue-500/25 flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
                 >
                   <Check className="w-4 h-4 stroke-[2.5]" />
                   <span>{isSubmitting ? "Đang lưu..." : "Lưu & Đồng bộ học vụ"}</span>
@@ -1119,19 +1109,19 @@ export const GradingModal: React.FC<GradingModalProps> = ({
           /* MÀN HÌNH XEM LẠI & CHỈNH SỬA (REVIEW MODE)                 */
           /* ======================================================== */
           <div className="mt-4 space-y-3.5 max-h-[72vh] overflow-y-auto pr-1 text-xs">
-            <div className="flex items-center justify-between p-3 rounded-xl bg-[#d1d9e6] border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)]">
+            <div className="flex items-center justify-between p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
               <div>
-                <span className="font-bold text-xs text-[#1a1a1a] block">
+                <span className="font-bold text-xs text-slate-800 block">
                   Tổng hợp nội dung học vụ chuẩn bị gửi / đã lưu
                 </span>
-                <span className="text-[11px] text-[#666666]">
+                <span className="text-[11px] text-slate-500">
                   Kiểm tra kỹ lưỡng các thông tin hiển thị ở cổng phụ huynh
                 </span>
               </div>
               <button
                 type="button"
                 onClick={() => setViewMode("edit")}
-                className="px-3 py-1.5 rounded-lg soft-ui-convex text-[#ff4757] font-bold text-xs border border-white/80 flex items-center gap-1.5 cursor-pointer active:translate-y-[1px]"
+                className="px-3 py-1.5 rounded-xl bg-white text-[#0066FF] font-bold text-xs border border-blue-200 flex items-center gap-1.5 cursor-pointer shadow-xs hover:bg-blue-50"
               >
                 <Edit3 className="w-3.5 h-3.5" />
                 <span>Chỉnh sửa lại</span>
@@ -1139,27 +1129,27 @@ export const GradingModal: React.FC<GradingModalProps> = ({
             </div>
 
             {/* Block 1: Buổi học & Chấm điểm mini-test */}
-            <div className="p-3.5 bg-white rounded-xl border border-[#babecc]/60 shadow-xs space-y-2 text-left">
+            <div className="p-3.5 bg-white rounded-2xl border border-slate-200/80 shadow-xs space-y-2 text-left">
               <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                <span className="font-bold text-xs text-[#1a1a1a] flex items-center gap-1.5">
-                  <BookOpen className="w-4 h-4 text-[#ff4757]" />
+                <span className="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                  <BookOpen className="w-4 h-4 text-[#0066FF]" />
                   <span>1. Buổi học mới nhất & Điểm số</span>
                 </span>
-                <span className="text-[11px] font-mono text-[#666666]">{lessonDate}</span>
+                <span className="text-[11px] font-mono text-slate-500">{lessonDate}</span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                 <div>
-                  <span className="text-[#666666] text-[11px] block">Tên bài học:</span>
-                  <span className="font-bold text-[#1a1a1a]">{lessonName || "(Chưa nhập)"}</span>
+                  <span className="text-slate-500 text-[11px] block">Tên bài học:</span>
+                  <span className="font-bold text-slate-800">{lessonName || "(Chưa nhập)"}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div>
-                    <span className="text-[#666666] text-[11px] block">Điểm mini-test:</span>
-                    <span className="font-bold text-sm text-[#ff4757] font-mono">{scoreValue} / 10đ</span>
+                    <span className="text-slate-500 text-[11px] block">Điểm mini-test:</span>
+                    <span className="font-bold text-sm text-[#0066FF] font-mono">{scoreValue} / 10đ</span>
                   </div>
                   {scoreBadge && (
-                    <span className="text-[10px] font-semibold bg-amber-100 text-amber-900 border border-amber-300 px-2 py-0.5 rounded-md mt-3">
+                    <span className="text-[10px] font-semibold bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-md mt-3">
                       {scoreBadge}
                     </span>
                   )}
@@ -1167,26 +1157,26 @@ export const GradingModal: React.FC<GradingModalProps> = ({
               </div>
 
               <div>
-                <span className="text-[#666666] text-[11px] block">Nhận xét của Cô Nghi:</span>
-                <p className="font-medium text-[#1a1a1a] bg-[#f8fafc] p-2 rounded-lg border border-slate-200 mt-0.5 leading-relaxed">
+                <span className="text-slate-500 text-[11px] block">Nhận xét của Cô Nghi:</span>
+                <p className="font-medium text-slate-800 bg-slate-50 p-2.5 rounded-xl border border-slate-200 mt-0.5 leading-relaxed">
                   "{teacherFeedback || "(Chưa có nhận xét)"}"
                 </p>
               </div>
             </div>
 
             {/* Block 2: Chữa bài tập về nhà */}
-            <div className="p-3.5 bg-white rounded-xl border border-[#babecc]/60 shadow-xs space-y-2 text-left">
+            <div className="p-3.5 bg-white rounded-2xl border border-slate-200/80 shadow-xs space-y-2 text-left">
               <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                <span className="font-bold text-xs text-[#1a1a1a] flex items-center gap-1.5">
-                  <FileCheck className="w-4 h-4 text-[#ff4757]" />
+                <span className="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                  <FileCheck className="w-4 h-4 text-[#0066FF]" />
                   <span>2. Chữa bài tập về nhà</span>
                 </span>
                 {selectedAssignmentObj ? (
-                  <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded border border-emerald-300">
+                  <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-lg border border-emerald-200">
                     Đã chọn bài
                   </span>
                 ) : (
-                  <span className="text-[10px] text-slate-500 font-medium">(Chưa chọn bài tập)</span>
+                  <span className="text-[10px] text-slate-400 font-medium">(Chưa chọn bài tập)</span>
                 )}
               </div>
 
@@ -1194,14 +1184,14 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                 <>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                     <div>
-                      <span className="text-[#666666] text-[11px] block">Bài tập được chữa:</span>
-                      <span className="font-bold text-[#1a1a1a]">
+                      <span className="text-slate-500 text-[11px] block">Bài tập được chữa:</span>
+                      <span className="font-bold text-slate-800">
                         {selectedAssignmentObj.unit} - {selectedAssignmentObj.title}
                       </span>
                     </div>
                     <div>
-                      <span className="text-[#666666] text-[11px] block">Điểm bài tập & Đánh giá:</span>
-                      <span className="font-bold text-sm text-[#ff4757] font-mono">{hwScore} / 10đ</span>
+                      <span className="text-slate-500 text-[11px] block">Điểm bài tập & Đánh giá:</span>
+                      <span className="font-bold text-sm text-[#0066FF] font-mono">{hwScore} / 10đ</span>
                       <span className="text-[11px] text-slate-700 ml-1.5 font-semibold">
                         ({hwFeedbackTitle})
                       </span>
@@ -1209,14 +1199,14 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                   </div>
 
                   <div>
-                    <span className="text-[#666666] text-[11px] block">Nhận xét chữa bài:</span>
-                    <p className="font-medium text-[#1a1a1a] bg-[#f8fafc] p-2 rounded-lg border border-slate-200 mt-0.5 leading-relaxed">
+                    <span className="text-slate-500 text-[11px] block">Nhận xét chữa bài:</span>
+                    <p className="font-medium text-slate-800 bg-slate-50 p-2.5 rounded-xl border border-slate-200 mt-0.5 leading-relaxed">
                       "{hwComment || "(Chưa có nhận xét)"}"
                     </p>
                   </div>
 
                   <div>
-                    <span className="text-[#666666] text-[11px] block mb-1">
+                    <span className="text-slate-500 text-[11px] block mb-1">
                       File đính kèm ({hwMediaList.length} file):
                     </span>
                     {hwMediaList.length > 0 ? (
@@ -1224,9 +1214,9 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                         {hwMediaList.map((m, idx) => (
                           <div
                             key={m.id}
-                            className="flex items-center gap-1.5 px-2 py-1 rounded bg-[#f1f5f9] border border-slate-200 text-[11px] font-medium"
+                            className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 text-[11px] font-medium"
                           >
-                            <Paperclip className="w-3 h-3 text-[#ff4757]" />
+                            <Paperclip className="w-3 h-3 text-[#0066FF]" />
                             <span className="truncate max-w-[160px]">{m.title || `File ${idx + 1}`}</span>
                             <span className="text-[9px] uppercase font-mono text-slate-500">
                               ({m.type})
@@ -1240,20 +1230,20 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                   </div>
                 </>
               ) : (
-                <p className="text-[11px] text-slate-500 italic">
+                <p className="text-[11px] text-slate-400 italic">
                   Không có bài tập nào được chọn để chữa trong lần nhập này.
                 </p>
               )}
             </div>
 
             {/* Block 3: Hình ảnh & Video học tập tại lớp */}
-            <div className="p-3.5 bg-white rounded-xl border border-[#babecc]/60 shadow-xs space-y-2 text-left">
+            <div className="p-3.5 bg-white rounded-2xl border border-slate-200/80 shadow-xs space-y-2 text-left">
               <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                <span className="font-bold text-xs text-[#1a1a1a] flex items-center gap-1.5">
-                  <Film className="w-4 h-4 text-[#ff4757]" />
+                <span className="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                  <Film className="w-4 h-4 text-[#0066FF]" />
                   <span>3. Hình ảnh & Video học tập tại lớp của con</span>
                 </span>
-                <span className="text-[11px] font-mono text-[#666666]">
+                <span className="text-[11px] font-mono text-slate-500">
                   {studentClassroomMedia.length} file
                 </span>
               </div>
@@ -1261,15 +1251,15 @@ export const GradingModal: React.FC<GradingModalProps> = ({
               {studentClassroomMedia.length > 0 ? (
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
                   {studentClassroomMedia.map((m) => (
-                    <div key={m.id} className="rounded-lg border border-slate-200 p-1 bg-slate-50">
+                    <div key={m.id} className="rounded-xl border border-slate-200 p-1 bg-slate-50">
                       {m.type === "image" ? (
                         <img
                           src={m.url}
                           alt={m.title}
-                          className="w-full h-14 object-cover rounded"
+                          className="w-full h-14 object-cover rounded-lg"
                         />
                       ) : (
-                        <div className="w-full h-14 bg-slate-800 text-white rounded flex items-center justify-center">
+                        <div className="w-full h-14 bg-slate-800 text-white rounded-lg flex items-center justify-center">
                           <Film className="w-5 h-5 text-sky-400" />
                         </div>
                       )}
@@ -1287,73 +1277,73 @@ export const GradingModal: React.FC<GradingModalProps> = ({
             </div>
 
             {/* Block 4: Đánh giá định kỳ (5 Trục Radar & Thi trường) */}
-            <div className="p-3.5 bg-white rounded-xl border border-[#babecc]/60 shadow-xs space-y-2 text-left">
+            <div className="p-3.5 bg-white rounded-2xl border border-slate-200/80 shadow-xs space-y-2 text-left">
               <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                <span className="font-bold text-xs text-[#1a1a1a] flex items-center gap-1.5">
-                  <TrendingUp className="w-4 h-4 text-[#ff4757]" />
+                <span className="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                  <TrendingUp className="w-4 h-4 text-[#0066FF]" />
                   <span>4. Đánh giá định kỳ & Điểm thi</span>
                 </span>
-                <span className="text-[11px] font-mono text-[#666666]">
+                <span className="text-[11px] font-mono text-slate-500">
                   {formatToDisplayDate(periodicDate)}
                 </span>
               </div>
 
               {/* 5 Trục */}
               <div className="grid grid-cols-5 gap-1.5 text-center font-mono py-1">
-                <div className="p-1.5 rounded bg-slate-50 border border-slate-200">
-                  <span className="text-[9px] text-[#666666] block">Từ vựng</span>
-                  <span className="text-xs font-bold text-[#ff4757]">{radarVocab}đ</span>
+                <div className="p-1.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <span className="text-[9px] text-slate-500 block">Từ vựng</span>
+                  <span className="text-xs font-bold text-[#0066FF]">{radarVocab}đ</span>
                 </div>
-                <div className="p-1.5 rounded bg-slate-50 border border-slate-200">
-                  <span className="text-[9px] text-[#666666] block">Ngữ pháp</span>
-                  <span className="text-xs font-bold text-[#ff4757]">{radarGrammar}đ</span>
+                <div className="p-1.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <span className="text-[9px] text-slate-500 block">Ngữ pháp</span>
+                  <span className="text-xs font-bold text-[#0066FF]">{radarGrammar}đ</span>
                 </div>
-                <div className="p-1.5 rounded bg-slate-50 border border-slate-200">
-                  <span className="text-[9px] text-[#666666] block">Nghe hiểu</span>
-                  <span className="text-xs font-bold text-[#ff4757]">{radarListening}đ</span>
+                <div className="p-1.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <span className="text-[9px] text-slate-500 block">Nghe hiểu</span>
+                  <span className="text-xs font-bold text-[#0066FF]">{radarListening}đ</span>
                 </div>
-                <div className="p-1.5 rounded bg-slate-50 border border-slate-200">
-                  <span className="text-[9px] text-[#666666] block">Phát âm</span>
-                  <span className="text-xs font-bold text-[#ff4757]">{radarSpeaking}đ</span>
+                <div className="p-1.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <span className="text-[9px] text-slate-500 block">Phát âm</span>
+                  <span className="text-xs font-bold text-[#0066FF]">{radarSpeaking}đ</span>
                 </div>
-                <div className="p-1.5 rounded bg-slate-50 border border-slate-200">
-                  <span className="text-[9px] text-[#666666] block">Thái độ</span>
-                  <span className="text-xs font-bold text-[#ff4757]">{radarAttitude}đ</span>
+                <div className="p-1.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <span className="text-[9px] text-slate-500 block">Thái độ</span>
+                  <span className="text-xs font-bold text-[#0066FF]">{radarAttitude}đ</span>
                 </div>
               </div>
 
               {/* Cột mốc thi & Điểm */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 border-t border-slate-100 text-xs">
                 <div>
-                  <span className="text-[#666666] text-[11px] block">Mốc kiểm tra:</span>
-                  <span className="font-bold text-[#1a1a1a]">{examName || "(Chưa có)"}</span>
+                  <span className="text-slate-500 text-[11px] block">Mốc kiểm tra:</span>
+                  <span className="font-bold text-slate-800">{examName || "(Chưa có)"}</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div>
-                    <span className="text-[#666666] text-[11px] block">Điểm tại lớp:</span>
-                    <span className="font-bold text-sm text-[#ff4757] font-mono">{classExamScore}đ</span>
+                    <span className="text-slate-500 text-[11px] block">Điểm tại lớp:</span>
+                    <span className="font-bold text-sm text-[#0066FF] font-mono">{classExamScore}đ</span>
                   </div>
                   <div>
-                    <span className="text-[#666666] text-[11px] block">Điểm ở trường:</span>
+                    <span className="text-slate-500 text-[11px] block">Điểm ở trường:</span>
                     <span className="font-bold text-sm text-emerald-700 font-mono">{schoolExamScore}đ</span>
                   </div>
                 </div>
               </div>
 
               <div>
-                <span className="text-[#666666] text-[11px] block">Lời nhắn gửi phụ huynh:</span>
-                <p className="font-medium text-[#1a1a1a] bg-[#f8fafc] p-2 rounded-lg border border-slate-200 mt-0.5 leading-relaxed">
+                <span className="text-slate-500 text-[11px] block">Lời nhắn gửi phụ huynh:</span>
+                <p className="font-medium text-slate-800 bg-slate-50 p-2.5 rounded-xl border border-slate-200 mt-0.5 leading-relaxed">
                   "{parentMessage || "(Chưa có lời nhắn)"}"
                 </p>
               </div>
             </div>
 
             {/* Footer Buttons của Màn hình Xem lại */}
-            <div className="flex items-center justify-between gap-2.5 pt-3 border-t border-[#babecc]/60 flex-wrap">
+            <div className="flex items-center justify-between gap-2.5 pt-3 border-t border-slate-100 flex-wrap">
               <button
                 type="button"
                 onClick={() => setViewMode("edit")}
-                className="px-4 py-2 rounded-xl soft-ui-convex text-[#1a1a1a] hover:text-[#ff4757] font-bold text-xs border border-white/80 flex items-center gap-1.5 cursor-pointer active:translate-y-[1px]"
+                className="px-4 py-2 rounded-xl text-slate-700 hover:text-[#0066FF] hover:bg-slate-100 font-bold text-xs border border-slate-200 flex items-center gap-1.5 cursor-pointer"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 <span>Quay lại chỉnh sửa</span>
@@ -1364,7 +1354,7 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                   <button
                     type="button"
                     onClick={onClose}
-                    className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md border border-white/30 flex items-center gap-1.5 cursor-pointer active:translate-y-[1px]"
+                    className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md flex items-center gap-1.5 cursor-pointer"
                   >
                     <CheckCircle2 className="w-4 h-4" />
                     <span>Hoàn tất & Đóng</span>
@@ -1374,7 +1364,7 @@ export const GradingModal: React.FC<GradingModalProps> = ({
                     type="button"
                     onClick={handleSaveAndSync}
                     disabled={isSubmitting}
-                    className="px-5 py-2.5 rounded-xl bg-[#ff4757] hover:bg-[#e03949] text-white font-bold text-xs shadow-[var(--shadow-accent)] border border-white/30 flex items-center gap-1.5 cursor-pointer active:translate-y-[1px] disabled:opacity-50"
+                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0066FF] to-[#0052CC] hover:from-[#0052CC] hover:to-[#004099] text-white font-bold text-xs shadow-md shadow-blue-500/25 flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
                   >
                     <Check className="w-4 h-4 stroke-[2.5]" />
                     <span>{isSubmitting ? "Đang lưu..." : "Xác nhận & Lưu học vụ"}</span>

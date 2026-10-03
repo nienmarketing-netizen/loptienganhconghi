@@ -33,12 +33,12 @@ export function Dialog({ open, onOpenChange, children, id, className }: DialogPr
   return (
     <div
       id={id}
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200"
       onClick={() => onOpenChange(false)}
     >
       <div
         className={cn(
-          "relative w-full max-w-lg max-h-[92vh] flex flex-col bg-[#e0e5ec] rounded-lg sm:rounded-xl shadow-[var(--shadow-floating)] border border-white/80 border-b-[#babecc] border-r-[#babecc] overflow-hidden transform transition-all duration-150 animate-in zoom-in-95",
+          "relative w-full max-w-lg max-h-[92vh] flex flex-col bg-white rounded-2xl shadow-[var(--shadow-floating)] border border-slate-100 overflow-hidden transform transition-all duration-150 animate-in zoom-in-95",
           className
         )}
         onClick={(e) => e.stopPropagation()}
@@ -54,7 +54,7 @@ export function DialogHeader({ className, children, id }: { className?: string; 
     <div
       id={id}
       className={cn(
-        "bg-[#2d3436] px-4 sm:px-6 py-3.5 sm:py-4 text-white flex items-center justify-between gap-3 border-b border-white/20 relative shrink-0",
+        "bg-gradient-to-r from-[#0066ff] via-[#1e88e5] to-[#0052cc] px-4 sm:px-6 py-4 text-white flex items-center justify-between gap-3 relative shrink-0 shadow-xs",
         className
       )}
     >
@@ -77,7 +77,7 @@ export function DialogCloseButton({ onClose, id }: { onClose: () => void; id?: s
       id={id}
       type="button"
       onClick={onClose}
-      className="w-8 h-8 rounded-md bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 border border-white/10"
+      className="w-8 h-8 rounded-xl bg-white/15 hover:bg-white/30 text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 border border-white/20"
       aria-label="Đóng"
     >
       <X className="w-4 h-4" />
@@ -87,7 +87,7 @@ export function DialogCloseButton({ onClose, id }: { onClose: () => void; id?: s
 
 export function DialogContent({ className, children, id }: { className?: string; children: React.ReactNode; id?: string }) {
   return (
-    <div id={id} className={cn("p-4 sm:p-6 overflow-y-auto overscroll-contain space-y-4 text-[#1a1a1a]", className)}>
+    <div id={id} className={cn("p-4 sm:p-6 overflow-y-auto overscroll-contain space-y-4 text-slate-800", className)}>
       {children}
     </div>
   );

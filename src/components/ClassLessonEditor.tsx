@@ -289,7 +289,7 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
   return (
     <div
       id="section-class-lesson-editor"
-      className={`bg-[#d1d9e6] border border-[#babecc]/60 rounded-xl sm:rounded-2xl p-3.5 sm:p-5 shadow-[var(--shadow-recessed-sm)] transition-all ${
+      className={`bg-white border border-slate-200/80 rounded-2xl p-4 sm:p-5 shadow-xs transition-all ${
         isExpanded ? "space-y-4" : ""
       }`}
     >
@@ -297,19 +297,19 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
       <div
         onClick={() => setIsExpanded(!isExpanded)}
         className={`flex items-center justify-between gap-3 cursor-pointer select-none group ${
-          isExpanded ? "pb-2.5 border-b border-[#babecc]/50" : ""
+          isExpanded ? "pb-3 border-b border-slate-100" : ""
         }`}
       >
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-[#ff4757] text-white flex items-center justify-center font-bold shadow-[var(--shadow-accent-sm)] shrink-0">
-            <BookOpen className="w-4 h-4" />
+          <div className="w-8 h-8 rounded-xl bg-blue-50 text-[#0066FF] flex items-center justify-center font-bold border border-blue-100 shadow-2xs shrink-0">
+            <BookOpen className="w-4 h-4 text-[#0066FF]" />
           </div>
           <div>
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-xs sm:text-sm font-bold text-[#1a1a1a] tracking-tight group-hover:text-[#ff4757] transition-colors">
+              <span className="text-xs sm:text-sm font-bold text-slate-900 tracking-tight group-hover:text-[#0066FF] transition-colors">
                 Nhập liệu tổng quan buổi học của lớp
               </span>
-              <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded-md bg-[#2d3436] text-white shadow-xs">
+              <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded-lg bg-blue-50 text-[#0066FF] border border-blue-200">
                 {currentClassName === "ALL" ? "Tất cả các lớp" : `Lớp ${currentClassName}`}
               </span>
             </div>
@@ -322,7 +322,7 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
             e.stopPropagation();
             setIsExpanded(!isExpanded);
           }}
-          className="p-1.5 rounded-lg soft-ui-convex hover:text-[#ff4757] text-slate-700 transition-all cursor-pointer shrink-0"
+          className="p-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-600 hover:text-[#0066FF] hover:bg-blue-50 transition-all cursor-pointer shrink-0"
           title={isExpanded ? "Thu gọn form" : "Mở rộng form"}
           aria-label={isExpanded ? "Thu gọn form" : "Mở rộng form"}
         >
@@ -338,13 +338,13 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
             <div className="md:col-span-2 space-y-1.5">
               <label
                 htmlFor="input-lesson-name"
-                className="text-xs font-bold text-[#1a1a1a] flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5"
+                className="text-xs font-bold text-slate-800 flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5"
               >
                 <span className="flex items-center gap-1.5">
-                  <FileText className="w-3.5 h-3.5 text-[#ff4757]" />
+                  <FileText className="w-3.5 h-3.5 text-[#0066FF]" />
                   <span>1. Thông tin buổi học:</span>
                 </span>
-                <span className="text-[11px] text-[#666666] font-normal leading-tight">
+                <span className="text-[11px] text-slate-500 font-normal leading-tight">
                   (Chủ đề / Tên bài)
                 </span>
               </label>
@@ -357,7 +357,7 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                   onLessonNameChange?.(e.target.value);
                 }}
                 placeholder="Ví dụ: Phân tích và bóc tách đề chuyên"
-                className="w-full min-h-[42px] px-3 py-2 text-xs sm:text-sm rounded-lg bg-white border border-[#babecc] text-[#1a1a1a] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-2 focus:ring-[#ff4757]/40"
+                className="w-full min-h-[42px] px-3.5 py-2 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 text-slate-900 focus:outline-none focus:border-[#0066FF] focus:ring-2 focus:ring-[#0066FF]/20"
               />
             </div>
 
@@ -365,13 +365,13 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
             <div className="space-y-1.5">
               <label
                 htmlFor="input-lesson-date"
-                className="text-xs font-bold text-[#1a1a1a] flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5"
+                className="text-xs font-bold text-slate-800 flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5"
               >
                 <span className="flex items-center gap-1.5">
-                  <CalendarIcon className="w-3.5 h-3.5 text-[#ff4757]" />
+                  <CalendarIcon className="w-3.5 h-3.5 text-[#0066FF]" />
                   <span>2. Thời gian:</span>
                 </span>
-                <span className="text-[11px] text-[#666666] font-normal leading-tight">
+                <span className="text-[11px] text-slate-500 font-normal leading-tight">
                   (Chọn trong lịch)
                 </span>
               </label>
@@ -383,7 +383,7 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                   setLessonDate(e.target.value);
                   onLessonDateChange?.(e.target.value);
                 }}
-                className="w-full min-h-[42px] px-3 py-2 text-xs sm:text-sm rounded-lg bg-white border border-[#babecc] text-[#1a1a1a] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-2 focus:ring-[#ff4757]/40 cursor-pointer font-mono"
+                className="w-full min-h-[42px] px-3.5 py-2 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 text-slate-900 focus:outline-none focus:border-[#0066FF] focus:ring-2 focus:ring-[#0066FF]/20 cursor-pointer font-mono"
               />
             </div>
           </div>
@@ -392,13 +392,13 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
           <div className="space-y-1.5">
             <label
               htmlFor="input-lesson-topic"
-              className="text-xs font-bold text-[#1a1a1a] flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5"
+              className="text-xs font-bold text-slate-800 flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5"
             >
               <span className="flex items-center gap-1.5">
-                <BookOpen className="w-3.5 h-3.5 text-[#ff4757]" />
+                <BookOpen className="w-3.5 h-3.5 text-[#0066FF]" />
                 <span>3. Nội dung đã học tại lớp:</span>
               </span>
-              <span className="text-[11px] text-[#666666] font-normal leading-tight">
+              <span className="text-[11px] text-slate-500 font-normal leading-tight">
                 (Mô tả chi tiết kiến thức đã dạy)
               </span>
             </label>
@@ -408,7 +408,7 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
               placeholder="Ví dụ: Cấu trúc Thì Hiện tại Hoàn thành & Kỹ thuật bóc tách thành phần câu (S-V-O-M), luyện phát âm đuôi -ed."
-              className="w-full p-2.5 text-xs sm:text-sm rounded-lg bg-white border border-[#babecc] text-[#1a1a1a] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-2 focus:ring-[#ff4757]/40 leading-relaxed resize-y"
+              className="w-full p-3 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 text-slate-900 focus:outline-none focus:border-[#0066FF] focus:ring-2 focus:ring-[#0066FF]/20 leading-relaxed resize-y"
             />
           </div>
 
@@ -416,29 +416,29 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
           <div className="space-y-1.5">
             <label
               htmlFor="input-lesson-skills"
-              className="text-xs font-bold text-[#1a1a1a] flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5"
+              className="text-xs font-bold text-slate-800 flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5"
             >
               <span className="flex items-center gap-1.5">
-                <Tag className="w-3.5 h-3.5 text-[#ff4757]" />
+                <Tag className="w-3.5 h-3.5 text-[#0066FF]" />
                 <span>4. Trọng tâm buổi học:</span>
               </span>
-              <span className="text-[11px] text-[#666666] font-normal leading-tight">
+              <span className="text-[11px] text-slate-500 font-normal leading-tight">
                 (Nhập text rồi gõ phím Enter để tạo từng badge khối)
               </span>
             </label>
 
             {/* Container gom badge và ô input gõ */}
-            <div className="min-h-[46px] p-2 bg-white rounded-lg border border-[#babecc] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] flex flex-wrap items-center gap-2">
+            <div className="min-h-[46px] p-2 bg-slate-50 rounded-xl border border-slate-200 flex flex-wrap items-center gap-2 focus-within:border-[#0066FF] focus-within:ring-2 focus-within:ring-[#0066FF]/20">
               {skills.map((skill, idx) => (
                 <span
                   key={idx}
-                  className="inline-flex items-center gap-1 text-xs font-bold font-sans bg-[#e0e5ec] text-[#1a1a1a] px-2.5 py-1 rounded-md soft-ui-convex border border-white/60 shadow-xs"
+                  className="inline-flex items-center gap-1 text-xs font-bold font-sans bg-blue-50 text-[#0066FF] px-2.5 py-1 rounded-lg border border-blue-200 shadow-2xs"
                 >
                   <span>{skill}</span>
                   <button
                     type="button"
                     onClick={() => removeTag(idx)}
-                    className="text-[#666666] hover:text-[#ff4757] p-0.5 rounded cursor-pointer"
+                    className="text-blue-400 hover:text-rose-500 p-0.5 rounded cursor-pointer transition-colors"
                     title={`Xóa badge "${skill}"`}
                     aria-label={`Xóa badge "${skill}"`}
                   >
@@ -459,7 +459,7 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                     ? "Nhập từ khóa trọng tâm rồi nhấn Enter (ví dụ: Ngữ pháp nâng cao, Phát âm đuôi -ed, ...)"
                     : "Thêm trọng tâm khác (nhấn Enter)..."
                 }
-                className="flex-1 min-w-[200px] border-none outline-none text-xs sm:text-sm bg-transparent text-[#1a1a1a] placeholder:text-slate-400 py-1"
+                className="flex-1 min-w-[200px] border-none outline-none text-xs sm:text-sm bg-transparent text-slate-900 placeholder:text-slate-400 py-1"
               />
             </div>
           </div>
@@ -467,17 +467,17 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
           {/* 5. Hình ảnh và video tại lớp: Tải lên hình ảnh, video */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <label className="text-xs font-bold text-[#1a1a1a] flex items-center gap-1.5">
-                <Camera className="w-3.5 h-3.5 text-[#ff4757]" />
+              <label className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                <Camera className="w-3.5 h-3.5 text-[#0066FF]" />
                 <span>5. Hình ảnh và video tại lớp:</span>
               </label>
 
               {/* Input file ẩn */}
               <label
                 htmlFor="input-upload-class-media"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-[#2d3436] hover:bg-[#1a1a1a] px-3 py-1.5 rounded-lg shadow-sm border border-white/20 cursor-pointer active:scale-95 transition-all"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 px-3.5 py-2 rounded-xl shadow-xs cursor-pointer active:scale-95 transition-all"
               >
-                <Upload className="w-3.5 h-3.5 text-[#ff4757]" />
+                <Upload className="w-3.5 h-3.5 text-blue-400" />
                 <span>Tải ảnh / video lên</span>
               </label>
               <input
@@ -496,7 +496,7 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                 {mediaItems.map((item) => (
                   <div
                     key={item.id}
-                    className="relative group rounded-lg overflow-hidden border border-[#babecc] bg-slate-900 aspect-video flex items-center justify-center shadow-xs"
+                    className="relative group rounded-xl overflow-hidden border border-slate-200 bg-slate-900 aspect-video flex items-center justify-center shadow-xs"
                   >
                     {item.type === "video" ? (
                       <div className="w-full h-full flex flex-col items-center justify-center bg-slate-950 text-white p-2 text-center">
@@ -540,8 +540,8 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                 ))}
               </div>
             ) : (
-              <div className="border border-dashed border-[#babecc] rounded-lg p-3 text-center bg-white/40">
-                <p className="text-xs text-[#666666]">
+              <div className="border border-dashed border-slate-200 rounded-xl p-4 text-center bg-slate-50/60">
+                <p className="text-xs text-slate-500">
                   Chưa có hình ảnh/video nào. Hãy bấm "Tải ảnh / video lên" ở góc phải để thêm tư liệu lớp học.
                 </p>
               </div>
@@ -549,33 +549,33 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
           </div>
 
           {/* 6. TRƯỜNG DỮ LIỆU SỐ 6: "BÀI TẬP VỀ NHÀ" (ĐỒNG BỘ QUA PHẦN BÀI TẬP CỦA HỌC SINH) */}
-          <div className="pt-2 border-t border-[#babecc]/60 space-y-3.5">
+          <div className="pt-2 border-t border-slate-100 space-y-3.5">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-[#2d3436] text-[#ff4757] flex items-center justify-center font-bold shadow-xs shrink-0">
-                <FileCheck2 className="w-4 h-4" />
+              <div className="w-7 h-7 rounded-lg bg-blue-50 text-[#0066FF] flex items-center justify-center font-bold shadow-2xs shrink-0 border border-blue-100">
+                <FileCheck2 className="w-4 h-4 text-[#0066FF]" />
               </div>
               <div>
-                <span className="text-xs sm:text-sm font-bold text-[#1a1a1a] tracking-tight">
+                <span className="text-xs sm:text-sm font-bold text-slate-900 tracking-tight">
                   6. Bài tập về nhà:
                 </span>
               </div>
             </div>
 
             {/* Khung chứa các trường dữ liệu của bài tập về nhà */}
-            <div className="bg-[#e0e5ec] border border-white/90 border-b-[#babecc] border-r-[#babecc] rounded-xl p-3.5 sm:p-4 shadow-[var(--shadow-card-sm)] space-y-3.5">
+            <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 sm:p-5 shadow-xs space-y-3.5">
               {/* Hàng: Unit buổi học & Thưởng tokens */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {/* Unit buổi học (Nhập text) */}
                 <div className="sm:col-span-2 space-y-1.5">
                   <label
                     htmlFor="input-hw-unit"
-                    className="text-xs font-bold text-[#1a1a1a] flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5"
+                    className="text-xs font-bold text-slate-800 flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5"
                   >
                     <span className="flex items-center gap-1.5">
-                      <BookOpen className="w-3.5 h-3.5 text-[#ff4757]" />
+                      <BookOpen className="w-3.5 h-3.5 text-[#0066FF]" />
                       <span>Unit buổi học:</span>
                     </span>
-                    <span className="text-[11px] text-[#666666] font-normal leading-tight">
+                    <span className="text-[11px] text-slate-500 font-normal leading-tight">
                       (Ví dụ: Unit 3 - Speaking & Reading Focus)
                     </span>
                   </label>
@@ -585,13 +585,13 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                     value={hwUnit}
                     onChange={(e) => setHwUnit(e.target.value)}
                     placeholder="Ví dụ: Unit 3 - Speaking & Reading Focus"
-                    className="w-full min-h-[42px] px-3 py-2 text-xs sm:text-sm rounded-lg bg-white border border-[#babecc] text-[#1a1a1a] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-2 focus:ring-[#ff4757]/40"
+                    className="w-full min-h-[42px] px-3.5 py-2 text-xs sm:text-sm rounded-xl bg-white border border-slate-200 text-slate-900 focus:outline-none focus:border-[#0066FF] focus:ring-2 focus:ring-[#0066FF]/20"
                   />
                 </div>
 
                 {/* Thưởng tokens: (Chọn +5, +10, +15 tokens) */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-[#1a1a1a] flex items-center gap-1.5">
+                  <label className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
                     <Coins className="w-3.5 h-3.5 text-amber-500" />
                     <span>Thưởng tokens:</span>
                   </label>
@@ -603,10 +603,10 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                           key={pts}
                           type="button"
                           onClick={() => setHwTokens(pts)}
-                          className={`min-h-[40px] px-2 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-0.5 border ${
+                          className={`min-h-[40px] px-2 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-0.5 border ${
                             isSelected
-                              ? "bg-[#ff4757] text-white border-[#ff4757] shadow-[var(--shadow-accent-sm)]"
-                              : "bg-white text-[#1a1a1a] border-[#babecc] hover:bg-slate-50 soft-ui-convex"
+                              ? "bg-[#0066FF] text-white border-[#0066FF] shadow-sm shadow-blue-500/20"
+                              : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
                           }`}
                         >
                           +{pts}T
@@ -621,13 +621,13 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
               <div className="space-y-1.5">
                 <label
                   htmlFor="input-hw-description"
-                  className="text-xs font-bold text-[#1a1a1a] flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5"
+                  className="text-xs font-bold text-slate-800 flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5"
                 >
                   <span className="flex items-center gap-1.5">
-                    <FileText className="w-3.5 h-3.5 text-[#ff4757]" />
+                    <FileText className="w-3.5 h-3.5 text-[#0066FF]" />
                     <span>Nội dung bài tập:</span>
                   </span>
-                  <span className="text-[11px] text-[#666666] font-normal leading-tight">
+                  <span className="text-[11px] text-slate-500 font-normal leading-tight">
                     (Mô tả yêu cầu bài tập cho học sinh)
                   </span>
                 </label>
@@ -637,7 +637,7 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                   value={hwDescription}
                   onChange={(e) => setHwDescription(e.target.value)}
                   placeholder="Ví dụ: Làm phiếu bài tập Thì Hiện Tại Hoàn Thành (Part 1 & 2), gạch chân từ khóa và bóc tách thành phần câu S-V-O-M."
-                  className="w-full p-2.5 text-xs sm:text-sm rounded-lg bg-white border border-[#babecc] text-[#1a1a1a] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-2 focus:ring-[#ff4757]/40 leading-relaxed resize-y"
+                  className="w-full p-3 text-xs sm:text-sm rounded-xl bg-white border border-slate-200 text-slate-900 focus:outline-none focus:border-[#0066FF] focus:ring-2 focus:ring-[#0066FF]/20 leading-relaxed resize-y"
                 />
               </div>
 
@@ -646,13 +646,13 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                 <div className="sm:col-span-2 space-y-1.5">
                   <label
                     htmlFor="input-hw-deadline-date"
-                    className="text-xs font-bold text-[#1a1a1a] flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5"
+                    className="text-xs font-bold text-slate-800 flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5"
                   >
                     <span className="flex items-center gap-1.5">
-                      <CalendarIcon className="w-3.5 h-3.5 text-[#ff4757]" />
+                      <CalendarIcon className="w-3.5 h-3.5 text-[#0066FF]" />
                       <span>Hạn chót:</span>
                     </span>
-                    <span className="text-[11px] text-[#666666] font-normal leading-tight">
+                    <span className="text-[11px] text-slate-500 font-normal leading-tight">
                       (Chọn ngày trong lịch)
                     </span>
                   </label>
@@ -661,7 +661,7 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                     type="date"
                     value={hwDeadlineDate}
                     onChange={(e) => setHwDeadlineDate(e.target.value)}
-                    className="w-full min-h-[42px] px-3 py-2 text-xs sm:text-sm rounded-lg bg-white border border-[#babecc] text-[#1a1a1a] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-2 focus:ring-[#ff4757]/40 cursor-pointer font-mono"
+                    className="w-full min-h-[42px] px-3.5 py-2 text-xs sm:text-sm rounded-xl bg-white border border-slate-200 text-slate-900 focus:outline-none focus:border-[#0066FF] focus:ring-2 focus:ring-[#0066FF]/20 cursor-pointer font-mono"
                   />
                 </div>
 
@@ -669,9 +669,9 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                 <div className="space-y-1.5">
                   <label
                     htmlFor="input-hw-deadline-time"
-                    className="text-xs font-bold text-[#1a1a1a] flex items-center gap-1.5"
+                    className="text-xs font-bold text-slate-800 flex items-center gap-1.5"
                   >
-                    <Clock className="w-3.5 h-3.5 text-[#ff4757]" />
+                    <Clock className="w-3.5 h-3.5 text-[#0066FF]" />
                     <span>Giờ hạn chót:</span>
                   </label>
                   <input
@@ -679,7 +679,7 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                     type="time"
                     value={hwDeadlineTime}
                     onChange={(e) => setHwDeadlineTime(e.target.value)}
-                    className="w-full min-h-[42px] px-3 py-2 text-xs sm:text-sm rounded-lg bg-white border border-[#babecc] text-[#1a1a1a] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-2 focus:ring-[#ff4757]/40 cursor-pointer font-mono"
+                    className="w-full min-h-[42px] px-3.5 py-2 text-xs sm:text-sm rounded-xl bg-white border border-slate-200 text-slate-900 focus:outline-none focus:border-[#0066FF] focus:ring-2 focus:ring-[#0066FF]/20 cursor-pointer font-mono"
                   />
                 </div>
               </div>
@@ -687,12 +687,12 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
               {/* Tài liệu: (Upload đa định dạng: Audio, Video, PDF, Image) */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <label className="text-xs font-bold text-[#1a1a1a] flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5">
+                  <label className="text-xs font-bold text-slate-800 flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5">
                     <span className="flex items-center gap-1.5">
-                      <Paperclip className="w-3.5 h-3.5 text-[#ff4757]" />
+                      <Paperclip className="w-3.5 h-3.5 text-[#0066FF]" />
                       <span>Tài liệu:</span>
                     </span>
-                    <span className="text-[11px] text-[#666666] font-normal leading-tight">
+                    <span className="text-[11px] text-slate-500 font-normal leading-tight">
                       (Upload đa định dạng: Audio, Video, PDF, Image)
                     </span>
                   </label>
@@ -700,9 +700,9 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                   {/* Nút Upload tài liệu */}
                   <label
                     htmlFor="input-upload-hw-materials"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-[#2d3436] hover:bg-[#1a1a1a] px-3 py-1.5 rounded-lg shadow-sm border border-white/20 cursor-pointer active:scale-95 transition-all"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 px-3.5 py-1.5 rounded-xl shadow-xs cursor-pointer active:scale-95 transition-all"
                   >
-                    <Upload className="w-3.5 h-3.5 text-[#ff4757]" />
+                    <Upload className="w-3.5 h-3.5 text-blue-400" />
                     <span>Tải tài liệu lên</span>
                   </label>
                   <input
@@ -722,20 +722,20 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                       return (
                         <div
                           key={mat.id}
-                          className="flex items-center justify-between gap-2 p-2.5 rounded-lg bg-white border border-[#babecc] shadow-xs"
+                          className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-white border border-slate-200 shadow-xs"
                         >
                           <div className="flex items-center gap-2 min-w-0">
-                            <div className="w-7 h-7 rounded-md bg-[#d1d9e6] text-[#ff4757] flex items-center justify-center shrink-0">
+                            <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0066FF] flex items-center justify-center shrink-0 border border-blue-100">
                               {mat.type === "pdf" && <FileText className="w-4 h-4" />}
                               {mat.type === "mp3" && <Headphones className="w-4 h-4" />}
                               {mat.type === "video" && <Film className="w-4 h-4" />}
                               {mat.type === "image" && <ImageIcon className="w-4 h-4" />}
                             </div>
                             <div className="min-w-0">
-                              <p className="text-xs font-bold text-[#1a1a1a] truncate">
+                              <p className="text-xs font-bold text-slate-800 truncate">
                                 {mat.title}
                               </p>
-                              <span className="text-[10px] text-[#666666] uppercase font-mono">
+                              <span className="text-[10px] text-slate-500 uppercase font-mono">
                                 {mat.type} • {mat.fileSize || "Đính kèm"}
                               </span>
                             </div>
@@ -744,7 +744,7 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                           <button
                             type="button"
                             onClick={() => removeHwMaterial(mat.id)}
-                            className="p-1 rounded-md text-[#666666] hover:text-red-600 transition-colors cursor-pointer shrink-0"
+                            className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 transition-colors cursor-pointer shrink-0"
                             title="Xóa tài liệu này"
                             aria-label="Xóa tài liệu này"
                           >
@@ -755,8 +755,8 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                     })}
                   </div>
                 ) : (
-                  <div className="border border-dashed border-[#babecc] rounded-lg p-2.5 text-center bg-white/40">
-                    <p className="text-xs text-[#666666]">
+                  <div className="border border-dashed border-slate-200 rounded-xl p-3 text-center bg-white/60">
+                    <p className="text-xs text-slate-500">
                       Chưa có tài liệu đính kèm. Bấm "Tải tài liệu lên" để thêm file Audio MP3, Video bài giảng, đề PDF hoặc Ảnh.
                     </p>
                   </div>
@@ -767,13 +767,13 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
               <div className="space-y-1.5">
                 <label
                   htmlFor="input-hw-teacher-instruction"
-                  className="text-xs font-bold text-[#1a1a1a] flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5"
+                  className="text-xs font-bold text-slate-800 flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-1.5"
                 >
                   <span className="flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-[#ff4757]" />
+                    <Sparkles className="w-3.5 h-3.5 text-[#0066FF]" />
                     <span>Hướng dẫn từ cô Nghi:</span>
                   </span>
-                  <span className="text-[11px] text-[#666666] font-normal leading-tight">
+                  <span className="text-[11px] text-slate-500 font-normal leading-tight">
                     (Lời dặn dò cho học sinh khi làm bài)
                   </span>
                 </label>
@@ -783,21 +783,21 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
                   value={hwTeacherInstruction}
                   onChange={(e) => setHwTeacherInstruction(e.target.value)}
                   placeholder="Ví dụ: Các con in phiếu hoặc chép trực tiếp vào vở, gạch chân cấu trúc và nộp trước hạn chót nhé!"
-                  className="w-full p-2.5 text-xs sm:text-sm rounded-lg bg-white border border-[#babecc] text-[#1a1a1a] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-2 focus:ring-[#ff4757]/40 leading-relaxed resize-y"
+                  className="w-full p-3 text-xs sm:text-sm rounded-xl bg-white border border-slate-200 text-slate-900 focus:outline-none focus:border-[#0066FF] focus:ring-2 focus:ring-[#0066FF]/20 leading-relaxed resize-y"
                 />
               </div>
             </div>
           </div>
 
           {/* Action Row: Nút Đồng bộ dữ liệu sang toàn bộ học sinh của lớp */}
-          <div className="flex flex-col sm:flex-row items-center justify-end gap-3 pt-3 border-t border-[#babecc]/50">
+          <div className="flex flex-col sm:flex-row items-center justify-end gap-3 pt-3 border-t border-slate-100">
             <div className="flex items-center gap-2.5 w-full sm:w-auto">
               <button
                 type="button"
                 id="btn-sync-lesson-to-parents"
                 onClick={handleSaveAndSync}
                 disabled={isSaving}
-                className="w-full sm:w-auto min-h-[42px] px-5 py-2.5 rounded-lg bg-[#ff4757] hover:bg-[#e03949] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[var(--shadow-accent)] border border-white/30 active:scale-95 transition-all cursor-pointer disabled:opacity-50 disabled:pointer-events-none"
+                className="w-full sm:w-auto min-h-[42px] px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0066FF] to-[#0052CC] hover:opacity-95 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md shadow-blue-500/20 active:scale-95 transition-all cursor-pointer disabled:opacity-50 disabled:pointer-events-none"
               >
                 {isSaving ? (
                   <>
@@ -816,7 +816,7 @@ export const ClassLessonEditor: React.FC<ClassLessonEditorProps> = ({
 
           {/* Toast thông báo lưu thành công */}
           {showSuccessToast && (
-            <div className="rounded-lg bg-emerald-50 border border-emerald-400/80 p-3 flex items-center gap-2.5 text-xs text-emerald-950 font-medium animate-fadeIn">
+            <div className="rounded-xl bg-emerald-50 border border-emerald-200 p-3 flex items-center gap-2.5 text-xs text-emerald-900 font-medium animate-fadeIn">
               <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>
                 Đã đồng bộ thành công thông tin buổi học & bài tập về nhà tới {targetStudents.length} học sinh trong lớp!

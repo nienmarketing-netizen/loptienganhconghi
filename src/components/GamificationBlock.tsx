@@ -42,43 +42,44 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
   return (
     <div className="relative overflow-hidden soft-ui-embossed rounded-xl sm:rounded-2xl p-4 sm:p-6 space-y-4">
       {/* Title & Badge */}
-      <div className="flex items-center justify-between gap-2 pb-2 border-b border-[#b2c2d4]/40">
+      <div className="flex items-center justify-between gap-2 pb-2 border-b border-slate-100">
         <div>
-          <h3 className="text-xs sm:text-base font-bold text-[#1a1a1a] tracking-[-0.015em] flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
+          <h3 className="text-xs sm:text-base font-bold text-[#1e293b] tracking-[-0.015em] flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-[#ffb800] shadow-[0_0_8px_#ffb800] animate-pulse" />
             <span>Hành trình nỗ lực</span>
           </h3>
-          <p className="text-xs text-[#666666] font-normal mt-0.5">
+          <p className="text-xs text-[#64748b] font-normal mt-0.5">
             Tích lũy nỗ lực - Đổi thưởng từng nấc & cơ chế reset minh bạch
           </p>
         </div>
 
-        <div className="flex items-center gap-1.5 soft-ui-convex text-[#1a1a1a] text-xs font-semibold px-3 py-1.5 rounded-lg leading-tight">
-          <Award className="w-4 h-4 text-[#ff4757]" />
-          <span className="font-semibold text-xs">{currentTokens} Tokens</span>
+        <div className="flex items-center gap-1.5 bg-amber-50 text-amber-800 border border-amber-200/80 text-xs font-bold px-3 py-1.5 rounded-full leading-tight shadow-xs">
+          <Award className="w-4 h-4 text-[#ff9800]" />
+          <span className="font-bold text-xs">{currentTokens} Tokens</span>
         </div>
       </div>
 
-      {/* Large Progress Display - Recessed Well */}
-      <div className="soft-ui-debossed rounded-xl p-4 sm:p-5 space-y-3.5">
+      {/* Large Progress Display - Clean Recessed Well */}
+      <div className="bg-[#edf3fa] border border-[#dbe4f0] rounded-2xl p-4 sm:p-5 space-y-3.5 shadow-[inset_0_1px_3px_rgba(0,0,0,0.03)]">
         <div className="flex items-baseline justify-between gap-2">
           <div>
-            <span className="text-xs font-semibold text-[#666666] block">
+            <span className="text-xs font-semibold text-[#64748b] block">
               Tiến độ tích lũy của con:
             </span>
             <div className="flex items-baseline gap-1.5 mt-0.5">
-              <span className="text-2xl sm:text-3xl font-black tracking-tight text-[#ff4757]">
+              <span className="text-2xl sm:text-3xl font-black tracking-tight text-[#ff9800]">
                 {currentTokens}
               </span>
-              <span className="text-base sm:text-lg font-semibold text-[#666666]">
+              <span className="text-base sm:text-lg font-semibold text-[#64748b]">
                 /100
               </span>
-              <span className="text-xs font-semibold text-[#1a1a1a] ml-1">Tokens</span>
+              <span className="text-xs font-bold text-[#ffb800] ml-1">Tokens</span>
             </div>
           </div>
 
           <div className="text-right">
-            <span className="inline-flex items-center text-xs font-semibold text-emerald-800 bg-emerald-100/90 px-2.5 py-1 rounded-md border border-emerald-400 leading-tight">
+            <span className="inline-flex items-center text-xs font-bold text-emerald-700 bg-emerald-100/90 px-2.5 py-1 rounded-full border border-emerald-300 leading-tight shadow-xs">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 mr-1" />
               <span>{percentage}% chặng đường</span>
             </span>
           </div>
@@ -87,37 +88,37 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
         {/* Large Mechanical Progress Bar with Exact 4 Milestones: 0, 25, 50, 75, 100 */}
         <div className="space-y-1.5 pt-1">
           {/* Top Milestones Numbers */}
-          <div className="relative h-4 text-[11px] font-bold font-mono text-[#666666]">
+          <div className="relative h-4 text-[11px] font-bold font-mono text-[#64748b]">
             <span className="absolute left-0 text-left">0</span>
             <span className="absolute left-[25%] -translate-x-1/2 text-center">25T</span>
-            <span className="absolute left-[50%] -translate-x-1/2 text-center text-amber-600">50T</span>
+            <span className="absolute left-[50%] -translate-x-1/2 text-center text-amber-600 font-bold">50T</span>
             <span className="absolute left-[75%] -translate-x-1/2 text-center">75T</span>
-            <span className="absolute right-0 text-right text-[#ff4757]">100T</span>
+            <span className="absolute right-0 text-right text-[#ff9800] font-bold">100T</span>
           </div>
 
           {/* Progress bar with vertical milestone tick lines */}
           <div className="relative flex items-center">
             <div className="absolute inset-0 pointer-events-none z-10">
               <div className="relative w-full h-full">
-                <span className="absolute left-0 -top-1 -bottom-1 w-[1.5px] bg-[#64748b]/50 rounded-full shadow-[0_0_1px_rgba(255,255,255,0.7)]" />
-                <span className="absolute left-[25%] -top-1 -bottom-1 w-[1.5px] -translate-x-1/2 bg-[#64748b]/50 rounded-full shadow-[0_0_1px_rgba(255,255,255,0.7)]" />
-                <span className="absolute left-[50%] -top-1 -bottom-1 w-[2px] -translate-x-1/2 bg-amber-500 rounded-full shadow-[0_0_2px_rgba(255,255,255,0.8)]" />
-                <span className="absolute left-[75%] -top-1 -bottom-1 w-[1.5px] -translate-x-1/2 bg-[#64748b]/50 rounded-full shadow-[0_0_1px_rgba(255,255,255,0.7)]" />
-                <span className="absolute right-0 -top-1 -bottom-1 w-[2px] bg-[#ff4757] rounded-full shadow-[0_0_2px_rgba(255,255,255,0.8)]" />
+                <span className="absolute left-0 -top-1 -bottom-1 w-[1.5px] bg-[#94a3b8]/60 rounded-full" />
+                <span className="absolute left-[25%] -top-1 -bottom-1 w-[1.5px] -translate-x-1/2 bg-[#94a3b8]/60 rounded-full" />
+                <span className="absolute left-[50%] -top-1 -bottom-1 w-[2px] -translate-x-1/2 bg-amber-400 rounded-full shadow-[0_0_2px_rgba(255,184,0,0.8)]" />
+                <span className="absolute left-[75%] -top-1 -bottom-1 w-[1.5px] -translate-x-1/2 bg-[#94a3b8]/60 rounded-full" />
+                <span className="absolute right-0 -top-1 -bottom-1 w-[2px] bg-[#ff9800] rounded-full shadow-[0_0_2px_rgba(255,152,0,0.8)]" />
               </div>
             </div>
 
             <Progress
               value={currentTokens}
               max={maxTokens}
-              className="h-5 sm:h-6"
-              indicatorClassName="bg-[#ff4757]"
+              className="h-5 sm:h-6 rounded-full bg-slate-200/80 overflow-hidden"
+              indicatorClassName="bg-[#4caf50]"
               showStripes={true}
             />
           </div>
 
           {/* Bottom Milestones Icons */}
-          <div className="relative h-6 text-xs sm:text-sm leading-none pt-1 select-none font-bold text-[#4a5568]">
+          <div className="relative h-6 text-xs sm:text-sm leading-none pt-1 select-none font-bold text-[#64748b]">
             <span className="absolute left-0 text-left" title="Khởi đầu">🌱</span>
             <span className="absolute left-[25%] -translate-x-1/2 text-center flex items-center gap-0.5" title="Mốc 25: Chỗ ngồi">
               🪑 <span className="hidden sm:inline text-[10px] font-normal">Chỗ ngồi</span>
@@ -128,20 +129,20 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
             <span className="absolute left-[75%] -translate-x-1/2 text-center flex items-center gap-0.5" title="Mốc 75: Trà sữa/Nước ép">
               🧋 <span className="hidden sm:inline text-[10px] font-normal">Đồ uống</span>
             </span>
-            <span className="absolute right-0 text-right flex items-center gap-0.5 text-[#ff4757] font-bold" title="Mốc 100: Đại bảo rương">
+            <span className="absolute right-0 text-right flex items-center gap-0.5 text-[#ff9800] font-bold" title="Mốc 100: Đại bảo rương">
               👑 <span className="hidden sm:inline text-[10px]">Đại Bảo Rương</span>
             </span>
           </div>
         </div>
 
         {/* Action callout banner */}
-        <div className="flex items-center gap-2.5 text-xs soft-ui-convex rounded-xl p-3 text-[#1a1a1a]">
+        <div className="flex items-center gap-2.5 text-xs bg-white rounded-xl p-3 text-[#1e293b] border border-slate-100 shadow-xs">
           <span className="text-xl shrink-0">{nextTier.emoji}</span>
           <div className="min-w-0">
-            <span className="text-[11px] text-[#666666] font-medium block">
+            <span className="text-[11px] text-[#64748b] font-medium block">
               Mốc phấn đấu tiếp theo:
             </span>
-            <strong className="text-xs sm:text-sm text-[#1a1a1a] font-bold block truncate">
+            <strong className="text-xs sm:text-sm text-[#1e293b] font-bold block truncate">
               {toSentenceCase(nextTier.name)} ({nextTier.milestoneTokens} Tokens)
             </strong>
           </div>
@@ -154,9 +155,9 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
           id="btn-view-barem-criteria"
           variant="outline"
           onClick={() => setShowBaremModal(true)}
-          className="w-full flex items-center justify-center gap-2 font-semibold text-xs sm:text-sm h-11 rounded-xl leading-tight border border-[#babecc] bg-[#e0e5ec] text-[#2d3436] hover:border-indigo-500 hover:text-indigo-600 transition-all cursor-pointer"
+          className="w-full flex items-center justify-center gap-2 font-semibold text-xs sm:text-sm h-11 rounded-xl leading-tight border border-slate-200 bg-white text-[#1e293b] hover:border-blue-300 hover:text-[#0066ff] hover:bg-blue-50/50 transition-all cursor-pointer shadow-xs"
         >
-          <Award className="w-4 h-4 text-indigo-600 shrink-0" />
+          <Award className="w-4 h-4 text-[#0066ff] shrink-0" />
           <span>Tiêu chí tích luỹ tokens</span>
         </Button>
 
@@ -164,9 +165,9 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
           id="btn-view-token-history"
           variant="outline"
           onClick={onOpenHistory}
-          className="w-full flex items-center justify-center gap-2 font-semibold text-xs sm:text-sm h-11 rounded-xl leading-tight border border-[#babecc] bg-[#e0e5ec] text-[#2d3436] hover:border-amber-500 hover:text-amber-600 transition-all cursor-pointer"
+          className="w-full flex items-center justify-center gap-2 font-semibold text-xs sm:text-sm h-11 rounded-xl leading-tight border border-slate-200 bg-white text-[#1e293b] hover:border-amber-300 hover:text-[#ff9800] hover:bg-amber-50/50 transition-all cursor-pointer shadow-xs"
         >
-          <History className="w-4 h-4 text-amber-600 shrink-0" />
+          <History className="w-4 h-4 text-[#ff9800] shrink-0" />
           <span>Lịch sử nhận điểm</span>
         </Button>
 
@@ -174,7 +175,7 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
           id="btn-view-reward-store"
           variant="default"
           onClick={onOpenStore}
-          className="w-full flex items-center justify-center gap-2 font-semibold text-xs sm:text-sm h-11 rounded-xl leading-tight bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[var(--shadow-accent)] border border-white/30 transition-all cursor-pointer"
+          className="w-full flex items-center justify-center gap-2 font-semibold text-xs sm:text-sm h-11 rounded-xl leading-tight bg-gradient-to-r from-[#ffb800] to-[#ff9800] hover:brightness-105 text-white shadow-[0_4px_14px_rgba(255,184,0,0.35)] border border-amber-300/40 transition-all cursor-pointer"
         >
           <Gift className="w-4 h-4 shrink-0" />
           <span>Đổi quà và quay thưởng</span>

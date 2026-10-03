@@ -420,19 +420,19 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         {toasts.map((t) => (
           <div
             key={t.id}
-            className="pointer-events-auto p-3.5 sm:p-4 rounded-lg sm:rounded-xl bg-[#2d3436] text-white border border-white/20 border-b-black/40 border-r-black/40 shadow-[var(--shadow-floating)] flex items-start gap-3 transition-all animate-in slide-in-from-top-4 duration-200"
+            className="pointer-events-auto p-3.5 sm:p-4 rounded-2xl bg-slate-900 text-white border border-slate-800 shadow-xl flex items-start gap-3 transition-all animate-in slide-in-from-top-4 duration-200"
           >
             <div className="shrink-0 pt-0.5">
               {t.type === "token" ? (
-                <div className="w-8 h-8 rounded-lg bg-[#1e2528] text-amber-400 border border-white/10 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)] flex items-center justify-center font-bold font-mono">
+                <div className="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center font-bold font-mono">
                   <Coins className="w-4 h-4" />
                 </div>
               ) : t.type === "success" ? (
-                <div className="w-8 h-8 rounded-lg bg-[#1e2528] text-emerald-400 border border-white/10 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)] flex items-center justify-center">
+                <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center">
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
               ) : (
-                <div className="w-8 h-8 rounded-lg bg-[#1e2528] text-[#ff4757] border border-white/10 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)] flex items-center justify-center">
+                <div className="w-8 h-8 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30 flex items-center justify-center">
                   <Bell className="w-4 h-4" />
                 </div>
               )}
@@ -444,19 +444,19 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     ? "bg-amber-400 shadow-[0_0_6px_#f59e0b]"
                     : t.type === "success"
                     ? "bg-emerald-400 shadow-[0_0_6px_#10b981]"
-                    : "led-indicator-orange"
+                    : "bg-blue-400 shadow-[0_0_6px_#0066FF]"
                 }`} />
-                <h5 className="font-extrabold text-xs sm:text-sm leading-tight text-white font-mono">
+                <h5 className="font-bold text-xs sm:text-sm leading-tight text-white font-mono">
                   {t.title}
                 </h5>
               </div>
-              <p className="text-[11px] sm:text-xs text-[#a3b1c6] mt-0.5 leading-snug font-sans">
+              <p className="text-[11px] sm:text-xs text-slate-300 mt-0.5 leading-snug font-sans">
                 {t.description}
               </p>
             </div>
             <button
               onClick={() => removeToast(t.id)}
-              className="w-6 h-6 rounded-md bg-[#1e2528] hover:bg-[#ff4757] hover:text-white text-[#a3b1c6] flex items-center justify-center transition-colors cursor-pointer border border-white/10 shrink-0"
+              className="w-6 h-6 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer border border-slate-700 shrink-0"
               aria-label="Đóng thông báo"
             >
               <X className="w-3.5 h-3.5" />
@@ -467,18 +467,19 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
 
       {/* KHU VỰC GALLERY NÚT BẤM CHỌN LỚP HỌC • FILTER THEO [KHỐI]-[NGÀY][CA] */}
-      <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-[var(--shadow-recessed-sm)] space-y-2.5">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-1.5 border-b border-[#babecc]/50">
+      {/* Lọc dữ liệu theo lớp học */}
+      <div className="bg-white border border-slate-200/80 rounded-2xl p-3.5 sm:p-4 shadow-xs space-y-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-100">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-[#e0e5ec] text-[#2d3436] flex items-center justify-center font-bold shadow-[var(--shadow-convex-sm)] border border-white/60 shrink-0">
-              <GraduationCap className="w-4 h-4 text-[#ff4757]" />
+            <div className="w-8 h-8 rounded-xl bg-blue-50 text-[#0066ff] flex items-center justify-center font-bold border border-blue-100 shrink-0">
+              <GraduationCap className="w-4 h-4 text-[#0066ff]" />
             </div>
             <div>
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-xs sm:text-sm font-bold text-[#1a1a1a] tracking-tight">
+                <span className="text-xs sm:text-sm font-bold text-slate-900 tracking-tight">
                   Lọc dữ liệu theo lớp học
                 </span>
-                <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-white/70 text-[#2d3436] border border-white/80 shadow-2xs">
+                <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 border border-slate-200">
                   [KHỐI]-[NGÀY][CA]
                 </span>
               </div>
@@ -488,23 +489,23 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           <div className="flex items-center gap-2 self-start sm:self-auto">
             {selectedClass !== "ALL" ? (
               <div className="flex items-center gap-1.5">
-                <span className="text-[11px] text-[#666666] font-medium">Đang lọc:</span>
-                <span className="inline-flex items-center gap-1 text-xs font-bold font-mono px-2 py-0.5 rounded-md bg-[#ff4757] text-white shadow-xs border border-white/30">
+                <span className="text-[11px] text-slate-500 font-medium">Đang lọc:</span>
+                <span className="inline-flex items-center gap-1 text-xs font-bold font-mono px-2 py-0.5 rounded-lg bg-[#0066ff] text-white shadow-xs border border-white/20">
                   <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                   {selectedClass} ({classFilteredStudents.length} HS)
                 </span>
                 <button
                   type="button"
                   onClick={() => setSelectedClass("ALL")}
-                  className="text-[11px] font-semibold text-[#ff4757] hover:underline cursor-pointer ml-1"
+                  className="text-[11px] font-bold text-[#0066ff] hover:underline cursor-pointer ml-1"
                 >
                   Xóa lọc
                 </button>
               </div>
             ) : (
-              <span className="text-[11px] text-[#666666] font-medium flex items-center gap-1.5">
+              <span className="text-[11px] text-slate-500 font-medium flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_rgba(16,185,129,0.8)]" />
-                Đang xem: <strong className="text-[#1a1a1a]">Tất cả các lớp ({studentList.length} HS)</strong>
+                Đang xem: <strong className="text-slate-900 font-bold">Tất cả các lớp ({studentList.length} HS)</strong>
               </span>
             )}
           </div>
@@ -517,21 +518,21 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             type="button"
             id="btn-filter-class-all"
             onClick={() => setSelectedClass("ALL")}
-            className={`min-h-[44px] px-3 py-2 rounded-lg sm:rounded-xl text-left flex items-center justify-between transition-all cursor-pointer ${
+            className={`min-h-[44px] px-3.5 py-2 rounded-xl text-left flex items-center justify-between transition-all cursor-pointer ${
               selectedClass === "ALL"
-                ? "bg-[#ff4757] text-white shadow-[var(--shadow-accent)] border border-white/40 ring-2 ring-[#ff4757]/30 scale-[1.01]"
-                : "soft-ui-convex bg-[#e0e5ec] text-[#1a1a1a] hover:bg-[#d8e0ec] border border-white/60 shadow-[var(--shadow-card-sm)] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px]"
+                ? "bg-[#0066ff] text-white shadow-md shadow-blue-500/20 border border-white/20 scale-[1.01]"
+                : "bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200/80 active:translate-y-[1px]"
             }`}
           >
-            <span className="text-xs sm:text-[13px] font-black font-mono tracking-tight flex items-center gap-1.5 truncate">
+            <span className="text-xs sm:text-[13px] font-bold font-mono tracking-tight flex items-center gap-1.5 truncate">
               <Users className="w-3.5 h-3.5 shrink-0" />
               TẤT CẢ
             </span>
             <span
-              className={`text-[10px] sm:text-[11px] font-bold font-mono px-2 py-0.5 rounded shrink-0 leading-none ${
+              className={`text-[10px] sm:text-[11px] font-bold font-mono px-2 py-0.5 rounded-md shrink-0 leading-none ${
                 selectedClass === "ALL"
-                  ? "bg-white/20 text-white border border-white/30"
-                  : "bg-[#d1d9e6] text-[#2d3436] border border-[#babecc]/50"
+                  ? "bg-white/20 text-white"
+                  : "bg-white text-slate-700 border border-slate-200"
               }`}
             >
               {studentList.length} HS
@@ -547,10 +548,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 type="button"
                 id={`btn-filter-class-${cls.code}`}
                 onClick={() => setSelectedClass(cls.code)}
-                className={`min-h-[44px] px-3 py-2 rounded-lg sm:rounded-xl text-left flex items-center justify-between transition-all cursor-pointer ${
+                className={`min-h-[44px] px-3.5 py-2 rounded-xl text-left flex items-center justify-between transition-all cursor-pointer ${
                   isSelected
-                    ? "bg-[#ff4757] text-white shadow-[var(--shadow-accent)] border border-white/40 ring-2 ring-[#ff4757]/30 scale-[1.01]"
-                    : "soft-ui-convex bg-[#e0e5ec] text-[#1a1a1a] hover:bg-[#d8e0ec] border border-white/60 shadow-[var(--shadow-card-sm)] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px]"
+                    ? "bg-[#0066ff] text-white shadow-md shadow-blue-500/20 border border-white/20 scale-[1.01]"
+                    : "bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200/80 active:translate-y-[1px]"
                 }`}
               >
                 <div className="flex items-center gap-1.5 min-w-0">
@@ -561,15 +562,15 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                         : "bg-emerald-500 shadow-[0_0_3px_#10b981]"
                     }`}
                   />
-                  <span className="text-xs sm:text-[13px] font-black font-mono tracking-tight truncate">
+                  <span className="text-xs sm:text-[13px] font-bold font-mono tracking-tight truncate">
                     {cls.code}
                   </span>
                 </div>
                 <span
-                  className={`text-[10px] sm:text-[11px] font-bold font-mono px-2 py-0.5 rounded shrink-0 leading-none ${
+                  className={`text-[10px] sm:text-[11px] font-bold font-mono px-2 py-0.5 rounded-md shrink-0 leading-none ${
                     isSelected
-                      ? "bg-white/20 text-white border border-white/30"
-                      : "bg-[#d1d9e6] text-[#2d3436] border border-[#babecc]/50"
+                      ? "bg-white/20 text-white"
+                      : "bg-white text-slate-700 border border-slate-200"
                   }`}
                 >
                   {cls.count} HS
@@ -582,26 +583,26 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
       {/* Quick Class Stats Pill Row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
-        <div className="soft-ui-embossed-sm rounded-xl sm:rounded-2xl p-2.5 sm:p-3 flex items-center gap-2.5 border border-white/80 border-b-[#babecc] border-r-[#babecc]">
-          <div className="w-9 h-9 rounded-xl bg-[#d1d9e6] text-[#2d3436] flex items-center justify-center font-bold shrink-0 border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)]">
-            <Users className="w-4 h-4 text-[#ff4757]" />
+        <div className="bg-white rounded-2xl p-3 sm:p-3.5 flex items-center gap-3 border border-slate-200/80 shadow-xs">
+          <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0066ff] flex items-center justify-center font-bold shrink-0 border border-blue-100 shadow-2xs">
+            <Users className="w-4 h-4 text-[#0066ff]" />
           </div>
           <div>
-            <span className="text-[10px] sm:text-[11px] text-[#666666] font-medium block leading-tight">
+            <span className="text-[11px] text-slate-500 font-medium block leading-tight">
               Sĩ số lớp
             </span>
-            <span className="text-xs sm:text-sm font-bold text-[#1a1a1a] font-mono leading-tight">
+            <span className="text-xs sm:text-sm font-bold text-slate-900 font-mono leading-tight">
               {totalStudentsInClass} học sinh
             </span>
           </div>
         </div>
 
-        <div className="soft-ui-embossed-sm rounded-xl sm:rounded-2xl p-2.5 sm:p-3 flex items-center gap-2.5 border border-white/80 border-b-[#babecc] border-r-[#babecc]">
-          <div className="w-9 h-9 rounded-xl bg-[#d1d9e6] text-[#2d3436] flex items-center justify-center font-bold shrink-0 border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)]">
+        <div className="bg-white rounded-2xl p-3 sm:p-3.5 flex items-center gap-3 border border-slate-200/80 shadow-xs">
+          <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold shrink-0 border border-amber-200 shadow-2xs">
             <AlertCircle className="w-4 h-4 text-amber-600" />
           </div>
           <div>
-            <span className="text-[10px] sm:text-[11px] text-[#666666] font-medium block leading-tight">
+            <span className="text-[11px] text-slate-500 font-medium block leading-tight">
               Chưa nộp bài
             </span>
             <span className="text-xs sm:text-sm font-bold text-amber-700 font-mono leading-tight">
@@ -610,12 +611,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           </div>
         </div>
 
-        <div className="soft-ui-embossed-sm rounded-xl sm:rounded-2xl p-2.5 sm:p-3 flex items-center gap-2.5 border border-white/80 border-b-[#babecc] border-r-[#babecc]">
-          <div className="w-9 h-9 rounded-xl bg-[#d1d9e6] text-[#2d3436] flex items-center justify-center font-bold shrink-0 border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)]">
+        <div className="bg-white rounded-2xl p-3 sm:p-3.5 flex items-center gap-3 border border-slate-200/80 shadow-xs">
+          <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center font-bold shrink-0 border border-sky-200 shadow-2xs">
             <Clock className="w-4 h-4 text-sky-600" />
           </div>
           <div>
-            <span className="text-[10px] sm:text-[11px] text-[#666666] font-medium block leading-tight">
+            <span className="text-[11px] text-slate-500 font-medium block leading-tight">
               Chờ cô chấm
             </span>
             <span className="text-xs sm:text-sm font-bold text-sky-700 font-mono leading-tight">
@@ -624,12 +625,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           </div>
         </div>
 
-        <div className="soft-ui-embossed-sm rounded-xl sm:rounded-2xl p-2.5 sm:p-3 flex items-center gap-2.5 border border-white/80 border-b-[#babecc] border-r-[#babecc]">
-          <div className="w-9 h-9 rounded-xl bg-[#d1d9e6] text-[#2d3436] flex items-center justify-center font-bold shrink-0 border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)]">
+        <div className="bg-white rounded-2xl p-3 sm:p-3.5 flex items-center gap-3 border border-slate-200/80 shadow-xs">
+          <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold shrink-0 border border-emerald-200 shadow-2xs">
             <Award className="w-4 h-4 text-emerald-600" />
           </div>
           <div>
-            <span className="text-[10px] sm:text-[11px] text-[#666666] font-medium block leading-tight">
+            <span className="text-[11px] text-slate-500 font-medium block leading-tight">
               Sắp chạm 100T
             </span>
             <span className="text-xs sm:text-sm font-bold text-emerald-700 font-mono leading-tight">
@@ -662,29 +663,29 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       />
 
       {/* Control Bar: Search & Filter Tabs */}
-      <div className="bg-[#d1d9e6] rounded-xl sm:rounded-2xl border border-[#babecc]/60 p-2.5 sm:p-3 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06),inset_-1px_-1px_2px_rgba(255,255,255,0.6)] space-y-2">
+      <div className="bg-white rounded-2xl border border-slate-200/80 p-3 shadow-xs space-y-2.5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
           {/* Search Box */}
           <div className="relative flex-1">
-            <Search className="w-4 h-4 text-[#666666] absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Tìm theo tên học sinh, trường, lớp..."
-              className="w-full pl-9 pr-3 py-2 rounded-lg sm:rounded-xl bg-[#e0e5ec] border border-[#babecc] focus:outline-none focus:ring-2 focus:ring-[#ff4757]/40 text-xs sm:text-sm text-[#1a1a1a] placeholder-[#737373] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] min-h-[40px]"
+              className="w-full pl-9 pr-3 py-2 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-[#0066ff] focus:ring-2 focus:ring-[#0066ff]/20 text-xs sm:text-sm text-slate-900 placeholder-slate-400 min-h-[40px]"
             />
           </div>
 
           {/* Filter Mode Pills (Touch-Friendly) */}
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 text-xs font-semibold">
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 text-xs font-bold">
             <button
               type="button"
               onClick={() => setFilterMode("all")}
-              className={`min-h-[38px] px-3.5 py-1.5 rounded-lg sm:rounded-xl whitespace-nowrap transition-all cursor-pointer font-bold ${
+              className={`min-h-[38px] px-3.5 py-1.5 rounded-xl whitespace-nowrap transition-all cursor-pointer font-bold ${
                 filterMode === "all"
-                  ? "bg-[#ff4757] text-white shadow-[0_2px_6px_rgba(255,71,87,0.3)] border border-white/40 ring-1 ring-[#ff4757]/30"
-                  : "bg-[#e0e5ec] text-[#1a1a1a] hover:bg-[#d8e0ec] border border-white/80 shadow-[1.5px_1.5px_3px_#b8c6d8,-1.5px_-1.5px_3px_#ffffff] active:shadow-[inset_1px_1px_2px_rgba(0,0,0,0.12)] active:translate-y-[1px]"
+                  ? "bg-[#0066ff] text-white shadow-md shadow-blue-500/20 border border-white/20"
+                  : "bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200/80 active:translate-y-[1px]"
               }`}
             >
               Tất cả ({classFilteredStudents.length})
@@ -692,10 +693,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             <button
               type="button"
               onClick={() => setFilterMode("has_unsubmitted")}
-              className={`min-h-[38px] px-3.5 py-1.5 rounded-lg sm:rounded-xl whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 font-bold ${
+              className={`min-h-[38px] px-3.5 py-1.5 rounded-xl whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 font-bold ${
                 filterMode === "has_unsubmitted"
-                  ? "bg-amber-600 text-white shadow-[0_2px_6px_rgba(217,119,6,0.3)] border border-white/40"
-                  : "bg-[#e0e5ec] text-amber-800 hover:bg-[#d8e0ec] border border-white/80 shadow-[1.5px_1.5px_3px_#b8c6d8,-1.5px_-1.5px_3px_#ffffff] active:shadow-[inset_1px_1px_2px_rgba(0,0,0,0.12)] active:translate-y-[1px]"
+                  ? "bg-amber-500 text-white shadow-md shadow-amber-500/25 border border-white/20"
+                  : "bg-amber-50/80 text-amber-900 hover:bg-amber-100 border border-amber-200 active:translate-y-[1px]"
               }`}
             >
               <AlertCircle className="w-3.5 h-3.5" />
@@ -704,10 +705,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             <button
               type="button"
               onClick={() => setFilterMode("has_pending_grading")}
-              className={`min-h-[38px] px-3.5 py-1.5 rounded-lg sm:rounded-xl whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 font-bold ${
+              className={`min-h-[38px] px-3.5 py-1.5 rounded-xl whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 font-bold ${
                 filterMode === "has_pending_grading"
-                  ? "bg-sky-600 text-white shadow-[0_2px_6px_rgba(2,132,199,0.3)] border border-white/40"
-                  : "bg-[#e0e5ec] text-sky-800 hover:bg-[#d8e0ec] border border-white/80 shadow-[1.5px_1.5px_3px_#b8c6d8,-1.5px_-1.5px_3px_#ffffff] active:shadow-[inset_1px_1px_2px_rgba(0,0,0,0.12)] active:translate-y-[1px]"
+                  ? "bg-sky-600 text-white shadow-md shadow-sky-500/25 border border-white/20"
+                  : "bg-sky-50/80 text-sky-900 hover:bg-sky-100 border border-sky-200 active:translate-y-[1px]"
               }`}
             >
               <Clock className="w-3.5 h-3.5" />
@@ -716,10 +717,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             <button
               type="button"
               onClick={() => setFilterMode("ready_for_reward")}
-              className={`min-h-[38px] px-3.5 py-1.5 rounded-lg sm:rounded-xl whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 font-bold ${
+              className={`min-h-[38px] px-3.5 py-1.5 rounded-xl whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 font-bold ${
                 filterMode === "ready_for_reward"
-                  ? "bg-emerald-600 text-white shadow-[0_2px_6px_rgba(5,150,105,0.3)] border border-white/40"
-                  : "bg-[#e0e5ec] text-emerald-800 hover:bg-[#d8e0ec] border border-white/80 shadow-[1.5px_1.5px_3px_#b8c6d8,-1.5px_-1.5px_3px_#ffffff] active:shadow-[inset_1px_1px_2px_rgba(0,0,0,0.12)] active:translate-y-[1px]"
+                  ? "bg-emerald-600 text-white shadow-md shadow-emerald-500/25 border border-white/20"
+                  : "bg-emerald-50/80 text-emerald-900 hover:bg-emerald-100 border border-emerald-200 active:translate-y-[1px]"
               }`}
             >
               <Coins className="w-3.5 h-3.5" />
@@ -733,7 +734,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       <div className="space-y-3">
         {/* Header Label */}
         <div className="flex items-center justify-between text-xs px-1">
-          <span className="font-bold text-[#ff4757] text-xs sm:text-sm">
+          <span className="font-bold text-[#0066ff] text-xs sm:text-sm">
             Danh sách học sinh ({filteredStudents.length} học sinh)
           </span>
         </div>
@@ -752,9 +753,6 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             const submitted = assignments.filter((a) => a.status === "submitted");
             const graded = assignments.filter((a) => a.status === "graded");
 
-            const isScoringActive =
-              activeScoringStudentSlug === student.slug;
-
             // Làm sạch hiển thị: Bỏ phần "- K6 Chuyển Cấp...", "- Nhóm...", chỉ giữ lại "Lớp X" hoặc "Khối X"
             const cleanedGrade = (student.grade || "")
               .replace(/•.*$/i, "")
@@ -764,7 +762,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             return (
               <div
                 key={student.id}
-                className="soft-ui-embossed rounded-xl sm:rounded-2xl p-3.5 sm:p-5 border border-white/90 border-b-[#babecc] border-r-[#babecc] shadow-[var(--shadow-card)] space-y-3.5 transition-all"
+                className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition-all space-y-3.5"
               >
                 {/* Top Row: Student Profile & Tokens Badge */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -773,21 +771,21 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     <img
                       src={student.avatar}
                       alt={student.fullName}
-                      className="w-12 h-12 rounded-xl object-cover ring-2 ring-white border border-[#babecc]/60 shadow-[var(--shadow-card-sm)] shrink-0"
+                      className="w-12 h-12 rounded-2xl object-cover ring-2 ring-blue-100 border border-slate-200 shadow-xs shrink-0"
                     />
                     <div>
                       <div className="flex items-center gap-2 flex-wrap">
-                        <h4 className="text-xs sm:text-base font-bold text-[#1a1a1a] tracking-tight">
+                        <h4 className="text-xs sm:text-base font-bold text-slate-900 tracking-tight">
                           {student.fullName}
                         </h4>
-                        <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded-md bg-[#d1d9e6] text-[#2d3436] border border-[#babecc]/60 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)]">
+                        <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 border border-slate-200">
                           {student.id}
                         </span>
-                        <span className="text-[11px] text-[#666666] font-medium">
+                        <span className="text-[11px] text-slate-500 font-medium">
                           ({student.parentName})
                         </span>
                       </div>
-                      <p className="text-xs text-[#666666] mt-0.5 font-normal">
+                      <p className="text-xs text-slate-500 mt-0.5 font-normal">
                         {cleanedGrade || student.grade} • {student.school}
                       </p>
                     </div>
@@ -798,24 +796,24 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     <div className="space-y-1">
                       <div className="flex items-center sm:justify-end gap-1.5">
                         <Coins className="w-4 h-4 text-amber-500" />
-                        <span className="font-mono text-base sm:text-lg font-bold text-[#1a1a1a]">
+                        <span className="font-mono text-base sm:text-lg font-bold text-slate-900">
                           {currentTokens}
                         </span>
-                        <span className="text-xs text-[#666666] font-semibold">
+                        <span className="text-xs text-slate-500 font-semibold">
                           / 100 Tokens
                         </span>
                       </div>
 
                       {/* Mini Progress Bar */}
-                      <div className="w-28 sm:w-32 bg-[#d1d9e6] rounded-full h-2.5 overflow-hidden border border-[#babecc]/60 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.12)]">
+                      <div className="w-28 sm:w-32 bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200">
                         <div
                           style={{
                             width: `${Math.min(100, (currentTokens / 100) * 100)}%`,
                           }}
-                          className="h-full rounded-full bg-gradient-to-r from-amber-400 to-[#ff4757]"
+                          className="h-full rounded-full bg-gradient-to-r from-amber-400 to-[#ff9800]"
                         />
                       </div>
-                      <div className="text-[10px] text-[#666666] font-medium truncate max-w-[140px]">
+                      <div className="text-[10px] text-slate-500 font-medium truncate max-w-[140px]">
                         Quà: {student.gamification.targetRewardName.split("+")[0]}
                       </div>
                     </div>
@@ -823,31 +821,31 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 </div>
 
                 {/* Middle Row: Assignment Status Overview */}
-                <div className="bg-[#d1d9e6]/80 rounded-xl p-2.5 sm:p-3 border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                <div className="bg-slate-50 rounded-xl p-3 border border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="font-bold text-[#1a1a1a]">Bài tập tuần:</span>
+                    <span className="font-bold text-slate-900">Bài tập tuần:</span>
                     {unsubmitted.length > 0 ? (
-                      <span className="inline-flex items-center gap-1 font-bold text-amber-900 bg-amber-100/90 px-2 py-0.5 rounded-md border border-amber-300 text-[11px]">
-                        <AlertCircle className="w-3 h-3 text-amber-600" />
+                      <span className="inline-flex items-center gap-1 font-bold text-amber-900 bg-amber-100/90 px-2.5 py-0.5 rounded-lg border border-amber-300 text-[11px]">
+                        <AlertCircle className="w-3.5 h-3.5 text-amber-600" />
                         {unsubmitted.length} bài chưa làm
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1 font-bold text-emerald-900 bg-emerald-100 px-2 py-0.5 rounded-md border border-emerald-300 text-[11px]">
-                        <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                      <span className="inline-flex items-center gap-1 font-bold text-emerald-900 bg-emerald-100 px-2.5 py-0.5 rounded-lg border border-emerald-300 text-[11px]">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                         Đã làm đủ bài tập
                       </span>
                     )}
 
                     {submitted.length > 0 && (
-                      <span className="inline-flex items-center gap-1 font-bold text-sky-900 bg-sky-100 px-2 py-0.5 rounded-md border border-sky-300 text-[11px]">
-                        <Clock className="w-3 h-3 text-sky-600" />
+                      <span className="inline-flex items-center gap-1 font-bold text-sky-900 bg-sky-100 px-2.5 py-0.5 rounded-lg border border-sky-300 text-[11px]">
+                        <Clock className="w-3.5 h-3.5 text-sky-600" />
                         {submitted.length} bài cần cô chấm
                       </span>
                     )}
 
                     {graded.length > 0 && (
-                      <span className="inline-flex items-center gap-1 font-bold text-[#1a1a1a] bg-[#e0e5ec] border border-[#babecc]/80 px-2 py-0.5 rounded-md text-[11px]">
-                        <FileCheck className="w-3 h-3 text-emerald-600" />
+                      <span className="inline-flex items-center gap-1 font-bold text-slate-700 bg-white border border-slate-200 px-2.5 py-0.5 rounded-lg text-[11px] shadow-2xs">
+                        <FileCheck className="w-3.5 h-3.5 text-emerald-600" />
                         {graded.length} bài đã chấm
                       </span>
                     )}
@@ -862,7 +860,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       type="button"
                       id={`btn-open-scoring-${student.id}`}
                       onClick={() => setActiveScoringStudentSlug(student.slug)}
-                      className="w-full sm:w-auto min-h-[44px] px-4 py-2 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer font-mono soft-ui-convex text-[#ff4757] border border-white/90 shadow-[var(--shadow-card-sm)] hover:bg-[#d8e0ec] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px]"
+                      className="w-full sm:w-auto min-h-[44px] px-4 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer font-mono bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 shadow-2xs active:translate-y-[1px]"
                       title="Mở bảng cộng/trừ và chỉnh sửa token"
                     >
                       <Plus className="w-4 h-4 stroke-[3]" />
@@ -874,10 +872,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       type="button"
                       id={`btn-grading-${student.id}`}
                       onClick={() => setGradingStudent(student)}
-                      className="w-full sm:w-auto min-h-[44px] px-3.5 py-2 rounded-lg sm:rounded-xl soft-ui-convex text-[#1a1a1a] hover:bg-[#d8e0ec] font-bold text-xs sm:text-sm border border-white/90 shadow-[var(--shadow-card-sm)] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px] flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+                      className="w-full sm:w-auto min-h-[44px] px-3.5 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-[#0066ff] font-bold text-xs sm:text-sm border border-blue-200/80 shadow-2xs active:translate-y-[1px] flex items-center justify-center gap-1.5 transition-all cursor-pointer"
                       title="Cập nhật điểm kiểm tra, bài học mới và đánh giá 5 trục Radar"
                     >
-                      <FileCheck className="w-4 h-4 text-emerald-600" />
+                      <FileCheck className="w-4 h-4 text-[#0066ff]" />
                       <span>Nhập điểm & Buổi học</span>
                     </button>
 
@@ -886,7 +884,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       type="button"
                       id={`btn-zalo-reminder-${student.id}`}
                       onClick={() => handleSendZaloReminder(student)}
-                      className="w-full sm:w-auto min-h-[44px] px-3.5 py-2 rounded-lg sm:rounded-xl soft-ui-convex text-[#1a1a1a] hover:bg-[#d8e0ec] font-bold text-xs sm:text-sm border border-white/90 shadow-[var(--shadow-card-sm)] active:shadow-[var(--shadow-pressed-sm)] active:translate-y-[1px] flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+                      className="w-full sm:w-auto min-h-[44px] px-3.5 py-2 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-800 font-bold text-xs sm:text-sm border border-sky-200/80 shadow-2xs active:translate-y-[1px] flex items-center justify-center gap-1.5 transition-all cursor-pointer"
                     >
                       <MessageCircle className="w-4 h-4 text-sky-600" />
                       <span>Nhắc Zalo</span>
@@ -897,10 +895,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   <button
                     type="button"
                     onClick={() => onViewStudentPortal(student.slug)}
-                    className="w-full sm:w-auto min-h-[44px] px-3.5 py-2 rounded-lg sm:rounded-xl bg-[#2d3436] hover:bg-[#1a1a1a] text-white font-bold text-xs flex items-center justify-center gap-1.5 border border-white/20 shadow-xs active:translate-y-[1px] transition-all cursor-pointer"
+                    className="w-full sm:w-auto min-h-[44px] px-4 py-2 rounded-xl bg-[#0066ff] hover:bg-[#0052cc] text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-blue-500/20 active:translate-y-[1px] transition-all cursor-pointer"
                   >
                     <span>Cổng Phụ Huynh</span>
-                    <ExternalLink className="w-3.5 h-3.5 text-[#ff4757]" />
+                    <ExternalLink className="w-3.5 h-3.5 text-white" />
                   </button>
                 </div>
               </div>
@@ -908,7 +906,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           })}
 
           {filteredStudents.length === 0 && (
-            <div className="bg-[#d1d9e6] rounded-xl sm:rounded-2xl border border-[#babecc]/60 p-8 text-center text-[#666666] shadow-[var(--shadow-recessed-sm)] text-xs sm:text-sm font-medium">
+            <div className="bg-white rounded-2xl border border-slate-200 p-8 text-center text-slate-500 shadow-xs text-xs sm:text-sm font-medium">
               Không tìm thấy học sinh nào phù hợp với bộ lọc.
             </div>
           )}
@@ -916,7 +914,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       </div>
 
       {/* Hero Banner for Teacher Portal (Đưa xuống cuối trang) */}
-      <div className="rounded-lg sm:rounded-xl bg-gradient-to-br from-indigo-900 via-slate-900 to-indigo-950 text-white p-3.5 sm:p-5 shadow-md border border-indigo-800/60 mt-6">
+      <div className="rounded-2xl bg-gradient-to-r from-[#0066ff] via-[#1e88e5] to-[#0052cc] text-white p-4 sm:p-5 shadow-md shadow-blue-500/15 border border-blue-400/30 mt-6">
         {/* Các nút hành động - Mobile: 1 cột (từ trên xuống), Tablet: 2 hàng (mỗi hàng 2 nút), PC: 1 hàng 4 nút */}
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5">
           {/* Nút Thêm học sinh mới */}
@@ -924,7 +922,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             type="button"
             id="btn-add-new-student"
             onClick={() => setIsNewStudentModalOpen(true)}
-            className="w-full min-h-[44px] px-4 py-2.5 rounded-lg bg-[#ff4757] hover:bg-[#e03949] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[var(--shadow-accent)] border border-white/30 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+            className="w-full min-h-[44px] px-4 py-2.5 rounded-xl bg-white hover:bg-blue-50 text-[#0066ff] font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all cursor-pointer whitespace-nowrap"
           >
             <Plus className="w-4 h-4 stroke-[3]" />
             <span>Thêm học sinh mới</span>
@@ -938,7 +936,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               exportStudentsToCSV(students);
               addToast("success", "Đã xuất file bảng điểm Excel!", "File CSV chuẩn tiếng Việt UTF-8 đã được tải về máy.");
             }}
-            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-emerald-400/40 shadow-sm active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all cursor-pointer whitespace-nowrap"
             title="Tải toàn bộ danh sách điểm số và học sinh ra file Excel / Google Sheets"
           >
             <Download className="w-4 h-4" />
@@ -950,9 +948,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             type="button"
             id="btn-batch-zalo-reminder"
             onClick={handleBatchZaloReminder}
-            className="w-full min-h-[44px] px-4 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-slate-600 shadow-sm active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+            className="w-full min-h-[44px] px-4 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-white/20 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
           >
-            <Send className="w-4 h-4 text-emerald-400" />
+            <Send className="w-4 h-4 text-emerald-300" />
             <span>Nhắc Zalo ({totalUnsubmittedCount} bài)</span>
           </button>
 
@@ -966,9 +964,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 onViewStudentPortal(firstStudent.slug);
               }
             }}
-            className="w-full min-h-[44px] px-4 py-2.5 rounded-lg bg-[#2d3436] hover:bg-[#1a1a1a] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-white/20 shadow-md active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+            className="w-full min-h-[44px] px-4 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-white/20 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
           >
-            <ExternalLink className="w-4 h-4 text-[#ff4757] shrink-0" />
+            <ExternalLink className="w-4 h-4 text-white shrink-0" />
             <span>Mở cổng phụ huynh</span>
           </button>
         </div>

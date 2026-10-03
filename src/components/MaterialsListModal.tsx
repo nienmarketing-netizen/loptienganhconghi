@@ -33,16 +33,15 @@ const MaterialDownloadButton: React.FC<{
   onDownload: () => void;
 }> = ({ label, onDownload }) => (
   <div className="relative group pt-1">
-    {/* Pale white glow aura */}
-    <div className="absolute -inset-0.5 bg-gradient-to-r from-white/30 via-white/60 to-white/30 rounded-xl blur-md opacity-70 group-hover:opacity-100 transition duration-300 animate-pulse pointer-events-none" />
+    <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-300 via-sky-300 to-blue-300 rounded-xl blur-md opacity-40 group-hover:opacity-75 transition duration-300 pointer-events-none" />
 
     <button
       type="button"
       onClick={onDownload}
-      className="relative w-full overflow-hidden flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-[#ff4757] via-[#ff5263] to-[#ff4757] hover:from-[#e03949] hover:to-[#ff4757] text-white font-bold text-xs sm:text-sm border border-white/50 shadow-[0_0_18px_rgba(255,255,255,0.4),_0_4px_12px_rgba(0,0,0,0.15)] transition-all cursor-pointer active:translate-y-[1px]"
+      className="relative w-full overflow-hidden flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-[#0066FF] via-blue-600 to-[#0052CC] hover:from-[#0052CC] hover:to-[#004099] text-white font-bold text-xs sm:text-sm border border-white/30 shadow-md shadow-blue-500/25 transition-all cursor-pointer active:translate-y-[1px]"
     >
       {/* Shimmer light sweep */}
-      <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/35 to-transparent pointer-events-none" />
+      <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
       <Download className="w-4 h-4 text-white drop-shadow shrink-0" />
       <span className="tracking-wide">{label}</span>
     </button>
@@ -303,22 +302,22 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-lg bg-[#e0e5ec] rounded-lg sm:rounded-xl shadow-[var(--shadow-floating)] border border-white/80 border-b-[#babecc] border-r-[#babecc] overflow-hidden flex flex-col max-h-[92vh] animate-in zoom-in-95 duration-150"
+        className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden flex flex-col max-h-[92vh] animate-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header - Industrial Bevel Bar */}
-        <div className="bg-[#2d3436] px-4 sm:px-6 py-3.5 sm:py-4 text-white flex items-center justify-between gap-3 border-b border-white/20 relative">
+        {/* Header */}
+        <div className="bg-gradient-to-r from-[#0066FF] to-[#0052CC] px-4 sm:px-6 py-3.5 sm:py-4 text-white flex items-center justify-between gap-3 relative">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="w-9 h-9 rounded-lg bg-[#1e2528] border border-white/10 flex items-center justify-center text-[#ff4757] shrink-0 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)]">
+            <div className="w-9 h-9 rounded-xl bg-white/15 border border-white/20 flex items-center justify-center text-white shrink-0">
               <FolderDown className="w-5 h-5" />
             </div>
             <div className="min-w-0">
-              <div className="text-xs font-medium text-[#a3b1c6] flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
+              <div className="text-xs font-medium text-blue-100 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 <span>Tài liệu bài tập ({materials.length})</span>
               </div>
               <h3 className="text-sm sm:text-base font-bold text-white tracking-[-0.015em] leading-snug break-words">
@@ -329,7 +328,7 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
           <button
             id="btn-close-materials-modal"
             onClick={onClose}
-            className="w-8 h-8 rounded-md bg-[#1e2528] hover:bg-[#ff4757] text-[#a3b1c6] hover:text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 border border-white/10"
+            className="w-8 h-8 rounded-xl bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 border border-white/20"
             aria-label="Đóng"
           >
             <X className="w-4 h-4" />
@@ -337,39 +336,39 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
         </div>
 
         {/* Content Body */}
-        <div className="p-4 sm:p-6 overflow-y-auto overscroll-contain space-y-4 text-[#1a1a1a]">
-          {/* Info pill - Recessed Well */}
-          <div className="text-xs bg-[#d1d9e6] border border-[#babecc]/60 p-3 sm:p-3.5 rounded-lg sm:rounded-xl shadow-[var(--shadow-recessed-sm)] space-y-2">
+        <div className="p-4 sm:p-6 overflow-y-auto overscroll-contain space-y-4 text-slate-800">
+          {/* Info pill */}
+          <div className="text-xs bg-slate-50 border border-slate-200/80 p-3.5 sm:p-4 rounded-2xl shadow-xs space-y-2">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
-                <span className="text-[#666666] block text-xs font-medium">Học sinh</span>
-                <span className="font-bold text-[#1a1a1a] text-sm block break-words">
+                <span className="text-slate-500 block text-xs font-medium">Học sinh</span>
+                <span className="font-bold text-slate-800 text-sm block break-words">
                   {studentName}
                 </span>
               </div>
-              <span className="self-start sm:self-center text-xs font-semibold px-2.5 py-1 rounded-md bg-[#e0e5ec] text-[#1a1a1a] border border-white/90 shadow-[var(--shadow-card-sm)] leading-tight">
+              <span className="self-start sm:self-center text-xs font-bold px-2.5 py-1 rounded-lg bg-blue-50 text-[#0066FF] border border-blue-200 leading-tight">
                 {assignment.unit}
               </span>
             </div>
 
-            <div className="pt-2 border-t border-[#babecc]/50 flex items-center justify-between text-xs">
-              <span className="text-[#666666] flex items-center gap-1 font-medium">
-                <Calendar className="w-3.5 h-3.5 text-[#ff4757] shrink-0" />
+            <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-xs">
+              <span className="text-slate-500 flex items-center gap-1 font-medium">
+                <Calendar className="w-3.5 h-3.5 text-[#0066FF] shrink-0" />
                 Hạn chót nộp:
               </span>
-              <span className="font-semibold text-[#ff4757]">
+              <span className="font-semibold text-rose-600">
                 {assignment.deadline}
               </span>
             </div>
           </div>
 
-          {/* Teacher note card - Beveled card */}
-          <div className="bg-[#e0e5ec] border border-white/90 border-b-[#babecc] border-r-[#babecc] rounded-lg sm:rounded-xl p-3.5 text-xs text-[#1a1a1a] shadow-[var(--shadow-card-sm)]">
+          {/* Teacher note card */}
+          <div className="bg-blue-50/60 border border-blue-200/80 rounded-2xl p-3.5 text-xs text-slate-800">
             <div className="space-y-0.5">
-              <span className="font-bold text-[#ff4757] block tracking-[-0.015em]" style={{ color: "#ff4757" }}>
+              <span className="font-bold text-[#0066FF] block tracking-[-0.015em]">
                 Hướng dẫn từ Cô Nghi:
               </span>
-              <p className="text-[#666666] leading-relaxed text-xs font-normal">
+              <p className="text-slate-600 leading-relaxed text-xs font-normal">
                 Các con bấm vào từng mục bên dưới để mở trình phát bài giảng, nghe audio luyện phát âm hoặc tải đề bài nhé!
               </p>
             </div>
@@ -378,10 +377,10 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
           {/* List of materials as Dropdowns / Accordions */}
           <div className="space-y-3">
             <div className="flex items-center justify-between text-xs px-0.5">
-              <span className="font-bold text-[#1a1a1a] tracking-[-0.015em]">
+              <span className="font-bold text-slate-800 tracking-[-0.015em]">
                 Danh sách tài liệu ({materials.length})
               </span>
-              <span className="text-[#666666] font-normal">chạm để mở trình phát</span>
+              <span className="text-slate-400 font-normal">chạm để mở trình phát</span>
             </div>
 
             {materials.map((mat) => {
@@ -394,18 +393,18 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
               return (
                 <div
                   key={mat.id}
-                  className="rounded-lg sm:rounded-xl border border-white/90 border-b-[#babecc] border-r-[#babecc] bg-[#e0e5ec] shadow-[var(--shadow-card-sm)] overflow-hidden transition-all"
+                  className="rounded-2xl border border-slate-200/80 bg-white shadow-xs overflow-hidden transition-all"
                 >
-                  {/* Dropdown Header: only format label and icon, no extra text */}
+                  {/* Dropdown Header */}
                   <button
                     type="button"
                     onClick={() => toggleMaterial(mat.id)}
                     className={`w-full p-3 sm:p-3.5 flex items-center justify-between gap-3 text-left cursor-pointer transition-colors ${
-                      isOpen ? "bg-[#dbe4ee]" : "hover:bg-[#d8e0ec]"
+                      isOpen ? "bg-blue-50/50" : "hover:bg-slate-50"
                     }`}
                   >
                     <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 bg-[#d1d9e6] border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)] text-[#ff4757]">
+                      <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 bg-blue-50 border border-blue-200 text-[#0066FF]">
                         {isVideo && <Video className="w-5 h-5" />}
                         {isAudio && <Headphones className="w-5 h-5" />}
                         {isPdf && <FileText className="w-5 h-5" />}
@@ -413,15 +412,15 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
                       </div>
 
                       {/* Only format label */}
-                      <span className="text-xs sm:text-sm font-bold text-[#1a1a1a] tracking-tight">
+                      <span className="text-xs sm:text-sm font-bold text-slate-800 tracking-tight">
                         {getFormatLabel(mat.type)}
                       </span>
                     </div>
 
                     <div className="flex items-center gap-2 shrink-0">
                       <div
-                        className={`w-7 h-7 rounded-md flex items-center justify-center transition-transform duration-200 ${
-                          isOpen ? "rotate-180 text-[#ff4757]" : "text-[#666666]"
+                        className={`w-7 h-7 rounded-lg flex items-center justify-center transition-transform duration-200 ${
+                          isOpen ? "rotate-180 text-[#0066FF]" : "text-slate-400"
                         }`}
                       >
                         <ChevronDown className="w-4 h-4" />
@@ -429,13 +428,13 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
                     </div>
                   </button>
 
-                  {/* Dropdown Content: Integrated Audio/Video/PDF/Image Player */}
+                  {/* Dropdown Content */}
                   {isOpen && (
-                    <div className="p-3.5 sm:p-4 border-t border-[#babecc]/50 bg-[#e0e5ec] animate-in fade-in duration-150 space-y-3">
+                    <div className="p-3.5 sm:p-4 border-t border-slate-100 bg-slate-50/50 animate-in fade-in duration-150 space-y-3">
                       {/* Tiêu đề chủ đề của tài liệu */}
                       <div className="flex items-center gap-2">
-                        <span className="w-1.5 h-3.5 rounded-full bg-[#ff4757] shrink-0" />
-                        <h4 className="text-xs sm:text-sm font-bold text-[#1a1a1a] tracking-tight leading-snug">
+                        <span className="w-1.5 h-3.5 rounded-full bg-[#0066FF] shrink-0" />
+                        <h4 className="text-xs sm:text-sm font-bold text-slate-800 tracking-tight leading-snug">
                           {mat.title}
                         </h4>
                       </div>
@@ -467,7 +466,7 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
 
                       {isImage && (
                         <div className="space-y-3">
-                          <div className="relative rounded-lg overflow-hidden border border-[#babecc] bg-slate-900 max-h-[360px] flex items-center justify-center shadow-xs">
+                          <div className="relative rounded-xl overflow-hidden border border-slate-200 bg-slate-900 max-h-[360px] flex items-center justify-center shadow-xs">
                             <img
                               src={mat.url}
                               alt={mat.title}
@@ -489,11 +488,11 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="p-4 sm:p-5 bg-[#e0e5ec] border-t border-[#babecc]/50 flex items-center justify-end gap-3">
+        <div className="p-4 sm:p-5 bg-slate-50 border-t border-slate-100 flex items-center justify-end gap-3">
           <button
             type="button"
             onClick={onClose}
-            className="px-5 py-2.5 rounded-lg text-[#1a1a1a] bg-[#e0e5ec] border border-white/90 shadow-[var(--shadow-card-sm)] hover:bg-[#d8e0ec] font-semibold text-xs sm:text-sm transition-all active:translate-y-[1px] cursor-pointer leading-tight"
+            className="px-5 py-2.5 rounded-xl text-slate-700 bg-white border border-slate-200 shadow-xs hover:bg-slate-100 font-semibold text-xs sm:text-sm transition-all cursor-pointer leading-tight"
           >
             Đóng
           </button>

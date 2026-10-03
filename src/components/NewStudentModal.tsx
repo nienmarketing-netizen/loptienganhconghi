@@ -171,21 +171,18 @@ export const NewStudentModal: React.FC<NewStudentModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs overflow-y-auto">
-      <div className="relative w-full max-w-2xl bg-[#e0e5ec] rounded-2xl shadow-[var(--shadow-floating)] border border-white/80 p-5 sm:p-6 my-auto text-[#1a1a1a]">
+      <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-100 p-5 sm:p-6 my-auto text-slate-800">
         {/* Header */}
-        <div className="flex items-center justify-between pb-3.5 border-b border-[#babecc]/60">
+        <div className="flex items-center justify-between pb-3.5 border-b border-slate-100">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-[#ff4757] text-white flex items-center justify-center shadow-[var(--shadow-accent-sm)]">
+            <div className="w-9 h-9 rounded-xl bg-[#0066FF] text-white flex items-center justify-center shadow-md shadow-blue-500/20">
               <UserPlus className="w-5 h-5" />
             </div>
             <div>
-              <h3
-                className="text-base sm:text-lg font-bold text-[#ff4757] !text-[#ff4757] tracking-tight"
-                style={{ color: "#ff4757" }}
-              >
+              <h3 className="text-base sm:text-lg font-bold text-[#0066FF] tracking-tight">
                 Thêm thông tin học sinh mới
               </h3>
-              <p className="text-xs text-[#666666]">
+              <p className="text-xs text-slate-500">
                 Khởi tạo hồ sơ, cấu trúc ca học và đánh giá chẩn đoán Baseline
               </p>
             </div>
@@ -193,14 +190,14 @@ export const NewStudentModal: React.FC<NewStudentModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="w-8 h-8 rounded-lg soft-ui-convex flex items-center justify-center text-slate-500 hover:text-slate-800 transition-colors"
+            className="w-8 h-8 rounded-xl bg-slate-50 hover:bg-slate-100 flex items-center justify-center text-slate-500 hover:text-slate-800 transition-colors border border-slate-200 cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {errorMsg && (
-          <div className="mt-3 p-2.5 rounded-lg bg-rose-50 border border-rose-300 text-rose-700 text-xs flex items-center gap-2">
+          <div className="mt-3 p-2.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2">
             <ShieldAlert className="w-4 h-4 shrink-0" />
             <span>{errorMsg}</span>
           </div>
@@ -208,14 +205,14 @@ export const NewStudentModal: React.FC<NewStudentModalProps> = ({
 
         <form onSubmit={handleSubmit} className="mt-4 space-y-4 max-h-[75vh] overflow-y-auto pr-1">
           {/* Section 1: Cấu trúc ca học & Mã học sinh */}
-          <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-xl p-3.5 shadow-[var(--shadow-recessed-sm)] space-y-3">
+          <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3.5 space-y-3">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
-              <span className="text-xs font-bold text-[#1a1a1a] uppercase tracking-wider font-mono">
+              <span className="text-xs font-bold text-slate-800 uppercase tracking-wider font-mono">
                 1. Cấu trúc Ca học & Mã học sinh
               </span>
               <div className="flex items-center gap-1.5">
-                <span className="text-[11px] text-[#666666] sm:hidden font-medium">Mã học sinh:</span>
-                <span className="text-xs font-bold font-mono px-2 py-0.5 rounded bg-black/60 text-amber-300 border border-white/20 w-fit">
+                <span className="text-[11px] text-slate-500 sm:hidden font-medium">Mã học sinh:</span>
+                <span className="text-xs font-bold font-mono px-2 py-0.5 rounded-lg bg-blue-900 text-amber-300 border border-blue-700/50 w-fit">
                   {studentId}
                 </span>
               </div>
@@ -223,11 +220,11 @@ export const NewStudentModal: React.FC<NewStudentModalProps> = ({
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
               <div>
-                <label className="block text-[11px] text-[#666666] font-medium mb-1">Khối lớp</label>
+                <label className="block text-[11px] text-slate-500 font-medium mb-1">Khối lớp</label>
                 <select
                   value={gradeNum}
                   onChange={(e) => setGradeNum(e.target.value)}
-                  className="w-full px-2 py-1.5 rounded-lg bg-[#e0e5ec] border border-[#babecc] font-mono text-[#1a1a1a] text-xs font-semibold focus:outline-none"
+                  className="w-full px-2.5 py-1.5 rounded-xl bg-white border border-slate-200 font-mono text-slate-800 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF]"
                 >
                   <option value="6">Khối 6 (G6)</option>
                   <option value="7">Khối 7 (G7)</option>
@@ -237,11 +234,11 @@ export const NewStudentModal: React.FC<NewStudentModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-[11px] text-[#666666] font-medium mb-1">Lịch học</label>
+                <label className="block text-[11px] text-slate-500 font-medium mb-1">Lịch học</label>
                 <select
                   value={days}
                   onChange={(e) => setDays(e.target.value)}
-                  className="w-full px-2 py-1.5 rounded-lg bg-[#e0e5ec] border border-[#babecc] font-mono text-[#1a1a1a] text-xs font-semibold focus:outline-none"
+                  className="w-full px-2.5 py-1.5 rounded-xl bg-white border border-slate-200 font-mono text-slate-800 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF]"
                 >
                   <option value="T24">Thứ 2-4 (T24)</option>
                   <option value="T35">Thứ 3-5 (T35)</option>
@@ -250,11 +247,11 @@ export const NewStudentModal: React.FC<NewStudentModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-[11px] text-[#666666] font-medium mb-1">Ca học</label>
+                <label className="block text-[11px] text-slate-500 font-medium mb-1">Ca học</label>
                 <select
                   value={shift}
                   onChange={(e) => setShift(e.target.value)}
-                  className="w-full px-2 py-1.5 rounded-lg bg-[#e0e5ec] border border-[#babecc] font-mono text-[#1a1a1a] text-xs font-semibold focus:outline-none"
+                  className="w-full px-2.5 py-1.5 rounded-xl bg-white border border-slate-200 font-mono text-slate-800 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF]"
                 >
                   <option value="C1">Ca 1: 17h30 (C1)</option>
                   <option value="C2">Ca 2: 19h30 (C2)</option>
@@ -263,14 +260,14 @@ export const NewStudentModal: React.FC<NewStudentModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-[11px] text-[#666666] font-medium mb-1">Số thứ tự (STT)</label>
+                <label className="block text-[11px] text-slate-500 font-medium mb-1">Số thứ tự (STT)</label>
                 <input
                   type="number"
                   min="1"
                   max="99"
                   value={seq}
                   onChange={(e) => setSeq(e.target.value)}
-                  className="w-full px-2 py-1.5 rounded-lg bg-[#e0e5ec] border border-[#babecc] font-mono text-[#1a1a1a] text-xs font-bold text-center focus:outline-none"
+                  className="w-full px-2.5 py-1.5 rounded-xl bg-white border border-slate-200 font-mono text-slate-800 text-xs font-bold text-center focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF]"
                 />
               </div>
             </div>
@@ -279,53 +276,53 @@ export const NewStudentModal: React.FC<NewStudentModalProps> = ({
           {/* Section 2: Thông tin định danh học sinh & Phụ huynh */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
             <div>
-              <label className="block font-medium text-[#1a1a1a] mb-1">Họ và tên học sinh *</label>
+              <label className="block font-medium text-slate-800 mb-1">Họ và tên học sinh *</label>
               <input
                 type="text"
                 required
                 placeholder="VD: Nguyễn Hoàng Gia Bảo"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-[#d1d9e6] border border-[#babecc] text-[#1a1a1a] font-semibold text-xs shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)] focus:outline-none focus:bg-[#e0e5ec]"
+                className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF]"
               />
             </div>
 
             <div>
-              <label className="block font-medium text-[#1a1a1a] mb-1">Danh xưng phụ huynh</label>
+              <label className="block font-medium text-slate-800 mb-1">Danh xưng phụ huynh</label>
               <input
                 type="text"
                 placeholder="VD: mẹ bé Gia Bảo hoặc ba bé Gia Bảo"
                 value={parentSalutation}
                 onChange={(e) => setParentSalutation(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-[#d1d9e6] border border-[#babecc] text-[#1a1a1a] text-xs shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)] focus:outline-none focus:bg-[#e0e5ec]"
+                className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF]"
               />
             </div>
 
             <div>
-              <label className="block font-medium text-[#1a1a1a] mb-1">Họ tên phụ huynh</label>
+              <label className="block font-medium text-slate-800 mb-1">Họ tên phụ huynh</label>
               <input
                 type="text"
                 placeholder="VD: Chị Minh Trang"
                 value={parentName}
                 onChange={(e) => setParentName(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-[#d1d9e6] border border-[#babecc] text-[#1a1a1a] text-xs shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)] focus:outline-none focus:bg-[#e0e5ec]"
+                className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF]"
               />
             </div>
 
             <div>
-              <label className="block font-medium text-[#1a1a1a] mb-1">Trường học & Lớp chính khóa</label>
+              <label className="block font-medium text-slate-800 mb-1">Trường học & Lớp chính khóa</label>
               <input
                 type="text"
                 placeholder="VD: THCS Trưng Vương - 8A1"
                 value={school}
                 onChange={(e) => setSchool(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-[#d1d9e6] border border-[#babecc] text-[#1a1a1a] text-xs shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)] focus:outline-none focus:bg-[#e0e5ec]"
+                className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF]"
               />
             </div>
 
             <div className="sm:col-span-2">
-              <label htmlFor="select-target-reward" className="font-medium text-[#1a1a1a] flex items-center gap-1.5 mb-1">
-                <Gift className="w-3.5 h-3.5 text-[#ff4757]" />
+              <label htmlFor="select-target-reward" className="font-medium text-slate-800 flex items-center gap-1.5 mb-1">
+                <Gift className="w-3.5 h-3.5 text-[#ff9800]" />
                 <span>Mục tiêu quà tặng tích lũy Tokens</span>
               </label>
               <div className="space-y-1.5">
@@ -333,7 +330,7 @@ export const NewStudentModal: React.FC<NewStudentModalProps> = ({
                   id="select-target-reward"
                   value={targetRewardName}
                   onChange={(e) => setTargetRewardName(e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg bg-[#d1d9e6] border border-[#babecc] text-[#1a1a1a] font-semibold text-xs shadow-[inset_1px_1px_2px_rgba(0,0,0,0.1)] focus:outline-none focus:bg-[#e0e5ec] cursor-pointer"
+                  className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF] cursor-pointer"
                 >
                   {AVAILABLE_REWARDS.map((rew) => (
                     <option key={rew.id} value={`${rew.name} - ${rew.tokensCost} Tokens`}>
@@ -351,7 +348,7 @@ export const NewStudentModal: React.FC<NewStudentModalProps> = ({
                     placeholder="Nhập tên phần quà tùy chỉnh..."
                     value={targetRewardName === "Tùy chỉnh khác" ? "" : targetRewardName}
                     onChange={(e) => setTargetRewardName(e.target.value)}
-                    className="w-full px-3 py-1.5 rounded-lg bg-[#e0e5ec] border border-[#babecc] text-[#1a1a1a] text-xs shadow-[inset_1px_1px_2px_rgba(0,0,0,0.06)] focus:outline-none"
+                    className="w-full px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF]"
                   />
                 )}
               </div>
@@ -359,14 +356,13 @@ export const NewStudentModal: React.FC<NewStudentModalProps> = ({
           </div>
 
           {/* Section 3: Đánh giá chẩn đoán đầu vào & 5 Trục năng lực (Baseline) */}
-          <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-xl p-3.5 shadow-[var(--shadow-recessed-sm)] space-y-3">
-            <span className="block text-xs font-bold text-[#1a1a1a] uppercase tracking-wider font-mono">
+          <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3.5 space-y-3">
+            <span className="block text-xs font-bold text-slate-800 uppercase tracking-wider font-mono">
               2. Chẩn đoán Baseline đầu vào (Thang 10 & 5 Trục Radar)
             </span>
 
-            {/* Mục Điểm khảo sát đưa xuống thành một hàng ngay phía trên Chẩn đoán nhanh của Cô */}
-            <div className="flex items-center justify-between sm:justify-start gap-2.5 p-2 rounded-lg bg-[#e0e5ec] border border-[#babecc]">
-              <label htmlFor="input-baseline-overall-score" className="text-xs font-semibold text-[#1a1a1a]">
+            <div className="flex items-center justify-between sm:justify-start gap-2.5 p-2.5 rounded-xl bg-white border border-slate-200">
+              <label htmlFor="input-baseline-overall-score" className="text-xs font-semibold text-slate-800">
                 Điểm khảo sát:
               </label>
               <div className="flex items-center gap-1.5">
@@ -378,93 +374,93 @@ export const NewStudentModal: React.FC<NewStudentModalProps> = ({
                   max="10"
                   value={baselineOverallScore}
                   onChange={(e) => setBaselineOverallScore(parseFloat(e.target.value) || 0)}
-                  className="w-20 px-2 py-1 rounded bg-white border border-[#babecc] font-mono text-center font-bold text-[#ff4757] text-xs shadow-[inset_1px_1px_2px_rgba(0,0,0,0.08)] focus:outline-none"
+                  className="w-20 px-2 py-1 rounded-lg bg-slate-50 border border-slate-200 font-mono text-center font-bold text-[#0066FF] text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF]"
                 />
-                <span className="text-xs font-medium text-[#666666]">/ 10 điểm</span>
+                <span className="text-xs font-medium text-slate-500">/ 10 điểm</span>
               </div>
             </div>
 
             <div>
-              <label className="block text-[11px] text-[#666666] font-medium mb-1">Chẩn đoán nhanh của Cô</label>
+              <label className="block text-[11px] text-slate-500 font-medium mb-1">Chẩn đoán nhanh của Cô</label>
               <input
                 type="text"
                 value={diagnosisTitle}
                 onChange={(e) => setDiagnosisTitle(e.target.value)}
                 placeholder="VD: Hổng cấu trúc câu, từ vựng thụ động"
-                className="w-full px-2.5 py-1.5 rounded-lg bg-[#e0e5ec] border border-[#babecc] text-xs text-[#1a1a1a]"
+                className="w-full px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF]"
               />
             </div>
 
             <div>
-              <label className="block text-[11px] text-[#666666] font-medium mb-1">Ghi chú quan sát chi tiết</label>
+              <label className="block text-[11px] text-slate-500 font-medium mb-1">Ghi chú quan sát chi tiết</label>
               <textarea
                 rows={2}
                 value={initialObservations}
                 onChange={(e) => setInitialObservations(e.target.value)}
                 placeholder="Ghi chú về phản xạ, điểm mạnh và lỗ hổng cần kèm..."
-                className="w-full px-2.5 py-1.5 rounded-lg bg-[#e0e5ec] border border-[#babecc] text-xs text-[#1a1a1a]"
+                className="w-full px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#0066FF]"
               />
             </div>
 
             {/* 5 Trục Radar */}
-            <div className="pt-2 border-t border-[#babecc]/50">
-              <span className="block text-[11px] font-bold text-[#1a1a1a] mb-2 font-mono">
+            <div className="pt-2 border-t border-slate-200">
+              <span className="block text-[11px] font-bold text-slate-800 mb-2 font-mono">
                 5 Trục Năng lực Đầu vào (Thang 0 - 100):
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-5 gap-2 text-xs font-mono">
-                <div className="p-2 rounded-lg bg-[#e0e5ec] border border-white/60">
-                  <span className="text-[10px] text-[#666666] block">Ngữ pháp: {radarGrammar}đ</span>
+                <div className="p-2 rounded-xl bg-white border border-slate-200">
+                  <span className="text-[10px] text-slate-500 block">Ngữ pháp: {radarGrammar}đ</span>
                   <input
                     type="range"
                     min="10"
                     max="100"
                     value={radarGrammar}
                     onChange={(e) => setRadarGrammar(parseInt(e.target.value, 10))}
-                    className="w-full accent-[#ff4757]"
+                    className="w-full accent-[#0066FF]"
                   />
                 </div>
-                <div className="p-2 rounded-lg bg-[#e0e5ec] border border-white/60">
-                  <span className="text-[10px] text-[#666666] block">Từ vựng: {radarVocab}đ</span>
+                <div className="p-2 rounded-xl bg-white border border-slate-200">
+                  <span className="text-[10px] text-slate-500 block">Từ vựng: {radarVocab}đ</span>
                   <input
                     type="range"
                     min="10"
                     max="100"
                     value={radarVocab}
                     onChange={(e) => setRadarVocab(parseInt(e.target.value, 10))}
-                    className="w-full accent-[#ff4757]"
+                    className="w-full accent-[#0066FF]"
                   />
                 </div>
-                <div className="p-2 rounded-lg bg-[#e0e5ec] border border-white/60">
-                  <span className="text-[10px] text-[#666666] block">Nghe hiểu: {radarListening}đ</span>
+                <div className="p-2 rounded-xl bg-white border border-slate-200">
+                  <span className="text-[10px] text-slate-500 block">Nghe hiểu: {radarListening}đ</span>
                   <input
                     type="range"
                     min="10"
                     max="100"
                     value={radarListening}
                     onChange={(e) => setRadarListening(parseInt(e.target.value, 10))}
-                    className="w-full accent-[#ff4757]"
+                    className="w-full accent-[#0066FF]"
                   />
                 </div>
-                <div className="p-2 rounded-lg bg-[#e0e5ec] border border-white/60">
-                  <span className="text-[10px] text-[#666666] block">Phát âm: {radarSpeaking}đ</span>
+                <div className="p-2 rounded-xl bg-white border border-slate-200">
+                  <span className="text-[10px] text-slate-500 block">Phát âm: {radarSpeaking}đ</span>
                   <input
                     type="range"
                     min="10"
                     max="100"
                     value={radarSpeaking}
                     onChange={(e) => setRadarSpeaking(parseInt(e.target.value, 10))}
-                    className="w-full accent-[#ff4757]"
+                    className="w-full accent-[#0066FF]"
                   />
                 </div>
-                <div className="p-2 rounded-lg bg-[#e0e5ec] border border-white/60">
-                  <span className="text-[10px] text-[#666666] block">Thái độ: {radarAttitude}đ</span>
+                <div className="p-2 rounded-xl bg-white border border-slate-200">
+                  <span className="text-[10px] text-slate-500 block">Thái độ: {radarAttitude}đ</span>
                   <input
                     type="range"
                     min="10"
                     max="100"
                     value={radarAttitude}
                     onChange={(e) => setRadarAttitude(parseInt(e.target.value, 10))}
-                    className="w-full accent-[#ff4757]"
+                    className="w-full accent-[#0066FF]"
                   />
                 </div>
               </div>
@@ -472,18 +468,18 @@ export const NewStudentModal: React.FC<NewStudentModalProps> = ({
           </div>
 
           {/* Action buttons */}
-          <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-[#babecc]/60">
+          <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-slate-100">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-lg soft-ui-convex text-xs font-semibold text-slate-700 cursor-pointer"
+              className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 cursor-pointer"
             >
               Hủy
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-5 py-2 rounded-lg bg-[#ff4757] hover:bg-[#e03949] text-white text-xs font-bold font-mono shadow-[var(--shadow-accent)] border border-white/30 flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+              className="px-5 py-2 rounded-xl bg-gradient-to-r from-[#0066FF] to-[#0052CC] hover:from-[#0052CC] hover:to-[#004099] text-white text-xs font-bold font-mono shadow-md shadow-blue-500/25 flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
             >
               <Check className="w-4 h-4 stroke-[3]" />
               <span>{isSubmitting ? "Đang lưu..." : "Lưu thông tin"}</span>

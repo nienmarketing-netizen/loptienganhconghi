@@ -6,7 +6,7 @@ export function Card({ className, children, id, ...props }: React.HTMLAttributes
     <div
       id={id}
       className={cn(
-        "rounded-lg sm:rounded-xl bg-[#e0e5ec] shadow-[var(--shadow-card)] border border-white/80 border-b-[#babecc]/70 border-r-[#babecc]/70 transition-all duration-200 relative",
+        "rounded-2xl bg-white shadow-[var(--shadow-card)] border border-slate-100 hover:border-blue-100/80 transition-all duration-200 relative",
         className
       )}
       {...props}
@@ -28,7 +28,7 @@ export function CardTitle({ className, children, id, ...props }: React.HTMLAttri
   return (
     <h3
       id={id}
-      className={cn("font-bold text-[#2d3436] tracking-tight text-base sm:text-lg leading-none drop-shadow-[0_1px_0_#ffffff]", className)}
+      className={cn("font-bold text-[#1e293b] tracking-tight text-base sm:text-lg leading-snug", className)}
       {...props}
     >
       {children}
@@ -38,7 +38,7 @@ export function CardTitle({ className, children, id, ...props }: React.HTMLAttri
 
 export function CardDescription({ className, children, id, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
   return (
-    <p id={id} className={cn("text-xs text-[#4a5568] leading-relaxed", className)} {...props}>
+    <p id={id} className={cn("text-xs text-[#64748b] leading-relaxed", className)} {...props}>
       {children}
     </p>
   );
