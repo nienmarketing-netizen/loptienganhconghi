@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { createPortal } from "react-dom";
 import { X, UserPlus, Sparkles, Check, School, ShieldAlert, Gift } from "lucide-react";
 import { StudentProfile, RadarCapabilityPoint } from "../types";
 import { AVAILABLE_REWARDS } from "../data/mockStudents";
@@ -169,7 +170,7 @@ export const NewStudentModal: React.FC<NewStudentModalProps> = ({
     }
   };
 
-  return (
+  return createPortal(
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs">
       <div className="relative w-full max-w-2xl max-h-[80vh] flex flex-col bg-white rounded-2xl shadow-2xl border border-slate-100 p-5 sm:p-6 text-slate-800 overflow-hidden">
         {/* Header */}
@@ -487,6 +488,7 @@ export const NewStudentModal: React.FC<NewStudentModalProps> = ({
           </div>
         </form>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };

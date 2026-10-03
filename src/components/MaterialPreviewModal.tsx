@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import {
   X,
   FileText,
@@ -143,7 +144,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
     document.body.removeChild(link);
   };
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200"
       onClick={onClose}
@@ -578,6 +579,7 @@ export const MaterialPreviewModal: React.FC<MaterialPreviewModalProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };

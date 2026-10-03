@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
+import { createPortal } from "react-dom";
 import {
   X,
   Award,
@@ -308,7 +309,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
   const currentLightboxItem =
     activeLightboxIndex !== null ? mediaList[activeLightboxIndex] : null;
 
-  return (
+  return createPortal(
     <>
       <div
         className="fixed inset-0 z-[9999] flex items-center justify-center p-2.5 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200"
@@ -942,6 +943,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
           </div>
         </div>
       )}
-    </>
+    </>,
+    document.body
   );
 };

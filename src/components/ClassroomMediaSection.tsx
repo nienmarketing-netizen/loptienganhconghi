@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import {
   Video,
   Image as ImageIcon,
@@ -522,11 +523,12 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
       )}
 
       {/* TEACHER UPLOAD MODAL */}
-      {isModalOpen && (
-        <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150"
-          onClick={() => setIsModalOpen(false)}
-        >
+      {isModalOpen &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150"
+            onClick={() => setIsModalOpen(false)}
+          >
           <div
             className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden flex flex-col max-h-[80vh] animate-in zoom-in-95 duration-150"
             onClick={(e) => e.stopPropagation()}
@@ -790,15 +792,18 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
               </div>
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* UNIFIED FULLSCREEN ALBUM LIGHTBOX MODAL WITH CAROUSEL & THUMBNAIL STRIP */}
-      {activeLightboxIndex !== null && mediaList[activeLightboxIndex] && (
-        <div
-          className="fixed inset-0 z-[10000] flex items-center justify-center p-2 sm:p-4 bg-black/90 backdrop-blur-md animate-in fade-in duration-200"
-          onClick={() => setActiveLightboxIndex(null)}
-        >
+      {activeLightboxIndex !== null &&
+        mediaList[activeLightboxIndex] &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[10000] flex items-center justify-center p-2 sm:p-4 bg-black/90 backdrop-blur-md animate-in fade-in duration-200"
+            onClick={() => setActiveLightboxIndex(null)}
+          >
           <div
             className="relative w-full max-w-5xl bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl flex flex-col max-h-[80vh] h-[80vh]"
             onClick={(e) => e.stopPropagation()}
@@ -948,7 +953,8 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import {
   X,
   Coins,
@@ -433,7 +434,7 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
     }
   };
 
-  return (
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
@@ -1050,6 +1051,7 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
         </div>
       </footer>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };

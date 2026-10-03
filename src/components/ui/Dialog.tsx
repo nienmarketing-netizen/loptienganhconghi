@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import { cn } from "../../lib/utils";
 import { useLockBodyScroll } from "../../lib/useLockBodyScroll";
@@ -14,6 +15,11 @@ export interface DialogProps {
 
 export function Dialog({ open, onOpenChange, children, id, className, overlayClassName }: DialogProps) {
   useLockBodyScroll(open);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -29,9 +35,9 @@ export function Dialog({ open, onOpenChange, children, id, className, overlayCla
     };
   }, [open, onOpenChange]);
 
-  if (!open) return null;
+  if (!open || !mounted) return null;
 
-  return (
+  return createPortal(
     <div
       id={id}
       className={cn(
@@ -49,7 +55,8 @@ export function Dialog({ open, onOpenChange, children, id, className, overlayCla
       >
         {children}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 

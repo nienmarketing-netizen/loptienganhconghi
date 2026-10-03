@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import {
   X,
   FolderDown,
@@ -300,7 +301,7 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
     return "Phiếu đề bài (PDF)";
   };
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200"
       onClick={onClose}
@@ -498,6 +499,7 @@ export const MaterialsListModal: React.FC<MaterialsListModalProps> = ({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
