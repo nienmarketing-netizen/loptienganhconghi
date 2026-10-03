@@ -276,7 +276,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
   ];
 
   return (
-    <div className="w-full max-w-md md:max-w-3xl lg:max-w-6xl xl:max-w-7xl mx-auto px-3.5 sm:px-6 pt-4 sm:pt-6 pb-28 lg:pb-12 space-y-4 sm:space-y-6 max-lg:overflow-x-clip lg:overflow-visible">
+    <div className="w-full max-w-md md:max-w-3xl lg:max-w-6xl xl:max-w-7xl mx-auto px-3.5 sm:px-6 pt-4 sm:pt-6 pb-24 sm:pb-28 lg:pb-6 space-y-3 sm:space-y-4 max-lg:overflow-x-clip lg:overflow-visible">
       {/* ========================================================
           DESKTOP LAYOUT (PC - Left Sticky Buttons + Right Content)
           ======================================================== */}
@@ -417,7 +417,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
           {/* Footer Branding (PC) */}
           <footer
             id="app-footer-pc"
-            className="text-center pt-4 pb-2 border-t border-slate-200/80 text-xs text-slate-500 flex flex-col items-center gap-1.5"
+            className="text-center pt-2 pb-0 border-t border-slate-200/80 text-xs text-slate-500 flex flex-col items-center gap-1"
           >
             <div className="flex items-center justify-center gap-2 text-xs">
               <span className="font-bold text-slate-800 text-xs">
@@ -518,20 +518,20 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
       </div>
 
       {/* 4. Teacher Support & Zalo Quick Contact (Mobile & Tablet) */}
-      <section id="lien-he" className="scroll-mt-24 pt-2 block lg:hidden">
-        <div className="relative rounded-3xl bg-gradient-to-r from-[#0066FF] via-[#1E88E5] to-[#0052cc] text-white p-5 sm:p-6 shadow-[0_12px_32px_rgba(0,102,255,0.22)] border border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-xs flex items-center justify-center shrink-0 border border-white/30 text-white shadow-xs">
-              <MessageCircle className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h4 className="text-base sm:text-lg font-black !text-white tracking-tight">
-                Ba mẹ cần trao đổi thêm với Cô Nghi?
-              </h4>
-              <p className="text-xs text-blue-100 mt-0.5 font-normal max-w-md">
-                Cô luôn sẵn sàng phản hồi ba mẹ về tình hình học tập, bài vở và tinh thần của con ở lớp.
-              </p>
-            </div>
+      <section id="lien-he" className="scroll-mt-24 pt-6 block lg:hidden">
+        <div className="relative rounded-3xl bg-gradient-to-r from-[#0066FF] via-[#1E88E5] to-[#0052cc] text-white p-5 sm:p-6 pt-7 sm:pt-6 shadow-[0_12px_32px_rgba(0,102,255,0.22)] border border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          {/* Floating Message Badge (50% inside, 50% outside) */}
+          <div className="absolute -top-6 left-5 sm:left-6 z-10 w-12 h-12 rounded-2xl bg-white text-[#0066FF] shadow-[0_8px_24px_rgba(0,102,255,0.3)] border-2 border-white flex items-center justify-center">
+            <MessageCircle className="w-6 h-6 text-[#0066FF]" />
+          </div>
+
+          <div className="text-left w-full sm:w-auto">
+            <h4 className="text-base sm:text-lg font-black !text-white tracking-tight">
+              Ba mẹ cần trao đổi thêm với Cô Nghi?
+            </h4>
+            <p className="text-xs text-blue-100 mt-0.5 font-normal max-w-md">
+              Cô luôn sẵn sàng phản hồi ba mẹ về tình hình học tập, bài vở và tinh thần của con ở lớp.
+            </p>
           </div>
 
           <a
@@ -539,7 +539,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
             href="https://zalo.me"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-[#0066FF] hover:text-[#0052cc] text-xs font-bold py-3 px-5 rounded-2xl shadow-md transition-all active:scale-95 shrink-0 leading-tight"
+            className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-[#0066FF] hover:text-[#0052cc] text-xs font-bold py-3 px-5 rounded-2xl shadow-md transition-all active:scale-95 shrink-0 leading-tight w-full sm:w-auto"
           >
             <PhoneCall className="w-4 h-4 text-[#0066FF]" />
             <span>Nhắn Zalo Cô Nghi</span>
@@ -550,7 +550,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
       {/* Footer Branding (Mobile & Tablet) */}
       <footer
         id="app-footer"
-        className="text-center pt-4 pb-2 sm:pt-6 sm:pb-3 border-t border-slate-200/80 text-xs text-slate-500 flex flex-col items-center gap-1.5 block lg:hidden"
+        className="text-center pt-2 pb-0 sm:pt-3 sm:pb-0 border-t border-slate-200/80 text-xs text-slate-500 flex flex-col items-center gap-1 block lg:hidden"
       >
         <div className="contents sm:flex sm:flex-row sm:items-center sm:justify-center sm:gap-2 text-xs">
           <span className="order-1 sm:order-none font-bold text-slate-800 text-sm sm:text-xs">

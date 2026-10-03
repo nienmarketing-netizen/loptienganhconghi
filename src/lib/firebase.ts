@@ -1,8 +1,7 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import {
-  initializeFirestore,
-  memoryLocalCache,
+  getFirestore,
   collection,
   doc,
   setDoc,
@@ -16,17 +15,7 @@ import { MOCK_STUDENTS } from "../data/mockStudents";
 
 export const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-
-// Initialize Firestore with robust memory cache and forced long polling
-// to guarantee stable connectivity inside sandboxed iframes, cloud proxies, and preview environments
-export const db = initializeFirestore(
-  app,
-  {
-    localCache: memoryLocalCache(),
-    experimentalForceLongPolling: true,
-  },
-  firebaseConfig.firestoreDatabaseId
-);
+export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
 
 export enum OperationType {
   CREATE = "create",
@@ -148,7 +137,6 @@ export function subscribeToStudents(
 
   const unsubscribe = onSnapshot(
     colRef,
-    { includeMetadataChanges: true },
     (snapshot) => {
       hasReceivedSnapshot = true;
       if (snapshot.empty) {

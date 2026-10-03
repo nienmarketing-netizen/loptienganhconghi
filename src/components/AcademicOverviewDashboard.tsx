@@ -15,6 +15,10 @@ import {
   ChevronRight,
   BarChart3,
   Calendar,
+  Headphones,
+  GraduationCap,
+  Languages,
+  Mic,
 } from "lucide-react";
 import { StudentProfile } from "../types";
 import { getStudentTokenBalance } from "../lib/studentUtils";
@@ -164,14 +168,15 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
     { day: "CN", label: "Sun", minutes: 40, heightPercent: 67 },
   ];
 
-  // Map 4 Pillar skills from radar capabilities or standard curriculum
+  // Map Pillar skills from radar capabilities or standard curriculum
   const radarMap = student.radarCapabilities?.reduce((acc, curr) => {
     acc[curr.subject.toLowerCase()] = curr;
     return acc;
   }, {} as Record<string, typeof student.radarCapabilities[0]>) || {};
 
   const vocabVal = radarMap["từ vựng"]?.current || 85;
-  const readingVal = radarMap["nghe hiểu"]?.current || 78;
+  const readingVal = radarMap["đọc hiểu"]?.current || radarMap["đọc"]?.current || 78;
+  const listeningVal = radarMap["nghe hiểu"]?.current || radarMap["nghe"]?.current || 82;
   const grammarVal = radarMap["ngữ pháp"]?.current || 88;
   const phonicsVal = radarMap["phát âm"]?.current || 92;
 
@@ -233,103 +238,220 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
         </div>
       </div>
 
-      {/* 2. 4 Stat Metric Cards (Directly matching the Parent Dashboard tablet in UI.jpg) */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-        {/* Card 1: Lessons / Homework Completed */}
+      {/* 2. 4 Stat Metric Rows (Mobile: 4 hàng ngang; Desktop PC: 4 card với 3 hàng chuẩn) */}
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-2.5 sm:gap-3 lg:gap-4">
+        {/* Row 1: Bài tập */}
         <div
           onClick={() => onToggleSection && onToggleSection("bai-tap")}
-          className="bg-white hover:bg-blue-50/20 rounded-2xl p-4 border border-slate-100 shadow-[var(--shadow-card-sm)] hover:border-blue-200 transition-all cursor-pointer group"
+          className="bg-[#f0fbf7] hover:bg-[#e6f7f1] rounded-2xl p-3 sm:p-3.5 lg:p-4 border border-[#c6f0e0]/80 shadow-[0_2px_8px_rgba(16,185,129,0.05)] hover:border-emerald-300 transition-all cursor-pointer group"
           title="Bấm để xem danh sách bài tập"
         >
-          <div className="flex items-center justify-between text-slate-500">
-            <span className="font-semibold text-xs text-slate-600">Bài tập & Nhiệm vụ</span>
-            <div className="w-8 h-8 rounded-xl bg-blue-50 text-[#0066FF] flex items-center justify-center group-hover:scale-105 transition-transform shadow-xs">
-              <FileText className="w-4 h-4" />
+          {/* Mobile view (< lg) */}
+          <div className="flex lg:hidden items-center justify-between gap-3 w-full">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#dcfce7] text-[#059669] flex items-center justify-center shrink-0 border border-emerald-200/60 shadow-xs">
+                <BookOpen className="w-5 h-5 sm:w-6 sm:h-6" />
+              </div>
+              <div className="min-w-0">
+                <h4 className="text-sm sm:text-base font-bold text-[#1a1a1a] tracking-tight leading-snug">
+                  Bài tập
+                </h4>
+                <p className={`text-xs font-semibold leading-tight mt-0.5 ${notDoneCount === 0 ? "text-emerald-600" : "text-amber-600"}`}>
+                  {notDoneCount === 0 ? "Đã xong tất cả 🎉" : `Còn ${notDoneCount} bài chưa nộp`}
+                </p>
+              </div>
+            </div>
+            <div className="shrink-0 flex items-baseline gap-1 px-3 py-1.5 rounded-xl bg-white shadow-xs border border-emerald-200/90">
+              <span className="text-base sm:text-lg font-black text-emerald-600 font-mono tracking-tight">
+                {completedCount}/{totalAssignments}
+              </span>
+              <span className="text-xs font-semibold text-slate-600">bài tập</span>
             </div>
           </div>
-          <div className="mt-2.5 flex items-baseline gap-1.5">
-            <span className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-              {completedCount}/{totalAssignments}
-            </span>
-            <span className="text-xs text-slate-400 font-medium">bài</span>
-          </div>
-          <div className="mt-2 flex items-center gap-1 text-[11px] font-bold text-emerald-600 bg-emerald-50/80 px-2 py-0.5 rounded-md w-fit">
-            <CheckCircle2 className="w-3 h-3 text-[#4caf50]" />
-            <span>{notDoneCount === 0 ? "Đã xong hết 🎉" : `Còn ${notDoneCount} bài`}</span>
+
+          {/* PC view (lg:) - Hàng 1: Icon & Badge, Hàng 2: Chỉ số, Hàng 3: Note */}
+          <div className="hidden lg:flex lg:flex-col justify-between h-full w-full gap-3">
+            <div className="flex items-center justify-between gap-2">
+              <div className="w-11 h-11 rounded-2xl bg-[#dcfce7] text-[#059669] flex items-center justify-center shrink-0 border border-emerald-200/60 shadow-xs group-hover:scale-105 transition-transform">
+                <BookOpen className="w-5 h-5" />
+              </div>
+              <div className="flex items-baseline gap-1 px-2.5 py-1 rounded-xl bg-white shadow-xs border border-emerald-200/90">
+                <span className="text-base font-black text-emerald-600 font-mono tracking-tight">
+                  {completedCount}/{totalAssignments}
+                </span>
+                <span className="text-xs font-semibold text-slate-600">bài tập</span>
+              </div>
+            </div>
+            <div>
+              <h4 className="text-base font-bold text-[#1a1a1a] tracking-tight leading-snug">
+                Bài tập
+              </h4>
+              <p className={`text-xs font-semibold leading-tight mt-1 ${notDoneCount === 0 ? "text-emerald-600" : "text-amber-600"}`}>
+                {notDoneCount === 0 ? "Đã xong tất cả 🎉" : `Còn ${notDoneCount} bài chưa nộp`}
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Card 2: Accuracy & Test Score */}
+        {/* Row 2: Điểm số */}
         <div
           onClick={() => onToggleSection && onToggleSection("diem-so")}
-          className="bg-white hover:bg-blue-50/20 rounded-2xl p-4 border border-slate-100 shadow-[var(--shadow-card-sm)] hover:border-blue-200 transition-all cursor-pointer group"
+          className="bg-[#fdf4f8] hover:bg-[#fcebf3] rounded-2xl p-3 sm:p-3.5 lg:p-4 border border-[#fbcfe8]/80 shadow-[0_2px_8px_rgba(236,72,153,0.05)] hover:border-pink-300 transition-all cursor-pointer group"
           title="Bấm để xem biểu đồ điểm số"
         >
-          <div className="flex items-center justify-between text-slate-500">
-            <span className="font-semibold text-xs text-slate-600">Độ chính xác / Điểm</span>
-            <div className="w-8 h-8 rounded-xl bg-blue-50 text-[#0066FF] flex items-center justify-center group-hover:scale-105 transition-transform shadow-xs">
-              <Sparkles className="w-4 h-4" />
+          {/* Mobile view (< lg) */}
+          <div className="flex lg:hidden items-center justify-between gap-3 w-full">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#fce7f3] text-[#db2777] flex items-center justify-center shrink-0 border border-pink-200/60 shadow-xs">
+                <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" />
+              </div>
+              <div className="min-w-0">
+                <h4 className="text-sm sm:text-base font-bold text-[#1a1a1a] tracking-tight leading-snug">
+                  Điểm số
+                </h4>
+                <p className="text-xs font-semibold text-emerald-600 leading-tight mt-0.5">
+                  +8% tiến bộ
+                </p>
+              </div>
+            </div>
+            <div className="shrink-0 flex items-baseline gap-1 px-3 py-1.5 rounded-xl bg-white shadow-xs border border-pink-200/90">
+              <span className="text-base sm:text-lg font-black text-[#db2777] font-mono tracking-tight">
+                {latestScore}
+              </span>
+              <span className="text-xs font-semibold text-slate-600">/10 điểm</span>
             </div>
           </div>
-          <div className="mt-2.5 flex items-baseline gap-1.5">
-            <span className="text-2xl sm:text-3xl font-black text-[#0066FF] tracking-tight">
-              {latestScore}
-            </span>
-            <span className="text-xs text-slate-400 font-medium">/10đ</span>
-          </div>
-          <div className="mt-2 flex items-center gap-1 text-[11px] font-bold text-[#4caf50] bg-emerald-50/80 px-2 py-0.5 rounded-md w-fit">
-            <TrendingUp className="w-3 h-3 text-[#4caf50]" />
-            <span>+8% so với tuần trước</span>
+
+          {/* PC view (lg:) - Hàng 1: Icon & Badge, Hàng 2: Chỉ số, Hàng 3: Note */}
+          <div className="hidden lg:flex lg:flex-col justify-between h-full w-full gap-3">
+            <div className="flex items-center justify-between gap-2">
+              <div className="w-11 h-11 rounded-2xl bg-[#fce7f3] text-[#db2777] flex items-center justify-center shrink-0 border border-pink-200/60 shadow-xs group-hover:scale-105 transition-transform">
+                <Sparkles className="w-5 h-5" />
+              </div>
+              <div className="flex items-baseline gap-1 px-2.5 py-1 rounded-xl bg-white shadow-xs border border-pink-200/90">
+                <span className="text-base font-black text-[#db2777] font-mono tracking-tight">
+                  {latestScore}
+                </span>
+                <span className="text-xs font-semibold text-slate-600">/10 điểm</span>
+              </div>
+            </div>
+            <div>
+              <h4 className="text-base font-bold text-[#1a1a1a] tracking-tight leading-snug">
+                Điểm số
+              </h4>
+              <p className="text-xs font-semibold text-emerald-600 leading-tight mt-1">
+                +8% tiến bộ
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Card 3: Tokens Gamification & Target Reward */}
+        {/* Row 3: Tokens */}
         <div
           onClick={() => {
             if (onOpenStore) onOpenStore();
             else if (onToggleSection) onToggleSection("gamification");
           }}
-          className="bg-white hover:bg-amber-50/20 rounded-2xl p-4 border border-slate-100 shadow-[var(--shadow-card-sm)] hover:border-amber-200 transition-all cursor-pointer group"
+          className="bg-[#fffbf0] hover:bg-[#fef7e0] rounded-2xl p-3 sm:p-3.5 lg:p-4 border border-[#fde68a]/80 shadow-[0_2px_8px_rgba(245,158,11,0.05)] hover:border-amber-300 transition-all cursor-pointer group"
           title="Bấm để mở kho đổi quà"
         >
-          <div className="flex items-center justify-between text-slate-500">
-            <span className="font-semibold text-xs text-slate-600">Kho Tokens</span>
-            <div className="w-8 h-8 rounded-xl bg-amber-50 text-[#ff9800] flex items-center justify-center group-hover:scale-105 transition-transform shadow-xs">
-              <Coins className="w-4 h-4" />
+          {/* Mobile view (< lg) */}
+          <div className="flex lg:hidden items-center justify-between gap-3 w-full">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#fef3c7] text-[#d97706] flex items-center justify-center shrink-0 border border-amber-200/60 shadow-xs">
+                <Coins className="w-5 h-5 sm:w-6 sm:h-6" />
+              </div>
+              <div className="min-w-0">
+                <h4 className="text-sm sm:text-base font-bold text-[#1a1a1a] tracking-tight leading-snug">
+                  Tokens
+                </h4>
+                <p className="text-xs font-semibold text-amber-700 leading-tight mt-0.5 truncate max-w-[130px] sm:max-w-[180px]">
+                  Mục tiêu: {targetReward}
+                </p>
+              </div>
+            </div>
+            <div className="shrink-0 flex items-baseline gap-1 px-3 py-1.5 rounded-xl bg-white shadow-xs border border-amber-200/90">
+              <span className="text-base sm:text-lg font-black text-[#d97706] font-mono tracking-tight">
+                {tokenBalance}
+              </span>
+              <span className="text-xs font-semibold text-slate-600">/100 🪙</span>
             </div>
           </div>
-          <div className="mt-2.5 flex items-baseline gap-1.5">
-            <span className="text-2xl sm:text-3xl font-black text-[#ff9800] tracking-tight">
-              {tokenBalance}
-            </span>
-            <span className="text-xs text-slate-400 font-medium">/100 🪙</span>
-          </div>
-          <div className="mt-2 flex items-center gap-1 text-[11px] font-bold text-amber-800 bg-amber-50/90 px-2 py-0.5 rounded-md w-fit truncate max-w-full border border-amber-200/50">
-            <Gift className="w-3 h-3 text-[#ff9800] shrink-0" />
-            <span className="truncate">{targetReward}</span>
+
+          {/* PC view (lg:) - Hàng 1: Icon & Badge, Hàng 2: Chỉ số, Hàng 3: Note */}
+          <div className="hidden lg:flex lg:flex-col justify-between h-full w-full gap-3">
+            <div className="flex items-center justify-between gap-2">
+              <div className="w-11 h-11 rounded-2xl bg-[#fef3c7] text-[#d97706] flex items-center justify-center shrink-0 border border-amber-200/60 shadow-xs group-hover:scale-105 transition-transform">
+                <Coins className="w-5 h-5" />
+              </div>
+              <div className="flex items-baseline gap-1 px-2.5 py-1 rounded-xl bg-white shadow-xs border border-amber-200/90">
+                <span className="text-base font-black text-[#d97706] font-mono tracking-tight">
+                  {tokenBalance}
+                </span>
+                <span className="text-xs font-semibold text-slate-600">/100 🪙</span>
+              </div>
+            </div>
+            <div>
+              <h4 className="text-base font-bold text-[#1a1a1a] tracking-tight leading-snug">
+                Tokens
+              </h4>
+              <p className="text-xs font-semibold text-amber-700 leading-tight mt-1 truncate max-w-full">
+                Mục tiêu: {targetReward}
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Card 4: Study Streak */}
+        {/* Row 4: Chuyên cần */}
         <div
           onClick={() => onToggleSection && onToggleSection("buoi-hoc")}
-          className="bg-white hover:bg-orange-50/20 rounded-2xl p-4 border border-slate-100 shadow-[var(--shadow-card-sm)] hover:border-orange-200 transition-all cursor-pointer group"
+          className="bg-[#fff7ed] hover:bg-[#ffedd5]/60 rounded-2xl p-3 sm:p-3.5 lg:p-4 border border-[#fed7aa]/80 shadow-[0_2px_8px_rgba(249,115,22,0.05)] hover:border-orange-300 transition-all cursor-pointer group"
           title="Bấm để xem buổi học"
         >
-          <div className="flex items-center justify-between text-slate-500">
-            <span className="font-semibold text-xs text-slate-600">Chuỗi chuyên cần</span>
-            <div className="w-8 h-8 rounded-xl bg-orange-50 text-[#ff9800] flex items-center justify-center group-hover:scale-105 transition-transform shadow-xs">
-              <Flame className="w-4 h-4 fill-[#ff9800]" />
+          {/* Mobile view (< lg) */}
+          <div className="flex lg:hidden items-center justify-between gap-3 w-full">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#ffedd5] text-[#ea580c] flex items-center justify-center shrink-0 border border-orange-200/60 shadow-xs">
+                <Flame className="w-5 h-5 sm:w-6 sm:h-6 fill-[#ea580c]" />
+              </div>
+              <div className="min-w-0">
+                <h4 className="text-sm sm:text-base font-bold text-[#1a1a1a] tracking-tight leading-snug">
+                  Chuyên cần
+                </h4>
+                <p className="text-xs font-semibold text-emerald-600 leading-tight mt-0.5">
+                  Chăm chỉ rèn luyện
+                </p>
+              </div>
+            </div>
+            <div className="shrink-0 flex items-baseline gap-1 px-3 py-1.5 rounded-xl bg-white shadow-xs border border-orange-200/90">
+              <span className="text-base sm:text-lg font-black text-[#ea580c] font-mono tracking-tight">
+                {streakDays}
+              </span>
+              <span className="text-xs font-semibold text-slate-600">ngày 🔥</span>
             </div>
           </div>
-          <div className="mt-2.5 flex items-baseline gap-1.5">
-            <span className="text-2xl sm:text-3xl font-black text-[#ff9800] tracking-tight">
-              {streakDays} Days
-            </span>
-            <span className="text-sm">🔥</span>
-          </div>
-          <div className="mt-2 text-[11px] font-bold text-orange-700 bg-orange-50/90 px-2 py-0.5 rounded-md w-fit border border-orange-200/50">
-            Keep it going! Chăm chỉ liên tục
+
+          {/* PC view (lg:) - Hàng 1: Icon & Badge, Hàng 2: Chỉ số, Hàng 3: Note */}
+          <div className="hidden lg:flex lg:flex-col justify-between h-full w-full gap-3">
+            <div className="flex items-center justify-between gap-2">
+              <div className="w-11 h-11 rounded-2xl bg-[#ffedd5] text-[#ea580c] flex items-center justify-center shrink-0 border border-orange-200/60 shadow-xs group-hover:scale-105 transition-transform">
+                <Flame className="w-5 h-5 fill-[#ea580c]" />
+              </div>
+              <div className="flex items-baseline gap-1 px-2.5 py-1 rounded-xl bg-white shadow-xs border border-orange-200/90">
+                <span className="text-base font-black text-[#ea580c] font-mono tracking-tight">
+                  {streakDays}
+                </span>
+                <span className="text-xs font-semibold text-slate-600">ngày 🔥</span>
+              </div>
+            </div>
+            <div>
+              <h4 className="text-base font-bold text-[#1a1a1a] tracking-tight leading-snug">
+                Chuyên cần
+              </h4>
+              <p className="text-xs font-semibold text-emerald-600 leading-tight mt-1">
+                Chăm chỉ rèn luyện
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -337,155 +459,136 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
       {/* 3. Middle Section: Learning Progress & Weekly Activity (2 Columns like UI.jpg) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 pt-1">
         
-        {/* Box 1: Learning Progress (4 Language Skills) */}
+        {/* Box 1: Learning Progress (Language Skills) */}
         <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-slate-100 shadow-[var(--shadow-card-sm)] space-y-4 flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between">
-              <h4 className="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
-                <span>Tiến trình 4 kỹ năng</span>
-                <span className="text-xs font-semibold text-slate-400 font-mono">(Learning Progress)</span>
-              </h4>
-              <span className="text-xs font-bold text-[#0066FF] bg-blue-50 px-2.5 py-0.5 rounded-lg border border-blue-100">
-                Chuẩn đầu ra
-              </span>
-            </div>
-            <p className="text-[11px] text-slate-500 mt-1">
+            <h4 className="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">
+              Tiến trình kỹ năng
+            </h4>
+            <p className="text-[11px] text-slate-500 mt-0.5">
               Đo lường mức độ thành thạo ngôn ngữ qua các bài tập và kiểm tra định kỳ
             </p>
           </div>
 
-          {/* Skill Progress Bars */}
+          {/* Skill Progress Bars matching the reference screenshot */}
           <div className="space-y-3.5 pt-1">
-            {/* Skill 1: Vocabulary */}
-            <div>
-              <div className="flex items-center justify-between text-xs mb-1.5">
-                <div className="flex items-center gap-2 font-bold text-slate-800">
-                  <div className="w-6 h-6 rounded-lg bg-blue-100 text-[#0066FF] flex items-center justify-center text-xs">
-                    🔤
+            {[
+              {
+                name: "Vocabulary",
+                value: vocabVal,
+                icon: Languages,
+                bgColor: "bg-blue-50/80",
+                textColor: "text-[#2563eb]",
+                borderColor: "border-blue-100",
+                barColor: "bg-[#2563eb]",
+              },
+              {
+                name: "Reading",
+                value: readingVal,
+                icon: BookOpen,
+                bgColor: "bg-pink-50/80",
+                textColor: "text-[#db2777]",
+                borderColor: "border-pink-100",
+                barColor: "bg-[#d946ef]",
+              },
+              {
+                name: "Listening",
+                value: listeningVal,
+                icon: Headphones,
+                bgColor: "bg-emerald-50/80",
+                textColor: "text-[#16a34a]",
+                borderColor: "border-emerald-100",
+                barColor: "bg-[#22c55e]",
+              },
+              {
+                name: "Grammar",
+                value: grammarVal,
+                icon: GraduationCap,
+                bgColor: "bg-purple-50/80",
+                textColor: "text-[#9333ea]",
+                borderColor: "border-purple-100",
+                barColor: "bg-[#9333ea]",
+              },
+              {
+                name: "Phonics & Speaking",
+                value: phonicsVal,
+                icon: Mic,
+                bgColor: "bg-amber-50/80",
+                textColor: "text-[#d97706]",
+                borderColor: "border-amber-100",
+                barColor: "bg-[#2563eb]",
+              },
+            ].map((skill) => {
+              const Icon = skill.icon;
+              return (
+                <div key={skill.name} className="flex items-center gap-3">
+                  <div
+                    className={`w-11 h-11 rounded-2xl ${skill.bgColor} ${skill.textColor} flex items-center justify-center shrink-0 border ${skill.borderColor} shadow-xs`}
+                  >
+                    <Icon className="w-5 h-5" />
                   </div>
-                  <span>Từ vựng & Mẫu câu (Vocabulary)</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] text-slate-400">Xuất sắc</span>
-                  <span className="font-extrabold font-mono text-[#0066FF]">{vocabVal}%</span>
-                </div>
-              </div>
-              <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-                <div
-                  className="bg-[#0066FF] h-2.5 rounded-full transition-all duration-700 shadow-xs"
-                  style={{ width: `${vocabVal}%` }}
-                />
-              </div>
-            </div>
-
-            {/* Skill 2: Reading & Listening */}
-            <div>
-              <div className="flex items-center justify-between text-xs mb-1.5">
-                <div className="flex items-center gap-2 font-bold text-slate-800">
-                  <div className="w-6 h-6 rounded-lg bg-sky-100 text-[#1E88E5] flex items-center justify-center text-xs">
-                    📖
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between text-xs sm:text-sm mb-1.5">
+                      <span className="font-bold text-slate-800 tracking-tight">
+                        {skill.name}
+                      </span>
+                      <span className="font-extrabold font-mono text-slate-800">
+                        {skill.value}%
+                      </span>
+                    </div>
+                    <div className="w-full bg-slate-100/90 rounded-full h-2 overflow-hidden">
+                      <div
+                        className={`${skill.barColor} h-2 rounded-full transition-all duration-700`}
+                        style={{ width: `${skill.value}%` }}
+                      />
+                    </div>
                   </div>
-                  <span>Đọc hiểu & Nghe ngữ cảnh (Reading)</span>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] text-slate-400">Tiến bộ</span>
-                  <span className="font-extrabold font-mono text-[#1E88E5]">{readingVal}%</span>
-                </div>
-              </div>
-              <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-                <div
-                  className="bg-[#1E88E5] h-2.5 rounded-full transition-all duration-700 shadow-xs"
-                  style={{ width: `${readingVal}%` }}
-                />
-              </div>
-            </div>
-
-            {/* Skill 3: Grammar */}
-            <div>
-              <div className="flex items-center justify-between text-xs mb-1.5">
-                <div className="flex items-center gap-2 font-bold text-slate-800">
-                  <div className="w-6 h-6 rounded-lg bg-emerald-100 text-[#4CAF50] flex items-center justify-center text-xs">
-                    🔬
-                  </div>
-                  <span>Ngữ pháp & Cấu trúc câu (Grammar)</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] text-slate-400">Vững chắc</span>
-                  <span className="font-extrabold font-mono text-[#4CAF50]">{grammarVal}%</span>
-                </div>
-              </div>
-              <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-                <div
-                  className="bg-[#4CAF50] h-2.5 rounded-full transition-all duration-700 shadow-xs"
-                  style={{ width: `${grammarVal}%` }}
-                />
-              </div>
-            </div>
-
-            {/* Skill 4: Phonics & Speaking */}
-            <div>
-              <div className="flex items-center justify-between text-xs mb-1.5">
-                <div className="flex items-center gap-2 font-bold text-slate-800">
-                  <div className="w-6 h-6 rounded-lg bg-amber-100 text-[#FF9800] flex items-center justify-center text-xs">
-                    🗣️
-                  </div>
-                  <span>Phát âm & Phản xạ nói (Phonics & Speaking)</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] text-slate-400">Tự tin</span>
-                  <span className="font-extrabold font-mono text-[#FF9800]">{phonicsVal}%</span>
-                </div>
-              </div>
-              <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-                <div
-                  className="bg-[#FF9800] h-2.5 rounded-full transition-all duration-700 shadow-xs"
-                  style={{ width: `${phonicsVal}%` }}
-                />
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
 
         {/* Box 2: Weekly Activity Bar Chart */}
         <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-slate-100 shadow-[var(--shadow-card-sm)] flex flex-col justify-between">
-          <div className="flex items-center justify-between mb-2">
-            <div>
-              <h4 className="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
-                <BarChart3 className="w-4 h-4 text-[#0066FF]" />
-                <span>Hoạt động rèn luyện tuần qua</span>
-              </h4>
-              <p className="text-[11px] text-slate-500">
-                Thời lượng làm bài và tương tác học tiếng Anh mỗi ngày
-              </p>
-            </div>
-            <div className="text-[11px] font-bold text-[#0066FF] bg-blue-50 px-2.5 py-0.5 rounded-md flex items-center gap-1 border border-blue-100">
-              <Clock className="w-3 h-3" />
-              <span>5h 30m</span>
+          <div className="space-y-1 mb-2">
+            <h4 className="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+              <BarChart3 className="w-4 h-4 text-[#0066FF]" />
+              <span>Hoạt động rèn luyện tuần qua</span>
+            </h4>
+            <p className="text-[11px] text-slate-500">
+              Thời lượng làm bài và tương tác học tiếng Anh mỗi ngày
+            </p>
+            <div className="pt-1">
+              <div className="text-[11px] font-bold text-[#0066FF] bg-blue-50 px-2.5 py-0.5 rounded-md flex items-center gap-1 border border-blue-100 w-fit">
+                <Clock className="w-3 h-3" />
+                <span>5h 30m</span>
+              </div>
             </div>
           </div>
 
           {/* Interactive Bar Chart matching UI.jpg Weekly Activity */}
-          <div className="h-44 sm:h-48 flex items-end justify-between gap-2 pt-2 px-1 relative">
+          <div className="h-44 sm:h-48 flex items-end justify-between gap-1 sm:gap-2 pt-2 pl-6 sm:pl-7 pr-1 relative">
             {/* Horizontal grid lines */}
-            <div className="absolute inset-x-0 top-3 border-b border-dashed border-slate-200/70" />
-            <div className="absolute inset-x-0 top-1/2 border-b border-dashed border-slate-200/70" />
-            <div className="absolute inset-x-0 bottom-7 border-b border-slate-200" />
+            <div className="absolute inset-x-0 top-3 border-b border-dashed border-slate-200/70 ml-6" />
+            <div className="absolute inset-x-0 top-1/2 border-b border-dashed border-slate-200/70 ml-6" />
+            <div className="absolute inset-x-0 bottom-7 border-b border-slate-200 ml-6" />
 
             {/* Y-axis markers */}
-            <div className="absolute -left-1 top-2 text-[9px] font-mono text-slate-400">60m</div>
-            <div className="absolute -left-1 top-1/2 -translate-y-1 text-[9px] font-mono text-slate-400">30m</div>
-            <div className="absolute -left-1 bottom-8 text-[9px] font-mono text-slate-400">0m</div>
+            <div className="absolute left-0 top-2 text-[9px] font-mono text-slate-400">60m</div>
+            <div className="absolute left-0 top-1/2 -translate-y-1 text-[9px] font-mono text-slate-400">30m</div>
+            <div className="absolute left-0 bottom-8 text-[9px] font-mono text-slate-400">0m</div>
 
             {/* Day Bars */}
             {weeklyActivityData.map((item, idx) => (
-              <div key={idx} className="flex-1 flex flex-col items-center h-full justify-end z-10 group">
+              <div key={idx} className="flex-1 flex flex-col items-center h-full justify-end z-10 group min-w-0">
                 {/* Tooltip on hover */}
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity mb-1 bg-slate-900 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-md pointer-events-none whitespace-nowrap shadow-sm">
                   {item.minutes} phút
                 </div>
                 
                 {/* Bar */}
-                <div className="w-full max-w-[28px] bg-slate-100 rounded-t-lg h-[115px] flex items-end overflow-hidden p-0.5">
+                <div className="w-full max-w-[20px] sm:max-w-[26px] bg-slate-100 rounded-t-lg h-[115px] flex items-end overflow-hidden p-0.5">
                   <div
                     className="w-full bg-[#0066FF] group-hover:bg-[#0052cc] rounded-t-md transition-all duration-300 shadow-xs"
                     style={{ height: `${item.heightPercent}%` }}
@@ -493,7 +596,7 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
                 </div>
 
                 {/* Day Label */}
-                <span className="mt-2 text-[11px] font-bold text-slate-600 group-hover:text-[#0066FF]">
+                <span className="mt-2 text-[10px] sm:text-[11px] font-bold text-slate-600 group-hover:text-[#0066FF]">
                   {item.label}
                 </span>
               </div>
@@ -515,7 +618,7 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
           <div className="flex items-center justify-between pb-1">
             <h4 className="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
               <Award className="w-4 h-4 text-[#FFB800]" />
-              <span>Thành tích & Huy hiệu mới (Recent Badges)</span>
+              <span>Thành tích & Huy hiệu mới</span>
             </h4>
           </div>
 
@@ -528,7 +631,7 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
                 </div>
                 <div>
                   <h5 className="text-xs sm:text-sm font-bold text-slate-900">
-                    Chiến binh Từ vựng (Vocab Whiz)
+                    Chiến binh Từ vựng
                   </h5>
                   <p className="text-[11px] text-slate-500">
                     Đạt 95% bài kiểm tra Vocabulary Unit 3
@@ -548,7 +651,7 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
                 </div>
                 <div>
                   <h5 className="text-xs sm:text-sm font-bold text-slate-900">
-                    Ngôi sao Đọc hiểu (Reading Star)
+                    Ngôi sao Đọc hiểu
                   </h5>
                   <p className="text-[11px] text-slate-500">
                     Hoàn thành 10 bài đọc truyện ngắn
@@ -568,7 +671,7 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
                 </div>
                 <div>
                   <h5 className="text-xs sm:text-sm font-bold text-slate-900">
-                    Thám tử Ngữ pháp (Grammar Explorer)
+                    Thám tử Ngữ pháp
                   </h5>
                   <p className="text-[11px] text-slate-500">
                     Nắm chắc 5 cấu trúc câu phức không sai câu nào
@@ -583,18 +686,25 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
         </div>
 
         {/* Right: Dino Encouragement Mascot Card */}
-        <div className="bg-gradient-to-br from-[#EEF4FF] via-[#F4F7FC] to-[#E5EDFC] rounded-2xl sm:rounded-3xl p-5 border border-blue-100/90 shadow-[var(--shadow-card-sm)] flex items-center justify-between gap-3 relative overflow-hidden">
-          {/* Decorative soft glowing blobs */}
-          <div className="absolute -top-10 -right-10 w-36 h-36 rounded-full bg-white/60 blur-xl pointer-events-none" />
-          <div className="absolute -bottom-8 -left-8 w-28 h-28 rounded-full bg-blue-200/30 blur-lg pointer-events-none" />
+        <div className="bg-gradient-to-br from-[#EEF4FF] via-[#F4F7FC] to-[#E5EDFC] rounded-2xl sm:rounded-3xl p-5 border border-blue-100/90 shadow-[var(--shadow-card-sm)] relative">
+          {/* Decorative soft glowing blobs masked inside card */}
+          <div className="absolute inset-0 rounded-2xl sm:rounded-3xl overflow-hidden pointer-events-none">
+            <div className="absolute -top-10 -right-10 w-36 h-36 rounded-full bg-white/60 blur-xl" />
+            <div className="absolute -bottom-8 -left-8 w-28 h-28 rounded-full bg-blue-200/30 blur-lg" />
+          </div>
 
-          <div className="relative z-10 flex-1 pr-2">
+          {/* Floating Cheerful Dino Mascot at top-right, increased size by +30%, 30% overflowing outside */}
+          <div className="absolute -top-7 sm:-top-8 right-2 sm:right-3 z-20 pointer-events-none">
+            <LearnlyDinoMascot className="w-[104px] h-[104px] sm:w-[116px] sm:h-[116px] drop-shadow-md" />
+          </div>
+
+          <div className="relative z-10 flex-1 pr-12 sm:pr-14">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 text-[#0066FF] border border-blue-200/80 text-[11px] font-extrabold mb-1.5 shadow-2xs">
               <Star className="w-3 h-3 text-[#FFB800] fill-[#FFB800]" />
               <span>Ghi nhận từ Cô Nghi</span>
             </div>
 
-            <h4 className="text-base sm:text-lg font-black text-slate-900 tracking-tight">
+            <h4 className="text-lg sm:text-xl font-black text-slate-900 tracking-tight">
               Keep it up, {firstName}!
             </h4>
 
@@ -602,28 +712,12 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
               Con đang học rất xuất sắc! Cô Nghi và ba mẹ rất tự hào về tinh thần tự giác, chuẩn bị bài chu đáo của con.
             </p>
 
-            <div className="mt-3 flex items-center gap-2 flex-wrap">
-              <span className="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-1 rounded-xl bg-white text-[#0066FF] shadow-xs border border-blue-100">
-                <Star className="w-3 h-3 fill-[#FFB800] text-[#FFB800]" />
+            <div className="mt-2.5 flex items-center">
+              <span className="inline-flex items-center gap-1 text-[10.5px] sm:text-[11px] font-bold px-2 py-0.5 rounded-lg bg-white text-[#0066FF] shadow-xs border border-blue-100 whitespace-nowrap">
+                <Star className="w-3 h-3 fill-[#FFB800] text-[#FFB800] shrink-0" />
                 <span>{student.attitudeBadge?.label || "Chăm ngoan & Tích cực"}</span>
               </span>
-
-              {onOpenStore && (
-                <button
-                  type="button"
-                  onClick={onOpenStore}
-                  className="inline-flex items-center gap-1 text-[11px] font-bold px-3 py-1.5 rounded-xl bg-gradient-to-r from-[#FF9800] to-[#FFB800] text-white hover:brightness-105 shadow-[0_4px_12px_rgba(255,152,0,0.3)] transition-all cursor-pointer border border-amber-300/40"
-                >
-                  <Gift className="w-3.5 h-3.5 text-white" />
-                  <span>Đổi quà tặng</span>
-                </button>
-              )}
             </div>
-          </div>
-
-          {/* Cheerful Green Dino Mascot matching UI.jpg */}
-          <div className="relative z-10 shrink-0 flex items-center justify-center">
-            <LearnlyDinoMascot className="w-24 h-24 sm:w-28 sm:h-28 drop-shadow-md" />
           </div>
         </div>
       </div>

@@ -306,7 +306,7 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 pb-2 sm:pb-4 max-lg:overflow-x-hidden max-w-full relative z-10">
+      <main className="flex-1 pb-0 max-lg:overflow-x-hidden max-w-full relative z-10">
         {currentRoute === "admin" ? (
           <AdminDashboard
             students={studentsMap}
