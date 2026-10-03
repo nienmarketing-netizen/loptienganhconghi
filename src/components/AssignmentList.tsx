@@ -399,7 +399,7 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
           return (
             <div
               key={asg.id}
-              className="rounded-lg sm:rounded-xl p-4 sm:p-5 soft-ui-embossed-sm hover:shadow-[var(--shadow-floating)] transition-all relative space-y-3"
+              className="rounded-2xl p-4 sm:p-5 bg-white border border-slate-100 shadow-[var(--shadow-card-sm)] hover:shadow-[var(--shadow-floating)] hover:border-blue-100 transition-all relative space-y-3"
             >
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                 <div className="space-y-1.5">
@@ -438,17 +438,17 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
                 {/* Status Badge */}
                 <div className="shrink-0 self-start">
                   {isNotDone && (
-                    <span className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-md bg-amber-100 text-amber-900 border border-amber-300 leading-tight">
+                    <span className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200 leading-tight">
                       <span>Chưa làm</span>
                     </span>
                   )}
                   {isSubmitted && (
-                    <span className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-md bg-sky-100 text-sky-900 border border-sky-300 leading-tight">
+                    <span className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full bg-blue-50 text-[#0066FF] border border-blue-200 leading-tight">
                       <span>Đã nộp</span>
                     </span>
                   )}
                   {isGraded && (
-                    <span className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-md bg-emerald-100 text-emerald-900 border border-emerald-300 leading-tight">
+                    <span className="inline-flex items-center text-xs font-bold px-3 py-1 rounded-full bg-emerald-50 text-[#4CAF50] border border-emerald-200 leading-tight">
                       <span>Đã chấm • {asg.gradedDetails?.score}đ</span>
                     </span>
                   )}

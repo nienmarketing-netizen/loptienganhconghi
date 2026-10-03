@@ -27,14 +27,14 @@ export function Progress({
       aria-valuemin={0}
       aria-valuemax={max}
       className={cn(
-        "relative h-5 w-full overflow-hidden rounded-full bg-[#d1d9e6] p-1 shadow-[inset_3px_3px_6px_#babecc,inset_-3px_-3px_6px_#ffffff] border border-[#babecc]/50",
+        "relative h-5 w-full overflow-hidden rounded-full bg-slate-100 p-0.5 border border-slate-200/80 shadow-[inset_0_1px_3px_rgba(0,0,0,0.06)]",
         className
       )}
       {...props}
     >
       <div
         className={cn(
-          "h-full rounded-full transition-all duration-700 ease-out bg-gradient-to-r from-[#ff4757] via-[#ff6b81] to-[#ff4757] shadow-[0_0_8px_rgba(255,71,87,0.5)] relative overflow-hidden",
+          "h-full rounded-full transition-all duration-700 ease-out bg-[#4caf50] shadow-[0_2px_8px_rgba(76,175,80,0.35)] relative overflow-hidden",
           indicatorClassName
         )}
         style={{ width: `${percentage}%` }}

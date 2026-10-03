@@ -106,7 +106,7 @@ export const LuckyWheelModal: React.FC<LuckyWheelModalProps> = ({
   };
 
   return (
-    <Dialog open={open} onOpenChange={handleResetAndClose} id="modal-lucky-wheel">
+    <Dialog open={open} onOpenChange={handleResetAndClose} id="modal-lucky-wheel" overlayClassName="z-[10000]">
       <DialogHeader>
         <div className="flex items-center gap-3 min-w-0">
           <div className="w-9 h-9 rounded-xl bg-white/15 border border-white/20 flex items-center justify-center text-white shrink-0 shadow-inner">

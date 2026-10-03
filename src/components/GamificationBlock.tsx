@@ -190,12 +190,12 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
       >
         <DialogHeader>
           <div className="flex items-center gap-3 min-w-0">
-            <div className="w-9 h-9 rounded-lg bg-[#1e2528] border border-white/10 flex items-center justify-center text-indigo-400 shrink-0 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)]">
-              <Award className="w-5 h-5 text-indigo-400" />
+            <div className="w-9 h-9 rounded-xl bg-white/20 border border-white/30 flex items-center justify-center text-white shrink-0 shadow-inner">
+              <Award className="w-5 h-5 text-white" />
             </div>
             <div className="min-w-0">
-              <div className="text-xs font-medium text-[#a3b1c6] flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full led-indicator-orange animate-pulse" />
+              <div className="text-xs font-medium text-blue-100 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse shadow-[0_0_6px_#f59e0b]" />
                 <span>Quy định thưởng & trừ điểm minh bạch</span>
               </div>
               <DialogTitle>Tiêu chí tích luỹ tokens</DialogTitle>
@@ -211,13 +211,18 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
           {TOKEN_BAREM_GROUPS.map((group) => (
             <div
               key={group.id}
-              className="bg-[#d1d9e6] rounded-xl border border-[#babecc]/60 p-3.5 shadow-[var(--shadow-recessed-sm)] space-y-2.5"
+              className="bg-white rounded-2xl border border-slate-200/80 p-3.5 sm:p-4 shadow-[var(--shadow-card-sm)] space-y-3"
             >
-              <div className="pb-1.5 border-b border-[#babecc]/50">
-                <h4 className="text-xs sm:text-sm font-bold text-[#1a1a1a] flex items-center gap-1.5">
-                  <span>{group.groupName}</span>
-                </h4>
-                <p className="text-[11px] text-[#666666] mt-0.5">{group.description}</p>
+              <div className="pb-2 border-b border-slate-100 flex items-center justify-between">
+                <div>
+                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                    <span>{group.groupName}</span>
+                  </h4>
+                  <p className="text-[11px] text-slate-500 mt-0.5">{group.description}</p>
+                </div>
+                <span className="text-[10px] font-bold font-mono px-2 py-0.5 rounded-full bg-blue-50 text-[#0066FF] border border-blue-200/60">
+                  {group.badge}
+                </span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -226,19 +231,19 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
                   return (
                     <div
                       key={item.id}
-                      className="p-2.5 rounded-lg bg-[#e0e5ec] border border-white/80 border-b-[#babecc] border-r-[#babecc] shadow-xs flex items-center justify-between gap-2.5 text-xs"
+                      className="p-2.5 rounded-xl bg-slate-50/80 border border-slate-200/80 flex items-center justify-between gap-2.5 text-xs hover:border-blue-200 transition-colors"
                     >
                       <div className="flex items-center gap-2.5 min-w-0 flex-1">
                         <span className="text-base shrink-0">{item.icon}</span>
-                        <span className="text-xs font-semibold text-[#1a1a1a] leading-snug">
+                        <span className="text-xs font-semibold text-slate-800 leading-snug">
                           {item.label}
                         </span>
                       </div>
                       <span
-                        className={`shrink-0 font-semibold text-xs px-2.5 py-0.5 rounded-md leading-tight whitespace-nowrap ${
+                        className={`shrink-0 font-bold font-mono text-xs px-2.5 py-0.5 rounded-lg leading-tight whitespace-nowrap ${
                           isEarn
-                            ? "bg-emerald-100 text-emerald-800 border border-emerald-300"
-                            : "bg-rose-100 text-rose-800 border border-rose-300"
+                            ? "bg-emerald-50 text-[#4CAF50] border border-emerald-300"
+                            : "bg-rose-50 text-rose-600 border border-rose-300"
                         }`}
                       >
                         {isEarn ? `+${item.points}` : item.points} Token{Math.abs(item.points) > 1 ? "s" : ""}

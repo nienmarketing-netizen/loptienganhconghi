@@ -311,11 +311,11 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
   return (
     <>
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200"
+        className="fixed inset-0 z-[9999] flex items-center justify-center p-2.5 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200"
         onClick={onClose}
       >
         <div
-          className="relative w-full max-w-2xl bg-white rounded-2xl shadow-[var(--shadow-floating)] border border-slate-100 overflow-hidden flex flex-col max-h-[92vh] animate-in zoom-in-95 duration-150"
+          className="relative w-full max-w-2xl bg-white rounded-2xl shadow-[var(--shadow-floating)] border border-slate-100 overflow-hidden flex flex-col max-h-[80vh] animate-in zoom-in-95 duration-150"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Modal Header */}
@@ -670,11 +670,11 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
       {/* UNIFIED FULLSCREEN ALBUM LIGHTBOX MODAL WITH CAROUSEL & THUMBNAIL STRIP */}
       {activeLightboxIndex !== null && currentLightboxItem && (
         <div
-          className="fixed inset-0 z-[70] flex items-center justify-center p-2 sm:p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200 select-none"
+          className="fixed inset-0 z-[10000] flex items-center justify-center p-2 sm:p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200 select-none"
           onClick={() => setActiveLightboxIndex(null)}
         >
           <div
-            className="relative w-full max-w-5xl bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl flex flex-col h-[90vh] sm:h-[88vh]"
+            className="relative w-full max-w-5xl bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl flex flex-col max-h-[80vh] h-[80vh]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Lightbox Header Bar */}

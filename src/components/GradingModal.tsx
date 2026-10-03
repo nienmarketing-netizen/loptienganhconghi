@@ -502,8 +502,8 @@ export const GradingModal: React.FC<GradingModalProps> = ({
   const selectedAssignmentObj = studentAssignments.find((a) => a.id === selectedHwId);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs overflow-y-auto">
-      <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-100 p-4 sm:p-6 my-auto text-slate-800">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs">
+      <div className="relative w-full max-w-2xl max-h-[80vh] flex flex-col bg-white rounded-2xl shadow-2xl border border-slate-100 p-4 sm:p-6 text-slate-800 overflow-hidden">
         {/* ======================================================== */}
         {/* TIÊU ĐỀ XANH DƯƠNG SÁNG (#0066FF)                        */}
         {/* ======================================================== */}
@@ -621,7 +621,7 @@ export const GradingModal: React.FC<GradingModalProps> = ({
         {/* NỘI DUNG CHÍNH */}
         {viewMode === "edit" ? (
           /* FORM NHẬP LIỆU */
-          <form onSubmit={handleSubmit} className="mt-4 space-y-4 max-h-[72vh] overflow-y-auto pr-1">
+          <form onSubmit={handleSubmit} className="mt-4 space-y-4 flex-1 overflow-y-auto pr-1">
             {activeTab === "lesson" ? (
               /* TAB 1: CHẤM ĐIỂM BUỔI HỌC */
               <div className="space-y-3.5 text-xs">
@@ -1108,7 +1108,7 @@ export const GradingModal: React.FC<GradingModalProps> = ({
           /* ======================================================== */
           /* MÀN HÌNH XEM LẠI & CHỈNH SỬA (REVIEW MODE)                 */
           /* ======================================================== */
-          <div className="mt-4 space-y-3.5 max-h-[72vh] overflow-y-auto pr-1 text-xs">
+          <div className="mt-4 space-y-3.5 flex-1 overflow-y-auto pr-1 text-xs">
             <div className="flex items-center justify-between p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
               <div>
                 <span className="font-bold text-xs text-slate-800 block">

@@ -9,9 +9,10 @@ export interface DialogProps {
   children: React.ReactNode;
   id?: string;
   className?: string;
+  overlayClassName?: string;
 }
 
-export function Dialog({ open, onOpenChange, children, id, className }: DialogProps) {
+export function Dialog({ open, onOpenChange, children, id, className, overlayClassName }: DialogProps) {
   useLockBodyScroll(open);
 
   useEffect(() => {
@@ -33,12 +34,15 @@ export function Dialog({ open, onOpenChange, children, id, className }: DialogPr
   return (
     <div
       id={id}
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200"
+      className={cn(
+        "fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200",
+        overlayClassName
+      )}
       onClick={() => onOpenChange(false)}
     >
       <div
         className={cn(
-          "relative w-full max-w-lg max-h-[92vh] flex flex-col bg-white rounded-2xl shadow-[var(--shadow-floating)] border border-slate-100 overflow-hidden transform transition-all duration-150 animate-in zoom-in-95",
+          "relative w-full max-w-lg max-h-[80vh] flex flex-col bg-white rounded-2xl shadow-[var(--shadow-floating)] border border-slate-100 overflow-hidden transform transition-all duration-150 animate-in zoom-in-95",
           className
         )}
         onClick={(e) => e.stopPropagation()}
@@ -87,7 +91,7 @@ export function DialogCloseButton({ onClose, id }: { onClose: () => void; id?: s
 
 export function DialogContent({ className, children, id }: { className?: string; children: React.ReactNode; id?: string }) {
   return (
-    <div id={id} className={cn("p-4 sm:p-6 overflow-y-auto overscroll-contain space-y-4 text-slate-800", className)}>
+    <div id={id} className={cn("p-4 sm:p-6 overflow-y-auto overscroll-contain flex-1 space-y-4 text-slate-800", className)}>
       {children}
     </div>
   );

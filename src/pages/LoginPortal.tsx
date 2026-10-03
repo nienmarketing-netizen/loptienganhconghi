@@ -116,18 +116,18 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#F2F4FD] via-[#F6F7FF] to-[#ECEFFA] flex flex-col justify-between py-6 px-3.5 sm:px-6 relative text-slate-800">
-      {/* Decorative soft pastel ambient shapes inspired by Learnly style */}
+    <div className="min-h-screen bg-[#F4F7FC] flex flex-col justify-between py-6 px-3.5 sm:px-6 relative text-slate-800">
+      {/* Decorative soft pastel ambient shapes */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-[#635BFF]/8 blur-3xl" />
-        <div className="absolute top-1/3 -right-20 w-80 h-80 rounded-full bg-[#FFB800]/10 blur-3xl" />
-        <div className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full bg-[#48D1CC]/10 blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-[#0066FF]/6 blur-3xl" />
+        <div className="absolute top-1/3 -right-20 w-80 h-80 rounded-full bg-[#FFB800]/8 blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full bg-[#4caf50]/6 blur-3xl" />
       </div>
 
       {/* Top Header Navigation Bar */}
       <div className="w-full max-w-lg mx-auto flex items-center justify-between mb-5 sm:mb-7 relative z-10">
         <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#635BFF] to-[#8B83FF] flex items-center justify-center text-white shadow-[0_6px_16px_rgba(99,91,255,0.3)]">
+          <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#0066FF] to-[#1E88E5] flex items-center justify-center text-white shadow-[0_6px_16px_rgba(0,102,255,0.25)]">
             <GraduationCap className="w-6 h-6 text-white" />
           </div>
           <div>
@@ -143,11 +143,11 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
 
       {/* Main Card Container */}
       <div className="w-full max-w-lg mx-auto relative z-10 my-auto">
-        <div className="bg-white rounded-3xl sm:rounded-[32px] p-6 sm:p-8 border border-indigo-100/70 shadow-[0_20px_50px_rgba(99,91,255,0.09),0_2px_8px_rgba(0,0,0,0.02)] relative">
+        <div className="bg-white rounded-3xl sm:rounded-[32px] p-6 sm:p-8 border border-slate-100 shadow-[0_20px_50px_rgba(0,102,255,0.08),0_2px_8px_rgba(0,0,0,0.02)] relative">
           
           {/* Header Badge & Title */}
           <div className="text-center mb-6">
-            <div className="inline-flex items-center px-3.5 py-1 rounded-full bg-[#635BFF]/10 text-[#635BFF] font-semibold text-xs mb-3">
+            <div className="inline-flex items-center px-3.5 py-1 rounded-full bg-blue-50 text-[#0066FF] border border-blue-100 font-semibold text-xs mb-3">
               <span>Learning Adventures</span>
             </div>
             <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
@@ -159,23 +159,23 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
 
             {/* Quick Learnly feature highlights */}
             <div className="grid grid-cols-3 gap-2 mt-4 pt-1">
-              <div className="bg-[#F8F9FE] border border-indigo-50 rounded-2xl p-2.5 text-center flex flex-col items-center justify-center">
-                <div className="w-7 h-7 rounded-xl bg-indigo-100 text-[#635BFF] flex items-center justify-center mb-1">
-                  <Star className="w-4 h-4 fill-[#635BFF] text-[#635BFF]" />
+              <div className="bg-[#F8F9FE] border border-slate-100 rounded-2xl p-2.5 text-center flex flex-col items-center justify-center">
+                <div className="w-7 h-7 rounded-xl bg-blue-50 text-[#0066FF] flex items-center justify-center mb-1">
+                  <Star className="w-4 h-4 fill-[#0066FF] text-[#0066FF]" />
                 </div>
                 <span className="text-[11px] font-bold text-slate-800">Biểu đồ điểm</span>
                 <span className="text-[10px] text-slate-400">Từng bài học</span>
               </div>
-              <div className="bg-[#F8F9FE] border border-indigo-50 rounded-2xl p-2.5 text-center flex flex-col items-center justify-center">
-                <div className="w-7 h-7 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-1">
-                  <Trophy className="w-4 h-4 text-amber-600" />
+              <div className="bg-[#F8F9FE] border border-slate-100 rounded-2xl p-2.5 text-center flex flex-col items-center justify-center">
+                <div className="w-7 h-7 rounded-xl bg-amber-50 text-[#FF9800] flex items-center justify-center mb-1">
+                  <Trophy className="w-4 h-4 text-[#FF9800]" />
                 </div>
                 <span className="text-[11px] font-bold text-slate-800">Kho Tokens</span>
                 <span className="text-[10px] text-slate-400">Đổi quà vui</span>
               </div>
-              <div className="bg-[#F8F9FE] border border-indigo-50 rounded-2xl p-2.5 text-center flex flex-col items-center justify-center">
-                <div className="w-7 h-7 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-1">
-                  <BookOpen className="w-4 h-4 text-emerald-600" />
+              <div className="bg-[#F8F9FE] border border-slate-100 rounded-2xl p-2.5 text-center flex flex-col items-center justify-center">
+                <div className="w-7 h-7 rounded-xl bg-emerald-50 text-[#4CAF50] flex items-center justify-center mb-1">
+                  <BookOpen className="w-4 h-4 text-[#4CAF50]" />
                 </div>
                 <span className="text-[11px] font-bold text-slate-800">Nhận xét</span>
                 <span className="text-[10px] text-slate-400">Từ Cô Nghi</span>
@@ -184,7 +184,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
           </div>
 
           {/* Learnly Style Pill Switcher */}
-          <div className="bg-[#F0F2FD] p-1.5 rounded-2xl grid grid-cols-2 gap-1.5 mb-6">
+          <div className="bg-slate-100 p-1.5 rounded-2xl grid grid-cols-2 gap-1.5 mb-6">
             <button
               type="button"
               onClick={() => {
@@ -193,7 +193,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
               }}
               className={`flex items-center justify-center gap-2 py-3 px-3 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer ${
                 activeTab === "parent"
-                  ? "bg-[#635BFF] text-white shadow-[0_4px_14px_rgba(99,91,255,0.35)]"
+                  ? "bg-[#0066FF] text-white shadow-[0_4px_14px_rgba(0,102,255,0.3)]"
                   : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
               }`}
             >
@@ -209,7 +209,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
               }}
               className={`flex items-center justify-center gap-2 py-3 px-3 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer ${
                 activeTab === "teacher"
-                  ? "bg-[#635BFF] text-white shadow-[0_4px_14px_rgba(99,91,255,0.35)]"
+                  ? "bg-[#0066FF] text-white shadow-[0_4px_14px_rgba(0,102,255,0.3)]"
                   : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
               }`}
             >
@@ -221,13 +221,13 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
           {/* TAB 1: PARENT FORM */}
           {activeTab === "parent" && (
             <form onSubmit={handleParentSubmit} className="space-y-4">
-              <div className="bg-[#F5F6FF] border border-indigo-100 rounded-2xl p-3.5 flex items-start gap-3">
-                <div className="w-7 h-7 rounded-xl bg-[#635BFF]/10 text-[#635BFF] flex items-center justify-center shrink-0 mt-0.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#635BFF]" />
+              <div className="bg-blue-50/70 border border-blue-100 rounded-2xl p-3.5 flex items-start gap-3">
+                <div className="w-7 h-7 rounded-xl bg-blue-100 text-[#0066FF] flex items-center justify-center shrink-0 mt-0.5">
+                  <CheckCircle2 className="w-4 h-4 text-[#0066FF]" />
                 </div>
                 <p className="text-xs text-slate-600 leading-relaxed">
                   <strong className="text-slate-900 font-semibold">Ba mẹ lưu ý:</strong> Nhập đúng{" "}
-                  <span className="font-bold text-[#635BFF] font-mono">Mã học sinh</span> (được cấp
+                  <span className="font-bold text-[#0066FF] font-mono">Mã học sinh</span> (được cấp
                   khi nhập học) để mở hồ sơ học tập và bảng điểm của con.
                 </p>
               </div>
@@ -242,7 +242,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-                    <KeyRound className="w-5 h-5 text-[#635BFF]" />
+                    <KeyRound className="w-5 h-5 text-[#0066FF]" />
                   </div>
                   <input
                     id="student-code-input"
@@ -253,7 +253,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
                       if (parentError) setParentError("");
                     }}
                     placeholder="Ví dụ: G6-T7CC1-03"
-                    className="w-full pl-12 pr-4 py-3.5 bg-[#F8F9FE] border border-indigo-100 rounded-2xl text-slate-900 font-mono text-base font-bold uppercase tracking-wider placeholder:text-slate-400 placeholder:normal-case placeholder:font-normal placeholder:tracking-normal focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#635BFF]/15 focus:border-[#635BFF] transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
+                    className="w-full pl-12 pr-4 py-3.5 bg-[#F8F9FE] border border-slate-200/90 rounded-2xl text-slate-900 font-mono text-base font-bold uppercase tracking-wider placeholder:text-slate-400 placeholder:normal-case placeholder:font-normal placeholder:tracking-normal focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#0066FF]/15 focus:border-[#0066FF] transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
                   />
                 </div>
 
@@ -266,7 +266,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
                       setStudentCode("G6-T7CC1-03");
                       if (parentError) setParentError("");
                     }}
-                    className="px-2.5 py-1 rounded-xl bg-[#635BFF]/10 hover:bg-[#635BFF]/20 text-[#635BFF] font-mono font-bold transition-colors cursor-pointer border border-[#635BFF]/20"
+                    className="px-2.5 py-1 rounded-xl bg-blue-50 hover:bg-blue-100 text-[#0066FF] font-mono font-bold transition-colors cursor-pointer border border-blue-200/60"
                   >
                     G6-T7CC1-03
                   </button>
@@ -276,7 +276,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
                       setStudentCode("G7-CN2-05");
                       if (parentError) setParentError("");
                     }}
-                    className="px-2.5 py-1 rounded-xl bg-[#635BFF]/10 hover:bg-[#635BFF]/20 text-[#635BFF] font-mono font-bold transition-colors cursor-pointer border border-[#635BFF]/20"
+                    className="px-2.5 py-1 rounded-xl bg-blue-50 hover:bg-blue-100 text-[#0066FF] font-mono font-bold transition-colors cursor-pointer border border-blue-200/60"
                   >
                     G7-CN2-05
                   </button>
@@ -295,7 +295,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full bg-[#635BFF] hover:bg-[#5248E5] text-white font-bold py-3.5 px-6 rounded-2xl shadow-[0_8px_22px_rgba(99,91,255,0.38)] active:translate-y-[1px] active:scale-[0.99] transition-all flex items-center justify-center gap-2 text-sm cursor-pointer"
+                  className="w-full bg-[#0066FF] hover:bg-[#0052cc] text-white font-bold py-3.5 px-6 rounded-2xl shadow-[0_8px_22px_rgba(0,102,255,0.32)] active:translate-y-[1px] active:scale-[0.99] transition-all flex items-center justify-center gap-2 text-sm cursor-pointer"
                 >
                   <span>Truy cập hồ sơ học tập</span>
                   <ArrowRight className="w-4 h-4" />
@@ -307,9 +307,9 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
           {/* TAB 2: TEACHER FORM */}
           {activeTab === "teacher" && (
             <form onSubmit={handleTeacherSubmit} className="space-y-4">
-              <div className="bg-[#F5F6FF] border border-indigo-100 rounded-2xl p-3.5 flex items-start gap-3">
-                <div className="w-7 h-7 rounded-xl bg-[#635BFF]/10 text-[#635BFF] flex items-center justify-center shrink-0 mt-0.5">
-                  <ShieldCheck className="w-4 h-4 text-[#635BFF]" />
+              <div className="bg-blue-50/70 border border-blue-100 rounded-2xl p-3.5 flex items-start gap-3">
+                <div className="w-7 h-7 rounded-xl bg-blue-100 text-[#0066FF] flex items-center justify-center shrink-0 mt-0.5">
+                  <ShieldCheck className="w-4 h-4 text-[#0066FF]" />
                 </div>
                 <p className="text-xs text-slate-600 leading-relaxed">
                   <strong className="text-slate-900 font-semibold">Cổng Giáo viên:</strong> Nhập
@@ -327,7 +327,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-                    <User className="w-5 h-5 text-[#635BFF]" />
+                    <User className="w-5 h-5 text-[#0066FF]" />
                   </div>
                   <input
                     id="teacher-username-input"
@@ -338,7 +338,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
                       if (teacherError) setTeacherError("");
                     }}
                     placeholder="admin hoặc nguyenthiphuongnghi"
-                    className="w-full pl-12 pr-4 py-3.5 bg-[#F8F9FE] border border-indigo-100 rounded-2xl text-slate-900 font-medium text-base placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#635BFF]/15 focus:border-[#635BFF] transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
+                    className="w-full pl-12 pr-4 py-3.5 bg-[#F8F9FE] border border-slate-200/90 rounded-2xl text-slate-900 font-medium text-base placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#0066FF]/15 focus:border-[#0066FF] transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
                   />
                 </div>
               </div>
@@ -353,7 +353,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-                    <Lock className="w-5 h-5 text-[#635BFF]" />
+                    <Lock className="w-5 h-5 text-[#0066FF]" />
                   </div>
                   <input
                     id="teacher-password-input"
@@ -364,7 +364,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
                       if (teacherError) setTeacherError("");
                     }}
                     placeholder="Nhập mật khẩu"
-                    className="w-full pl-12 pr-12 py-3.5 bg-[#F8F9FE] border border-indigo-100 rounded-2xl text-slate-900 font-medium text-base placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#635BFF]/15 focus:border-[#635BFF] transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
+                    className="w-full pl-12 pr-12 py-3.5 bg-[#F8F9FE] border border-slate-200/90 rounded-2xl text-slate-900 font-medium text-base placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#0066FF]/15 focus:border-[#0066FF] transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
                   />
                   <button
                     type="button"
@@ -373,7 +373,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
                     aria-label={showPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
                   >
                     {showPassword ? (
-                      <EyeOff className="w-5 h-5 text-[#635BFF]" />
+                      <EyeOff className="w-5 h-5 text-[#0066FF]" />
                     ) : (
                       <Eye className="w-5 h-5" />
                     )}
@@ -393,7 +393,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full bg-[#635BFF] hover:bg-[#5248E5] text-white font-bold py-3.5 px-6 rounded-2xl shadow-[0_8px_22px_rgba(99,91,255,0.38)] active:translate-y-[1px] active:scale-[0.99] transition-all flex items-center justify-center gap-2 text-sm cursor-pointer"
+                  className="w-full bg-[#0066FF] hover:bg-[#0052cc] text-white font-bold py-3.5 px-6 rounded-2xl shadow-[0_8px_22px_rgba(0,102,255,0.32)] active:translate-y-[1px] active:scale-[0.99] transition-all flex items-center justify-center gap-2 text-sm cursor-pointer"
                 >
                   <span>Đăng nhập cổng giáo viên</span>
                   <ArrowRight className="w-4 h-4" />
@@ -406,13 +406,13 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({
 
       {/* Footer Support Info */}
       <div className="w-full max-w-lg mx-auto text-center mt-6 text-xs text-slate-500 relative z-10 space-y-2">
-        <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur-xs border border-indigo-50 shadow-xs">
-          <PhoneCall className="w-3.5 h-3.5 text-[#635BFF] shrink-0" />
+        <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-xs border border-blue-50 shadow-xs">
+          <PhoneCall className="w-3.5 h-3.5 text-[#0066FF] shrink-0" />
           <span>Hỗ trợ phụ huynh:</span>
           <span className="font-bold text-slate-800">Cô Nghi</span>
           <a
             href="tel:0898171712"
-            className="font-mono font-bold text-[#635BFF] hover:underline cursor-pointer ml-1"
+            className="font-mono font-bold text-[#0066FF] hover:underline cursor-pointer ml-1"
             title="Gọi ngay cho Cô Nghi"
           >
             0898 17 17 12

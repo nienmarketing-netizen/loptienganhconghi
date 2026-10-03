@@ -362,18 +362,18 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
   return (
     <div
       id="classroom-media-section"
-      className="bg-white border border-slate-200/80 rounded-2xl p-4 sm:p-5 shadow-xs space-y-3"
+      className="bg-[#ECFDF5] border border-[#A7F3D0] rounded-2xl p-4 sm:p-5 shadow-[0_2px_12px_rgba(16,185,129,0.06)] space-y-3.5"
     >
       {/* Header Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2.5 pb-2.5 border-b border-slate-100">
+      <div className="flex flex-wrap items-center justify-between gap-2.5 pb-2.5 border-b border-[#A7F3D0]/70">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-blue-50 text-[#0066FF] flex items-center justify-center shrink-0 border border-blue-100 shadow-2xs">
-            <Camera className="w-4 h-4 text-[#0066FF]" />
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#10B981] text-white flex items-center justify-center shrink-0 shadow-xs">
+            <Camera className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
           </div>
           <div>
-            <h4 className="text-xs sm:text-sm font-bold text-slate-900 flex items-center gap-1.5 tracking-[-0.015em]">
+            <h4 className="text-xs sm:text-sm font-bold text-[#065F46] flex items-center gap-1.5 tracking-[-0.015em]">
               <span>Hình ảnh & video học tập tại lớp</span>
-              <span className="text-xs font-bold text-white bg-[#0066FF] px-2 py-0.5 rounded-md leading-tight shadow-xs">
+              <span className="text-xs font-bold text-white bg-[#10B981] px-2.5 py-0.5 rounded-full leading-tight shadow-xs">
                 {mediaList.length}
               </span>
             </h4>
@@ -524,11 +524,11 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
       {/* TEACHER UPLOAD MODAL */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150"
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150"
           onClick={() => setIsModalOpen(false)}
         >
           <div
-            className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden flex flex-col max-h-[92vh] animate-in zoom-in-95 duration-150"
+            className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden flex flex-col max-h-[80vh] animate-in zoom-in-95 duration-150"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
@@ -796,11 +796,11 @@ export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
       {/* UNIFIED FULLSCREEN ALBUM LIGHTBOX MODAL WITH CAROUSEL & THUMBNAIL STRIP */}
       {activeLightboxIndex !== null && mediaList[activeLightboxIndex] && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/90 backdrop-blur-md animate-in fade-in duration-200"
+          className="fixed inset-0 z-[10000] flex items-center justify-center p-2 sm:p-4 bg-black/90 backdrop-blur-md animate-in fade-in duration-200"
           onClick={() => setActiveLightboxIndex(null)}
         >
           <div
-            className="relative w-full max-w-5xl bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl flex flex-col h-[90vh] sm:h-[88vh]"
+            className="relative w-full max-w-5xl bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl flex flex-col max-h-[80vh] h-[80vh]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}

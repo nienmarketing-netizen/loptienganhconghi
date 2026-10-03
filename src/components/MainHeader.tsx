@@ -178,27 +178,27 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
               mobileMenuOpen ? "opacity-35 blur-[0.5px] pointer-events-none" : "opacity-100"
             }`}
           >
-            <div className="w-10 h-10 rounded-2xl bg-indigo-50 border border-indigo-200/80 flex items-center justify-center text-[#635BFF] group-hover:bg-[#635BFF] group-hover:text-white transition-all shadow-xs">
+            <div className="w-10 h-10 rounded-2xl bg-blue-50 border border-blue-200/80 flex items-center justify-center text-[#0066FF] group-hover:bg-[#0066FF] group-hover:text-white transition-all shadow-xs">
               <GraduationCap className="w-5 h-5 text-current" />
             </div>
             <div>
-              <h1 className="text-xs sm:text-base md:text-lg font-black text-slate-900 tracking-[-0.015em] leading-tight group-hover:text-[#635BFF] transition-colors">
+              <h1 className="text-xs sm:text-base md:text-lg font-black text-slate-900 tracking-[-0.015em] leading-tight group-hover:text-[#0066FF] transition-colors">
                 Lớp Tiếng Anh Cô Nghi
               </h1>
               <div className="text-[10px] sm:text-[11px] font-normal text-slate-500 flex items-center gap-1.5 normal-case">
                 {currentRoute === "admin" ? (
                   <>
-                    <span className="w-2 h-2 rounded-full bg-[#635BFF] shadow-[0_0_8px_rgba(99,91,255,0.5)] animate-pulse" />
-                    <span className="text-[#635BFF] font-bold">Cổng giáo viên</span>
+                    <span className="w-2 h-2 rounded-full bg-[#0066FF] shadow-[0_0_8px_rgba(0,102,255,0.6)] animate-pulse" />
+                    <span className="text-[#0066FF] font-bold">Cổng giáo viên</span>
                     <span className="text-slate-300">/</span>
                     <span className="text-slate-500">Admin</span>
                   </>
                 ) : (
                   <>
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse" />
-                    <span className="text-[#635BFF] font-bold">Parent Dashboard</span>
+                    <span className="w-2 h-2 rounded-full bg-[#4caf50] shadow-[0_0_8px_rgba(76,175,80,0.6)] animate-pulse" />
+                    <span className="text-[#0066FF] font-bold">Parent Dashboard</span>
                     <span className="text-slate-300">/</span>
-                    <span className="text-emerald-600 font-bold">Cổng phụ huynh</span>
+                    <span className="text-[#4caf50] font-bold">Cổng phụ huynh</span>
                   </>
                 )}
               </div>
@@ -239,10 +239,10 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                   localStorage.removeItem("current_authorized_student");
                   onNavigateToPortal();
                 }}
-                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-600 hover:text-[#635BFF] hover:border-indigo-200 transition-all cursor-pointer shadow-xs active:translate-y-[1px]"
+                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-600 hover:text-[#0066FF] hover:border-blue-200 transition-all cursor-pointer shadow-xs active:translate-y-[1px]"
                 title="Đổi mã học sinh khác hoặc về cổng đăng nhập"
               >
-                <LogOut className="w-3.5 h-3.5 text-[#635BFF]" />
+                <LogOut className="w-3.5 h-3.5 text-[#0066FF]" />
                 <span>Đổi học sinh</span>
               </button>
             )}
@@ -288,7 +288,7 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                 {mobileMenuOpen && (
                   <div
                     id="popup-nav-menu"
-                    className="absolute right-0 top-full mt-2 w-72 sm:w-80 max-w-[calc(100vw-24px)] rounded-2xl bg-white border border-slate-100 p-3 shadow-[0_16px_36px_rgba(15,45,90,0.12)] z-50 animate-in fade-in zoom-in-95 duration-150"
+                    className="absolute right-0 top-full mt-2 w-72 sm:w-80 max-w-[calc(100vw-24px)] max-h-[80vh] overflow-y-auto rounded-2xl bg-white border border-slate-100 p-3 shadow-[0_16px_36px_rgba(15,45,90,0.12)] z-50 animate-in fade-in zoom-in-95 duration-150"
                   >
                     <div className="flex items-center justify-between px-2.5 py-1.5 mb-2 border-b border-slate-100">
                       <span className="text-[11px] font-bold font-mono text-[#64748b] uppercase tracking-wider">

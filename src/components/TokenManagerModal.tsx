@@ -437,8 +437,13 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 bg-[#F4F7FC] text-slate-800 flex flex-col w-screen h-screen overflow-hidden select-none animate-in fade-in duration-200"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200"
+      onClick={onClose}
     >
+      <div
+        className="relative w-full max-w-6xl max-h-[80vh] bg-[#F4F7FC] text-slate-800 flex flex-col rounded-2xl shadow-2xl border border-slate-200 overflow-hidden select-none animate-in zoom-in-95"
+        onClick={(e) => e.stopPropagation()}
+      >
       {/* 1. TOP MODERN EDTECH HEADER */}
       <header className="bg-gradient-to-r from-[#0066FF] via-[#005bcc] to-[#0052CC] text-white px-4 sm:px-6 py-3 flex items-center justify-between shadow-md shrink-0 border-b border-blue-600/40">
         <div className="flex items-center gap-3">
@@ -1044,6 +1049,7 @@ export const TokenManagerModal: React.FC<TokenManagerModalProps> = ({
           </div>
         </div>
       </footer>
+      </div>
     </div>
   );
 };

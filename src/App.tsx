@@ -285,10 +285,15 @@ export default function App() {
 
   return (
     <div
-      className={`min-h-screen ${
-        currentRoute === "student" ? "bg-[#F5F7FC]" : "bg-[#d2dbe7]"
-      } text-[#1e293b] antialiased font-sans flex flex-col selection:bg-[#635BFF] selection:text-white max-lg:overflow-x-hidden max-w-full`}
+      className="min-h-screen bg-gradient-to-b from-[#F2F4FD] via-[#F6F7FF] to-[#ECEFFA] text-[#1e293b] antialiased font-sans flex flex-col selection:bg-[#635BFF] selection:text-white max-lg:overflow-x-hidden max-w-full relative"
     >
+      {/* Decorative soft pastel ambient shapes from Login Portal */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-[#635BFF]/8 blur-3xl" />
+        <div className="absolute top-1/3 -right-20 w-80 h-80 rounded-full bg-[#FFB800]/10 blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full bg-[#48D1CC]/10 blur-3xl" />
+      </div>
+
       {/* Main Header with Logo, Portal Switcher, and Section Navigation */}
       <MainHeader
         currentRoute={currentRoute}
@@ -301,7 +306,7 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 pb-2 sm:pb-4 max-lg:overflow-x-hidden max-w-full">
+      <main className="flex-1 pb-2 sm:pb-4 max-lg:overflow-x-hidden max-w-full relative z-10">
         {currentRoute === "admin" ? (
           <AdminDashboard
             students={studentsMap}

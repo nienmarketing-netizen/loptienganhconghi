@@ -21,8 +21,9 @@
   --link-color: #0066ff;
   --link-hover: #0052cc;
   
-  /* Brand Palette (Lingora / Learnly Inspired) */
+  /* Core Color Palette */
   --accent: #0066ff;
+  --accent-light: #1e88e5;
   --accent-dark: #0052cc;
   --accent-gold: #ffb800;
   --accent-orange: #ff9800;
@@ -30,20 +31,20 @@
   --border-shadow: #e2e8f0;
   --border-highlight: #ffffff;
   
-  /* Modern Soft Drop Shadows (Clean, Soft & Floating) */
+  /* Soft Drop Shadows (Modern Mobile App Grade) */
   --shadow-card: 
-    0 8px 24px -4px rgba(15, 45, 90, 0.06), 
-    0 4px 10px -2px rgba(15, 45, 90, 0.03),
-    0 0 1px 1px rgba(15, 45, 90, 0.03);
+    0 8px 24px -4px rgba(0, 102, 255, 0.06), 
+    0 2px 8px -2px rgba(15, 45, 90, 0.04),
+    0 0 1px 1px rgba(0, 102, 255, 0.02);
 
   --shadow-card-sm: 
-    0 4px 14px -2px rgba(15, 45, 90, 0.05), 
-    0 1px 3px 0 rgba(15, 45, 90, 0.03),
-    0 0 1px 1px rgba(15, 45, 90, 0.02);
+    0 4px 16px -2px rgba(0, 102, 255, 0.05), 
+    0 1px 4px 0 rgba(15, 45, 90, 0.03),
+    0 0 1px 1px rgba(0, 102, 255, 0.02);
 
   --shadow-floating: 
-    0 20px 35px -8px rgba(15, 45, 90, 0.12), 
-    0 8px 16px -4px rgba(15, 45, 90, 0.05);
+    0 20px 40px -8px rgba(0, 102, 255, 0.12), 
+    0 8px 16px -4px rgba(15, 45, 90, 0.06);
 
   /* Recessed wells / Soft background wells */
   --shadow-pressed: 
@@ -53,10 +54,10 @@
     inset 0 1px 3px 0 rgba(15, 45, 90, 0.06);
 
   --shadow-recessed: 
-    inset 0 2px 5px 0 rgba(15, 45, 90, 0.05);
+    inset 0 2px 5px 0 rgba(15, 45, 90, 0.04);
 
   --shadow-recessed-sm: 
-    inset 0 1px 3px 0 rgba(15, 45, 90, 0.04);
+    inset 0 1px 3px 0 rgba(15, 45, 90, 0.03);
 
   --shadow-accent: 
     0 8px 20px -3px rgba(0, 102, 255, 0.35);

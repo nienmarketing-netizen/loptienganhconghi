@@ -251,7 +251,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
       shortLabel: "Bài tập",
       icon: FileText,
       badgeCount: notDoneCount > 0 ? notDoneCount : undefined,
-      badgeColor: "bg-[#ff4757] text-white",
+      badgeColor: "bg-amber-500 text-white",
     },
     {
       id: "tokens",
@@ -283,7 +283,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
       <div className="hidden lg:flex lg:gap-6 xl:gap-8 items-start">
         {/* Left Sticky Navigation Buttons (PC) */}
         <aside className="w-56 xl:w-64 shrink-0 sticky top-20 z-20 self-start">
-          <div className="bg-white rounded-3xl p-3 sm:p-3.5 border border-indigo-100/90 shadow-[0_8px_30px_rgba(99,91,255,0.07)]">
+          <div className="bg-white rounded-3xl p-3 sm:p-3.5 border border-slate-100 shadow-[0_8px_30px_rgba(0,102,255,0.06)]">
             <nav className="space-y-1.5" aria-label="Điều hướng cổng phụ huynh PC">
               {navButtons.map((btn) => {
                 const Icon = btn.icon;
@@ -297,8 +297,8 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                     onClick={() => handleTabChange(btn.id)}
                     className={`w-full flex items-center justify-between p-2.5 rounded-2xl text-xs font-bold transition-all cursor-pointer active:scale-95 group ${
                       isActive
-                        ? "bg-[#635BFF] text-white shadow-[0_6px_20px_rgba(99,91,255,0.25)]"
-                        : "text-slate-600 hover:text-[#635BFF] hover:bg-[#F4F6FD]"
+                        ? "bg-[#0066FF] text-white shadow-[0_6px_20px_rgba(0,102,255,0.25)]"
+                        : "text-slate-600 hover:text-[#0066FF] hover:bg-blue-50/60"
                     }`}
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
@@ -306,7 +306,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                         className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
                           isActive
                             ? "bg-white/20 text-white"
-                            : "bg-[#F4F6FD] text-slate-500 group-hover:bg-indigo-100 group-hover:text-[#635BFF]"
+                            : "bg-slate-50 text-slate-500 group-hover:bg-blue-100 group-hover:text-[#0066FF]"
                         }`}
                       >
                         <Icon className="w-4 h-4" />
@@ -319,7 +319,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                         className={`text-[10px] font-black px-2 py-0.5 rounded-full shrink-0 leading-tight ${
                           isActive
                             ? "bg-white/25 text-white"
-                            : btn.badgeColor || "bg-[#ff4757] text-white"
+                            : btn.badgeColor || "bg-amber-500 text-white"
                         }`}
                       >
                         {btn.badgeCount}
@@ -386,7 +386,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
 
           {/* Teacher Support & Contact Card */}
           <section id="lien-he-pc" className="pt-2">
-            <div className="relative rounded-3xl bg-gradient-to-r from-[#4F46E5] via-[#635BFF] to-[#7C3AED] text-white p-6 shadow-[0_12px_32px_rgba(99,91,255,0.22)] border border-white/20 flex items-center justify-between gap-4">
+            <div className="relative rounded-3xl bg-gradient-to-r from-[#0066FF] via-[#1E88E5] to-[#0052cc] text-white p-6 shadow-[0_12px_32px_rgba(0,102,255,0.22)] border border-white/20 flex items-center justify-between gap-4">
               <div className="flex items-center gap-3.5">
                 <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-xs flex items-center justify-center shrink-0 border border-white/30 text-white shadow-xs">
                   <MessageCircle className="w-6 h-6 text-white" />
@@ -395,7 +395,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                   <h4 className="text-lg font-black !text-white tracking-tight">
                     Ba mẹ cần trao đổi thêm với Cô Nghi?
                   </h4>
-                  <p className="text-xs text-indigo-100 mt-0.5 font-normal max-w-md">
+                  <p className="text-xs text-blue-100 mt-0.5 font-normal max-w-md">
                     Cô luôn sẵn sàng phản hồi ba mẹ về tình hình học tập, bài vở và tinh thần của con ở lớp.
                   </p>
                 </div>
@@ -406,9 +406,9 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                 href="https://zalo.me"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-[#635BFF] hover:text-[#4F46E5] text-xs font-bold py-3 px-5 rounded-2xl shadow-md transition-all active:scale-95 shrink-0 leading-tight"
+                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-[#0066FF] hover:text-[#0052cc] text-xs font-bold py-3 px-5 rounded-2xl shadow-md transition-all active:scale-95 shrink-0 leading-tight"
               >
-                <PhoneCall className="w-4 h-4 text-[#635BFF]" />
+                <PhoneCall className="w-4 h-4 text-[#0066FF]" />
                 <span>Nhắn Zalo Cô Nghi</span>
               </a>
             </div>
@@ -519,7 +519,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
 
       {/* 4. Teacher Support & Zalo Quick Contact (Mobile & Tablet) */}
       <section id="lien-he" className="scroll-mt-24 pt-2 block lg:hidden">
-        <div className="relative rounded-3xl bg-gradient-to-r from-[#4F46E5] via-[#635BFF] to-[#7C3AED] text-white p-5 sm:p-6 shadow-[0_12px_32px_rgba(99,91,255,0.22)] border border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        <div className="relative rounded-3xl bg-gradient-to-r from-[#0066FF] via-[#1E88E5] to-[#0052cc] text-white p-5 sm:p-6 shadow-[0_12px_32px_rgba(0,102,255,0.22)] border border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <div className="flex items-center gap-3.5">
             <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-xs flex items-center justify-center shrink-0 border border-white/30 text-white shadow-xs">
               <MessageCircle className="w-6 h-6 text-white" />
@@ -528,7 +528,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
               <h4 className="text-base sm:text-lg font-black !text-white tracking-tight">
                 Ba mẹ cần trao đổi thêm với Cô Nghi?
               </h4>
-              <p className="text-xs text-indigo-100 mt-0.5 font-normal max-w-md">
+              <p className="text-xs text-blue-100 mt-0.5 font-normal max-w-md">
                 Cô luôn sẵn sàng phản hồi ba mẹ về tình hình học tập, bài vở và tinh thần của con ở lớp.
               </p>
             </div>
@@ -539,9 +539,9 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
             href="https://zalo.me"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-[#635BFF] hover:text-[#4F46E5] text-xs font-bold py-3 px-5 rounded-2xl shadow-md transition-all active:scale-95 shrink-0 leading-tight"
+            className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-[#0066FF] hover:text-[#0052cc] text-xs font-bold py-3 px-5 rounded-2xl shadow-md transition-all active:scale-95 shrink-0 leading-tight"
           >
-            <PhoneCall className="w-4 h-4 text-[#635BFF]" />
+            <PhoneCall className="w-4 h-4 text-[#0066FF]" />
             <span>Nhắn Zalo Cô Nghi</span>
           </a>
         </div>
@@ -601,7 +601,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
       <nav
         id="parent-mobile-bottom-nav"
         aria-label="Điều hướng nhanh cổng phụ huynh"
-        className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-slate-200/90 shadow-[0_-6px_28px_rgba(99,91,255,0.09)] block lg:hidden pb-[calc(0.5rem+env(safe-area-inset-bottom,0px))] pt-1.5 px-1 sm:px-3 overscroll-contain"
+        className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-slate-200/90 shadow-[0_-6px_28px_rgba(0,102,255,0.08)] block lg:hidden pb-[calc(0.5rem+env(safe-area-inset-bottom,0px))] pt-1.5 px-1 sm:px-3 overscroll-contain"
       >
         {/* Right Scroll Indicator cue (Mobile only) */}
         {canScrollRight && (
@@ -610,7 +610,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
               type="button"
               onClick={handleScrollNavRight}
               aria-label="Cuộn xem thêm nút"
-              className="w-7 h-7 rounded-full bg-[#635BFF] text-white shadow-md flex items-center justify-center active:scale-90 transition-transform cursor-pointer animate-pulse"
+              className="w-7 h-7 rounded-full bg-[#0066FF] text-white shadow-md flex items-center justify-center active:scale-90 transition-transform cursor-pointer animate-pulse"
               title="Bấm hoặc vuốt để xem thêm nút"
             >
               <ChevronRight className="w-4 h-4 shrink-0 stroke-[2.5]" />
@@ -625,7 +625,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
               type="button"
               onClick={handleScrollNavLeft}
               aria-label="Cuộn về trước"
-              className="w-7 h-7 rounded-full bg-white border border-slate-200 text-[#635BFF] shadow-md flex items-center justify-center active:scale-90 transition-transform cursor-pointer"
+              className="w-7 h-7 rounded-full bg-white border border-slate-200 text-[#0066FF] shadow-md flex items-center justify-center active:scale-90 transition-transform cursor-pointer"
               title="Quay lại các nút trước"
             >
               <ChevronLeft className="w-4 h-4 shrink-0 stroke-[2.5]" />
@@ -650,7 +650,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                 onClick={() => handleTabChange(btn.id)}
                 className={`relative w-[25%] min-w-[25%] max-w-[25%] sm:w-auto sm:min-w-0 sm:max-w-none sm:flex-1 shrink-0 sm:shrink snap-start py-1 px-0.5 flex flex-col items-center justify-center rounded-2xl transition-all cursor-pointer active:scale-95 group ${
                   isActive
-                    ? "text-[#635BFF]"
+                    ? "text-[#0066FF]"
                     : "text-slate-500 hover:text-slate-800"
                 }`}
                 title={btn.label}
@@ -659,13 +659,13 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                 <div
                   className={`relative flex items-center justify-center w-11 h-8 rounded-xl transition-all ${
                     isActive
-                      ? "bg-[#635BFF]/12 text-[#635BFF] shadow-xs"
+                      ? "bg-[#0066FF]/12 text-[#0066FF] shadow-xs"
                       : "text-slate-400 group-hover:text-slate-600"
                   }`}
                 >
                   <Icon
                     className={`w-5 h-5 sm:w-[22px] sm:h-[22px] transition-transform ${
-                      isActive ? "scale-110 text-[#635BFF]" : ""
+                      isActive ? "scale-110 text-[#0066FF]" : ""
                     }`}
                   />
 
@@ -673,7 +673,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                   {btn.badgeCount !== undefined && (
                     <span
                       className={`absolute -top-1 -right-1.5 min-w-[17px] h-4.5 px-1 rounded-full text-[9.5px] font-black flex items-center justify-center leading-none shadow-xs ${
-                        btn.badgeColor || "bg-[#ff4757] text-white"
+                        btn.badgeColor || "bg-amber-500 text-white"
                       }`}
                     >
                       {btn.badgeCount}
@@ -688,7 +688,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                       <span
                         className={`text-[11px] sm:text-xs leading-tight truncate max-w-full ${
                           isActive
-                            ? "font-black text-[#635BFF]"
+                            ? "font-black text-[#0066FF]"
                             : "font-bold text-slate-600"
                         }`}
                       >
@@ -697,7 +697,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                       <span
                         className={`text-[9px] sm:text-[10px] leading-none opacity-85 truncate max-w-full ${
                           isActive
-                            ? "font-bold text-[#635BFF]"
+                            ? "font-bold text-[#0066FF]"
                             : "font-semibold text-slate-400"
                         }`}
                       >
@@ -708,7 +708,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                     <span
                       className={`text-[11px] sm:text-xs leading-tight truncate max-w-full ${
                         isActive
-                          ? "font-black text-[#635BFF]"
+                          ? "font-black text-[#0066FF]"
                           : "font-bold text-slate-600"
                       }`}
                     >
@@ -719,7 +719,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
 
                 {/* Active bottom micro-indicator bar */}
                 {isActive && (
-                  <span className="w-5 h-1 rounded-full bg-[#635BFF] mt-0.5" />
+                  <span className="w-5 h-1 rounded-full bg-[#0066FF] mt-0.5" />
                 )}
               </button>
             );

@@ -196,13 +196,13 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
         </div>
 
         {/* Timeframe Filter (Tuần này / Tháng này / Toàn khóa) */}
-        <div className="flex items-center self-start sm:self-auto bg-[#F4F6FD] p-1 rounded-2xl border border-indigo-50 shrink-0">
+        <div className="flex items-center self-start sm:self-auto bg-blue-50/60 p-1 rounded-2xl border border-blue-100/60 shrink-0">
           <button
             type="button"
             onClick={() => setTimeFilter("week")}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               timeFilter === "week"
-                ? "bg-white text-[#635BFF] shadow-xs"
+                ? "bg-white text-[#0066FF] shadow-xs"
                 : "text-slate-500 hover:text-slate-900"
             }`}
           >
@@ -213,7 +213,7 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
             onClick={() => setTimeFilter("month")}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               timeFilter === "month"
-                ? "bg-white text-[#635BFF] shadow-xs"
+                ? "bg-white text-[#0066FF] shadow-xs"
                 : "text-slate-500 hover:text-slate-900"
             }`}
           >
@@ -224,7 +224,7 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
             onClick={() => setTimeFilter("all")}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               timeFilter === "all"
-                ? "bg-white text-[#635BFF] shadow-xs"
+                ? "bg-white text-[#0066FF] shadow-xs"
                 : "text-slate-500 hover:text-slate-900"
             }`}
           >
@@ -238,12 +238,12 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
         {/* Card 1: Lessons / Homework Completed */}
         <div
           onClick={() => onToggleSection && onToggleSection("bai-tap")}
-          className="bg-[#FAFBFD] hover:bg-[#F4F6FE] rounded-2xl p-4 border border-slate-100 shadow-xs hover:border-indigo-200 transition-all cursor-pointer group"
+          className="bg-white hover:bg-blue-50/20 rounded-2xl p-4 border border-slate-100 shadow-[var(--shadow-card-sm)] hover:border-blue-200 transition-all cursor-pointer group"
           title="Bấm để xem danh sách bài tập"
         >
           <div className="flex items-center justify-between text-slate-500">
             <span className="font-semibold text-xs text-slate-600">Bài tập & Nhiệm vụ</span>
-            <div className="w-8 h-8 rounded-xl bg-blue-50 text-[#3B82F6] flex items-center justify-center group-hover:scale-105 transition-transform shadow-xs">
+            <div className="w-8 h-8 rounded-xl bg-blue-50 text-[#0066FF] flex items-center justify-center group-hover:scale-105 transition-transform shadow-xs">
               <FileText className="w-4 h-4" />
             </div>
           </div>
@@ -254,7 +254,7 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
             <span className="text-xs text-slate-400 font-medium">bài</span>
           </div>
           <div className="mt-2 flex items-center gap-1 text-[11px] font-bold text-emerald-600 bg-emerald-50/80 px-2 py-0.5 rounded-md w-fit">
-            <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+            <CheckCircle2 className="w-3 h-3 text-[#4caf50]" />
             <span>{notDoneCount === 0 ? "Đã xong hết 🎉" : `Còn ${notDoneCount} bài`}</span>
           </div>
         </div>
@@ -262,23 +262,23 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
         {/* Card 2: Accuracy & Test Score */}
         <div
           onClick={() => onToggleSection && onToggleSection("diem-so")}
-          className="bg-[#FAFBFD] hover:bg-[#F4F6FE] rounded-2xl p-4 border border-slate-100 shadow-xs hover:border-indigo-200 transition-all cursor-pointer group"
+          className="bg-white hover:bg-blue-50/20 rounded-2xl p-4 border border-slate-100 shadow-[var(--shadow-card-sm)] hover:border-blue-200 transition-all cursor-pointer group"
           title="Bấm để xem biểu đồ điểm số"
         >
           <div className="flex items-center justify-between text-slate-500">
             <span className="font-semibold text-xs text-slate-600">Độ chính xác / Điểm</span>
-            <div className="w-8 h-8 rounded-xl bg-purple-50 text-[#635BFF] flex items-center justify-center group-hover:scale-105 transition-transform shadow-xs">
+            <div className="w-8 h-8 rounded-xl bg-blue-50 text-[#0066FF] flex items-center justify-center group-hover:scale-105 transition-transform shadow-xs">
               <Sparkles className="w-4 h-4" />
             </div>
           </div>
           <div className="mt-2.5 flex items-baseline gap-1.5">
-            <span className="text-2xl sm:text-3xl font-black text-[#635BFF] tracking-tight">
+            <span className="text-2xl sm:text-3xl font-black text-[#0066FF] tracking-tight">
               {latestScore}
             </span>
             <span className="text-xs text-slate-400 font-medium">/10đ</span>
           </div>
-          <div className="mt-2 flex items-center gap-1 text-[11px] font-bold text-emerald-600 bg-emerald-50/80 px-2 py-0.5 rounded-md w-fit">
-            <TrendingUp className="w-3 h-3 text-emerald-600" />
+          <div className="mt-2 flex items-center gap-1 text-[11px] font-bold text-[#4caf50] bg-emerald-50/80 px-2 py-0.5 rounded-md w-fit">
+            <TrendingUp className="w-3 h-3 text-[#4caf50]" />
             <span>+8% so với tuần trước</span>
           </div>
         </div>
@@ -289,23 +289,23 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
             if (onOpenStore) onOpenStore();
             else if (onToggleSection) onToggleSection("gamification");
           }}
-          className="bg-[#FAFBFD] hover:bg-[#F4F6FE] rounded-2xl p-4 border border-slate-100 shadow-xs hover:border-amber-200 transition-all cursor-pointer group"
+          className="bg-white hover:bg-amber-50/20 rounded-2xl p-4 border border-slate-100 shadow-[var(--shadow-card-sm)] hover:border-amber-200 transition-all cursor-pointer group"
           title="Bấm để mở kho đổi quà"
         >
           <div className="flex items-center justify-between text-slate-500">
             <span className="font-semibold text-xs text-slate-600">Kho Tokens</span>
-            <div className="w-8 h-8 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center group-hover:scale-105 transition-transform shadow-xs">
+            <div className="w-8 h-8 rounded-xl bg-amber-50 text-[#ff9800] flex items-center justify-center group-hover:scale-105 transition-transform shadow-xs">
               <Coins className="w-4 h-4" />
             </div>
           </div>
           <div className="mt-2.5 flex items-baseline gap-1.5">
-            <span className="text-2xl sm:text-3xl font-black text-amber-500 tracking-tight">
+            <span className="text-2xl sm:text-3xl font-black text-[#ff9800] tracking-tight">
               {tokenBalance}
             </span>
             <span className="text-xs text-slate-400 font-medium">/100 🪙</span>
           </div>
-          <div className="mt-2 flex items-center gap-1 text-[11px] font-bold text-amber-700 bg-amber-50/90 px-2 py-0.5 rounded-md w-fit truncate max-w-full">
-            <Gift className="w-3 h-3 text-amber-600 shrink-0" />
+          <div className="mt-2 flex items-center gap-1 text-[11px] font-bold text-amber-800 bg-amber-50/90 px-2 py-0.5 rounded-md w-fit truncate max-w-full border border-amber-200/50">
+            <Gift className="w-3 h-3 text-[#ff9800] shrink-0" />
             <span className="truncate">{targetReward}</span>
           </div>
         </div>
@@ -313,22 +313,22 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
         {/* Card 4: Study Streak */}
         <div
           onClick={() => onToggleSection && onToggleSection("buoi-hoc")}
-          className="bg-[#FAFBFD] hover:bg-[#F4F6FE] rounded-2xl p-4 border border-slate-100 shadow-xs hover:border-orange-200 transition-all cursor-pointer group"
+          className="bg-white hover:bg-orange-50/20 rounded-2xl p-4 border border-slate-100 shadow-[var(--shadow-card-sm)] hover:border-orange-200 transition-all cursor-pointer group"
           title="Bấm để xem buổi học"
         >
           <div className="flex items-center justify-between text-slate-500">
             <span className="font-semibold text-xs text-slate-600">Chuỗi chuyên cần</span>
-            <div className="w-8 h-8 rounded-xl bg-orange-50 text-orange-500 flex items-center justify-center group-hover:scale-105 transition-transform shadow-xs">
-              <Flame className="w-4 h-4 fill-orange-500" />
+            <div className="w-8 h-8 rounded-xl bg-orange-50 text-[#ff9800] flex items-center justify-center group-hover:scale-105 transition-transform shadow-xs">
+              <Flame className="w-4 h-4 fill-[#ff9800]" />
             </div>
           </div>
           <div className="mt-2.5 flex items-baseline gap-1.5">
-            <span className="text-2xl sm:text-3xl font-black text-orange-500 tracking-tight">
+            <span className="text-2xl sm:text-3xl font-black text-[#ff9800] tracking-tight">
               {streakDays} Days
             </span>
             <span className="text-sm">🔥</span>
           </div>
-          <div className="mt-2 text-[11px] font-bold text-orange-600 bg-orange-50/80 px-2 py-0.5 rounded-md w-fit">
+          <div className="mt-2 text-[11px] font-bold text-orange-700 bg-orange-50/90 px-2 py-0.5 rounded-md w-fit border border-orange-200/50">
             Keep it going! Chăm chỉ liên tục
           </div>
         </div>
@@ -338,14 +338,14 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 pt-1">
         
         {/* Box 1: Learning Progress (4 Language Skills) */}
-        <div className="bg-[#FAFBFD] rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-slate-100/90 space-y-4 flex flex-col justify-between">
+        <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-slate-100 shadow-[var(--shadow-card-sm)] space-y-4 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between">
               <h4 className="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
                 <span>Tiến trình 4 kỹ năng</span>
                 <span className="text-xs font-semibold text-slate-400 font-mono">(Learning Progress)</span>
               </h4>
-              <span className="text-xs font-bold text-[#635BFF] bg-[#635BFF]/10 px-2.5 py-0.5 rounded-lg">
+              <span className="text-xs font-bold text-[#0066FF] bg-blue-50 px-2.5 py-0.5 rounded-lg border border-blue-100">
                 Chuẩn đầu ra
               </span>
             </div>
@@ -360,19 +360,19 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
             <div>
               <div className="flex items-center justify-between text-xs mb-1.5">
                 <div className="flex items-center gap-2 font-bold text-slate-800">
-                  <div className="w-6 h-6 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-xs">
+                  <div className="w-6 h-6 rounded-lg bg-blue-100 text-[#0066FF] flex items-center justify-center text-xs">
                     🔤
                   </div>
                   <span>Từ vựng & Mẫu câu (Vocabulary)</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="text-[10px] text-slate-400">Xuất sắc</span>
-                  <span className="font-extrabold font-mono text-blue-600">{vocabVal}%</span>
+                  <span className="font-extrabold font-mono text-[#0066FF]">{vocabVal}%</span>
                 </div>
               </div>
-              <div className="w-full bg-slate-200/70 rounded-full h-2.5 overflow-hidden">
+              <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
                 <div
-                  className="bg-[#3B82F6] h-2.5 rounded-full transition-all duration-700 shadow-xs"
+                  className="bg-[#0066FF] h-2.5 rounded-full transition-all duration-700 shadow-xs"
                   style={{ width: `${vocabVal}%` }}
                 />
               </div>
@@ -382,19 +382,19 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
             <div>
               <div className="flex items-center justify-between text-xs mb-1.5">
                 <div className="flex items-center gap-2 font-bold text-slate-800">
-                  <div className="w-6 h-6 rounded-lg bg-pink-100 text-pink-600 flex items-center justify-center text-xs">
+                  <div className="w-6 h-6 rounded-lg bg-sky-100 text-[#1E88E5] flex items-center justify-center text-xs">
                     📖
                   </div>
                   <span>Đọc hiểu & Nghe ngữ cảnh (Reading)</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="text-[10px] text-slate-400">Tiến bộ</span>
-                  <span className="font-extrabold font-mono text-pink-600">{readingVal}%</span>
+                  <span className="font-extrabold font-mono text-[#1E88E5]">{readingVal}%</span>
                 </div>
               </div>
-              <div className="w-full bg-slate-200/70 rounded-full h-2.5 overflow-hidden">
+              <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
                 <div
-                  className="bg-[#EC4899] h-2.5 rounded-full transition-all duration-700 shadow-xs"
+                  className="bg-[#1E88E5] h-2.5 rounded-full transition-all duration-700 shadow-xs"
                   style={{ width: `${readingVal}%` }}
                 />
               </div>
@@ -404,19 +404,19 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
             <div>
               <div className="flex items-center justify-between text-xs mb-1.5">
                 <div className="flex items-center gap-2 font-bold text-slate-800">
-                  <div className="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs">
+                  <div className="w-6 h-6 rounded-lg bg-emerald-100 text-[#4CAF50] flex items-center justify-center text-xs">
                     🔬
                   </div>
                   <span>Ngữ pháp & Cấu trúc câu (Grammar)</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="text-[10px] text-slate-400">Vững chắc</span>
-                  <span className="font-extrabold font-mono text-emerald-600">{grammarVal}%</span>
+                  <span className="font-extrabold font-mono text-[#4CAF50]">{grammarVal}%</span>
                 </div>
               </div>
-              <div className="w-full bg-slate-200/70 rounded-full h-2.5 overflow-hidden">
+              <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
                 <div
-                  className="bg-[#10B981] h-2.5 rounded-full transition-all duration-700 shadow-xs"
+                  className="bg-[#4CAF50] h-2.5 rounded-full transition-all duration-700 shadow-xs"
                   style={{ width: `${grammarVal}%` }}
                 />
               </div>
@@ -426,19 +426,19 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
             <div>
               <div className="flex items-center justify-between text-xs mb-1.5">
                 <div className="flex items-center gap-2 font-bold text-slate-800">
-                  <div className="w-6 h-6 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center text-xs">
+                  <div className="w-6 h-6 rounded-lg bg-amber-100 text-[#FF9800] flex items-center justify-center text-xs">
                     🗣️
                   </div>
                   <span>Phát âm & Phản xạ nói (Phonics & Speaking)</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="text-[10px] text-slate-400">Tự tin</span>
-                  <span className="font-extrabold font-mono text-amber-600">{phonicsVal}%</span>
+                  <span className="font-extrabold font-mono text-[#FF9800]">{phonicsVal}%</span>
                 </div>
               </div>
-              <div className="w-full bg-slate-200/70 rounded-full h-2.5 overflow-hidden">
+              <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
                 <div
-                  className="bg-[#F59E0B] h-2.5 rounded-full transition-all duration-700 shadow-xs"
+                  className="bg-[#FF9800] h-2.5 rounded-full transition-all duration-700 shadow-xs"
                   style={{ width: `${phonicsVal}%` }}
                 />
               </div>
@@ -447,18 +447,18 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
         </div>
 
         {/* Box 2: Weekly Activity Bar Chart */}
-        <div className="bg-[#FAFBFD] rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-slate-100/90 flex flex-col justify-between">
+        <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-slate-100 shadow-[var(--shadow-card-sm)] flex flex-col justify-between">
           <div className="flex items-center justify-between mb-2">
             <div>
               <h4 className="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
-                <BarChart3 className="w-4 h-4 text-[#635BFF]" />
+                <BarChart3 className="w-4 h-4 text-[#0066FF]" />
                 <span>Hoạt động rèn luyện tuần qua</span>
               </h4>
               <p className="text-[11px] text-slate-500">
                 Thời lượng làm bài và tương tác học tiếng Anh mỗi ngày
               </p>
             </div>
-            <div className="text-[11px] font-bold text-[#635BFF] bg-[#635BFF]/10 px-2 py-0.5 rounded-md flex items-center gap-1">
+            <div className="text-[11px] font-bold text-[#0066FF] bg-blue-50 px-2.5 py-0.5 rounded-md flex items-center gap-1 border border-blue-100">
               <Clock className="w-3 h-3" />
               <span>5h 30m</span>
             </div>
@@ -487,13 +487,13 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
                 {/* Bar */}
                 <div className="w-full max-w-[28px] bg-slate-100 rounded-t-lg h-[115px] flex items-end overflow-hidden p-0.5">
                   <div
-                    className="w-full bg-[#635BFF] group-hover:bg-[#4F46E5] rounded-t-md transition-all duration-300 shadow-xs"
+                    className="w-full bg-[#0066FF] group-hover:bg-[#0052cc] rounded-t-md transition-all duration-300 shadow-xs"
                     style={{ height: `${item.heightPercent}%` }}
                   />
                 </div>
 
                 {/* Day Label */}
-                <span className="mt-2 text-[11px] font-bold text-slate-600 group-hover:text-[#635BFF]">
+                <span className="mt-2 text-[11px] font-bold text-slate-600 group-hover:text-[#0066FF]">
                   {item.label}
                 </span>
               </div>
@@ -502,7 +502,7 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
 
           <div className="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
             <span>Trung bình: <strong>47 phút/ngày</strong></span>
-            <span className="text-emerald-600 font-bold">Đạt 115% mục tiêu tuần 🎯</span>
+            <span className="text-[#4CAF50] font-bold">Đạt 115% mục tiêu tuần 🎯</span>
           </div>
         </div>
       </div>
@@ -511,19 +511,19 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 pt-1">
         
         {/* Left: Recent Achievements List */}
-        <div className="bg-[#FAFBFD] rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-slate-100/90 space-y-3">
+        <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-slate-100 shadow-[var(--shadow-card-sm)] space-y-3">
           <div className="flex items-center justify-between pb-1">
             <h4 className="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
-              <Award className="w-4 h-4 text-amber-500" />
+              <Award className="w-4 h-4 text-[#FFB800]" />
               <span>Thành tích & Huy hiệu mới (Recent Badges)</span>
             </h4>
           </div>
 
           <div className="space-y-2.5">
             {/* Achievement 1 */}
-            <div className="flex items-center justify-between p-2.5 rounded-2xl bg-white border border-slate-100 shadow-2xs hover:border-purple-200 transition-colors">
+            <div className="flex items-center justify-between p-2.5 rounded-2xl bg-slate-50/70 border border-slate-100 shadow-2xs hover:border-blue-200 transition-colors">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-purple-50 text-[#635BFF] flex items-center justify-center text-sm font-bold shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#0066FF] flex items-center justify-center text-sm font-bold shrink-0 border border-blue-100">
                   🧮
                 </div>
                 <div>
@@ -541,9 +541,9 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
             </div>
 
             {/* Achievement 2 */}
-            <div className="flex items-center justify-between p-2.5 rounded-2xl bg-white border border-slate-100 shadow-2xs hover:border-pink-200 transition-colors">
+            <div className="flex items-center justify-between p-2.5 rounded-2xl bg-slate-50/70 border border-slate-100 shadow-2xs hover:border-amber-200 transition-colors">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center text-sm font-bold shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-amber-50 text-[#FF9800] flex items-center justify-center text-sm font-bold shrink-0 border border-amber-200">
                   ⭐
                 </div>
                 <div>
@@ -561,9 +561,9 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
             </div>
 
             {/* Achievement 3 */}
-            <div className="flex items-center justify-between p-2.5 rounded-2xl bg-white border border-slate-100 shadow-2xs hover:border-emerald-200 transition-colors">
+            <div className="flex items-center justify-between p-2.5 rounded-2xl bg-slate-50/70 border border-slate-100 shadow-2xs hover:border-emerald-200 transition-colors">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-sm font-bold shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-[#4CAF50] flex items-center justify-center text-sm font-bold shrink-0 border border-emerald-200">
                   🌿
                 </div>
                 <div>
@@ -583,14 +583,14 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
         </div>
 
         {/* Right: Dino Encouragement Mascot Card */}
-        <div className="bg-gradient-to-br from-[#EEF2FF] via-[#F5F6FF] to-[#E0E7FF] rounded-2xl sm:rounded-3xl p-5 border border-indigo-100 flex items-center justify-between gap-3 relative overflow-hidden">
+        <div className="bg-gradient-to-br from-[#EEF4FF] via-[#F4F7FC] to-[#E5EDFC] rounded-2xl sm:rounded-3xl p-5 border border-blue-100/90 shadow-[var(--shadow-card-sm)] flex items-center justify-between gap-3 relative overflow-hidden">
           {/* Decorative soft glowing blobs */}
-          <div className="absolute -top-10 -right-10 w-36 h-36 rounded-full bg-white/50 blur-xl pointer-events-none" />
-          <div className="absolute -bottom-8 -left-8 w-28 h-28 rounded-full bg-indigo-200/30 blur-lg pointer-events-none" />
+          <div className="absolute -top-10 -right-10 w-36 h-36 rounded-full bg-white/60 blur-xl pointer-events-none" />
+          <div className="absolute -bottom-8 -left-8 w-28 h-28 rounded-full bg-blue-200/30 blur-lg pointer-events-none" />
 
           <div className="relative z-10 flex-1 pr-2">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#635BFF]/10 text-[#635BFF] text-[11px] font-extrabold mb-1.5">
-              <Star className="w-3 h-3 text-[#635BFF] fill-[#635BFF]" />
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 text-[#0066FF] border border-blue-200/80 text-[11px] font-extrabold mb-1.5 shadow-2xs">
+              <Star className="w-3 h-3 text-[#FFB800] fill-[#FFB800]" />
               <span>Ghi nhận từ Cô Nghi</span>
             </div>
 
@@ -603,8 +603,8 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
             </p>
 
             <div className="mt-3 flex items-center gap-2 flex-wrap">
-              <span className="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-1 rounded-xl bg-white text-[#635BFF] shadow-xs border border-indigo-100">
-                <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+              <span className="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-1 rounded-xl bg-white text-[#0066FF] shadow-xs border border-blue-100">
+                <Star className="w-3 h-3 fill-[#FFB800] text-[#FFB800]" />
                 <span>{student.attitudeBadge?.label || "Chăm ngoan & Tích cực"}</span>
               </span>
 
@@ -612,9 +612,9 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
                 <button
                   type="button"
                   onClick={onOpenStore}
-                  className="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-1 rounded-xl bg-[#635BFF] text-white hover:bg-[#4F46E5] shadow-xs transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1 text-[11px] font-bold px-3 py-1.5 rounded-xl bg-gradient-to-r from-[#FF9800] to-[#FFB800] text-white hover:brightness-105 shadow-[0_4px_12px_rgba(255,152,0,0.3)] transition-all cursor-pointer border border-amber-300/40"
                 >
-                  <Gift className="w-3 h-3 text-white" />
+                  <Gift className="w-3.5 h-3.5 text-white" />
                   <span>Đổi quà tặng</span>
                 </button>
               )}
