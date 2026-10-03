@@ -238,16 +238,16 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
         </div>
       </div>
 
-      {/* 2. 4 Stat Metric Rows (Mobile: 4 hàng ngang; Desktop PC: 4 card với 3 hàng chuẩn) */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-2.5 sm:gap-3 lg:gap-4">
+      {/* 2. 4 Stat Metric Rows (Mobile: 1 cột; Tablet: 2 hàng 2 cột; Desktop PC: 4 cột) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 lg:gap-4">
         {/* Row 1: Bài tập */}
         <div
           onClick={() => onToggleSection && onToggleSection("bai-tap")}
           className="bg-[#f0fbf7] hover:bg-[#e6f7f1] rounded-2xl p-3 sm:p-3.5 lg:p-4 border border-[#c6f0e0]/80 shadow-[0_2px_8px_rgba(16,185,129,0.05)] hover:border-emerald-300 transition-all cursor-pointer group"
           title="Bấm để xem danh sách bài tập"
         >
-          {/* Mobile view (< lg) */}
-          <div className="flex lg:hidden items-center justify-between gap-3 w-full">
+          {/* Mobile view (< sm) */}
+          <div className="flex sm:hidden items-center justify-between gap-3 w-full">
             <div className="flex items-center gap-3 min-w-0">
               <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#dcfce7] text-[#059669] flex items-center justify-center shrink-0 border border-emerald-200/60 shadow-xs">
                 <BookOpen className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -269,8 +269,8 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
             </div>
           </div>
 
-          {/* PC view (lg:) - Hàng 1: Icon & Badge, Hàng 2: Chỉ số, Hàng 3: Note */}
-          <div className="hidden lg:flex lg:flex-col justify-between h-full w-full gap-3">
+          {/* Tablet & PC view (sm: & md:) - Hàng 1: Icon & Badge, Hàng 2: Chỉ số, Hàng 3: Note */}
+          <div className="hidden sm:flex sm:flex-col justify-between h-full w-full gap-3">
             <div className="flex items-center justify-between gap-2">
               <div className="w-11 h-11 rounded-2xl bg-[#dcfce7] text-[#059669] flex items-center justify-center shrink-0 border border-emerald-200/60 shadow-xs group-hover:scale-105 transition-transform">
                 <BookOpen className="w-5 h-5" />
@@ -299,8 +299,8 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
           className="bg-[#fdf4f8] hover:bg-[#fcebf3] rounded-2xl p-3 sm:p-3.5 lg:p-4 border border-[#fbcfe8]/80 shadow-[0_2px_8px_rgba(236,72,153,0.05)] hover:border-pink-300 transition-all cursor-pointer group"
           title="Bấm để xem biểu đồ điểm số"
         >
-          {/* Mobile view (< lg) */}
-          <div className="flex lg:hidden items-center justify-between gap-3 w-full">
+          {/* Mobile view (< sm) */}
+          <div className="flex sm:hidden items-center justify-between gap-3 w-full">
             <div className="flex items-center gap-3 min-w-0">
               <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#fce7f3] text-[#db2777] flex items-center justify-center shrink-0 border border-pink-200/60 shadow-xs">
                 <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -322,8 +322,8 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
             </div>
           </div>
 
-          {/* PC view (lg:) - Hàng 1: Icon & Badge, Hàng 2: Chỉ số, Hàng 3: Note */}
-          <div className="hidden lg:flex lg:flex-col justify-between h-full w-full gap-3">
+          {/* Tablet & PC view (sm: & md:) - Hàng 1: Icon & Badge, Hàng 2: Chỉ số, Hàng 3: Note */}
+          <div className="hidden sm:flex sm:flex-col justify-between h-full w-full gap-3">
             <div className="flex items-center justify-between gap-2">
               <div className="w-11 h-11 rounded-2xl bg-[#fce7f3] text-[#db2777] flex items-center justify-center shrink-0 border border-pink-200/60 shadow-xs group-hover:scale-105 transition-transform">
                 <Sparkles className="w-5 h-5" />
@@ -355,8 +355,8 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
           className="bg-[#fffbf0] hover:bg-[#fef7e0] rounded-2xl p-3 sm:p-3.5 lg:p-4 border border-[#fde68a]/80 shadow-[0_2px_8px_rgba(245,158,11,0.05)] hover:border-amber-300 transition-all cursor-pointer group"
           title="Bấm để mở kho đổi quà"
         >
-          {/* Mobile view (< lg) */}
-          <div className="flex lg:hidden items-center justify-between gap-3 w-full">
+          {/* Mobile view (< sm) */}
+          <div className="flex sm:hidden items-center justify-between gap-3 w-full">
             <div className="flex items-center gap-3 min-w-0">
               <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#fef3c7] text-[#d97706] flex items-center justify-center shrink-0 border border-amber-200/60 shadow-xs">
                 <Coins className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -378,8 +378,8 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
             </div>
           </div>
 
-          {/* PC view (lg:) - Hàng 1: Icon & Badge, Hàng 2: Chỉ số, Hàng 3: Note */}
-          <div className="hidden lg:flex lg:flex-col justify-between h-full w-full gap-3">
+          {/* Tablet & PC view (sm: & md:) - Hàng 1: Icon & Badge, Hàng 2: Chỉ số, Hàng 3: Note */}
+          <div className="hidden sm:flex sm:flex-col justify-between h-full w-full gap-3">
             <div className="flex items-center justify-between gap-2">
               <div className="w-11 h-11 rounded-2xl bg-[#fef3c7] text-[#d97706] flex items-center justify-center shrink-0 border border-amber-200/60 shadow-xs group-hover:scale-105 transition-transform">
                 <Coins className="w-5 h-5" />
@@ -408,8 +408,8 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
           className="bg-[#fff7ed] hover:bg-[#ffedd5]/60 rounded-2xl p-3 sm:p-3.5 lg:p-4 border border-[#fed7aa]/80 shadow-[0_2px_8px_rgba(249,115,22,0.05)] hover:border-orange-300 transition-all cursor-pointer group"
           title="Bấm để xem buổi học"
         >
-          {/* Mobile view (< lg) */}
-          <div className="flex lg:hidden items-center justify-between gap-3 w-full">
+          {/* Mobile view (< sm) */}
+          <div className="flex sm:hidden items-center justify-between gap-3 w-full">
             <div className="flex items-center gap-3 min-w-0">
               <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#ffedd5] text-[#ea580c] flex items-center justify-center shrink-0 border border-orange-200/60 shadow-xs">
                 <Flame className="w-5 h-5 sm:w-6 sm:h-6 fill-[#ea580c]" />
@@ -431,8 +431,8 @@ export const AcademicOverviewDashboard: React.FC<AcademicOverviewDashboardProps>
             </div>
           </div>
 
-          {/* PC view (lg:) - Hàng 1: Icon & Badge, Hàng 2: Chỉ số, Hàng 3: Note */}
-          <div className="hidden lg:flex lg:flex-col justify-between h-full w-full gap-3">
+          {/* Tablet & PC view (sm: & md:) - Hàng 1: Icon & Badge, Hàng 2: Chỉ số, Hàng 3: Note */}
+          <div className="hidden sm:flex sm:flex-col justify-between h-full w-full gap-3">
             <div className="flex items-center justify-between gap-2">
               <div className="w-11 h-11 rounded-2xl bg-[#ffedd5] text-[#ea580c] flex items-center justify-center shrink-0 border border-orange-200/60 shadow-xs group-hover:scale-105 transition-transform">
                 <Flame className="w-5 h-5 fill-[#ea580c]" />
