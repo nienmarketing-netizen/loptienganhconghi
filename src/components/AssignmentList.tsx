@@ -265,9 +265,9 @@ export const AssignmentList: React.FC<AssignmentListProps> = ({
   };
 
   return (
-    <div className="relative rounded-lg sm:rounded-xl soft-ui-embossed p-4 sm:p-5 space-y-4">
+    <div className="relative space-y-4">
       {/* Section Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3 pt-1">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b-0 lg:border-b border-slate-100 pb-1 lg:pb-3 pt-1">
         <div>
           <div className="flex items-center gap-2">
             <h3 className="text-sm sm:text-base font-bold text-[#1e293b] tracking-[-0.015em] flex items-center gap-1.5">

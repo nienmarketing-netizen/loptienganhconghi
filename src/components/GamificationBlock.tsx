@@ -40,9 +40,9 @@ export const GamificationBlock: React.FC<GamificationBlockProps> = ({
   };
 
   return (
-    <div className="relative overflow-hidden soft-ui-embossed rounded-xl sm:rounded-2xl p-4 sm:p-6 space-y-4">
+    <div className="relative space-y-4">
       {/* Title & Badge */}
-      <div className="flex items-center justify-between gap-2 pb-2 border-b border-slate-100">
+      <div className="flex items-center justify-between gap-2 pb-1 lg:pb-2 border-b-0 lg:border-b border-slate-100">
         <div>
           <h3 className="text-xs sm:text-base font-bold text-[#1e293b] tracking-[-0.015em] flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-[#ffb800] shadow-[0_0_8px_#ffb800] animate-pulse" />

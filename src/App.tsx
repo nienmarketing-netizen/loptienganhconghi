@@ -287,7 +287,7 @@ export default function App() {
     <div
       className={`min-h-screen ${
         currentRoute === "student" ? "bg-[#F5F7FC]" : "bg-[#d2dbe7]"
-      } text-[#1e293b] antialiased font-sans flex flex-col selection:bg-[#635BFF] selection:text-white`}
+      } text-[#1e293b] antialiased font-sans flex flex-col selection:bg-[#635BFF] selection:text-white max-lg:overflow-x-hidden max-w-full`}
     >
       {/* Main Header with Logo, Portal Switcher, and Section Navigation */}
       <MainHeader
@@ -301,7 +301,7 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 pb-2 sm:pb-4">
+      <main className="flex-1 pb-2 sm:pb-4 max-lg:overflow-x-hidden max-w-full">
         {currentRoute === "admin" ? (
           <AdminDashboard
             students={studentsMap}

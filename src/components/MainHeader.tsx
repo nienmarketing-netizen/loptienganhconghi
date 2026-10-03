@@ -161,7 +161,7 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
         className={`w-full mx-auto transition-all ${
           currentRoute === "admin"
             ? "max-w-5xl px-3 sm:px-6"
-            : "max-w-md md:max-w-3xl lg:max-w-4xl px-3.5 sm:px-6"
+            : "max-w-md md:max-w-3xl lg:max-w-6xl xl:max-w-7xl px-3.5 sm:px-6"
         }`}
       >
         <div className="flex items-center justify-between h-16 gap-2 sm:gap-3">

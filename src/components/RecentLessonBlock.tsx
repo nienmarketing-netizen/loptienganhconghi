@@ -24,10 +24,10 @@ export const RecentLessonBlock: React.FC<RecentLessonBlockProps> = ({
   return (
     <div
       id="recent-lesson-summary"
-      className="soft-ui-embossed rounded-lg sm:rounded-xl p-4 sm:p-5 transition-all space-y-4 relative"
+      className="space-y-4 relative"
     >
       {/* Top Header: Badge & Date */}
-      <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100">
+      <div className="flex flex-wrap items-center justify-between gap-2 pb-1 lg:pb-3 border-b-0 lg:border-b border-slate-100">
         <div>
           <div className="text-[12px] font-semibold text-[#0066ff] flex items-center gap-1.5 tracking-[-0.01em]">
             <span className="w-2 h-2 rounded-full bg-[#0066ff] shadow-[0_0_8px_#0066ff] animate-pulse" />

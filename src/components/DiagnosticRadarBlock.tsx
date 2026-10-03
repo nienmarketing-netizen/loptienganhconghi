@@ -22,9 +22,9 @@ export const DiagnosticRadarBlock: React.FC<DiagnosticRadarBlockProps> = ({ stud
   const diagnosis = student.teacherDiagnosis;
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-100 p-4 sm:p-6 shadow-[0_8px_24px_rgba(15,45,90,0.06)] space-y-4 sm:space-y-5">
+    <div className="space-y-4 sm:space-y-5">
       {/* Section Header */}
-      <div className="flex items-center justify-between gap-2 border-b border-slate-100 pb-3">
+      <div className="flex items-center justify-between gap-2 border-b-0 lg:border-b border-slate-100 pb-1 lg:pb-3">
         <div>
           <h3 className="text-base sm:text-lg font-bold text-[#1e293b] tracking-[-0.015em] flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-[#0066ff] shadow-[0_0_8px_#0066ff] animate-pulse" />

@@ -17,12 +17,15 @@ import {
   BookOpen,
   Award,
   ChevronRight,
+  ChevronLeft,
   GraduationCap,
   Calendar,
   Layers,
   Star,
   Check,
   Zap,
+  Home,
+  LayoutDashboard,
 } from "lucide-react";
 import { StudentProfile, Assignment } from "../types";
 import { getStudentTokenBalance } from "../lib/studentUtils";
@@ -35,6 +38,15 @@ import { AssignmentList } from "../components/AssignmentList";
 import { TokenHistoryModal } from "../components/TokenHistoryModal";
 import { RewardStoreModal } from "../components/RewardStoreModal";
 import { CollapsibleSection } from "../components/CollapsibleSection";
+import { AcademicOverviewDashboard } from "../components/AcademicOverviewDashboard";
+
+export type ParentPortalTab =
+  | "dashboard"
+  | "buoi-hoc"
+  | "bai-tap"
+  | "tokens"
+  | "diem-so"
+  | "nang-luc";
 
 interface StudentDashboardProps {
   student: StudentProfile;
@@ -45,110 +57,6 @@ interface StudentDashboardProps {
     reason: string
   ) => Promise<void> | void;
 }
-
-// Cute Dino Mascot SVG matching Learnly's green dinosaur in UI.jpg
-const LearnlyDinoMascot: React.FC<{ className?: string }> = ({ className = "w-20 h-20" }) => (
-  <svg
-    viewBox="0 0 140 140"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
-  >
-    {/* Soft shadow under dinosaur */}
-    <ellipse cx="70" cy="126" rx="42" ry="8" fill="#D5DEF5" opacity="0.6" />
-
-    {/* Tail with soft curves */}
-    <path
-      d="M102 96 C118 96 128 85 125 72 C122 62 110 70 102 78 Z"
-      fill="#2ECC71"
-    />
-    {/* Tail spikes */}
-    <path d="M120 71 L126 64 L127 74 Z" fill="#F1C40F" />
-    <path d="M112 78 L118 72 L117 82 Z" fill="#F1C40F" />
-
-    {/* Dino Body */}
-    <ellipse cx="68" cy="88" rx="38" ry="34" fill="#2ECC71" />
-    
-    {/* Yellow Belly */}
-    <path
-      d="M48 85 C48 70 65 66 76 75 C85 83 84 105 76 112 C62 114 48 105 48 85 Z"
-      fill="#F9E79F"
-    />
-    {/* Belly horizontal ridges */}
-    <path d="M54 84 Q66 87 74 85" stroke="#F4D03F" strokeWidth="2" strokeLinecap="round" />
-    <path d="M56 94 Q66 97 74 95" stroke="#F4D03F" strokeWidth="2" strokeLinecap="round" />
-    <path d="M60 103 Q68 105 73 104" stroke="#F4D03F" strokeWidth="2" strokeLinecap="round" />
-
-    {/* Dino Back Spikes */}
-    <path d="M72 32 L78 24 L84 32 Z" fill="#F1C40F" />
-    <path d="M86 38 L94 30 L98 40 Z" fill="#F1C40F" />
-    <path d="M96 52 L105 46 L104 57 Z" fill="#F1C40F" />
-
-    {/* Dino Head */}
-    <circle cx="56" cy="46" r="32" fill="#2ECC71" />
-    {/* Dino Cheeks/Muzzle bump */}
-    <ellipse cx="44" cy="54" rx="20" ry="16" fill="#2ECC71" />
-
-    {/* Rosy Cheeks */}
-    <ellipse cx="36" cy="56" rx="6" ry="4" fill="#FF8A80" opacity="0.6" />
-    <ellipse cx="72" cy="52" rx="5" ry="3.5" fill="#FF8A80" opacity="0.6" />
-
-    {/* Cute Big Sparkling Eyes */}
-    {/* Left Eye */}
-    <circle cx="44" cy="42" r="7.5" fill="#1C2833" />
-    <circle cx="42" cy="40" r="2.8" fill="white" />
-    <circle cx="46" cy="44" r="1.2" fill="white" />
-
-    {/* Right Eye */}
-    <circle cx="62" cy="40" r="7" fill="#1C2833" />
-    <circle cx="60.5" cy="38" r="2.6" fill="white" />
-    <circle cx="64" cy="42" r="1" fill="white" />
-
-    {/* Cheerful Smile */}
-    <path
-      d="M42 56 Q52 66 60 56"
-      stroke="#1C2833"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      fill="#C0392B"
-    />
-    <path
-      d="M48 61 Q52 64 56 61"
-      fill="#F1948A"
-    />
-
-    {/* Cute Left Arm Waving */}
-    <path
-      d="M32 76 C24 70 20 58 26 54 C30 52 35 62 38 72 Z"
-      fill="#2ECC71"
-    />
-    {/* Little claws */}
-    <circle cx="24" cy="54" r="2" fill="#27AE60" />
-    <circle cx="26" cy="51" r="2" fill="#27AE60" />
-
-    {/* Right Arm */}
-    <path
-      d="M82 82 C90 85 96 88 94 94 C92 98 84 94 80 88 Z"
-      fill="#27AE60"
-    />
-
-    {/* Little Feet */}
-    <ellipse cx="50" cy="120" rx="12" ry="7" fill="#27AE60" />
-    <ellipse cx="82" cy="119" rx="12" ry="7" fill="#27AE60" />
-    {/* Toenails */}
-    <circle cx="44" cy="122" r="2" fill="#F1C40F" />
-    <circle cx="49" cy="124" r="2" fill="#F1C40F" />
-    <circle cx="54" cy="123" r="2" fill="#F1C40F" />
-    <circle cx="76" cy="121" r="2" fill="#F1C40F" />
-    <circle cx="81" cy="123" r="2" fill="#F1C40F" />
-    <circle cx="86" cy="122" r="2" fill="#F1C40F" />
-
-    {/* Sparkling Stars around dino */}
-    <path d="M18 36 L21 42 L27 45 L21 48 L18 54 L15 48 L9 45 L15 42 Z" fill="#F1C40F" />
-    <path d="M106 24 L108 28 L112 30 L108 32 L106 36 L104 32 L100 30 L104 28 Z" fill="#F39C12" />
-    <circle cx="118" cy="46" r="2.5" fill="#F1C40F" />
-  </svg>
-);
 
 export const StudentDashboard: React.FC<StudentDashboardProps> = ({
   student,
@@ -161,14 +69,90 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
     student.assignments || []
   );
 
-  // Accordion state: only one section can be open at a time (or null if all closed)
+  // Active navigation tab for mobile & tablet (default is "dashboard")
+  const [activeTab, setActiveTab] = useState<ParentPortalTab>("dashboard");
+
+  // Accordion state for desktop: only one section can be open at a time (or null if all closed)
   const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
 
+  // Horizontal scroll indicator state for sticky bottom nav
+  const navScrollRef = React.useRef<HTMLDivElement>(null);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+
+  const checkNavScroll = () => {
+    if (navScrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = navScrollRef.current;
+      setCanScrollLeft(scrollLeft > 10);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+    }
+  };
+
+  useEffect(() => {
+    checkNavScroll();
+    const el = navScrollRef.current;
+    if (el) {
+      el.addEventListener("scroll", checkNavScroll, { passive: true });
+      window.addEventListener("resize", checkNavScroll, { passive: true });
+      return () => {
+        el.removeEventListener("scroll", checkNavScroll);
+        window.removeEventListener("resize", checkNavScroll);
+      };
+    }
+  }, []);
+
+  const handleScrollNavRight = () => {
+    if (navScrollRef.current) {
+      navScrollRef.current.scrollBy({ left: 160, behavior: "smooth" });
+    }
+  };
+
+  const handleScrollNavLeft = () => {
+    if (navScrollRef.current) {
+      navScrollRef.current.scrollBy({ left: -160, behavior: "smooth" });
+    }
+  };
+
+  const handleTabChange = (tab: ParentPortalTab) => {
+    setActiveTab(tab);
+    // Smooth scroll to top when switching tab view
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    // Scroll active button into view in bottom nav
+    setTimeout(() => {
+      const btnEl = document.getElementById(`tab-btn-${tab}`);
+      if (btnEl && navScrollRef.current) {
+        btnEl.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "center",
+        });
+      }
+    }, 50);
+  };
+
   const toggleSection = (sectionId: string) => {
+    // Map section IDs to mobile tabs
+    const sectionToTabMap: Record<string, ParentPortalTab> = {
+      "buoi-hoc": "buoi-hoc",
+      "bai-tap": "bai-tap",
+      gamification: "tokens",
+      tokens: "tokens",
+      "diem-so": "diem-so",
+      "nang-luc": "nang-luc",
+      dashboard: "dashboard",
+      "tong-quan": "dashboard",
+    };
+
+    if (sectionToTabMap[sectionId]) {
+      setActiveTab(sectionToTabMap[sectionId]);
+    }
     setActiveSectionId((prev) => (prev === sectionId ? null : sectionId));
   };
 
-  // Auto-scroll to section header when opening a section
+  // Auto-scroll to section header when opening a section on desktop
   useEffect(() => {
     if (!activeSectionId) return;
 
@@ -191,12 +175,27 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
     return () => clearTimeout(timer);
   }, [activeSectionId]);
 
-  // Listen to navigation events to auto-open section if targeted
+  // Listen to navigation events to auto-open section or switch tab if targeted
   useEffect(() => {
     const handleOpenSection = (e: Event) => {
       const customEvent = e as CustomEvent<string>;
       if (customEvent.detail) {
-        setActiveSectionId(customEvent.detail);
+        const target = customEvent.detail;
+        const sectionToTabMap: Record<string, ParentPortalTab> = {
+          "buoi-hoc": "buoi-hoc",
+          "bai-tap": "bai-tap",
+          gamification: "tokens",
+          tokens: "tokens",
+          "diem-so": "diem-so",
+          "nang-luc": "nang-luc",
+          dashboard: "dashboard",
+          "tong-quan": "dashboard",
+        };
+        if (sectionToTabMap[target]) {
+          setActiveTab(sectionToTabMap[target]);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        setActiveSectionId(target);
       }
     };
     window.addEventListener("app:open-section", handleOpenSection);
@@ -217,146 +216,310 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
   const notDoneCount = currentAssignments.filter((a) => a.status === "not_done").length;
   const latestGrowth = activeStudentProfile.growthHistory.slice(-1)[0];
   const latestScore = latestGrowth ? latestGrowth.classScore.toFixed(1) : "9.2";
+  const tokenBalance = getStudentTokenBalance(activeStudentProfile);
+
+  // Tab definitions for the 6 sticky buttons (Learnly design with modern soft aesthetics)
+  const navButtons: {
+    id: ParentPortalTab;
+    label: string;
+    shortLabel: string;
+    subLabel?: string;
+    icon: React.ElementType;
+    badgeCount?: number | string;
+    badgeColor?: string;
+  }[] = [
+    {
+      id: "dashboard",
+      label: "Dashboard",
+      shortLabel: "Dashboard",
+      icon: Home,
+    },
+    {
+      id: "buoi-hoc",
+      label: "Buổi học mới nhất",
+      shortLabel: "Buổi học",
+      subLabel: "mới nhất",
+      icon: BookOpen,
+      badgeCount: activeStudentProfile.recentLesson
+        ? `${activeStudentProfile.recentLesson.score.value.toFixed(1)}đ`
+        : undefined,
+      badgeColor: "bg-amber-100 text-amber-900 border border-amber-300",
+    },
+    {
+      id: "bai-tap",
+      label: "Bài tập",
+      shortLabel: "Bài tập",
+      icon: FileText,
+      badgeCount: notDoneCount > 0 ? notDoneCount : undefined,
+      badgeColor: "bg-[#ff4757] text-white",
+    },
+    {
+      id: "tokens",
+      label: "Tokens",
+      shortLabel: "Tokens",
+      icon: Coins,
+      badgeCount: `${tokenBalance}`,
+      badgeColor: "bg-amber-100 text-amber-900 border border-amber-300",
+    },
+    {
+      id: "diem-so",
+      label: "Điểm số",
+      shortLabel: "Điểm số",
+      icon: TrendingUp,
+    },
+    {
+      id: "nang-luc",
+      label: "Năng lực",
+      shortLabel: "Năng lực",
+      icon: Stethoscope,
+    },
+  ];
 
   return (
-    <div className="w-full max-w-md md:max-w-3xl lg:max-w-4xl mx-auto px-3.5 sm:px-6 pt-4 sm:pt-6 pb-6 space-y-4 sm:space-y-6">
-      {/* 1. Header & Personalized Greeting with Learnly Purple Theme */}
-      <section id="tong-quan" className="scroll-mt-20">
-        <HeaderGreeting student={activeStudentProfile} />
-      </section>
+    <div className="w-full max-w-md md:max-w-3xl lg:max-w-6xl xl:max-w-7xl mx-auto px-3.5 sm:px-6 pt-4 sm:pt-6 pb-28 lg:pb-12 space-y-4 sm:space-y-6 max-lg:overflow-x-clip lg:overflow-visible">
+      {/* ========================================================
+          DESKTOP LAYOUT (PC - Left Sticky Buttons + Right Content)
+          ======================================================== */}
+      <div className="hidden lg:flex lg:gap-6 xl:gap-8 items-start">
+        {/* Left Sticky Navigation Buttons (PC) */}
+        <aside className="w-56 xl:w-64 shrink-0 sticky top-20 z-20 self-start">
+          <div className="bg-white rounded-3xl p-3 sm:p-3.5 border border-indigo-100/90 shadow-[0_8px_30px_rgba(99,91,255,0.07)]">
+            <nav className="space-y-1.5" aria-label="Điều hướng cổng phụ huynh PC">
+              {navButtons.map((btn) => {
+                const Icon = btn.icon;
+                const isActive = activeTab === btn.id;
 
-      {/* Thông tin buổi học mới nhất (Dropdown / Collapsible) */}
-      {activeStudentProfile.recentLesson && (
-        <CollapsibleSection
-          id="buoi-hoc"
-          isOpen={activeSectionId === "buoi-hoc"}
-          onToggle={() => toggleSection("buoi-hoc")}
-          icon={CalendarCheck}
-          iconBgColor="bg-amber-100"
-          iconColor="text-amber-700"
-          title="Thông tin buổi học mới nhất"
-          subtitle={`${activeStudentProfile.recentLesson.lessonName} • Ngày ${activeStudentProfile.recentLesson.date}`}
-          badge={
-            <div className="flex items-center gap-1.5">
-              <span className="inline-flex items-center gap-1 text-xs font-semibold text-amber-950 bg-amber-100 border border-amber-300 px-2.5 py-0.5 rounded-md leading-tight whitespace-nowrap">
-                ⭐ {activeStudentProfile.recentLesson.score.value.toFixed(1)}/10
-              </span>
-              {activeStudentProfile.recentLesson.mediaItems &&
-                activeStudentProfile.recentLesson.mediaItems.length > 0 && (
-                  <span className="hidden xs:inline-flex items-center gap-1 text-xs font-semibold text-indigo-900 bg-indigo-100 border border-indigo-300 px-2.5 py-0.5 rounded-md leading-tight whitespace-nowrap">
-                    <Camera className="w-3.5 h-3.5 text-indigo-600" />
-                    <span>{activeStudentProfile.recentLesson.mediaItems.length} ảnh/video</span>
-                  </span>
-                )}
+                return (
+                  <button
+                    key={btn.id}
+                    type="button"
+                    id={`pc-nav-btn-${btn.id}`}
+                    onClick={() => handleTabChange(btn.id)}
+                    className={`w-full flex items-center justify-between p-2.5 rounded-2xl text-xs font-bold transition-all cursor-pointer active:scale-95 group ${
+                      isActive
+                        ? "bg-[#635BFF] text-white shadow-[0_6px_20px_rgba(99,91,255,0.25)]"
+                        : "text-slate-600 hover:text-[#635BFF] hover:bg-[#F4F6FD]"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div
+                        className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                          isActive
+                            ? "bg-white/20 text-white"
+                            : "bg-[#F4F6FD] text-slate-500 group-hover:bg-indigo-100 group-hover:text-[#635BFF]"
+                        }`}
+                      >
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <span className="truncate">{btn.label}</span>
+                    </div>
+
+                    {btn.badgeCount !== undefined && (
+                      <span
+                        className={`text-[10px] font-black px-2 py-0.5 rounded-full shrink-0 leading-tight ${
+                          isActive
+                            ? "bg-white/25 text-white"
+                            : btn.badgeColor || "bg-[#ff4757] text-white"
+                        }`}
+                      >
+                        {btn.badgeCount}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </nav>
+          </div>
+        </aside>
+
+        {/* Right Main Content (PC) */}
+        <div className="flex-1 min-w-0 space-y-6">
+          {/* TAB 1: DASHBOARD */}
+          {activeTab === "dashboard" && (
+            <div className="space-y-6">
+              <section id="tong-quan-pc" className="scroll-mt-20">
+                <HeaderGreeting student={activeStudentProfile} />
+              </section>
+              <AcademicOverviewDashboard
+                student={activeStudentProfile}
+                onOpenStore={() => setShowStoreModal(true)}
+                onOpenHistory={() => setShowHistoryModal(true)}
+                onToggleSection={toggleSection}
+              />
             </div>
-          }
-        >
+          )}
+
+          {/* TAB 2: BUỔI HỌC MỚI NHẤT */}
+          {activeTab === "buoi-hoc" && activeStudentProfile.recentLesson && (
+            <RecentLessonBlock
+              lesson={activeStudentProfile.recentLesson}
+              studentName={activeStudentProfile.fullName}
+            />
+          )}
+
+          {/* TAB 3: BÀI TẬP & NHIỆM VỤ */}
+          {activeTab === "bai-tap" && (
+            <AssignmentList
+              student={activeStudentProfile}
+              onUpdateAssignments={(updated) => setCurrentAssignments(updated)}
+            />
+          )}
+
+          {/* TAB 4: TOKENS & ĐỔI THƯỞNG */}
+          {activeTab === "tokens" && (
+            <GamificationBlock
+              student={activeStudentProfile}
+              onOpenHistory={() => setShowHistoryModal(true)}
+              onOpenStore={() => setShowStoreModal(true)}
+            />
+          )}
+
+          {/* TAB 5: ĐIỂM SỐ & TIẾN BỘ */}
+          {activeTab === "diem-so" && (
+            <GrowthLineChart student={activeStudentProfile} />
+          )}
+
+          {/* TAB 6: ĐÁNH GIÁ NĂNG LỰC */}
+          {activeTab === "nang-luc" && (
+            <DiagnosticRadarBlock student={activeStudentProfile} />
+          )}
+
+          {/* Teacher Support & Contact Card */}
+          <section id="lien-he-pc" className="pt-2">
+            <div className="relative rounded-3xl bg-gradient-to-r from-[#4F46E5] via-[#635BFF] to-[#7C3AED] text-white p-6 shadow-[0_12px_32px_rgba(99,91,255,0.22)] border border-white/20 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3.5">
+                <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-xs flex items-center justify-center shrink-0 border border-white/30 text-white shadow-xs">
+                  <MessageCircle className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h4 className="text-lg font-black !text-white tracking-tight">
+                    Ba mẹ cần trao đổi thêm với Cô Nghi?
+                  </h4>
+                  <p className="text-xs text-indigo-100 mt-0.5 font-normal max-w-md">
+                    Cô luôn sẵn sàng phản hồi ba mẹ về tình hình học tập, bài vở và tinh thần của con ở lớp.
+                  </p>
+                </div>
+              </div>
+
+              <a
+                id="btn-zalo-contact-pc"
+                href="https://zalo.me"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-[#635BFF] hover:text-[#4F46E5] text-xs font-bold py-3 px-5 rounded-2xl shadow-md transition-all active:scale-95 shrink-0 leading-tight"
+              >
+                <PhoneCall className="w-4 h-4 text-[#635BFF]" />
+                <span>Nhắn Zalo Cô Nghi</span>
+              </a>
+            </div>
+          </section>
+
+          {/* Footer Branding (PC) */}
+          <footer
+            id="app-footer-pc"
+            className="text-center pt-4 pb-2 border-t border-slate-200/80 text-xs text-slate-500 flex flex-col items-center gap-1.5"
+          >
+            <div className="flex items-center justify-center gap-2 text-xs">
+              <span className="font-bold text-slate-800 text-xs">
+                Lớp Tiếng Anh Cô Nghi
+              </span>
+              <span className="text-slate-300">•</span>
+              <span className="text-xs text-slate-500">
+                Hệ thống LMS - phát triển bởi{" "}
+                <a
+                  href="https://nien.work"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-[#635BFF] hover:text-indigo-900 hover:underline"
+                >
+                  nien.work
+                </a>
+              </span>
+            </div>
+
+            <p className="text-xs font-medium text-rose-500 flex items-center justify-center gap-1.5 pt-0.5">
+              <span>Dành trọn sự tận tâm cho tương lai của các con</span>
+              <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 shrink-0 inline-block" />
+            </p>
+
+            <div className="pt-1 text-[11px] text-slate-400 flex items-center justify-center gap-1.5 font-normal">
+              <span>Khu vực giáo viên:</span>
+              <a
+                href="/giao-vien"
+                id="link-footer-teacher-portal-pc"
+                onClick={(e) => {
+                  if (onNavigateToAdmin) {
+                    e.preventDefault();
+                    onNavigateToAdmin();
+                  }
+                }}
+                className="font-mono text-slate-500 hover:text-[#635BFF] hover:underline transition-colors"
+              >
+                /giao-vien
+              </a>
+            </div>
+          </footer>
+        </div>
+      </div>
+
+      {/* ========================================================
+          MOBILE & TABLET VIEW SWITCHER (Active Tab Content)
+          ======================================================== */}
+      <div className="block lg:hidden space-y-4">
+        {/* TAB 1: DASHBOARD (Mặc định) */}
+        {activeTab === "dashboard" && (
+          <div className="space-y-4 sm:space-y-6">
+            <section id="tong-quan" className="scroll-mt-20">
+              <HeaderGreeting student={activeStudentProfile} />
+            </section>
+            <AcademicOverviewDashboard
+              student={activeStudentProfile}
+              onOpenStore={() => setShowStoreModal(true)}
+              onOpenHistory={() => setShowHistoryModal(true)}
+              onToggleSection={toggleSection}
+            />
+          </div>
+        )}
+
+        {/* TAB 2: BUỔI HỌC MỚI NHẤT */}
+        {activeTab === "buoi-hoc" && activeStudentProfile.recentLesson && (
           <RecentLessonBlock
             lesson={activeStudentProfile.recentLesson}
             studentName={activeStudentProfile.fullName}
           />
-        </CollapsibleSection>
-      )}
+        )}
 
-      {/* Bài tập & Nhiệm vụ tuần này */}
-      <CollapsibleSection
-        id="bai-tap"
-        isOpen={activeSectionId === "bai-tap"}
-        onToggle={() => toggleSection("bai-tap")}
-        icon={FileText}
-        iconBgColor="bg-indigo-50"
-        iconColor="text-indigo-600"
-        title="Bài tập & Nhiệm vụ tuần này"
-        subtitle={
-          notDoneCount > 0
-            ? `Cần hoàn thành ${notDoneCount} bài tập trước buổi học tới`
-            : "Con đã hoàn thành tất cả nhiệm vụ tuần này!"
-        }
-        badge={
-          notDoneCount > 0 ? (
-            <span className="inline-flex items-center gap-1 text-xs font-semibold text-amber-950 bg-amber-100 border border-amber-300 px-2.5 py-0.5 rounded-md leading-tight whitespace-nowrap">
-              <AlertCircle className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-              <span>{notDoneCount} bài chưa nộp</span>
-            </span>
-          ) : (
-            <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-950 bg-emerald-100 border border-emerald-300 px-2.5 py-0.5 rounded-md leading-tight whitespace-nowrap">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-              <span>Đã hoàn thành hết</span>
-            </span>
-          )
-        }
-      >
-        <AssignmentList
-          student={activeStudentProfile}
-          onUpdateAssignments={(updated) => setCurrentAssignments(updated)}
-        />
-      </CollapsibleSection>
+        {/* TAB 3: BÀI TẬP & NHIỆM VỤ */}
+        {activeTab === "bai-tap" && (
+          <AssignmentList
+            student={activeStudentProfile}
+            onUpdateAssignments={(updated) => setCurrentAssignments(updated)}
+          />
+        )}
 
-      {/* Gamification 100 Tokens & Đổi thưởng */}
-      <CollapsibleSection
-        id="gamification"
-        isOpen={activeSectionId === "gamification"}
-        onToggle={() => toggleSection("gamification")}
-        icon={Coins}
-        iconBgColor="bg-amber-100"
-        iconColor="text-amber-700"
-        title="Tích luỹ và đổi thưởng (Kho Tokens)"
-        subtitle={`Mục tiêu đổi quà: ${activeStudentProfile.gamification.targetRewardName}`}
-        badge={
-          <span className="inline-flex items-center text-xs font-semibold text-amber-950 bg-amber-100 border border-amber-300 px-2.5 py-0.5 rounded-md leading-tight whitespace-nowrap">
-            {getStudentTokenBalance(activeStudentProfile)}/100 Tokens
-          </span>
-        }
-      >
-        <GamificationBlock
-          student={activeStudentProfile}
-          onOpenHistory={() => setShowHistoryModal(true)}
-          onOpenStore={() => setShowStoreModal(true)}
-        />
-      </CollapsibleSection>
+        {/* TAB 4: TOKENS & ĐỔI THƯỞNG */}
+        {activeTab === "tokens" && (
+          <GamificationBlock
+            student={activeStudentProfile}
+            onOpenHistory={() => setShowHistoryModal(true)}
+            onOpenStore={() => setShowStoreModal(true)}
+          />
+        )}
 
-      {/* Biểu đồ Tăng trưởng & Điểm số */}
-      <CollapsibleSection
-        id="diem-so"
-        isOpen={activeSectionId === "diem-so"}
-        onToggle={() => toggleSection("diem-so")}
-        icon={TrendingUp}
-        iconBgColor="bg-emerald-50"
-        iconColor="text-emerald-700"
-        title="Biểu đồ điểm số và tiến bộ"
-        subtitle="So sánh bài kiểm tra lớp Cô Nghi và bài thi học kỳ tại trường"
-        badge={
-          <span className="inline-flex items-center text-xs font-semibold text-emerald-950 bg-emerald-100 border border-emerald-300 px-2.5 py-0.5 rounded-md leading-tight whitespace-nowrap">
-            Điểm mới nhất: {latestScore}đ
-          </span>
-        }
-      >
-        <GrowthLineChart student={activeStudentProfile} />
-      </CollapsibleSection>
+        {/* TAB 5: ĐIỂM SỐ & TIẾN BỘ */}
+        {activeTab === "diem-so" && (
+          <GrowthLineChart student={activeStudentProfile} />
+        )}
 
-      {/* Đánh giá năng lực học sinh (5 Trụ cột) */}
-      <CollapsibleSection
-        id="nang-luc"
-        isOpen={activeSectionId === "nang-luc"}
-        onToggle={() => toggleSection("nang-luc")}
-        icon={Stethoscope}
-        iconBgColor="bg-rose-50"
-        iconColor="text-rose-600"
-        title="Đánh giá năng lực học sinh"
-        subtitle="Chẩn đoán chuyên sâu 5 trụ cột ngôn ngữ từ ngày đầu nhập học"
-        badge={
-          <span className="inline-flex items-center text-xs font-semibold text-rose-950 bg-rose-100 border border-rose-300 px-2.5 py-0.5 rounded-md leading-tight whitespace-nowrap">
-            Đánh giá 5 trục
-          </span>
-        }
-      >
-        <DiagnosticRadarBlock student={activeStudentProfile} />
-      </CollapsibleSection>
+        {/* TAB 6: ĐÁNH GIÁ NĂNG LỰC */}
+        {activeTab === "nang-luc" && (
+          <DiagnosticRadarBlock student={activeStudentProfile} />
+        )}
+      </div>
 
-      {/* 4. Teacher Support & Zalo Quick Contact (Learnly Purple Modern Gradient Card) */}
-      <section id="lien-he" className="scroll-mt-24 pt-2">
+      {/* 4. Teacher Support & Zalo Quick Contact (Mobile & Tablet) */}
+      <section id="lien-he" className="scroll-mt-24 pt-2 block lg:hidden">
         <div className="relative rounded-3xl bg-gradient-to-r from-[#4F46E5] via-[#635BFF] to-[#7C3AED] text-white p-5 sm:p-6 shadow-[0_12px_32px_rgba(99,91,255,0.22)] border border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          
           <div className="flex items-center gap-3.5">
             <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-xs flex items-center justify-center shrink-0 border border-white/30 text-white shadow-xs">
               <MessageCircle className="w-6 h-6 text-white" />
@@ -384,10 +547,10 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
         </div>
       </section>
 
-      {/* Footer Branding */}
+      {/* Footer Branding (Mobile & Tablet) */}
       <footer
         id="app-footer"
-        className="text-center pt-4 pb-2 sm:pt-6 sm:pb-3 border-t border-slate-200/80 text-xs text-slate-500 flex flex-col items-center gap-1.5"
+        className="text-center pt-4 pb-2 sm:pt-6 sm:pb-3 border-t border-slate-200/80 text-xs text-slate-500 flex flex-col items-center gap-1.5 block lg:hidden"
       >
         <div className="contents sm:flex sm:flex-row sm:items-center sm:justify-center sm:gap-2 text-xs">
           <span className="order-1 sm:order-none font-bold text-slate-800 text-sm sm:text-xs">
@@ -430,6 +593,140 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
         </div>
       </footer>
 
+      {/* ========================================================
+          STICKY BOTTOM NAVIGATION BAR (Mobile & Tablet - 6 Buttons)
+          Mobile: Shows 4 buttons at a time, horizontally scrollable for the other 2
+          Tablet: Shows all buttons distributed evenly
+          ======================================================== */}
+      <nav
+        id="parent-mobile-bottom-nav"
+        aria-label="Điều hướng nhanh cổng phụ huynh"
+        className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-slate-200/90 shadow-[0_-6px_28px_rgba(99,91,255,0.09)] block lg:hidden pb-[calc(0.5rem+env(safe-area-inset-bottom,0px))] pt-1.5 px-1 sm:px-3 overscroll-contain"
+      >
+        {/* Right Scroll Indicator cue (Mobile only) */}
+        {canScrollRight && (
+          <div className="absolute right-0 top-0 bottom-0 flex items-center pr-1.5 pl-6 bg-gradient-to-l from-white via-white/95 to-transparent pointer-events-auto sm:hidden z-10">
+            <button
+              type="button"
+              onClick={handleScrollNavRight}
+              aria-label="Cuộn xem thêm nút"
+              className="w-7 h-7 rounded-full bg-[#635BFF] text-white shadow-md flex items-center justify-center active:scale-90 transition-transform cursor-pointer animate-pulse"
+              title="Bấm hoặc vuốt để xem thêm nút"
+            >
+              <ChevronRight className="w-4 h-4 shrink-0 stroke-[2.5]" />
+            </button>
+          </div>
+        )}
+
+        {/* Left Scroll Indicator cue (Mobile only) */}
+        {canScrollLeft && (
+          <div className="absolute left-0 top-0 bottom-0 flex items-center pl-1.5 pr-6 bg-gradient-to-r from-white via-white/95 to-transparent pointer-events-auto sm:hidden z-10">
+            <button
+              type="button"
+              onClick={handleScrollNavLeft}
+              aria-label="Cuộn về trước"
+              className="w-7 h-7 rounded-full bg-white border border-slate-200 text-[#635BFF] shadow-md flex items-center justify-center active:scale-90 transition-transform cursor-pointer"
+              title="Quay lại các nút trước"
+            >
+              <ChevronLeft className="w-4 h-4 shrink-0 stroke-[2.5]" />
+            </button>
+          </div>
+        )}
+
+        <div
+          ref={navScrollRef}
+          onTouchMove={(e) => e.stopPropagation()}
+          className="max-w-md md:max-w-3xl mx-auto flex items-center justify-start sm:justify-between overflow-x-auto scroll-smooth snap-x snap-mandatory overscroll-x-contain touch-pan-x [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {navButtons.map((btn) => {
+            const Icon = btn.icon;
+            const isActive = activeTab === btn.id;
+
+            return (
+              <button
+                key={btn.id}
+                type="button"
+                id={`tab-btn-${btn.id}`}
+                onClick={() => handleTabChange(btn.id)}
+                className={`relative w-[25%] min-w-[25%] max-w-[25%] sm:w-auto sm:min-w-0 sm:max-w-none sm:flex-1 shrink-0 sm:shrink snap-start py-1 px-0.5 flex flex-col items-center justify-center rounded-2xl transition-all cursor-pointer active:scale-95 group ${
+                  isActive
+                    ? "text-[#635BFF]"
+                    : "text-slate-500 hover:text-slate-800"
+                }`}
+                title={btn.label}
+              >
+                {/* Active Indicator Background Pill with larger dimensions */}
+                <div
+                  className={`relative flex items-center justify-center w-11 h-8 rounded-xl transition-all ${
+                    isActive
+                      ? "bg-[#635BFF]/12 text-[#635BFF] shadow-xs"
+                      : "text-slate-400 group-hover:text-slate-600"
+                  }`}
+                >
+                  <Icon
+                    className={`w-5 h-5 sm:w-[22px] sm:h-[22px] transition-transform ${
+                      isActive ? "scale-110 text-[#635BFF]" : ""
+                    }`}
+                  />
+
+                  {/* Notification / Badge Dot */}
+                  {btn.badgeCount !== undefined && (
+                    <span
+                      className={`absolute -top-1 -right-1.5 min-w-[17px] h-4.5 px-1 rounded-full text-[9.5px] font-black flex items-center justify-center leading-none shadow-xs ${
+                        btn.badgeColor || "bg-[#ff4757] text-white"
+                      }`}
+                    >
+                      {btn.badgeCount}
+                    </span>
+                  )}
+                </div>
+
+                {/* Text Label with larger font size */}
+                <div className="mt-0.5 flex flex-col items-center justify-center max-w-full text-center">
+                  {btn.subLabel ? (
+                    <>
+                      <span
+                        className={`text-[11px] sm:text-xs leading-tight truncate max-w-full ${
+                          isActive
+                            ? "font-black text-[#635BFF]"
+                            : "font-bold text-slate-600"
+                        }`}
+                      >
+                        {btn.shortLabel}
+                      </span>
+                      <span
+                        className={`text-[9px] sm:text-[10px] leading-none opacity-85 truncate max-w-full ${
+                          isActive
+                            ? "font-bold text-[#635BFF]"
+                            : "font-semibold text-slate-400"
+                        }`}
+                      >
+                        {btn.subLabel}
+                      </span>
+                    </>
+                  ) : (
+                    <span
+                      className={`text-[11px] sm:text-xs leading-tight truncate max-w-full ${
+                        isActive
+                          ? "font-black text-[#635BFF]"
+                          : "font-bold text-slate-600"
+                      }`}
+                    >
+                      {btn.shortLabel}
+                    </span>
+                  )}
+                </div>
+
+                {/* Active bottom micro-indicator bar */}
+                {isActive && (
+                  <span className="w-5 h-1 rounded-full bg-[#635BFF] mt-0.5" />
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+
       {/* Modal 1: Token History */}
       <TokenHistoryModal
         open={showHistoryModal}
@@ -451,4 +748,5 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
     </div>
   );
 };
+
 
