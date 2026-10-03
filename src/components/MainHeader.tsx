@@ -161,7 +161,7 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
         className={`w-full mx-auto transition-all ${
           currentRoute === "admin"
             ? "max-w-5xl px-3 sm:px-6"
-            : "max-w-md md:max-w-2xl lg:max-w-3xl px-3.5 sm:px-5"
+            : "max-w-md md:max-w-3xl lg:max-w-4xl px-3.5 sm:px-6"
         }`}
       >
         <div className="flex items-center justify-between h-16 gap-2 sm:gap-3">
@@ -178,27 +178,27 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
               mobileMenuOpen ? "opacity-35 blur-[0.5px] pointer-events-none" : "opacity-100"
             }`}
           >
-            <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200/80 flex items-center justify-center text-[#0066ff] group-hover:bg-[#0066ff] group-hover:text-white transition-all shadow-xs">
-              <BookOpen className="w-5 h-5 text-current" />
+            <div className="w-10 h-10 rounded-2xl bg-indigo-50 border border-indigo-200/80 flex items-center justify-center text-[#635BFF] group-hover:bg-[#635BFF] group-hover:text-white transition-all shadow-xs">
+              <GraduationCap className="w-5 h-5 text-current" />
             </div>
             <div>
-              <h1 className="text-xs sm:text-base md:text-lg font-bold text-[#1e293b] tracking-[-0.015em] leading-tight group-hover:text-[#0066ff] transition-colors">
+              <h1 className="text-xs sm:text-base md:text-lg font-black text-slate-900 tracking-[-0.015em] leading-tight group-hover:text-[#635BFF] transition-colors">
                 Lớp Tiếng Anh Cô Nghi
               </h1>
-              <div className="text-[10px] sm:text-[11px] font-normal text-[#64748b] flex items-center gap-1.5 normal-case">
+              <div className="text-[10px] sm:text-[11px] font-normal text-slate-500 flex items-center gap-1.5 normal-case">
                 {currentRoute === "admin" ? (
                   <>
-                    <span className="w-2 h-2 rounded-full bg-[#0066ff] shadow-[0_0_8px_rgba(0,102,255,0.5)] animate-pulse" />
-                    <span className="text-[#0066ff] font-semibold">Cổng giáo viên</span>
-                    <span className="text-[#cbd5e1]">/</span>
-                    <span className="text-[#64748b]">Admin</span>
+                    <span className="w-2 h-2 rounded-full bg-[#635BFF] shadow-[0_0_8px_rgba(99,91,255,0.5)] animate-pulse" />
+                    <span className="text-[#635BFF] font-bold">Cổng giáo viên</span>
+                    <span className="text-slate-300">/</span>
+                    <span className="text-slate-500">Admin</span>
                   </>
                 ) : (
                   <>
-                    <span className="w-2 h-2 rounded-full bg-[#4caf50] shadow-[0_0_8px_rgba(76,175,80,0.5)] animate-pulse" />
-                    <span className="text-[#1e293b] font-semibold">Cổng phụ huynh</span>
-                    <span className="text-[#cbd5e1]">/</span>
-                    <span className="text-emerald-600 font-semibold">Online</span>
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse" />
+                    <span className="text-[#635BFF] font-bold">Parent Dashboard</span>
+                    <span className="text-slate-300">/</span>
+                    <span className="text-emerald-600 font-bold">Cổng phụ huynh</span>
                   </>
                 )}
               </div>
@@ -239,10 +239,10 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                   localStorage.removeItem("current_authorized_student");
                   onNavigateToPortal();
                 }}
-                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-[#64748b] hover:text-[#0066ff] hover:border-blue-200 transition-all cursor-pointer shadow-xs active:translate-y-[1px]"
+                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-600 hover:text-[#635BFF] hover:border-indigo-200 transition-all cursor-pointer shadow-xs active:translate-y-[1px]"
                 title="Đổi mã học sinh khác hoặc về cổng đăng nhập"
               >
-                <LogOut className="w-3.5 h-3.5 text-[#0066ff]" />
+                <LogOut className="w-3.5 h-3.5 text-[#635BFF]" />
                 <span>Đổi học sinh</span>
               </button>
             )}

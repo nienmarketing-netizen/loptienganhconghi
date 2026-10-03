@@ -12,6 +12,17 @@ import {
   AlertCircle,
   CheckCircle2,
   Camera,
+  Flame,
+  Clock,
+  BookOpen,
+  Award,
+  ChevronRight,
+  GraduationCap,
+  Calendar,
+  Layers,
+  Star,
+  Check,
+  Zap,
 } from "lucide-react";
 import { StudentProfile, Assignment } from "../types";
 import { getStudentTokenBalance } from "../lib/studentUtils";
@@ -35,6 +46,110 @@ interface StudentDashboardProps {
   ) => Promise<void> | void;
 }
 
+// Cute Dino Mascot SVG matching Learnly's green dinosaur in UI.jpg
+const LearnlyDinoMascot: React.FC<{ className?: string }> = ({ className = "w-20 h-20" }) => (
+  <svg
+    viewBox="0 0 140 140"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    {/* Soft shadow under dinosaur */}
+    <ellipse cx="70" cy="126" rx="42" ry="8" fill="#D5DEF5" opacity="0.6" />
+
+    {/* Tail with soft curves */}
+    <path
+      d="M102 96 C118 96 128 85 125 72 C122 62 110 70 102 78 Z"
+      fill="#2ECC71"
+    />
+    {/* Tail spikes */}
+    <path d="M120 71 L126 64 L127 74 Z" fill="#F1C40F" />
+    <path d="M112 78 L118 72 L117 82 Z" fill="#F1C40F" />
+
+    {/* Dino Body */}
+    <ellipse cx="68" cy="88" rx="38" ry="34" fill="#2ECC71" />
+    
+    {/* Yellow Belly */}
+    <path
+      d="M48 85 C48 70 65 66 76 75 C85 83 84 105 76 112 C62 114 48 105 48 85 Z"
+      fill="#F9E79F"
+    />
+    {/* Belly horizontal ridges */}
+    <path d="M54 84 Q66 87 74 85" stroke="#F4D03F" strokeWidth="2" strokeLinecap="round" />
+    <path d="M56 94 Q66 97 74 95" stroke="#F4D03F" strokeWidth="2" strokeLinecap="round" />
+    <path d="M60 103 Q68 105 73 104" stroke="#F4D03F" strokeWidth="2" strokeLinecap="round" />
+
+    {/* Dino Back Spikes */}
+    <path d="M72 32 L78 24 L84 32 Z" fill="#F1C40F" />
+    <path d="M86 38 L94 30 L98 40 Z" fill="#F1C40F" />
+    <path d="M96 52 L105 46 L104 57 Z" fill="#F1C40F" />
+
+    {/* Dino Head */}
+    <circle cx="56" cy="46" r="32" fill="#2ECC71" />
+    {/* Dino Cheeks/Muzzle bump */}
+    <ellipse cx="44" cy="54" rx="20" ry="16" fill="#2ECC71" />
+
+    {/* Rosy Cheeks */}
+    <ellipse cx="36" cy="56" rx="6" ry="4" fill="#FF8A80" opacity="0.6" />
+    <ellipse cx="72" cy="52" rx="5" ry="3.5" fill="#FF8A80" opacity="0.6" />
+
+    {/* Cute Big Sparkling Eyes */}
+    {/* Left Eye */}
+    <circle cx="44" cy="42" r="7.5" fill="#1C2833" />
+    <circle cx="42" cy="40" r="2.8" fill="white" />
+    <circle cx="46" cy="44" r="1.2" fill="white" />
+
+    {/* Right Eye */}
+    <circle cx="62" cy="40" r="7" fill="#1C2833" />
+    <circle cx="60.5" cy="38" r="2.6" fill="white" />
+    <circle cx="64" cy="42" r="1" fill="white" />
+
+    {/* Cheerful Smile */}
+    <path
+      d="M42 56 Q52 66 60 56"
+      stroke="#1C2833"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      fill="#C0392B"
+    />
+    <path
+      d="M48 61 Q52 64 56 61"
+      fill="#F1948A"
+    />
+
+    {/* Cute Left Arm Waving */}
+    <path
+      d="M32 76 C24 70 20 58 26 54 C30 52 35 62 38 72 Z"
+      fill="#2ECC71"
+    />
+    {/* Little claws */}
+    <circle cx="24" cy="54" r="2" fill="#27AE60" />
+    <circle cx="26" cy="51" r="2" fill="#27AE60" />
+
+    {/* Right Arm */}
+    <path
+      d="M82 82 C90 85 96 88 94 94 C92 98 84 94 80 88 Z"
+      fill="#27AE60"
+    />
+
+    {/* Little Feet */}
+    <ellipse cx="50" cy="120" rx="12" ry="7" fill="#27AE60" />
+    <ellipse cx="82" cy="119" rx="12" ry="7" fill="#27AE60" />
+    {/* Toenails */}
+    <circle cx="44" cy="122" r="2" fill="#F1C40F" />
+    <circle cx="49" cy="124" r="2" fill="#F1C40F" />
+    <circle cx="54" cy="123" r="2" fill="#F1C40F" />
+    <circle cx="76" cy="121" r="2" fill="#F1C40F" />
+    <circle cx="81" cy="123" r="2" fill="#F1C40F" />
+    <circle cx="86" cy="122" r="2" fill="#F1C40F" />
+
+    {/* Sparkling Stars around dino */}
+    <path d="M18 36 L21 42 L27 45 L21 48 L18 54 L15 48 L9 45 L15 42 Z" fill="#F1C40F" />
+    <path d="M106 24 L108 28 L112 30 L108 32 L106 36 L104 32 L100 30 L104 28 Z" fill="#F39C12" />
+    <circle cx="118" cy="46" r="2.5" fill="#F1C40F" />
+  </svg>
+);
+
 export const StudentDashboard: React.FC<StudentDashboardProps> = ({
   student,
   onNavigateToAdmin,
@@ -53,16 +168,14 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
     setActiveSectionId((prev) => (prev === sectionId ? null : sectionId));
   };
 
-  // Auto-scroll to section header when opening a section, preventing layout jumping
+  // Auto-scroll to section header when opening a section
   useEffect(() => {
     if (!activeSectionId) return;
 
-    // Small delay ensures previous section has collapsed and new section is mounted
     const timer = setTimeout(() => {
       const element = document.getElementById(activeSectionId);
       if (!element) return;
 
-      // Sticky header height (64px) + comfortable breathing room (12px)
       const headerOffset = 76;
       const elementRect = element.getBoundingClientRect();
       const currentScrollY =
@@ -100,105 +213,17 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
     assignments: currentAssignments,
   };
 
-  // Computed previews for badges
+  // Computed previews for badges and stat metrics
   const notDoneCount = currentAssignments.filter((a) => a.status === "not_done").length;
   const latestGrowth = activeStudentProfile.growthHistory.slice(-1)[0];
-  const latestScore = latestGrowth ? latestGrowth.classScore.toFixed(1) : "8.5";
+  const latestScore = latestGrowth ? latestGrowth.classScore.toFixed(1) : "9.2";
 
   return (
-    <div className="w-full max-w-md md:max-w-2xl lg:max-w-3xl mx-auto px-3.5 sm:px-5 pt-4 sm:pt-6 pb-2 space-y-4 sm:space-y-5">
-      {/* 1. Header & Personalized Greeting */}
+    <div className="w-full max-w-md md:max-w-3xl lg:max-w-4xl mx-auto px-3.5 sm:px-6 pt-4 sm:pt-6 pb-6 space-y-4 sm:space-y-6">
+      {/* 1. Header & Personalized Greeting with Learnly Purple Theme */}
       <section id="tong-quan" className="scroll-mt-20">
         <HeaderGreeting student={activeStudentProfile} />
       </section>
-
-      {/* Quick Overview Stat Cards (Inspired by Learnly & Lingora) */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
-        {/* Card 1: Bài tập */}
-        <div
-          onClick={() => toggleSection("bai-tap")}
-          className="bg-white rounded-2xl p-3.5 border border-slate-100 shadow-[0_4px_16px_rgba(15,45,90,0.05)] hover:shadow-md hover:border-blue-100 transition-all cursor-pointer group"
-        >
-          <div className="flex items-center justify-between text-[#64748b]">
-            <span className="font-semibold text-xs">Bài tập tuần</span>
-            <div className="w-7 h-7 rounded-xl bg-blue-50 flex items-center justify-center text-[#0066ff] group-hover:bg-[#0066ff] group-hover:text-white transition-all shadow-xs">
-              <FileText className="w-3.5 h-3.5" />
-            </div>
-          </div>
-          <div className="mt-2 flex items-baseline gap-1">
-            <span className="text-xl sm:text-2xl font-black text-[#1e293b]">
-              {activeStudentProfile.assignments?.length || 0}
-            </span>
-            <span className="text-xs text-[#64748b] font-medium">bài</span>
-          </div>
-          <span className="mt-1 block text-[11px] font-bold text-[#0066ff] truncate">
-            {notDoneCount > 0 ? `Còn ${notDoneCount} bài chưa nộp` : "Đã xong tất cả 🎉"}
-          </span>
-        </div>
-
-        {/* Card 2: Điểm gần nhất */}
-        <div
-          onClick={() => toggleSection("diem-so")}
-          className="bg-white rounded-2xl p-3.5 border border-slate-100 shadow-[0_4px_16px_rgba(15,45,90,0.05)] hover:shadow-md hover:border-blue-100 transition-all cursor-pointer group"
-        >
-          <div className="flex items-center justify-between text-[#64748b]">
-            <span className="font-semibold text-xs">Điểm gần nhất</span>
-            <div className="w-7 h-7 rounded-xl bg-blue-50 flex items-center justify-center text-[#0066ff] group-hover:bg-[#0066ff] group-hover:text-white transition-all shadow-xs">
-              <Sparkles className="w-3.5 h-3.5" />
-            </div>
-          </div>
-          <div className="mt-2 flex items-baseline gap-1">
-            <span className="text-xl sm:text-2xl font-black text-[#0066ff]">
-              {latestScore}
-            </span>
-            <span className="text-xs text-[#64748b] font-medium">/10</span>
-          </div>
-          <span className="mt-1 block text-[11px] font-bold text-[#4caf50] truncate">
-            Tiến bộ rõ rệt 📈
-          </span>
-        </div>
-
-        {/* Card 3: Kho Tokens */}
-        <div
-          onClick={() => toggleSection("gamification")}
-          className="bg-white rounded-2xl p-3.5 border border-slate-100 shadow-[0_4px_16px_rgba(15,45,90,0.05)] hover:shadow-md hover:border-amber-100 transition-all cursor-pointer group"
-        >
-          <div className="flex items-center justify-between text-[#64748b]">
-            <span className="font-semibold text-xs">Kho Tokens</span>
-            <div className="w-7 h-7 rounded-xl bg-amber-50 flex items-center justify-center text-[#ff9800] group-hover:bg-[#ff9800] group-hover:text-white transition-all shadow-xs">
-              <Coins className="w-3.5 h-3.5" />
-            </div>
-          </div>
-          <div className="mt-2 flex items-baseline gap-1">
-            <span className="text-xl sm:text-2xl font-black text-[#ff9800]">
-              {getStudentTokenBalance(activeStudentProfile)}
-            </span>
-            <span className="text-xs text-[#64748b] font-medium">/100</span>
-          </div>
-          <span className="mt-1 block text-[11px] font-bold text-amber-600 truncate">
-            {activeStudentProfile.gamification?.targetRewardName || "Đổi quà tặng 🎁"}
-          </span>
-        </div>
-
-        {/* Card 4: Chuỗi học Streak */}
-        <div className="bg-white rounded-2xl p-3.5 border border-slate-100 shadow-[0_4px_16px_rgba(15,45,90,0.05)]">
-          <div className="flex items-center justify-between text-[#64748b]">
-            <span className="font-semibold text-xs">Chuỗi chuyên cần</span>
-            <div className="w-7 h-7 rounded-xl bg-orange-50 flex items-center justify-center text-orange-500 shadow-xs">
-              🔥
-            </div>
-          </div>
-          <div className="mt-2 flex items-baseline gap-1">
-            <span className="text-xl sm:text-2xl font-black text-orange-500">
-              {activeStudentProfile.gamification?.streakDays || 7}
-            </span>
-            <span className="text-xs text-[#64748b] font-medium">Ngày</span>
-          </div>
-          <span className="mt-1 block text-[11px] font-bold text-orange-600 truncate">
-            Chăm chỉ liên tục ⚡
-          </span>
-        </div>
-      </div>
 
       {/* Thông tin buổi học mới nhất (Dropdown / Collapsible) */}
       {activeStudentProfile.recentLesson && (
@@ -233,7 +258,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
         </CollapsibleSection>
       )}
 
-      {/* 2. Phase 2: Khối Quản lý Học vụ - Bài tập tuần này (ĐƯA LÊN ĐẦU TIÊN & MẶC ĐỊNH MỞ) */}
+      {/* Bài tập & Nhiệm vụ tuần này */}
       <CollapsibleSection
         id="bai-tap"
         isOpen={activeSectionId === "bai-tap"}
@@ -267,7 +292,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
         />
       </CollapsibleSection>
 
-      {/* 3. Dropdown: Gamification 100 Tokens & Đổi thưởng (CHỈ MỞ KHI CLICK) */}
+      {/* Gamification 100 Tokens & Đổi thưởng */}
       <CollapsibleSection
         id="gamification"
         isOpen={activeSectionId === "gamification"}
@@ -275,7 +300,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
         icon={Coins}
         iconBgColor="bg-amber-100"
         iconColor="text-amber-700"
-        title="Tích luỹ và đổi thưởng"
+        title="Tích luỹ và đổi thưởng (Kho Tokens)"
         subtitle={`Mục tiêu đổi quà: ${activeStudentProfile.gamification.targetRewardName}`}
         badge={
           <span className="inline-flex items-center text-xs font-semibold text-amber-950 bg-amber-100 border border-amber-300 px-2.5 py-0.5 rounded-md leading-tight whitespace-nowrap">
@@ -290,7 +315,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
         />
       </CollapsibleSection>
 
-      {/* 4. Dropdown: Biểu đồ Tăng trưởng & Điểm số (CHỈ MỞ KHI CLICK) */}
+      {/* Biểu đồ Tăng trưởng & Điểm số */}
       <CollapsibleSection
         id="diem-so"
         isOpen={activeSectionId === "diem-so"}
@@ -309,7 +334,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
         <GrowthLineChart student={activeStudentProfile} />
       </CollapsibleSection>
 
-      {/* 5. Dropdown: Đánh giá năng lực học sinh (CHỈ MỞ KHI CLICK) */}
+      {/* Đánh giá năng lực học sinh (5 Trụ cột) */}
       <CollapsibleSection
         id="nang-luc"
         isOpen={activeSectionId === "nang-luc"}
@@ -328,24 +353,22 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
         <DiagnosticRadarBlock student={activeStudentProfile} />
       </CollapsibleSection>
 
-      {/* 6. Teacher Support & Zalo Quick Contact (Section thông thường) */}
-      <section id="lien-he" className="scroll-mt-24 pt-3">
-        <div className="relative rounded-lg sm:rounded-xl bg-gradient-to-br from-indigo-900 via-slate-900 to-slate-950 text-white p-4 sm:p-5 pt-6 sm:pt-6 shadow-lg border border-indigo-800/40 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-          {/* Corner badge: half outside, half inside */}
-          <div
-            id="badge-contact-corner"
-            className="absolute -top-5 left-5 sm:left-6 w-10 h-10 rounded-lg bg-gradient-to-tr from-indigo-500 to-blue-500 text-white flex items-center justify-center shadow-lg shadow-indigo-950/50 ring-4 ring-slate-50 border border-indigo-300/40 z-10"
-          >
-            <MessageCircle className="w-5 h-5 text-white fill-white/20" />
-          </div>
-
-          <div className="pt-2 sm:pt-0">
-            <h4 className="text-xs sm:text-base font-bold !text-white text-center sm:text-left tracking-[-0.015em]">
-              Ba mẹ cần trao đổi thêm với cô Nghi?
-            </h4>
-            <p className="text-xs text-slate-200 mt-0.5 font-normal">
-              Cô luôn sẵn sàng phản hồi ba mẹ về bài vở và tinh thần học tập của con.
-            </p>
+      {/* 4. Teacher Support & Zalo Quick Contact (Learnly Purple Modern Gradient Card) */}
+      <section id="lien-he" className="scroll-mt-24 pt-2">
+        <div className="relative rounded-3xl bg-gradient-to-r from-[#4F46E5] via-[#635BFF] to-[#7C3AED] text-white p-5 sm:p-6 shadow-[0_12px_32px_rgba(99,91,255,0.22)] border border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          
+          <div className="flex items-center gap-3.5">
+            <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-xs flex items-center justify-center shrink-0 border border-white/30 text-white shadow-xs">
+              <MessageCircle className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h4 className="text-base sm:text-lg font-black !text-white tracking-tight">
+                Ba mẹ cần trao đổi thêm với Cô Nghi?
+              </h4>
+              <p className="text-xs text-indigo-100 mt-0.5 font-normal max-w-md">
+                Cô luôn sẵn sàng phản hồi ba mẹ về tình hình học tập, bài vở và tinh thần của con ở lớp.
+              </p>
+            </div>
           </div>
 
           <a
@@ -353,10 +376,10 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
             href="https://zalo.me"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 !text-white text-xs font-semibold py-2.5 px-4 rounded-lg shadow-md transition-all active:scale-95 shrink-0 min-h-[40px] leading-tight"
+            className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-[#635BFF] hover:text-[#4F46E5] text-xs font-bold py-3 px-5 rounded-2xl shadow-md transition-all active:scale-95 shrink-0 leading-tight"
           >
-            <PhoneCall className="w-3.5 h-3.5 !text-white" />
-            <span className="!text-white font-semibold">Nhắn Zalo Cô Nghi</span>
+            <PhoneCall className="w-4 h-4 text-[#635BFF]" />
+            <span>Nhắn Zalo Cô Nghi</span>
           </a>
         </div>
       </section>
@@ -364,7 +387,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
       {/* Footer Branding */}
       <footer
         id="app-footer"
-        className="text-center pt-4 pb-2 sm:pt-5 sm:pb-2 border-t border-slate-200/80 text-xs text-slate-500 flex flex-col items-center gap-1.5"
+        className="text-center pt-4 pb-2 sm:pt-6 sm:pb-3 border-t border-slate-200/80 text-xs text-slate-500 flex flex-col items-center gap-1.5"
       >
         <div className="contents sm:flex sm:flex-row sm:items-center sm:justify-center sm:gap-2 text-xs">
           <span className="order-1 sm:order-none font-bold text-slate-800 text-sm sm:text-xs">
@@ -377,14 +400,14 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
               href="https://nien.work"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-indigo-700 hover:text-indigo-900 hover:underline"
+              className="font-bold text-[#635BFF] hover:text-indigo-900 hover:underline"
             >
               nien.work
             </a>
           </span>
         </div>
 
-        <p className="order-2 sm:order-none text-xs font-medium text-rose-600 flex items-center justify-center gap-1.5 pt-0.5">
+        <p className="order-2 sm:order-none text-xs font-medium text-rose-500 flex items-center justify-center gap-1.5 pt-0.5">
           <span>Dành trọn sự tận tâm cho tương lai của các con</span>
           <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 shrink-0 inline-block" />
         </p>
@@ -400,7 +423,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                 onNavigateToAdmin();
               }
             }}
-            className="font-mono text-slate-500 hover:text-[#ff4757] hover:underline transition-colors"
+            className="font-mono text-slate-500 hover:text-[#635BFF] hover:underline transition-colors"
           >
             /giao-vien
           </a>

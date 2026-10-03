@@ -13,16 +13,16 @@ export const HeaderGreeting: React.FC<HeaderGreetingProps> = ({ student }) => {
   const parsedCode = parseStudentCode(student.id);
 
   return (
-    <header className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#0066ff] via-[#1e88e5] to-[#0052cc] text-white p-5 sm:p-6 shadow-[0_12px_28px_rgba(0,102,255,0.22)] border border-blue-400/30">
+    <header className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#5046E5] via-[#635BFF] to-[#7C3AED] text-white p-5 sm:p-6 shadow-[0_14px_32px_rgba(99,91,255,0.25)] border border-white/20">
       {/* Top Friendly Badge Bar */}
-      <div className="flex items-center justify-between text-xs text-blue-100/90 pb-3 mb-3.5 border-b border-white/15 px-0.5">
+      <div className="flex items-center justify-between text-xs text-indigo-100/90 pb-3 mb-3.5 border-b border-white/15 px-0.5">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#4ade80] animate-pulse" />
-          <span className="font-semibold text-white tracking-wide text-xs">Không gian học vụ trực tuyến</span>
+          <span className="w-2 h-2 rounded-full bg-emerald-300 shadow-[0_0_8px_#6ee7b7] animate-pulse" />
+          <span className="font-bold text-white tracking-wide text-xs">Parent Dashboard • Cổng phụ huynh</span>
         </div>
-        <div className="hidden sm:flex items-center gap-1.5 text-xs text-blue-100 font-medium">
+        <div className="hidden sm:flex items-center gap-1.5 text-xs text-indigo-100 font-medium">
           <span>✨</span>
-          <span>Đồng hành & Tỏa sáng mỗi ngày</span>
+          <span>Where Kids Learn, Grow & Shine</span>
         </div>
       </div>
 
@@ -44,16 +44,16 @@ export const HeaderGreeting: React.FC<HeaderGreetingProps> = ({ student }) => {
 
         {/* Personalized Message & Details */}
         <div className="flex-1 min-w-0">
-          <div className="text-xs text-blue-100 font-medium">
+          <div className="text-xs text-indigo-100 font-medium">
             Xin chào phụ huynh bạn:
           </div>
 
-          <h2 className="text-lg sm:text-2xl font-bold !text-white tracking-[-0.02em] truncate mt-0.5">
+          <h2 className="text-lg sm:text-2xl font-black !text-white tracking-[-0.02em] truncate mt-0.5">
             {student.fullName}
           </h2>
 
-          <div className="text-xs text-blue-100 mt-1 flex items-center gap-1.5 font-normal flex-wrap">
-            <span className="text-blue-100 font-medium">Mã học sinh:</span>
+          <div className="text-xs text-indigo-100 mt-1 flex items-center gap-1.5 font-normal flex-wrap">
+            <span className="text-indigo-100 font-medium">Mã học sinh:</span>
             <span
               title={
                 parsedCode
@@ -66,7 +66,7 @@ export const HeaderGreeting: React.FC<HeaderGreetingProps> = ({ student }) => {
             </span>
           </div>
 
-          <div className="flex items-center gap-1.5 text-xs text-blue-100 mt-1.5 font-normal">
+          <div className="flex items-center gap-1.5 text-xs text-indigo-100 mt-1.5 font-normal">
             <School className="w-3.5 h-3.5 text-amber-300 shrink-0" />
             <span className="truncate text-white font-medium">
               {student.grade.split("-")[0].trim()} • {student.school}

@@ -284,7 +284,11 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#d2dbe7] text-[#1e293b] antialiased font-sans flex flex-col selection:bg-[#ff4757] selection:text-white">
+    <div
+      className={`min-h-screen ${
+        currentRoute === "student" ? "bg-[#F5F7FC]" : "bg-[#d2dbe7]"
+      } text-[#1e293b] antialiased font-sans flex flex-col selection:bg-[#635BFF] selection:text-white`}
+    >
       {/* Main Header with Logo, Portal Switcher, and Section Navigation */}
       <MainHeader
         currentRoute={currentRoute}
