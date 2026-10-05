@@ -18,17 +18,15 @@ interface ClassroomMediaSectionProps {
   lessonDate: string;
 }
 
+const EMPTY_MEDIA: LessonMediaItem[] = [];
+
 export const ClassroomMediaSection: React.FC<ClassroomMediaSectionProps> = ({
-  initialMedia = [],
+  initialMedia,
   studentName,
   lessonDate,
 }) => {
-  const [mediaList, setMediaList] = useState<LessonMediaItem[]>(initialMedia);
+  const mediaList = initialMedia && initialMedia.length > 0 ? initialMedia : EMPTY_MEDIA;
   const [activeLightboxIndex, setActiveLightboxIndex] = useState<number | null>(null);
-
-  useEffect(() => {
-    setMediaList(initialMedia || []);
-  }, [initialMedia]);
 
   useLockBodyScroll(activeLightboxIndex !== null);
   const [isPaused, setIsPaused] = useState(false);
