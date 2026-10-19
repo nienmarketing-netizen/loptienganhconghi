@@ -516,3 +516,18 @@ blockquote,
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
+/* Hiệu ứng zoom in - zoom out nhẹ nhàng cho CTA Sticky */
+@keyframes subtle-zoom {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+.animate-subtle-zoom {
+  animation: subtle-zoom 2.4s ease-in-out infinite;
+}
+
+

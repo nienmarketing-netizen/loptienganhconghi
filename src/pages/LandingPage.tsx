@@ -931,12 +931,12 @@ export const LandingPage: React.FC = () => {
       </main>
 
       {/* ─────────────────────────────────────────────────────────────
-          STICKY BOTTOM CTA BAR (FULL WIDTH, MÀU #00ADEF, KHÔNG BORDERLINE)
+          STICKY BOTTOM FLOATING CTA (MOBILE: NÚT RỘNG THEO NỘI DUNG 90%, CÁCH CHÂN TRANG)
       ────────────────────────────────────────────────────────────── */}
-      <div className="fixed bottom-0 inset-x-0 z-40 md:hidden">
+      <div className="fixed bottom-3 sm:bottom-4 inset-x-0 z-40 flex justify-center md:hidden pointer-events-none pb-[env(safe-area-inset-bottom)]">
         <button
           onClick={handleOpenRegisterModal}
-          className="w-full py-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom))] px-4 bg-[#00ADEF] hover:bg-[#0098d3] active:bg-[#0089be] text-white shadow-lg shadow-sky-500/20 transition-colors flex flex-col items-center justify-center cursor-pointer border-none outline-none"
+          className="pointer-events-auto w-[90%] py-2.5 sm:py-3 px-4 rounded-2xl bg-[#00ADEF] hover:bg-[#0098d3] active:scale-[0.98] text-white shadow-[0_8px_24px_rgba(0,173,239,0.38)] transition-all flex flex-col items-center justify-center cursor-pointer border-none outline-none animate-subtle-zoom"
         >
           <span className="font-heading font-extrabold uppercase tracking-tight text-xs sm:text-sm leading-tight flex items-center gap-1.5 text-white">
             <span>Đăng ký test năng lực 1-1 miễn phí</span>
