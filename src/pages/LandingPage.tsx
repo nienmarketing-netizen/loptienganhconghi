@@ -262,59 +262,145 @@ export const LandingPage: React.FC = () => {
               </div>
             </div>
 
-            {/* 3 Huy hiệu Bảo Chứng Đầu Trang (Shofu Cards) */}
+            {/* 3 Huy hiệu Bảo Chứng Đầu Trang (Modern Tactile USP Cards) */}
+            {/* 3 Huy hiệu Bảo Chứng Đầu Trang (Modern Tactile 2-Block USP Cards) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {/* Badge 1 */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#00ADEF]/60 flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#00ADEF] border border-sky-100 flex items-center justify-center shrink-0">
-                  <Award className="w-6 h-6" />
+              {/* Card 1: BẢO CHỨNG CHUYÊN MÔN (Chia thành 2 khối riêng biệt) */}
+              <div className="relative bg-slate-100/80 p-1 sm:p-1.5 rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-[0_4px_20px_rgba(0,173,239,0.06)] hover:shadow-[0_14px_34px_rgba(0,173,239,0.14)] hover:border-sky-300/80 hover:-translate-y-1 transition-all duration-300 group flex flex-col gap-1 sm:gap-1.5">
+                {/* ── KHỐI 1 (PHẦN TRÊN): Icon, Badge và Tiêu đề ── */}
+                <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-xs overflow-hidden">
+                  {/* Dải line màu nhận diện trên đỉnh khối */}
+                  <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-[#00ADEF] via-sky-400 to-blue-500" />
+                  {/* Đốm sáng nền nhẹ góc thẻ */}
+                  <div className="absolute -top-10 -right-10 w-24 h-24 bg-sky-100/60 rounded-full blur-2xl pointer-events-none group-hover:scale-150 transition-transform duration-500" />
+
+                  <div className="flex items-start gap-3.5 sm:gap-4">
+                    {/* Cột trái: Icon */}
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky-50 to-blue-50 text-[#00ADEF] border border-sky-200/80 shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_2px_8px_rgba(0,173,239,0.12)] flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:rotate-2 transition-transform duration-300">
+                      <Award className="w-6 h-6 stroke-[2.2]" />
+                    </div>
+
+                    {/* Cột phải: 2 hàng căn lề phải */}
+                    <div className="flex-1 min-w-0 flex flex-col items-end text-right">
+                      {/* Hàng 1: Badge nằm góc trên bên phải */}
+                      <div className="flex justify-end items-center">
+                        <span className="inline-flex items-center gap-1.5 font-mono uppercase text-[10px] tracking-wider font-bold text-[#00ADEF] bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200/70 shadow-2xs">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#00ADEF] animate-pulse" />
+                          CHỨNG NHẬN
+                        </span>
+                      </div>
+
+                      {/* Hàng 2: Tiêu đề USP căn lề phải */}
+                      <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-sm sm:text-base leading-snug mt-1 text-right">
+                        Bảo Chứng Chuyên Môn
+                      </h4>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <span className="font-mono uppercase text-xs tracking-wider text-[#00ADEF] font-bold block mb-1">
-                    CHỨNG NHẬN
-                  </span>
-                  <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-sm">
-                    Trình Độ Chuyên Môn Bảo Chứng
-                  </h4>
-                  <p className="font-body text-slate-600 text-xs mt-1.5 leading-relaxed">
-                    Cử nhân Biên dịch Tiếng Anh (GPA 8.17/10) – Thạc sĩ TESOL Quốc tế – Sáng lập dự án Hopepath Academy.
+
+                {/* ── KHỐI 2 (PHẦN DƯỚI): Nội dung còn lại ── */}
+                <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-xs flex-1 flex flex-col justify-between">
+                  <p className="font-body text-slate-600 text-xs sm:text-[12.5px] leading-relaxed">
+                    Cử nhân Biên dịch Tiếng Anh (<strong className="text-slate-900 font-bold">GPA 8.17/10</strong>) –{" "}
+                    <strong className="text-slate-900 font-bold">Thạc sĩ TESOL Quốc tế</strong> – Sáng lập dự án Hopepath Academy.
                   </p>
+
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-[11px] font-mono text-[#00ADEF] font-bold">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>Trực tiếp Cô Nghi đứng lớp 100%</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Badge 2 */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#00ADEF]/60 flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#00ADEF] border border-sky-100 flex items-center justify-center shrink-0">
-                  <Users className="w-6 h-6" />
+              {/* Card 2: SĨ SỐ VÀNG (Chia thành 2 khối riêng biệt) */}
+              <div className="relative bg-slate-100/80 p-1 sm:p-1.5 rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-[0_4px_20px_rgba(16,185,129,0.06)] hover:shadow-[0_14px_34px_rgba(16,185,129,0.14)] hover:border-emerald-300/80 hover:-translate-y-1 transition-all duration-300 group flex flex-col gap-1 sm:gap-1.5">
+                {/* ── KHỐI 1 (PHẦN TRÊN): Icon, Badge và Tiêu đề ── */}
+                <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-xs overflow-hidden">
+                  {/* Dải line màu nhận diện trên đỉnh khối */}
+                  <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-emerald-400 via-teal-400 to-[#00ADEF]" />
+                  {/* Đốm sáng nền nhẹ góc thẻ */}
+                  <div className="absolute -top-10 -right-10 w-24 h-24 bg-emerald-100/50 rounded-full blur-2xl pointer-events-none group-hover:scale-150 transition-transform duration-500" />
+
+                  <div className="flex items-start gap-3.5 sm:gap-4">
+                    {/* Cột trái: Icon */}
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 text-emerald-600 border border-emerald-200/80 shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_2px_8px_rgba(16,185,129,0.12)] flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:rotate-2 transition-transform duration-300">
+                      <Users className="w-6 h-6 stroke-[2.2]" />
+                    </div>
+
+                    {/* Cột phải: 2 hàng căn lề phải */}
+                    <div className="flex-1 min-w-0 flex flex-col items-end text-right">
+                      {/* Hàng 1: Badge nằm góc trên bên phải */}
+                      <div className="flex justify-end items-center">
+                        <span className="inline-flex items-center gap-1.5 font-mono uppercase text-[10px] tracking-wider font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/70 shadow-2xs">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                          SĨ SỐ VÀNG
+                        </span>
+                      </div>
+
+                      {/* Hàng 2: Tiêu đề USP căn lề phải */}
+                      <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-sm sm:text-base leading-snug mt-1 text-right">
+                        Giám Sát Vi Mô 1-1
+                      </h4>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <span className="font-mono uppercase text-xs tracking-wider text-[#00ADEF] font-bold block mb-1">
-                    SĨ SỐ VÀNG
-                  </span>
-                  <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-sm">
-                    Giám Sát Vi Mô 1-1
-                  </h4>
-                  <p className="font-body text-slate-600 text-xs mt-1.5 leading-relaxed">
-                    Quy mô tối đa 12 học sinh/lớp – Bắt đúng bệnh, sửa tỉ mỉ từng lỗi sai ngữ pháp &amp; phát âm cho từng em ngay tại bàn.
+
+                {/* ── KHỐI 2 (PHẦN DƯỚI): Nội dung còn lại ── */}
+                <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-xs flex-1 flex flex-col justify-between">
+                  <p className="font-body text-slate-600 text-xs sm:text-[12.5px] leading-relaxed">
+                    Quy mô <strong className="text-slate-900 font-bold">tối đa 12 học sinh/lớp</strong> – Bắt đúng bệnh, sửa tỉ mỉ từng lỗi sai ngữ pháp &amp; phát âm cho từng em ngay tại bàn.
                   </p>
+
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-[11px] font-mono text-emerald-700 font-bold">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>Không dạy đại trà 25–30 em</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Badge 3 */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#C43838]/60 flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-red-50 text-[#C43838] border border-red-100 flex items-center justify-center shrink-0">
-                  <ShieldCheck className="w-6 h-6" />
+              {/* Card 3: RỦI RO BẰNG 0 (Chia thành 2 khối riêng biệt) */}
+              <div className="relative bg-slate-100/80 p-1 sm:p-1.5 rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-[0_4px_20px_rgba(196,56,56,0.06)] hover:shadow-[0_14px_34px_rgba(196,56,56,0.14)] hover:border-rose-300/80 hover:-translate-y-1 transition-all duration-300 group flex flex-col gap-1 sm:gap-1.5">
+                {/* ── KHỐI 1 (PHẦN TRÊN): Icon, Badge và Tiêu đề ── */}
+                <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-xs overflow-hidden">
+                  {/* Dải line màu nhận diện trên đỉnh khối */}
+                  <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-[#C43838] via-rose-500 to-amber-500" />
+                  {/* Đốm sáng nền nhẹ góc thẻ */}
+                  <div className="absolute -top-10 -right-10 w-24 h-24 bg-red-100/50 rounded-full blur-2xl pointer-events-none group-hover:scale-150 transition-transform duration-500" />
+
+                  <div className="flex items-start gap-3.5 sm:gap-4">
+                    {/* Cột trái: Icon */}
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-red-50 to-rose-50 text-[#C43838] border border-red-200/80 shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_2px_8px_rgba(196,56,56,0.12)] flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:rotate-2 transition-transform duration-300">
+                      <ShieldCheck className="w-6 h-6 stroke-[2.2]" />
+                    </div>
+
+                    {/* Cột phải: 2 hàng căn lề phải */}
+                    <div className="flex-1 min-w-0 flex flex-col items-end text-right">
+                      {/* Hàng 1: Badge nằm góc trên bên phải */}
+                      <div className="flex justify-end items-center">
+                        <span className="inline-flex items-center gap-1.5 font-mono uppercase text-[10px] tracking-wider font-bold text-[#C43838] bg-red-50 px-2.5 py-0.5 rounded-full border border-red-200/70 shadow-2xs">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#C43838] animate-pulse" />
+                          RỦI RO BẰNG 0
+                        </span>
+                      </div>
+
+                      {/* Hàng 2: Tiêu đề USP căn lề phải */}
+                      <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-sm sm:text-base leading-snug mt-1 text-right">
+                        Bảo Hiểm Học Tập 2 Lớp
+                      </h4>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <span className="font-mono uppercase text-xs tracking-wider text-[#C43838] font-bold block mb-1">
-                    RỦI RO BẰNG 0
-                  </span>
-                  <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-sm">
-                    Bảo Hiểm Học Tập 2 Lớp
-                  </h4>
-                  <p className="font-body text-slate-600 text-xs mt-1.5 leading-relaxed">
-                    Hoàn 100% học phí 7 ngày đầu nếu con không hào hứng + Phụ đạo 1-1 MIỄN PHÍ ngoài giờ đến khi điểm số thực sự tăng.
+
+                {/* ── KHỐI 2 (PHẦN DƯỚI): Nội dung còn lại ── */}
+                <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-xs flex-1 flex flex-col justify-between">
+                  <p className="font-body text-slate-600 text-xs sm:text-[12.5px] leading-relaxed">
+                    <strong className="text-slate-900 font-bold">Hoàn 100% học phí</strong> trong 7 ngày đầu nếu con không hào hứng + <strong className="text-slate-900 font-bold">Phụ đạo 1-1 MIỄN PHÍ</strong> ngoài giờ đến khi tiến bộ.
                   </p>
+
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-[11px] font-mono text-[#C43838] font-bold">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#C43838]" />
+                    <span>Cam kết hoàn tiền & phụ đạo 1-1</span>
+                  </div>
                 </div>
               </div>
             </div>
