@@ -488,3 +488,31 @@ blockquote,
   animation: blink-nudge-right 1.25s ease-in-out infinite;
 }
 
+/* Shofu Digital Grid Lines Pattern & Typography (64px x 64px, ultra-subtle) */
+.bg-grid-pattern,
+.bg-grid-lines {
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.dark .bg-grid-pattern,
+.dark .bg-grid-lines,
+.bg-slate-900.bg-grid-pattern,
+.bg-slate-900.bg-grid-lines {
+  background-image: 
+    linear-gradient(to right, rgba(0, 173, 239, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 173, 239, 0.08) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.font-heading {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+

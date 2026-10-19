@@ -4,6 +4,7 @@ import { StudentProfile } from "./types";
 import { StudentDashboard } from "./pages/StudentDashboard";
 import { AdminDashboard } from "./pages/AdminDashboard";
 import { LoginPortal } from "./pages/LoginPortal";
+import { LandingPage } from "./pages/LandingPage";
 import { MainHeader } from "./components/MainHeader";
 import {
   seedInitialStudentsIfEmpty,
@@ -14,7 +15,7 @@ import {
 } from "./lib/firebase";
 import { getStudentTokenBalance } from "./lib/studentUtils";
 
-type AppRoute = "portal" | "student" | "admin";
+type AppRoute = "portal" | "student" | "admin" | "ldp";
 
 export default function App() {
   // Global state for students to allow reactive live scoring
@@ -47,6 +48,16 @@ export default function App() {
     const pathname = window.location.pathname.toLowerCase();
     const search = window.location.search.toLowerCase();
     const hash = window.location.hash.toLowerCase();
+
+    // Landing page (sale page) route: /ldp
+    if (
+      pathname === "/ldp" ||
+      pathname.startsWith("/ldp/") ||
+      search.includes("route=ldp") ||
+      hash.includes("ldp")
+    ) {
+      return "ldp";
+    }
 
     // Teacher portal routes
     if (
@@ -265,6 +276,11 @@ export default function App() {
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
   }, [studentsMap]);
+
+  // When on Landing Page Route (/ldp), render dedicated Tactile Soft-UI Landing Page
+  if (currentRoute === "ldp") {
+    return <LandingPage />;
+  }
 
   // When on Portal Route, render dedicated full-page Tactile Soft-UI Login Portal
   if (currentRoute === "portal") {
