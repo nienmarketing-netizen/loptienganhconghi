@@ -440,79 +440,55 @@ export const LandingPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Khung trình phát VSL phong cách Studio kỹ thuật số */}
-              <div className="relative rounded-xl overflow-hidden bg-slate-950 border border-slate-800 shadow-2xl aspect-[16/9] flex flex-col justify-between p-4 sm:p-6 text-white">
-                {/* Header overlay */}
-                <div className="flex items-center justify-between z-10">
-                  <div className="bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-full font-mono text-xs uppercase tracking-wider border border-white/20 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#00ADEF] animate-pulse" />
-                    Lớp học 866/25 Ngô Quyền, Sơn Trà
-                  </div>
-                  <div className="font-mono text-xs uppercase tracking-wider text-[#00ADEF] font-bold bg-black/60 px-3 py-1 rounded-full border border-white/10">
-                    Phân đoạn {activeVslIndex + 1}/4
-                  </div>
+              {/* Khung trình phát VSL Vimeo tỉ lệ 9:16 căn giữa */}
+              <div className="flex flex-col items-center">
+                <div className="relative w-full max-w-[380px] aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl border-2 border-slate-800 bg-black">
+                  <iframe
+                    src="https://player.vimeo.com/video/1237187894?title=0&byline=0&portrait=0&badge=0&autopause=0"
+                    className="w-full h-full border-0 absolute inset-0"
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                    title="Master VSL (3.5 Phút): Thông Điệp Trực Tiếp Từ Cô Nghi"
+                  />
                 </div>
 
-                {/* Player Center Content */}
-                <div className="text-center my-auto z-10 max-w-xl mx-auto">
-                  {!isPlayingVsl ? (
-                    <div className="flex flex-col items-center">
+                {/* 4 Phân đoạn tóm tắt nội dung bên dưới video */}
+                <div className="w-full max-w-xl mt-4 pt-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    {VSL_SCENES.map((scene, idx) => (
                       <button
-                        onClick={() => setIsPlayingVsl(true)}
-                        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#00ADEF] hover:bg-sky-500 active:scale-95 text-white flex items-center justify-center shadow-2xl shadow-sky-500/50 border-2 border-white/60 transition-all hover:scale-105 group mb-4 cursor-pointer"
+                        key={idx}
+                        onClick={() => {
+                          setActiveVslIndex(idx);
+                          setIsPlayingVsl(true);
+                        }}
+                        className={`text-left p-2.5 rounded-xl text-xs transition-all border cursor-pointer ${
+                          activeVslIndex === idx && isPlayingVsl
+                            ? "bg-sky-50 text-sky-900 border-sky-300 font-bold shadow-xs"
+                            : "bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200"
+                        }`}
                       >
-                        <Play className="w-7 h-7 sm:w-8 sm:h-8 ml-1 fill-white text-white group-hover:scale-105 transition-transform" />
+                        <div className="font-mono font-bold text-[#00ADEF] text-[11px]">{scene.timeRange}</div>
+                        <div className="truncate text-slate-800 font-medium text-[11px] mt-0.5">{scene.title}</div>
                       </button>
-                      <div className="inline-block bg-black/70 backdrop-blur-md px-4 py-2 rounded-xl border border-white/20 mb-2">
-                        <p className="font-heading font-extrabold uppercase tracking-tight text-xs sm:text-sm text-sky-300">
-                          &quot;Xem 3 phút này để hiểu vì sao ép con chép phạt chỉ khiến con sợ Tiếng Anh hơn&quot;
-                        </p>
-                      </div>
-                      <p className="font-body text-xs text-slate-300">
-                        Bấm để lắng nghe chia sẻ ấm áp của Cô Nghi gửi đến Ba Mẹ
-                      </p>
-                    </div>
-                  ) : (
-                    <div className="bg-black/85 backdrop-blur-md p-4 sm:p-6 rounded-xl border border-white/15 text-left animate-fadeIn">
-                      <div className="flex items-center justify-between font-mono text-xs uppercase tracking-wider text-[#00ADEF] font-bold mb-2">
-                        <span>🎬 {VSL_SCENES[activeVslIndex].title}</span>
-                        <span>{VSL_SCENES[activeVslIndex].timeRange}</span>
-                      </div>
-                      <p className="font-body text-xs sm:text-sm text-slate-100 italic leading-relaxed">
-                        {VSL_SCENES[activeVslIndex].script}
-                      </p>
-                      <div className="mt-3.5 pt-2.5 border-t border-white/15 flex items-center justify-between text-[11px] text-slate-400 font-mono">
-                        <span className="truncate">B-Roll: {VSL_SCENES[activeVslIndex].visual}</span>
+                    ))}
+                  </div>
+
+                  {isPlayingVsl && (
+                    <div className="mt-3 bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-left animate-fadeIn">
+                      <div className="flex items-center justify-between font-mono text-xs text-[#00ADEF] font-bold mb-1.5">
+                        <span>🎬 {VSL_SCENES[activeVslIndex].title} ({VSL_SCENES[activeVslIndex].timeRange})</span>
                         <button
                           onClick={() => setIsPlayingVsl(false)}
-                          className="text-[#00ADEF] hover:text-sky-300 underline ml-2 shrink-0 cursor-pointer font-bold uppercase tracking-wider"
+                          className="text-slate-400 hover:text-slate-600 text-xs font-normal cursor-pointer"
                         >
-                          Thu nhỏ
+                          ✕ Đóng
                         </button>
                       </div>
+                      <p className="font-body text-xs text-slate-600 italic leading-relaxed">
+                        {VSL_SCENES[activeVslIndex].script}
+                      </p>
                     </div>
                   )}
-                </div>
-
-                {/* Thanh 4 phân đoạn */}
-                <div className="z-10 grid grid-cols-4 gap-1.5 sm:gap-2 pt-2">
-                  {VSL_SCENES.map((scene, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => {
-                        setActiveVslIndex(idx);
-                        setIsPlayingVsl(true);
-                      }}
-                      className={`text-left p-2 rounded-lg text-[10px] sm:text-xs transition-all border cursor-pointer ${
-                        activeVslIndex === idx
-                          ? "bg-[#00ADEF] text-white border-white/40 shadow-md font-bold"
-                          : "bg-white/10 hover:bg-white/20 text-slate-200 border-white/10"
-                      }`}
-                    >
-                      <div className="truncate font-mono font-bold">{scene.timeRange}</div>
-                      <div className="truncate hidden sm:block opacity-90 font-mono">{scene.title}</div>
-                    </button>
-                  ))}
                 </div>
               </div>
 
