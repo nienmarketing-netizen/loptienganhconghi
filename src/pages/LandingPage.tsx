@@ -931,6 +931,25 @@ export const LandingPage: React.FC = () => {
       </main>
 
       {/* ─────────────────────────────────────────────────────────────
+          STICKY BOTTOM CTA BAR (FULL WIDTH, MÀU #00ADEF, KHÔNG BORDERLINE)
+      ────────────────────────────────────────────────────────────── */}
+      <div className="fixed bottom-0 inset-x-0 z-40 md:hidden">
+        <button
+          onClick={handleOpenRegisterModal}
+          className="w-full py-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom))] px-4 bg-[#00ADEF] hover:bg-[#0098d3] active:bg-[#0089be] text-white shadow-lg shadow-sky-500/20 transition-colors flex flex-col items-center justify-center cursor-pointer border-none outline-none"
+        >
+          <span className="font-heading font-extrabold uppercase tracking-tight text-xs sm:text-sm leading-tight flex items-center gap-1.5 text-white">
+            <span>Đăng ký test năng lực 1-1 miễn phí</span>
+            <ArrowRight className="w-3.5 h-3.5 shrink-0 text-white" />
+          </span>
+          <span className="font-mono text-[10.5px] tracking-wide text-sky-100 flex items-center gap-1.5 mt-0.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-300 animate-pulse shrink-0" />
+            <span className="font-semibold text-white/95">Chỉ còn 6 suất tuần này</span>
+          </span>
+        </button>
+      </div>
+
+      {/* ─────────────────────────────────────────────────────────────
           MODAL ĐĂNG KÝ PHIÊN CHẨN ĐOÁN 1-1 (LEAD CAPTURE MODAL THEO SHOFU)
       ────────────────────────────────────────────────────────────── */}
       {isModalOpen && (
