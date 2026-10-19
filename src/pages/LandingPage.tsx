@@ -119,32 +119,32 @@ export const LandingPage: React.FC = () => {
       <div className="absolute top-[1500px] left-10 w-[420px] h-[420px] bg-[#00ADEF] opacity-10 rounded-full blur-[140px] pointer-events-none z-0" />
 
       {/* ─────────────────────────────────────────────────────────────
-          STICKY TOP HEADER (LUÔN DÍNH TRÊN CÙNG THEO YÊU CẦU)
+          STICKY TOP HEADER (MÀU NỀN CÔNG NGHIỆP #2d3436 NỔI BẬT THEO DESIGN SYSTEM)
       ────────────────────────────────────────────────────────────── */}
       <aside
         aria-label="Thông tin lớp học Cô Nghi"
-        className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm"
+        className="sticky top-0 z-50 bg-[#2d3436] text-white border-b border-slate-700/80 shadow-[0_4px_20px_rgba(0,0,0,0.18)] backdrop-blur-md"
       >
-        <div className="w-[92%] sm:w-[90%] lg:w-[80%] mx-auto py-2 sm:py-3 flex items-center justify-between gap-2 sm:gap-4">
+        <div className="w-[92%] sm:w-[90%] lg:w-[80%] mx-auto py-2.5 sm:py-3 flex items-center justify-between gap-2 sm:gap-4">
           {/* Bên trái: 2 dòng duy nhất không xuống hàng */}
           <div className="flex flex-col shrink-0 min-w-0">
-            <span className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-xs sm:text-base leading-tight whitespace-nowrap">
+            <span className="font-heading font-extrabold uppercase tracking-tight text-white text-xs sm:text-base leading-tight whitespace-nowrap">
               LỚP TIẾNG ANH CÔ NGHI
             </span>
-            <span className="font-mono uppercase text-[9.5px] sm:text-[11px] tracking-wider text-[#00ADEF] font-bold flex items-center gap-1 mt-0.5 whitespace-nowrap">
-              <MapPin className="w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0" />
+            <span className="font-mono uppercase text-[9.5px] sm:text-[11px] tracking-wider text-sky-400 font-bold flex items-center gap-1 mt-0.5 whitespace-nowrap">
+              <MapPin className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#ff4757] shrink-0" />
               <span>SƠN TRÀ, ĐÀ NẴNG</span>
             </span>
           </div>
 
           {/* Bên phải: 2 dòng duy nhất không xuống hàng */}
           <div className="text-right flex flex-col items-end shrink-0 min-w-0">
-            <div className="font-body text-[10px] sm:text-sm text-slate-700 leading-tight whitespace-nowrap">
-              <span className="text-slate-500 font-medium">Giáo viên:</span>{" "}
-              <strong className="font-bold text-slate-900">Thạc sĩ TESOL Quốc tế</strong>
+            <div className="font-body text-[10px] sm:text-sm text-slate-200 leading-tight whitespace-nowrap">
+              <span className="text-slate-400 font-medium">Giáo viên:</span>{" "}
+              <strong className="font-bold text-white">Thạc sĩ TESOL Quốc tế</strong>
             </div>
-            <div className="font-mono text-[9.5px] sm:text-xs uppercase tracking-wider font-bold text-[#C43838] flex items-center justify-end gap-1 mt-0.5 whitespace-nowrap">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C43838] animate-pulse shrink-0" />
+            <div className="font-mono text-[9.5px] sm:text-xs uppercase tracking-wider font-bold text-[#ff6b81] flex items-center justify-end gap-1 mt-0.5 whitespace-nowrap">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#ff4757] animate-pulse shrink-0" />
               <span>Sĩ số: Tối đa 12 em/ lớp</span>
             </div>
           </div>
