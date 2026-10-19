@@ -519,10 +519,18 @@ export const LandingPage: React.FC = () => {
               {/* Nút Kêu gọi Hành động Chính (CTA Shofu Style) */}
               <div className="pt-2 flex flex-col items-center">
                 <button
+                  type="button"
                   onClick={handleOpenRegisterModal}
-                  className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#00ADEF] text-white font-mono text-sm font-bold uppercase tracking-wider hover:bg-sky-500 transition-all shadow-xl shadow-sky-500/30 flex items-center justify-center gap-2 group cursor-pointer"
+                  className="w-full sm:w-auto px-8 py-3 rounded-2xl bg-[#00ADEF] hover:bg-[#009cd8] text-white shadow-[0_10px_25px_rgba(0,173,239,0.35)] hover:shadow-[0_14px_32px_rgba(0,173,239,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-3.5 group cursor-pointer border-none outline-none"
                 >
-                  <span>ĐĂNG KÝ PHIÊN CHẨN ĐOÁN NĂNG LỰC 1-1 &amp; NHẬN BỘ SỔ TAY MA THUẬT MIỄN PHÍ</span>
+                  <div className="flex flex-col items-center text-center leading-snug">
+                    <span className="font-heading font-extrabold text-sm lg:text-[15px] uppercase tracking-wide">
+                      ĐĂNG KÝ PHIÊN CHẨN ĐOÁN NĂNG LỰC 1-1
+                    </span>
+                    <span className="font-body text-xs lg:text-[13px] font-medium text-sky-100 normal-case mt-0.5">
+                      Nhận bộ sổ tay ma thuật miễn phí
+                    </span>
+                  </div>
                   <ArrowRight className="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
                 </button>
 
