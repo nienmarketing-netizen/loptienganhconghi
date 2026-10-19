@@ -18,6 +18,8 @@ import {
   MapPin,
   X,
   Check,
+  Camera,
+  Upload,
 } from "lucide-react";
 
 interface VslScene {
@@ -67,6 +69,16 @@ export const LandingPage: React.FC = () => {
   const [isPlayingVsl, setIsPlayingVsl] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [registrationSubmitted, setRegistrationSubmitted] = useState(false);
+  const [teacherPhoto, setTeacherPhoto] = useState<string>(() => {
+    try {
+      return (
+        localStorage.getItem("co_nghi_hero_photo") ||
+        "/image/lop-tieng-anh-co-nghi-thac-si-tesol.webp"
+      );
+    } catch {
+      return "/image/lop-tieng-anh-co-nghi-thac-si-tesol.webp";
+    }
+  });
 
   // Form state
   const [formData, setFormData] = useState({
@@ -145,67 +157,110 @@ export const LandingPage: React.FC = () => {
         ────────────────────────────────────────────────────────────── */}
         <section className="pt-8 sm:pt-12 pb-14">
           <div className="w-[90%] lg:w-[80%] mx-auto space-y-6 sm:space-y-8">
-            {/* Eyebrow Tag full width trên mobile, nền đỏ mờ nổi bật theo yêu cầu */}
-            <div className="flex justify-center w-full px-1 sm:px-2">
-              <div className="flex items-center sm:inline-flex w-full sm:w-auto justify-center sm:justify-start gap-2.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-red-50 via-rose-50/70 to-red-50 border border-red-200 shadow-[0_2px_12px_rgba(196,56,56,0.12)]">
-                <span className="w-2 h-2 rounded-full bg-[#C43838] animate-pulse shrink-0 shadow-[0_0_8px_rgba(196,56,56,0.85)]" />
-                {/* Desktop: Hiển thị tĩnh đầy đủ */}
-                <div className="hidden sm:block font-sans text-xs text-red-950 font-bold tracking-normal whitespace-nowrap leading-normal">
-                  Trạm cứu hộ mất gốc tiếng Anh cấp 2 tại Sơn Trà
-                </div>
-                {/* Mobile: Full-width Style Maquette chạy chữ trọn vẹn bề ngang */}
-                <div className="sm:hidden flex-1 min-w-0 overflow-hidden whitespace-nowrap py-0.5 flex items-center">
-                  <div className="animate-marquee-slow font-sans text-xs text-red-950 font-bold tracking-normal flex items-center gap-6 leading-normal">
-                    <span>Trạm cứu hộ mất gốc tiếng Anh cấp 2 tại Sơn Trà</span>
-                    <span className="text-[#C43838] font-black">•</span>
-                    <span>Trạm cứu hộ mất gốc tiếng Anh cấp 2 tại Sơn Trà</span>
-                    <span className="text-[#C43838] font-black">•</span>
+            {/* ── BỐ CỤC HERO: DESKTOP 70:30 (TRÁI NỘI DUNG, PHẢI ẢNH), MOBILE ẢNH NẰM GIỮA HEADLINE VÀ BODY TEXT ── */}
+            <div className="grid grid-cols-1 lg:grid-cols-10 gap-5 sm:gap-6 lg:gap-x-8 lg:gap-y-5 items-center">
+              {/* 1. Eyebrow Tag: Desktop col 1-7 row 1; Mobile vị trí 1 */}
+              <div className="w-full flex justify-center lg:justify-start px-1 sm:px-0 lg:col-span-7 lg:col-start-1 lg:row-start-1">
+                <div className="flex items-center sm:inline-flex w-full sm:w-auto justify-center sm:justify-start gap-2.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-red-50 via-rose-50/70 to-red-50 border border-red-200 shadow-[0_2px_12px_rgba(196,56,56,0.12)]">
+                  <span className="w-2 h-2 rounded-full bg-[#C43838] animate-pulse shrink-0 shadow-[0_0_8px_rgba(196,56,56,0.85)]" />
+                  {/* Desktop: Hiển thị tĩnh đầy đủ */}
+                  <div className="hidden sm:block font-sans text-xs text-red-950 font-bold tracking-normal whitespace-nowrap leading-normal">
+                    Trạm cứu hộ mất gốc tiếng Anh cấp 2 tại Sơn Trà
+                  </div>
+                  {/* Mobile: Full-width Style Maquette chạy chữ trọn vẹn bề ngang */}
+                  <div className="sm:hidden flex-1 min-w-0 overflow-hidden whitespace-nowrap py-0.5 flex items-center">
+                    <div className="animate-marquee-slow font-sans text-xs text-red-950 font-bold tracking-normal flex items-center gap-6 leading-normal">
+                      <span>Trạm cứu hộ mất gốc tiếng Anh cấp 2 tại Sơn Trà</span>
+                      <span className="text-[#C43838] font-black">•</span>
+                      <span>Trạm cứu hộ mất gốc tiếng Anh cấp 2 tại Sơn Trà</span>
+                      <span className="text-[#C43838] font-black">•</span>
+                    </div>
                   </div>
                 </div>
               </div>
+
+              {/* 2. Tiêu đề chính H1: Desktop col 1-7 row 2; Mobile vị trí 2 */}
+              <h1 className="font-heading font-extrabold uppercase tracking-tight text-center lg:text-left w-full flex flex-col items-center lg:items-start gap-1 sm:gap-2 lg:col-span-7 lg:col-start-1 lg:row-start-2">
+                {/* Dòng 1 */}
+                <span className="text-[21px] xs:text-[25px] sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] leading-tight text-center lg:text-left text-slate-900 tracking-tight">
+                  CHẤM DỨT BỆNH{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00ADEF] via-sky-500 to-blue-600">
+                    &quot;KHOANH LỤI&quot;
+                  </span>
+                </span>
+
+                {/* Dòng 2 */}
+                <span className="text-[21px] xs:text-[25px] sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] leading-tight text-center lg:text-left text-slate-900 tracking-tight">
+                  GIÚP CON{" "}
+                  <span className="text-[#00ADEF] bg-sky-50 px-2 py-0.5 rounded-lg border border-sky-200 shadow-2xs font-black">
+                    TỰ GIÁC
+                  </span>{" "}
+                  HỌC TẬP
+                </span>
+
+                {/* Dòng 3 */}
+                <span className="text-[13px] xs:text-[14.5px] sm:text-xl md:text-2xl lg:text-[22px] xl:text-[24px] leading-snug font-bold text-slate-700 mt-0.5 sm:mt-1 normal-case text-center lg:text-left flex items-center justify-center lg:justify-start gap-1 flex-wrap sm:flex-nowrap">
+                  <span>Bứt phá</span>
+                  <span className="text-[#C43838] font-black underline decoration-[#C43838] decoration-2 underline-offset-2">
+                    1–3 điểm
+                  </span>
+                  <span>trên trường</span>
+                  <span className="bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded-md border border-amber-300 font-black shadow-2xs">
+                    chỉ sau 90 ngày!
+                  </span>
+                </span>
+              </h1>
+
+              {/* 3. KHUNG HÌNH ẢNH CÔ NGHI: Mobile full width nằm giữa Headline và Body text; Desktop 30% bên phải (col 8-10, row 1-3) */}
+              <div className="w-full lg:col-span-3 lg:col-start-8 lg:row-start-1 lg:row-end-4 self-center">
+                <div className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-white shadow-[0_12px_32px_rgba(0,0,0,0.12),0_0_0_1px_rgba(255,255,255,0.7)] hover:shadow-[0_16px_36px_rgba(0,173,239,0.15)] transition-all bg-slate-900 group aspect-[4/5] sm:aspect-[3/4] lg:aspect-[3/4]">
+                  {/* Hình ảnh Cô Nghi hiển thị full box với borderline màu trắng dày gấp đôi (border-2) */}
+                  <img
+                    src={teacherPhoto}
+                    alt="Phương pháp kèm cặp độc quyền"
+                    loading="eager"
+                    decoding="async"
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-103"
+                  />
+
+                  {/* Tag chứng nhận nổi trên góc ảnh */}
+                  <div className="absolute top-3 right-3 z-10 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-xl border border-slate-200/80 shadow-sm flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="font-mono text-[10.5px] font-bold text-slate-800 uppercase tracking-wider">
+                      Thạc sĩ TESOL
+                    </span>
+                  </div>
+
+                  {/* Gradient Overlay & Metadata thông tin chân dung phía dưới phủ lên ảnh full box */}
+                  <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-transparent p-4 sm:p-5 pt-12 text-white flex flex-col justify-end">
+                    <div className="flex items-center">
+                      <span className="text-[11px] sm:text-xs font-bold font-mono text-sky-300 tracking-tight whitespace-nowrap">
+                        Phương pháp kèm cặp độc quyền
+                      </span>
+                    </div>
+                    <div className="mt-1 flex items-center gap-1 text-[11px] sm:text-xs text-slate-300 font-body">
+                      <MapPin className="w-3.5 h-3.5 text-[#ff4757] shrink-0" />
+                      <span>866/25 Ngô Quyền, Sơn Trà</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 4. Tiêu đề phụ (Body text - 2 đoạn): Desktop col 1-7 row 3; Mobile vị trí 4 (sau hình ảnh) */}
+              <div className="space-y-2.5 sm:space-y-3 w-full lg:col-span-7 lg:col-start-1 lg:row-start-3 text-center lg:text-left">
+                {/* Đoạn 1: Phương pháp & Nền tảng đề thi Đà Nẵng */}
+                <p className="font-body text-slate-600 leading-relaxed text-sm sm:text-base">
+                  Phương pháp <strong className="text-[#00ADEF] font-bold">&quot;Bóc tách 4 bước&quot;</strong> &amp;{" "}
+                  <strong className="text-[#00ADEF] font-bold">&quot;Dịch bắt buộc&quot;</strong> từ Thạc sĩ TESOL giúp con lấy lại nền tảng sách giáo khoa mới (Global Success, Friends Plus) và làm chủ <strong className="text-slate-900 font-semibold">ma trận 36 câu đề thi vào lớp 10</strong> của Sở GD&amp;ĐT Đà Nẵng.
+                </p>
+
+                {/* Đoạn 2: Chữa lành áp lực & Tự động báo cáo LMS */}
+                <p className="font-body text-slate-600 leading-relaxed text-sm sm:text-base">
+                  <strong className="text-slate-900 font-medium">Không nhồi nhét chép phạt, không la mắng áp lực</strong> –{" "}
+                  Báo cáo tiến độ tự động <strong className="text-[#C43838] font-semibold">về Zalo của mẹ lúc 20h00 mỗi tối</strong> qua <strong className="text-[#00ADEF] font-semibold">hệ thống LMS độc quyền</strong>!
+                </p>
+              </div>
             </div>
-
-            {/* Tiêu đề chính H1: 3 dòng phân cấp tối ưu kích thước tối đa và highlight từ khóa */}
-            <h1 className="font-heading font-extrabold uppercase tracking-tight text-center max-w-4xl mx-auto flex flex-col items-center gap-1 sm:gap-2">
-              {/* Dòng 1: Kích thước lớn nhất có thể trên 1 hàng mobile */}
-              <span className="text-[21px] xs:text-[25px] sm:text-3xl md:text-4xl lg:text-[44px] leading-tight whitespace-nowrap text-center text-slate-900 tracking-tight">
-                CHẤM DỨT BỆNH{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00ADEF] via-sky-500 to-blue-600 underline decoration-[#00ADEF] decoration-wavy decoration-2 underline-offset-4">
-                  &quot;KHOANH LỤI&quot;
-                </span>
-              </span>
-
-              {/* Dòng 2: Kích thước lớn nhất có thể trên 1 hàng mobile */}
-              <span className="text-[21px] xs:text-[25px] sm:text-3xl md:text-4xl lg:text-[44px] leading-tight whitespace-nowrap text-center text-slate-900 tracking-tight">
-                GIÚP CON{" "}
-                <span className="text-[#00ADEF] bg-sky-50 px-2 py-0.5 rounded-lg border border-sky-200 shadow-2xs font-black">
-                  TỰ GIÁC
-                </span>{" "}
-                HỌC TẬP
-              </span>
-
-              {/* Dòng 3: Sentence case, nổi bật mốc điểm và thời gian, 1 hàng duy nhất */}
-              <span className="text-[13px] xs:text-[14.5px] sm:text-xl md:text-2xl lg:text-[25px] leading-snug font-bold text-slate-700 mt-0.5 sm:mt-1 normal-case whitespace-nowrap text-center flex items-center gap-1 flex-nowrap">
-                <span>Bứt phá</span>
-                <span className="text-[#C43838] font-black underline decoration-[#C43838] decoration-2 underline-offset-2">
-                  1–3 điểm
-                </span>
-                <span>trên trường</span>
-                <span className="bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded-md border border-amber-300 font-black shadow-2xs">
-                  chỉ sau 90 ngày!
-                </span>
-              </span>
-            </h1>
-
-            {/* Tiêu đề phụ */}
-            <p className="font-body text-slate-600 leading-relaxed text-sm sm:text-base md:text-lg text-center max-w-3xl mx-auto">
-              Phương pháp <strong className="text-[#00ADEF]">&quot;Bóc tách 4 bước&quot;</strong> &amp;{" "}
-              <strong className="text-[#00ADEF]">&quot;Dịch bắt buộc&quot;</strong> từ Thạc sĩ TESOL giúp con lấy lại nền tảng sách giáo khoa mới (Global Success, Friends Plus) và làm chủ ma trận 36 câu đề thi vào lớp 10 của Sở GD&amp;ĐT Đà Nẵng. Không nhồi nhét chép phạt, không la mắng áp lực –{" "}
-              <strong className="text-slate-900">
-                Báo cáo tiến độ tự động về Zalo của mẹ lúc 20h00 mỗi tối
-              </strong>{" "}
-              qua hệ thống LMS độc quyền!
-            </p>
 
             {/* 3 Huy hiệu Bảo Chứng Đầu Trang (Shofu Cards) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
