@@ -84,10 +84,10 @@ export const LandingPage: React.FC = () => {
     try {
       return (
         localStorage.getItem("co_nghi_vsl_thumbnail") ||
-        "/image/vsl-thumbnail.webp"
+        "/image/vsl-thumbnail-final.webp"
       );
     } catch {
-      return "/image/vsl-thumbnail.webp";
+      return "/image/vsl-thumbnail-final.webp";
     }
   });
 
@@ -510,7 +510,9 @@ export const LandingPage: React.FC = () => {
                         className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
-                          if (!target.src.includes("lop-tieng-anh")) {
+                          if (target.src.includes("vsl-thumbnail-final.webp")) {
+                            target.src = "/image/vsl-thumbnail.webp";
+                          } else if (!target.src.includes("lop-tieng-anh")) {
                             target.src = "/image/lop-tieng-anh-co-nghi-thac-si-tesol.webp";
                           }
                         }}
@@ -518,24 +520,6 @@ export const LandingPage: React.FC = () => {
                       {/* Lớp gradient nhẹ bảo vệ độ tương phản của nút Play */}
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/25 to-slate-950/15" />
 
-                      {/* Nút tải/đổi thumbnail trực tiếp từ máy tính */}
-                      <div className="absolute top-3 right-3 z-30">
-                        <label
-                          htmlFor="vsl-thumbnail-upload"
-                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-900/80 hover:bg-slate-900 text-white text-[11px] font-medium backdrop-blur-md border border-white/20 shadow-md cursor-pointer transition-all hover:scale-105 active:scale-95"
-                          title="Tải ảnh thumbnail từ máy tính"
-                        >
-                          <Upload className="w-3.5 h-3.5 text-sky-400" />
-                          <span>Tải thumbnail</span>
-                        </label>
-                        <input
-                          id="vsl-thumbnail-upload"
-                          type="file"
-                          accept="image/*"
-                          className="hidden"
-                          onChange={handleVslThumbnailUpload}
-                        />
-                      </div>
 
                       {/* Nút Play trung tâm */}
                       <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
