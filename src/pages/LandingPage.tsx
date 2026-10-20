@@ -189,7 +189,7 @@ export const LandingPage: React.FC = () => {
             KHỐI 1: HERO SECTION – TRẠM CỨU HỘ MẤT GỐC (ABOVE THE FOLD)
         ────────────────────────────────────────────────────────────── */}
         <section className="pt-8 sm:pt-12 pb-14">
-          <div className="w-[90%] lg:w-[80%] mx-auto space-y-6 sm:space-y-8">
+          <div className="w-[95%] sm:w-[90%] lg:w-[80%] mx-auto space-y-6 sm:space-y-8">
             {/* ── BỐ CỤC HERO: DESKTOP 70:30 (TRÁI NỘI DUNG, PHẢI ẢNH), MOBILE ẢNH NẰM GIỮA HEADLINE VÀ BODY TEXT ── */}
             <div className="grid grid-cols-1 lg:grid-cols-10 gap-5 sm:gap-6 lg:gap-x-8 lg:gap-y-5 items-center">
               {/* 1. Eyebrow Tag: Desktop col 1-7 row 1; Mobile vị trí 1 */}
@@ -215,8 +215,8 @@ export const LandingPage: React.FC = () => {
               {/* 2. Tiêu đề chính H1: Desktop col 1-7 row 2; Mobile vị trí 2 */}
               <h1 className="font-heading font-extrabold uppercase tracking-tight text-center lg:text-left w-full flex flex-col items-center lg:items-start gap-1 sm:gap-2 lg:col-span-7 lg:col-start-1 lg:row-start-2">
                 {/* Dòng 1 */}
-                <span className="text-[21px] xs:text-[25px] sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] leading-tight text-center lg:text-left text-slate-900 tracking-tight">
-                  CHẤM DỨT BỆNH{" "}
+                <span className="text-[19px] min-[390px]:text-[21.5px] min-[430px]:text-[23.5px] sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] leading-tight text-center lg:text-left text-slate-900 tracking-tight whitespace-nowrap sm:whitespace-normal">
+                  CHẤM DỨT THÓI QUEN{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00ADEF] via-sky-500 to-blue-600">
                     &quot;KHOANH LỤI&quot;
                   </span>
@@ -447,10 +447,10 @@ export const LandingPage: React.FC = () => {
               >
                 <div className="flex flex-col items-center text-center leading-snug">
                   <span className="font-heading font-extrabold text-[15px] lg:text-base uppercase tracking-wide">
-                    ĐĂNG KÝ PHIÊN CHẨN ĐOÁN NĂNG LỰC 1-1
+                    ĐĂNG KÝ TEST HỌC LỰC TIẾNG ANH 1-1 MIỄN PHÍ
                   </span>
                   <span className="font-body text-xs lg:text-sm font-medium text-sky-100 normal-case mt-0.5">
-                    Nhận bộ sổ tay ma thuật miễn phí
+                    Tặng kèm lộ trình học tập cá nhân hoá &amp; bộ sổ tay ma thuật
                   </span>
                 </div>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform shrink-0" />
@@ -467,12 +467,19 @@ export const LandingPage: React.FC = () => {
             {/* ── TIÊU ĐỀ SECTION RIÊNG BIỆT NẰM Ở ĐẦU TIÊN CĂN GIỮA TOÀN BỘ ── */}
             <div className="w-full text-center max-w-5xl mx-auto">
               <h2 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 w-full flex flex-col items-center text-center gap-1 sm:gap-2">
-                <span className="text-[21px] xs:text-[25px] sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] leading-tight text-center text-slate-900 tracking-tight">
-                  ĐỪNG VỘI ĐÓNG TIỀN CHO{" "}
-                  <span className="text-[#C43838]">TRUNG TÂM LỚN</span>
+                <span className="text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] leading-tight text-center text-slate-900 tracking-tight">
+                  <span className="block sm:inline">ĐỪNG VỘI ĐÓNG TIỀN </span>
+                  <span className="block sm:inline">
+                    CHO <span className="text-[#C43838]">TRUNG TÂM LỚN</span>
+                  </span>
                 </span>
-                <span className="text-[21px] xs:text-[25px] sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] leading-tight text-center tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#00ADEF] via-sky-500 to-blue-600">
-                  CHO ĐẾN KHI BA MẸ XEM HẾT VIDEO 2.5 PHÚT NÀY!
+                <span className="text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] leading-tight text-center tracking-tight">
+                  <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-[#00ADEF] via-sky-500 to-blue-600">
+                    CHO ĐẾN KHI BA MẸ{" "}
+                  </span>
+                  <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-[#00ADEF] via-sky-500 to-blue-600">
+                    XEM HẾT VIDEO 2.5 PHÚT NÀY!
+                  </span>
                 </span>
               </h2>
             </div>
@@ -646,10 +653,10 @@ export const LandingPage: React.FC = () => {
                   >
                     <div className="flex flex-col items-center sm:items-start text-center sm:text-left leading-snug">
                       <span className="font-heading font-extrabold text-[15px] sm:text-base uppercase tracking-wide">
-                        ĐĂNG KÝ PHIÊN TEST NĂNG LỰC 1-1 (45 PHÚT)
+                        ĐĂNG KÝ TEST HỌC LỰC TIẾNG ANH 1-1 MIỄN PHÍ
                       </span>
                       <span className="font-body text-xs sm:text-sm font-medium text-sky-100 normal-case mt-0.5">
-                        Tặng kèm Phác đồ cá nhân hóa &amp; Bộ Sổ tay Ma thuật
+                        Tặng kèm lộ trình học tập cá nhân hoá &amp; bộ sổ tay ma thuật
                       </span>
                     </div>
                     <ArrowRight className="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
@@ -1059,11 +1066,19 @@ export const LandingPage: React.FC = () => {
             {/* CTA Chuyển tiếp */}
             <div className="pt-4 flex justify-center">
               <button
+                type="button"
                 onClick={handleOpenRegisterModal}
-                className="px-8 py-4 rounded-xl bg-[#00ADEF] text-white font-mono text-sm sm:text-base font-bold uppercase tracking-wider hover:bg-sky-500 transition-all shadow-xl shadow-sky-500/30 flex items-center justify-center gap-2 group cursor-pointer"
+                className="w-full sm:w-auto px-8 py-3 rounded-2xl bg-[#00ADEF] hover:bg-[#009cd8] text-white shadow-[0_10px_25px_rgba(0,173,239,0.35)] hover:shadow-[0_14px_32px_rgba(0,173,239,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-3.5 group cursor-pointer border-none outline-none"
               >
-                <span>ĐẶT LỊCH PHIÊN TEST 1-1 CÙNG CÔ NGHI NGAY</span>
-                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <div className="flex flex-col items-center text-center leading-snug">
+                  <span className="font-heading font-extrabold text-[15px] sm:text-base uppercase tracking-wide">
+                    ĐĂNG KÝ TEST HỌC LỰC TIẾNG ANH 1-1 MIỄN PHÍ
+                  </span>
+                  <span className="font-body text-xs sm:text-sm font-medium text-sky-100 normal-case mt-0.5">
+                    Tặng kèm lộ trình học tập cá nhân hoá &amp; bộ sổ tay ma thuật
+                  </span>
+                </div>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform shrink-0" />
               </button>
             </div>
           </div>
