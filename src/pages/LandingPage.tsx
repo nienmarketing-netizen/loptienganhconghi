@@ -145,11 +145,11 @@ export const LandingPage: React.FC = () => {
     <div className="min-h-screen bg-slate-50 bg-grid-pattern text-slate-900 selection:bg-sky-200 selection:text-sky-900 relative overflow-x-clip font-body pb-24">
       {/* ─────────────────────────────────────────────────────────────
           1. HIỆU ỨNG TẢN QUANG (AMBIENT GLOW)
-          1 đốm Cyan (#00ADEF) và 1 đốm Sota-Red (#C43838)
+          1 đốm Cyan (#0A78F3) và 1 đốm Sota-Red (#C43838)
       ────────────────────────────────────────────────────────────── */}
-      <div className="absolute top-12 left-1/4 w-[480px] h-[480px] bg-[#00ADEF] opacity-15 rounded-full blur-[140px] pointer-events-none z-0" />
+      <div className="absolute top-12 left-1/4 w-[480px] h-[480px] bg-[#0A78F3] opacity-15 rounded-full blur-[140px] pointer-events-none z-0" />
       <div className="absolute top-96 right-10 w-[450px] h-[450px] bg-[#C43838] opacity-15 rounded-full blur-[140px] pointer-events-none z-0" />
-      <div className="absolute top-[1500px] left-10 w-[420px] h-[420px] bg-[#00ADEF] opacity-10 rounded-full blur-[140px] pointer-events-none z-0" />
+      <div className="absolute top-[1500px] left-10 w-[420px] h-[420px] bg-[#0A78F3] opacity-10 rounded-full blur-[140px] pointer-events-none z-0" />
 
       {/* ─────────────────────────────────────────────────────────────
           STICKY TOP HEADER (MÀU NỀN CÔNG NGHIỆP #2d3436 NỔI BẬT THEO DESIGN SYSTEM)
@@ -217,7 +217,7 @@ export const LandingPage: React.FC = () => {
                 {/* Dòng 1 */}
                 <span className="text-[19px] min-[390px]:text-[21.5px] min-[430px]:text-[23.5px] sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] leading-tight text-center lg:text-left text-slate-900 tracking-tight whitespace-nowrap sm:whitespace-normal">
                   CHẤM DỨT THÓI QUEN{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00ADEF] via-sky-500 to-blue-600">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0A78F3] via-sky-500 to-blue-600">
                     &quot;KHOANH LỤI&quot;
                   </span>
                 </span>
@@ -225,7 +225,7 @@ export const LandingPage: React.FC = () => {
                 {/* Dòng 2 */}
                 <span className="text-[21px] xs:text-[25px] sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] leading-tight text-center lg:text-left text-slate-900 tracking-tight">
                   GIÚP CON{" "}
-                  <span className="text-[#00ADEF] bg-sky-50 px-2 py-0.5 rounded-lg border border-sky-200 shadow-2xs font-black">
+                  <span className="text-[#0A78F3] bg-sky-50 px-2 py-0.5 rounded-lg border border-sky-200 shadow-2xs font-black">
                     TỰ GIÁC
                   </span>{" "}
                   HỌC TẬP
@@ -246,7 +246,7 @@ export const LandingPage: React.FC = () => {
 
               {/* 3. KHUNG HÌNH ẢNH CÔ NGHI: Mobile full width nằm giữa Headline và Body text; Desktop 30% bên phải (col 8-10, row 1-3) */}
               <div className="w-full lg:col-span-3 lg:col-start-8 lg:row-start-1 lg:row-end-4 self-center">
-                <div className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-white shadow-[0_12px_32px_rgba(0,0,0,0.12),0_0_0_1px_rgba(255,255,255,0.7)] hover:shadow-[0_16px_36px_rgba(0,173,239,0.15)] transition-all bg-slate-900 group aspect-[4/5] sm:aspect-[3/4] lg:aspect-[3/4]">
+                <div className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-white shadow-[0_12px_32px_rgba(0,0,0,0.12),0_0_0_1px_rgba(255,255,255,0.7)] hover:shadow-[0_16px_36px_rgba(10,120,243,0.15)] transition-all bg-slate-900 group aspect-[4/5] sm:aspect-[3/4] lg:aspect-[3/4]">
                   {/* Hình ảnh Cô Nghi hiển thị full box với borderline màu trắng dày gấp đôi (border-2) */}
                   <img
                     src={teacherPhoto}
@@ -283,14 +283,14 @@ export const LandingPage: React.FC = () => {
               <div className="space-y-3 sm:space-y-3.5 w-full lg:col-span-7 lg:col-start-1 lg:row-start-3 text-center lg:text-left">
                 {/* Đoạn 1: Phương pháp & Nền tảng đề thi Đà Nẵng */}
                 <p className="font-body text-slate-600 leading-relaxed text-[17px] sm:text-[19px]">
-                  Phương pháp <strong className="text-[#00ADEF] font-bold">&quot;Bóc tách 4 bước&quot;</strong> &amp;{" "}
-                  <strong className="text-[#00ADEF] font-bold">&quot;Dịch bắt buộc&quot;</strong> từ Thạc sĩ TESOL giúp con lấy lại nền tảng sách giáo khoa mới (Global Success, Friends Plus) và làm chủ <strong className="text-slate-900 font-semibold">ma trận 36 câu đề thi vào lớp 10</strong> của Sở GD&amp;ĐT Đà Nẵng.
+                  Phương pháp <strong className="text-[#0A78F3] font-bold">&quot;Bóc tách 4 bước&quot;</strong> &amp;{" "}
+                  <strong className="text-[#0A78F3] font-bold">&quot;Dịch bắt buộc&quot;</strong> từ Thạc sĩ TESOL giúp con lấy lại nền tảng sách giáo khoa mới (Global Success, Friends Plus) và làm chủ <strong className="text-slate-900 font-semibold">ma trận 36 câu đề thi vào lớp 10</strong> của Sở GD&amp;ĐT Đà Nẵng.
                 </p>
 
                 {/* Đoạn 2: Chữa lành áp lực & Tự động báo cáo LMS */}
                 <p className="font-body text-slate-600 leading-relaxed text-[17px] sm:text-[19px]">
                   <strong className="text-slate-900 font-medium">Không nhồi nhét chép phạt, không la mắng áp lực</strong> –{" "}
-                  Báo cáo tiến độ tự động <strong className="text-[#C43838] font-semibold">về Zalo của mẹ lúc 20h00 mỗi tối</strong> qua <strong className="text-[#00ADEF] font-semibold">hệ thống LMS độc quyền</strong>!
+                  Báo cáo tiến độ tự động <strong className="text-[#C43838] font-semibold">về Zalo của mẹ lúc 20h00 mỗi tối</strong> qua <strong className="text-[#0A78F3] font-semibold">hệ thống LMS độc quyền</strong>!
                 </p>
               </div>
             </div>
@@ -299,17 +299,17 @@ export const LandingPage: React.FC = () => {
             {/* 3 Huy hiệu Bảo Chứng Đầu Trang (Modern Tactile 2-Block USP Cards) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {/* Card 1: BẢO CHỨNG CHUYÊN MÔN (Chia thành 2 khối riêng biệt) */}
-              <div className="relative bg-slate-100/80 p-1 sm:p-1.5 rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-[0_4px_20px_rgba(0,173,239,0.06)] hover:shadow-[0_14px_34px_rgba(0,173,239,0.14)] hover:border-sky-300/80 hover:-translate-y-1 transition-all duration-300 group flex flex-col gap-1 sm:gap-1.5">
+              <div className="relative bg-slate-100/80 p-1 sm:p-1.5 rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-[0_4px_20px_rgba(10,120,243,0.06)] hover:shadow-[0_14px_34px_rgba(10,120,243,0.14)] hover:border-sky-300/80 hover:-translate-y-1 transition-all duration-300 group flex flex-col gap-1 sm:gap-1.5">
                 {/* ── KHỐI 1 (PHẦN TRÊN): Icon, Badge và Tiêu đề ── */}
                 <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-xs overflow-hidden">
                   {/* Dải line màu nhận diện trên đỉnh khối */}
-                  <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-[#00ADEF] via-sky-400 to-blue-500" />
+                  <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-[#0A78F3] via-sky-400 to-blue-500" />
                   {/* Đốm sáng nền nhẹ góc thẻ */}
                   <div className="absolute -top-10 -right-10 w-24 h-24 bg-sky-100/60 rounded-full blur-2xl pointer-events-none group-hover:scale-150 transition-transform duration-500" />
 
                   <div className="flex items-start gap-3.5 sm:gap-4">
                     {/* Cột trái: Icon */}
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky-50 to-blue-50 text-[#00ADEF] border border-sky-200/80 shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_2px_8px_rgba(0,173,239,0.12)] flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:rotate-2 transition-transform duration-300">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky-50 to-blue-50 text-[#0A78F3] border border-sky-200/80 shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_2px_8px_rgba(10,120,243,0.12)] flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:rotate-2 transition-transform duration-300">
                       <Award className="w-6 h-6 stroke-[2.2]" />
                     </div>
 
@@ -317,8 +317,8 @@ export const LandingPage: React.FC = () => {
                     <div className="flex-1 min-w-0 flex flex-col items-end text-right">
                       {/* Hàng 1: Badge nằm góc trên bên phải */}
                       <div className="flex justify-end items-center">
-                        <span className="inline-flex items-center gap-1.5 font-mono uppercase text-[10px] tracking-wider font-bold text-[#00ADEF] bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200/70 shadow-2xs">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#00ADEF] animate-pulse" />
+                        <span className="inline-flex items-center gap-1.5 font-mono uppercase text-[10px] tracking-wider font-bold text-[#0A78F3] bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200/70 shadow-2xs">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#0A78F3] animate-pulse" />
                           CHỨNG NHẬN
                         </span>
                       </div>
@@ -338,7 +338,7 @@ export const LandingPage: React.FC = () => {
                     <strong className="text-slate-900 font-bold">Thạc sĩ TESOL Quốc tế</strong> – Sáng lập dự án Hopepath Academy.
                   </p>
 
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs sm:text-[13px] font-mono text-[#00ADEF] font-bold">
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs sm:text-[13px] font-mono text-[#0A78F3] font-bold">
                     <CheckCircle2 className="w-3.5 h-3.5" />
                     <span>Trực tiếp Cô Nghi đứng lớp 100%</span>
                   </div>
@@ -350,7 +350,7 @@ export const LandingPage: React.FC = () => {
                 {/* ── KHỐI 1 (PHẦN TRÊN): Icon, Badge và Tiêu đề ── */}
                 <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-xs overflow-hidden">
                   {/* Dải line màu nhận diện trên đỉnh khối */}
-                  <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-emerald-400 via-teal-400 to-[#00ADEF]" />
+                  <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-emerald-400 via-teal-400 to-[#0A78F3]" />
                   {/* Đốm sáng nền nhẹ góc thẻ */}
                   <div className="absolute -top-10 -right-10 w-24 h-24 bg-emerald-100/50 rounded-full blur-2xl pointer-events-none group-hover:scale-150 transition-transform duration-500" />
 
@@ -443,7 +443,7 @@ export const LandingPage: React.FC = () => {
               <button
                 type="button"
                 onClick={handleOpenRegisterModal}
-                className="w-full sm:w-auto px-4 py-2.5 sm:px-8 sm:py-3 rounded-2xl bg-[#00ADEF] hover:bg-[#009cd8] text-white shadow-[0_10px_25px_rgba(0,173,239,0.35)] hover:shadow-[0_14px_32px_rgba(0,173,239,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none"
+                className="w-full sm:w-auto px-4 py-2.5 sm:px-8 sm:py-3 rounded-2xl bg-[#0A78F3] hover:bg-[#096ad8] text-white shadow-[0_10px_25px_rgba(10,120,243,0.35)] hover:shadow-[0_14px_32px_rgba(10,120,243,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none"
               >
                 <div className="flex flex-col items-center text-center leading-snug">
                   <span className="font-heading font-extrabold text-[12px] min-[390px]:text-[13px] sm:text-base uppercase tracking-tight whitespace-nowrap">
@@ -474,10 +474,10 @@ export const LandingPage: React.FC = () => {
                   </span>
                 </span>
                 <span className="text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] leading-tight text-center tracking-tight">
-                  <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-[#00ADEF] via-sky-500 to-blue-600">
+                  <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-[#0A78F3] via-sky-500 to-blue-600">
                     CHO ĐẾN KHI BA MẸ{" "}
                   </span>
-                  <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-[#00ADEF] via-sky-500 to-blue-600">
+                  <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-[#0A78F3] via-sky-500 to-blue-600">
                     XEM HẾT VIDEO 2.5 PHÚT NÀY!
                   </span>
                 </span>
@@ -567,10 +567,10 @@ export const LandingPage: React.FC = () => {
                             setIsVslMuted(true);
                             setIsVslLoaded(false);
                           }}
-                          className="relative flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#00ADEF] hover:bg-[#009cd8] active:scale-95 text-white shadow-[0_10px_30px_rgba(0,173,239,0.5)] transition-all duration-300 hover:scale-110 cursor-pointer border-2 border-white/90 group/btn"
+                          className="relative flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#0A78F3] hover:bg-[#096ad8] active:scale-95 text-white shadow-[0_10px_30px_rgba(10,120,243,0.5)] transition-all duration-300 hover:scale-110 cursor-pointer border-2 border-white/90 group/btn"
                           aria-label="Phát video VSL Cô Nghi"
                         >
-                          <span className="absolute inset-0 rounded-full bg-[#00ADEF] animate-ping opacity-35 pointer-events-none" />
+                          <span className="absolute inset-0 rounded-full bg-[#0A78F3] animate-ping opacity-35 pointer-events-none" />
                           <Play className="w-7 h-7 sm:w-8 sm:h-8 ml-1 fill-white text-white group-hover/btn:scale-110 transition-transform" />
                         </button>
                       </div>
@@ -588,9 +588,9 @@ export const LandingPage: React.FC = () => {
               {/* ── CỘT PHẢI (60%): HỘP THOẠI, BODY TEXT & CTA ── */}
               <div className="w-full lg:col-span-6 space-y-4 sm:space-y-5 text-center lg:text-left">
                 {/* Hộp thoại Thông điệp với nhãn dấu ngoặc kép 50% trong 50% ngoài */}
-                <div className="relative mt-3 pt-4 sm:pt-4.5 pb-3.5 px-3.5 sm:px-4 bg-gradient-to-br from-sky-50/90 via-white to-blue-50/50 rounded-2xl border border-sky-200/90 shadow-[0_4px_16px_rgba(0,173,239,0.08)] text-left">
+                <div className="relative mt-3 pt-4 sm:pt-4.5 pb-3.5 px-3.5 sm:px-4 bg-gradient-to-br from-sky-50/90 via-white to-blue-50/50 rounded-2xl border border-sky-200/90 shadow-[0_4px_16px_rgba(10,120,243,0.08)] text-left">
                   {/* Biểu tượng dấu ngoặc kép lớn nằm 50% trong, 50% ngoài dạng nhãn */}
-                  <div className="absolute -top-4 left-4 sm:left-5 w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-[#00ADEF] to-sky-600 text-white flex items-center justify-center shadow-[0_4px_12px_rgba(0,173,239,0.35)] border-2 border-white select-none">
+                  <div className="absolute -top-4 left-4 sm:left-5 w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-[#0A78F3] to-sky-600 text-white flex items-center justify-center shadow-[0_4px_12px_rgba(10,120,243,0.35)] border-2 border-white select-none">
                     <Quote className="w-4 h-4 fill-white text-white" />
                   </div>
 
@@ -598,7 +598,7 @@ export const LandingPage: React.FC = () => {
                     <span className="font-heading font-extrabold text-xs sm:text-sm text-slate-900">
                       Thông điệp từ Cô Nghi
                     </span>
-                    <span className="font-mono text-[10px] sm:text-[11px] font-bold text-[#00ADEF] bg-sky-100/90 px-2 py-0.5 rounded-full border border-sky-200">
+                    <span className="font-mono text-[10px] sm:text-[11px] font-bold text-[#0A78F3] bg-sky-100/90 px-2 py-0.5 rounded-full border border-sky-200">
                       Cử nhân GPA 8.17 • Thạc sĩ TESOL
                     </span>
                   </div>
@@ -623,9 +623,9 @@ export const LandingPage: React.FC = () => {
                   </div>
 
                   <div className="p-3 sm:p-3.5 rounded-xl bg-white/70 border border-slate-200/80 shadow-2xs flex items-start gap-2.5">
-                    <span className="text-[#00ADEF] font-bold shrink-0 mt-0.5">•</span>
+                    <span className="text-[#0A78F3] font-bold shrink-0 mt-0.5">•</span>
                     <div>
-                      <strong className="text-slate-900">Trị dứt điểm đoán mò:</strong> Phương pháp <strong className="text-[#00ADEF]">&quot;Bóc tách 4 bước&quot;</strong> giúp con tự hiểu bản chất ngữ pháp và tự tin làm đề thi vào lớp 10.
+                      <strong className="text-slate-900">Trị dứt điểm đoán mò:</strong> Phương pháp <strong className="text-[#0A78F3]">&quot;Bóc tách 4 bước&quot;</strong> giúp con tự hiểu bản chất ngữ pháp và tự tin làm đề thi vào lớp 10.
                     </div>
                   </div>
 
@@ -649,7 +649,7 @@ export const LandingPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={handleOpenRegisterModal}
-                    className="w-full sm:w-auto px-4 py-2.5 sm:px-7 sm:py-3 rounded-2xl bg-[#00ADEF] hover:bg-[#009cd8] text-white shadow-[0_10px_25px_rgba(0,173,239,0.35)] hover:shadow-[0_14px_32px_rgba(0,173,239,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none"
+                    className="w-full sm:w-auto px-4 py-2.5 sm:px-7 sm:py-3 rounded-2xl bg-[#0A78F3] hover:bg-[#096ad8] text-white shadow-[0_10px_25px_rgba(10,120,243,0.35)] hover:shadow-[0_14px_32px_rgba(10,120,243,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none"
                   >
                     <div className="flex flex-col items-center sm:items-start text-center sm:text-left leading-snug">
                       <span className="font-heading font-extrabold text-[12px] min-[390px]:text-[13px] sm:text-base uppercase tracking-tight whitespace-nowrap">
@@ -795,7 +795,7 @@ export const LandingPage: React.FC = () => {
             ────────────────────────────────────────────────────────────── */}
             <div className="relative rounded-2xl bg-slate-900 bg-grid-pattern text-white p-6 sm:p-8 md:p-10 shadow-2xl overflow-hidden border border-slate-800">
               {/* Vòm sáng cyan mờ & đỏ Sota */}
-              <div className="absolute -top-20 -right-20 w-80 h-80 bg-[#00ADEF]/20 rounded-full blur-[120px] pointer-events-none" />
+              <div className="absolute -top-20 -right-20 w-80 h-80 bg-[#0A78F3]/20 rounded-full blur-[120px] pointer-events-none" />
               <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[#C43838]/20 rounded-full blur-[120px] pointer-events-none" />
 
               <div className="relative z-10 space-y-4">
@@ -812,7 +812,7 @@ export const LandingPage: React.FC = () => {
                 </div>
 
                 <p className="font-body text-slate-300 leading-relaxed text-[15px] sm:text-base">
-                  <strong className="text-white">Đừng để sự chủ quan đánh mất tấm vé vào Lớp 10 Công lập của con!</strong> Trong kỳ thi tuyển sinh vào lớp 10 tại Đà Nẵng năm học 2026–2027, điểm chuẩn các trường THPT công lập trên địa bàn quận Sơn Trà đã tăng vọt: <strong className="text-[#00ADEF]">THPT Hoàng Hoa Thám lên tới 33,25 điểm</strong>, <strong className="text-[#00ADEF]">THPT Sơn Trà vọt lên 27,00 điểm (+7,75đ)</strong>, và <strong className="text-[#00ADEF]">THPT Ngô Quyền tăng gấp đôi lên 24,00 điểm (+13,00đ)</strong>.
+                  <strong className="text-white">Đừng để sự chủ quan đánh mất tấm vé vào Lớp 10 Công lập của con!</strong> Trong kỳ thi tuyển sinh vào lớp 10 tại Đà Nẵng năm học 2026–2027, điểm chuẩn các trường THPT công lập trên địa bàn quận Sơn Trà đã tăng vọt: <strong className="text-[#0A78F3]">THPT Hoàng Hoa Thám lên tới 33,25 điểm</strong>, <strong className="text-[#0A78F3]">THPT Sơn Trà vọt lên 27,00 điểm (+7,75đ)</strong>, và <strong className="text-[#0A78F3]">THPT Ngô Quyền tăng gấp đôi lên 24,00 điểm (+13,00đ)</strong>.
                 </p>
 
                 <p className="font-body text-slate-300 leading-relaxed text-[15px] sm:text-base">
@@ -821,7 +821,7 @@ export const LandingPage: React.FC = () => {
 
                 <div className="p-4 bg-slate-800/80 rounded-xl border border-slate-700/80 backdrop-blur-sm">
                   <p className="font-body text-[14.5px] sm:text-[15.5px] text-slate-200 italic leading-relaxed">
-                    ❤️ <strong className="text-[#00ADEF]">Nhưng lỗi hoàn toàn không phải do các con thiếu thông minh!</strong> Tiếng lòng sâu thẳm của các con là: <em>&quot;Con không ghét Tiếng Anh, con chỉ sợ cảm giác bất lực khi không hiểu bài và sợ ánh mắt thất vọng khi mẹ đứng sau quát mắng&quot;</em>. Thứ duy nhất con đang thiếu là một <strong className="text-white">PHƯƠNG PHÁP BÓC TÁCH ĐÚNG BẢN CHẤT</strong> và một <strong className="text-white">MÔI TRƯỜNG AN TOÀN ĐỂ XÂY DỰNG LẠI SỰ TỰ TIN</strong>.
+                    ❤️ <strong className="text-[#0A78F3]">Nhưng lỗi hoàn toàn không phải do các con thiếu thông minh!</strong> Tiếng lòng sâu thẳm của các con là: <em>&quot;Con không ghét Tiếng Anh, con chỉ sợ cảm giác bất lực khi không hiểu bài và sợ ánh mắt thất vọng khi mẹ đứng sau quát mắng&quot;</em>. Thứ duy nhất con đang thiếu là một <strong className="text-white">PHƯƠNG PHÁP BÓC TÁCH ĐÚNG BẢN CHẤT</strong> và một <strong className="text-white">MÔI TRƯỜNG AN TOÀN ĐỂ XÂY DỰNG LẠI SỰ TỰ TIN</strong>.
                   </p>
                 </div>
               </div>
@@ -836,8 +836,8 @@ export const LandingPage: React.FC = () => {
           <div className="w-[90%] lg:w-[80%] mx-auto space-y-8">
             {/* Header Khối 3 */}
             <div className="text-center max-w-3xl mx-auto space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm font-mono text-xs text-[#00ADEF] uppercase tracking-wide">
-                <span className="w-2 h-2 rounded-full bg-[#00ADEF] animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm font-mono text-xs text-[#0A78F3] uppercase tracking-wide">
+                <span className="w-2 h-2 rounded-full bg-[#0A78F3] animate-pulse" />
                 <span>The Unique Mechanism – Giải Pháp Độc Quyền</span>
               </div>
               <h2 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-xl sm:text-2xl md:text-3xl">
@@ -862,7 +862,7 @@ export const LandingPage: React.FC = () => {
                     <th className="py-3 px-3 font-mono text-xs sm:text-[13.5px] uppercase tracking-wider text-slate-600 w-[26%]">
                       Trung Tâm Thương Mại Lớn
                     </th>
-                    <th className="py-3 px-3 font-mono text-xs sm:text-[13.5px] uppercase tracking-wider font-bold text-white w-[26%] bg-[#00ADEF] rounded-t-xl shadow-xs">
+                    <th className="py-3 px-3 font-mono text-xs sm:text-[13.5px] uppercase tracking-wider font-bold text-white w-[26%] bg-[#0A78F3] rounded-t-xl shadow-xs">
                       Lớp Cô Nghi (Tối đa 12 em)
                     </th>
                   </tr>
@@ -877,7 +877,7 @@ export const LandingPage: React.FC = () => {
                       Học phí đắt đỏ nhưng lớp đông, thời gian chết lớn; không sửa chi tiết ngữ pháp.
                     </td>
                     <td className="py-4 px-3 font-body font-semibold text-slate-900 bg-sky-50/60">
-                      ✨ <strong className="text-[#00ADEF]">Kèm vi mô 1-1 từng em:</strong> Cô Nghi trực tiếp bắt bệnh và sửa tỉ mỉ từng lỗi sai ngay tại bàn.
+                      ✨ <strong className="text-[#0A78F3]">Kèm vi mô 1-1 từng em:</strong> Cô Nghi trực tiếp bắt bệnh và sửa tỉ mỉ từng lỗi sai ngay tại bàn.
                     </td>
                   </tr>
 
@@ -890,7 +890,7 @@ export const LandingPage: React.FC = () => {
                       Tập trung nghe nói bề nổi; bỏ trống hoàn toàn kỹ năng Word Form và Writing trên trường.
                     </td>
                     <td className="py-4 px-3 font-body font-semibold text-slate-900 bg-sky-50/60">
-                      ✨ <strong className="text-[#00ADEF]">&quot;Bóc tách 4 bước&quot; &amp; &quot;Dịch bắt buộc&quot;:</strong> Hiểu sâu bản chất, giải thích được lý do chọn đáp án.
+                      ✨ <strong className="text-[#0A78F3]">&quot;Bóc tách 4 bước&quot; &amp; &quot;Dịch bắt buộc&quot;:</strong> Hiểu sâu bản chất, giải thích được lý do chọn đáp án.
                     </td>
                   </tr>
 
@@ -903,7 +903,7 @@ export const LandingPage: React.FC = () => {
                       Vui vẻ lúc chơi trò chơi nhưng về nhà vẫn sợ đề kiểm tra trên trường.
                     </td>
                     <td className="py-4 px-3 font-body font-semibold text-slate-900 bg-sky-50/60">
-                      ✨ <strong className="text-[#00ADEF]">Chữa lành tâm lý &amp; Game hóa 100 Tokens:</strong> Không la mắng; kích hoạt động lực tự giác từ bên trong.
+                      ✨ <strong className="text-[#0A78F3]">Chữa lành tâm lý &amp; Game hóa 100 Tokens:</strong> Không la mắng; kích hoạt động lực tự giác từ bên trong.
                     </td>
                   </tr>
 
@@ -916,7 +916,7 @@ export const LandingPage: React.FC = () => {
                       Giáo trình quốc tế xa rời cấu trúc thi của Sở GD&amp;ĐT Đà Nẵng.
                     </td>
                     <td className="py-4 px-3 font-body font-semibold text-slate-900 bg-sky-50/60">
-                      ✨ <strong className="text-[#00ADEF]">Thực chiến 100% Sơn Trà:</strong> Sửa trọn bộ đề cương các trường THCS Lê Độ, Ngô Quyền, Nguyễn Chí Thanh...
+                      ✨ <strong className="text-[#0A78F3]">Thực chiến 100% Sơn Trà:</strong> Sửa trọn bộ đề cương các trường THCS Lê Độ, Ngô Quyền, Nguyễn Chí Thanh...
                     </td>
                   </tr>
 
@@ -929,7 +929,7 @@ export const LandingPage: React.FC = () => {
                       Tư vấn viên chỉ gọi điện khi đến kỳ đóng tiền khóa mới.
                     </td>
                     <td className="py-4 px-3 font-body font-semibold text-slate-900 bg-sky-50/60">
-                      ✨ <strong className="text-[#00ADEF]">LMS tự động báo cáo qua Zalo lúc 20h00</strong> + Kênh Cứu trợ SOS 1:1 giải bài tập tối cho con.
+                      ✨ <strong className="text-[#0A78F3]">LMS tự động báo cáo qua Zalo lúc 20h00</strong> + Kênh Cứu trợ SOS 1:1 giải bài tập tối cho con.
                     </td>
                   </tr>
                 </tbody>
@@ -948,13 +948,13 @@ export const LandingPage: React.FC = () => {
               </div>
 
               {/* Vũ khí 1 */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#00ADEF]/60 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#0A78F3]/60 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#00ADEF] border border-sky-100 flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0A78F3] border border-sky-100 flex items-center justify-center shrink-0">
                     <BookOpen className="w-6 h-6" />
                   </div>
                   <div>
-                    <span className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#00ADEF] font-bold block mb-1">
+                    <span className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#0A78F3] font-bold block mb-1">
                       VŨ KHÍ 01
                     </span>
                     <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-base sm:text-lg">
@@ -965,19 +965,19 @@ export const LandingPage: React.FC = () => {
                     </p>
                   </div>
                 </div>
-                <div className="shrink-0 w-full md:w-auto font-mono text-xs sm:text-[13px] uppercase tracking-wider text-[#00ADEF] font-bold bg-sky-50 border border-sky-200 px-3.5 py-2 rounded-xl">
+                <div className="shrink-0 w-full md:w-auto font-mono text-xs sm:text-[13px] uppercase tracking-wider text-[#0A78F3] font-bold bg-sky-50 border border-sky-200 px-3.5 py-2 rounded-xl">
                   Chấm dứt 100% thói quen khoanh lụi &amp; đọc đoán mò
                 </div>
               </div>
 
               {/* Vũ khí 2 */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#00ADEF]/60 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#0A78F3]/60 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#00ADEF] border border-sky-100 flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0A78F3] border border-sky-100 flex items-center justify-center shrink-0">
                     <Gamepad2 className="w-6 h-6" />
                   </div>
                   <div>
-                    <span className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#00ADEF] font-bold block mb-1">
+                    <span className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#0A78F3] font-bold block mb-1">
                       VŨ KHÍ 02
                     </span>
                     <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-base sm:text-lg">
@@ -988,19 +988,19 @@ export const LandingPage: React.FC = () => {
                     </p>
                   </div>
                 </div>
-                <div className="shrink-0 w-full md:w-auto font-mono text-xs sm:text-[13px] uppercase tracking-wider text-[#00ADEF] font-bold bg-sky-50 border border-sky-200 px-3.5 py-2 rounded-xl">
+                <div className="shrink-0 w-full md:w-auto font-mono text-xs sm:text-[13px] uppercase tracking-wider text-[#0A78F3] font-bold bg-sky-50 border border-sky-200 px-3.5 py-2 rounded-xl">
                   Kích thích Dopamine, tự giác làm bài không cần giục
                 </div>
               </div>
 
               {/* Vũ khí 3 */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#00ADEF]/60 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#0A78F3]/60 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#00ADEF] border border-sky-100 flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0A78F3] border border-sky-100 flex items-center justify-center shrink-0">
                     <Volume2 className="w-6 h-6" />
                   </div>
                   <div>
-                    <span className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#00ADEF] font-bold block mb-1">
+                    <span className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#0A78F3] font-bold block mb-1">
                       VŨ KHÍ 03
                     </span>
                     <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-base sm:text-lg">
@@ -1011,19 +1011,19 @@ export const LandingPage: React.FC = () => {
                     </p>
                   </div>
                 </div>
-                <div className="shrink-0 w-full md:w-auto font-mono text-xs sm:text-[13px] uppercase tracking-wider text-[#00ADEF] font-bold bg-sky-50 border border-sky-200 px-3.5 py-2 rounded-xl">
+                <div className="shrink-0 w-full md:w-auto font-mono text-xs sm:text-[13px] uppercase tracking-wider text-[#0A78F3] font-bold bg-sky-50 border border-sky-200 px-3.5 py-2 rounded-xl">
                   Đọc chuẩn, nhớ chắc 80–90% từ vựng SGK mới
                 </div>
               </div>
 
               {/* Vũ khí 4 */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#00ADEF]/60 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#0A78F3]/60 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#00ADEF] border border-sky-100 flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0A78F3] border border-sky-100 flex items-center justify-center shrink-0">
                     <FileText className="w-6 h-6" />
                   </div>
                   <div>
-                    <span className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#00ADEF] font-bold block mb-1">
+                    <span className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#0A78F3] font-bold block mb-1">
                       VŨ KHÍ 04
                     </span>
                     <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-base sm:text-lg">
@@ -1034,19 +1034,19 @@ export const LandingPage: React.FC = () => {
                     </p>
                   </div>
                 </div>
-                <div className="shrink-0 w-full md:w-auto font-mono text-xs sm:text-[13px] uppercase tracking-wider text-[#00ADEF] font-bold bg-sky-50 border border-sky-200 px-3.5 py-2 rounded-xl">
+                <div className="shrink-0 w-full md:w-auto font-mono text-xs sm:text-[13px] uppercase tracking-wider text-[#0A78F3] font-bold bg-sky-50 border border-sky-200 px-3.5 py-2 rounded-xl">
                   Làm chủ Word Form &amp; đề thi thật tại Sơn Trà
                 </div>
               </div>
 
               {/* Vũ khí 5 */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#00ADEF]/60 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#0A78F3]/60 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#00ADEF] border border-sky-100 flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0A78F3] border border-sky-100 flex items-center justify-center shrink-0">
                     <Smartphone className="w-6 h-6" />
                   </div>
                   <div>
-                    <span className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#00ADEF] font-bold block mb-1">
+                    <span className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#0A78F3] font-bold block mb-1">
                       VŨ KHÍ 05
                     </span>
                     <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-base sm:text-lg">
@@ -1057,7 +1057,7 @@ export const LandingPage: React.FC = () => {
                     </p>
                   </div>
                 </div>
-                <div className="shrink-0 w-full md:w-auto font-mono text-xs sm:text-[13px] uppercase tracking-wider text-[#00ADEF] font-bold bg-sky-50 border border-sky-200 px-3.5 py-2 rounded-xl">
+                <div className="shrink-0 w-full md:w-auto font-mono text-xs sm:text-[13px] uppercase tracking-wider text-[#0A78F3] font-bold bg-sky-50 border border-sky-200 px-3.5 py-2 rounded-xl">
                   Mẹ thảnh thơi buổi tối, trả lại sự bình yên gia đình
                 </div>
               </div>
@@ -1068,7 +1068,7 @@ export const LandingPage: React.FC = () => {
               <button
                 type="button"
                 onClick={handleOpenRegisterModal}
-                className="w-full sm:w-auto px-4 py-2.5 sm:px-8 sm:py-3 rounded-2xl bg-[#00ADEF] hover:bg-[#009cd8] text-white shadow-[0_10px_25px_rgba(0,173,239,0.35)] hover:shadow-[0_14px_32px_rgba(0,173,239,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none"
+                className="w-full sm:w-auto px-4 py-2.5 sm:px-8 sm:py-3 rounded-2xl bg-[#0A78F3] hover:bg-[#096ad8] text-white shadow-[0_10px_25px_rgba(10,120,243,0.35)] hover:shadow-[0_14px_32px_rgba(10,120,243,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none"
               >
                 <div className="flex flex-col items-center text-center leading-snug">
                   <span className="font-heading font-extrabold text-[12px] min-[390px]:text-[13px] sm:text-base uppercase tracking-tight whitespace-nowrap">
@@ -1144,7 +1144,7 @@ export const LandingPage: React.FC = () => {
                       placeholder="Ví dụ: Mẹ Thảo Nguyên..."
                       value={formData.parentName}
                       onChange={(e) => setFormData({ ...formData, parentName: e.target.value })}
-                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#00ADEF] focus:ring-1 focus:ring-[#00ADEF] text-slate-900 transition-colors"
+                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#0A78F3] focus:ring-1 focus:ring-[#0A78F3] text-slate-900 transition-colors"
                     />
                   </div>
 
@@ -1158,7 +1158,7 @@ export const LandingPage: React.FC = () => {
                       placeholder="Nhập SĐT Zalo để nhận Phác đồ & Sổ tay PDF..."
                       value={formData.phoneZalo}
                       onChange={(e) => setFormData({ ...formData, phoneZalo: e.target.value })}
-                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#00ADEF] focus:ring-1 focus:ring-[#00ADEF] text-slate-900 transition-colors"
+                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#0A78F3] focus:ring-1 focus:ring-[#0A78F3] text-slate-900 transition-colors"
                     />
                   </div>
 
@@ -1174,7 +1174,7 @@ export const LandingPage: React.FC = () => {
                       onChange={(e) =>
                         setFormData({ ...formData, studentNameAndGrade: e.target.value })
                       }
-                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#00ADEF] focus:ring-1 focus:ring-[#00ADEF] text-slate-900 transition-colors"
+                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#0A78F3] focus:ring-1 focus:ring-[#0A78F3] text-slate-900 transition-colors"
                     />
                   </div>
 
@@ -1185,7 +1185,7 @@ export const LandingPage: React.FC = () => {
                     <select
                       value={formData.school}
                       onChange={(e) => setFormData({ ...formData, school: e.target.value })}
-                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#00ADEF] focus:ring-1 focus:ring-[#00ADEF] text-slate-900 transition-colors"
+                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#0A78F3] focus:ring-1 focus:ring-[#0A78F3] text-slate-900 transition-colors"
                     >
                       <option value="THCS Lê Độ">THCS Lê Độ (Sơn Trà)</option>
                       <option value="THCS Ngô Quyền">THCS Ngô Quyền (Sơn Trà)</option>
@@ -1216,7 +1216,7 @@ export const LandingPage: React.FC = () => {
                             name="priority"
                             checked={formData.priorityChoice === choice}
                             onChange={() => setFormData({ ...formData, priorityChoice: choice })}
-                            className="text-[#00ADEF] focus:ring-[#00ADEF]"
+                            className="text-[#0A78F3] focus:ring-[#0A78F3]"
                           />
                           <span className="font-body text-[13.5px] sm:text-[15px] leading-snug">{choice}</span>
                         </label>
@@ -1226,7 +1226,7 @@ export const LandingPage: React.FC = () => {
 
                   <button
                     type="submit"
-                    className="w-full mt-4 py-4 px-4 rounded-xl bg-[#00ADEF] hover:bg-sky-500 text-white font-mono text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg shadow-sky-500/25 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
+                    className="w-full mt-4 py-4 px-4 rounded-xl bg-[#0A78F3] hover:bg-sky-500 text-white font-mono text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg shadow-sky-500/25 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
                   >
                     <span>XÁC NHẬN ĐĂNG KÝ – GIỮ LỊCH TEST 1-1 MIỄN PHÍ</span>
                     <ArrowRight className="w-4 h-4" />
@@ -1239,7 +1239,7 @@ export const LandingPage: React.FC = () => {
               </div>
             ) : (
               <div className="py-6 text-center space-y-3">
-                <div className="w-16 h-16 rounded-full bg-sky-100 text-[#00ADEF] mx-auto flex items-center justify-center border-2 border-sky-300 shadow-sm">
+                <div className="w-16 h-16 rounded-full bg-sky-100 text-[#0A78F3] mx-auto flex items-center justify-center border-2 border-sky-300 shadow-sm">
                   <Check className="w-8 h-8" />
                 </div>
                 <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-lg">
