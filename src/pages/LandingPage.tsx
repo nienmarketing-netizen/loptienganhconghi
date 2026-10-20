@@ -66,8 +66,18 @@ const VSL_SCENES: VslScene[] = [
 ];
 
 export const LandingPage: React.FC = () => {
-  const [activeVslIndex, setActiveVslIndex] = useState(0);
   const [isPlayingVsl, setIsPlayingVsl] = useState(false);
+  const [isVslMuted, setIsVslMuted] = useState(true);
+
+  const handleUnmuteVsl = () => {
+    const iframe = document.getElementById("vsl-vimeo-iframe") as HTMLIFrameElement | null;
+    if (iframe?.contentWindow) {
+      iframe.contentWindow.postMessage(JSON.stringify({ method: "setMuted", value: false }), "*");
+      iframe.contentWindow.postMessage(JSON.stringify({ method: "setVolume", value: 1 }), "*");
+      iframe.contentWindow.postMessage(JSON.stringify({ method: "play" }), "*");
+    }
+    setIsVslMuted(false);
+  };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [registrationSubmitted, setRegistrationSubmitted] = useState(false);
   const [teacherPhoto, setTeacherPhoto] = useState<string>(() => {
@@ -471,12 +481,30 @@ export const LandingPage: React.FC = () => {
               <div className="w-full lg:col-span-4 flex justify-center lg:justify-start">
                 <div className="relative w-full max-w-[320px] sm:max-w-[340px] aspect-[9/16] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.18)] bg-slate-950 group">
                   {isPlayingVsl ? (
-                    <iframe
-                      src="https://player.vimeo.com/video/1237187894?autoplay=1&playsinline=1&title=0&byline=0&portrait=0&badge=0&autopause=0"
-                      className="w-full h-full border-0 absolute inset-0"
-                      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-                      title="Master VSL (3.5 Phút): Thông Điệp Trực Tiếp Từ Cô Nghi"
-                    />
+                    <div className="relative w-full h-full">
+                      <iframe
+                        id="vsl-vimeo-iframe"
+                        src="https://player.vimeo.com/video/1237187894?autoplay=1&playsinline=1&api=1&title=0&byline=0&portrait=0&badge=0&autopause=0"
+                        className="w-full h-full border-0 absolute inset-0"
+                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                        title="Master VSL (3.5 Phút): Thông Điệp Trực Tiếp Từ Cô Nghi"
+                      />
+
+                      {/* Nút "Mở âm thanh" kích hoạt unmute khi video đang phát */}
+                      {isVslMuted && (
+                        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 pointer-events-auto">
+                          <button
+                            type="button"
+                            onClick={handleUnmuteVsl}
+                            className="flex items-center gap-2 px-4 py-2 sm:px-4.5 sm:py-2.5 rounded-full bg-[#ff4757] hover:bg-[#e03949] text-white font-bold text-xs sm:text-sm shadow-[0_8px_25px_rgba(255,71,87,0.6)] border-2 border-white/90 active:scale-95 transition-all duration-300 animate-pulse cursor-pointer whitespace-nowrap"
+                            aria-label="Mở âm thanh video VSL"
+                          >
+                            <Volume2 className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-white shrink-0 animate-bounce" />
+                            <span>Mở âm thanh</span>
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   ) : (
                     /* Thumbnail hiển thị trước khi phát */
                     <div
@@ -525,7 +553,10 @@ export const LandingPage: React.FC = () => {
                       <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
                         <button
                           type="button"
-                          onClick={() => setIsPlayingVsl(true)}
+                          onClick={() => {
+                            setIsPlayingVsl(true);
+                            setIsVslMuted(true);
+                          }}
                           className="relative flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#00ADEF] hover:bg-[#009cd8] active:scale-95 text-white shadow-[0_10px_30px_rgba(0,173,239,0.5)] transition-all duration-300 hover:scale-110 cursor-pointer border-2 border-white/90 group/btn"
                           aria-label="Phát video VSL Cô Nghi"
                         >
