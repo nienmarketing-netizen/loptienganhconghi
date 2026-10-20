@@ -68,6 +68,7 @@ const VSL_SCENES: VslScene[] = [
 export const LandingPage: React.FC = () => {
   const [isPlayingVsl, setIsPlayingVsl] = useState(false);
   const [isVslMuted, setIsVslMuted] = useState(true);
+  const [isVslLoaded, setIsVslLoaded] = useState(false);
 
   const handleUnmuteVsl = () => {
     const iframe = document.getElementById("vsl-vimeo-iframe") as HTMLIFrameElement | null;
@@ -488,18 +489,19 @@ export const LandingPage: React.FC = () => {
                         className="w-full h-full border-0 absolute inset-0"
                         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
                         title="Master VSL (3.5 Phút): Thông Điệp Trực Tiếp Từ Cô Nghi"
+                        onLoad={() => setIsVslLoaded(true)}
                       />
 
-                      {/* Nút "Mở âm thanh" kích hoạt unmute khi video đang phát */}
-                      {isVslMuted && (
-                        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 pointer-events-auto">
+                      {/* Nút "Mở âm thanh" hiển thị ngay chính giữa video khi video đã tải */}
+                      {isVslMuted && isVslLoaded && (
+                        <div className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none p-4">
                           <button
                             type="button"
                             onClick={handleUnmuteVsl}
-                            className="flex items-center gap-2 px-4 py-2 sm:px-4.5 sm:py-2.5 rounded-full bg-[#ff4757] hover:bg-[#e03949] text-white font-bold text-xs sm:text-sm shadow-[0_8px_25px_rgba(255,71,87,0.6)] border-2 border-white/90 active:scale-95 transition-all duration-300 animate-pulse cursor-pointer whitespace-nowrap"
+                            className="pointer-events-auto flex items-center gap-2.5 px-5 py-3 sm:px-6 sm:py-3.5 rounded-full bg-[#ff4757] hover:bg-[#e03949] text-white font-bold text-sm sm:text-base shadow-[0_8px_30px_rgba(255,71,87,0.7)] border-2 border-white active:scale-95 transition-all duration-300 animate-pulse cursor-pointer whitespace-nowrap"
                             aria-label="Mở âm thanh video VSL"
                           >
-                            <Volume2 className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-white shrink-0 animate-bounce" />
+                            <Volume2 className="w-5 h-5 sm:w-6 sm:h-6 text-white shrink-0 animate-bounce" />
                             <span>Mở âm thanh</span>
                           </button>
                         </div>
@@ -556,6 +558,7 @@ export const LandingPage: React.FC = () => {
                           onClick={() => {
                             setIsPlayingVsl(true);
                             setIsVslMuted(true);
+                            setIsVslLoaded(false);
                           }}
                           className="relative flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#00ADEF] hover:bg-[#009cd8] active:scale-95 text-white shadow-[0_10px_30px_rgba(0,173,239,0.5)] transition-all duration-300 hover:scale-110 cursor-pointer border-2 border-white/90 group/btn"
                           aria-label="Phát video VSL Cô Nghi"
