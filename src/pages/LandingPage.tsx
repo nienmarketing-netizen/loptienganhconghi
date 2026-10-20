@@ -484,9 +484,9 @@ export const LandingPage: React.FC = () => {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-10 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-10 items-start">
               {/* ── CỘT TRÁI (40%): VIDEO VSL TỈ LỆ 9:16 ── */}
-              <div className="w-full lg:col-span-4 flex justify-center lg:justify-start">
+              <div className="w-full lg:col-span-4 flex justify-center lg:justify-start lg:mt-3">
                 <div className="relative w-full max-w-[320px] sm:max-w-[340px] aspect-[9/16] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.18)] bg-slate-950 group">
                   {isPlayingVsl ? (
                     <div className="relative w-full h-full">
