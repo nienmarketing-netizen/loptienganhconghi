@@ -438,22 +438,22 @@ export const LandingPage: React.FC = () => {
               </div>
             </div>
 
-            {/* ── CTA BUTTON DÀNH CHO GIAO DIỆN PC BÊN DƯỚI 3 BOX USPS ── */}
-            <div className="hidden md:flex flex-col items-center justify-center pt-2 pb-1">
+            {/* ── CTA BUTTON BÊN DƯỚI 3 BOX USPS (HIỂN THỊ CẢ MOBILE & DESKTOP) ── */}
+            <div className="flex flex-col items-center justify-center pt-3 pb-1">
               <button
                 type="button"
                 onClick={handleOpenRegisterModal}
-                className="group relative inline-flex items-center justify-center gap-3.5 px-8 py-3 rounded-2xl bg-[#00ADEF] hover:bg-[#009cd8] text-white shadow-[0_10px_25px_rgba(0,173,239,0.35)] hover:shadow-[0_14px_32px_rgba(0,173,239,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 cursor-pointer border-none outline-none"
+                className="w-full sm:w-auto px-4 py-2.5 sm:px-8 sm:py-3 rounded-2xl bg-[#00ADEF] hover:bg-[#009cd8] text-white shadow-[0_10px_25px_rgba(0,173,239,0.35)] hover:shadow-[0_14px_32px_rgba(0,173,239,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none"
               >
                 <div className="flex flex-col items-center text-center leading-snug">
-                  <span className="font-heading font-extrabold text-[15px] lg:text-base uppercase tracking-wide">
+                  <span className="font-heading font-extrabold text-[12px] min-[390px]:text-[13px] sm:text-base uppercase tracking-tight whitespace-nowrap">
                     ĐĂNG KÝ TEST HỌC LỰC TIẾNG ANH 1-1 MIỄN PHÍ
                   </span>
-                  <span className="font-body text-xs lg:text-sm font-medium text-sky-100 normal-case mt-0.5">
+                  <span className="font-body text-[10px] min-[390px]:text-[11px] sm:text-sm font-medium text-sky-100 normal-case mt-0.5 whitespace-nowrap tracking-tight">
                     Tặng kèm lộ trình học tập cá nhân hoá &amp; bộ sổ tay ma thuật
                   </span>
                 </div>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform shrink-0" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
@@ -649,17 +649,17 @@ export const LandingPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={handleOpenRegisterModal}
-                    className="w-full sm:w-auto px-7 py-3 rounded-2xl bg-[#00ADEF] hover:bg-[#009cd8] text-white shadow-[0_10px_25px_rgba(0,173,239,0.35)] hover:shadow-[0_14px_32px_rgba(0,173,239,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-3.5 group cursor-pointer border-none outline-none"
+                    className="w-full sm:w-auto px-4 py-2.5 sm:px-7 sm:py-3 rounded-2xl bg-[#00ADEF] hover:bg-[#009cd8] text-white shadow-[0_10px_25px_rgba(0,173,239,0.35)] hover:shadow-[0_14px_32px_rgba(0,173,239,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none"
                   >
                     <div className="flex flex-col items-center sm:items-start text-center sm:text-left leading-snug">
-                      <span className="font-heading font-extrabold text-[15px] sm:text-base uppercase tracking-wide">
+                      <span className="font-heading font-extrabold text-[12px] min-[390px]:text-[13px] sm:text-base uppercase tracking-tight whitespace-nowrap">
                         ĐĂNG KÝ TEST HỌC LỰC TIẾNG ANH 1-1 MIỄN PHÍ
                       </span>
-                      <span className="font-body text-xs sm:text-sm font-medium text-sky-100 normal-case mt-0.5">
+                      <span className="font-body text-[10px] min-[390px]:text-[11px] sm:text-sm font-medium text-sky-100 normal-case mt-0.5 whitespace-nowrap tracking-tight">
                         Tặng kèm lộ trình học tập cá nhân hoá &amp; bộ sổ tay ma thuật
                       </span>
                     </div>
-                    <ArrowRight className="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </div>
@@ -1068,17 +1068,17 @@ export const LandingPage: React.FC = () => {
               <button
                 type="button"
                 onClick={handleOpenRegisterModal}
-                className="w-full sm:w-auto px-8 py-3 rounded-2xl bg-[#00ADEF] hover:bg-[#009cd8] text-white shadow-[0_10px_25px_rgba(0,173,239,0.35)] hover:shadow-[0_14px_32px_rgba(0,173,239,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-3.5 group cursor-pointer border-none outline-none"
+                className="w-full sm:w-auto px-4 py-2.5 sm:px-8 sm:py-3 rounded-2xl bg-[#00ADEF] hover:bg-[#009cd8] text-white shadow-[0_10px_25px_rgba(0,173,239,0.35)] hover:shadow-[0_14px_32px_rgba(0,173,239,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none"
               >
                 <div className="flex flex-col items-center text-center leading-snug">
-                  <span className="font-heading font-extrabold text-[15px] sm:text-base uppercase tracking-wide">
+                  <span className="font-heading font-extrabold text-[12px] min-[390px]:text-[13px] sm:text-base uppercase tracking-tight whitespace-nowrap">
                     ĐĂNG KÝ TEST HỌC LỰC TIẾNG ANH 1-1 MIỄN PHÍ
                   </span>
-                  <span className="font-body text-xs sm:text-sm font-medium text-sky-100 normal-case mt-0.5">
+                  <span className="font-body text-[10px] min-[390px]:text-[11px] sm:text-sm font-medium text-sky-100 normal-case mt-0.5 whitespace-nowrap tracking-tight">
                     Tặng kèm lộ trình học tập cá nhân hoá &amp; bộ sổ tay ma thuật
                   </span>
                 </div>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform shrink-0" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
@@ -1094,12 +1094,12 @@ export const LandingPage: React.FC = () => {
           className="pointer-events-auto w-[90%] py-2.5 sm:py-3 px-4 rounded-2xl bg-gradient-to-r from-[#C43838] via-rose-500 to-amber-500 hover:from-[#b33131] hover:to-amber-600 active:scale-[0.98] text-white shadow-[0_8px_24px_rgba(196,56,56,0.38)] transition-all flex flex-col items-center justify-center cursor-pointer border-none outline-none animate-subtle-zoom"
         >
           <span className="font-heading font-extrabold uppercase tracking-tight text-xs sm:text-sm leading-tight flex items-center gap-1.5 text-white">
-            <span>Đăng ký test năng lực 1-1 miễn phí</span>
+            <span>ĐĂNG KÝ TEST HỌC LỰC TIẾNG ANH 1-1</span>
             <ArrowRight className="w-3.5 h-3.5 shrink-0 text-white" />
           </span>
           <span className="font-mono text-[10.5px] tracking-wide text-amber-100 flex items-center gap-1.5 mt-0.5">
             <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0" />
-            <span className="font-semibold text-white">Chỉ còn 6 suất tuần này</span>
+            <span className="font-semibold text-white">Miễn phí - Chỉ còn 6 suất tuần này</span>
           </span>
         </button>
       </div>
