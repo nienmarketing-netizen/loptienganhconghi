@@ -20,6 +20,7 @@ import {
   Check,
   Camera,
   Upload,
+  Quote,
 } from "lucide-react";
 
 interface VslScene {
@@ -79,6 +80,16 @@ export const LandingPage: React.FC = () => {
       return "/image/lop-tieng-anh-co-nghi-thac-si-tesol.webp";
     }
   });
+  const [vslThumbnail, setVslThumbnail] = useState<string>(() => {
+    try {
+      return (
+        localStorage.getItem("co_nghi_vsl_thumbnail") ||
+        "/image/vsl-thumbnail.webp"
+      );
+    } catch {
+      return "/image/vsl-thumbnail.webp";
+    }
+  });
 
   // Form state
   const [formData, setFormData] = useState({
@@ -89,6 +100,25 @@ export const LandingPage: React.FC = () => {
     problems: ["Mất gốc hoàn toàn, học trước quên sau"],
     priorityChoice: "Đăng ký Phiên Chẩn đoán 1-1 Miễn phí (45 phút) + Nhận trọn bộ 4 Quà tặng",
   });
+
+  const handleVslThumbnailUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const res = ev.target?.result as string;
+        if (res) {
+          setVslThumbnail(res);
+          try {
+            localStorage.setItem("co_nghi_vsl_thumbnail", res);
+          } catch {
+            // ignore
+          }
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleOpenRegisterModal = () => {
     setIsModalOpen(true);
@@ -102,14 +132,6 @@ export const LandingPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 bg-grid-pattern text-slate-900 selection:bg-sky-200 selection:text-sky-900 relative overflow-x-clip font-body pb-24">
-      {/* ─────────────────────────────────────────────────────────────
-          ĐƯỜNG Ô LƯỚI NỀN KỸ THUẬT SỐ (DIGITAL GRID LINES)
-      ────────────────────────────────────────────────────────────── */}
-      <div
-        aria-hidden="true"
-        className="fixed inset-0 pointer-events-none z-0 bg-grid-lines opacity-90"
-      />
-
       {/* ─────────────────────────────────────────────────────────────
           1. HIỆU ỨNG TẢN QUANG (AMBIENT GLOW)
           1 đốm Cyan (#00ADEF) và 1 đốm Sota-Red (#C43838)
@@ -423,100 +445,197 @@ export const LandingPage: React.FC = () => {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform shrink-0" />
               </button>
             </div>
+          </div>
+        </section>
 
-            {/* ─────────────────────────────────────────────────────────────
-                KHU VỰC VSL (VIDEO SALES LETTER 3.5 PHÚT TƯƠNG TÁC THEO SHOFU)
-            ────────────────────────────────────────────────────────────── */}
-            <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-7 shadow-md hover:shadow-lg transition-all space-y-5">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-4 border-b border-slate-100">
-                <div className="flex items-center gap-2.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#00ADEF] animate-pulse" />
-                  <span className="font-mono uppercase text-xs tracking-wider font-bold text-slate-900">
-                    Master VSL (3.5 Phút): Thông Điệp Trực Tiếp Từ Cô Nghi
-                  </span>
-                </div>
-                <div className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-slate-600 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
-                  <Clock className="w-3.5 h-3.5 text-[#00ADEF]" /> 03:30 Phút Thấu Cảm
-                </div>
-              </div>
+        {/* ─────────────────────────────────────────────────────────────
+            KHU VỰC VSL (SECTION FULL-WIDTH VỚI MÀU NỀN TÁCH BIỆT & CHUYỂN TIẾP MỀM MẠI)
+        ────────────────────────────────────────────────────────────── */}
+        <section className="py-12 sm:py-16 bg-[#dce8f5] bg-grid-pattern relative">
+          <div className="w-[90%] lg:w-[80%] mx-auto space-y-6 sm:space-y-8 relative z-10">
+            {/* ── TIÊU ĐỀ SECTION RIÊNG BIỆT NẰM Ở ĐẦU TIÊN CĂN GIỮA TOÀN BỘ ── */}
+            <div className="w-full text-center max-w-5xl mx-auto">
+              <h2 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 w-full flex flex-col items-center text-center gap-1 sm:gap-2">
+                <span className="text-[21px] xs:text-[25px] sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] leading-tight text-center text-slate-900 tracking-tight">
+                  ĐỪNG VỘI ĐÓNG TIỀN CHO{" "}
+                  <span className="text-[#C43838]">TRUNG TÂM LỚN</span>
+                </span>
+                <span className="text-[21px] xs:text-[25px] sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] leading-tight text-center tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#00ADEF] via-sky-500 to-blue-600">
+                  CHO ĐẾN KHI BA MẸ XEM HẾT VIDEO 2.5 PHÚT NÀY!
+                </span>
+              </h2>
+            </div>
 
-              {/* Khung trình phát VSL Vimeo tỉ lệ 9:16 căn giữa */}
-              <div className="flex flex-col items-center">
-                <div className="relative w-full max-w-[380px] aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl border-2 border-slate-800 bg-black">
-                  <iframe
-                    src="https://player.vimeo.com/video/1237187894?title=0&byline=0&portrait=0&badge=0&autopause=0"
-                    className="w-full h-full border-0 absolute inset-0"
-                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-                    title="Master VSL (3.5 Phút): Thông Điệp Trực Tiếp Từ Cô Nghi"
-                  />
-                </div>
-
-                {/* 4 Phân đoạn tóm tắt nội dung bên dưới video */}
-                <div className="w-full max-w-xl mt-4 pt-2">
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                    {VSL_SCENES.map((scene, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => {
-                          setActiveVslIndex(idx);
-                          setIsPlayingVsl(true);
+            <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-10 items-center">
+              {/* ── CỘT TRÁI (40%): VIDEO VSL TỈ LỆ 9:16 ── */}
+              <div className="w-full lg:col-span-4 flex justify-center lg:justify-start">
+                <div className="relative w-full max-w-[320px] sm:max-w-[340px] aspect-[9/16] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.18)] bg-slate-950 group">
+                  {isPlayingVsl ? (
+                    <iframe
+                      src="https://player.vimeo.com/video/1237187894?autoplay=1&title=0&byline=0&portrait=0&badge=0&autopause=0"
+                      className="w-full h-full border-0 absolute inset-0"
+                      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                      title="Master VSL (3.5 Phút): Thông Điệp Trực Tiếp Từ Cô Nghi"
+                    />
+                  ) : (
+                    /* Thumbnail hiển thị trước khi phát */
+                    <div
+                      className="relative w-full h-full select-none"
+                      onDragOver={(e) => e.preventDefault()}
+                      onDrop={(e) => {
+                        e.preventDefault();
+                        const file = e.dataTransfer.files?.[0];
+                        if (file) {
+                          const reader = new FileReader();
+                          reader.onload = (ev) => {
+                            const res = ev.target?.result as string;
+                            if (res) {
+                              setVslThumbnail(res);
+                              try {
+                                localStorage.setItem("co_nghi_vsl_thumbnail", res);
+                              } catch {
+                                // ignore
+                              }
+                            }
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }}
+                    >
+                      <img
+                        src={vslThumbnail}
+                        alt="Thumbnail Video VSL 2.5 Phút - Cô Nghi"
+                        loading="eager"
+                        decoding="async"
+                        className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          if (!target.src.includes("lop-tieng-anh")) {
+                            target.src = "/image/lop-tieng-anh-co-nghi-thac-si-tesol.webp";
+                          }
                         }}
-                        className={`text-left p-2.5 rounded-xl text-xs transition-all border cursor-pointer ${
-                          activeVslIndex === idx && isPlayingVsl
-                            ? "bg-sky-50 text-sky-900 border-sky-300 font-bold shadow-xs"
-                            : "bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200"
-                        }`}
-                      >
-                        <div className="font-mono font-bold text-[#00ADEF] text-[11px]">{scene.timeRange}</div>
-                        <div className="truncate text-slate-800 font-medium text-[11px] mt-0.5">{scene.title}</div>
-                      </button>
-                    ))}
-                  </div>
+                      />
+                      {/* Lớp gradient nhẹ bảo vệ độ tương phản của nút Play */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/25 to-slate-950/15" />
 
-                  {isPlayingVsl && (
-                    <div className="mt-3 bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-left animate-fadeIn">
-                      <div className="flex items-center justify-between font-mono text-xs text-[#00ADEF] font-bold mb-1.5">
-                        <span>🎬 {VSL_SCENES[activeVslIndex].title} ({VSL_SCENES[activeVslIndex].timeRange})</span>
-                        <button
-                          onClick={() => setIsPlayingVsl(false)}
-                          className="text-slate-400 hover:text-slate-600 text-xs font-normal cursor-pointer"
+                      {/* Nút tải/đổi thumbnail trực tiếp từ máy tính */}
+                      <div className="absolute top-3 right-3 z-30">
+                        <label
+                          htmlFor="vsl-thumbnail-upload"
+                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-900/80 hover:bg-slate-900 text-white text-[11px] font-medium backdrop-blur-md border border-white/20 shadow-md cursor-pointer transition-all hover:scale-105 active:scale-95"
+                          title="Tải ảnh thumbnail từ máy tính"
                         >
-                          ✕ Đóng
+                          <Upload className="w-3.5 h-3.5 text-sky-400" />
+                          <span>Tải thumbnail</span>
+                        </label>
+                        <input
+                          id="vsl-thumbnail-upload"
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={handleVslThumbnailUpload}
+                        />
+                      </div>
+
+                      {/* Nút Play trung tâm */}
+                      <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
+                        <button
+                          type="button"
+                          onClick={() => setIsPlayingVsl(true)}
+                          className="relative flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#00ADEF] hover:bg-[#009cd8] active:scale-95 text-white shadow-[0_10px_30px_rgba(0,173,239,0.5)] transition-all duration-300 hover:scale-110 cursor-pointer border-2 border-white/90 group/btn"
+                          aria-label="Phát video VSL Cô Nghi"
+                        >
+                          <span className="absolute inset-0 rounded-full bg-[#00ADEF] animate-ping opacity-35 pointer-events-none" />
+                          <Play className="w-7 h-7 sm:w-8 sm:h-8 ml-1 fill-white text-white group-hover/btn:scale-110 transition-transform" />
                         </button>
                       </div>
-                      <p className="font-body text-xs text-slate-600 italic leading-relaxed">
-                        {VSL_SCENES[activeVslIndex].script}
-                      </p>
                     </div>
                   )}
+
+                  {/* Duy nhất một đường viền trắng inline thanh lịch, giảm 1/2 độ dày, khớp 100% độ cong góc bo */}
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 rounded-2xl sm:rounded-3xl border-2 sm:border-[2.5px] border-white z-20"
+                  />
                 </div>
               </div>
 
-              {/* Nút Kêu gọi Hành động Chính (CTA Shofu Style) */}
-              <div className="pt-2 flex flex-col items-center">
-                <button
-                  type="button"
-                  onClick={handleOpenRegisterModal}
-                  className="w-full sm:w-auto px-8 py-3 rounded-2xl bg-[#00ADEF] hover:bg-[#009cd8] text-white shadow-[0_10px_25px_rgba(0,173,239,0.35)] hover:shadow-[0_14px_32px_rgba(0,173,239,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-3.5 group cursor-pointer border-none outline-none"
-                >
-                  <div className="flex flex-col items-center text-center leading-snug">
-                    <span className="font-heading font-extrabold text-sm lg:text-[15px] uppercase tracking-wide">
-                      ĐĂNG KÝ PHIÊN CHẨN ĐOÁN NĂNG LỰC 1-1
+              {/* ── CỘT PHẢI (60%): HỘP THOẠI, BODY TEXT & CTA ── */}
+              <div className="w-full lg:col-span-6 space-y-4 sm:space-y-5 text-center lg:text-left">
+                {/* Hộp thoại Thông điệp với nhãn dấu ngoặc kép 50% trong 50% ngoài */}
+                <div className="relative mt-3 pt-4 sm:pt-4.5 pb-3.5 px-3.5 sm:px-4 bg-gradient-to-br from-sky-50/90 via-white to-blue-50/50 rounded-2xl border border-sky-200/90 shadow-[0_4px_16px_rgba(0,173,239,0.08)] text-left">
+                  {/* Biểu tượng dấu ngoặc kép lớn nằm 50% trong, 50% ngoài dạng nhãn */}
+                  <div className="absolute -top-4 left-4 sm:left-5 w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-[#00ADEF] to-sky-600 text-white flex items-center justify-center shadow-[0_4px_12px_rgba(0,173,239,0.35)] border-2 border-white select-none">
+                    <Quote className="w-4 h-4 fill-white text-white" />
+                  </div>
+
+                  <div className="flex flex-wrap items-center justify-between gap-1.5 pl-8 sm:pl-9 pb-2 mb-2 border-b border-sky-100">
+                    <span className="font-heading font-extrabold text-xs sm:text-sm text-slate-900">
+                      Thông điệp từ Cô Nghi
                     </span>
-                    <span className="font-body text-xs lg:text-[13px] font-medium text-sky-100 normal-case mt-0.5">
-                      Nhận bộ sổ tay ma thuật miễn phí
+                    <span className="font-mono text-[10px] sm:text-[11px] font-bold text-[#00ADEF] bg-sky-100/90 px-2 py-0.5 rounded-full border border-sky-200">
+                      Cử nhân GPA 8.17 • Thạc sĩ TESOL
                     </span>
                   </div>
-                  <ArrowRight className="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
-                </button>
 
-                <div className="mt-3 bg-slate-100 rounded-xl p-3 max-w-2xl text-center border border-slate-200">
-                  <p className="font-body text-xs text-slate-600 leading-relaxed">
-                    🔒 <strong className="text-slate-900">Cam kết:</strong> Buổi đánh giá 1-1 kéo dài 45 phút tại 866/25 Ngô Quyền hoàn toàn <strong className="text-[#00ADEF]">MIỄN PHÍ 100%</strong>. Tặng ngay Phác đồ cá nhân hóa &amp; Sổ 100 Tokens dù gia đình chưa đăng ký học.{" "}
-                    <span className="font-mono uppercase text-xs tracking-wider text-[#C43838] font-bold">
-                      Chỉ nhận 8 lịch test mới trong tuần này!
-                    </span>
-                  </p>
+                  <div className="space-y-2 font-body text-slate-700 text-xs sm:text-[13px] leading-relaxed italic">
+                    <p>
+                      &ldquo;Ba mẹ ạ, lỗi hoàn toàn không phải do các con thiếu năng lực. Trẻ ở lứa tuổi dậy thì có cái tôi rất lớn, các con cực kỳ sợ sai và sợ bị đánh giá trước đám đông...
+                    </p>
+                    <p>
+                      Môn Tiếng Anh cấp 2 đôi khi tạo ra nhiều thử thách cho các con khi lượng từ vựng ngày càng lớn. Việc ghi nhớ máy móc thường khiến các con dễ quên nhanh, dẫn đến tâm lý đối phó khi làm các bài kiểm tra trắc nghiệm tại trường...&rdquo;
+                    </p>
+                  </div>
+                </div>
+
+                {/* 3. Body Text: Ngắn gọn, đơn giản, dễ hiểu */}
+                <div className="space-y-2 pt-1 text-left font-body text-xs sm:text-sm text-slate-700 leading-relaxed">
+                  <div className="p-2.5 sm:p-3 rounded-xl bg-white/70 border border-slate-200/80 shadow-2xs flex items-start gap-2.5">
+                    <span className="text-[#C43838] font-bold shrink-0 mt-0.5">•</span>
+                    <div>
+                      <strong className="text-slate-900">Lỗi không phải do con:</strong> Học vẹt nhanh quên, lớp đông 20–30 em khiến con sợ bị chê cười và chọn cách &quot;khoanh lụi&quot; đối phó.
+                    </div>
+                  </div>
+
+                  <div className="p-2.5 sm:p-3 rounded-xl bg-white/70 border border-slate-200/80 shadow-2xs flex items-start gap-2.5">
+                    <span className="text-[#00ADEF] font-bold shrink-0 mt-0.5">•</span>
+                    <div>
+                      <strong className="text-slate-900">Trị dứt điểm đoán mò:</strong> Phương pháp <strong className="text-[#00ADEF]">&quot;Bóc tách 4 bước&quot;</strong> giúp con tự hiểu bản chất ngữ pháp và tự tin làm đề thi vào lớp 10.
+                    </div>
+                  </div>
+
+                  <div className="p-2.5 sm:p-3 rounded-xl bg-white/70 border border-slate-200/80 shadow-2xs flex items-start gap-2.5">
+                    <span className="text-amber-600 font-bold shrink-0 mt-0.5">•</span>
+                    <div>
+                      <strong className="text-slate-900">Tự giác &amp; Minh bạch:</strong> Tích 100 Tokens đổi quà tạo động lực tự học; hệ thống gửi báo cáo điểm về Zalo mẹ mỗi tối lúc 20h00.
+                    </div>
+                  </div>
+
+                  <div className="p-2.5 sm:p-3 rounded-xl bg-white/70 border border-slate-200/80 shadow-2xs flex items-start gap-2.5">
+                    <span className="text-emerald-600 font-bold shrink-0 mt-0.5">•</span>
+                    <div>
+                      <strong className="text-slate-900">Cam kết an tâm:</strong> Sĩ số tối đa 12 em/lớp, hoàn 100% học phí sau 7 ngày nếu không hợp, phụ đạo 1-1 miễn phí đến khi tiến bộ.
+                    </div>
+                  </div>
+                </div>
+
+                {/* 4. Nút Kêu gọi Hành động (CTA) */}
+                <div className="pt-2 flex flex-col items-center lg:items-start">
+                  <button
+                    type="button"
+                    onClick={handleOpenRegisterModal}
+                    className="w-full sm:w-auto px-7 py-3 rounded-2xl bg-[#00ADEF] hover:bg-[#009cd8] text-white shadow-[0_10px_25px_rgba(0,173,239,0.35)] hover:shadow-[0_14px_32px_rgba(0,173,239,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-3.5 group cursor-pointer border-none outline-none"
+                  >
+                    <div className="flex flex-col items-center sm:items-start text-center sm:text-left leading-snug">
+                      <span className="font-heading font-extrabold text-sm uppercase tracking-wide">
+                        ĐĂNG KÝ PHIÊN TEST NĂNG LỰC 1-1 (45 PHÚT)
+                      </span>
+                      <span className="font-body text-xs font-medium text-sky-100 normal-case mt-0.5">
+                        Tặng kèm Phác đồ cá nhân hóa &amp; Bộ Sổ tay Ma thuật
+                      </span>
+                    </div>
+                    <ArrowRight className="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
+                  </button>
                 </div>
               </div>
             </div>
