@@ -472,7 +472,7 @@ export const LandingPage: React.FC = () => {
                 <div className="relative w-full max-w-[320px] sm:max-w-[340px] aspect-[9/16] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.18)] bg-slate-950 group">
                   {isPlayingVsl ? (
                     <iframe
-                      src="https://player.vimeo.com/video/1237187894?autoplay=1&title=0&byline=0&portrait=0&badge=0&autopause=0"
+                      src="https://player.vimeo.com/video/1237187894?autoplay=1&playsinline=1&title=0&byline=0&portrait=0&badge=0&autopause=0"
                       className="w-full h-full border-0 absolute inset-0"
                       allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
                       title="Master VSL (3.5 Phút): Thông Điệp Trực Tiếp Từ Cô Nghi"
