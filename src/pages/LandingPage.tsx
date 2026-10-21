@@ -1479,6 +1479,25 @@ export const LandingPage: React.FC = () => {
 
           {/* 3 Thẻ Lật Như Lật Sách Đối Chiếu (Book Flip Comparison Cards) */}
           <ComparisonBookCards onRegisterClick={handleOpenRegisterModal} />
+
+          {/* ── CTA BUTTON BÊN DƯỚI BẢNG SO SÁNH (HIỂN THỊ CẢ MOBILE & DESKTOP) ── */}
+          <div className="flex flex-col items-center justify-center pt-2 sm:pt-4">
+            <button
+              type="button"
+              onClick={handleOpenRegisterModal}
+              className="w-full sm:w-auto px-4 py-2.5 sm:px-8 sm:py-3 rounded-2xl bg-[#0A78F3] hover:bg-[#096ad8] text-white shadow-[0_10px_25px_rgba(10,120,243,0.35)] hover:shadow-[0_14px_32px_rgba(10,120,243,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none"
+            >
+              <div className="flex flex-col items-center text-center leading-snug">
+                <span className="font-heading font-extrabold text-[12px] min-[390px]:text-[13px] sm:text-base uppercase tracking-tight whitespace-nowrap">
+                  ĐĂNG KÝ TEST HỌC LỰC TIẾNG ANH 1-1 MIỄN PHÍ
+                </span>
+                <span className="font-body text-[10px] min-[390px]:text-[11px] sm:text-sm font-medium text-sky-100 normal-case mt-0.5 whitespace-nowrap tracking-tight">
+                  Tặng kèm lộ trình học tập cá nhân hoá &amp; bộ sổ tay ma thuật
+                </span>
+              </div>
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
         </div>
       </section>
 
