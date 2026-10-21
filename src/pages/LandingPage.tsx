@@ -1436,17 +1436,45 @@ export const LandingPage: React.FC = () => {
         <section className="py-14 border-t border-slate-200">
           <div className="w-[90%] lg:w-[80%] mx-auto space-y-8">
             {/* Header Khối 3 */}
-            <div className="text-center max-w-3xl mx-auto space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm font-mono text-xs text-[#0A78F3] uppercase tracking-wide">
+            <div className="text-center w-full mx-auto space-y-4 sm:space-y-5">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-xs sm:text-[13px] text-[#0A78F3] font-bold">
                 <span className="w-2 h-2 rounded-full bg-[#0A78F3] animate-pulse" />
-                <span>The Unique Mechanism – Giải Pháp Độc Quyền</span>
+                <span>Giải pháp kèm cặp độc quyền</span>
               </div>
-              <h2 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-xl sm:text-2xl md:text-3xl">
-                LỚP TIẾNG ANH CÔ NGHI – TRẠM CỨU HỘ HỌC THUẬT &amp; KIẾN TẠO ĐỘNG LỰC VỚI SĨ SỐ VÀNG 12 HỌC SINH
+
+              {/* Headline 2 dòng */}
+              <h2 className="font-heading tracking-tight flex flex-col items-center gap-2.5 sm:gap-3">
+                {/* Dòng 1: Tiêu đề chính - 38px ở PC, trên mobile chia 2 dòng */}
+                <span className="text-xl min-[430px]:text-2xl sm:text-3xl lg:text-[38px] font-extrabold uppercase leading-tight text-slate-900 tracking-tight flex flex-col sm:flex-row sm:items-center sm:justify-center sm:gap-2">
+                  <span>LỚP TIẾNG ANH CÔ NGHI</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0A78F3] to-blue-600 font-black">
+                    – THẠC SĨ GIÁO DỤC TESOL
+                  </span>
+                </span>
+                {/* Dòng 2: Tiêu đề phụ - chia dòng 1 & dòng 2 */}
+                <span className="text-[14.5px] min-[430px]:text-base sm:text-lg lg:text-[20px] font-semibold text-slate-700 leading-snug normal-case flex flex-col sm:flex-row sm:items-center sm:justify-center gap-1 sm:gap-1.5">
+                  <span>Trạm cứu hộ học thuật &amp; kiến tạo động lực học tập</span>
+                  <span className="flex items-center justify-center gap-1.5">
+                    <span>với</span>
+                    <span className="bg-amber-100 text-amber-900 px-2 py-0.5 rounded-md border border-amber-300 font-bold inline-block">
+                      sĩ số vàng – tối đa 12 học sinh
+                    </span>
+                  </span>
+                </span>
               </h2>
-              <p className="font-body text-slate-600 leading-relaxed text-[15px] sm:text-base">
-                Không vận hành như một trung tâm thương mại đại trà hay một lò luyện thi nhồi nhét, Lớp Tiếng Anh Cô Nghi tại 866/25 Ngô Quyền được thiết kế theo mô hình <strong>Giám sát Vi mô (Micro-Class Mentorship)</strong>. Sự khác biệt cốt lõi dưới đây giải thích vì sao học sinh từng sợ hãi Tiếng Anh lại có thể bứt phá điểm số chỉ sau 90 ngày:
-              </p>
+
+              {/* 3 đoạn text nội dung giới thiệu - Thêm khoảng trống thoáng giữa các đoạn */}
+              <div className="space-y-3.5 sm:space-y-4 font-body text-slate-600 leading-relaxed text-[15px] sm:text-[17px] w-full mx-auto pt-2 sm:pt-3">
+                <p>
+                  Không vận hành như một <strong className="text-slate-900 font-semibold">trung tâm thương mại đại trà</strong> hay một <strong className="text-slate-900 font-semibold">lò luyện thi nhồi nhét</strong>.
+                </p>
+                <p>
+                  Nghiên cứu tâm lý giáo dục từ chương trình <strong className="text-[#0A78F3] font-semibold">Thạc sĩ TESOL</strong>, cô Nghi thiết kế lớp học theo mô hình <strong className="text-[#0A78F3] font-bold bg-sky-50 px-2 py-0.5 rounded-md border border-sky-200 inline-block">Giám sát Vi mô (Micro-Class Mentorship)</strong>.
+                </p>
+                <p>
+                  Sự khác biệt cốt lõi dưới đây giải thích vì sao học sinh từng sợ hãi Tiếng Anh lại có thể <strong className="text-[#C43838] font-bold underline decoration-[#C43838] decoration-2 underline-offset-2">bứt phá điểm số chỉ sau 90 ngày</strong>:
+                </p>
+              </div>
             </div>
 
             {/* 3 Thẻ Lật Như Lật Sách Đối Chiếu (Book Flip Comparison Cards) */}
