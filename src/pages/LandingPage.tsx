@@ -23,7 +23,14 @@ import {
   Camera,
   Upload,
   Quote,
+  TrendingUp,
+  School,
+  Heart,
+  Scale,
+  MessageCircle,
 } from "lucide-react";
+import { ComparisonBookCards } from "../components/ComparisonBookCards";
+
 
 interface VslScene {
   timeRange: string;
@@ -1036,45 +1043,391 @@ export const LandingPage: React.FC = () => {
                 </button>
               </div>
             </div>
+          </div>
+        </section>
 
-            {/* ─────────────────────────────────────────────────────────────
-                SECTION KHỐI TƯƠNG PHẢN NỀN TỐI (OFFERS/ALERTS THEO SHOFU)
-                bg-slate-900 bg-grid-pattern text-white với vòm sáng cyan mờ
-            ────────────────────────────────────────────────────────────── */}
-            <div className="relative rounded-2xl bg-slate-900 bg-grid-pattern text-white p-6 sm:p-8 md:p-10 shadow-2xl overflow-hidden border border-slate-800">
-              {/* Vòm sáng cyan mờ & đỏ Sota */}
-              <div className="absolute -top-20 -right-20 w-80 h-80 bg-[#0A78F3]/20 rounded-full blur-[120px] pointer-events-none" />
-              <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[#C43838]/20 rounded-full blur-[120px] pointer-events-none" />
+        {/* ─────────────────────────────────────────────────────────────
+            SECTION RIÊNG BIỆT FULL-WIDTH: THÔNG TIN QUAN TRỌNG DÀNH CHO PHỤ HUYNH TẠI SƠN TRÀ, ĐÀ NẴNG
+            Toàn bộ background dark trải dài full 2 bên mép màn hình, nội dung mở rộng full width
+        ────────────────────────────────────────────────────────────── */}
+        <section className="py-14 sm:py-16 bg-[#1e272e] bg-grid-pattern text-white relative overflow-hidden border-y border-slate-700/80 w-full">
+          {/* Đèn vòm quang học & chi tiết máy */}
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#0A78F3]/25 rounded-full blur-[130px] pointer-events-none" />
+          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#ff4757]/20 rounded-full blur-[130px] pointer-events-none" />
 
-              <div className="relative z-10 space-y-4">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-slate-800">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#C43838] animate-pulse" />
-                    <h4 className="font-heading font-extrabold uppercase tracking-tight text-white text-sm sm:text-base">
-                      Sự Thật Cảnh Tỉnh Dành Cho Phụ Huynh Tại Quận Sơn Trà
-                    </h4>
+          {/* Chi tiết ốc vít kỹ thuật ở 4 góc */}
+          <div className="absolute top-3 left-3 w-2 h-2 rounded-full bg-slate-600 shadow-inner" />
+          <div className="absolute top-3 right-3 w-2 h-2 rounded-full bg-slate-600 shadow-inner" />
+          <div className="absolute bottom-3 left-3 w-2 h-2 rounded-full bg-slate-600 shadow-inner" />
+          <div className="absolute bottom-3 right-3 w-2 h-2 rounded-full bg-slate-600 shadow-inner" />
+
+          <div className="w-[92%] sm:w-[90%] lg:w-[80%] mx-auto relative z-10 space-y-6 sm:space-y-8">
+                {/* ── HEADER CỦA SECTION ── */}
+                <div className="text-center space-y-4 pb-6 border-b border-slate-700/80 flex flex-col items-center justify-center">
+                  {/* 1. Badge Dữ liệu thi lớp 10 năm 2026 (text và borderline màu trắng) */}
+                  <div className="flex justify-center items-center">
+                    <span className="inline-flex items-center gap-2 font-sans text-xs sm:text-[13px] font-bold px-4 py-1.5 rounded-full bg-white/10 text-white border border-white/60 shadow-[0_0_15px_rgba(255,255,255,0.15)] backdrop-blur-xs">
+                      <span className="w-2 h-2 rounded-full bg-white animate-pulse shrink-0 shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
+                      <span>Dữ liệu thi lớp 10 năm 2026</span>
+                    </span>
                   </div>
-                  <span className="font-mono text-xs uppercase tracking-wider font-bold px-3 py-1 rounded-full bg-[#C43838] text-white">
-                    Dữ Liệu Thi Lớp 10 Năm 2026
-                  </span>
+
+                  {/* 2. Tiêu đề chính: 38px ở PC, Mobile 3 dòng, PC 2 dòng */}
+                  <h3 className="font-heading font-extrabold uppercase tracking-tight text-white text-[22px] min-[390px]:text-[25px] sm:text-[30px] md:text-[38px] lg:text-[38px] xl:text-[38px] leading-tight sm:leading-snug text-center max-w-4xl mx-auto flex flex-col items-center gap-1.5 sm:gap-2.5">
+                    {/* Dòng 1 & Dòng 2 trên mobile; gộp chung dòng 1 trên PC */}
+                    <span className="text-[22px] min-[390px]:text-[25px] sm:text-[30px] md:text-[38px] lg:text-[38px] leading-tight text-center">
+                      <span className="block sm:inline">
+                        THÔNG TIN{" "}
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-400 font-black">
+                          QUAN TRỌNG
+                        </span>
+                      </span>
+                      <span className="block sm:inline sm:ml-2">
+                        DÀNH CHO PHỤ HUYNH
+                      </span>
+                    </span>
+                    {/* Dòng 3 trên mobile; dòng 2 trên PC */}
+                    <span className="text-[22px] min-[390px]:text-[25px] sm:text-[30px] md:text-[38px] lg:text-[38px] leading-tight normal-case text-center">
+                      <span className="text-slate-200 lowercase font-medium">tại </span>
+                      <span className="uppercase text-[#ff6b81] font-black underline decoration-[#ff4757]/80 decoration-2 sm:decoration-4 underline-offset-4">
+                        SƠN TRÀ, ĐÀ NẴNG
+                      </span>
+                    </span>
+                  </h3>
+
+                  {/* 3. Tiêu đề phụ: Mobile 2 dòng (Dòng 1: Đừng để sự chủ quan đánh mất, Dòng 2: tấm vé vào lớp 10 công lập của con!) */}
+                  <div className="text-center max-w-3xl mx-auto text-sm sm:text-base md:text-lg lg:text-xl font-medium text-slate-200 leading-snug">
+                    <span className="block sm:inline">
+                      <span>Đừng để </span>
+                      <strong className="text-[#ff6b81] font-bold bg-rose-950/70 px-2 py-0.5 rounded-lg border border-rose-800/80 shadow-2xs">
+                        sự chủ quan
+                      </strong>
+                      <span> đánh mất </span>
+                    </span>
+                    <span className="block sm:inline">
+                      <strong className="text-amber-300 font-bold underline decoration-amber-400/80 decoration-2 underline-offset-2">
+                        tấm vé vào lớp 10 công lập
+                      </strong>
+                      <span> của con!</span>
+                    </span>
+                  </div>
                 </div>
 
-                <p className="font-body text-slate-300 leading-relaxed text-[15px] sm:text-base">
-                  <strong className="text-white">Đừng để sự chủ quan đánh mất tấm vé vào Lớp 10 Công lập của con!</strong> Trong kỳ thi tuyển sinh vào lớp 10 tại Đà Nẵng năm học 2026–2027, điểm chuẩn các trường THPT công lập trên địa bàn quận Sơn Trà đã tăng vọt: <strong className="text-[#0A78F3]">THPT Hoàng Hoa Thám lên tới 33,25 điểm</strong>, <strong className="text-[#0A78F3]">THPT Sơn Trà vọt lên 27,00 điểm (+7,75đ)</strong>, và <strong className="text-[#0A78F3]">THPT Ngô Quyền tăng gấp đôi lên 24,00 điểm (+13,00đ)</strong>.
-                </p>
+                {/* ── GRID: MOBILE 2 HÀNG RIÊNG (GRID-COLS-1), PC 2 CỘT (MD:GRID-COLS-2) ── */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 items-stretch">
+                  {/* ════════════════════════════════════════════════════════════════
+                      KHỐI 1: BIỂU ĐỒ CỘT ĐIỂM CHUẨN CŨ VÀ MỚI (3 TRƯỜNG THPT SƠN TRÀ)
+                      ════════════════════════════════════════════════════════════════ */}
+                  <div className="bg-slate-800/90 rounded-2xl p-4 sm:p-6 border border-slate-700/80 shadow-lg flex flex-col justify-between">
+                    <div>
+                      {/* Header Cột 1 */}
+                      <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-700/80">
+                        <div className="flex items-center gap-2">
+                          <School className="w-5 h-5 sm:w-6 sm:h-6 text-sky-400 shrink-0" />
+                          <h4 className="font-heading font-extrabold text-base sm:text-lg md:text-xl uppercase tracking-tight text-white leading-tight">
+                            Biểu đồ điểm chuẩn 2026-2027
+                          </h4>
+                        </div>
+                      </div>
 
-                <p className="font-body text-slate-300 leading-relaxed text-[15px] sm:text-base">
-                  Với quy chế tính điểm mới đặt môn Tiếng Anh ngang hàng tuyệt đối với môn Toán và Văn (hệ số 1:1:1) cùng cấu trúc đề thi 36 câu khắc nghiệt của Sở GD&amp;ĐT Đà Nẵng, một học sinh giữ thói quen &quot;khoanh lụi&quot; sẽ đối mặt trực tiếp với nguy cơ rớt trường công lập, tạo ra gánh nặng học phí trường tư thục lên đến hàng trăm triệu đồng trong 3 năm cấp 3.
-                </p>
+                      {/* Chú thích màu cột (Legend) */}
+                      <div className="flex items-center justify-center gap-5 my-3 text-xs sm:text-sm font-mono">
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-3.5 h-3.5 rounded-xs bg-slate-600 inline-block border border-slate-500" />
+                          <span className="text-slate-300 font-medium">Điểm cũ</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-3.5 h-3.5 rounded-xs bg-gradient-to-t from-red-600 to-[#ff4757] inline-block border border-white/40 shadow-xs" />
+                          <span className="text-white font-bold">Năm 2026</span>
+                        </div>
+                      </div>
 
-                <div className="p-4 bg-slate-800/80 rounded-xl border border-slate-700/80 backdrop-blur-sm">
-                  <p className="font-body text-[14.5px] sm:text-[15.5px] text-slate-200 italic leading-relaxed">
-                    ❤️ <strong className="text-[#0A78F3]">Nhưng lỗi hoàn toàn không phải do các con thiếu thông minh!</strong> Tiếng lòng sâu thẳm của các con là: <em>&quot;Con không ghét Tiếng Anh, con chỉ sợ cảm giác bất lực khi không hiểu bài và sợ ánh mắt thất vọng khi mẹ đứng sau quát mắng&quot;</em>. Thứ duy nhất con đang thiếu là một <strong className="text-white">PHƯƠNG PHÁP BÓC TÁCH ĐÚNG BẢN CHẤT</strong> và một <strong className="text-white">MÔI TRƯỜNG AN TOÀN ĐỂ XÂY DỰNG LẠI SỰ TỰ TIN</strong>.
-                  </p>
+                      {/* KHUNG BIỂU ĐỒ CỘT (VERTICAL BAR CHART) */}
+                      <div className="relative pt-7 pb-4 px-3 sm:px-4 bg-slate-900/90 rounded-xl border border-slate-700/80 shadow-inner">
+                        {/* Lưới đường kẻ ngang tham chiếu */}
+                        <div className="absolute inset-x-3 top-7 border-b border-dashed border-slate-700/60 pointer-events-none" />
+                        <div className="absolute inset-x-3 top-24 sm:top-28 border-b border-dashed border-slate-700/60 pointer-events-none" />
+
+                        {/* 3 Cụm Cột đại diện cho 3 trường */}
+                        <div className="grid grid-cols-3 gap-2 sm:gap-4 items-end">
+                          {/* Cụm 1: THPT Ngô Quyền */}
+                          <div className="flex flex-col items-center">
+                            {/* Cột điểm */}
+                            <div className="flex items-end justify-center gap-1.5 sm:gap-2.5 w-full h-32 sm:h-40 pb-1">
+                              {/* Cột Cũ: 11.00đ */}
+                              <div className="flex flex-col items-center flex-1 max-w-[28px] sm:max-w-[36px]">
+                                <span className="text-xs sm:text-sm font-mono text-slate-300 font-semibold leading-none mb-1">
+                                  11
+                                </span>
+                                <div
+                                  style={{ height: "42px" }}
+                                  className="w-full bg-slate-600 rounded-t-md border border-slate-500/80 transition-all"
+                                  title="THPT Ngô Quyền điểm cũ: 11.00đ"
+                                />
+                              </div>
+                              {/* Cột Mới: 24.00đ */}
+                              <div className="flex flex-col items-center flex-1 max-w-[28px] sm:max-w-[36px]">
+                                <span className="text-sm sm:text-base font-mono font-black text-amber-300 leading-none mb-1">
+                                  24
+                                </span>
+                                <div
+                                  style={{ height: "92px" }}
+                                  className="w-full bg-gradient-to-t from-amber-600 to-amber-400 rounded-t-md border border-amber-300/60 shadow-[0_0_10px_rgba(251,191,36,0.35)] transition-all"
+                                  title="THPT Ngô Quyền điểm mới: 24.00đ"
+                                />
+                              </div>
+                            </div>
+                            {/* Đường chân biểu đồ & Tên trường trọn vẹn bên trong */}
+                            <div className="w-full border-t border-slate-700/80 pt-2 text-center">
+                              <span className="text-xs sm:text-sm md:text-base font-bold text-slate-100 leading-tight block">
+                                Ngô Quyền
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Cụm 2: THPT Sơn Trà */}
+                          <div className="flex flex-col items-center">
+                            {/* Cột điểm */}
+                            <div className="flex items-end justify-center gap-1.5 sm:gap-2.5 w-full h-32 sm:h-40 pb-1">
+                              {/* Cột Cũ: 19.25đ */}
+                              <div className="flex flex-col items-center flex-1 max-w-[28px] sm:max-w-[36px]">
+                                <span className="text-xs sm:text-sm font-mono text-slate-300 font-semibold leading-none mb-1">
+                                  19.2
+                                </span>
+                                <div
+                                  style={{ height: "72px" }}
+                                  className="w-full bg-slate-600 rounded-t-md border border-slate-500/80 transition-all"
+                                  title="THPT Sơn Trà điểm cũ: 19.25đ"
+                                />
+                              </div>
+                              {/* Cột Mới: 27.00đ */}
+                              <div className="flex flex-col items-center flex-1 max-w-[28px] sm:max-w-[36px]">
+                                <span className="text-sm sm:text-base font-mono font-black text-[#ff6b81] leading-none mb-1">
+                                  27
+                                </span>
+                                <div
+                                  style={{ height: "106px" }}
+                                  className="w-full bg-gradient-to-t from-red-600 to-[#ff4757] rounded-t-md border border-rose-300/60 shadow-[0_0_10px_rgba(255,71,87,0.4)] transition-all"
+                                  title="THPT Sơn Trà điểm mới: 27.00đ"
+                                />
+                              </div>
+                            </div>
+                            {/* Đường chân biểu đồ & Tên trường trọn vẹn bên trong */}
+                            <div className="w-full border-t border-slate-700/80 pt-2 text-center">
+                              <span className="text-xs sm:text-sm md:text-base font-bold text-white leading-tight block">
+                                Sơn Trà
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Cụm 3: THPT Hoàng Hoa Thám */}
+                          <div className="flex flex-col items-center">
+                            {/* Cột điểm */}
+                            <div className="flex items-end justify-center gap-1.5 sm:gap-2.5 w-full h-32 sm:h-40 pb-1">
+                              {/* Cột Cũ: 31.00đ */}
+                              <div className="flex flex-col items-center flex-1 max-w-[28px] sm:max-w-[36px]">
+                                <span className="text-xs sm:text-sm font-mono text-slate-300 font-semibold leading-none mb-1">
+                                  31
+                                </span>
+                                <div
+                                  style={{ height: "118px" }}
+                                  className="w-full bg-slate-600 rounded-t-md border border-slate-500/80 transition-all"
+                                  title="THPT Hoàng Hoa Thám điểm cũ: 31.00đ"
+                                />
+                              </div>
+                              {/* Cột Mới: 33.25đ */}
+                              <div className="flex flex-col items-center flex-1 max-w-[28px] sm:max-w-[36px]">
+                                <span className="text-sm sm:text-base font-mono font-black text-sky-400 leading-none mb-1">
+                                  33.2
+                                </span>
+                                <div
+                                  style={{ height: "128px" }}
+                                  className="w-full bg-gradient-to-t from-blue-600 via-sky-500 to-sky-400 rounded-t-md border border-sky-300/60 shadow-[0_0_10px_rgba(56,189,248,0.4)] transition-all"
+                                  title="THPT Hoàng Hoa Thám điểm mới: 33.25đ"
+                                />
+                              </div>
+                            </div>
+                            {/* Đường chân biểu đồ & Tên trường trọn vẹn bên trong */}
+                            <div className="w-full border-t border-slate-700/80 pt-2 text-center">
+                              <span className="text-xs sm:text-sm md:text-base font-bold text-sky-300 leading-tight block">
+                                H.H.Thám
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* KHUNG THÔNG TIN GHI CHÚ BÊN DƯỚI BIỂU ĐỒ */}
+                    <div className="mt-3 sm:mt-4 pt-3 border-t border-slate-700/80">
+                      <div className="p-3 sm:p-4 rounded-xl bg-slate-900/80 border border-slate-700/70 text-center">
+                        <p className="font-body text-[14.5px] sm:text-base text-slate-200 leading-relaxed">
+                          Trong kỳ thi tuyển sinh vào lớp 10 tại Đà Nẵng năm học 2026–2027, điểm chuẩn các trường THPT công lập trên địa bàn quận Sơn Trà đã <strong className="text-[#ff6b81] font-bold">tăng vọt</strong>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* ════════════════════════════════════════════════════════════════
+                      KHỐI 2: SƠ ĐỒ & BẢNG BIỂU MA TRẬN RỦI RO QUY CHẾ MỚI "KHOANH LỤI"
+                      ════════════════════════════════════════════════════════════════ */}
+                  <div className="bg-slate-800/90 rounded-2xl p-4 sm:p-6 border border-slate-700/80 shadow-lg flex flex-col justify-between">
+                    <div>
+                      {/* Header Cột 2 */}
+                      <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-700/80">
+                        <div className="flex items-center gap-2">
+                          <Scale className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 shrink-0" />
+                          <h4 className="font-heading font-extrabold text-base sm:text-lg md:text-xl uppercase tracking-tight text-white leading-tight">
+                            Quy chế mới &amp; Ma trận rủi ro
+                          </h4>
+                        </div>
+                      </div>
+
+                      {/* BẢNG BIỂU SO SÁNH: TRƯỚC ĐÂY VS NĂM 2026 */}
+                      <div className="my-3 sm:my-4 bg-slate-900/90 rounded-xl p-3 sm:p-4 border border-slate-700/80 space-y-2.5">
+                        {/* Dòng 1: Quy chế tính điểm */}
+                        <div className="flex items-center justify-between gap-2 pb-2 border-b border-slate-800">
+                          <div className="text-[14px] sm:text-[15.5px] text-slate-200 font-medium flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-sky-400 shrink-0" />
+                            <span>Hệ số điểm:</span>
+                          </div>
+                          <div className="text-[13.5px] sm:text-[15px] font-mono font-bold text-sky-300 bg-sky-950/80 px-2.5 py-1 rounded-md border border-sky-800">
+                            Toán 1 : Văn 1 : Anh 1
+                          </div>
+                        </div>
+
+                        {/* Dòng 2: Cấu trúc đề Đà Nẵng */}
+                        <div className="flex items-center justify-between gap-2 pb-2 border-b border-slate-800">
+                          <div className="text-[14px] sm:text-[15.5px] text-slate-200 font-medium flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
+                            <span>Đề thi Sở GD:</span>
+                          </div>
+                          <div className="text-[13.5px] sm:text-[15px] font-mono font-bold text-amber-300 bg-amber-950/80 px-2.5 py-1 rounded-md border border-amber-800">
+                            36 câu (Tự viết từ + dịch)
+                          </div>
+                        </div>
+
+                        {/* Dòng 3: Đánh giá khả năng "khoanh lụi" */}
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="text-[14px] sm:text-[15.5px] text-slate-200 font-medium flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-[#ff4757] shrink-0" />
+                            <span>Cơ hội may mắn:</span>
+                          </div>
+                          <div className="text-[13.5px] sm:text-[15px] font-mono font-bold text-rose-300 bg-rose-950/80 px-2.5 py-1 rounded-md border border-rose-800">
+                            0% (Triệt tiêu khoanh lụi)
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* KHUNG THÔNG TIN CẢNH BÁO / TỔNG KẾT RỦI RO */}
+                    <div className="mt-3 sm:mt-4 pt-3 border-t border-slate-700/80">
+                      <div className="p-3 sm:p-4 rounded-xl bg-gradient-to-br from-rose-950/40 via-slate-900/90 to-slate-900/90 border border-rose-900/60 shadow-inner">
+                        <p className="font-body text-[14.5px] sm:text-base text-slate-200 leading-relaxed text-center sm:text-left">
+                          Với <strong className="text-amber-300 font-bold">quy chế mới (hệ số 1:1:1)</strong> cùng cấu trúc đề 36 câu khắt khe, thói quen <strong className="text-[#ff6b81] font-bold">"khoanh lụi"</strong> trực tiếp đẩy học sinh vào nguy cơ <strong className="text-rose-200 font-bold">rớt trường công lập</strong> — tạo gánh nặng học phí trường tư <strong className="text-amber-300 font-extrabold">hàng trăm triệu đồng</strong> suốt 3 năm cấp 3.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* ── KHỐI 3: LỜI TÂM SỰ CỦA CON & GIẢI PHÁP ── */}
+                <div className="space-y-4 sm:space-y-5 pt-2">
+                  {/* Bong bóng trò chuyện của con (Speech Bubble) */}
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    {/* Avatar con */}
+                    <div className="shrink-0 flex flex-col items-center">
+                      <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 text-slate-950 font-bold flex items-center justify-center shadow-md border-2 border-white/80">
+                        <span className="text-base sm:text-lg">👦</span>
+                      </div>
+                      <span className="text-[10px] font-mono text-slate-400 mt-1 whitespace-nowrap">Con yêu</span>
+                    </div>
+
+                    {/* Bong bóng chat */}
+                    <div className="relative flex-1 bg-white text-slate-800 p-4 sm:p-5 rounded-2xl rounded-tl-none shadow-lg border border-slate-200">
+                      {/* Mũi nhọn speech bubble */}
+                      <div className="absolute top-0 -left-2 w-0 h-0 border-t-[8px] border-t-white border-l-[8px] border-l-transparent" />
+                      
+                      <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-amber-700 mb-1.5">
+                        <Quote className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
+                        <span>Tâm sự của con</span>
+                      </div>
+                      
+                      <p className="font-body text-[15px] sm:text-[17px] text-slate-800 leading-relaxed italic font-medium">
+                        &ldquo;Con không ghét Tiếng Anh, con chỉ sợ cảm giác bất lực khi không hiểu bài và sợ ánh mắt thất vọng khi mẹ đứng sau quát mắng.&rdquo;
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Lời giải đáp & Thấu hiểu ấm áp từ Cô Nghi */}
+                  <div className="p-3.5 sm:p-6 rounded-2xl bg-slate-800/90 border border-slate-700/80 shadow-md text-center flex flex-col items-center">
+                    {/* Badge Thạc sĩ TESOL (đã bỏ icon) */}
+                    {/* Badge Thạc sĩ TESOL (2 dòng trên mobile) */}
+                    <div className="inline-flex flex-col sm:flex-row items-center px-3.5 py-1.5 sm:py-1 rounded-xl sm:rounded-full bg-slate-700/80 border border-slate-600 text-sky-300 text-xs sm:text-sm font-semibold mb-3 shadow-2xs text-center leading-snug">
+                      <span className="block sm:inline">Nghiên cứu tâm lý giáo dục</span>
+                      <span className="hidden sm:inline"> </span>
+                      <span className="block sm:inline">từ chương trình Thạc sĩ TESOL cho thấy</span>
+                    </div>
+
+                    {/* Text nhỏ phía trên */}
+                    <p className="font-body text-xs sm:text-sm text-slate-300 font-medium mb-1">
+                      Con chưa học tốt môn Tiếng Anh
+                    </p>
+
+                    {/* Dòng 1: Viết hoa toàn bộ */}
+                    <p className="font-heading font-black uppercase text-[13px] min-[360px]:text-[14px] min-[390px]:text-[15.5px] sm:text-2xl md:text-[26px] text-white tracking-tight leading-snug whitespace-nowrap px-0.5">
+                      KHÔNG PHẢI DO CON THIẾU THÔNG MINH.
+                    </p>
+
+                    {/* Dòng 2: Thứ duy nhất con đang thiếu là */}
+                    <p className="font-body text-xs sm:text-base text-slate-300 italic mt-2">
+                      Thứ duy nhất con đang thiếu là
+                    </p>
+
+                    {/* Dòng 3: PHƯƠNG PHÁP KÈM CẶP BÓC TÁCH ĐÚNG BẢN CHẤT (2 dòng trên mobile) */}
+                    <div className="mt-2.5 w-full sm:w-auto">
+                      <span className="inline-block px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-sky-950/80 border border-sky-500/50 text-sky-300 font-heading font-extrabold text-[12.5px] min-[370px]:text-[13.5px] sm:text-base md:text-lg tracking-wide shadow-sm text-center leading-snug">
+                        <span className="block sm:inline">PHƯƠNG PHÁP KÈM CẶP</span>
+                        <span className="hidden sm:inline"> </span>
+                        <span className="block sm:inline">BÓC TÁCH ĐÚNG BẢN CHẤT</span>
+                      </span>
+                    </div>
+
+                    {/* Dòng 4: và */}
+                    <span className="font-body text-xs sm:text-sm text-slate-400 my-0.5 sm:my-1 font-medium">
+                      và
+                    </span>
+
+                    {/* Dòng 5: MÔI TRƯỜNG AN TOÀN ĐỂ XÂY DỰNG LẠI SỰ TỰ TIN. (2 dòng trên mobile) */}
+                    <div className="w-full sm:w-auto">
+                      <span className="inline-block px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-amber-950/80 border border-amber-500/50 text-amber-300 font-heading font-extrabold text-[12.5px] min-[370px]:text-[13.5px] sm:text-base md:text-lg tracking-wide shadow-sm text-center leading-snug">
+                        <span className="block sm:inline">MÔI TRƯỜNG AN TOÀN</span>
+                        <span className="hidden sm:inline"> </span>
+                        <span className="block sm:inline">ĐỂ XÂY DỰNG LẠI SỰ TỰ TIN.</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* CTA Button màu xanh đồng bộ */}
+                  <div className="flex flex-col items-center justify-center pt-2">
+                    <button
+                      type="button"
+                      onClick={handleOpenRegisterModal}
+                      className="w-full sm:w-auto px-5 py-3 sm:px-8 sm:py-3.5 rounded-2xl bg-[#0A78F3] hover:bg-[#096ad8] text-white shadow-[0_10px_25px_rgba(10,120,243,0.35)] hover:shadow-[0_14px_32px_rgba(10,120,243,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none"
+                    >
+                      <div className="flex flex-col items-center text-center leading-snug">
+                        <span className="font-heading font-extrabold text-[12.5px] min-[390px]:text-[13.5px] sm:text-base uppercase tracking-tight whitespace-nowrap">
+                          ĐĂNG KÝ TEST HỌC LỰC TIẾNG ANH 1-1 MIỄN PHÍ
+                        </span>
+                        <span className="font-body text-[10.5px] min-[390px]:text-[11.5px] sm:text-sm font-medium text-sky-100 normal-case mt-0.5 whitespace-nowrap tracking-tight">
+                          Tặng kèm lộ trình học tập cá nhân hoá &amp; bộ sổ tay ma thuật
+                        </span>
+                      </div>
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
         </section>
 
         {/* ─────────────────────────────────────────────────────────────
@@ -1096,93 +1449,9 @@ export const LandingPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Bảng đối chiếu 3 cột (Shofu Table Card) */}
-            <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-7 shadow-md overflow-x-auto">
-              <table className="w-full min-w-[640px] text-left border-collapse">
-                <thead>
-                  <tr className="border-b border-slate-200">
-                    <th className="py-3 px-3 font-mono text-xs sm:text-[13.5px] uppercase tracking-wider text-slate-400 w-[22%]">
-                      Tiêu Chí Đối Chiếu
-                    </th>
-                    <th className="py-3 px-3 font-mono text-xs sm:text-[13.5px] uppercase tracking-wider text-slate-600 w-[26%] bg-slate-50 rounded-t-xl">
-                      Lớp Đại Trà (25–30 em)
-                    </th>
-                    <th className="py-3 px-3 font-mono text-xs sm:text-[13.5px] uppercase tracking-wider text-slate-600 w-[26%]">
-                      Trung Tâm Thương Mại Lớn
-                    </th>
-                    <th className="py-3 px-3 font-mono text-xs sm:text-[13.5px] uppercase tracking-wider font-bold text-white w-[26%] bg-[#0A78F3] rounded-t-xl shadow-xs">
-                      Lớp Cô Nghi (Tối đa 12 em)
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100 text-sm sm:text-[15px] leading-relaxed">
-                  <tr>
-                    <td className="py-4 px-3 font-heading font-extrabold text-slate-900 text-sm sm:text-[15.5px]">Mức độ quan tâm &amp; Sửa lỗi</td>
-                    <td className="py-4 px-3 font-body text-slate-600 bg-slate-50/50">
-                      Giáo viên chép đáp án lên bảng; học sinh yếu ngồi bàn cuối giấu dốt, chép bài đối phó.
-                    </td>
-                    <td className="py-4 px-3 font-body text-slate-600">
-                      Học phí đắt đỏ nhưng lớp đông, thời gian chết lớn; không sửa chi tiết ngữ pháp.
-                    </td>
-                    <td className="py-4 px-3 font-body font-semibold text-slate-900 bg-sky-50/60">
-                      ✨ <strong className="text-[#0A78F3]">Kèm vi mô 1-1 từng em:</strong> Cô Nghi trực tiếp bắt bệnh và sửa tỉ mỉ từng lỗi sai ngay tại bàn.
-                    </td>
-                  </tr>
+            {/* 3 Thẻ Lật Như Lật Sách Đối Chiếu (Book Flip Comparison Cards) */}
+            <ComparisonBookCards onRegisterClick={handleOpenRegisterModal} />
 
-                  <tr>
-                    <td className="py-4 px-3 font-heading font-extrabold text-slate-900 text-sm sm:text-[15.5px]">Phương pháp xử lý bài tập</td>
-                    <td className="py-4 px-3 font-body text-slate-600 bg-slate-50/50">
-                      Giải đề số lượng lớn theo kiểu học vẹt công thức; học sinh tiếp tục khoanh lụi.
-                    </td>
-                    <td className="py-4 px-3 font-body text-slate-600">
-                      Tập trung nghe nói bề nổi; bỏ trống hoàn toàn kỹ năng Word Form và Writing trên trường.
-                    </td>
-                    <td className="py-4 px-3 font-body font-semibold text-slate-900 bg-sky-50/60">
-                      ✨ <strong className="text-[#0A78F3]">&quot;Bóc tách 4 bước&quot; &amp; &quot;Dịch bắt buộc&quot;:</strong> Hiểu sâu bản chất, giải thích được lý do chọn đáp án.
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td className="py-4 px-3 font-heading font-extrabold text-slate-900 text-sm sm:text-[15.5px]">Tâm lý &amp; Động lực của con</td>
-                    <td className="py-4 px-3 font-body text-slate-600 bg-slate-50/50">
-                      Căng thẳng, sợ bị gọi tên trả bài, dễ chán nản và bỏ cuộc.
-                    </td>
-                    <td className="py-4 px-3 font-body text-slate-600">
-                      Vui vẻ lúc chơi trò chơi nhưng về nhà vẫn sợ đề kiểm tra trên trường.
-                    </td>
-                    <td className="py-4 px-3 font-body font-semibold text-slate-900 bg-sky-50/60">
-                      ✨ <strong className="text-[#0A78F3]">Chữa lành tâm lý &amp; Game hóa 100 Tokens:</strong> Không la mắng; kích hoạt động lực tự giác từ bên trong.
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td className="py-4 px-3 font-heading font-extrabold text-slate-900 text-sm sm:text-[15.5px]">Bám sát đề thi tại Đà Nẵng</td>
-                    <td className="py-4 px-3 font-body text-slate-600 bg-slate-50/50">
-                      Tài liệu chung chung, thiếu tính cập nhật theo từng trường cụ thể.
-                    </td>
-                    <td className="py-4 px-3 font-body text-slate-600">
-                      Giáo trình quốc tế xa rời cấu trúc thi của Sở GD&amp;ĐT Đà Nẵng.
-                    </td>
-                    <td className="py-4 px-3 font-body font-semibold text-slate-900 bg-sky-50/60">
-                      ✨ <strong className="text-[#0A78F3]">Thực chiến 100% Sơn Trà:</strong> Sửa trọn bộ đề cương các trường THCS Lê Độ, Ngô Quyền, Nguyễn Chí Thanh...
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td className="py-4 px-3 font-heading font-extrabold text-slate-900 text-sm sm:text-[15.5px]">Vai trò của Phụ huynh</td>
-                    <td className="py-4 px-3 font-body text-slate-600 bg-slate-50/50">
-                      Mẹ không nắm được tình hình học của con cho đến khi nhận điểm thi thấp.
-                    </td>
-                    <td className="py-4 px-3 font-body text-slate-600">
-                      Tư vấn viên chỉ gọi điện khi đến kỳ đóng tiền khóa mới.
-                    </td>
-                    <td className="py-4 px-3 font-body font-semibold text-slate-900 bg-sky-50/60">
-                      ✨ <strong className="text-[#0A78F3]">LMS tự động báo cáo qua Zalo lúc 20h00</strong> + Kênh Cứu trợ SOS 1:1 giải bài tập tối cho con.
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
 
             {/* 5 Vũ Khí Sư Phạm Độc Quyền (Shofu Cards) */}
             <div className="space-y-4">
