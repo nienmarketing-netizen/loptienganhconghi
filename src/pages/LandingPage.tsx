@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Sparkles,
   ShieldCheck,
@@ -14,7 +14,9 @@ import {
   Volume2,
   FileText,
   Smartphone,
+  ChevronLeft,
   ChevronRight,
+  ChevronDown,
   MapPin,
   X,
   Check,
@@ -65,6 +67,56 @@ const VSL_SCENES: VslScene[] = [
   },
 ];
 
+const SYMPTOMS_DATA: {
+  id: string;
+  tag: string;
+  title: string;
+  image?: string;
+  behavior: string;
+  consequence: string;
+}[] = [
+  {
+    id: "01",
+    tag: "Triệu chứng học thuật #1",
+    title: 'Học trước quên sau, "bay màu" kiến thức trong phòng thi',
+    image: "",
+    behavior:
+      "Ở nhà mẹ bắt ngồi học thuộc lòng từ vựng hàng giờ đồng hồ, nhưng hôm sau lên lớp kiểm tra 15 phút hay 1 tiết thì con quên sạch toàn bộ, nhìn trang giấy trắng mà không biết viết gì.",
+    consequence:
+      "Con rơi vào trạng thái bất lực học thuật, tin rằng bản thân không có năng khiếu ngoại ngữ và buông xuôi từ sớm.",
+  },
+  {
+    id: "02",
+    tag: "Triệu chứng học thuật #2",
+    title: 'Thói quen "Khoanh lụi" trắc nghiệm theo cảm tính',
+    image: "",
+    behavior:
+      'Mỗi khi làm đề cương, con chỉ mất 5 phút để đánh dấu bừa vào các đáp án A, B, C, D cho xong nhiệm vụ. Khi được hỏi "Vì sao con chọn câu này?", con hoàn toàn im lặng vì không dịch được câu và không hiểu bản chất ngữ pháp.',
+    consequence:
+      "Điểm kiểm tra định kỳ rơi tự do xuống mức 3–4 điểm, kéo tụt xếp loại học bạ THCS và mất điểm xét tuyển lớp 10.",
+  },
+  {
+    id: "03",
+    tag: "Triệu chứng tâm lý #3",
+    title: "Tâm lý sợ sai, thu mình và chống đối tuổi dậy thì",
+    image: "",
+    behavior:
+      "Khi mẹ đi làm về mệt mỏi và bắt đầu tra khảo, nhắc nhở, con liền tỏ thái độ cáu gắt, giấu giếm bài kiểm tra và đóng sập cửa phòng.",
+    consequence:
+      'Bữa tối gia đình luôn ngột ngạt; người mẹ bị kiệt sức trong vai trò "cảnh sát học tập", khoảng cách mẹ con ngày càng xa cách.',
+  },
+  {
+    id: "04",
+    tag: "Triệu chứng sai lầm #4",
+    title: "Mất tiền oan tại các trung tâm hào nhoáng và lớp đại trà",
+    image: "",
+    behavior:
+      'Gia đình từng chi hàng chục triệu đồng cho các trung tâm lớn hoặc học với giáo viên nước ngoài, nhưng lớp học quá đông (20–30 học sinh) khiến con dễ dàng "ẩn nấp" ở bàn cuối.',
+    consequence:
+      'Thời gian trống quá lớn, giáo viên không thể kèm sát từng lỗi chia động từ, khiến con đi học như "vịt nghe sấm", tiền mất mà điểm dậm chân tại chỗ.',
+  },
+];
+
 export const LandingPage: React.FC = () => {
   const [isPlayingVsl, setIsPlayingVsl] = useState(false);
   const [isVslMuted, setIsVslMuted] = useState(true);
@@ -112,6 +164,77 @@ export const LandingPage: React.FC = () => {
     priorityChoice: "Đăng ký Phiên Chẩn đoán 1-1 Miễn phí (45 phút) + Nhận trọn bộ 4 Quà tặng",
   });
 
+  // State cho slide 4 triệu chứng (cuộn tròn liên tục 1->4->1, PC 2 thẻ, Mobile full-width 1 thẻ)
+  const [symptomSlideIndex, setSymptomSlideIndex] = useState(4); // Vị trí trung tâm trong 3 bộ thẻ (0..3, 4..7, 8..11)
+  const [isTransitionEnabled, setIsTransitionEnabled] = useState(true);
+  const [isSymptomPaused, setIsSymptomPaused] = useState(false);
+  const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>({});
+  const [isDesktop, setIsDesktop] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth >= 768;
+    }
+    return false;
+  });
+
+  const toggleDropdown = (key: string) => {
+    setOpenDropdowns((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
+
+  const handleNextSymptom = () => {
+    setOpenDropdowns({});
+    setIsTransitionEnabled(true);
+    setSymptomSlideIndex((prev) => prev + 1);
+  };
+
+  const handlePrevSymptom = () => {
+    setOpenDropdowns({});
+    setIsTransitionEnabled(true);
+    setSymptomSlideIndex((prev) => prev - 1);
+  };
+
+  const handleSymptomTransitionEnd = () => {
+    if (symptomSlideIndex >= 8) {
+      setIsTransitionEnabled(false);
+      setSymptomSlideIndex((prev) => prev - 4);
+    } else if (symptomSlideIndex < 4) {
+      setIsTransitionEnabled(false);
+      setSymptomSlideIndex((prev) => prev + 4);
+    }
+  };
+
+  useEffect(() => {
+    if (!isTransitionEnabled) {
+      const raf = requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsTransitionEnabled(true);
+        });
+      });
+      return () => cancelAnimationFrame(raf);
+    }
+  }, [isTransitionEnabled]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Khi dropdown đang mở thì tạm ngừng auto cuộn
+  const hasOpenDropdown = Object.values(openDropdowns).some(Boolean);
+
+  useEffect(() => {
+    if (isSymptomPaused || hasOpenDropdown) return;
+    const interval = setInterval(() => {
+      handleNextSymptom();
+    }, 6750); // Giảm tốc độ auto cuộn thêm 50%
+    return () => clearInterval(interval);
+  }, [isSymptomPaused, hasOpenDropdown]);
+
   const handleVslThumbnailUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -140,6 +263,8 @@ export const LandingPage: React.FC = () => {
     e.preventDefault();
     setRegistrationSubmitted(true);
   };
+
+  const infiniteSymptomItems = [...SYMPTOMS_DATA, ...SYMPTOMS_DATA, ...SYMPTOMS_DATA];
 
   return (
     <div className="min-h-screen bg-slate-50 bg-grid-pattern text-slate-900 selection:bg-sky-200 selection:text-sky-900 relative overflow-x-clip font-body pb-24">
@@ -673,119 +798,242 @@ export const LandingPage: React.FC = () => {
         <section className="py-14 border-t border-slate-200">
           <div className="w-[90%] lg:w-[80%] mx-auto space-y-8">
             {/* Header Khối 2 */}
-            <div className="text-center max-w-3xl mx-auto space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm font-mono text-xs text-[#C43838] uppercase tracking-wide">
-                <span className="w-2 h-2 rounded-full bg-[#C43838] animate-pulse" />
-                <span>Thấu Cảm Nỗi Niềm Ba Mẹ</span>
+            <div className="text-center max-w-4xl mx-auto space-y-4">
+              {/* 1. Badge "Thấu hiểu nỗi niềm ba mẹ" */}
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-100 text-[#C43838] border border-rose-300 shadow-sm font-bold text-xs sm:text-[13px] tracking-wide">
+                <span className="w-2 h-2 rounded-full bg-[#C43838] animate-pulse shrink-0" />
+                <span>Thấu hiểu nỗi niềm ba mẹ</span>
               </div>
-              <h2 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-xl sm:text-2xl md:text-3xl">
-                CÓ PHẢI MỖI BUỔI TỐI TẠI GIA ĐÌNH ĐANG BIẾN THÀNH &quot;CHIẾN TRƯỜNG&quot; CHỈ VÌ MÔN TIẾNG ANH CỦA CON?
+
+              {/* 2. Headline kích thước đồng bộ các headline phía trên với keywords nổi bật */}
+              <h2 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] leading-tight text-center max-w-4xl mx-auto">
+                <span>CÓ PHẢI MỖI BUỔI TỐI TẠI GIA ĐÌNH ĐANG BIẾN THÀNH </span>
+                <span className="text-[#C43838] font-black underline decoration-[#C43838]/60 decoration-2 underline-offset-4">
+                  &quot;CHIẾN TRƯỜNG&quot;
+                </span>{" "}
+                <span>CHỈ VÌ </span>
+                <span className="text-[#0A78F3] bg-sky-50 px-2.5 py-0.5 rounded-xl border border-sky-200 shadow-2xs font-black inline-block mt-1 sm:mt-0">
+                  MÔN TIẾNG ANH CỦA CON?
+                </span>
               </h2>
-              <p className="font-body text-slate-600 leading-relaxed text-[15px] sm:text-base">
-                Nhiều phụ huynh có con đang học tại các trường THCS Lê Độ, Nguyễn Chí Thanh, Phạm Ngọc Thạch, Phan Bội Châu, Lý Tự Trọng hay Ngô Quyền tìm đến Lớp Tiếng Anh Cô Nghi trong tâm trạng mệt mỏi và bế tắc cùng cực khi chứng kiến bốn triệu chứng học thuật và tâm lý ngày càng trầm trọng ở con:
+
+              {/* 3. Text mô tả với các keywords giá trị được in đậm & tô màu nổi bật */}
+              <p className="font-body text-slate-600 leading-relaxed text-[15px] sm:text-base md:text-[17px] max-w-3xl mx-auto text-center">
+                Nhiều phụ huynh có con đang học tại các trường{" "}
+                <strong className="text-slate-900 font-bold bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200/80 shadow-2xs">
+                  THCS Lê Độ, Nguyễn Chí Thanh, Phạm Ngọc Thạch, Phan Bội Châu, Lý Tự Trọng hay Ngô Quyền...
+                </strong>{" "}
+                tìm đến{" "}
+                <strong className="text-[#0A78F3] font-bold">
+                  Lớp Tiếng Anh Cô Nghi
+                </strong>{" "}
+                trong tâm trạng{" "}
+                <strong className="text-[#C43838] font-bold bg-red-50 px-1.5 py-0.5 rounded border border-red-200/60">
+                  mệt mỏi và bế tắc
+                </strong>{" "}
+                khi chứng kiến{" "}
+                <strong className="text-slate-900 font-bold underline decoration-[#C43838] decoration-2 underline-offset-2">
+                  bốn triệu chứng học thuật và tâm lý
+                </strong>{" "}
+                ngày càng trầm trọng ở con:
               </p>
             </div>
 
-            {/* 4 Triệu chứng điển hình (Shofu Cards) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {/* Triệu chứng 1 */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-slate-300 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="w-8 h-8 rounded-lg bg-red-100 text-[#C43838] font-mono text-sm font-bold flex items-center justify-center shrink-0">
-                      01
-                    </span>
-                    <h3 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-base sm:text-lg">
-                      Học trước quên sau, &quot;bay màu&quot; kiến thức trong phòng thi
-                    </h3>
-                  </div>
+            {/* 4. Slide 4 Triệu chứng: cuộn 1 thẻ/lần, PC 2 thẻ hiển thị, Mobile full width 1 thẻ, dropdown biểu hiện/hệ luỵ */}
+            <div
+              className="relative max-w-3xl md:max-w-5xl lg:max-w-6xl mx-auto px-0 sm:px-6"
+              onMouseEnter={() => setIsSymptomPaused(true)}
+              onMouseLeave={() => setIsSymptomPaused(false)}
+              onTouchStart={() => setIsSymptomPaused(true)}
+              onTouchEnd={() => setIsSymptomPaused(false)}
+            >
+              {/* Mũi tên điều hướng Trái */}
+              <button
+                type="button"
+                onMouseEnter={() => setIsSymptomPaused(true)}
+                onMouseLeave={() => setIsSymptomPaused(false)}
+                onTouchStart={() => setIsSymptomPaused(true)}
+                onTouchEnd={() => setIsSymptomPaused(false)}
+                onClick={handlePrevSymptom}
+                className="absolute left-1 sm:-left-4 md:-left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-white text-slate-700 hover:text-[#C43838] border border-slate-200/90 shadow-[0_4px_16px_rgba(0,0,0,0.15)] flex items-center justify-center transition-all cursor-pointer active:scale-95"
+                aria-label="Triệu chứng trước"
+              >
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]" />
+              </button>
 
-                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 mb-3">
-                    <p className="font-body text-[15.5px] sm:text-[16.5px] text-slate-600 leading-relaxed">
-                      <strong className="text-slate-900">Biểu hiện thực tế:</strong> Ở nhà mẹ bắt ngồi học thuộc lòng từ vựng hàng giờ đồng hồ, nhưng hôm sau lên lớp kiểm tra 15 phút hay 1 tiết thì con quên sạch toàn bộ, nhìn trang giấy trắng mà không biết viết gì.
-                    </p>
-                  </div>
-                </div>
+              {/* Mũi tên điều hướng Phải */}
+              <button
+                type="button"
+                onMouseEnter={() => setIsSymptomPaused(true)}
+                onMouseLeave={() => setIsSymptomPaused(false)}
+                onTouchStart={() => setIsSymptomPaused(true)}
+                onTouchEnd={() => setIsSymptomPaused(false)}
+                onClick={handleNextSymptom}
+                className="absolute right-1 sm:-right-4 md:-right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-white text-slate-700 hover:text-[#C43838] border border-slate-200/90 shadow-[0_4px_16px_rgba(0,0,0,0.15)] flex items-center justify-center transition-all cursor-pointer active:scale-95"
+                aria-label="Triệu chứng tiếp theo"
+              >
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]" />
+              </button>
 
-                <div className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#C43838] font-bold flex items-start gap-1.5 pt-1">
-                  <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
-                  <span>Hệ lụy: Con rơi vào trạng thái bất lực học thuật, tin rằng bản thân không có năng khiếu ngoại ngữ và buông xuôi từ sớm.</span>
+              {/* Khung trượt chứa slide (cuộn tròn 1 slide/lần, PC 2 thẻ, Mobile 1 thẻ full width) */}
+              <div
+                className="overflow-hidden py-1 w-full"
+                onMouseEnter={() => setIsSymptomPaused(true)}
+                onMouseLeave={() => setIsSymptomPaused(false)}
+                onTouchStart={() => setIsSymptomPaused(true)}
+                onTouchEnd={() => setIsSymptomPaused(false)}
+              >
+                <div
+                  className={`flex items-start ${isTransitionEnabled ? "transition-transform duration-500 ease-in-out" : ""}`}
+                  style={{
+                    transform: `translateX(-${symptomSlideIndex * (isDesktop ? 50 : 100)}%)`,
+                  }}
+                  onTransitionEnd={handleSymptomTransitionEnd}
+                >
+                  {infiniteSymptomItems.map((item, itemIdx) => (
+                    <div
+                      key={`infinite-${item.id}-${itemIdx}`}
+                      className="w-full min-w-full md:w-1/2 md:min-w-[50%] shrink-0 px-1 sm:px-3 self-start"
+                    >
+                      <div className="bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col justify-between h-auto">
+                        <div>
+                          {/* Header thẻ */}
+                          <div className="flex items-center gap-3 mb-3.5">
+                            <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-red-100 text-[#C43838] font-mono text-sm sm:text-base font-bold flex items-center justify-center shrink-0 border border-red-200/80 shadow-2xs">
+                              {item.id}
+                            </span>
+                            <div>
+                              <span className="font-mono text-[10.5px] sm:text-[11px] font-bold uppercase tracking-wider text-[#C43838]">
+                                {item.tag}
+                              </span>
+                              <h3 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-base sm:text-lg md:text-xl leading-snug">
+                                {item.title}
+                              </h3>
+                            </div>
+                          </div>
+
+                          {/* Khung hình ảnh minh hoạ tỉ lệ 16:9 */}
+                          <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 mb-3.5 group/img flex items-center justify-center">
+                            {item.image ? (
+                              <img
+                                src={item.image}
+                                alt={item.title}
+                                className="w-full h-full object-cover transition-transform duration-300 group-hover/img:scale-105"
+                                loading="lazy"
+                              />
+                            ) : (
+                              <div className="w-full h-full flex flex-col items-center justify-center gap-1.5 text-slate-400 bg-gradient-to-br from-slate-50 via-slate-100/70 to-slate-100">
+                                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white border border-slate-200/80 shadow-2xs flex items-center justify-center text-slate-400">
+                                  <Camera className="w-4 h-4 text-slate-400" />
+                                </div>
+                                <span className="font-mono text-[10.5px] font-semibold text-slate-400 uppercase tracking-wide">
+                                  Hình minh hoạ (16:9)
+                                </span>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Dropdown 1: Biểu hiện thực tế - Size text đồng bộ body text */}
+                          <div className="mt-3.5">
+                            <button
+                              type="button"
+                              onClick={() => toggleDropdown(`${item.id}-behavior`)}
+                              className="w-full py-3 px-4 sm:py-3.5 sm:px-4.5 rounded-xl bg-slate-100 hover:bg-slate-200/80 text-slate-800 text-[15px] sm:text-[16.5px] font-bold flex items-center justify-between transition-colors border border-slate-200 cursor-pointer select-none group/dd"
+                              aria-expanded={!!openDropdowns[`${item.id}-behavior`]}
+                            >
+                              <span className="flex items-center gap-2.5 text-slate-800 group-hover/dd:text-slate-900">
+                                <span className="w-2 h-2 rounded-full bg-[#0A78F3] shrink-0" />
+                                Bấm xem biểu hiện thực tế
+                              </span>
+                              <ChevronDown
+                                className={`w-5 h-5 text-slate-500 transition-transform duration-200 shrink-0 ${
+                                  openDropdowns[`${item.id}-behavior`] ? "rotate-180 text-[#0A78F3]" : ""
+                                }`}
+                              />
+                            </button>
+                            {openDropdowns[`${item.id}-behavior`] && (
+                              <div className="mt-2.5 bg-slate-50 border border-slate-200/90 rounded-xl p-4 sm:p-4.5 animate-in fade-in slide-in-from-top-1 duration-200">
+                                <p className="font-body text-[15px] sm:text-[16.5px] text-slate-700 leading-relaxed">
+                                  {item.behavior}
+                                </p>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Dropdown 2: Hệ luỵ tất yếu - Size text đồng bộ body text */}
+                          <div className="mt-2.5">
+                            <button
+                              type="button"
+                              onClick={() => toggleDropdown(`${item.id}-consequence`)}
+                              className="w-full py-3 px-4 sm:py-3.5 sm:px-4.5 rounded-xl bg-rose-50/70 hover:bg-rose-100/70 text-[#C43838] text-[15px] sm:text-[16.5px] font-bold flex items-center justify-between transition-colors border border-rose-200/70 cursor-pointer select-none group/dd"
+                              aria-expanded={!!openDropdowns[`${item.id}-consequence`]}
+                            >
+                              <span className="flex items-center gap-2.5 text-[#C43838] group-hover/dd:text-red-700">
+                                <span className="w-2 h-2 rounded-full bg-[#C43838] shrink-0" />
+                                Bấm xem hệ luỵ tất yếu
+                              </span>
+                              <ChevronDown
+                                className={`w-5 h-5 text-[#C43838] transition-transform duration-200 shrink-0 ${
+                                  openDropdowns[`${item.id}-consequence`] ? "rotate-180 text-[#C43838]" : ""
+                                }`}
+                              />
+                            </button>
+                            {openDropdowns[`${item.id}-consequence`] && (
+                              <div className="mt-2.5 bg-rose-50/50 border border-red-200/70 rounded-xl p-4 sm:p-4.5 animate-in fade-in slide-in-from-top-1 duration-200">
+                                <p className="font-body text-[15px] sm:text-[16.5px] text-slate-700 leading-relaxed">
+                                  {item.consequence}
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {/* Triệu chứng 2 */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-slate-300 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="w-8 h-8 rounded-lg bg-red-100 text-[#C43838] font-mono text-sm font-bold flex items-center justify-center shrink-0">
-                      02
-                    </span>
-                    <h3 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-base sm:text-lg">
-                      Căn bệnh &quot;Khoanh lụi&quot; trắc nghiệm theo cảm tính
-                    </h3>
-                  </div>
-
-                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 mb-3">
-                    <p className="font-body text-[15.5px] sm:text-[16.5px] text-slate-600 leading-relaxed">
-                      <strong className="text-slate-900">Biểu hiện thực tế:</strong> Mỗi khi làm đề cương, con chỉ mất 5 phút để đánh dấu bừa vào các đáp án A, B, C, D cho xong nhiệm vụ. Khi được hỏi &quot;Vì sao con chọn câu này?&quot;, con hoàn toàn im lặng vì không dịch được câu và không hiểu bản chất ngữ pháp.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#C43838] font-bold flex items-start gap-1.5 pt-1">
-                  <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
-                  <span>Hệ lụy: Điểm kiểm tra định kỳ rơi tự do xuống mức 3–4 điểm, kéo tụt xếp loại học bạ THCS và mất điểm xét tuyển lớp 10.</span>
-                </div>
+              {/* Thanh điều hướng trang (Dots indicators: vòng lặp 1->4) */}
+              <div className="flex items-center justify-center gap-2 mt-4">
+                {[0, 1, 2, 3].map((idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => {
+                      setOpenDropdowns({});
+                      setIsTransitionEnabled(true);
+                      setSymptomSlideIndex(4 + idx);
+                    }}
+                    className={`transition-all duration-300 rounded-full cursor-pointer ${
+                      (symptomSlideIndex % 4) === idx
+                        ? "w-8 h-2.5 bg-[#C43838]"
+                        : "w-2.5 h-2.5 bg-slate-300 hover:bg-slate-400"
+                    }`}
+                    aria-label={`Chuyển đến thẻ ${idx + 1}`}
+                  />
+                ))}
+                <span className="font-mono text-xs text-slate-500 font-bold ml-2">
+                  0{(symptomSlideIndex % 4) + 1} / 04
+                </span>
               </div>
 
-              {/* Triệu chứng 3 */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-slate-300 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="w-8 h-8 rounded-lg bg-red-100 text-[#C43838] font-mono text-sm font-bold flex items-center justify-center shrink-0">
-                      03
+              {/* 3. CTA Button đồng bộ ngay bên dưới slideshow */}
+              <div className="flex flex-col items-center justify-center pt-5 pb-1">
+                <button
+                  type="button"
+                  onClick={handleOpenRegisterModal}
+                  className="w-full sm:w-auto px-4 py-2.5 sm:px-8 sm:py-3 rounded-2xl bg-[#0A78F3] hover:bg-[#096ad8] text-white shadow-[0_10px_25px_rgba(10,120,243,0.35)] hover:shadow-[0_14px_32px_rgba(10,120,243,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none"
+                >
+                  <div className="flex flex-col items-center text-center leading-snug">
+                    <span className="font-heading font-extrabold text-[12px] min-[390px]:text-[13px] sm:text-base uppercase tracking-tight whitespace-nowrap">
+                      ĐĂNG KÝ TEST HỌC LỰC TIẾNG ANH 1-1 MIỄN PHÍ
                     </span>
-                    <h3 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-base sm:text-lg">
-                      Tâm lý sợ sai, thu mình và chống đối tuổi dậy thì
-                    </h3>
-                  </div>
-
-                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 mb-3">
-                    <p className="font-body text-[15.5px] sm:text-[16.5px] text-slate-600 leading-relaxed">
-                      <strong className="text-slate-900">Biểu hiện thực tế:</strong> Khi mẹ đi làm về mệt mỏi và bắt đầu tra khảo, nhắc nhở, con liền tỏ thái độ cáu gắt, giấu giếm bài kiểm tra và đóng sập cửa phòng.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#C43838] font-bold flex items-start gap-1.5 pt-1">
-                  <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
-                  <span>Hệ lụy: Bữa tối gia đình luôn ngột ngạt; người mẹ bị kiệt sức trong vai trò &quot;cảnh sát học tập&quot;, khoảng cách mẹ con ngày càng xa cách.</span>
-                </div>
-              </div>
-
-              {/* Triệu chứng 4 */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-slate-300 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="w-8 h-8 rounded-lg bg-red-100 text-[#C43838] font-mono text-sm font-bold flex items-center justify-center shrink-0">
-                      04
+                    <span className="font-body text-[10px] min-[390px]:text-[11px] sm:text-sm font-medium text-sky-100 normal-case mt-0.5 whitespace-nowrap tracking-tight">
+                      Tặng kèm lộ trình học tập cá nhân hoá &amp; bộ sổ tay ma thuật
                     </span>
-                    <h3 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-base sm:text-lg">
-                      Mất tiền oan tại các trung tâm hào nhoáng và lớp đại trà
-                    </h3>
                   </div>
-
-                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 mb-3">
-                    <p className="font-body text-[15.5px] sm:text-[16.5px] text-slate-600 leading-relaxed">
-                      <strong className="text-slate-900">Biểu hiện thực tế:</strong> Gia đình từng chi hàng chục triệu đồng cho các trung tâm lớn hoặc học với giáo viên nước ngoài, nhưng lớp học quá đông (20–30 học sinh) khiến con dễ dàng &quot;ẩn nấp&quot; ở bàn cuối.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#C43838] font-bold flex items-start gap-1.5 pt-1">
-                  <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
-                  <span>Hệ lụy: Thời gian trống quá lớn, giáo viên không thể kèm sát từng lỗi chia động từ, khiến con đi học như &quot;vịt nghe sấm&quot;, tiền mất mà điểm dậm chân tại chỗ.</span>
-                </div>
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
+                </button>
               </div>
             </div>
 
