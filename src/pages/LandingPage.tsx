@@ -86,7 +86,7 @@ const SYMPTOMS_DATA: {
     id: "01",
     tag: "Triệu chứng học thuật #1",
     title: 'Học trước quên sau, "bay màu" kiến thức trong phòng thi',
-    image: "",
+    image: "/image/hoc-truoc-quen-sau.webp",
     behavior:
       "Ở nhà mẹ bắt ngồi học thuộc lòng từ vựng hàng giờ đồng hồ, nhưng hôm sau lên lớp kiểm tra 15 phút hay 1 tiết thì con quên sạch toàn bộ, nhìn trang giấy trắng mà không biết viết gì.",
     consequence:
@@ -96,7 +96,7 @@ const SYMPTOMS_DATA: {
     id: "02",
     tag: "Triệu chứng học thuật #2",
     title: 'Thói quen "Khoanh lụi" trắc nghiệm theo cảm tính',
-    image: "",
+    image: "/image/thoi-quen-khoanh-lui.webp",
     behavior:
       'Mỗi khi làm đề cương, con chỉ mất 5 phút để đánh dấu bừa vào các đáp án A, B, C, D cho xong nhiệm vụ. Khi được hỏi "Vì sao con chọn câu này?", con hoàn toàn im lặng vì không dịch được câu và không hiểu bản chất ngữ pháp.',
     consequence:
@@ -106,7 +106,7 @@ const SYMPTOMS_DATA: {
     id: "03",
     tag: "Triệu chứng tâm lý #3",
     title: "Tâm lý sợ sai, thu mình và chống đối tuổi dậy thì",
-    image: "",
+    image: "/image/tam-ly-tuoi-day-thi.webp",
     behavior:
       "Khi mẹ đi làm về mệt mỏi và bắt đầu tra khảo, nhắc nhở, con liền tỏ thái độ cáu gắt, giấu giếm bài kiểm tra và đóng sập cửa phòng.",
     consequence:
@@ -116,7 +116,7 @@ const SYMPTOMS_DATA: {
     id: "04",
     tag: "Triệu chứng sai lầm #4",
     title: "Mất tiền oan tại các trung tâm hào nhoáng và lớp đại trà",
-    image: "",
+    image: "/image/tang-hinh-trong-lop.webp",
     behavior:
       'Gia đình từng chi hàng chục triệu đồng cho các trung tâm lớn hoặc học với giáo viên nước ngoài, nhưng lớp học quá đông (20–30 học sinh) khiến con dễ dàng "ẩn nấp" ở bàn cuối.',
     consequence:
