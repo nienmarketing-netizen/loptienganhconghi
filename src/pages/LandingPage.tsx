@@ -1477,20 +1477,54 @@ export const LandingPage: React.FC = () => {
               </div>
             </div>
 
-            {/* 3 Thẻ Lật Như Lật Sách Đối Chiếu (Book Flip Comparison Cards) */}
-            <ComparisonBookCards onRegisterClick={handleOpenRegisterModal} />
+          {/* 3 Thẻ Lật Như Lật Sách Đối Chiếu (Book Flip Comparison Cards) */}
+          <ComparisonBookCards onRegisterClick={handleOpenRegisterModal} />
+        </div>
+      </section>
 
+      {/* ─────────────────────────────────────────────────────────────
+          KHỐI 3B: 5 VŨ KHÍ SƯ PHẠM ĐỘC QUYỀN (SECTION RIÊNG BIỆT VỚI MÀU NỀN TÁCH BIỆT & GRID PATTERN)
+      ────────────────────────────────────────────────────────────── */}
+      <section className="py-14 sm:py-16 bg-[#eaf2fb] bg-grid-pattern relative border-t border-slate-200 w-full">
+        <div className="w-[90%] lg:w-[80%] mx-auto space-y-6 sm:space-y-8 relative z-10">
+          {/* Header 5 Vũ Khí Sư Phạm */}
+          <div className="text-center max-w-4xl mx-auto space-y-3 sm:space-y-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-sky-200 shadow-2xs text-xs sm:text-[13px] text-[#0A78F3] font-bold">
+              <span className="w-2 h-2 rounded-full bg-[#0A78F3] animate-pulse" />
+              <span>Phương pháp sư phạm bản quyền</span>
+            </div>
 
-            {/* 5 Vũ Khí Sư Phạm Độc Quyền (Shofu Cards) */}
-            <div className="space-y-4">
-              <div className="text-center pt-2">
-                <h3 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-lg sm:text-xl md:text-2xl">
-                  5 Vũ Khí Sư Phạm Độc Quyền Giúp Con Học &quot;Siêu Dễ Hiểu – Nhớ Siêu Lâu&quot;
-                </h3>
-                <p className="font-body text-slate-600 text-[15px] sm:text-base mt-1">
-                  Được thiết kế dựa trên khoa học hành vi và thực tế đề thi tại Đà Nẵng
-                </p>
-              </div>
+            {/* Headline 2 dòng, size 38px ở PC, keyword nổi bật */}
+            <h2 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-[22px] min-[390px]:text-[25px] sm:text-[30px] md:text-[34px] lg:text-[38px] xl:text-[38px] leading-tight sm:leading-snug text-center flex flex-col items-center gap-1.5 sm:gap-2">
+              <span className="text-[22px] min-[390px]:text-[25px] sm:text-[30px] md:text-[34px] lg:text-[38px] leading-tight text-center">
+                5 VŨ KHÍ SƯ PHẠM{" "}
+                <span className="text-[#0A78F3] font-black">
+                  ĐỘC QUYỀN
+                </span>
+              </span>
+              <span className="text-[22px] min-[390px]:text-[25px] sm:text-[30px] md:text-[34px] lg:text-[38px] leading-tight text-center">
+                GIÚP CON HỌC{" "}
+                <span className="text-[#ff4757] font-black underline decoration-[#ff4757]/60 decoration-2 sm:decoration-4 underline-offset-4">
+                  &quot;DỄ HIỂU – NHỚ LÂU&quot;
+                </span>
+              </span>
+            </h2>
+
+            {/* Text mô tả: size 20px ở PC, keyword nổi bật */}
+            <p className="font-body text-slate-600 text-[15px] sm:text-[17px] md:text-[18.5px] lg:text-[20px] leading-relaxed max-w-3xl mx-auto text-center">
+              Được thiết kế dựa trên{" "}
+              <strong className="text-[#0A78F3] font-bold bg-white px-2.5 py-0.5 rounded-lg border border-sky-200 shadow-2xs inline-block">
+                khoa học giáo dục hành vi
+              </strong>{" "}
+              và{" "}
+              <strong className="text-slate-900 font-bold bg-amber-100/90 text-amber-950 px-2.5 py-0.5 rounded-lg border border-amber-300 shadow-2xs inline-block mt-1 sm:mt-0">
+                thực tế đề thi trung học cơ sở tại Đà Nẵng
+              </strong>
+            </p>
+          </div>
+
+          {/* 5 Vũ Khí Sư Phạm Độc Quyền (Shofu Cards) */}
+          <div className="space-y-4">
 
               {/* Vũ khí 1 */}
               <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#0A78F3]/60 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
