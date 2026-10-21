@@ -124,6 +124,249 @@ const SYMPTOMS_DATA: {
   },
 ];
 
+interface WeaponStep {
+  step: number;
+  title: string;
+  desc: string;
+}
+
+interface WeaponColorConfig {
+  gradientLine: string;
+  topBorderColor: string;
+  glow: string;
+  watermark: string;
+  categoryText: string;
+  stepBadgeBg: string;
+  resultBadgeBg: string;
+  resultBoxBg: string;
+  resultBoxBorder: string;
+  resultText: string;
+}
+
+interface WeaponItem {
+  number: string;
+  category: string;
+  title: string;
+  steps: WeaponStep[];
+  calloutLabel: string;
+  calloutText: string;
+  resultText: string;
+  colorConfig: WeaponColorConfig;
+}
+
+const WEAPONS_DATA: WeaponItem[] = [
+  {
+    number: "01",
+    category: "VŨ KHÍ 01 · PHƯƠNG PHÁP HỌC",
+    title: "“BÓC TÁCH 4 BƯỚC & TRỢ GIẢNG ĐỒNG ĐẲNG” + “DỊCH BẮT BUỘC”",
+    steps: [
+      {
+        step: 1,
+        title: "Khoanh vùng từ mới",
+        desc: "Chủ động, không đợi cô nhắc",
+      },
+      {
+        step: 2,
+        title: "Thảo luận đồng đẳng",
+        desc: "Cùng bạn học tranh luận",
+      },
+      {
+        step: 3,
+        title: "Giải bài theo cấu trúc",
+        desc: "Dựa trên nền tảng, không đoán",
+      },
+      {
+        step: 4,
+        title: "Dịch sâu & giải thích",
+        desc: "Dịch nối tiếp từng câu trước lớp",
+      },
+    ],
+    calloutLabel: "CÔ NGHI HỎI TRONG LỚP",
+    calloutText: "“Tại sao chọn đáp án A mà không chọn B, C, D?”",
+    resultText: "CHẤM DỨT 100% THÓI QUEN KHOANH LỤI & ĐỌC ĐOÁN MÒ",
+    colorConfig: {
+      gradientLine: "from-[#0A78F3] via-sky-400 to-blue-600",
+      topBorderColor: "border-[#0A78F3]",
+      glow: "bg-sky-100/60",
+      watermark: "text-[#0A78F3]/18",
+      categoryText: "text-[#0A78F3]",
+      stepBadgeBg: "bg-[#0A78F3]",
+      resultBadgeBg: "bg-[#0A78F3]",
+      resultBoxBg: "bg-[#eff6ff]",
+      resultBoxBorder: "border-sky-200/90",
+      resultText: "text-[#0A78F3]",
+    },
+  },
+  {
+    number: "02",
+    category: "VŨ KHÍ 02 · GAME HÓA KỶ LUẬT",
+    title: "HỆ THỐNG GAME HÓA KỶ LUẬT “100 TOKENS” & TRIẾT LÝ “SMALL WIN”",
+    steps: [
+      {
+        step: 1,
+        title: "Khởi động Quizizz",
+        desc: "Đấu trí kịch tính đầu buổi học",
+      },
+      {
+        step: 2,
+        title: "50% Kết quả bài làm",
+        desc: "Chấm điểm minh bạch theo năng lực",
+      },
+      {
+        step: 3,
+        title: "30% Thái độ & nỗ lực",
+        desc: "Ghi nhận chuyên cần và tiến bộ",
+      },
+      {
+        step: 4,
+        title: "20% Top đua hạng",
+        desc: "Thưởng nóng, tích luỹ đổi quà lớn",
+      },
+    ],
+    calloutLabel: "CƠ CHẾ KICKSTART BONUS",
+    calloutText: "“Nhân đôi & nhân ba Tokens tuần đầu để con nếm vị chiến thắng sớm!”",
+    resultText: "KÍCH THÍCH DOPAMINE, TỰ GIÁC LÀM BÀI KHÔNG CẦN GIỤC",
+    colorConfig: {
+      gradientLine: "from-emerald-500 via-teal-400 to-emerald-600",
+      topBorderColor: "border-emerald-500",
+      glow: "bg-emerald-100/60",
+      watermark: "text-emerald-500/18",
+      categoryText: "text-emerald-700",
+      stepBadgeBg: "bg-emerald-600",
+      resultBadgeBg: "bg-emerald-600",
+      resultBoxBg: "bg-emerald-50/80",
+      resultBoxBorder: "border-emerald-200/90",
+      resultText: "text-emerald-700",
+    },
+  },
+  {
+    number: "03",
+    category: "VŨ KHÍ 03 · KHOA HỌC TRÍ NHỚ",
+    title: "CHUẨN HÓA PHÁT ÂM IPA, QUY TẮC TRỌNG ÂM & SPACED REPETITION",
+    steps: [
+      {
+        step: 1,
+        title: "Nhận diện IPA chuẩn",
+        desc: "Bẻ khóa 44 âm vị quốc tế cơ bản",
+      },
+      {
+        step: 2,
+        title: "Bật âm đuôi & nối âm",
+        desc: "Trị triệt để tật nuốt phụ âm cuối",
+      },
+      {
+        step: 3,
+        title: "Quy tắc trọng âm",
+        desc: "Bắt trọn điểm câu nhấn âm đề thi",
+      },
+      {
+        step: 4,
+        title: "Lặp lại ngắt quãng",
+        desc: "Spaced Repetition ghim sâu trí nhớ",
+      },
+    ],
+    calloutLabel: "BẢO CHỨNG PHƯƠNG PHÁP",
+    calloutText: "“Đọc chuẩn phát âm thì ắt nhớ từ vựng sâu – không cần chép phạt học vẹt!”",
+    resultText: "ĐỌC CHUẨN, NHỚ CHẮC 80–90% TỪ VỰNG SGK MỚI",
+    colorConfig: {
+      gradientLine: "from-purple-600 via-violet-400 to-indigo-600",
+      topBorderColor: "border-purple-500",
+      glow: "bg-purple-100/60",
+      watermark: "text-purple-500/18",
+      categoryText: "text-purple-700",
+      stepBadgeBg: "bg-purple-600",
+      resultBadgeBg: "bg-purple-600",
+      resultBoxBg: "bg-purple-50/80",
+      resultBoxBorder: "border-purple-200/90",
+      resultText: "text-purple-700",
+    },
+  },
+  {
+    number: "04",
+    category: "VŨ KHÍ 04 · THỰC CHIẾN ĐỀ THI",
+    title: "GIẢNG DẠY NGỮ PHÁP TRONG NGỮ CẢNH & THỰC CHIẾN ĐỀ CƯƠNG",
+    steps: [
+      {
+        step: 1,
+        title: "Ngữ pháp ngữ cảnh",
+        desc: "Bám sát SGK Global Success / Friends Plus",
+      },
+      {
+        step: 2,
+        title: "Bẻ khóa Word Form",
+        desc: "Nhận diện vị trí danh, tính, động từ",
+      },
+      {
+        step: 3,
+        title: "Giải đề cương trường",
+        desc: "Sửa chi tiết 100% bài kiểm tra trên lớp",
+      },
+      {
+        step: 4,
+        title: "Ma trận 36 câu thi",
+        desc: "Luyện phản xạ cấu trúc đề thi vào lớp 10",
+      },
+    ],
+    calloutLabel: "KÈM CẶP TẬN TAY",
+    calloutText: "“Trực tiếp sửa từng lỗi ngữ pháp trong đề cương trường của chính con!”",
+    resultText: "LÀM CHỦ WORD FORM & TỰ TIN ĐẠT ĐIỂM CAO ĐỀ THI THẬT",
+    colorConfig: {
+      gradientLine: "from-[#ff4757] via-rose-400 to-red-600",
+      topBorderColor: "border-[#ff4757]",
+      glow: "bg-rose-100/60",
+      watermark: "text-rose-500/18",
+      categoryText: "text-[#ff4757]",
+      stepBadgeBg: "bg-[#ff4757]",
+      resultBadgeBg: "bg-[#ff4757]",
+      resultBoxBg: "bg-rose-50/80",
+      resultBoxBorder: "border-rose-200/90",
+      resultText: "text-[#ff4757]",
+    },
+  },
+  {
+    number: "05",
+    category: "VŨ KHÍ 05 · CÔNG NGHỆ & ĐỒNG HÀNH",
+    title: "HỆ SINH THÁI CÔNG NGHỆ LMS ĐỘC QUYỀN & “CỨU TRỢ SOS 1:1”",
+    steps: [
+      {
+        step: 1,
+        title: "LMS ghi nhận dữ liệu",
+        desc: "Theo dõi bài tập và điểm số từng buổi",
+      },
+      {
+        step: 2,
+        title: "Báo cáo Zalo 20h00",
+        desc: "Tự động gửi bảng điểm về điện thoại mẹ",
+      },
+      {
+        step: 3,
+        title: "Kênh Zalo SOS 1:1",
+        desc: "Con gặp bài khó ở nhà được gỡ rối ngay",
+      },
+      {
+        step: 4,
+        title: "Phụ đạo thêm miễn phí",
+        desc: "Lấp lỗ hổng kiến thức trước kỳ thi",
+      },
+    ],
+    calloutLabel: "TIÊU CHUẨN MINH BẠCH",
+    calloutText: "“Đúng 20h00 mỗi tối sau buổi học: mẹ mở Zalo là nắm trọn tiến độ của con!”",
+    resultText: "MẸ THẢNH THƠI BUỔI TỐI, TRẢ LẠI SỰ BÌNH YÊN GIA ĐÌNH",
+    colorConfig: {
+      gradientLine: "from-amber-500 via-orange-400 to-amber-600",
+      topBorderColor: "border-amber-500",
+      glow: "bg-amber-100/60",
+      watermark: "text-amber-500/18",
+      categoryText: "text-amber-700",
+      stepBadgeBg: "bg-amber-600",
+      resultBadgeBg: "bg-amber-600",
+      resultBoxBg: "bg-amber-50/80",
+      resultBoxBorder: "border-amber-200/90",
+      resultText: "text-amber-800",
+    },
+  },
+];
+
 export const LandingPage: React.FC = () => {
   const [isPlayingVsl, setIsPlayingVsl] = useState(false);
   const [isVslMuted, setIsVslMuted] = useState(true);
@@ -1537,124 +1780,116 @@ export const LandingPage: React.FC = () => {
             </p>
           </div>
 
-          {/* 5 Vũ Khí Sư Phạm Độc Quyền (Shofu Cards) */}
-          <div className="space-y-4">
+          {/* 5 Vũ Khí Sư Phạm (Modern Tactile 2-Block Cards với 5 Màu Chủ Đạo Riêng Biệt) */}
+          <div className="space-y-8 sm:space-y-10 pt-2 sm:pt-4">
+            {WEAPONS_DATA.map((item) => (
+              <div
+                key={item.number}
+                className="relative bg-slate-200/80 p-1 sm:p-1.5 rounded-2xl sm:rounded-3xl border border-slate-300/90 shadow-[0_4px_24px_rgba(10,120,243,0.06)] hover:shadow-[0_14px_36px_rgba(10,120,243,0.14)] hover:border-sky-300/80 transition-all duration-300 group flex flex-col gap-1 sm:gap-1.5"
+              >
+                {/* ── KHỐI 1 (PHẦN TRÊN): VŨ KHÍ #, TIÊU ĐỀ & WATERMARK LÒI 20% RA NGOÀI PHÍA TRÊN ── */}
+                <div className="relative bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/80 shadow-xs overflow-visible">
+                  {/* Dải line màu nhận diện ôm cong theo 2 góc trên trái & phải, dày 2px (50% của h-1) */}
+                  <div className={`absolute -top-px -left-px -right-px h-3.5 rounded-t-2xl border-t-2 border-x-2 border-b-0 ${item.colorConfig.topBorderColor} pointer-events-none`} />
+                  
+                  {/* Đốm sáng nền nhẹ */}
+                  <div className={`absolute -top-10 -right-10 w-28 h-28 ${item.colorConfig.glow} rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500`} />
 
-              {/* Vũ khí 1 */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#0A78F3]/60 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0A78F3] border border-sky-100 flex items-center justify-center shrink-0">
-                    <BookOpen className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <span className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#0A78F3] font-bold block mb-1">
-                      VŨ KHÍ 01
+                  {/* Số thứ tự chìm Watermark mờ: 20% nằm ngoài thẻ (phía trên), 80% nằm trong thẻ */}
+                  <span
+                    aria-hidden="true"
+                    className={`absolute -top-8 sm:-top-11 md:-top-13 right-5 sm:right-8 font-heading font-black text-7xl sm:text-8xl md:text-[106px] ${item.colorConfig.watermark} select-none pointer-events-none tracking-tighter leading-none z-10 drop-shadow-xs`}
+                  >
+                    {item.number}
+                  </span>
+
+                  <div className="relative z-20 pr-0 sm:pr-28">
+                    <span className={`font-mono uppercase text-xs sm:text-[13px] font-bold ${item.colorConfig.categoryText} tracking-wider block`}>
+                      {item.category}
                     </span>
-                    <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-base sm:text-lg">
-                      Phương pháp &quot;Bóc tách 4 bước &amp; Trợ giảng đồng đẳng&quot; + &quot;Dịch bắt buộc&quot;
-                    </h4>
-                    <p className="font-body text-slate-600 text-[15.5px] sm:text-[16.5px] mt-1.5 leading-relaxed">
-                      Học sinh thực hành quy trình 4 bước: Chủ động khoanh vùng từ mới ➔ Thảo luận đồng đẳng cùng bạn học ➔ Giải bài tập dựa trên cấu trúc nền tảng ➔ Dịch sâu nối tiếp từng câu và giải thích trước Cô Nghi: <em>&quot;Tại sao chọn đáp án A mà không chọn B, C, D?&quot;</em>
-                    </p>
+                    <h3 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-base sm:text-lg md:text-xl lg:text-[22px] leading-snug mt-1">
+                      {item.title}
+                    </h3>
                   </div>
                 </div>
-                <div className="shrink-0 w-full md:w-auto font-mono text-xs sm:text-[13px] uppercase tracking-wider text-[#0A78F3] font-bold bg-sky-50 border border-sky-200 px-3.5 py-2 rounded-xl">
-                  Chấm dứt 100% thói quen khoanh lụi &amp; đọc đoán mò
+
+                {/* ── KHỐI 2 (PHẦN DƯỚI): PHẦN CÒN LẠI (CÁC BƯỚC & 2 CALLOUTS) ── */}
+                <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/80 shadow-xs flex-1 flex flex-col justify-between">
+                  {/* GIAO DIỆN PC: 4 BƯỚC NẰM NGANG CÓ MŨI TÊN KẾT NỐI VỚI SỐ THỨ TỰ NẰM TRÊN MÉP KHUNG */}
+                  <div className="hidden md:flex items-center gap-3 pt-4">
+                    {item.steps.map((st, idx) => (
+                      <React.Fragment key={idx}>
+                        <div className="relative flex-1 bg-slate-50/80 hover:bg-white border border-slate-200/80 rounded-2xl px-3.5 pt-5 pb-3.5 flex flex-col items-center text-center transition-all shadow-2xs min-h-[102px] justify-start group/step">
+                          {/* Số thứ tự bước nằm 50% trong 50% ngoài mép trên */}
+                          <div className={`absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full ${item.colorConfig.stepBadgeBg} text-white text-sm font-bold flex items-center justify-center shadow-md border-2 border-white`}>
+                            {st.step}
+                          </div>
+                          <h4 className="font-heading font-bold text-slate-900 text-[14.5px] lg:text-[15.5px] leading-snug mt-1">
+                            {st.title}
+                          </h4>
+                          <p className="font-body text-slate-600 text-[13px] lg:text-[14px] mt-1.5 leading-relaxed">
+                            {st.desc}
+                          </p>
+                        </div>
+                        {idx < item.steps.length - 1 && (
+                          <ArrowRight className="w-4 h-4 text-slate-400 shrink-0" />
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </div>
+
+                  {/* GIAO DIỆN MOBILE: 4 BƯỚC TIMELINE DỌC CÓ ĐƯỜNG NỐI */}
+                  <div className="flex md:hidden flex-col pl-1.5 pt-1">
+                    {item.steps.map((st, idx) => (
+                      <div key={idx} className="relative flex items-start gap-3.5 pb-4 last:pb-1">
+                        {idx < item.steps.length - 1 && (
+                          <div className="absolute left-[15px] top-8 bottom-0 w-0.5 bg-slate-200" />
+                        )}
+                        <div className={`w-8 h-8 rounded-full ${item.colorConfig.stepBadgeBg} text-white text-sm font-bold flex items-center justify-center shrink-0 shadow-xs z-10 border-2 border-white`}>
+                          {st.step}
+                        </div>
+                        <div className="pt-0.5">
+                          <h4 className="font-heading font-bold text-slate-900 text-base leading-snug">
+                            {st.title}
+                          </h4>
+                          <p className="font-body text-slate-600 text-[14.5px] leading-relaxed mt-0.5">
+                            {st.desc}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* KHỐI CHÚ THÍCH DƯỚI (2 CALLOUTS VỚI TAG NẰM TRÊN MÉP KHUNG) */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-4 mt-7 pt-2">
+                    {/* Callout 1 (Hổ phách: Lời hỏi trong lớp của Cô Nghi - Đã bỏ vòng tròn đen CN) */}
+                    <div className="relative bg-[#fffbeb] border border-amber-200/90 rounded-2xl p-4 sm:p-5 pt-5 sm:pt-6 shadow-2xs flex items-center">
+                      {/* Tag nhãn nằm 50% trong 50% ngoài mép trên bên trái */}
+                      <div className="absolute -top-3.5 left-4 sm:left-6 px-3.5 py-1 rounded-full bg-[#1e293b] text-white font-mono text-[11px] sm:text-xs font-bold tracking-wider shadow-sm border border-slate-700/50">
+                        {item.calloutLabel}
+                      </div>
+                      
+                      <p className="font-body text-slate-800 text-[14.5px] sm:text-[15.5px] font-medium leading-relaxed">
+                        {item.calloutText}
+                      </p>
+                    </div>
+
+                    {/* Callout 2 (Kết quả đầu ra - Màu theo chủ đề của từng thẻ) */}
+                    <div className={`relative ${item.colorConfig.resultBoxBg} border ${item.colorConfig.resultBoxBorder} rounded-2xl p-4 sm:p-5 pt-5 sm:pt-6 shadow-2xs flex flex-col items-center justify-center text-center`}>
+                      {/* Tag nhãn nằm 50% trong 50% ngoài mép trên */}
+                      <div className={`absolute -top-3.5 left-4 sm:left-6 px-3.5 py-1 rounded-full ${item.colorConfig.resultBadgeBg} text-white font-mono text-[11px] sm:text-xs font-bold tracking-wider shadow-sm border border-white/40`}>
+                        KẾT QUẢ
+                      </div>
+
+                      <p className={`font-heading font-extrabold uppercase ${item.colorConfig.resultText} text-[13.5px] sm:text-[15px] tracking-tight leading-snug`}>
+                        {item.resultText}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              {/* Vũ khí 2 */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#0A78F3]/60 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0A78F3] border border-sky-100 flex items-center justify-center shrink-0">
-                    <Gamepad2 className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <span className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#0A78F3] font-bold block mb-1">
-                      VŨ KHÍ 02
-                    </span>
-                    <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-base sm:text-lg">
-                      Hệ thống Game hóa Kỷ luật &quot;100 Tokens&quot; &amp; Triết lý &quot;Small Win&quot;
-                    </h4>
-                    <p className="font-body text-slate-600 text-[15.5px] sm:text-[16.5px] mt-1.5 leading-relaxed">
-                      Khởi động/kết thúc buổi học bằng Quizizz kịch tính. Điểm thưởng trong sổ &quot;100 Tokens&quot; tính theo tỷ lệ: 50% Kết quả bài làm + 30% Thái độ, nỗ lực + 20% Top Quizizz, kèm Kickstart Bonus nhân đôi/nhân ba điểm tuần đầu giúp đạt ngay 15–20% mốc đổi quà lớn.
-                    </p>
-                  </div>
-                </div>
-                <div className="shrink-0 w-full md:w-auto font-mono text-xs sm:text-[13px] uppercase tracking-wider text-[#0A78F3] font-bold bg-sky-50 border border-sky-200 px-3.5 py-2 rounded-xl">
-                  Kích thích Dopamine, tự giác làm bài không cần giục
-                </div>
-              </div>
-
-              {/* Vũ khí 3 */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#0A78F3]/60 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0A78F3] border border-sky-100 flex items-center justify-center shrink-0">
-                    <Volume2 className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <span className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#0A78F3] font-bold block mb-1">
-                      VŨ KHÍ 03
-                    </span>
-                    <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-base sm:text-lg">
-                      Chuẩn hóa Phát âm IPA, Quy tắc Trọng âm &amp; Spaced Repetition
-                    </h4>
-                    <p className="font-body text-slate-600 text-[15.5px] sm:text-[16.5px] mt-1.5 leading-relaxed">
-                      Hướng dẫn nhận diện bảng phiên âm quốc tế IPA cơ bản, quy tắc dấu nhấn trọng âm và kỹ thuật bật âm cuối kết hợp ôn tập từ vựng lặp lại ngắt quãng.
-                    </p>
-                  </div>
-                </div>
-                <div className="shrink-0 w-full md:w-auto font-mono text-xs sm:text-[13px] uppercase tracking-wider text-[#0A78F3] font-bold bg-sky-50 border border-sky-200 px-3.5 py-2 rounded-xl">
-                  Đọc chuẩn, nhớ chắc 80–90% từ vựng SGK mới
-                </div>
-              </div>
-
-              {/* Vũ khí 4 */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#0A78F3]/60 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0A78F3] border border-sky-100 flex items-center justify-center shrink-0">
-                    <FileText className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <span className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#0A78F3] font-bold block mb-1">
-                      VŨ KHÍ 04
-                    </span>
-                    <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-base sm:text-lg">
-                      Giảng dạy Ngữ pháp trong Ngữ cảnh &amp; Thực chiến Đề cương Sơn Trà
-                    </h4>
-                    <p className="font-body text-slate-600 text-[15.5px] sm:text-[16.5px] mt-1.5 leading-relaxed">
-                      Đặt ngữ pháp vào đúng ngữ cảnh câu của SGK Global Success / Friends Plus và ma trận 36 câu thi vào lớp 10 Đà Nẵng. Học sinh được tặng bộ chuẩn bị Speaking &amp; Writing và sửa chi tiết 100% đề cương của chính trường con đang học.
-                    </p>
-                  </div>
-                </div>
-                <div className="shrink-0 w-full md:w-auto font-mono text-xs sm:text-[13px] uppercase tracking-wider text-[#0A78F3] font-bold bg-sky-50 border border-sky-200 px-3.5 py-2 rounded-xl">
-                  Làm chủ Word Form &amp; đề thi thật tại Sơn Trà
-                </div>
-              </div>
-
-              {/* Vũ khí 5 */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-[#0A78F3]/60 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0A78F3] border border-sky-100 flex items-center justify-center shrink-0">
-                    <Smartphone className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <span className="font-mono uppercase text-xs sm:text-[13px] tracking-wider text-[#0A78F3] font-bold block mb-1">
-                      VŨ KHÍ 05
-                    </span>
-                    <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-base sm:text-lg">
-                      Hệ sinh thái Công nghệ LMS Độc quyền &amp; &quot;Cứu trợ SOS 1:1&quot;
-                    </h4>
-                    <p className="font-body text-slate-600 text-[15.5px] sm:text-[16.5px] mt-1.5 leading-relaxed">
-                      Đúng 20h00 sau mỗi buổi học, hệ thống LMS tự động gửi báo cáo chi tiết về điểm số và tình trạng bài tập của con về thẳng Zalo của mẹ. Khi ở nhà gặp bài khó, con nhắn vào kênh Zalo SOS 1:1 để được hướng dẫn tháo gỡ.
-                    </p>
-                  </div>
-                </div>
-                <div className="shrink-0 w-full md:w-auto font-mono text-xs sm:text-[13px] uppercase tracking-wider text-[#0A78F3] font-bold bg-sky-50 border border-sky-200 px-3.5 py-2 rounded-xl">
-                  Mẹ thảnh thơi buổi tối, trả lại sự bình yên gia đình
-                </div>
-              </div>
-            </div>
+            ))}
+          </div>
 
             {/* CTA Chuyển tiếp */}
             <div className="pt-4 flex justify-center">
