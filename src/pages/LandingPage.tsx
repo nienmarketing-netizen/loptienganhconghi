@@ -1508,20 +1508,15 @@ export const LandingPage: React.FC = () => {
         <div className="w-[90%] lg:w-[80%] mx-auto space-y-6 sm:space-y-8 relative z-10">
           {/* Header 5 Vũ Khí Sư Phạm */}
           <div className="text-center max-w-4xl mx-auto space-y-3 sm:space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-sky-200 shadow-2xs text-xs sm:text-[13px] text-[#0A78F3] font-bold">
-              <span className="w-2 h-2 rounded-full bg-[#0A78F3] animate-pulse" />
-              <span>Phương pháp sư phạm bản quyền</span>
-            </div>
-
-            {/* Headline 2 dòng, size 38px ở PC, keyword nổi bật */}
-            <h2 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-[22px] min-[390px]:text-[25px] sm:text-[30px] md:text-[34px] lg:text-[38px] xl:text-[38px] leading-tight sm:leading-snug text-center flex flex-col items-center gap-1.5 sm:gap-2">
-              <span className="text-[22px] min-[390px]:text-[25px] sm:text-[30px] md:text-[34px] lg:text-[38px] leading-tight text-center">
+            {/* Headline 2 dòng, size 38px ở PC, ĐẶC BIỆT thay cho ĐỘC QUYỀN, dòng 2 vừa vặn 1 hàng trên mobile */}
+            <h2 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 leading-tight sm:leading-snug text-center flex flex-col items-center gap-1.5 sm:gap-2">
+              <span className="text-[17px] min-[360px]:text-[18.5px] min-[390px]:text-[20.5px] min-[430px]:text-[22px] sm:text-[28px] md:text-[32px] lg:text-[38px] leading-tight text-center whitespace-nowrap">
                 5 VŨ KHÍ SƯ PHẠM{" "}
                 <span className="text-[#0A78F3] font-black">
-                  ĐỘC QUYỀN
+                  ĐẶC BIỆT
                 </span>
               </span>
-              <span className="text-[22px] min-[390px]:text-[25px] sm:text-[30px] md:text-[34px] lg:text-[38px] leading-tight text-center">
+              <span className="text-[14.5px] min-[360px]:text-[16px] min-[390px]:text-[17.5px] min-[430px]:text-[19.5px] sm:text-[26px] md:text-[30px] lg:text-[38px] leading-tight text-center whitespace-nowrap">
                 GIÚP CON HỌC{" "}
                 <span className="text-[#ff4757] font-black underline decoration-[#ff4757]/60 decoration-2 sm:decoration-4 underline-offset-4">
                   &quot;DỄ HIỂU – NHỚ LÂU&quot;
