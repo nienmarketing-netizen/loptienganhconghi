@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import {
   Users,
+  Building2,
+  GraduationCap,
   AlertTriangle,
   Sparkles,
   ChevronLeft,
@@ -48,7 +50,7 @@ const CRITERIA_DATA: Criterion[] = [
     coNghi: "Thực chiến 100% Sơn Trà: Sửa trọn bộ đề cương các trường THCS Lê Độ, Ngô Quyền, Nguyễn Chí Thanh...",
   },
   {
-    title: "Vai trò của Phụ huynh",
+    title: "Tương tác với Phụ huynh",
     traditional: "Mẹ không nắm được tình hình học của con cho đến khi nhận điểm thi thấp.",
     commercial: "Tư vấn viên chỉ gọi điện khi đến kỳ đóng tiền khóa mới.",
     coNghi: "LMS tự động báo cáo qua Zalo lúc 20h00 + Kênh Cứu trợ SOS 1:1 giải bài tập tối cho con.",
@@ -65,11 +67,12 @@ export const ComparisonBookCards: React.FC<ComparisonBookCardsProps> = ({ onRegi
   const [animatingPageIndex, setAnimatingPageIndex] = useState<number | null>(null);
   const [flipDirection, setFlipDirection] = useState<"next" | "prev" | null>(null);
   const isAnimatingRef = useRef(false);
+  const topRef = useRef<HTMLDivElement>(null);
 
   const pagesInfo = [
     {
       id: 0,
-      shortTitle: "Lớp Đại Trà (25–30 em)",
+      shortTitle: "Lớp đại trà",
       tag: "Thực trạng đại trà",
       badgeType: "danger",
       icon: Users,
@@ -79,20 +82,20 @@ export const ComparisonBookCards: React.FC<ComparisonBookCardsProps> = ({ onRegi
     },
     {
       id: 1,
-      shortTitle: "Trung Tâm Thương Mại",
+      shortTitle: "Trung tâm lớn",
       tag: "Chi phí đắt đỏ",
       badgeType: "warning",
-      icon: AlertTriangle,
+      icon: Building2,
       themeColor: "#d97706",
       accentBg: "bg-amber-50",
       accentBorder: "border-amber-200",
     },
     {
       id: 2,
-      shortTitle: "Lớp Cô Nghi (Tối đa 12 em)",
+      shortTitle: "Lớp cô Nghi",
       tag: "⭐ Giải pháp độc quyền",
       badgeType: "primary",
-      icon: Sparkles,
+      icon: GraduationCap,
       themeColor: "#0A78F3",
       accentBg: "bg-sky-50",
       accentBorder: "border-sky-300",
@@ -115,7 +118,7 @@ export const ComparisonBookCards: React.FC<ComparisonBookCardsProps> = ({ onRegi
         setAnimatingPageIndex(null);
         setFlipDirection(null);
         isAnimatingRef.current = false;
-      }, 650);
+      }, 950);
     }, 20);
   };
 
@@ -136,36 +139,48 @@ export const ComparisonBookCards: React.FC<ComparisonBookCardsProps> = ({ onRegi
     }
   };
 
+  const scrollToTop = () => {
+    if (topRef.current) {
+      const yOffset = -75; // Trừ hao khoảng cách header cố định
+      const y = topRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
+
+  const handleBottomNext = () => {
+    handleNext();
+    scrollToTop();
+  };
+
+  const handleBottomPrev = () => {
+    handlePrev();
+    scrollToTop();
+  };
+
   // Render nội dung bên trong của 1 trang sách hoàn chỉnh
   const renderPageContent = (pageIdx: number) => {
     if (pageIdx === 0) {
       return (
         <div className="w-full space-y-5 text-slate-800">
           {/* Header Trang 1 */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-rose-100 text-[#C43838] flex items-center justify-center shrink-0 border border-rose-200 shadow-xs">
-                <Users className="w-6 h-6 stroke-[2.2]" />
+          <div className="pb-4 border-b border-slate-200">
+            <div className="flex items-start gap-3.5">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-rose-100 text-[#C43838] flex items-center justify-center shrink-0 border border-rose-200 shadow-xs mt-0.5">
+                <Users className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
               </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-[10.5px] font-bold uppercase tracking-wider text-rose-600 bg-rose-50 px-2.5 py-0.5 rounded-full border border-rose-200">
-                    Hồ sơ đối chiếu 01 • Báo động
-                  </span>
-                </div>
-                <h3 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-lg sm:text-xl md:text-2xl mt-0.5">
-                  LỚP ĐẠI TRÀ (25–30 EM)
+              <div className="space-y-1">
+                <h3 className="font-heading font-extrabold tracking-tight text-slate-900 text-lg sm:text-xl md:text-2xl leading-tight">
+                  Lớp đại trà
                 </h3>
+                <div className="flex items-center gap-1.5 text-xs sm:text-sm">
+                  <span className="text-slate-500 font-medium">Mô hình:</span>
+                  <span className="font-bold text-[#C43838]">Đọc – Chép đại trà</span>
+                </div>
               </div>
-            </div>
-
-            <div className="text-right sm:border-l sm:border-slate-200 sm:pl-4">
-              <span className="font-mono text-xs font-bold text-slate-500 uppercase">Mô hình</span>
-              <p className="font-bold text-sm text-[#C43838]">Đọc – Chép đại trà</p>
             </div>
           </div>
 
-          <p className="font-body text-slate-600 text-sm sm:text-[15.5px] leading-relaxed">
+          <p className="font-body text-slate-600 text-[15px] sm:text-[17px] leading-relaxed">
             Quy mô quá đông khiến giáo viên phải chạy đua cho kịp giáo án. Học sinh hổng kiến thức thường chọn cách &quot;ngồi bàn cuối giấu dốt&quot; và làm bài theo kiểu đoán mò:
           </p>
 
@@ -178,11 +193,11 @@ export const ComparisonBookCards: React.FC<ComparisonBookCardsProps> = ({ onRegi
                   idx === 4 ? "md:col-span-2" : ""
                 }`}
               >
-                <div className="flex items-center gap-2 font-heading font-extrabold text-slate-800 text-xs sm:text-sm">
+                <div className="flex items-center gap-2 font-heading font-extrabold text-slate-800 text-sm sm:text-base">
                   <XCircle className="w-4 h-4 text-rose-500 shrink-0" />
                   <span>{crit.title}</span>
                 </div>
-                <p className="font-body text-slate-600 text-xs sm:text-[13.5px] leading-relaxed pl-6">
+                <p className="font-body text-slate-600 text-[15px] sm:text-[16.5px] leading-relaxed pl-6">
                   {crit.traditional}
                 </p>
               </div>
@@ -192,7 +207,7 @@ export const ComparisonBookCards: React.FC<ComparisonBookCardsProps> = ({ onRegi
           {/* Hộp đúc kết thực trạng */}
           <div className="p-3.5 sm:p-4 rounded-2xl bg-rose-50/80 border border-rose-200 flex items-start gap-3">
             <AlertTriangle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
-            <div className="font-body text-xs sm:text-[13.5px] text-rose-900 leading-relaxed">
+            <div className="font-body text-sm sm:text-[15.5px] text-rose-900 leading-relaxed">
               <strong>Hệ quả thực tế:</strong> Con học ngày càng đuối nhưng sợ không dám hỏi bài. Đến khi nhận phiếu báo điểm 3–4 thì thói quen khoanh lụi đã ăn sâu, phụ huynh không kịp trở tay trước kỳ thi vào Lớp 10.
             </div>
           </div>
@@ -204,30 +219,24 @@ export const ComparisonBookCards: React.FC<ComparisonBookCardsProps> = ({ onRegi
       return (
         <div className="w-full space-y-5 text-slate-800">
           {/* Header Trang 2 */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0 border border-amber-200 shadow-xs">
-                <AlertTriangle className="w-6 h-6 stroke-[2.2]" />
+          <div className="pb-4 border-b border-slate-200">
+            <div className="flex items-start gap-3.5">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0 border border-amber-200 shadow-xs mt-0.5">
+                <Building2 className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
               </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-[10.5px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
-                    Hồ sơ đối chiếu 02 • Đắt đỏ
-                  </span>
-                </div>
-                <h3 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-lg sm:text-xl md:text-2xl mt-0.5">
-                  TRUNG TÂM THƯƠNG MẠI LỚN
+              <div className="space-y-1">
+                <h3 className="font-heading font-extrabold tracking-tight text-slate-900 text-lg sm:text-xl md:text-2xl leading-tight">
+                  Trung tâm lớn
                 </h3>
+                <div className="flex items-center gap-1.5 text-xs sm:text-sm">
+                  <span className="text-slate-500 font-medium">Mô hình:</span>
+                  <span className="font-bold text-amber-600">Thương mại quốc tế</span>
+                </div>
               </div>
-            </div>
-
-            <div className="text-right sm:border-l sm:border-slate-200 sm:pl-4">
-              <span className="font-mono text-xs font-bold text-slate-500 uppercase">Mô hình</span>
-              <p className="font-bold text-sm text-amber-600">Thương mại quốc tế</p>
             </div>
           </div>
 
-          <p className="font-body text-slate-600 text-sm sm:text-[15.5px] leading-relaxed">
+          <p className="font-body text-slate-600 text-[15px] sm:text-[17px] leading-relaxed">
             Cơ sở vật chất hoành tráng và học phí cao, tuy nhiên lộ trình giáo trình quốc tế không bám sát cấu trúc ra đề 36 câu phân loại của Sở GD&amp;ĐT Đà Nẵng:
           </p>
 
@@ -240,11 +249,11 @@ export const ComparisonBookCards: React.FC<ComparisonBookCardsProps> = ({ onRegi
                   idx === 4 ? "md:col-span-2" : ""
                 }`}
               >
-                <div className="flex items-center gap-2 font-heading font-extrabold text-slate-800 text-xs sm:text-sm">
+                <div className="flex items-center gap-2 font-heading font-extrabold text-slate-800 text-sm sm:text-base">
                   <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0" />
                   <span>{crit.title}</span>
                 </div>
-                <p className="font-body text-slate-600 text-xs sm:text-[13.5px] leading-relaxed pl-6">
+                <p className="font-body text-slate-600 text-[15px] sm:text-[16.5px] leading-relaxed pl-6">
                   {crit.commercial}
                 </p>
               </div>
@@ -254,7 +263,7 @@ export const ComparisonBookCards: React.FC<ComparisonBookCardsProps> = ({ onRegi
           {/* Hộp đúc kết thực trạng */}
           <div className="p-3.5 sm:p-4 rounded-2xl bg-amber-50/80 border border-amber-200 flex items-start gap-3">
             <AlertTriangle className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
-            <div className="font-body text-xs sm:text-[13.5px] text-amber-900 leading-relaxed">
+            <div className="font-body text-sm sm:text-[15.5px] text-amber-900 leading-relaxed">
               <strong>Hệ quả thực tế:</strong> Con có thể giao tiếp cơ bản vui vẻ trong lớp, nhưng khi làm bài kiểm tra 1 tiết, học kỳ hay thi tuyển sinh thì bỏ trắng hoàn toàn phần chia từ (Word Form) và viết lại câu.
             </div>
           </div>
@@ -266,55 +275,47 @@ export const ComparisonBookCards: React.FC<ComparisonBookCardsProps> = ({ onRegi
     return (
       <div className="w-full space-y-5 text-slate-800">
         {/* Header Trang 3 */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-sky-200">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#0A78F3] to-sky-600 text-white flex items-center justify-center shrink-0 border border-white/40 shadow-md">
-              <Sparkles className="w-6 h-6 stroke-[2.2]" />
+        <div className="pb-4 border-b border-sky-200">
+          <div className="flex items-start gap-3.5">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-[#0A78F3] to-sky-600 text-white flex items-center justify-center shrink-0 border border-white/40 shadow-md mt-0.5">
+              <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-[10.5px] font-bold uppercase tracking-wider text-white bg-[#0A78F3] px-2.5 py-0.5 rounded-full shadow-2xs">
-                  ⭐ Giải Pháp Độc Quyền Sơn Trà
-                </span>
-                <span className="font-mono text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300">
-                  Khuyên Chọn #1
-                </span>
-              </div>
-              <h3 className="font-heading font-extrabold uppercase tracking-tight text-[#0A78F3] text-lg sm:text-xl md:text-2xl mt-0.5">
-                LỚP CÔ NGHI (TỐI ĐA 12 EM)
+            <div className="space-y-1">
+              <h3 className="font-heading font-extrabold tracking-tight text-[#0A78F3] text-lg sm:text-xl md:text-2xl leading-tight">
+                Lớp cô Nghi
               </h3>
+              <div className="flex items-center gap-1.5 text-xs sm:text-sm">
+                <span className="text-slate-500 font-medium">Mô hình:</span>
+                <span className="font-bold text-[#0A78F3]">Giám Sát Vi Mô 1-1</span>
+              </div>
             </div>
-          </div>
-
-          <div className="text-right sm:border-l sm:border-sky-200 sm:pl-4">
-            <span className="font-mono text-xs font-bold text-slate-500 uppercase">Mô hình</span>
-            <p className="font-bold text-sm text-[#0A78F3]">Giám Sát Vi Mô 1-1</p>
           </div>
         </div>
 
-        <p className="font-body text-slate-700 text-sm sm:text-[15.5px] leading-relaxed">
+        <p className="font-body text-slate-700 text-[15px] sm:text-[17px] leading-relaxed">
           Không dạy ồ ạt, Cô Nghi khóa cứng sĩ số vàng 12 em để trực tiếp bắt đúng bệnh học thuật, xoa dịu tâm lý sợ sai và dẫn dắt con bứt phá 1–3 điểm:
         </p>
 
         {/* 5 Tiêu chí vượt trội */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-4.5 pt-2">
           {CRITERIA_DATA.map((crit, idx) => (
             <div
               key={`nghi-full-${idx}`}
-              className={`p-3.5 sm:p-4 rounded-2xl bg-gradient-to-br from-sky-50/90 via-white to-blue-50/40 border border-sky-200/90 shadow-2xs space-y-1.5 hover:border-[#0A78F3] transition-colors ${
+              className={`relative p-3.5 sm:p-4 pt-4 sm:pt-4.5 rounded-2xl bg-gradient-to-br from-sky-50/90 via-white to-blue-50/40 border border-sky-200/90 shadow-2xs space-y-1.5 hover:border-[#0A78F3] transition-colors ${
                 idx === 4 ? "md:col-span-2" : ""
               }`}
             >
-              <div className="flex items-center justify-between font-heading font-extrabold text-slate-900 text-xs sm:text-sm">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#0A78F3] shrink-0" />
-                  <span>{crit.title}</span>
-                </div>
-                <span className="font-mono text-[10px] text-emerald-700 font-bold bg-emerald-100/90 px-1.5 py-0.2 rounded border border-emerald-200">
-                  Vượt trội
-                </span>
+              {/* Nhãn treo 50% trong 50% ngoài box */}
+              <div className="absolute -top-2.5 right-4 z-10 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 shadow-2xs font-mono text-[10px] sm:text-[11px] font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                <span>Vượt trội</span>
               </div>
-              <p className="font-body font-medium text-slate-800 text-xs sm:text-[13.5px] leading-relaxed pl-6 border-l-2 border-[#0A78F3]">
+
+              <div className="flex items-center gap-2 font-heading font-extrabold text-slate-900 text-sm sm:text-base">
+                <CheckCircle2 className="w-4 h-4 text-[#0A78F3] shrink-0" />
+                <span>{crit.title}</span>
+              </div>
+              <p className="font-body font-medium text-slate-800 text-[15px] sm:text-[16.5px] leading-relaxed pl-6 border-l-2 border-[#0A78F3]">
                 {crit.coNghi}
               </p>
             </div>
@@ -353,11 +354,11 @@ export const ComparisonBookCards: React.FC<ComparisonBookCardsProps> = ({ onRegi
   };
 
   return (
-    <div className="w-full space-y-4">
+    <div ref={topRef} className="w-full space-y-4">
       {/* ── THANH ĐIỀU HƯỚNG TAB KIỂU MỤC LỤC SÁCH (BOOK TABS) ── */}
-      <div className="bg-[#e2e8f0]/90 p-1.5 sm:p-2 rounded-2xl border border-slate-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.06)] flex flex-col sm:flex-row items-center justify-between gap-2">
-        {/* 3 Tab chọn trang sách */}
-        <div className="grid grid-cols-3 gap-1.5 w-full sm:w-auto flex-1">
+      <div className="bg-[#e2e8f0]/90 p-1.5 sm:p-2 rounded-2xl border border-slate-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.06)] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2">
+        {/* Dòng 1 (Mobile) / Cột trái (PC): 3 Tab chọn trang sách - Hiển thị full text tiêu đề, hỗ trợ cuộn ngang */}
+        <div className="flex items-center gap-1.5 w-full sm:w-auto flex-1 overflow-x-auto pb-1 sm:pb-0 scrollbar-none sm:grid sm:grid-cols-3">
           {pagesInfo.map((p, idx) => {
             const isActive = activePageIndex === idx;
             const IconComp = p.icon;
@@ -366,7 +367,7 @@ export const ComparisonBookCards: React.FC<ComparisonBookCardsProps> = ({ onRegi
                 key={p.id}
                 type="button"
                 onClick={() => handleTurnPage(idx)}
-                className={`py-2 px-2 sm:px-3.5 rounded-xl font-heading font-bold text-xs sm:text-[13px] flex items-center justify-center gap-1.5 transition-all duration-300 cursor-pointer ${
+                className={`py-2 px-3 sm:px-3.5 rounded-xl font-heading font-bold text-xs sm:text-[13px] flex items-center justify-center gap-1.5 transition-all duration-300 cursor-pointer whitespace-nowrap shrink-0 sm:shrink ${
                   isActive
                     ? "bg-white text-slate-900 shadow-[0_4px_12px_rgba(0,0,0,0.1)] border border-slate-200"
                     : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
@@ -377,22 +378,22 @@ export const ComparisonBookCards: React.FC<ComparisonBookCardsProps> = ({ onRegi
                     isActive ? (idx === 2 ? "text-[#0A78F3]" : idx === 1 ? "text-amber-500" : "text-[#C43838]") : "text-slate-400"
                   }`}
                 />
-                <span className="truncate">{p.shortTitle}</span>
+                <span className="whitespace-nowrap font-bold">{p.shortTitle}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Nút lật trang trước / sau */}
-        <div className="flex items-center gap-1.5 shrink-0 w-full sm:w-auto justify-end pt-1 sm:pt-0 border-t sm:border-t-0 border-slate-300/80">
+        {/* Dòng 2 (Mobile) / Cột phải (PC): Nút điều hướng trang */}
+        <div className="flex items-center justify-between sm:justify-end gap-1.5 shrink-0 w-full sm:w-auto pt-1.5 sm:pt-0 border-t sm:border-t-0 border-slate-300/80">
           <button
             type="button"
             onClick={handlePrev}
-            className="px-2.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold border border-slate-300/90 shadow-2xs active:scale-95 transition-all flex items-center gap-1 cursor-pointer disabled:opacity-40"
-            title="Lật về trang trước"
+            className="px-2.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-[13px] font-bold border border-slate-300/90 shadow-2xs active:scale-95 transition-all flex items-center gap-1 cursor-pointer disabled:opacity-40"
+            title="Trang trước"
           >
             <ChevronLeft className="w-4 h-4 text-slate-600" />
-            <span className="hidden min-[400px]:inline">Trang trước</span>
+            <span>Trang trước</span>
           </button>
 
           <span className="font-mono text-xs font-bold text-slate-600 px-2 py-1 bg-white/70 rounded-lg border border-slate-300/60">
@@ -402,10 +403,10 @@ export const ComparisonBookCards: React.FC<ComparisonBookCardsProps> = ({ onRegi
           <button
             type="button"
             onClick={handleNext}
-            className="px-2.5 py-1.5 rounded-xl bg-[#0A78F3] hover:bg-[#096ad8] text-white text-xs font-bold shadow-xs active:scale-95 transition-all flex items-center gap-1 cursor-pointer"
-            title="Lật sang trang sau"
+            className="px-2.5 py-1.5 rounded-xl bg-[#0A78F3] hover:bg-[#096ad8] text-white text-xs sm:text-[13px] font-bold shadow-xs active:scale-95 transition-all flex items-center gap-1 cursor-pointer"
+            title="Trang sau"
           >
-            <span className="hidden min-[400px]:inline">Lật trang sau</span>
+            <span>Trang sau</span>
             <ChevronRight className="w-4 h-4 text-white" />
           </button>
         </div>
@@ -413,37 +414,86 @@ export const ComparisonBookCards: React.FC<ComparisonBookCardsProps> = ({ onRegi
 
       {/* ── KHU VỰC CUỐN SÁCH LẬT TRANG THỰC TẾ (REALISTIC FULL-WIDTH BOOK CONTAINER) ── */}
       <div
-        className="relative w-full rounded-3xl bg-slate-850 p-2 sm:p-3 border-2 border-slate-700 shadow-[0_20px_50px_rgba(15,23,42,0.18)]"
+        className="relative w-full pt-2.5 z-0"
         style={{ perspective: "2500px" }}
       >
+        {/* Lớp trang sách xếp chồng 2 phía sau (Hiệu ứng đỉnh và cạnh phải) */}
+        <div className="absolute top-0 right-1 left-7 sm:left-9 bottom-3 rounded-2xl bg-[#e2e8f0] border border-slate-300/90 -z-20 shadow-xs pointer-events-none" />
+
+        {/* Lớp trang sách xếp chồng 1 phía sau (Hiệu ứng đỉnh và cạnh phải) */}
+        <div className="absolute top-1.5 right-0.5 left-6 sm:left-8 bottom-1.5 rounded-2xl bg-[#f1f5f9] border border-slate-300 -z-10 shadow-xs pointer-events-none" />
+
         {/* Khung sách mô phỏng bìa cứng và gáy sách bên trái */}
-        <div className="relative w-full rounded-2xl bg-[#f8fafc] border border-slate-300/90 overflow-hidden shadow-inner flex flex-row">
-          {/* Gáy sách thực tế bên trái (Spine binding) */}
-          <div className="w-5 sm:w-7 bg-gradient-to-r from-slate-900 via-slate-700 to-slate-800 shrink-0 relative flex flex-col justify-around py-8 items-center border-r border-slate-600 shadow-[inset_-2px_0_4px_rgba(0,0,0,0.5)]">
-            {/* Lỗ đóng gáy sách cơ học dập chìm */}
-            <span className="w-2 h-2 rounded-full bg-slate-950 shadow-[inset_0_1px_2px_rgba(255,255,255,0.3)]" />
-            <span className="w-2 h-2 rounded-full bg-slate-950 shadow-[inset_0_1px_2px_rgba(255,255,255,0.3)]" />
-            <span className="w-2 h-2 rounded-full bg-slate-950 shadow-[inset_0_1px_2px_rgba(255,255,255,0.3)]" />
-            <span className="w-2 h-2 rounded-full bg-slate-950 shadow-[inset_0_1px_2px_rgba(255,255,255,0.3)]" />
+        <div className="relative z-10 w-full rounded-2xl bg-[#f8fafc] border border-slate-300/90 overflow-hidden shadow-sm flex flex-row">
+          {/* Gáy sách thực tế bên trái (Spine binding với các móc tròn kim loại) */}
+          <div className="w-6 sm:w-8 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 shrink-0 relative flex flex-col justify-around py-6 sm:py-8 items-center border-r border-slate-600 shadow-[inset_-2px_0_4px_rgba(0,0,0,0.6),2px_0_6px_rgba(0,0,0,0.25)] z-20">
+            {/* 5 Vị trí móc tròn kim loại xuyên qua lỗ gáy sách */}
+            {[0, 1, 2, 3, 4].map((ringIdx) => (
+              <div key={`ring-${ringIdx}`} className="relative flex items-center justify-center w-7 sm:w-9 h-6 sm:h-7 my-1">
+                {/* Lỗ đục cơ học dập chìm trên gáy */}
+                <span className="w-2 sm:w-2.5 h-3.5 sm:h-4 rounded-full bg-slate-950 border border-slate-700/80 shadow-[inset_0_2px_4px_rgba(0,0,0,0.95)]" />
+                
+                {/* Vòng móc tròn kim loại (Chrome Metallic Binder Ring) 3D */}
+                <div className="absolute -left-1 sm:-left-1.5 w-7 sm:w-9 h-3.5 sm:h-4 rounded-full border-[2px] sm:border-[2.5px] border-slate-300 bg-gradient-to-b from-slate-100 via-white to-slate-400 shadow-[0_2px_4px_rgba(0,0,0,0.6),inset_0_1px_1.5px_rgba(255,255,255,0.95)] z-30 pointer-events-none flex items-center justify-center">
+                  {/* Đường sáng bóng kim loại ở giữa móc */}
+                  <div className="w-[80%] h-1 sm:h-1.5 rounded-full bg-gradient-to-r from-slate-400 via-white to-slate-300 opacity-90" />
+                </div>
+                
+                {/* Vết bóng đổ của móc kim loại dập xuống mặt trang */}
+                <div className="absolute left-2.5 top-4 w-4 h-1.5 bg-black/40 blur-[1px] rounded-full pointer-events-none z-10" />
+              </div>
+            ))}
           </div>
 
           {/* Vùng nội dung trang sách chính */}
-          <div className="relative flex-1 p-4 sm:p-7 md:p-8 min-h-[580px] bg-white">
+          <div className="relative flex-1 p-4 sm:p-7 md:p-8 min-h-[580px] bg-white flex flex-col justify-between">
+            {/* Phía bên trên: Hiệu ứng các trang sách xếp chồng theo phương ngang */}
+            <div className="absolute top-0 left-0 right-0 h-3 sm:h-3.5 flex flex-col pointer-events-none z-10 overflow-hidden border-b border-slate-200/90">
+              <div className="h-0.5 w-full bg-slate-200 border-b border-slate-300/80" />
+              <div className="h-0.5 w-full bg-[#f8fafc] border-b border-slate-200/90" />
+              <div className="h-2 w-full bg-gradient-to-b from-slate-200/40 to-transparent" />
+            </div>
+
             {/* Đường gân gập trang sách sát gáy */}
             <div className="absolute top-0 bottom-0 left-0 w-3 bg-gradient-to-r from-slate-300/40 via-slate-100/20 to-transparent pointer-events-none" />
 
-            {/* Mép giấy xếp lớp bên phải (Paper edge effect) */}
-            <div className="absolute top-0 bottom-0 right-0 w-2 bg-gradient-to-l from-slate-200/80 to-transparent pointer-events-none border-l border-slate-100" />
+            {/* Rìa bên phải: Hiệu ứng các trang sách xếp chồng đa tầng rõ rệt */}
+            <div className="absolute top-0 bottom-0 right-0 w-3.5 sm:w-4.5 flex flex-row justify-end pointer-events-none z-10 overflow-hidden border-l border-slate-200/90">
+              <div className="w-1 h-full bg-[#e2e8f0] border-r border-slate-300/80 shadow-[inset_-1px_0_1px_rgba(0,0,0,0.06)]" />
+              <div className="w-1 h-full bg-[#f1f5f9] border-r border-slate-300/90 shadow-[inset_-1px_0_1px_rgba(0,0,0,0.08)]" />
+              <div className="w-1.5 h-full bg-gradient-to-l from-slate-300 via-slate-100 to-white shadow-[inset_-1px_0_2px_rgba(0,0,0,0.18)]" />
+            </div>
 
             {/* TRANG NỀN TẢNG (HIỂN THỊ NỘI DUNG TRANG ĐANG CHỌN) */}
             <div className="w-full">
               {renderPageContent(activePageIndex)}
             </div>
 
+            {/* ── 2 NÚT ĐIỀU HƯỚNG NẰM BÊN TRONG BẢNG SO SÁNH ── */}
+            <div className="mt-6 pt-4 border-t border-slate-200/90 flex items-center justify-end gap-2">
+              <button
+                type="button"
+                onClick={handleBottomPrev}
+                className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-[13px] font-bold flex items-center gap-1.5 border border-slate-300 shadow-2xs transition-all cursor-pointer active:scale-95"
+              >
+                <ChevronLeft className="w-4 h-4 text-slate-600" />
+                <span>Trang trước</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleBottomNext}
+                className="px-4 py-1.5 rounded-xl bg-[#0A78F3] hover:bg-[#096ad8] text-white text-xs sm:text-[13px] font-bold flex items-center gap-1.5 shadow-sm transition-all cursor-pointer active:scale-95"
+              >
+                <span>Trang sau</span>
+                <ChevronRight className="w-4 h-4 text-white" />
+              </button>
+            </div>
+
             {/* LỚP LẬT TRANG SÁCH HIỆU ỨNG 3D (FLIPPING PAGE OVERLAY) */}
             {animatingPageIndex !== null && flipDirection && (
               <div
-                className={`absolute inset-0 z-30 p-4 sm:p-7 md:p-8 bg-white border-l border-slate-200 shadow-2xl pointer-events-none overflow-hidden ${
+                className={`absolute inset-0 z-30 p-4 sm:p-7 md:p-8 bg-white border-l-2 border-slate-300 shadow-[0_25px_60px_rgba(0,0,0,0.35)] pointer-events-none overflow-hidden ${
                   flipDirection === "next" ? "animate-book-page-turn" : "animate-book-page-turn-back"
                 }`}
                 style={{
@@ -452,41 +502,12 @@ export const ComparisonBookCards: React.FC<ComparisonBookCardsProps> = ({ onRegi
                   WebkitBackfaceVisibility: "hidden",
                 }}
               >
-                {/* Đường gân bóng đổ khi lật trang */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-black/10 to-transparent pointer-events-none" />
+                {/* Đường gân bóng đổ và vệt sáng phản chiếu khi lật trang */}
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-950/35 via-black/10 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
                 {renderPageContent(animatingPageIndex)}
               </div>
             )}
-          </div>
-        </div>
-
-        {/* ── CHÂN BẢNG SÁCH: NÚT ĐIỀU HƯỚNG LẬT SÁCH BẰNG TAY TRỰC QUAN ── */}
-        <div className="mt-2.5 pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 px-2">
-          <div className="flex items-center gap-2 text-slate-300 text-xs font-mono">
-            <BookOpen className="w-4 h-4 text-sky-400" />
-            <span>
-              Đang mở: <strong className="text-white">{pagesInfo[activePageIndex].shortTitle}</strong>
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={handlePrev}
-              className="px-3.5 py-1.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold flex items-center gap-1.5 border border-slate-600 transition-all cursor-pointer active:scale-95"
-            >
-              <ChevronLeft className="w-4 h-4" />
-              <span>Lật lùi trang trước</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={handleNext}
-              className="px-4 py-1.5 rounded-xl bg-gradient-to-r from-[#0A78F3] to-sky-500 hover:from-[#096ad8] hover:to-sky-600 text-white text-xs font-bold flex items-center gap-1.5 shadow-md transition-all cursor-pointer active:scale-95"
-            >
-              <span>Lật trang tiếp theo</span>
-              <ChevronRight className="w-4 h-4" />
-            </button>
           </div>
         </div>
       </div>
