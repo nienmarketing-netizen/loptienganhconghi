@@ -994,174 +994,233 @@ export const LandingPage: React.FC = () => {
 
               {/* ── CỘT PHẢI (60%): HỘP THOẠI, BODY TEXT & CTA ── */}
               <div className="w-full lg:col-span-6 space-y-4 sm:space-y-5 text-center lg:text-left">
-                {/* Hộp thoại Thông điệp từ Cô Nghi */}
-                <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.04)] text-left space-y-3.5">
-                  <div className="flex items-center gap-3.5">
-                    <div className="w-13 h-13 rounded-full overflow-hidden shrink-0 border-2 border-slate-200/80 shadow-xs">
-                      <img
-                        src="/image/lop-tieng-anh-co-nghi-thac-si-tesol.webp"
-                        alt="Cô Nghi - Thạc sĩ TESOL"
-                        className="w-full h-full object-cover object-top"
-                      />
+                {/* Hộp thoại Thông điệp từ Cô Nghi (2-Block Recessed Box với vỏ ngoài có background opacity nhỏ theo style đính kèm) */}
+                <div className="relative bg-[#d1d9e6]/50 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border border-[#babecc]/50 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col gap-1.5 sm:gap-2">
+                  {/* ── KHỐI 1 (PHẦN TRÊN): THÔNG ĐIỆP TỪ CÔ NGHI ── */}
+                  <div className="relative bg-white/95 rounded-2xl sm:rounded-[22px] p-5 sm:p-6 pt-6 sm:pt-7 border border-white/80 shadow-xs text-left overflow-visible">
+                    {/* Nhãn Badge Đỏ San Hô Nổi Khối ở góc trên bên trái */}
+                    <div className="absolute -top-3.5 sm:-top-4 left-4 sm:left-6 inline-flex items-center gap-2 px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full bg-[#ff4757] text-white shadow-xs border border-white/30 z-10">
+                      <Quote className="w-3.5 h-3.5 fill-white text-white shrink-0" />
+                      <span className="font-heading font-extrabold text-[11px] sm:text-xs uppercase tracking-wider">
+                        Thông Điệp Từ Cô Nghi
+                      </span>
                     </div>
-                    <div className="min-w-0">
-                      <h3 className="font-heading font-extrabold text-base sm:text-lg text-slate-900 leading-tight">
-                        Thông điệp từ Cô Nghi
-                      </h3>
-                      <p className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
-                        Người trực tiếp đứng lớp
+
+                    {/* Nội dung trích dẫn với điểm nhấn màu sắc đúng theo UI đính kèm */}
+                    <div className="space-y-3 font-body text-slate-700 text-[15.5px] sm:text-[17px] leading-relaxed italic font-medium">
+                      <p>
+                        &ldquo;Ba mẹ ạ,{" "}
+                        <strong className="text-[#ff4757] font-bold not-italic">
+                          lỗi hoàn toàn không phải do các con thiếu năng lực
+                        </strong>
+                        . Trẻ ở lứa tuổi dậy thì có cái tôi rất lớn, các con cực kỳ{" "}
+                        <strong className="text-[#0A78F3] font-bold not-italic bg-sky-50 px-2 py-0.5 rounded-md border border-sky-200/80 inline-block">
+                          sợ sai và sợ bị đánh giá trước đám đông
+                        </strong>
+                        ...&rdquo;
+                      </p>
+                      <p>
+                        &ldquo;Môn Tiếng Anh cấp 2 đôi khi tạo ra nhiều thử thách khi lượng từ vựng ngày càng lớn. Việc ghi nhớ máy móc thường khiến các con dễ quên nhanh, dẫn đến tâm lý đối phó khi làm các bài kiểm tra trắc nghiệm tại trường...&rdquo;
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="px-3 py-1 rounded-full text-xs sm:text-[13px] font-semibold bg-sky-50 text-[#0A78F3] border border-sky-200">
-                      Cử nhân GPA 8.17
-                    </span>
-                    <span className="px-3 py-1 rounded-full text-xs sm:text-[13px] font-semibold bg-sky-50 text-[#0A78F3] border border-sky-200">
-                      Thạc sĩ TESOL
-                    </span>
-                  </div>
+                  {/* ── KHỐI 2 (PHẦN DƯỚI): THÔNG TIN CÔ NGHI & BẰNG CẤP ── */}
+                  <div className="bg-white/95 rounded-2xl sm:rounded-[22px] p-4 sm:p-5 border border-white/80 shadow-xs flex items-center justify-between gap-3 flex-wrap">
+                    <div className="flex items-center gap-3">
+                      <div className="w-11 h-11 rounded-full overflow-hidden shrink-0 border-2 border-slate-200/80 shadow-xs">
+                        <img
+                          src="/image/lop-tieng-anh-co-nghi-thac-si-tesol.webp"
+                          alt="Cô Nghi - Thạc sĩ TESOL"
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
+                      <div>
+                        <h4 className="font-heading font-extrabold text-sm sm:text-base text-slate-900 leading-tight">
+                          Cô Nghi
+                        </h4>
+                        <p className="text-xs text-slate-500 font-medium mt-0.5">
+                          Người trực tiếp đứng lớp
+                        </p>
+                      </div>
+                    </div>
 
-                  <div className="pt-1 space-y-3 font-body text-slate-700 text-[15.5px] sm:text-[17px] leading-relaxed italic">
-                    <p>
-                      &ldquo;Ba mẹ ạ,{" "}
-                      <mark className="bg-[#fef08a] text-slate-900 px-1 py-0.5 rounded not-italic font-medium">
-                        lỗi hoàn toàn không phải do các con thiếu năng lực
-                      </mark>
-                      . Trẻ ở lứa tuổi dậy thì có cái tôi rất lớn, các con cực kỳ{" "}
-                      <mark className="bg-[#e0e7ff] text-slate-900 px-1 py-0.5 rounded not-italic font-medium">
-                        sợ sai và sợ bị đánh giá trước đám đông
-                      </mark>
-                      ...&rdquo;
-                    </p>
-                    <p>
-                      &ldquo;Môn Tiếng Anh cấp 2 đôi khi tạo ra nhiều thử thách khi lượng từ vựng ngày càng lớn. Việc ghi nhớ máy móc thường khiến các con dễ quên nhanh, dẫn đến tâm lý đối phó khi làm các bài kiểm tra trắc nghiệm tại trường...&rdquo;
-                    </p>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-sky-50 text-[#0A78F3] border border-sky-200 shadow-2xs">
+                        Cử nhân GPA 8.17
+                      </span>
+                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-sky-50 text-[#0A78F3] border border-sky-200 shadow-2xs">
+                        Thạc sĩ TESOL
+                      </span>
+                    </div>
                   </div>
                 </div>
 
-                {/* 4 Khối Thẻ Tuần Tự (VẤN ĐỀ -> GIẢI PHÁP -> HỆ THỐNG -> CAM KẾT) */}
-                <div className="space-y-2 pt-1">
-                  {/* Khối 1: VẤN ĐỀ */}
-                  <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 border-l-[2.5px] border-l-[#ff4757] shadow-xs text-left">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-xl bg-[#ff4757] text-white font-extrabold text-sm flex items-center justify-center shrink-0 shadow-xs">
-                        1
-                      </div>
-                      <span className="font-heading font-extrabold text-xs sm:text-sm tracking-wider uppercase text-[#ff4757]">
-                        VẤN ĐỀ
-                      </span>
-                    </div>
-                    <h4 className="font-heading font-extrabold text-lg sm:text-xl text-slate-900 mt-2.5">
-                      Lỗi không phải do con
-                    </h4>
-                    <p className="font-body text-slate-700 text-[15px] sm:text-[16.5px] mt-1.5 leading-relaxed">
-                      Học vẹt nhanh quên, lớp đông khiến con sợ bị chê cười và chọn cách &ldquo;khoanh lụi&rdquo; đối phó.
-                    </p>
-                    <div className="flex items-center gap-2 mt-3.5 flex-wrap">
-                      <span className="px-3 py-1 rounded-full text-xs sm:text-[13px] font-semibold bg-rose-50 text-rose-700 border border-rose-100">
-                        20–30 em / lớp
-                      </span>
-                      <span className="px-3 py-1 rounded-full text-xs sm:text-[13px] font-semibold bg-rose-50 text-rose-700 border border-rose-100">
-                        &ldquo;khoanh lụi&rdquo; đối phó
-                      </span>
-                    </div>
-                  </div>
+                {/* 4 Bước Tuần Tự dạng Timeline có Borderline cho từng box & đường phân tách mảnh giữa 2 phần */}
+                <div className="relative pt-3 pb-1 text-left space-y-3 sm:space-y-3.5">
+                  {/* Đường line kết nối chạy dọc xuyên suốt giữa các điểm mốc tròn */}
+                  <div className="absolute left-2.5 sm:left-3 top-6 bottom-7 w-[2px] bg-slate-300 z-0" />
 
-                  {/* Mũi tên chuyển tiếp 1 -> 2 */}
-                  <div className="flex justify-center text-slate-400 py-0.5">
-                    <ArrowDown className="w-4 h-4 text-slate-400" />
+                  {/* Khối 1: VẤN ĐỀ */}
+                  <div className="relative pl-7 sm:pl-8 text-left">
+                    {/* Dấu chấm tròn mốc 1 */}
+                    <div className="absolute left-2.5 sm:left-3 -translate-x-1/2 top-4 w-5 h-5 rounded-full border-2 border-[#ff4757] bg-white flex items-center justify-center shadow-xs z-10">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#ff4757]" />
+                    </div>
+
+                    {/* Box nội dung có borderline */}
+                    <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs hover:border-slate-300 transition-all text-left">
+                      {/* Phần trên: 01 — VẤN ĐỀ & Tiêu đề */}
+                      <div>
+                        <span className="font-heading font-extrabold text-xs sm:text-[13px] tracking-wider uppercase text-[#ff4757]">
+                          01 — VẤN ĐỀ
+                        </span>
+                        <h4 className="font-heading font-extrabold text-base sm:text-lg text-slate-900 mt-0.5 leading-snug">
+                          Lỗi không phải do con
+                        </h4>
+                      </div>
+
+                      {/* Đường line phân tách tăng độ dày gấp đôi */}
+                      <div className="my-2.5 sm:my-3 border-t-2 border-slate-100" />
+
+                      {/* Phần dưới: Mô tả & Tags */}
+                      <div>
+                        <p className="font-body text-slate-700 text-[14.5px] sm:text-[15.5px] leading-relaxed">
+                          Học vẹt nhanh quên, lớp đông khiến con sợ bị chê cười và chọn cách &ldquo;khoanh lụi&rdquo; đối phó.
+                        </p>
+
+                        <div className="flex items-center gap-2 mt-2.5 flex-wrap">
+                          <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200/80">
+                            20–30 em / lớp
+                          </span>
+                          <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200/80">
+                            &ldquo;khoanh lụi&rdquo; đối phó
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Khối 2: GIẢI PHÁP */}
-                  <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 border-l-[2.5px] border-l-[#0A78F3] shadow-xs text-left">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-xl bg-[#0A78F3] text-white font-extrabold text-sm flex items-center justify-center shrink-0 shadow-xs">
-                        2
-                      </div>
-                      <span className="font-heading font-extrabold text-xs sm:text-sm tracking-wider uppercase text-[#0A78F3]">
-                        GIẢI PHÁP
-                      </span>
+                  <div className="relative pl-7 sm:pl-8 text-left">
+                    {/* Dấu chấm tròn mốc 2 */}
+                    <div className="absolute left-2.5 sm:left-3 -translate-x-1/2 top-4 w-5 h-5 rounded-full border-2 border-[#0A78F3] bg-white flex items-center justify-center shadow-xs z-10">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#0A78F3]" />
                     </div>
-                    <h4 className="font-heading font-extrabold text-lg sm:text-xl text-slate-900 mt-2.5">
-                      Trị dứt điểm đoán mò
-                    </h4>
-                    <p className="font-body text-slate-700 text-[15px] sm:text-[16.5px] mt-1.5 leading-relaxed">
-                      Phương pháp <strong className="text-slate-900 font-bold">&ldquo;Bóc tách 4 bước&rdquo;</strong> giúp con tự hiểu bản chất ngữ pháp và tự tin làm đề thi vào lớp 10.
-                    </p>
-                    <div className="flex items-center gap-2 mt-3.5 flex-wrap">
-                      <span className="px-3 py-1 rounded-full text-xs sm:text-[13px] font-semibold bg-sky-50 text-[#0A78F3] border border-sky-100">
-                        Bóc tách 4 bước
-                      </span>
-                      <span className="px-3 py-1 rounded-full text-xs sm:text-[13px] font-semibold bg-sky-50 text-[#0A78F3] border border-sky-100">
-                        Thi vào lớp 10
-                      </span>
-                    </div>
-                  </div>
 
-                  {/* Mũi tên chuyển tiếp 2 -> 3 */}
-                  <div className="flex justify-center text-slate-400 py-0.5">
-                    <ArrowDown className="w-4 h-4 text-slate-400" />
+                    {/* Box nội dung có borderline */}
+                    <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs hover:border-slate-300 transition-all text-left">
+                      {/* Phần trên: 02 — GIẢI PHÁP & Tiêu đề */}
+                      <div>
+                        <span className="font-heading font-extrabold text-xs sm:text-[13px] tracking-wider uppercase text-[#0A78F3]">
+                          02 — GIẢI PHÁP
+                        </span>
+                        <h4 className="font-heading font-extrabold text-base sm:text-lg text-slate-900 mt-0.5 leading-snug">
+                          Trị dứt điểm đoán mò
+                        </h4>
+                      </div>
+
+                      {/* Đường line phân tách tăng độ dày gấp đôi */}
+                      <div className="my-2.5 sm:my-3 border-t-2 border-slate-100" />
+
+                      {/* Phần dưới: Mô tả & Tags */}
+                      <div>
+                        <p className="font-body text-slate-700 text-[14.5px] sm:text-[15.5px] leading-relaxed">
+                          Phương pháp <strong className="text-slate-900 font-bold">&ldquo;Bóc tách 4 bước&rdquo;</strong> giúp con tự hiểu bản chất ngữ pháp và tự tin làm đề thi vào lớp 10.
+                        </p>
+
+                        <div className="flex items-center gap-2 mt-2.5 flex-wrap">
+                          <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-sky-50 text-[#0A78F3] border border-sky-200/80">
+                            Bóc tách 4 bước
+                          </span>
+                          <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-sky-50 text-[#0A78F3] border border-sky-200/80">
+                            Thi vào lớp 10
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Khối 3: HỆ THỐNG */}
-                  <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 border-l-[2.5px] border-l-[#d97706] shadow-xs text-left">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-xl bg-[#d97706] text-white font-extrabold text-sm flex items-center justify-center shrink-0 shadow-xs">
-                        3
-                      </div>
-                      <span className="font-heading font-extrabold text-xs sm:text-sm tracking-wider uppercase text-[#d97706]">
-                        HỆ THỐNG
-                      </span>
+                  <div className="relative pl-7 sm:pl-8 text-left">
+                    {/* Dấu chấm tròn mốc 3 */}
+                    <div className="absolute left-2.5 sm:left-3 -translate-x-1/2 top-4 w-5 h-5 rounded-full border-2 border-[#d97706] bg-white flex items-center justify-center shadow-xs z-10">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#d97706]" />
                     </div>
-                    <h4 className="font-heading font-extrabold text-lg sm:text-xl text-slate-900 mt-2.5">
-                      Tự giác &amp; Minh bạch
-                    </h4>
-                    <p className="font-body text-slate-700 text-[15px] sm:text-[16.5px] mt-1.5 leading-relaxed">
-                      Tích Tokens đổi quà tạo động lực tự học; hệ thống gửi báo cáo điểm về Zalo mẹ mỗi tối.
-                    </p>
-                    <div className="flex items-center gap-2 mt-3.5 flex-wrap">
-                      <span className="px-3 py-1 rounded-full text-xs sm:text-[13px] font-semibold bg-amber-50 text-amber-800 border border-amber-100">
-                        100 Tokens đổi quà
-                      </span>
-                      <span className="px-3 py-1 rounded-full text-xs sm:text-[13px] font-semibold bg-amber-50 text-amber-800 border border-amber-100">
-                        Zalo mẹ · 20h00 mỗi tối
-                      </span>
-                    </div>
-                  </div>
 
-                  {/* Mũi tên chuyển tiếp 3 -> 4 */}
-                  <div className="flex justify-center text-slate-400 py-0.5">
-                    <ArrowDown className="w-4 h-4 text-slate-400" />
+                    {/* Box nội dung có borderline */}
+                    <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs hover:border-slate-300 transition-all text-left">
+                      {/* Phần trên: 03 — HỆ THỐNG & Tiêu đề */}
+                      <div>
+                        <span className="font-heading font-extrabold text-xs sm:text-[13px] tracking-wider uppercase text-[#d97706]">
+                          03 — HỆ THỐNG
+                        </span>
+                        <h4 className="font-heading font-extrabold text-base sm:text-lg text-slate-900 mt-0.5 leading-snug">
+                          Tự giác &amp; Minh bạch
+                        </h4>
+                      </div>
+
+                      {/* Đường line phân tách tăng độ dày gấp đôi */}
+                      <div className="my-2.5 sm:my-3 border-t-2 border-slate-100" />
+
+                      {/* Phần dưới: Mô tả & Tags */}
+                      <div>
+                        <p className="font-body text-slate-700 text-[14.5px] sm:text-[15.5px] leading-relaxed">
+                          Tích Tokens đổi quà tạo động lực tự học; hệ thống gửi báo cáo điểm về Zalo mẹ mỗi tối.
+                        </p>
+
+                        <div className="flex items-center gap-2 mt-2.5 flex-wrap">
+                          <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200/80">
+                            100 Tokens đổi quà
+                          </span>
+                          <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200/80">
+                            Zalo mẹ · 20h00 mỗi tối
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Khối 4: CAM KẾT */}
-                  <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 border-l-[2.5px] border-l-[#059669] shadow-xs text-left">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-xl bg-[#059669] text-white font-extrabold text-sm flex items-center justify-center shrink-0 shadow-xs">
-                        4
-                      </div>
-                      <span className="font-heading font-extrabold text-xs sm:text-sm tracking-wider uppercase text-[#059669]">
-                        CAM KẾT
-                      </span>
+                  <div className="relative pl-7 sm:pl-8 text-left">
+                    {/* Dấu chấm tròn mốc 4 */}
+                    <div className="absolute left-2.5 sm:left-3 -translate-x-1/2 top-4 w-5 h-5 rounded-full border-2 border-[#059669] bg-white flex items-center justify-center shadow-xs z-10">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#059669]" />
                     </div>
-                    <h4 className="font-heading font-extrabold text-lg sm:text-xl text-slate-900 mt-2.5">
-                      Cam kết an tâm
-                    </h4>
-                    <p className="font-body text-slate-700 text-[15px] sm:text-[16.5px] mt-1.5 leading-relaxed">
-                      Sĩ số tối đa 12 em/lớp, hoàn 100% học phí sau 7 ngày nếu không hợp, phụ đạo 1-1 miễn phí đến khi tiến bộ.
-                    </p>
-                    <div className="flex items-center gap-2 mt-3.5 flex-wrap">
-                      <span className="px-3 py-1 rounded-full text-xs sm:text-[13px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-100">
-                        12 em / lớp
-                      </span>
-                      <span className="px-3 py-1 rounded-full text-xs sm:text-[13px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-100">
-                        Hoàn 100% sau 7 ngày
-                      </span>
-                      <span className="px-3 py-1 rounded-full text-xs sm:text-[13px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-100">
-                        Phụ đạo 1-1 miễn phí
-                      </span>
+
+                    {/* Box nội dung có borderline */}
+                    <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs hover:border-slate-300 transition-all text-left">
+                      {/* Phần trên: 04 — CAM KẾT & Tiêu đề */}
+                      <div>
+                        <span className="font-heading font-extrabold text-xs sm:text-[13px] tracking-wider uppercase text-[#059669]">
+                          04 — CAM KẾT
+                        </span>
+                        <h4 className="font-heading font-extrabold text-base sm:text-lg text-slate-900 mt-0.5 leading-snug">
+                          Cam kết an tâm
+                        </h4>
+                      </div>
+
+                      {/* Đường line phân tách tăng độ dày gấp đôi */}
+                      <div className="my-2.5 sm:my-3 border-t-2 border-slate-100" />
+
+                      {/* Phần dưới: Mô tả & Tags */}
+                      <div>
+                        <p className="font-body text-slate-700 text-[14.5px] sm:text-[15.5px] leading-relaxed">
+                          Sĩ số tối đa 12 em/lớp, hoàn 100% học phí sau 7 ngày nếu không hợp, phụ đạo 1-1 miễn phí đến khi tiến bộ.
+                        </p>
+
+                        <div className="flex items-center gap-2 mt-2.5 flex-wrap">
+                          <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200/80">
+                            12 em / lớp
+                          </span>
+                          <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200/80">
+                            Hoàn 100% sau 7 ngày
+                          </span>
+                          <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200/80">
+                            Phụ đạo 1-1 miễn phí
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
