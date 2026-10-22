@@ -1817,52 +1817,70 @@ export const LandingPage: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Lời giải đáp & Thấu hiểu ấm áp từ Cô Nghi */}
-                  <div className="p-3.5 sm:p-6 rounded-2xl bg-slate-800/90 border border-slate-700/80 shadow-md text-center flex flex-col items-center">
-                    {/* Badge Thạc sĩ TESOL (đã bỏ icon) */}
-                    {/* Badge Thạc sĩ TESOL (2 dòng trên mobile) */}
-                    <div className="inline-flex flex-col sm:flex-row items-center px-3.5 py-1.5 sm:py-1 rounded-xl sm:rounded-full bg-slate-700/80 border border-slate-600 text-sky-300 text-xs sm:text-sm font-semibold mb-3 shadow-2xs text-center leading-snug">
-                      <span className="block sm:inline">Nghiên cứu tâm lý giáo dục</span>
-                      <span className="hidden sm:inline"> </span>
-                      <span className="block sm:inline">từ chương trình Thạc sĩ TESOL cho thấy</span>
+                  {/* Lời giải đáp & Thấu hiểu ấm áp từ Cô Nghi - Tái thiết kế theo UI đính kèm */}
+                  <div className="p-5 sm:p-8 md:p-10 rounded-3xl bg-[#0c1424] border border-slate-700/80 shadow-2xl text-center flex flex-col items-center relative overflow-hidden w-full">
+                    {/* Ánh sáng glow tinh tế nền */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
+
+                    {/* 1. Header Badge: ● Nghiên cứu tâm lý giáo dục từ chương trình Thạc sĩ TESOL cho thấy */}
+                    <div className="inline-flex items-center gap-2 text-sky-400 text-xs sm:text-sm md:text-[15px] font-bold mb-4 sm:mb-5 tracking-tight">
+                      <span className="w-2.5 h-2.5 rounded-full bg-sky-400 shrink-0 shadow-[0_0_8px_rgba(56,189,248,0.8)]" />
+                      <span>Nghiên cứu tâm lý giáo dục từ chương trình Thạc sĩ TESOL cho thấy</span>
                     </div>
 
-                    {/* Text nhỏ phía trên */}
-                    <p className="font-body text-xs sm:text-sm text-slate-300 font-medium mb-1">
+                    {/* 2. Subtitle: Con chưa học tốt môn Tiếng Anh */}
+                    <p className="font-heading font-medium text-slate-200 text-base sm:text-xl md:text-2xl mb-1.5 sm:mb-2">
                       Con chưa học tốt môn Tiếng Anh
                     </p>
 
-                    {/* Dòng 1: Viết hoa toàn bộ */}
-                    <p className="font-heading font-black uppercase text-[13px] min-[360px]:text-[14px] min-[390px]:text-[15.5px] sm:text-2xl md:text-[26px] text-white tracking-tight leading-snug whitespace-nowrap px-0.5">
-                      KHÔNG PHẢI DO CON THIẾU THÔNG MINH.
-                    </p>
+                    {/* 3. Main Headline: KHÔNG PHẢI DO CON / THIẾU THÔNG MINH. (đồng bộ tuyệt đối size chữ) */}
+                    <div className="flex flex-col items-center justify-center my-1 sm:my-2 space-y-1">
+                      <div className="font-heading font-black text-white text-2xl sm:text-4xl md:text-5xl lg:text-[48px] tracking-tight uppercase leading-tight text-center">
+                        KHÔNG PHẢI DO CON
+                      </div>
+                      <div className="relative inline-block">
+                        <span className="font-heading font-black text-[#ff5b6b] text-2xl sm:text-4xl md:text-5xl lg:text-[48px] tracking-tight uppercase leading-tight text-center block">
+                          THIẾU THÔNG MINH.
+                        </span>
+                        {/* Đường kẻ ngang đỏ xuyên qua chữ THIẾU THÔNG MINH */}
+                        <span
+                          aria-hidden="true"
+                          className="absolute left-[-2%] right-[-2%] top-1/2 -translate-y-1/2 h-[3px] sm:h-[4px] md:h-[5px] bg-[#ff3849] rounded-full pointer-events-none shadow-[0_0_6px_rgba(255,56,73,0.6)]"
+                        />
+                      </div>
+                    </div>
 
-                    {/* Dòng 2: Thứ duy nhất con đang thiếu là */}
-                    <p className="font-body text-xs sm:text-base text-slate-300 italic mt-2">
+                    {/* 4. Subtitle: Thứ duy nhất con đang thiếu là */}
+                    <p className="font-body italic text-slate-300 text-sm sm:text-lg md:text-xl mt-3 sm:mt-5 mb-5 sm:mb-7">
                       Thứ duy nhất con đang thiếu là
                     </p>
 
-                    {/* Dòng 3: PHƯƠNG PHÁP KÈM CẶP BÓC TÁCH ĐÚNG BẢN CHẤT (2 dòng trên mobile) */}
-                    <div className="mt-2.5 w-full sm:w-auto">
-                      <span className="inline-block px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-sky-950/80 border border-sky-500/50 text-sky-300 font-heading font-extrabold text-[12.5px] min-[370px]:text-[13.5px] sm:text-base md:text-lg tracking-wide shadow-sm text-center leading-snug">
-                        <span className="block sm:inline">PHƯƠNG PHÁP KÈM CẶP</span>
-                        <span className="hidden sm:inline"> </span>
-                        <span className="block sm:inline">BÓC TÁCH ĐÚNG BẢN CHẤT</span>
-                      </span>
-                    </div>
+                    {/* 5. Hai khối 01 · PHƯƠNG PHÁP và 02 · MÔI TRƯỜNG kết nối bằng chữ "và" (giảm padding, hiển thị 1 dòng trên PC) */}
+                    <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-3.5 w-full max-w-4xl">
+                      {/* Thẻ 01: PHƯƠNG PHÁP */}
+                      <div className="w-full flex-1 bg-[#0b172a] rounded-2xl px-3.5 py-3 sm:px-4 sm:py-3.5 border-2 border-sky-600/90 shadow-[0_4px_20px_rgba(10,120,243,0.15)] text-left transition-all hover:border-sky-500">
+                        <div className="font-heading font-extrabold text-[11px] sm:text-xs tracking-wider text-sky-400 uppercase mb-1">
+                          01 · PHƯƠNG PHÁP
+                        </div>
+                        <h5 className="font-heading font-black text-base sm:text-lg md:text-[18px] lg:text-[19px] xl:text-xl text-sky-200 leading-snug md:whitespace-nowrap">
+                          Kèm cặp bóc tách đúng bản chất
+                        </h5>
+                      </div>
 
-                    {/* Dòng 4: và */}
-                    <span className="font-body text-xs sm:text-sm text-slate-400 my-0.5 sm:my-1 font-medium">
-                      và
-                    </span>
+                      {/* Nút tròn nối "và" */}
+                      <div className="shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#182338] border border-slate-600 flex items-center justify-center text-xs sm:text-sm font-semibold text-slate-300 shadow-inner">
+                        và
+                      </div>
 
-                    {/* Dòng 5: MÔI TRƯỜNG AN TOÀN ĐỂ XÂY DỰNG LẠI SỰ TỰ TIN. (2 dòng trên mobile) */}
-                    <div className="w-full sm:w-auto">
-                      <span className="inline-block px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-amber-950/80 border border-amber-500/50 text-amber-300 font-heading font-extrabold text-[12.5px] min-[370px]:text-[13.5px] sm:text-base md:text-lg tracking-wide shadow-sm text-center leading-snug">
-                        <span className="block sm:inline">MÔI TRƯỜNG AN TOÀN</span>
-                        <span className="hidden sm:inline"> </span>
-                        <span className="block sm:inline">ĐỂ XÂY DỰNG LẠI SỰ TỰ TIN.</span>
-                      </span>
+                      {/* Thẻ 02: MÔI TRƯỜNG */}
+                      <div className="w-full flex-1 bg-[#1c160c] rounded-2xl px-3.5 py-3 sm:px-4 sm:py-3.5 border-2 border-amber-600/90 shadow-[0_4px_20px_rgba(245,158,11,0.15)] text-left transition-all hover:border-amber-500">
+                        <div className="font-heading font-extrabold text-[11px] sm:text-xs tracking-wider text-amber-400 uppercase mb-1">
+                          02 · MÔI TRƯỜNG
+                        </div>
+                        <h5 className="font-heading font-black text-base sm:text-lg md:text-[18px] lg:text-[19px] xl:text-xl text-amber-200 leading-snug md:whitespace-nowrap">
+                          An toàn để xây dựng lại sự tự tin.
+                        </h5>
+                      </div>
                     </div>
                   </div>
 
