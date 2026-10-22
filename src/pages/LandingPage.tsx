@@ -2068,15 +2068,20 @@ export const LandingPage: React.FC = () => {
             <div className="text-center max-w-4xl mx-auto space-y-3 sm:space-y-4">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 text-[#0A78F3] border border-sky-200 shadow-xs text-xs sm:text-[13px] font-bold">
                 <span className="w-2 h-2 rounded-full bg-[#0A78F3] animate-pulse" />
-                <span>Người đứng lớp &amp; Đồng hành cùng con</span>
+                <span>Đồng hành cùng con</span>
               </div>
 
-              <h2 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-xl min-[390px]:text-2xl sm:text-3xl md:text-4xl lg:text-[38px] leading-tight text-center">
-                NGƯỜI TRỰC TIẾP ĐỒNG HÀNH &amp; CHỮA LÀNH TÂM LÝ HỌC TẬP CHO CON LÀ AI?
+              <h2 className="font-heading uppercase tracking-tight text-center max-w-4xl mx-auto">
+                <span className="block font-black text-slate-900 text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-4xl lg:text-[38px] leading-tight">
+                  NGƯỜI <span className="text-[#0A78F3]">TRỰC TIẾP ĐỒNG HÀNH</span>
+                </span>
+                <span className="block font-bold sm:font-extrabold text-slate-800 text-[16px] min-[390px]:text-[18px] sm:text-2xl md:text-[26px] lg:text-[29px] leading-tight mt-1 sm:mt-1.5">
+                  <span className="text-[#C43838] font-black underline decoration-[#C43838]/40 decoration-2 underline-offset-4">CHỮA LÀNH TÂM LÝ HỌC TẬP</span> CHO CON LÀ AI?
+                </span>
               </h2>
 
-              <p className="font-body text-slate-600 text-sm sm:text-base md:text-lg leading-relaxed max-w-3xl mx-auto text-center">
-                Không thông qua trợ giảng hay giáo viên thực tập, Cô Nghi trực tiếp quan sát từng cử chỉ, biểu cảm và bài làm của từng học sinh trong suốt khóa học.
+              <p className="font-body text-slate-600 text-[15px] sm:text-base md:text-[17.5px] lg:text-[18px] leading-relaxed max-w-3xl mx-auto text-center">
+                <span className="font-bold text-slate-800 underline decoration-slate-300 decoration-1 underline-offset-2">Không thông qua trợ giảng hay giáo viên thực tập</span>, <strong className="text-[#0A78F3] font-bold bg-sky-50 px-2 py-0.5 rounded-lg border border-sky-200/80 shadow-2xs inline-block">Cô Nghi trực tiếp quan sát</strong> từng cử chỉ, biểu cảm và bài làm của từng học sinh trong suốt khóa học.
               </p>
             </div>
 
@@ -2092,114 +2097,183 @@ export const LandingPage: React.FC = () => {
                   />
                   <div className="absolute top-3 left-3 bg-[#2d3436]/90 backdrop-blur-md px-3 py-1 rounded-xl border border-white/20 text-white text-[11px] font-bold flex items-center gap-1.5 shadow-sm">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>Cô Nghi (Ms Nghi)</span>
+                    <span>Thạc sĩ TESOL</span>
                   </div>
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-transparent p-4 sm:p-5 pt-12 text-white">
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-transparent p-4 sm:p-5 pt-12 text-white flex flex-col gap-0.5">
                     <span className="text-xs sm:text-sm font-bold text-sky-300">
                       Founder &amp; Lead Educator
                     </span>
-                    <p className="text-xs text-slate-300 mt-0.5">
-                      Trạm Cứu Hộ Tiếng Anh Cấp 2 · 866/25 Ngô Quyền, Sơn Trà
-                    </p>
+                    <span className="text-xs text-slate-200 font-medium">
+                      Trạm Cứu Hộ Tiếng Anh Cấp 2
+                    </span>
+                    <span className="text-[11px] sm:text-xs text-slate-300">
+                      866/25 Ngô Quyền, Sơn Trà
+                    </span>
                   </div>
                 </div>
 
                 {/* 3 Thẻ Bảo Chứng Năng Lực Cột Trái (Tactile Debossed Well Cards) */}
                 <div className="space-y-2.5 max-w-md mx-auto">
-                  <div className="bg-[#d1d9e6]/70 border border-[#babecc]/60 rounded-2xl p-3.5 flex items-start gap-3 shadow-[var(--shadow-recessed-sm)]">
-                    <div className="w-10 h-10 rounded-xl bg-white text-[#0A78F3] flex items-center justify-center shrink-0 shadow-xs border border-sky-100 font-black text-sm">
+                  <div className="bg-[#d1d9e6]/70 border border-[#babecc]/60 rounded-2xl px-3.5 py-3 flex items-center gap-3 shadow-[var(--shadow-recessed-sm)]">
+                    <div className="w-9 h-9 rounded-xl bg-white text-[#0A78F3] flex items-center justify-center shrink-0 shadow-xs border border-sky-100 font-black text-xs sm:text-sm">
                       8.17
                     </div>
-                    <div className="min-w-0">
-                      <h4 className="font-heading font-bold text-sm text-slate-900 leading-snug">
-                        Cử Nhân Biên Dịch Tiếng Anh
-                      </h4>
-                      <p className="font-body text-xs text-slate-600 mt-0.5 leading-relaxed">
-                        Điểm tốt nghiệp tích luỹ <strong className="text-slate-900">GPA 8.17/10</strong> – Nền tảng cốt lõi của kỹ thuật &ldquo;Dịch bắt buộc&rdquo; và &ldquo;Bóc tách cấu trúc câu&rdquo;.
-                      </p>
-                    </div>
+                    <h4 className="font-heading font-bold text-xs sm:text-sm text-slate-900 leading-snug">
+                      Cử nhân biên dịch Tiếng Anh
+                    </h4>
                   </div>
 
-                  <div className="bg-[#d1d9e6]/70 border border-[#babecc]/60 rounded-2xl p-3.5 flex items-start gap-3 shadow-[var(--shadow-recessed-sm)]">
-                    <div className="w-10 h-10 rounded-xl bg-white text-emerald-600 flex items-center justify-center shrink-0 shadow-xs border border-emerald-100">
+                  <div className="bg-[#d1d9e6]/70 border border-[#babecc]/60 rounded-2xl px-3.5 py-3 flex items-center gap-3 shadow-[var(--shadow-recessed-sm)]">
+                    <div className="w-9 h-9 rounded-xl bg-white text-emerald-600 flex items-center justify-center shrink-0 shadow-xs border border-emerald-100">
                       <GraduationCap className="w-5 h-5" />
                     </div>
-                    <div className="min-w-0">
-                      <h4 className="font-heading font-bold text-sm text-slate-900 leading-snug">
-                        Thạc Sĩ TESOL Quốc Tế
-                      </h4>
-                      <p className="font-body text-xs text-slate-600 mt-0.5 leading-relaxed">
-                        Nghiên cứu chuyên sâu ngôn ngữ học ứng dụng &amp; tâm lý học hành vi lứa tuổi dậy thì cho học sinh mất gốc.
-                      </p>
-                    </div>
+                    <h4 className="font-heading font-bold text-xs sm:text-sm text-slate-900 leading-snug">
+                      Thạc sĩ TESOL quốc tế
+                    </h4>
                   </div>
 
-                  <div className="bg-[#d1d9e6]/70 border border-[#babecc]/60 rounded-2xl p-3.5 flex items-start gap-3 shadow-[var(--shadow-recessed-sm)]">
-                    <div className="w-10 h-10 rounded-xl bg-white text-rose-500 flex items-center justify-center shrink-0 shadow-xs border border-rose-100">
+                  <div className="bg-[#d1d9e6]/70 border border-[#babecc]/60 rounded-2xl px-3.5 py-3 flex items-center gap-3 shadow-[var(--shadow-recessed-sm)]">
+                    <div className="w-9 h-9 rounded-xl bg-white text-rose-500 flex items-center justify-center shrink-0 shadow-xs border border-rose-100">
                       <Heart className="w-5 h-5 fill-rose-50 text-rose-500" />
                     </div>
-                    <div className="min-w-0">
-                      <h4 className="font-heading font-bold text-sm text-slate-900 leading-snug">
-                        Sáng Lập Dự Án Hopepath Academy
-                      </h4>
-                      <p className="font-body text-xs text-slate-600 mt-0.5 leading-relaxed">
-                        Dự án giáo dục thiện nguyện mang trọn vẹn sự kiên nhẫn, lòng yêu thương và thấu cảm vào từng học viên.
-                      </p>
-                    </div>
+                    <h4 className="font-heading font-bold text-xs sm:text-sm text-slate-900 leading-snug">
+                      Sáng lập dự án Hopepath Academy
+                    </h4>
                   </div>
                 </div>
               </div>
 
               {/* Cột Phải (7/12): Chi tiết Triết lý & Năng lực */}
               <div className="lg:col-span-7 space-y-5">
-                <div className="space-y-3">
-                  <span className="uppercase text-xs font-bold text-[#0A78F3] tracking-wider">
-                    Hồ sơ năng lực &amp; Tâm huyết sư phạm
-                  </span>
-                  <h3 className="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900 leading-tight">
-                    Cô Nghi (Ms Nghi)
-                  </h3>
-                  <p className="font-body text-slate-700 text-[15.5px] sm:text-[17px] leading-relaxed">
-                    Sở hữu nền tảng học thuật xuất sắc khi tốt nghiệp <strong className="text-slate-900 font-bold">Cử nhân chuyên ngành Biên dịch Tiếng Anh</strong> với điểm trung bình tích lũy <strong className="text-[#0A78F3] font-bold">GPA 8.17/10</strong> — nền tảng cốt lõi giúp Cô Nghi xây dựng kỹ thuật <strong className="text-slate-900 font-semibold">&ldquo;Dịch bắt buộc&rdquo;</strong> và <strong className="text-slate-900 font-semibold">&ldquo;Bóc tách cấu trúc&rdquo;</strong> sắc bén cho học sinh phổ thông.
-                  </p>
-                  <p className="font-body text-slate-700 text-[15.5px] sm:text-[17px] leading-relaxed">
-                    Ở bậc đào tạo sau đại học, Cô Nghi theo đuổi chương trình <strong className="text-[#0A78F3] font-bold">Thạc sĩ TESOL</strong> (Teaching English to Speakers of Other Languages), nghiên cứu chuyên sâu về ngôn ngữ học ứng dụng, tâm lý học hành vi lứa tuổi thiếu niên và khoa học thiết kế giáo trình cá nhân hóa cho học sinh mất gốc. Bên cạnh năng lực chuyên môn, với vai trò là <strong className="text-slate-900 font-semibold">Nhà sáng lập (Founder) dự án giáo dục thiện nguyện Hopepath Academy</strong>, Cô Nghi mang trọn vẹn sự kiên nhẫn, lòng yêu thương và sự thấu cảm vào từng tiết học.
-                  </p>
-                </div>
-
-                {/* KHỐI TRIẾT LÝ SƯ PHẠM (Recessed Well Box theo Design System AGENTS.md) */}
-                <div className="bg-[#d1d9e6] border border-[#babecc]/70 rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-[var(--shadow-recessed-sm)] space-y-4">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-xl bg-[#ff4757] text-white flex items-center justify-center shadow-xs">
-                      <Quote className="w-4 h-4 fill-white text-white" />
-                    </div>
-                    <span className="font-heading font-extrabold text-xs sm:text-sm uppercase tracking-wider text-[#1a1a1a]">
-                      Triết Lý Giáo Dục Của Cô Nghi
+                <div className="space-y-4">
+                  {/* Header Tiêu đề (Không nền, không viền + đường line màu xanh bên dưới) */}
+                  <div className="space-y-1">
+                    <span className="block text-xs sm:text-[13px] font-bold text-[#0A78F3] tracking-normal">
+                      Hồ sơ năng lực &amp; tâm huyết sư phạm
                     </span>
+                    <h3 className="font-heading font-black text-xl min-[390px]:text-2xl sm:text-3xl text-slate-900 leading-tight uppercase tracking-tight">
+                      CÔ NGUYỄN THỊ PHƯƠNG NGHI
+                    </h3>
+                    {/* Đường line màu xanh có độ dài vừa phải đặt ngay dưới chân text */}
+                    <div className="pt-2">
+                      <div className="w-20 sm:w-24 h-1 sm:h-1.5 rounded-full bg-gradient-to-r from-[#0A78F3] to-sky-400" />
+                    </div>
                   </div>
 
-                  <p className="font-body text-[15.5px] sm:text-[17.5px] text-[#1a1a1a] leading-relaxed italic font-medium">
-                    &ldquo;Trước khi dạy chữ, người thầy phải xoa dịu được tâm trí đang tổn thương và tự ti của đứa trẻ. Một học sinh cấp 2 bị điểm 4 không phải vì em kém cỏi, mà vì em chưa từng được ai kiên nhẫn ngồi xuống chỉ cho cách bóc tách một câu tiếng Anh từ gốc rễ.&rdquo;
-                  </p>
+                  {/* Timeline 3 đoạn văn theo UI mẫu (không thêm số thứ tự 1, 2, 3) */}
+                  <div className="relative pl-7 sm:pl-8 space-y-6 sm:space-y-7 pt-2">
+                    {/* Đường line chạy dọc bên trái xuyên qua tâm các điểm mốc */}
+                    <div className="absolute left-[9px] top-2.5 bottom-2.5 w-0.5 bg-slate-200" />
 
-                  <div className="pt-2 border-t border-[#babecc]/50">
+                    {/* Mốc 1: Nền tảng học thuật */}
+                    <div className="relative space-y-1.5">
+                      <div className="absolute -left-7 sm:-left-8 top-0.5 w-5 h-5 rounded-full border-2 border-sky-300 bg-white flex items-center justify-center shadow-xs">
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#0A78F3]" />
+                      </div>
+                      <h4
+                        className="font-heading font-black text-xs sm:text-[13.5px] uppercase tracking-wider text-[#0A78F3]"
+                        style={{ color: "#0A78F3" }}
+                      >
+                        NỀN TẢNG HỌC THUẬT
+                      </h4>
+                      <p className="font-body text-slate-700 text-[14.5px] sm:text-[16px] leading-relaxed">
+                        Sở hữu nền tảng học thuật xuất sắc khi tốt nghiệp Cử nhân chuyên ngành Biên dịch Tiếng Anh với điểm trung bình tích lũy{" "}
+                        <span className="bg-sky-50 text-[#0A78F3] font-bold px-1.5 py-0.5 rounded border border-sky-200/80 text-xs sm:text-sm inline-block">
+                          GPA 8.17/10
+                        </span>{" "}
+                        – nền tảng cốt lõi giúp Cô Nghi xây dựng kỹ thuật{" "}
+                        <strong className="text-[#0A78F3] font-bold">&ldquo;Dịch bắt buộc&rdquo;</strong>{" "}
+                        và{" "}
+                        <strong className="text-[#0A78F3] font-bold">&ldquo;Bóc tách cấu trúc&rdquo;</strong>{" "}
+                        sắc bén cho học sinh phổ thông.
+                      </p>
+                    </div>
+
+                    {/* Mốc 2: Đào tạo sau đại học */}
+                    <div className="relative space-y-1.5">
+                      <div className="absolute -left-7 sm:-left-8 top-0.5 w-5 h-5 rounded-full border-2 border-emerald-300 bg-white flex items-center justify-center shadow-xs">
+                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-600" style={{ backgroundColor: "#059669" }} />
+                      </div>
+                      <h4
+                        className="font-heading font-black text-xs sm:text-[13.5px] uppercase tracking-wider text-[#059669]"
+                        style={{ color: "#059669" }}
+                      >
+                        ĐÀO TẠO SAU ĐẠI HỌC
+                      </h4>
+                      <p className="font-body text-slate-700 text-[14.5px] sm:text-[16px] leading-relaxed">
+                        Ở bậc đào tạo sau đại học, Cô Nghi theo đuổi chương trình{" "}
+                        <strong className="text-[#0A78F3] font-bold">Thạc sĩ TESOL</strong>{" "}
+                        (Teaching English to Speakers of Other Languages), nghiên cứu chuyên sâu về ngôn ngữ học ứng dụng, tâm lý học hành vi lứa tuổi thiếu niên và khoa học thiết kế giáo trình cá nhân hoá cho học sinh mất gốc.
+                      </p>
+                    </div>
+
+                    {/* Mốc 3: Tâm huyết ngoài chuyên môn */}
+                    <div className="relative space-y-1.5">
+                      <div className="absolute -left-7 sm:-left-8 top-0.5 w-5 h-5 rounded-full border-2 border-rose-300 bg-white flex items-center justify-center shadow-xs">
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#ff4757]" style={{ backgroundColor: "#ff4757" }} />
+                      </div>
+                      <h4
+                        className="font-heading font-black text-xs sm:text-[13.5px] uppercase tracking-wider text-[#ff4757]"
+                        style={{ color: "#ff4757" }}
+                      >
+                        TÂM HUYẾT NGOÀI CHUYÊN MÔN
+                      </h4>
+                      <p className="font-body text-slate-700 text-[14.5px] sm:text-[16px] leading-relaxed">
+                        Bên cạnh năng lực chuyên môn, với vai trò là{" "}
+                        <strong className="text-[#0A78F3] font-bold">Nhà sáng lập (Founder)</strong>{" "}
+                        dự án giáo dục thiện nguyện{" "}
+                        <strong className="text-[#0A78F3] font-bold">Hopepath Academy</strong>
+                        , Cô Nghi mang trọn vẹn sự kiên nhẫn, lòng yêu thương và sự thấu cảm vào từng tiết học.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* KHỐI TRIẾT LÝ SƯ PHẠM (2-Block Recessed Well Box theo style USPS Hero - vỏ ngoài trong mờ tinh tế) */}
+                <div className="relative mt-7 bg-[#d1d9e6]/50 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border border-[#babecc]/50 shadow-[var(--shadow-recessed-sm)] flex flex-col gap-1.5 sm:gap-2">
+                  {/* ── KHỐI 1: TRIẾT LÝ GIÁO DỤC ── */}
+                  <div className="relative bg-white/95 rounded-2xl p-4 sm:p-6 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
+                    {/* Nhãn 50% ngoài 50% trong ở góc trên bên trái */}
+                    <div className="absolute -top-3.5 sm:-top-4 left-4 sm:left-6 inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-xl bg-[#ff4757] text-white shadow-xs border border-white/30 z-10">
+                      <Quote className="w-3.5 h-3.5 fill-white text-white shrink-0" />
+                      <span className="font-heading font-extrabold text-[11px] sm:text-xs uppercase tracking-wider">
+                        Triết Lý Giáo Dục Của Cô Nghi
+                      </span>
+                    </div>
+
+                    <p className="font-body text-[15px] sm:text-[16.5px] text-[#1a1a1a] leading-relaxed italic font-medium">
+                      &ldquo;Trước khi dạy chữ, người thầy phải <strong className="text-[#ff4757] font-bold not-italic">xoa dịu được tâm trí đang tổn thương và tự ti</strong> của đứa trẻ. Một học sinh cấp 2 bị điểm 4 <strong className="text-slate-900 font-bold not-italic">không phải vì em kém cỏi</strong>, mà vì em chưa từng được ai <strong className="text-[#0A78F3] font-bold not-italic bg-sky-50/80 px-1.5 py-0.5 rounded border border-sky-200/60">kiên nhẫn ngồi xuống chỉ cho cách bóc tách</strong> một câu tiếng Anh từ gốc rễ.&rdquo;
+                    </p>
+                  </div>
+
+                  {/* ── KHỐI 2: 3 NGUYÊN TẮC BẤT DI BẤT DỊCH TẠI LỚP HỌC ── */}
+                  <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-white/80 shadow-xs">
                     <p className="font-body text-xs sm:text-sm font-bold text-[#ff4757] uppercase tracking-wide">
                       3 NGUYÊN TẮC BẤT DI BẤT DỊCH TẠI LỚP HỌC:
                     </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-2.5">
-                      <div className="bg-white/90 rounded-xl p-2.5 border border-white text-center shadow-2xs">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-3 mt-4">
+                      <div className="relative bg-[#f8fafc] rounded-xl pt-4 pb-2.5 px-2.5 border border-slate-200/80 text-center shadow-2xs">
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#ff4757] text-white text-[11px] font-black flex items-center justify-center shadow-xs border-2 border-white">
+                          1
+                        </div>
                         <span className="block text-xs font-bold text-slate-800">
-                          1. Tuyệt đối không la mắng
+                          Tuyệt đối không la mắng
                         </span>
                       </div>
-                      <div className="bg-white/90 rounded-xl p-2.5 border border-white text-center shadow-2xs">
+                      <div className="relative bg-[#f8fafc] rounded-xl pt-4 pb-2.5 px-2.5 border border-slate-200/80 text-center shadow-2xs">
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#0A78F3] text-white text-[11px] font-black flex items-center justify-center shadow-xs border-2 border-white">
+                          2
+                        </div>
                         <span className="block text-xs font-bold text-slate-800">
-                          2. Không bỏ rơi học sinh nào
+                          Không bỏ rơi học sinh nào
                         </span>
                       </div>
-                      <div className="bg-white/90 rounded-xl p-2.5 border border-white text-center shadow-2xs">
+                      <div className="relative bg-[#f8fafc] rounded-xl pt-4 pb-2.5 px-2.5 border border-slate-200/80 text-center shadow-2xs">
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-emerald-600 text-white text-[11px] font-black flex items-center justify-center shadow-xs border-2 border-white">
+                          3
+                        </div>
                         <span className="block text-xs font-bold text-slate-800">
-                          3. Kiên trì sửa từng lỗi nhỏ
+                          Kiên trì sửa từng lỗi nhỏ
                         </span>
                       </div>
                     </div>
@@ -2207,18 +2281,22 @@ export const LandingPage: React.FC = () => {
                 </div>
 
                 {/* CTA Phụ */}
-                <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
+                <div className="pt-2 flex items-center">
                   <button
                     type="button"
                     onClick={handleOpenRegisterModal}
-                    className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-[0_8px_20px_rgba(255,71,87,0.35)] transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                    className="w-full sm:w-auto px-3.5 sm:px-6 py-2.5 sm:py-3.5 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] transition-all flex items-center justify-center gap-2 sm:gap-3 cursor-pointer active:scale-98"
                   >
-                    <span>GẶP CÔ NGHI TRONG PHIÊN CHẨN ĐOÁN 1-1 MIỄN PHÍ</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <div className="flex flex-col items-center text-center leading-snug min-w-0">
+                      <span className="font-heading font-extrabold text-[10.5px] min-[360px]:text-[11.5px] min-[390px]:text-[12.5px] sm:text-sm uppercase tracking-tight sm:tracking-wider whitespace-nowrap">
+                        GẶP CÔ NGHI TRONG PHIÊN CHẨN ĐOÁN 1-1 MIỄN PHÍ
+                      </span>
+                      <span className="font-body text-[9.5px] min-[360px]:text-[10px] min-[390px]:text-[11px] sm:text-xs font-medium text-rose-100 normal-case mt-0.5 tracking-tight whitespace-nowrap">
+                        Nhận lộ trình học tập cá nhân hoá &amp; bộ sổ tay ma thuật
+                      </span>
+                    </div>
+                    <ArrowRight className="w-3.5 h-3.5 sm:w-5 sm:h-5 shrink-0" />
                   </button>
-                  <span className="text-xs text-slate-500 font-medium">
-                    (45 phút test trực tiếp tại 866/25 Ngô Quyền)
-                  </span>
                 </div>
               </div>
             </div>
