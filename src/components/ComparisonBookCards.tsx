@@ -306,7 +306,7 @@ export const ComparisonBookCards: React.FC<ComparisonBookCardsProps> = ({ onRegi
               }`}
             >
               {/* Nhãn treo 50% trong 50% ngoài box */}
-              <div className="absolute -top-2.5 right-4 z-10 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 shadow-2xs font-mono text-[10px] sm:text-[11px] font-bold">
+              <div className="absolute -top-2.5 right-4 z-10 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 shadow-2xs text-[10px] sm:text-[11px] font-bold">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
                 <span>Vượt trội</span>
               </div>
@@ -396,7 +396,7 @@ export const ComparisonBookCards: React.FC<ComparisonBookCardsProps> = ({ onRegi
             <span>Trang trước</span>
           </button>
 
-          <span className="font-mono text-xs font-bold text-slate-600 px-2 py-1 bg-white/70 rounded-lg border border-slate-300/60">
+          <span className="text-xs font-bold text-slate-600 px-2 py-1 bg-white/70 rounded-lg border border-slate-300/60">
             0{activePageIndex + 1} / 03
           </span>
 

@@ -540,7 +540,7 @@ export const LandingPage: React.FC = () => {
             <span className="font-heading font-extrabold uppercase tracking-tight text-white text-xs sm:text-base leading-tight whitespace-nowrap">
               LỚP TIẾNG ANH CÔ NGHI
             </span>
-            <span className="font-mono uppercase text-[9.5px] sm:text-[11px] tracking-wider text-sky-400 font-bold flex items-center gap-1 mt-0.5 whitespace-nowrap">
+            <span className="uppercase text-[9.5px] sm:text-[11px] tracking-wider text-sky-400 font-bold flex items-center gap-1 mt-0.5 whitespace-nowrap">
               <MapPin className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#ff4757] shrink-0" />
               <span>SƠN TRÀ, ĐÀ NẴNG</span>
             </span>
@@ -552,7 +552,7 @@ export const LandingPage: React.FC = () => {
               <span className="text-slate-400 font-medium">Giáo viên:</span>{" "}
               <strong className="font-bold text-white">Thạc sĩ TESOL Quốc tế</strong>
             </div>
-            <div className="font-mono text-[9.5px] sm:text-xs uppercase tracking-wider font-bold text-[#ff6b81] flex items-center justify-end gap-1 mt-0.5 whitespace-nowrap">
+            <div className="text-[9.5px] sm:text-xs uppercase tracking-wider font-bold text-[#ff6b81] flex items-center justify-end gap-1 mt-0.5 whitespace-nowrap">
               <span className="w-1.5 h-1.5 rounded-full bg-[#ff4757] animate-pulse shrink-0" />
               <span>Sĩ số: Tối đa 12 em/ lớp</span>
             </div>
@@ -635,7 +635,7 @@ export const LandingPage: React.FC = () => {
                   {/* Tag chứng nhận nổi trên góc ảnh */}
                   <div className="absolute top-3 right-3 z-10 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-xl border border-slate-200/80 shadow-sm flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="font-mono text-[10.5px] font-bold text-slate-800 uppercase tracking-wider">
+                    <span className="text-[10.5px] font-bold text-slate-800 uppercase tracking-wider">
                       Thạc sĩ TESOL
                     </span>
                   </div>
@@ -643,7 +643,7 @@ export const LandingPage: React.FC = () => {
                   {/* Gradient Overlay & Metadata thông tin chân dung phía dưới phủ lên ảnh full box */}
                   <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-transparent p-4 sm:p-5 pt-12 text-white flex flex-col justify-end">
                     <div className="flex items-center">
-                      <span className="text-[11px] sm:text-xs font-bold font-mono text-sky-300 tracking-tight whitespace-nowrap">
+                      <span className="text-[11px] sm:text-xs font-bold text-sky-300 tracking-tight whitespace-nowrap">
                         Phương pháp kèm cặp độc quyền
                       </span>
                     </div>
@@ -693,7 +693,7 @@ export const LandingPage: React.FC = () => {
                     <div className="flex-1 min-w-0 flex flex-col items-end text-right">
                       {/* Hàng 1: Badge nằm góc trên bên phải */}
                       <div className="flex justify-end items-center">
-                        <span className="inline-flex items-center gap-1.5 font-mono uppercase text-[10px] tracking-wider font-bold text-[#0A78F3] bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200/70 shadow-2xs">
+                        <span className="inline-flex items-center gap-1.5 uppercase text-[10px] tracking-wider font-bold text-[#0A78F3] bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200/70 shadow-2xs">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#0A78F3] animate-pulse" />
                           CHỨNG NHẬN
                         </span>
@@ -714,7 +714,7 @@ export const LandingPage: React.FC = () => {
                     <strong className="text-slate-900 font-bold">Thạc sĩ TESOL Quốc tế</strong> – Sáng lập dự án Hopepath Academy.
                   </p>
 
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs sm:text-[13px] font-mono text-[#0A78F3] font-bold">
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs sm:text-[13px] text-[#0A78F3] font-bold">
                     <CheckCircle2 className="w-3.5 h-3.5" />
                     <span>Trực tiếp Cô Nghi đứng lớp 100%</span>
                   </div>
@@ -740,7 +740,7 @@ export const LandingPage: React.FC = () => {
                     <div className="flex-1 min-w-0 flex flex-col items-end text-right">
                       {/* Hàng 1: Badge nằm góc trên bên phải */}
                       <div className="flex justify-end items-center">
-                        <span className="inline-flex items-center gap-1.5 font-mono uppercase text-[10px] tracking-wider font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/70 shadow-2xs">
+                        <span className="inline-flex items-center gap-1.5 uppercase text-[10px] tracking-wider font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/70 shadow-2xs">
                           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                           SĨ SỐ VÀNG
                         </span>
@@ -760,7 +760,7 @@ export const LandingPage: React.FC = () => {
                     Quy mô <strong className="text-slate-900 font-bold">tối đa 12 học sinh/lớp</strong> – Bắt đúng bệnh, sửa tỉ mỉ từng lỗi sai ngữ pháp &amp; phát âm cho từng em ngay tại bàn.
                   </p>
 
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs sm:text-[13px] font-mono text-emerald-700 font-bold">
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs sm:text-[13px] text-emerald-700 font-bold">
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                     <span>Không dạy đại trà 25–30 em</span>
                   </div>
@@ -786,7 +786,7 @@ export const LandingPage: React.FC = () => {
                     <div className="flex-1 min-w-0 flex flex-col items-end text-right">
                       {/* Hàng 1: Badge nằm góc trên bên phải */}
                       <div className="flex justify-end items-center">
-                        <span className="inline-flex items-center gap-1.5 font-mono uppercase text-[10px] tracking-wider font-bold text-[#C43838] bg-red-50 px-2.5 py-0.5 rounded-full border border-red-200/70 shadow-2xs">
+                        <span className="inline-flex items-center gap-1.5 uppercase text-[10px] tracking-wider font-bold text-[#C43838] bg-red-50 px-2.5 py-0.5 rounded-full border border-red-200/70 shadow-2xs">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#C43838] animate-pulse" />
                           RỦI RO BẰNG 0
                         </span>
@@ -806,7 +806,7 @@ export const LandingPage: React.FC = () => {
                     <strong className="text-slate-900 font-bold">Hoàn 100% học phí</strong> trong 7 ngày đầu nếu con không hào hứng + <strong className="text-slate-900 font-bold">Phụ đạo 1-1 MIỄN PHÍ</strong> ngoài giờ đến khi tiến bộ.
                   </p>
 
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs sm:text-[13px] font-mono text-[#C43838] font-bold">
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs sm:text-[13px] text-[#C43838] font-bold">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#C43838]" />
                     <span>Cam kết hoàn tiền & phụ đạo 1-1</span>
                   </div>
@@ -1267,11 +1267,11 @@ export const LandingPage: React.FC = () => {
                         <div>
                           {/* Header thẻ */}
                           <div className="flex items-center gap-3 mb-3.5">
-                            <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-red-100 text-[#C43838] font-mono text-sm sm:text-base font-bold flex items-center justify-center shrink-0 border border-red-200/80 shadow-2xs">
+                            <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-red-100 text-[#C43838] font-heading text-sm sm:text-base font-black flex items-center justify-center shrink-0 border border-red-200/80 shadow-2xs">
                               {item.id}
                             </span>
                             <div>
-                              <span className="font-mono text-[10.5px] sm:text-[11px] font-bold uppercase tracking-wider text-[#C43838]">
+                              <span className="text-[10.5px] sm:text-[11px] font-bold uppercase tracking-wider text-[#C43838]">
                                 {item.tag}
                               </span>
                               <h3 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-base sm:text-lg md:text-xl leading-snug">
@@ -1294,7 +1294,7 @@ export const LandingPage: React.FC = () => {
                                 <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white border border-slate-200/80 shadow-2xs flex items-center justify-center text-slate-400">
                                   <Camera className="w-4 h-4 text-slate-400" />
                                 </div>
-                                <span className="font-mono text-[10.5px] font-semibold text-slate-400 uppercase tracking-wide">
+                                <span className="text-[10.5px] font-semibold text-slate-400 uppercase tracking-wide">
                                   Hình minh hoạ (16:9)
                                 </span>
                               </div>
@@ -1380,7 +1380,7 @@ export const LandingPage: React.FC = () => {
                     aria-label={`Chuyển đến thẻ ${idx + 1}`}
                   />
                 ))}
-                <span className="font-mono text-xs text-slate-500 font-bold ml-2">
+                <span className="text-xs text-slate-500 font-bold ml-2">
                   0{(symptomSlideIndex % 4) + 1} / 04
                 </span>
               </div>
@@ -1492,7 +1492,7 @@ export const LandingPage: React.FC = () => {
                       </div>
 
                       {/* Chú thích màu cột (Legend) */}
-                      <div className="flex items-center justify-center gap-5 my-3 text-xs sm:text-sm font-mono">
+                      <div className="flex items-center justify-center gap-5 my-3 text-xs sm:text-sm">
                         <div className="flex items-center gap-1.5">
                           <span className="w-3.5 h-3.5 rounded-xs bg-slate-600 inline-block border border-slate-500" />
                           <span className="text-slate-300 font-medium">Điểm cũ</span>
@@ -1517,7 +1517,7 @@ export const LandingPage: React.FC = () => {
                             <div className="flex items-end justify-center gap-1.5 sm:gap-2.5 w-full h-32 sm:h-40 pb-1">
                               {/* Cột Cũ: 11.00đ */}
                               <div className="flex flex-col items-center flex-1 max-w-[28px] sm:max-w-[36px]">
-                                <span className="text-xs sm:text-sm font-mono text-slate-300 font-semibold leading-none mb-1">
+                                <span className="text-xs sm:text-sm text-slate-300 font-semibold leading-none mb-1">
                                   11
                                 </span>
                                 <div
@@ -1528,7 +1528,7 @@ export const LandingPage: React.FC = () => {
                               </div>
                               {/* Cột Mới: 24.00đ */}
                               <div className="flex flex-col items-center flex-1 max-w-[28px] sm:max-w-[36px]">
-                                <span className="text-sm sm:text-base font-mono font-black text-amber-300 leading-none mb-1">
+                                <span className="text-sm sm:text-base font-black text-amber-300 leading-none mb-1">
                                   24
                                 </span>
                                 <div
@@ -1552,7 +1552,7 @@ export const LandingPage: React.FC = () => {
                             <div className="flex items-end justify-center gap-1.5 sm:gap-2.5 w-full h-32 sm:h-40 pb-1">
                               {/* Cột Cũ: 19.25đ */}
                               <div className="flex flex-col items-center flex-1 max-w-[28px] sm:max-w-[36px]">
-                                <span className="text-xs sm:text-sm font-mono text-slate-300 font-semibold leading-none mb-1">
+                                <span className="text-xs sm:text-sm text-slate-300 font-semibold leading-none mb-1">
                                   19.2
                                 </span>
                                 <div
@@ -1563,7 +1563,7 @@ export const LandingPage: React.FC = () => {
                               </div>
                               {/* Cột Mới: 27.00đ */}
                               <div className="flex flex-col items-center flex-1 max-w-[28px] sm:max-w-[36px]">
-                                <span className="text-sm sm:text-base font-mono font-black text-[#ff6b81] leading-none mb-1">
+                                <span className="text-sm sm:text-base font-black text-[#ff6b81] leading-none mb-1">
                                   27
                                 </span>
                                 <div
@@ -1587,7 +1587,7 @@ export const LandingPage: React.FC = () => {
                             <div className="flex items-end justify-center gap-1.5 sm:gap-2.5 w-full h-32 sm:h-40 pb-1">
                               {/* Cột Cũ: 31.00đ */}
                               <div className="flex flex-col items-center flex-1 max-w-[28px] sm:max-w-[36px]">
-                                <span className="text-xs sm:text-sm font-mono text-slate-300 font-semibold leading-none mb-1">
+                                <span className="text-xs sm:text-sm text-slate-300 font-semibold leading-none mb-1">
                                   31
                                 </span>
                                 <div
@@ -1598,7 +1598,7 @@ export const LandingPage: React.FC = () => {
                               </div>
                               {/* Cột Mới: 33.25đ */}
                               <div className="flex flex-col items-center flex-1 max-w-[28px] sm:max-w-[36px]">
-                                <span className="text-sm sm:text-base font-mono font-black text-sky-400 leading-none mb-1">
+                                <span className="text-sm sm:text-base font-black text-sky-400 leading-none mb-1">
                                   33.2
                                 </span>
                                 <div
@@ -1652,7 +1652,7 @@ export const LandingPage: React.FC = () => {
                             <span className="w-2 h-2 rounded-full bg-sky-400 shrink-0" />
                             <span>Hệ số điểm:</span>
                           </div>
-                          <div className="text-[13.5px] sm:text-[15px] font-mono font-bold text-sky-300 bg-sky-950/80 px-2.5 py-1 rounded-md border border-sky-800">
+                          <div className="text-[13.5px] sm:text-[15px] font-bold text-sky-300 bg-sky-950/80 px-2.5 py-1 rounded-md border border-sky-800">
                             Toán 1 : Văn 1 : Anh 1
                           </div>
                         </div>
@@ -1663,7 +1663,7 @@ export const LandingPage: React.FC = () => {
                             <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
                             <span>Đề thi Sở GD:</span>
                           </div>
-                          <div className="text-[13.5px] sm:text-[15px] font-mono font-bold text-amber-300 bg-amber-950/80 px-2.5 py-1 rounded-md border border-amber-800">
+                          <div className="text-[13.5px] sm:text-[15px] font-bold text-amber-300 bg-amber-950/80 px-2.5 py-1 rounded-md border border-amber-800">
                             36 câu (Tự viết từ + dịch)
                           </div>
                         </div>
@@ -1674,7 +1674,7 @@ export const LandingPage: React.FC = () => {
                             <span className="w-2 h-2 rounded-full bg-[#ff4757] shrink-0" />
                             <span>Cơ hội may mắn:</span>
                           </div>
-                          <div className="text-[13.5px] sm:text-[15px] font-mono font-bold text-rose-300 bg-rose-950/80 px-2.5 py-1 rounded-md border border-rose-800">
+                          <div className="text-[13.5px] sm:text-[15px] font-bold text-rose-300 bg-rose-950/80 px-2.5 py-1 rounded-md border border-rose-800">
                             0% (Triệt tiêu khoanh lụi)
                           </div>
                         </div>
@@ -1701,7 +1701,7 @@ export const LandingPage: React.FC = () => {
                       <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 text-slate-950 font-bold flex items-center justify-center shadow-md border-2 border-white/80">
                         <span className="text-base sm:text-lg">👦</span>
                       </div>
-                      <span className="text-[10px] font-mono text-slate-400 mt-1 whitespace-nowrap">Con yêu</span>
+                      <span className="text-[10px] text-slate-400 mt-1 whitespace-nowrap">Con yêu</span>
                     </div>
 
                     {/* Bong bóng chat */}
@@ -1709,7 +1709,7 @@ export const LandingPage: React.FC = () => {
                       {/* Mũi nhọn speech bubble */}
                       <div className="absolute top-0 -left-2 w-0 h-0 border-t-[8px] border-t-white border-l-[8px] border-l-transparent" />
                       
-                      <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-amber-700 mb-1.5">
+                      <div className="flex items-center gap-1.5 text-xs font-bold text-amber-700 mb-1.5">
                         <Quote className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
                         <span>Tâm sự của con</span>
                       </div>
@@ -1922,7 +1922,7 @@ export const LandingPage: React.FC = () => {
                   </span>
 
                   <div className="relative z-20 pr-0 sm:pr-28">
-                    <span className={`font-mono uppercase text-xs sm:text-[13px] font-bold ${item.colorConfig.categoryText} tracking-wider block`}>
+                    <span className={`uppercase text-xs sm:text-[13px] font-bold ${item.colorConfig.categoryText} tracking-wider block`}>
                       {item.category}
                     </span>
                     <h3 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-base sm:text-lg md:text-xl lg:text-[22px] leading-snug mt-1">
@@ -1983,7 +1983,7 @@ export const LandingPage: React.FC = () => {
                     {/* Callout 1 (Hổ phách: Lời hỏi trong lớp của Cô Nghi - Đã bỏ vòng tròn đen CN) */}
                     <div className="relative bg-[#fffbeb] border border-amber-200/90 rounded-2xl p-4 sm:p-5 pt-5 sm:pt-6 shadow-2xs flex items-center">
                       {/* Tag nhãn nằm 50% trong 50% ngoài mép trên bên trái */}
-                      <div className="absolute -top-3.5 left-4 sm:left-6 px-3.5 py-1 rounded-full bg-[#1e293b] text-white font-mono text-[11px] sm:text-xs font-bold tracking-wider shadow-sm border border-slate-700/50">
+                      <div className="absolute -top-3.5 left-4 sm:left-6 px-3.5 py-1 rounded-full bg-[#1e293b] text-white text-[11px] sm:text-xs font-bold tracking-wider shadow-sm border border-slate-700/50">
                         {item.calloutLabel}
                       </div>
                       
@@ -1995,7 +1995,7 @@ export const LandingPage: React.FC = () => {
                     {/* Callout 2 (Kết quả đầu ra - Màu theo chủ đề của từng thẻ) */}
                     <div className={`relative ${item.colorConfig.resultBoxBg} border ${item.colorConfig.resultBoxBorder} rounded-2xl p-4 sm:p-5 pt-5 sm:pt-6 shadow-2xs flex flex-col items-center justify-center text-center`}>
                       {/* Tag nhãn nằm 50% trong 50% ngoài mép trên */}
-                      <div className={`absolute -top-3.5 left-4 sm:left-6 px-3.5 py-1 rounded-full ${item.colorConfig.resultBadgeBg} text-white font-mono text-[11px] sm:text-xs font-bold tracking-wider shadow-sm border border-white/40`}>
+                      <div className={`absolute -top-3.5 left-4 sm:left-6 px-3.5 py-1 rounded-full ${item.colorConfig.resultBadgeBg} text-white text-[11px] sm:text-xs font-bold tracking-wider shadow-sm border border-white/40`}>
                         KẾT QUẢ
                       </div>
 
@@ -2043,7 +2043,7 @@ export const LandingPage: React.FC = () => {
             <span>ĐĂNG KÝ TEST HỌC LỰC TIẾNG ANH 1-1</span>
             <ArrowRight className="w-3.5 h-3.5 shrink-0 text-white" />
           </span>
-          <span className="font-mono text-[10.5px] tracking-wide text-amber-100 flex items-center gap-1.5 mt-0.5">
+          <span className="text-[10.5px] tracking-wide text-amber-100 flex items-center gap-1.5 mt-0.5">
             <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0" />
             <span className="font-semibold text-white">Miễn phí - Chỉ còn 6 suất tuần này</span>
           </span>
@@ -2067,7 +2067,7 @@ export const LandingPage: React.FC = () => {
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#C43838] animate-pulse" />
-                  <span className="font-mono uppercase text-xs tracking-wider text-[#C43838] font-bold">
+                  <span className="uppercase text-xs tracking-wider text-[#C43838] font-bold">
                     Chỉ Còn 08 Suất Test Trong Tuần Này
                   </span>
                 </div>
@@ -2081,7 +2081,7 @@ export const LandingPage: React.FC = () => {
 
                 <form onSubmit={handleSubmitForm} className="mt-5 space-y-3.5">
                   <div>
-                    <label className="block font-mono uppercase text-xs sm:text-[13px] tracking-wider text-slate-700 font-bold mb-1">
+                    <label className="block uppercase text-xs sm:text-[13px] tracking-wider text-slate-700 font-bold mb-1">
                       1. Họ và tên Phụ huynh (*)
                     </label>
                     <input
@@ -2095,7 +2095,7 @@ export const LandingPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block font-mono uppercase text-xs sm:text-[13px] tracking-wider text-slate-700 font-bold mb-1">
+                    <label className="block uppercase text-xs sm:text-[13px] tracking-wider text-slate-700 font-bold mb-1">
                       2. Số điện thoại Zalo (*)
                     </label>
                     <input
@@ -2109,7 +2109,7 @@ export const LandingPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block font-mono uppercase text-xs sm:text-[13px] tracking-wider text-slate-700 font-bold mb-1">
+                    <label className="block uppercase text-xs sm:text-[13px] tracking-wider text-slate-700 font-bold mb-1">
                       3. Họ tên con &amp; Khối lớp hiện tại (*)
                     </label>
                     <input
@@ -2125,7 +2125,7 @@ export const LandingPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block font-mono uppercase text-xs sm:text-[13px] tracking-wider text-slate-700 font-bold mb-1">
+                    <label className="block uppercase text-xs sm:text-[13px] tracking-wider text-slate-700 font-bold mb-1">
                       4. Trường THCS con đang học tại Đà Nẵng
                     </label>
                     <select
@@ -2144,7 +2144,7 @@ export const LandingPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block font-mono uppercase text-xs sm:text-[13px] tracking-wider text-slate-700 font-bold mb-1">
+                    <label className="block uppercase text-xs sm:text-[13px] tracking-wider text-slate-700 font-bold mb-1">
                       5. Nhu cầu ưu tiên của Phụ huynh
                     </label>
                     <div className="space-y-1.5 text-xs">
@@ -2172,7 +2172,7 @@ export const LandingPage: React.FC = () => {
 
                   <button
                     type="submit"
-                    className="w-full mt-4 py-4 px-4 rounded-xl bg-[#0A78F3] hover:bg-sky-500 text-white font-mono text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg shadow-sky-500/25 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
+                    className="w-full mt-4 py-4 px-4 rounded-xl bg-[#0A78F3] hover:bg-sky-500 text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg shadow-sky-500/25 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
                   >
                     <span>XÁC NHẬN ĐĂNG KÝ – GIỮ LỊCH TEST 1-1 MIỄN PHÍ</span>
                     <ArrowRight className="w-4 h-4" />
@@ -2199,7 +2199,7 @@ export const LandingPage: React.FC = () => {
                 </div>
                 <button
                   onClick={() => setIsModalOpen(false)}
-                  className="px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-mono text-xs sm:text-sm font-bold uppercase tracking-wider shadow-md transition-all active:scale-95 cursor-pointer"
+                  className="px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-md transition-all active:scale-95 cursor-pointer"
                 >
                   Đóng cửa sổ
                 </button>
