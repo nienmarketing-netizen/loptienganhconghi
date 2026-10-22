@@ -637,13 +637,13 @@ export const LandingPage: React.FC = () => {
                 </span>
 
                 {/* Dòng 3 */}
-                <span className="text-[13px] xs:text-[14.5px] sm:text-xl md:text-2xl lg:text-[22px] xl:text-[24px] leading-snug font-bold text-slate-700 mt-0.5 sm:mt-1 normal-case text-center lg:text-left flex items-center justify-center lg:justify-start gap-1 flex-wrap sm:flex-nowrap">
-                  <span>Bứt phá</span>
+                <span className="text-base sm:text-xl md:text-2xl lg:text-[22px] xl:text-[24px] leading-snug font-bold text-slate-700 mt-0.5 sm:mt-1 normal-case text-center lg:text-left block">
+                  <span>Bứt phá </span>
                   <span className="text-[#C43838] font-black underline decoration-[#C43838] decoration-2 underline-offset-2">
                     1–3 điểm
                   </span>
-                  <span>trên trường</span>
-                  <span className="bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded-md border border-amber-300 font-black shadow-2xs">
+                  <span> trên trường </span>
+                  <span className="bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded-md border border-amber-300 font-black shadow-2xs inline box-decoration-clone">
                     chỉ sau 90 ngày!
                   </span>
                 </span>
@@ -878,12 +878,9 @@ export const LandingPage: React.FC = () => {
                     CHO <span className="text-[#C43838]">TRUNG TÂM LỚN</span>
                   </span>
                 </span>
-                <span className="text-[13px] xs:text-[14.5px] sm:text-xl md:text-2xl lg:text-[22px] xl:text-[24px] leading-tight text-center tracking-tight">
-                  <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-[#0A78F3] via-sky-500 to-blue-600">
-                    CHO ĐẾN KHI BA MẸ{" "}
-                  </span>
-                  <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-[#0A78F3] via-sky-500 to-blue-600">
-                    XEM HẾT VIDEO 2.5 PHÚT NÀY!
+                <span className="text-base sm:text-xl md:text-2xl lg:text-[22px] xl:text-[24px] leading-tight text-center tracking-tight block">
+                  <span className="inline text-transparent bg-clip-text bg-gradient-to-r from-[#0A78F3] via-sky-500 to-blue-600 box-decoration-clone">
+                    CHO ĐẾN KHI BA MẸ XEM HẾT VIDEO 2.5 PHÚT NÀY!
                   </span>
                 </span>
               </h2>
@@ -1014,13 +1011,13 @@ export const LandingPage: React.FC = () => {
                           lỗi hoàn toàn không phải do các con thiếu năng lực
                         </strong>
                         . Trẻ ở lứa tuổi dậy thì có cái tôi rất lớn, các con cực kỳ{" "}
-                        <strong className="text-[#0A78F3] font-bold not-italic bg-sky-50 px-2 py-0.5 rounded-md border border-sky-200/80 inline-block">
-                          sợ sai và sợ bị đánh giá trước đám đông
+                        <strong className="text-[#0A78F3] font-bold not-italic bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200/80 box-decoration-clone inline">
+                          sợ sai và sợ bị đánh giá trước đám đông...
                         </strong>
-                        ...&rdquo;
+                        &rdquo;
                       </p>
                       <p>
-                        &ldquo;Môn Tiếng Anh cấp 2 đôi khi tạo ra nhiều thử thách khi lượng từ vựng ngày càng lớn. Việc ghi nhớ máy móc thường khiến các con dễ quên nhanh, dẫn đến tâm lý đối phó khi làm các bài kiểm tra trắc nghiệm tại trường...&rdquo;
+                        &ldquo;Môn Tiếng Anh cấp 2 đôi khi tạo ra nhiều thử thách khi lượng từ vựng ngày càng lớn. Việc ghi nhớ máy móc thường khiến các con <strong className="font-bold not-italic text-slate-900">dễ quên nhanh, dẫn đến tâm lý đối phó</strong> khi làm các bài kiểm tra trắc nghiệm tại trường...&rdquo;
                       </p>
                     </div>
                   </div>
@@ -1286,7 +1283,7 @@ export const LandingPage: React.FC = () => {
               </h2>
 
               {/* 3. Text mô tả với các keywords giá trị được in đậm & tô màu nổi bật */}
-              <p className="font-body text-slate-600 leading-relaxed text-[15px] sm:text-base md:text-[17px] max-w-3xl mx-auto text-center">
+              <p className="font-body text-slate-600 leading-relaxed text-[15.5px] sm:text-base md:text-[17px] max-w-3xl mx-auto text-center">
                 Nhiều phụ huynh có con đang học tại các trường{" "}
                 <strong className="text-slate-900 font-bold bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200/80 shadow-2xs">
                   THCS Lê Độ, Nguyễn Chí Thanh, Phạm Ngọc Thạch, Phan Bội Châu, Lý Tự Trọng hay Ngô Quyền...
@@ -1421,7 +1418,7 @@ export const LandingPage: React.FC = () => {
                             </button>
                             {openDropdowns[`${item.id}-behavior`] && (
                               <div className="mt-2.5 bg-slate-50 border border-slate-200/90 rounded-xl p-4 sm:p-4.5 animate-in fade-in slide-in-from-top-1 duration-200">
-                                <p className="font-body text-[15px] sm:text-[16.5px] text-slate-700 leading-relaxed">
+                                <p className="font-body text-[15.5px] sm:text-[16.5px] text-slate-700 leading-relaxed">
                                   {item.behavior}
                                 </p>
                               </div>
@@ -1448,7 +1445,7 @@ export const LandingPage: React.FC = () => {
                             </button>
                             {openDropdowns[`${item.id}-consequence`] && (
                               <div className="mt-2.5 bg-rose-50/50 border border-red-200/70 rounded-xl p-4 sm:p-4.5 animate-in fade-in slide-in-from-top-1 duration-200">
-                                <p className="font-body text-[15px] sm:text-[16.5px] text-slate-700 leading-relaxed">
+                                <p className="font-body text-[15.5px] sm:text-[16.5px] text-slate-700 leading-relaxed">
                                   {item.consequence}
                                 </p>
                               </div>
@@ -1557,10 +1554,10 @@ export const LandingPage: React.FC = () => {
                   </h3>
 
                   {/* 3. Tiêu đề phụ: Mobile 2 dòng (Dòng 1: Đừng để sự chủ quan đánh mất, Dòng 2: tấm vé vào lớp 10 công lập của con!) */}
-                  <div className="text-center max-w-3xl mx-auto text-[13px] xs:text-[14.5px] sm:text-xl md:text-2xl lg:text-[22px] xl:text-[24px] font-medium text-slate-200 leading-snug">
+                  <div className="text-center max-w-3xl mx-auto text-base sm:text-xl md:text-2xl lg:text-[22px] xl:text-[24px] font-medium text-slate-200 leading-snug">
                     <span className="block sm:inline">
                       <span>Đừng để </span>
-                      <strong className="text-[#ff6b81] font-bold bg-rose-950/70 px-2 py-0.5 rounded-lg border border-rose-800/80 shadow-2xs">
+                      <strong className="text-[#ff6b81] font-bold bg-rose-950/70 px-2 py-0.5 rounded-lg border border-rose-800/80 shadow-2xs inline box-decoration-clone">
                         sự chủ quan
                       </strong>
                       <span> đánh mất </span>
@@ -1722,7 +1719,7 @@ export const LandingPage: React.FC = () => {
                     {/* KHUNG THÔNG TIN GHI CHÚ BÊN DƯỚI BIỂU ĐỒ */}
                     <div className="mt-3 sm:mt-4 pt-3 border-t border-slate-700/80">
                       <div className="p-3 sm:p-4 rounded-xl bg-slate-900/80 border border-slate-700/70 text-center">
-                        <p className="font-body text-[14.5px] sm:text-base text-slate-200 leading-relaxed">
+                        <p className="font-body text-[15.5px] sm:text-[16.5px] text-slate-200 leading-relaxed">
                           Trong kỳ thi tuyển sinh vào lớp 10 tại Đà Nẵng năm học 2026–2027, điểm chuẩn các trường THPT công lập trên địa bàn quận Sơn Trà đã <strong className="text-[#ff6b81] font-bold">tăng vọt</strong>
                         </p>
                       </div>
@@ -1784,7 +1781,7 @@ export const LandingPage: React.FC = () => {
                     {/* KHUNG THÔNG TIN CẢNH BÁO / TỔNG KẾT RỦI RO */}
                     <div className="mt-3 sm:mt-4 pt-3 border-t border-slate-700/80">
                       <div className="p-3 sm:p-4 rounded-xl bg-gradient-to-br from-rose-950/40 via-slate-900/90 to-slate-900/90 border border-rose-900/60 shadow-inner">
-                        <p className="font-body text-[14.5px] sm:text-base text-slate-200 leading-relaxed text-center sm:text-left">
+                        <p className="font-body text-[15.5px] sm:text-[16.5px] text-slate-200 leading-relaxed text-center sm:text-left">
                           Với <strong className="text-amber-300 font-bold">quy chế mới (hệ số 1:1:1)</strong> cùng cấu trúc đề 36 câu khắt khe, thói quen <strong className="text-[#ff6b81] font-bold">"khoanh lụi"</strong> trực tiếp đẩy học sinh vào nguy cơ <strong className="text-rose-200 font-bold">rớt trường công lập</strong> — tạo gánh nặng học phí trường tư <strong className="text-amber-300 font-extrabold">hàng trăm triệu đồng</strong> suốt 3 năm cấp 3.
                         </p>
                       </div>
@@ -1814,7 +1811,7 @@ export const LandingPage: React.FC = () => {
                         <span>Tâm sự của con</span>
                       </div>
                       
-                      <p className="font-body text-[15px] sm:text-[17px] text-slate-800 leading-relaxed italic font-medium">
+                      <p className="font-body text-[15.5px] sm:text-[17px] text-slate-800 leading-relaxed italic font-medium">
                         &ldquo;Con không ghét Tiếng Anh, con chỉ sợ cảm giác bất lực khi không hiểu bài và sợ ánh mắt thất vọng khi mẹ đứng sau quát mắng.&rdquo;
                       </p>
                     </div>
@@ -1913,11 +1910,11 @@ export const LandingPage: React.FC = () => {
                   </span>
                 </span>
                 {/* Dòng 2: Tiêu đề phụ - chia dòng 1 & dòng 2 */}
-                <span className="text-[14.5px] min-[430px]:text-base sm:text-lg lg:text-[20px] font-semibold text-slate-700 leading-snug normal-case flex flex-col sm:flex-row sm:items-center sm:justify-center gap-1 sm:gap-1.5">
-                  <span>Trạm cứu hộ học thuật &amp; kiến tạo động lực học tập</span>
-                  <span className="flex items-center justify-center gap-1.5">
-                    <span>với</span>
-                    <span className="bg-amber-100 text-amber-900 px-2 py-0.5 rounded-md border border-amber-300 font-bold inline-block">
+                <span className="text-base sm:text-lg lg:text-[20px] font-semibold text-slate-700 leading-snug normal-case block text-center">
+                  <span>Trạm cứu hộ học thuật &amp; kiến tạo động lực học tập </span>
+                  <span className="inline">
+                    <span>với </span>
+                    <span className="bg-amber-100 text-amber-900 px-2 py-0.5 rounded-md border border-amber-300 font-bold inline box-decoration-clone">
                       sĩ số vàng – tối đa 12 học sinh
                     </span>
                   </span>
@@ -1925,7 +1922,7 @@ export const LandingPage: React.FC = () => {
               </h2>
 
               {/* 3 đoạn text nội dung giới thiệu - Thêm khoảng trống thoáng giữa các đoạn */}
-              <div className="space-y-3.5 sm:space-y-4 font-body text-slate-600 leading-relaxed text-[15px] sm:text-[17px] w-full mx-auto pt-2 sm:pt-3">
+              <div className="space-y-3.5 sm:space-y-4 font-body text-slate-600 leading-relaxed text-[15.5px] sm:text-[17px] w-full mx-auto pt-2 sm:pt-3">
                 <p>
                   Không vận hành như một <strong className="text-slate-900 font-semibold">trung tâm thương mại đại trà</strong> hay một <strong className="text-slate-900 font-semibold">lò luyện thi nhồi nhét</strong>.
                 </p>
@@ -1986,7 +1983,7 @@ export const LandingPage: React.FC = () => {
             </h2>
 
             {/* Text mô tả: size 20px ở PC, keyword nổi bật */}
-            <p className="font-body text-slate-600 text-[15px] sm:text-[17px] md:text-[18.5px] lg:text-[20px] leading-relaxed max-w-3xl mx-auto text-center">
+            <p className="font-body text-slate-600 text-[15.5px] sm:text-[17px] md:text-[18.5px] lg:text-[20px] leading-relaxed max-w-3xl mx-auto text-center">
               Được thiết kế dựa trên{" "}
               <strong className="text-[#0A78F3] font-bold bg-white px-2.5 py-0.5 rounded-lg border border-sky-200 shadow-2xs inline-block">
                 khoa học giáo dục hành vi
@@ -2070,7 +2067,7 @@ export const LandingPage: React.FC = () => {
                           <h4 className="font-heading font-bold text-slate-900 text-base leading-snug">
                             {st.title}
                           </h4>
-                          <p className="font-body text-slate-600 text-[14.5px] leading-relaxed mt-0.5">
+                          <p className="font-body text-slate-600 text-[15.5px] leading-relaxed mt-0.5">
                             {st.desc}
                           </p>
                         </div>
@@ -2087,7 +2084,7 @@ export const LandingPage: React.FC = () => {
                         {item.calloutLabel}
                       </div>
                       
-                      <p className="font-body text-slate-800 text-[14.5px] sm:text-[15.5px] font-medium leading-relaxed">
+                      <p className="font-body text-slate-800 text-[15.5px] sm:text-[16.5px] font-medium leading-relaxed">
                         {item.calloutText}
                       </p>
                     </div>
@@ -2151,7 +2148,7 @@ export const LandingPage: React.FC = () => {
                 </span>
               </h2>
 
-              <p className="font-body text-slate-600 text-[15px] sm:text-base md:text-[17.5px] lg:text-[18px] leading-relaxed max-w-3xl mx-auto text-center">
+              <p className="font-body text-slate-600 text-[15.5px] sm:text-base md:text-[17.5px] lg:text-[18px] leading-relaxed max-w-3xl mx-auto text-center">
                 <span className="font-bold text-slate-800 underline decoration-slate-300 decoration-1 underline-offset-2">Không thông qua trợ giảng hay giáo viên thực tập</span>, <strong className="text-[#0A78F3] font-bold bg-sky-50 px-2 py-0.5 rounded-lg border border-sky-200/80 shadow-2xs inline-block">Cô Nghi trực tiếp quan sát</strong> từng cử chỉ, biểu cảm và bài làm của từng học sinh trong suốt khóa học.
               </p>
             </div>
@@ -2312,7 +2309,7 @@ export const LandingPage: React.FC = () => {
                       </span>
                     </div>
 
-                    <p className="font-body text-[15px] sm:text-[16.5px] text-[#1a1a1a] leading-relaxed italic font-medium">
+                    <p className="font-body text-[15.5px] sm:text-[16.5px] text-[#1a1a1a] leading-relaxed italic font-medium">
                       &ldquo;Trước khi dạy chữ, người thầy phải <strong className="text-[#ff4757] font-bold not-italic">xoa dịu được tâm trí đang tổn thương và tự ti</strong> của đứa trẻ. Một học sinh cấp 2 bị điểm 4 <strong className="text-slate-900 font-bold not-italic">không phải vì em kém cỏi</strong>, mà vì em chưa từng được ai <strong className="text-[#0A78F3] font-bold not-italic bg-sky-50/80 px-1.5 py-0.5 rounded border border-sky-200/60">kiên nhẫn ngồi xuống chỉ cho cách bóc tách</strong> một câu tiếng Anh từ gốc rễ.&rdquo;
                     </p>
                   </div>
@@ -2390,7 +2387,7 @@ export const LandingPage: React.FC = () => {
                 BẢN ĐỒ CHUYỂN ĐỔI RÕ RỆT CỦA CON THEO TỪNG CỘT MỐC THỜI GIAN
               </h2>
 
-              <p className="font-body text-slate-600 text-[15px] sm:text-[17px] leading-relaxed max-w-3xl mx-auto text-center">
+              <p className="font-body text-slate-600 text-[15.5px] sm:text-[17px] leading-relaxed max-w-3xl mx-auto text-center">
                 Phụ huynh không cần phải chờ đợi mơ hồ hàng năm trời để thấy sự thay đổi. Lộ trình 90 ngày (12 tuần / 24 buổi học) tại Lớp Tiếng Anh Cô Nghi được thiết kế với các chỉ số đo lường cụ thể ở từng giai đoạn:
               </p>
             </div>
@@ -2415,7 +2412,7 @@ export const LandingPage: React.FC = () => {
                     Sau 1 Tuần Đầu Tiên
                   </h3>
 
-                  <div className="space-y-3 font-body text-sm sm:text-[15px] leading-relaxed">
+                  <div className="space-y-3 font-body text-[15.5px] sm:text-[16.5px] leading-relaxed">
                     <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/70">
                       <span className="text-xs font-bold text-slate-500 uppercase tracking-wide block mb-1">
                         Thái độ &amp; Tâm lý học tập
@@ -2460,7 +2457,7 @@ export const LandingPage: React.FC = () => {
                     Sau 1 Tháng Đầu Tiên
                   </h3>
 
-                  <div className="space-y-3 font-body text-sm sm:text-[15px] leading-relaxed">
+                  <div className="space-y-3 font-body text-[15.5px] sm:text-[16.5px] leading-relaxed">
                     <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/70">
                       <span className="text-xs font-bold text-slate-500 uppercase tracking-wide block mb-1">
                         Thái độ &amp; Tâm lý học tập
@@ -2505,7 +2502,7 @@ export const LandingPage: React.FC = () => {
                     Sau 3 Tháng (90 Ngày)
                   </h3>
 
-                  <div className="space-y-3 font-body text-sm sm:text-[15px] leading-relaxed">
+                  <div className="space-y-3 font-body text-[15.5px] sm:text-[16.5px] leading-relaxed">
                     <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/70">
                       <span className="text-xs font-bold text-slate-500 uppercase tracking-wide block mb-1">
                         Thái độ &amp; Tâm lý học tập
@@ -2539,7 +2536,7 @@ export const LandingPage: React.FC = () => {
                 <h3 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-xl sm:text-2xl md:text-3xl">
                   LỰA CHỌN LỘ TRÌNH PHÙ HỢP VỚI KHỐI LỚP CỦA CON
                 </h3>
-                <p className="font-body text-slate-600 text-sm sm:text-base">
+                <p className="font-body text-slate-600 text-[15.5px] sm:text-[16.5px] leading-relaxed">
                   Học Phí Minh Bạch – Trọn Gói 3 Tháng – Cam Kết Tuyệt Đối Không Phát Sinh Chi Phí Phụ
                 </p>
               </div>
@@ -2827,7 +2824,7 @@ export const LandingPage: React.FC = () => {
                 NHỮNG &ldquo;CHIẾN THẮNG NHỎ&rdquo; TẠO NÊN BƯỚC NHẢY VỌT LỚN TỪ HỌC VIÊN TẠI SƠN TRÀ
               </h2>
 
-              <p className="font-body text-slate-600 text-[15px] sm:text-[17px] leading-relaxed max-w-3xl mx-auto text-center">
+              <p className="font-body text-slate-600 text-[15.5px] sm:text-[17px] leading-relaxed max-w-3xl mx-auto text-center">
                 Minh chứng thực tế từ các học sinh từng bế tắc, sợ Tiếng Anh và tự ti đã lấy lại niềm tin, bứt phá ngoạn mục sau khi được Cô Nghi đồng hành 1-1:
               </p>
             </div>
@@ -2877,7 +2874,7 @@ export const LandingPage: React.FC = () => {
                 </div>
 
                 {/* 3 Cột Mốc Bóc Tách Thực Tế */}
-                <div className="space-y-3 font-body text-xs sm:text-sm">
+                <div className="space-y-3 font-body text-[15.5px] sm:text-[16.5px] leading-relaxed">
                   {/* Trạng thái trước khi học */}
                   <div className="p-3.5 rounded-xl bg-white border border-rose-100">
                     <span className="font-bold text-rose-700 uppercase tracking-wider text-[11px] block mb-1">
@@ -2953,7 +2950,7 @@ export const LandingPage: React.FC = () => {
                 </div>
 
                 {/* 3 Cột Mốc Bóc Tách Thực Tế */}
-                <div className="space-y-3 font-body text-xs sm:text-sm">
+                <div className="space-y-3 font-body text-[15.5px] sm:text-[16.5px] leading-relaxed">
                   {/* Trạng thái trước khi học */}
                   <div className="p-3.5 rounded-xl bg-white border border-rose-100">
                     <span className="font-bold text-rose-700 uppercase tracking-wider text-[11px] block mb-1">
@@ -3017,7 +3014,7 @@ export const LandingPage: React.FC = () => {
                     <span className="font-bold text-sky-400">Mẹ Thảo (PH bé Hân - Lớp 7)</span>
                     <span className="text-slate-400 text-[11px]">Qua Zalo</span>
                   </div>
-                  <p className="text-xs sm:text-[13px] text-slate-200 leading-relaxed italic">
+                  <p className="font-body text-[15.5px] sm:text-[16.5px] text-slate-200 leading-relaxed italic">
                     &ldquo;Cảm ơn cô Nghi nhiều lắm, bé Hân thi kỳ này được 8.5 tiếng Anh rồi cô ơi. Trước đây con sợ học lắm, giờ về nhà tự giác làm bài tập không cần mẹ giục nữa.&rdquo;
                   </p>
                   <div className="pt-2 border-t border-slate-700/60 flex items-center justify-between text-[11px] text-slate-400">
@@ -3031,7 +3028,7 @@ export const LandingPage: React.FC = () => {
                     <span className="font-bold text-amber-400">Ba Minh (PH bé Quân - Lớp 8)</span>
                     <span className="text-slate-400 text-[11px]">Qua Zalo</span>
                   </div>
-                  <p className="text-xs sm:text-[13px] text-slate-200 leading-relaxed italic">
+                  <p className="font-body text-[15.5px] sm:text-[16.5px] text-slate-200 leading-relaxed italic">
                     &ldquo;Rất thích hệ thống báo cáo LMS 8h tối của lớp cô Nghi. Đi làm về mở điện thoại là nắm được con làm đúng sai câu nào, ba mẹ hoàn toàn yên tâm.&rdquo;
                   </p>
                   <div className="pt-2 border-t border-slate-700/60 flex items-center justify-between text-[11px] text-slate-400">
@@ -3045,7 +3042,7 @@ export const LandingPage: React.FC = () => {
                     <span className="font-bold text-rose-400">Mẹ Mai Hương (PH bé Việt)</span>
                     <span className="text-slate-400 text-[11px]">Qua Zalo</span>
                   </div>
-                  <p className="text-xs sm:text-[13px] text-slate-200 leading-relaxed italic">
+                  <p className="font-body text-[15.5px] sm:text-[16.5px] text-slate-200 leading-relaxed italic">
                     &ldquo;Nhờ cô Nghi bắt đúng bệnh mất gốc phần Word form và kèm sát từng câu đề cương, con thi cuối kỳ được 9.0 điểm. Cả nhà mừng rơi nước mắt!&rdquo;
                   </p>
                   <div className="pt-2 border-t border-slate-700/60 flex items-center justify-between text-[11px] text-slate-400">
@@ -3089,7 +3086,7 @@ export const LandingPage: React.FC = () => {
                 BẢO HIỂM HỌC TẬP 2 LỚP – RỦI RO BẰNG 0!
               </h2>
 
-              <p className="font-body text-slate-700 text-[15px] sm:text-[17px] leading-relaxed max-w-3xl mx-auto text-center">
+              <p className="font-body text-slate-700 text-[15.5px] sm:text-[17px] leading-relaxed max-w-3xl mx-auto text-center">
                 Thấu hiểu tâm lý e ngại của phụ huynh từng mất niềm tin vào các lớp học thêm đại trà, Lớp Tiếng Anh Cô Nghi thiết lập cơ chế bảo hiểm minh bạch, đặt toàn bộ trách nhiệm hiệu quả lên vai người dạy:
               </p>
             </div>
@@ -3212,7 +3209,7 @@ export const LandingPage: React.FC = () => {
                 ĐẶT LỊCH TEST TRÌNH ĐỘ &amp; TƯ VẤN 1-1 HÔM NAY (MIỄN PHÍ 100%) – NHẬN NGAY TRỌN BỘ 4 QUÀ TẶNG ĐỒNG HÀNH!
               </h2>
 
-              <p className="font-body text-slate-600 text-[15px] sm:text-[17px] leading-relaxed max-w-3xl mx-auto text-center">
+              <p className="font-body text-slate-600 text-[15.5px] sm:text-[17px] leading-relaxed max-w-3xl mx-auto text-center">
                 Trước khi quyết định đóng bất kỳ khoản học phí nào, ba mẹ hãy đưa con đến địa chỉ <strong className="text-slate-900 font-bold">866/25 Ngô Quyền, Sơn Trà</strong> để tham gia Phiên Chẩn Đoán Năng Lực Học Thuật 1-1 (Kéo dài 30 – 45 phút) trực tiếp cùng Cô Nghi. Quy trình bao gồm 30 phút đánh giá toàn diện 5 kỹ năng (Phát âm IPA, Vốn từ vựng, Phản xạ, Ngữ pháp cốt lõi, Kỹ năng dịch thuật) và 15 phút tư vấn chuyên sâu riêng cho phụ huynh. Dù gia đình có quyết định đăng ký học ngay hay chưa, phụ huynh và con vẫn được <strong className="text-[#ff4757] font-bold">TẶNG NGAY BỘ 4 QUÀ TẶNG ĐỒNG HÀNH HOÀN TOÀN MIỄN PHÍ</strong>:
               </p>
             </div>
@@ -3234,7 +3231,7 @@ export const LandingPage: React.FC = () => {
                   <span className="text-xs text-slate-500 font-medium block">
                     (Diagnostic Report)
                   </span>
-                  <p className="font-body text-xs sm:text-[13.5px] text-slate-600 leading-relaxed pt-1">
+                  <p className="font-body text-[15.5px] sm:text-[16px] text-slate-600 leading-relaxed pt-1">
                     Chỉ rõ chính xác từng &ldquo;mắt xích kiến thức bị gãy&rdquo; của con từ các lớp dưới và thiết lập lộ trình 3 bước khắc phục cụ thể.
                   </p>
                 </div>
@@ -3259,7 +3256,7 @@ export const LandingPage: React.FC = () => {
                   <span className="text-xs text-slate-500 font-medium block">
                     (Magic Book PDF / Infographic)
                   </span>
-                  <p className="font-body text-xs sm:text-[13.5px] text-slate-600 leading-relaxed pt-1">
+                  <p className="font-body text-[15.5px] sm:text-[16px] text-slate-600 leading-relaxed pt-1">
                     Sơ đồ tư duy tóm gọn 80% ngữ pháp cốt lõi &amp; 100 từ vựng trọng tâm SGK, kèm 3 Video hướng dẫn tránh bẫy Word Form và Câu bị động.
                   </p>
                 </div>
@@ -3284,7 +3281,7 @@ export const LandingPage: React.FC = () => {
                   <span className="text-xs text-slate-500 font-medium block">
                     (PDF &amp; Video Giải Chi Tiết)
                   </span>
-                  <p className="font-body text-xs sm:text-[13.5px] text-slate-600 leading-relaxed pt-1">
+                  <p className="font-body text-[15.5px] sm:text-[16px] text-slate-600 leading-relaxed pt-1">
                     File PDF &amp; Video hướng dẫn kỹ thuật &ldquo;Bóc tách 4 bước&rdquo; trên 20 câu trắc nghiệm bẫy, kèm bộ đề cương thực tế THCS Lê Độ, Ngô Quyền...
                   </p>
                 </div>
@@ -3309,7 +3306,7 @@ export const LandingPage: React.FC = () => {
                   <span className="text-xs text-slate-500 font-medium block">
                     (Thử Thách 5 Ngày Xóa Mù Từ Vựng)
                   </span>
-                  <p className="font-body text-xs sm:text-[13.5px] text-slate-600 leading-relaxed pt-1">
+                  <p className="font-body text-[15.5px] sm:text-[16px] text-slate-600 leading-relaxed pt-1">
                     Tặng riêng cho con cuốn sổ tích điểm &ldquo;100 Tokens&rdquo; được CỘNG SẴN 10 ĐIỂM THƯỞNG ĐẦU TIÊN và quyền tham gia thử thách game hóa qua Zalo/Quizizz lúc 19h30.
                   </p>
                 </div>
@@ -3350,7 +3347,7 @@ export const LandingPage: React.FC = () => {
                 CÁC CÂU HỎI THƯỜNG GẶP TỪ PHỤ HUYNH TẠI QUẬN SƠN TRÀ
               </h2>
 
-              <p className="font-body text-slate-600 text-[15px] sm:text-[17px] leading-relaxed max-w-3xl mx-auto text-center">
+              <p className="font-body text-slate-600 text-[15.5px] sm:text-[17px] leading-relaxed max-w-3xl mx-auto text-center">
                 Những chia sẻ thẳng thắn, chân thành từ Cô Nghi giúp ba mẹ hoàn toàn an tâm trước khi gửi gắm con:
               </p>
             </div>
@@ -3408,7 +3405,7 @@ export const LandingPage: React.FC = () => {
 
                     {isOpen && (
                       <div className="px-4 pb-5 sm:px-5 sm:pb-6 pt-1 border-t border-slate-100 animate-in fade-in slide-in-from-top-1 duration-200">
-                        <p className="font-body text-slate-700 text-sm sm:text-[15.5px] leading-relaxed">
+                        <p className="font-body text-slate-700 text-[15.5px] sm:text-[16.5px] leading-relaxed">
                           {faq.a}
                         </p>
                       </div>
@@ -3431,7 +3428,7 @@ export const LandingPage: React.FC = () => {
                 <span className="w-2 h-2 rounded-full bg-[#ff4757] animate-pulse shrink-0" />
                 ⚠️ LƯU Ý GIỚI HẠN SĨ SỐ (URGENCY &amp; SCARCITY)
               </span>
-              <p className="font-body text-xs sm:text-sm text-slate-200 leading-relaxed mt-1">
+              <p className="font-body text-[15.5px] sm:text-[16px] text-slate-200 leading-relaxed mt-1">
                 Do mô hình lớp học cam kết giới hạn <strong className="text-white">tối đa 12 học sinh/lớp</strong> để đảm bảo chất lượng chấm chữa 1-1, hiện tại Lớp Tiếng Anh Cô Nghi chỉ còn nhận thêm <strong className="text-amber-300 font-extrabold underline decoration-amber-400">08 suất Chẩn đoán năng lực &amp; Giữ chỗ</strong> cho khóa mới trong tuần này!
               </p>
             </div>
@@ -3441,7 +3438,7 @@ export const LandingPage: React.FC = () => {
               <h2 className="font-heading font-extrabold uppercase tracking-tight text-white text-xl min-[390px]:text-2xl sm:text-3xl md:text-4xl leading-tight">
                 ĐỪNG ĐỂ TIẾNG ANH TRỞ THÀNH RÀO CẢN KHIẾN CON TRƯỢT LỚP 10 CÔNG LẬP
               </h2>
-              <p className="font-body text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
+              <p className="font-body text-slate-300 text-[15.5px] sm:text-[16.5px] leading-relaxed max-w-2xl mx-auto">
                 Đăng ký bắt bệnh năng lực 1-1 miễn phí ngay hôm nay để nhận trọn bộ Phác Đồ Cá Nhân Hóa &amp; Bộ Sổ Tay Ma Thuật từ Cô Nghi!
               </p>
             </div>
@@ -3604,7 +3601,7 @@ export const LandingPage: React.FC = () => {
                   <h3 className="font-heading font-black text-2xl uppercase tracking-tight text-slate-900">
                     Đăng Ký Thành Công!
                   </h3>
-                  <p className="font-body text-base text-slate-600 max-w-lg mx-auto leading-relaxed">
+                  <p className="font-body text-[15.5px] sm:text-base text-slate-600 max-w-lg mx-auto leading-relaxed">
                     Cảm ơn phụ huynh <strong>{formData.parentName}</strong> đã gửi gắm thông tin của bé <strong>{formData.studentNameAndGrade}</strong>.
                   </p>
                   <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 text-slate-800 text-sm sm:text-base max-w-lg mx-auto">
@@ -3723,7 +3720,7 @@ export const LandingPage: React.FC = () => {
                 <h3 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-lg sm:text-xl">
                   Đăng Ký Phiên Chẩn Đoán Năng Lực 1-1 Miễn Phí (45 Phút)
                 </h3>
-                <p className="font-body text-slate-600 text-sm sm:text-[15px] mt-1.5 leading-relaxed">
+                <p className="font-body text-slate-600 text-[15.5px] sm:text-[16px] mt-1.5 leading-relaxed">
                   Trực tiếp cùng Cô Nghi tại 866/25 Ngô Quyền, Sơn Trà. Nhận ngay Bản Phác Đồ Lộ Trình &amp; Bộ Sổ Tay Ma Thuật.
                 </p>
 
@@ -3839,7 +3836,7 @@ export const LandingPage: React.FC = () => {
                 <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-lg">
                   Đăng Ký Thành Công!
                 </h4>
-                <p className="font-body text-sm sm:text-base text-slate-600 leading-relaxed">
+                <p className="font-body text-[15.5px] sm:text-base text-slate-600 leading-relaxed">
                   Cảm ơn phụ huynh <strong>{formData.parentName}</strong> đã gửi gắm thông tin của bé <strong>{formData.studentNameAndGrade}</strong>.
                 </p>
                 <div className="p-4 bg-sky-50 rounded-xl border border-sky-100 text-sm sm:text-base text-slate-800">
