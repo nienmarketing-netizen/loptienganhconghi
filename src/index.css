@@ -500,7 +500,9 @@ blockquote,
 .dark .bg-grid-pattern,
 .dark .bg-grid-lines,
 .bg-slate-900.bg-grid-pattern,
-.bg-slate-900.bg-grid-lines {
+.bg-slate-900.bg-grid-lines,
+[class*="bg-[#1e272e]"].bg-grid-pattern,
+[class*="bg-[#2d3436]"].bg-grid-pattern {
   background-image: 
     linear-gradient(to right, rgba(0, 173, 239, 0.08) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0, 173, 239, 0.08) 1px, transparent 1px);
