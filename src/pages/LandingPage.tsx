@@ -878,7 +878,7 @@ export const LandingPage: React.FC = () => {
                     CHO <span className="text-[#C43838]">TRUNG TÂM LỚN</span>
                   </span>
                 </span>
-                <span className="text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] leading-tight text-center tracking-tight">
+                <span className="text-[13px] xs:text-[14.5px] sm:text-xl md:text-2xl lg:text-[22px] xl:text-[24px] leading-tight text-center tracking-tight">
                   <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-[#0A78F3] via-sky-500 to-blue-600">
                     CHO ĐẾN KHI BA MẸ{" "}
                   </span>
@@ -1035,13 +1035,13 @@ export const LandingPage: React.FC = () => {
                           className="w-full h-full object-cover object-top"
                         />
                       </div>
-                      <div>
-                        <h4 className="font-heading font-extrabold text-sm sm:text-base text-slate-900 leading-tight">
+                      <div className="text-left">
+                        <h4 className="font-heading font-extrabold uppercase tracking-tight text-base sm:text-lg text-slate-900 leading-snug">
                           Cô Nghi
                         </h4>
-                        <p className="text-xs text-slate-500 font-medium mt-0.5">
+                        <h4 className="font-heading font-extrabold tracking-tight text-base sm:text-lg text-slate-600 mt-0.5 leading-snug">
                           Người trực tiếp đứng lớp
-                        </p>
+                        </h4>
                       </div>
                     </div>
 
@@ -1072,10 +1072,13 @@ export const LandingPage: React.FC = () => {
                     <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs hover:border-slate-300 transition-all text-left">
                       {/* Phần trên: 01 — VẤN ĐỀ & Tiêu đề */}
                       <div>
-                        <span className="font-heading font-extrabold text-xs sm:text-[13px] tracking-wider uppercase text-[#ff4757]">
+                        <h4
+                          className="font-heading font-extrabold text-base sm:text-lg tracking-tight uppercase !text-[#ff4757] leading-snug"
+                          style={{ color: "#ff4757" }}
+                        >
                           01 — VẤN ĐỀ
-                        </span>
-                        <h4 className="font-heading font-extrabold text-base sm:text-lg text-slate-900 mt-0.5 leading-snug">
+                        </h4>
+                        <h4 className="font-heading font-extrabold tracking-tight text-base sm:text-lg text-slate-900 mt-0.5 leading-snug">
                           Lỗi không phải do con
                         </h4>
                       </div>
@@ -1085,7 +1088,7 @@ export const LandingPage: React.FC = () => {
 
                       {/* Phần dưới: Mô tả & Tags */}
                       <div>
-                        <p className="font-body text-slate-700 text-[14.5px] sm:text-[15.5px] leading-relaxed">
+                        <p className="font-body text-slate-700 text-[15.5px] sm:text-[16.5px] leading-relaxed">
                           Học vẹt nhanh quên, lớp đông khiến con sợ bị chê cười và chọn cách &ldquo;khoanh lụi&rdquo; đối phó.
                         </p>
 
@@ -1112,10 +1115,13 @@ export const LandingPage: React.FC = () => {
                     <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs hover:border-slate-300 transition-all text-left">
                       {/* Phần trên: 02 — GIẢI PHÁP & Tiêu đề */}
                       <div>
-                        <span className="font-heading font-extrabold text-xs sm:text-[13px] tracking-wider uppercase text-[#0A78F3]">
+                        <h4
+                          className="font-heading font-extrabold text-base sm:text-lg tracking-tight uppercase !text-[#0A78F3] leading-snug"
+                          style={{ color: "#0A78F3" }}
+                        >
                           02 — GIẢI PHÁP
-                        </span>
-                        <h4 className="font-heading font-extrabold text-base sm:text-lg text-slate-900 mt-0.5 leading-snug">
+                        </h4>
+                        <h4 className="font-heading font-extrabold tracking-tight text-base sm:text-lg text-slate-900 mt-0.5 leading-snug">
                           Trị dứt điểm đoán mò
                         </h4>
                       </div>
@@ -1125,7 +1131,7 @@ export const LandingPage: React.FC = () => {
 
                       {/* Phần dưới: Mô tả & Tags */}
                       <div>
-                        <p className="font-body text-slate-700 text-[14.5px] sm:text-[15.5px] leading-relaxed">
+                        <p className="font-body text-slate-700 text-[15.5px] sm:text-[16.5px] leading-relaxed">
                           Phương pháp <strong className="text-slate-900 font-bold">&ldquo;Bóc tách 4 bước&rdquo;</strong> giúp con tự hiểu bản chất ngữ pháp và tự tin làm đề thi vào lớp 10.
                         </p>
 
@@ -1152,11 +1158,14 @@ export const LandingPage: React.FC = () => {
                     <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs hover:border-slate-300 transition-all text-left">
                       {/* Phần trên: 03 — HỆ THỐNG & Tiêu đề */}
                       <div>
-                        <span className="font-heading font-extrabold text-xs sm:text-[13px] tracking-wider uppercase text-[#d97706]">
+                        <h4
+                          className="font-heading font-extrabold text-base sm:text-lg tracking-tight uppercase !text-[#d97706] leading-snug"
+                          style={{ color: "#d97706" }}
+                        >
                           03 — HỆ THỐNG
-                        </span>
-                        <h4 className="font-heading font-extrabold text-base sm:text-lg text-slate-900 mt-0.5 leading-snug">
-                          Tự giác &amp; Minh bạch
+                        </h4>
+                        <h4 className="font-heading font-extrabold tracking-tight text-base sm:text-lg text-slate-900 mt-0.5 leading-snug">
+                          Tự giác &amp; minh bạch
                         </h4>
                       </div>
 
@@ -1165,7 +1174,7 @@ export const LandingPage: React.FC = () => {
 
                       {/* Phần dưới: Mô tả & Tags */}
                       <div>
-                        <p className="font-body text-slate-700 text-[14.5px] sm:text-[15.5px] leading-relaxed">
+                        <p className="font-body text-slate-700 text-[15.5px] sm:text-[16.5px] leading-relaxed">
                           Tích Tokens đổi quà tạo động lực tự học; hệ thống gửi báo cáo điểm về Zalo mẹ mỗi tối.
                         </p>
 
@@ -1192,10 +1201,13 @@ export const LandingPage: React.FC = () => {
                     <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs hover:border-slate-300 transition-all text-left">
                       {/* Phần trên: 04 — CAM KẾT & Tiêu đề */}
                       <div>
-                        <span className="font-heading font-extrabold text-xs sm:text-[13px] tracking-wider uppercase text-[#059669]">
+                        <h4
+                          className="font-heading font-extrabold text-base sm:text-lg tracking-tight uppercase !text-[#059669] leading-snug"
+                          style={{ color: "#059669" }}
+                        >
                           04 — CAM KẾT
-                        </span>
-                        <h4 className="font-heading font-extrabold text-base sm:text-lg text-slate-900 mt-0.5 leading-snug">
+                        </h4>
+                        <h4 className="font-heading font-extrabold tracking-tight text-base sm:text-lg text-slate-900 mt-0.5 leading-snug">
                           Cam kết an tâm
                         </h4>
                       </div>
@@ -1205,7 +1217,7 @@ export const LandingPage: React.FC = () => {
 
                       {/* Phần dưới: Mô tả & Tags */}
                       <div>
-                        <p className="font-body text-slate-700 text-[14.5px] sm:text-[15.5px] leading-relaxed">
+                        <p className="font-body text-slate-700 text-[15.5px] sm:text-[16.5px] leading-relaxed">
                           Sĩ số tối đa 12 em/lớp, hoàn 100% học phí sau 7 ngày nếu không hợp, phụ đạo 1-1 miễn phí đến khi tiến bộ.
                         </p>
 
@@ -1545,7 +1557,7 @@ export const LandingPage: React.FC = () => {
                   </h3>
 
                   {/* 3. Tiêu đề phụ: Mobile 2 dòng (Dòng 1: Đừng để sự chủ quan đánh mất, Dòng 2: tấm vé vào lớp 10 công lập của con!) */}
-                  <div className="text-center max-w-3xl mx-auto text-sm sm:text-base md:text-lg lg:text-xl font-medium text-slate-200 leading-snug">
+                  <div className="text-center max-w-3xl mx-auto text-[13px] xs:text-[14.5px] sm:text-xl md:text-2xl lg:text-[22px] xl:text-[24px] font-medium text-slate-200 leading-snug">
                     <span className="block sm:inline">
                       <span>Đừng để </span>
                       <strong className="text-[#ff6b81] font-bold bg-rose-950/70 px-2 py-0.5 rounded-lg border border-rose-800/80 shadow-2xs">
@@ -2235,7 +2247,7 @@ export const LandingPage: React.FC = () => {
                       >
                         NỀN TẢNG HỌC THUẬT
                       </h4>
-                      <p className="font-body text-slate-700 text-[14.5px] sm:text-[16px] leading-relaxed">
+                      <p className="font-body text-slate-700 text-[15.5px] sm:text-[16.5px] leading-relaxed">
                         Sở hữu nền tảng học thuật xuất sắc khi tốt nghiệp Cử nhân chuyên ngành Biên dịch Tiếng Anh với điểm trung bình tích lũy{" "}
                         <span className="bg-sky-50 text-[#0A78F3] font-bold px-1.5 py-0.5 rounded border border-sky-200/80 text-xs sm:text-sm inline-block">
                           GPA 8.17/10
@@ -2259,7 +2271,7 @@ export const LandingPage: React.FC = () => {
                       >
                         ĐÀO TẠO SAU ĐẠI HỌC
                       </h4>
-                      <p className="font-body text-slate-700 text-[14.5px] sm:text-[16px] leading-relaxed">
+                      <p className="font-body text-slate-700 text-[15.5px] sm:text-[16.5px] leading-relaxed">
                         Ở bậc đào tạo sau đại học, Cô Nghi theo đuổi chương trình{" "}
                         <strong className="text-[#0A78F3] font-bold">Thạc sĩ TESOL</strong>{" "}
                         (Teaching English to Speakers of Other Languages), nghiên cứu chuyên sâu về ngôn ngữ học ứng dụng, tâm lý học hành vi lứa tuổi thiếu niên và khoa học thiết kế giáo trình cá nhân hoá cho học sinh mất gốc.
@@ -2277,7 +2289,7 @@ export const LandingPage: React.FC = () => {
                       >
                         TÂM HUYẾT NGOÀI CHUYÊN MÔN
                       </h4>
-                      <p className="font-body text-slate-700 text-[14.5px] sm:text-[16px] leading-relaxed">
+                      <p className="font-body text-slate-700 text-[15.5px] sm:text-[16.5px] leading-relaxed">
                         Bên cạnh năng lực chuyên môn, với vai trò là{" "}
                         <strong className="text-[#0A78F3] font-bold">Nhà sáng lập (Founder)</strong>{" "}
                         dự án giáo dục thiện nguyện{" "}
@@ -2773,7 +2785,7 @@ export const LandingPage: React.FC = () => {
                       TRẠI ÔN THI CẤP TỐC 14 NGÀY (GỠ ĐIỂM GIỮA KỲ / CUỐI KỲ)
                     </h4>
 
-                    <p className="font-body text-slate-300 text-sm sm:text-base max-w-3xl leading-relaxed">
+                    <p className="font-body text-slate-300 text-[15.5px] sm:text-[16.5px] max-w-3xl leading-relaxed">
                       Khoanh vùng kiến thức trọng tâm, bóc tách từng câu trong đề cương thực tế của các trường <strong className="text-white">THCS Lê Độ, Nguyễn Chí Thanh, Phạm Ngọc Thạch, Phan Bội Châu, Lý Tự Trọng, Ngô Quyền...</strong> Chi phí ưu đãi chỉ <strong className="text-amber-300 font-mono font-bold">299.000đ – 399.000đ</strong> / trọn khóa 14 ngày.
                     </p>
 
