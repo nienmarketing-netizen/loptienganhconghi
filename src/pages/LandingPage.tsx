@@ -3119,12 +3119,9 @@ export const LandingPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-emerald-700 font-bold">
-                    <div className="flex items-center gap-1.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span>Tăng vọt +2.5 điểm thi cuối kỳ I</span>
-                    </div>
-                    <span className="text-[#666666] font-medium">Bảo chứng học bạ thật</span>
+                  <div className="pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs text-emerald-700 font-bold">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>Tăng vọt +2.5 điểm thi cuối kỳ I</span>
                   </div>
                 </div>
               </div>
@@ -3235,12 +3232,9 @@ export const LandingPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-emerald-700 font-bold">
-                    <div className="flex items-center gap-1.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span>Bứt phá ngoạn mục +3.5 điểm thi</span>
-                    </div>
-                    <span className="text-[#666666] font-medium">Bảo chứng học bạ thật</span>
+                  <div className="pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs text-emerald-700 font-bold">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>Bứt phá ngoạn mục +3.5 điểm thi</span>
                   </div>
                 </div>
               </div>
@@ -3255,7 +3249,7 @@ export const LandingPage: React.FC = () => {
               >
                 <div className="flex flex-col items-center text-center leading-snug min-w-0">
                   <span className="font-heading font-extrabold text-[11px] min-[360px]:text-[12px] min-[390px]:text-[13px] sm:text-base uppercase tracking-tight whitespace-nowrap">
-                    ĐĂNG KÝ TEST HỌC LỰC 1-1 ĐỂ CON ĐẠT KẾT QUẢ NHƯ TRÊN
+                    ĐĂNG KÝ NGAY ĐỂ CON ĐẠT KẾT QUẢ NHƯ TRÊN
                   </span>
                   <span className="font-body text-[9.5px] min-[360px]:text-[10px] min-[390px]:text-[11px] sm:text-xs font-medium text-rose-100 normal-case mt-0.5 tracking-tight whitespace-nowrap">
                     Nhận bản phác đồ bóc tách lỗ hổng &amp; bộ sổ tay ma thuật miễn phí
