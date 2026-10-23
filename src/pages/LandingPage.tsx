@@ -3255,24 +3255,6 @@ export const LandingPage: React.FC = () => {
               </div>
             </div>
 
-            {/* ── CTA BUTTON CHÈN GIỮA SECTION (ĐỒNG BỘ CHUẨN SECTION 'ĐỒNG HÀNH CÙNG CON') ── */}
-            <div className="flex flex-col items-center justify-center pt-2 sm:pt-4">
-              <button
-                type="button"
-                onClick={handleOpenRegisterModal}
-                className="w-full sm:w-auto px-5 py-3 sm:px-8 sm:py-3.5 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none active:scale-98"
-              >
-                <div className="flex flex-col items-center text-center leading-snug min-w-0">
-                  <span className="font-heading font-extrabold text-[11px] min-[360px]:text-[12px] min-[390px]:text-[13px] sm:text-base uppercase tracking-tight whitespace-nowrap">
-                    ĐĂNG KÝ NGAY ĐỂ CON ĐẠT KẾT QUẢ NHƯ TRÊN
-                  </span>
-                  <span className="font-body text-[9.5px] min-[360px]:text-[10px] min-[390px]:text-[11px] sm:text-xs font-medium text-rose-100 normal-case mt-0.5 tracking-tight whitespace-nowrap">
-                    Nhận bản phác đồ bóc tách lỗ hổng &amp; bộ sổ tay ma thuật miễn phí
-                  </span>
-                </div>
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
 
             {/* BẰNG CHỨNG XÃ HỘI: FEEDBACK ZALO (SLIDESHOW HÌNH ẢNH CÓ NHÃN TREO) */}
             <div className="relative bg-[#2d3436] rounded-3xl p-5 sm:p-8 pt-7 sm:pt-9 text-white space-y-6 shadow-xl border border-slate-700/80 overflow-visible">
@@ -3369,25 +3351,25 @@ export const LandingPage: React.FC = () => {
                   </div>
                 </div>
               </div>
+            </div>
 
-              {/* 5. Nút CTA Button thay thế phần box phòng học ở cuối */}
-              <div className="flex flex-col items-center justify-center pt-2 sm:pt-4 border-t border-slate-700/80">
-                <button
-                  type="button"
-                  onClick={handleOpenRegisterModal}
-                  className="w-full sm:w-auto px-5 py-3 sm:px-8 sm:py-3.5 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none active:scale-98"
-                >
-                  <div className="flex flex-col items-center text-center leading-snug min-w-0">
-                    <span className="font-heading font-extrabold text-[11px] min-[360px]:text-[12px] min-[390px]:text-[13px] sm:text-base uppercase tracking-tight whitespace-nowrap">
-                      ĐĂNG KÝ NGAY ĐỂ CON ĐẠT KẾT QUẢ NHƯ TRÊN
-                    </span>
-                    <span className="font-body text-[9.5px] min-[360px]:text-[10px] min-[390px]:text-[11px] sm:text-xs font-medium text-rose-100 normal-case mt-0.5 tracking-tight whitespace-nowrap">
-                      Nhận phác đồ bóc tách lỗ hổng &amp; bộ sổ tay ma thuật miễn phí
-                    </span>
-                  </div>
-                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </div>
+            {/* 5. Nút CTA Button bên dưới box Tin Nhắn Phụ Huynh */}
+            <div className="flex flex-col items-center justify-center pt-2 sm:pt-4">
+              <button
+                type="button"
+                onClick={handleOpenRegisterModal}
+                className="w-full sm:w-auto px-5 py-3 sm:px-8 sm:py-3.5 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none active:scale-98"
+              >
+                <div className="flex flex-col items-center text-center leading-snug min-w-0">
+                  <span className="font-heading font-extrabold text-[11px] min-[360px]:text-[12px] min-[390px]:text-[13px] sm:text-base uppercase tracking-tight whitespace-nowrap">
+                    ĐĂNG KÝ NGAY ĐỂ CON ĐẠT KẾT QUẢ NHƯ TRÊN
+                  </span>
+                  <span className="font-body text-[9.5px] min-[360px]:text-[10px] min-[390px]:text-[11px] sm:text-xs font-medium text-rose-100 normal-case mt-0.5 tracking-tight whitespace-nowrap">
+                    Nhận phác đồ bóc tách lỗ hổng &amp; bộ sổ tay ma thuật miễn phí
+                  </span>
+                </div>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
+              </button>
             </div>
           </div>
         </section>
