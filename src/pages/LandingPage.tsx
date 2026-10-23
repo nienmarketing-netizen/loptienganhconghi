@@ -2634,296 +2634,350 @@ export const LandingPage: React.FC = () => {
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
+          </div>
+        </section>
 
-            {/* ── BẢNG GIÁ GRAND SLAM OFFERS (2 PRICING CARDS LỚN VỚI NGÔN NGỮ THIẾT KẾ SOFT-UI TACTILE) ── */}
-            <div className="pt-6 sm:pt-8 space-y-6">
-              <div className="text-center max-w-3xl mx-auto space-y-3">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 text-[#0A78F3] border border-sky-200 shadow-xs text-xs sm:text-[13px] font-bold">
-                  <span className="w-2 h-2 rounded-full bg-[#0A78F3] animate-pulse" />
-                  <span>Học Phí Minh Bạch · Trọn Gói 90 Ngày</span>
-                </div>
-
-                <h3 className="font-heading uppercase tracking-tight text-center max-w-3xl mx-auto">
-                  <span className="block font-black text-slate-900 text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-[34px] leading-tight">
-                    LỰA CHỌN <span className="text-[#0A78F3]">LỘ TRÌNH ĐÀO TẠO</span>
-                  </span>
-                  <span className="block font-bold sm:font-extrabold text-slate-800 text-[15px] min-[390px]:text-[17px] sm:text-xl md:text-[23px] leading-tight mt-1 sm:mt-1.5">
-                    PHÙ HỢP CHO <span className="text-[#ff4757] font-black underline decoration-[#ff4757]/40 decoration-2 underline-offset-4">TỪNG KHỐI LỚP</span> CỦA CON
-                  </span>
-                </h3>
-
-                <p className="font-body text-slate-600 text-[15.5px] sm:text-base md:text-[17px] leading-relaxed max-w-2xl mx-auto text-center">
-                  <strong className="text-slate-900 font-bold bg-white px-2 py-0.5 rounded-md border border-slate-200 shadow-2xs inline-block">Trọn gói 3 tháng (24 buổi học)</strong> – <strong className="text-[#ff4757] font-bold">Cam kết minh bạch tuyệt đối</strong>, không phát sinh bất kỳ khoản phụ phí nào.
-                </p>
+        {/* ─────────────────────────────────────────────────────────────
+            KHỐI 5B: HỌC PHÍ MINH BẠCH · TRỌN GÓI 90 NGÀY (PRICING & GRAND SLAM OFFERS)
+        ────────────────────────────────────────────────────────────── */}
+        <section className="py-14 sm:py-16 bg-[#e0e5ec] bg-grid-pattern relative border-t border-slate-300/90 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)]">
+          <div className="w-[90%] lg:w-[80%] mx-auto space-y-8 sm:space-y-10 relative z-10">
+            <div className="text-center max-w-3xl mx-auto space-y-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white text-[#0A78F3] border border-sky-200 shadow-xs text-xs sm:text-[13px] font-bold">
+                <span className="w-2 h-2 rounded-full bg-[#0A78F3] animate-pulse" />
+                <span>Học phí minh bạch</span>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
-                {/* ── GÓI 1: SMALL WIN BLUEPRINT (LỚP 6, 7, 8) THEO 2-BLOCK RECESSED WELL CARD ── */}
-                <div className="relative bg-[#d1d9e6]/50 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border border-[#babecc]/50 shadow-[var(--shadow-recessed-sm)] flex flex-col gap-1.5 sm:gap-2">
-                  {/* ── KHỐI 1 (TRÊN): HEADER & HỌC PHÍ RECESSED WELL ── */}
-                  <div className="relative bg-white/95 rounded-2xl p-5 sm:p-6 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
-                    <div className="absolute -top-3.5 left-4 sm:left-6 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0A78F3] text-white text-[11px] sm:text-xs font-heading font-extrabold uppercase tracking-wider shadow-xs border border-white/30 z-10">
-                      <span>DÀNH CHO LỚP 6 – 7 – 8</span>
-                    </div>
+              <h3 className="font-heading uppercase tracking-tight text-center max-w-3xl mx-auto">
+                <span className="block font-black text-slate-900 text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-[34px] leading-tight">
+                  LỰA CHỌN <span className="text-[#0A78F3]">LỘ TRÌNH ĐÀO TẠO</span>
+                </span>
+                <span className="block font-bold sm:font-extrabold text-slate-800 text-[15px] min-[390px]:text-[17px] sm:text-xl md:text-[23px] leading-tight mt-1 sm:mt-1.5">
+                  PHÙ HỢP CHO <span className="text-[#ff4757] font-black underline decoration-[#ff4757]/40 decoration-2 underline-offset-4">TỪNG KHỐI LỚP</span> CỦA CON
+                </span>
+              </h3>
 
-                    <div className="absolute -top-3 right-4 sm:right-6 bg-slate-100 text-slate-700 px-3 py-1 rounded-full border border-slate-200 text-xs font-bold shadow-2xs">
-                      Sĩ số: Tối đa 12 em
-                    </div>
+              <p className="font-body text-slate-600 text-[15.5px] sm:text-base md:text-[17px] leading-relaxed max-w-2xl mx-auto text-center">
+                <strong className="text-slate-900 font-bold bg-white px-2 py-0.5 rounded-md border border-slate-200 shadow-2xs inline-block">Trọn gói 3 tháng</strong> – <strong className="text-[#ff4757] font-bold">Cam kết minh bạch tuyệt đối</strong>, không phát sinh bất kỳ khoản phụ phí nào.
+              </p>
+            </div>
 
-                    <h4 className="font-heading font-black text-xl sm:text-2xl text-slate-900 leading-tight mt-1">
-                      GÓI 1: &ldquo;SMALL WIN BLUEPRINT&rdquo;
-                    </h4>
-                    <p className="text-xs sm:text-sm font-bold text-[#0A78F3] uppercase tracking-wide mt-1">
-                      Tái Thiết Căn Bản &amp; Xoá Mất Gốc Cấp 2
-                    </p>
-
-                    {/* Hộp Học Phí Recessed Well */}
-                    <div className="mt-4 p-3.5 sm:p-4 rounded-2xl bg-[#d1d9e6]/70 border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)] flex items-center justify-between gap-2">
-                      <div>
-                        <span className="text-xs text-[#666666] font-medium block">
-                          Học phí niêm yết trọn khóa
-                        </span>
-                        <div className="flex items-baseline gap-1.5 mt-0.5">
-                          <span className="font-mono text-2xl sm:text-3xl font-extrabold text-[#1a1a1a]">
-                            1.800.000
-                          </span>
-                          <span className="text-xs font-bold text-slate-600 uppercase">
-                            VNĐ / 3 tháng
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <span className="inline-block px-3 py-1 rounded-lg bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs font-bold shadow-2xs">
-                          ~600.000đ / tháng
-                        </span>
-                      </div>
-                    </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+              {/* ── GÓI 1: SMALL WIN BLUEPRINT (LỚP 6, 7, 8) THEO 2-BLOCK RECESSED WELL CARD ── */}
+              <div className="relative bg-[#d1d9e6]/50 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border border-[#babecc]/50 shadow-[var(--shadow-recessed-sm)] flex flex-col gap-1.5 sm:gap-2">
+                {/* ── KHỐI 1 (TRÊN): HEADER & HỌC PHÍ ── */}
+                <div className="relative bg-white/95 rounded-2xl p-5 sm:p-6 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
+                  <div className="absolute -top-3.5 left-4 sm:left-6 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0A78F3] text-white text-[11px] sm:text-xs font-heading font-extrabold uppercase tracking-wider shadow-xs border border-white/30 z-10">
+                    <span>DÀNH CHO LỚP 6 – 7 – 8</span>
                   </div>
 
-                  {/* ── KHỐI 2 (DƯỚI): NỘI DUNG & VALUE STACK ── */}
-                  <div className="bg-white/95 rounded-2xl p-5 sm:p-6 border border-white/80 shadow-xs flex-1 flex flex-col justify-between space-y-4">
-                    <div className="space-y-4">
-                      {/* Mục Tiêu & Thời Lượng */}
-                      <div className="space-y-2 text-xs sm:text-sm font-body">
-                        <div className="flex items-start gap-2 text-slate-700">
-                          <Target className="w-4 h-4 text-[#0A78F3] shrink-0 mt-0.5" />
-                          <span><strong className="text-slate-900">Mục tiêu:</strong> Trị dứt điểm mất gốc SGK Global Success / Friends Plus, xóa bệnh khoanh lụi, tăng 1.0 – 3.0 điểm trên trường.</span>
-                        </div>
-                        <div className="flex items-start gap-2 text-slate-700">
-                          <Calendar className="w-4 h-4 text-[#0A78F3] shrink-0 mt-0.5" />
-                          <span><strong className="text-slate-900">Thời lượng:</strong> 90 ngày (24 buổi học, 2 buổi/tuần, 90 phút/buổi).</span>
-                        </div>
-                      </div>
+                  <div className="hidden sm:block absolute -top-3 right-4 sm:right-6 bg-slate-100 text-slate-700 px-3 py-1 rounded-full border border-slate-200 text-xs font-bold shadow-2xs">
+                    Sĩ số: Tối đa 12 em
+                  </div>
 
-                      {/* Nội Dung Đào Tạo Cốt Lõi */}
-                      <div className="space-y-2 pt-3 border-t border-slate-100">
-                        <span className="text-xs uppercase font-extrabold tracking-wider text-slate-800 block">
-                          Nội Dung Đào Tạo Cốt Lõi:
-                        </span>
-                        <ul className="space-y-2 text-xs sm:text-[13.5px] text-slate-600 font-body">
-                          <li className="flex items-start gap-2">
-                            <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                            <span>Chuẩn hóa phát âm IPA, trọng âm &amp; từ vựng Spaced Repetition.</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                            <span>Ngữ pháp trong ngữ cảnh &amp; kỹ thuật Bóc tách 4 bước – Dịch bắt buộc.</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                            <span>Sửa chi tiết 100% đề cương ôn tập các trường THCS tại Sơn Trà.</span>
-                          </li>
-                        </ul>
-                      </div>
+                  <h4 className="font-heading font-black text-xl sm:text-2xl text-slate-900 leading-tight mt-1">
+                    GÓI 1: &ldquo;SMALL WIN BLUEPRINT&rdquo;
+                  </h4>
+                  <p
+                    className="text-[11.5px] min-[360px]:text-[12.5px] min-[390px]:text-[13.5px] sm:text-base font-extrabold uppercase tracking-tight sm:tracking-wide mt-1 !text-[#0A78F3] whitespace-nowrap overflow-hidden text-ellipsis"
+                    style={{ color: "#0A78F3" }}
+                  >
+                    Tái Thiết Căn Bản &amp; Xoá Mất Gốc Cấp 2
+                  </p>
+                  <div className="w-14 h-1 rounded-full bg-[#0A78F3] mt-2 mb-1" style={{ backgroundColor: "#0A78F3" }} />
 
-                      {/* Value Stack Bonuses */}
-                      <div className="space-y-2.5 pt-3 border-t border-slate-100">
-                        <span className="text-xs uppercase font-extrabold tracking-wider text-[#0A78F3] block">
-                          🎁 Trọn Bộ 4 Đặc Quyền Giá Trị Đi Kèm:
-                        </span>
-                        <div className="space-y-2 text-xs sm:text-[13px] text-slate-700 font-body">
-                          <div className="p-2.5 rounded-xl bg-sky-50/70 border border-sky-100">
-                            <strong>Bonus 1:</strong> Tài khoản VIP Hệ thống LMS báo cáo Zalo tự động mỗi tối lúc 20h00.
-                          </div>
-                          <div className="p-2.5 rounded-xl bg-sky-50/70 border border-sky-100">
-                            <strong>Bonus 2:</strong> Kênh Zalo SOS 1:1 giải bài tập khó buổi tối ở nhà cùng cô giáo.
-                          </div>
-                          <div className="p-2.5 rounded-xl bg-sky-50/70 border border-sky-100">
-                            <strong>Bonus 3:</strong> &ldquo;Kho vũ khí&rdquo; Ngân hàng đề thi THCS Sơn Trà + Bộ Speaking &amp; Writing.
-                          </div>
-                          <div className="p-2.5 rounded-xl bg-sky-50/70 border border-sky-100">
-                            <strong>Bonus 4:</strong> Sổ tích điểm &ldquo;100 Tokens&rdquo; + Bộ dụng cụ học tập/Balo in logo.
-                          </div>
-                        </div>
-                      </div>
+                  {/* Hộp Học Phí (Chỉ text, không background xám, không viền) */}
+                  <div className="mt-4 space-y-1.5">
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-heading font-extrabold text-3xl sm:text-4xl md:text-5xl text-slate-900 leading-tight">
+                        600.000
+                      </span>
+                      <span className="text-sm sm:text-base md:text-lg font-bold text-slate-600 uppercase">
+                        VNĐ / tháng
+                      </span>
                     </div>
-
-                    {/* Nút Đăng Ký Gói 1 */}
-                    <div className="pt-4">
-                      <button
-                        type="button"
-                        onClick={handleOpenRegisterModal}
-                        className="w-full py-3.5 px-4 rounded-2xl bg-[#0A78F3] hover:bg-[#096ad8] text-white font-heading font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-[0_8px_20px_rgba(10,120,243,0.35)] hover:shadow-[0_12px_28px_rgba(10,120,243,0.45)] transition-all active:scale-98 cursor-pointer flex items-center justify-center gap-2 border-none outline-none"
-                      >
-                        <span>ĐĂNG KÝ TEST 1-1 &amp; GIỮ CHỖ GÓI LỚP 6 – 8</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </button>
-                    </div>
+                    <p className="text-sm sm:text-base text-slate-600 font-medium">
+                      Học phí 3 tháng: <span className="font-bold text-slate-900">1.600.000 VNĐ</span>
+                    </p>
                   </div>
                 </div>
 
-                {/* ── GÓI 2: PRE-GRADE 10 SPRINT (LỚP 9) THEO 2-BLOCK RECESSED WELL CARD ── */}
-                <div className="relative bg-[#ff4757]/10 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border-2 border-[#ff4757]/60 shadow-[0_10px_30px_rgba(255,71,87,0.12)] flex flex-col gap-1.5 sm:gap-2">
-                  {/* ── KHỐI 1 (TRÊN): HEADER & HỌC PHÍ RECESSED WELL ── */}
-                  <div className="relative bg-white/95 rounded-2xl p-5 sm:p-6 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
-                    <div className="absolute -top-3.5 left-4 sm:left-6 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#ff4757] text-white text-[11px] sm:text-xs font-heading font-extrabold uppercase tracking-wider shadow-xs border border-white/30 z-10">
-                      <span>CHUYÊN BIỆT LỚP 9</span>
-                    </div>
-
-                    <div className="absolute -top-3.5 right-4 sm:right-6 bg-[#ff4757] text-white text-[10.5px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-sm flex items-center gap-1 border border-white/30">
-                      <Flame className="w-3.5 h-3.5 fill-white" />
-                      <span>MỤC TIÊU VÀO 10 CÔNG LẬP</span>
-                    </div>
-
-                    <h4 className="font-heading font-black text-xl sm:text-2xl text-slate-900 leading-tight mt-1">
-                      GÓI 2: &ldquo;PRE-GRADE 10 SPRINT&rdquo;
-                    </h4>
-                    <p className="text-xs sm:text-sm font-bold text-[#ff4757] uppercase tracking-wide mt-1">
-                      Tăng Tốc Luyện Thi Vào Lớp 10 Công Lập
-                    </p>
-
-                    {/* Hộp Học Phí Recessed Well */}
-                    <div className="mt-4 p-3.5 sm:p-4 rounded-2xl bg-rose-50/80 border border-rose-200/80 shadow-[var(--shadow-recessed-sm)] flex items-center justify-between gap-2">
-                      <div>
-                        <span className="text-xs text-[#666666] font-medium block">
-                          Học phí niêm yết trọn khóa
-                        </span>
-                        <div className="flex items-baseline gap-1.5 mt-0.5">
-                          <span className="font-mono text-2xl sm:text-3xl font-extrabold text-[#1a1a1a]">
-                            1.800.000
-                          </span>
-                          <span className="text-xs font-bold text-slate-600 uppercase">
-                            VNĐ / 3 tháng
-                          </span>
-                        </div>
+                {/* ── KHỐI 2 (DƯỚI): NỘI DUNG & VALUE STACK ── */}
+                <div className="bg-white/95 rounded-2xl p-5 sm:p-6 border border-white/80 shadow-xs flex-1 flex flex-col justify-between space-y-4">
+                  <div className="space-y-4">
+                    {/* Mục Tiêu & Thời Lượng */}
+                    <div className="space-y-2.5 font-body text-[15.5px] sm:text-[16.5px] leading-relaxed">
+                      <div className="flex items-start gap-2.5 text-slate-700">
+                        <Target className="w-5 h-5 text-[#0A78F3] shrink-0 mt-0.5" />
+                        <span><strong className="text-slate-900 font-bold">Mục tiêu:</strong> Trị dứt điểm mất gốc SGK Global Success / Friends Plus, xóa bệnh khoanh lụi, tăng 1.0 – 3.0 điểm trên trường.</span>
                       </div>
-                      <div className="text-right">
-                        <span className="inline-block px-3 py-1 rounded-lg bg-rose-100 text-[#ff4757] border border-rose-300 text-xs font-bold shadow-2xs">
-                          ~600.000đ / tháng
-                        </span>
+                      <div className="flex items-start gap-2.5 text-slate-700">
+                        <Calendar className="w-5 h-5 text-[#0A78F3] shrink-0 mt-0.5" />
+                        <span><strong className="text-slate-900 font-bold">Thời lượng:</strong> 90 ngày (24 buổi học, 2 buổi/tuần, 90 phút/buổi).</span>
+                      </div>
+                    </div>
+
+                    {/* Nội Dung Đào Tạo Cốt Lõi */}
+                    <div className="space-y-2.5 pt-3.5 border-t-2 border-slate-200">
+                      <span className="text-xs sm:text-sm uppercase font-extrabold tracking-wider text-slate-800 block">
+                        Nội Dung Đào Tạo Cốt Lõi:
+                      </span>
+                      <ul className="space-y-2 font-body text-[15.5px] sm:text-[16.5px] text-slate-700 leading-relaxed">
+                        <li className="flex items-start gap-2.5">
+                          <Check className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                          <span>Chuẩn hóa phát âm IPA, trọng âm &amp; từ vựng Spaced Repetition.</span>
+                        </li>
+                        <li className="flex items-start gap-2.5">
+                          <Check className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                          <span>Ngữ pháp trong ngữ cảnh &amp; kỹ thuật Bóc tách 4 bước – Dịch bắt buộc.</span>
+                        </li>
+                        <li className="flex items-start gap-2.5">
+                          <Check className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                          <span>Sửa chi tiết 100% đề cương ôn tập các trường THCS tại Sơn Trà.</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    {/* Value Stack Bonuses */}
+                    <div className="space-y-2.5 pt-3.5 border-t-2 border-slate-200">
+                      <span className="text-xs sm:text-sm uppercase font-extrabold tracking-wider text-[#0A78F3] block">
+                        🎁 Trọn Bộ 4 Đặc Quyền Giá Trị Đi Kèm:
+                      </span>
+                      <div className="space-y-2.5 font-body text-[15.5px] sm:text-[16.5px] text-slate-700 leading-relaxed">
+                        <div className="p-3 rounded-xl bg-sky-50/70 border border-sky-100">
+                          <strong>Bonus 1:</strong> Tài khoản VIP Hệ thống LMS báo cáo Zalo tự động mỗi tối lúc 20h00.
+                        </div>
+                        <div className="p-3 rounded-xl bg-sky-50/70 border border-sky-100">
+                          <strong>Bonus 2:</strong> Kênh Zalo SOS 1:1 giải bài tập khó buổi tối ở nhà cùng cô giáo.
+                        </div>
+                        <div className="p-3 rounded-xl bg-sky-50/70 border border-sky-100">
+                          <strong>Bonus 3:</strong> &ldquo;Kho vũ khí&rdquo; Ngân hàng đề thi THCS Sơn Trà + Bộ Speaking &amp; Writing.
+                        </div>
+                        <div className="p-3 rounded-xl bg-sky-50/70 border border-sky-100">
+                          <strong>Bonus 4:</strong> Sổ tích điểm &ldquo;100 Tokens&rdquo; + Bộ dụng cụ học tập/Balo in logo.
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* ── KHỐI 2 (DƯỚI): NỘI DUNG & VALUE STACK ── */}
-                  <div className="bg-white/95 rounded-2xl p-5 sm:p-6 border border-white/80 shadow-xs flex-1 flex flex-col justify-between space-y-4">
-                    <div className="space-y-4">
-                      {/* Mục Tiêu & Thời Lượng */}
-                      <div className="space-y-2 text-xs sm:text-sm font-body">
-                        <div className="flex items-start gap-2 text-slate-700">
-                          <Target className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
-                          <span><strong className="text-slate-900">Mục tiêu:</strong> Làm chủ ma trận 36 câu Sở GD&amp;ĐT Đà Nẵng, nắm chắc tối thiểu 70% phổ điểm để đỗ THPT Công lập.</span>
-                        </div>
-                        <div className="flex items-start gap-2 text-slate-700">
-                          <Calendar className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
-                          <span><strong className="text-slate-900">Thời lượng:</strong> 90 ngày (24 buổi học, 2 buổi/tuần, 90 phút/buổi).</span>
-                        </div>
-                      </div>
-
-                      {/* Nội Dung Đào Tạo 3 Tháng Lớp 9 */}
-                      <div className="space-y-2 pt-3 border-t border-slate-100">
-                        <span className="text-xs uppercase font-extrabold tracking-wider text-slate-800 block">
-                          Lộ Trình Đào Tạo Thực Chiến 3 Tháng:
-                        </span>
-                        <ul className="space-y-2 text-xs sm:text-[13.5px] text-slate-600 font-body">
-                          <li className="flex items-start gap-2">
-                            <Check className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
-                            <span><strong className="text-slate-800">Tháng 1:</strong> Hệ thống hóa ngữ pháp cốt lõi &amp; kỹ thuật Dịch bắt buộc.</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <Check className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
-                            <span><strong className="text-slate-800">Tháng 2:</strong> Trị dứt điểm Word Form, Verb Tense &amp; Viết lại câu.</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <Check className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
-                            <span><strong className="text-slate-800">Tháng 3:</strong> Luyện đề thực chiến 36 câu chuẩn Sở GD&amp;ĐT Đà Nẵng.</span>
-                          </li>
-                        </ul>
-                      </div>
-
-                      {/* Value Stack Bonuses Gói 2 */}
-                      <div className="space-y-2.5 pt-3 border-t border-slate-100">
-                        <span className="text-xs uppercase font-extrabold tracking-wider text-[#ff4757] block">
-                          🔥 Trọn Bộ Đặc Quyền VIP + 2 Quà Tặng Độc Quyền Lớp 9:
-                        </span>
-                        <div className="space-y-2 text-xs sm:text-[13px] text-slate-700 font-body">
-                          <div className="p-2.5 rounded-xl bg-[#f8fafc] border border-slate-200">
-                            <strong>Bonus 1–4:</strong> Đầy đủ quyền lợi LMS Zalo 20h, Zalo SOS 1:1, Kho đề thi &amp; Sổ 100 Tokens.
-                          </div>
-                          <div className="p-2.5 rounded-xl bg-rose-50/80 border border-rose-200 text-rose-950">
-                            <strong className="text-[#ff4757]">🔥 Đặc quyền Lớp 9 (1):</strong> 3 Buổi Thi thử Thực tế (Mock Tests) mô phỏng 100% áp lực phòng thi thật kèm phân tích lỗ hổng 1-1.
-                          </div>
-                          <div className="p-2.5 rounded-xl bg-rose-50/80 border border-rose-200 text-rose-950">
-                            <strong className="text-[#ff4757]">🔥 Đặc quyền Lớp 9 (2):</strong> Cẩm nang Tránh bẫy – Tổng hợp 100 lỗi sai chí mạng học sinh Đà Nẵng hay mất điểm oan.
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Nút Đăng Ký Gói 2 */}
-                    <div className="pt-4">
-                      <button
-                        type="button"
-                        onClick={handleOpenRegisterModal}
-                        className="w-full py-3.5 px-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white font-heading font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] transition-all active:scale-98 cursor-pointer flex items-center justify-center gap-2 border-none outline-none"
-                      >
-                        <span>ĐĂNG KÝ TEST 1-1 &amp; GIỮ CHỖ GÓI LỚP 9</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* ── BĂNG RÔN NỔI BẬT: TRẠI ÔN THI CẤP TỐC 14 NGÀY (INDUSTRIAL TACTILE HEADER #2d3436) ── */}
-              <div className="rounded-3xl p-6 sm:p-8 bg-[#2d3436] text-white border-2 border-amber-400/80 shadow-[0_12px_32px_rgba(0,0,0,0.22)] relative overflow-hidden">
-                {/* 4 Chi tiết đinh vít máy (Screw Dots) theo chuẩn AGENTS.md */}
-                <div className="absolute top-3 left-3 w-2 h-2 rounded-full bg-slate-500 shadow-inner" />
-                <div className="absolute top-3 right-3 w-2 h-2 rounded-full bg-slate-500 shadow-inner" />
-                <div className="absolute bottom-3 left-3 w-2 h-2 rounded-full bg-slate-500 shadow-inner" />
-                <div className="absolute bottom-3 right-3 w-2 h-2 rounded-full bg-slate-500 shadow-inner" />
-
-                <div className="absolute -top-16 -right-16 w-48 h-48 bg-amber-400/15 rounded-full blur-3xl pointer-events-none" />
-                <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
-                  <div className="space-y-3 text-center lg:text-left">
-                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-400/20 border border-amber-400/50 text-amber-300 text-xs font-bold uppercase tracking-wider">
-                      <Zap className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-                      <span>Chương Trình Đặc Biệt Ngắn Hạn</span>
-                    </div>
-
-                    <h4 className="font-heading font-black text-xl sm:text-2xl md:text-3xl text-white uppercase tracking-tight">
-                      TRẠI ÔN THI CẤP TỐC 14 NGÀY (GỠ ĐIỂM GIỮA KỲ / CUỐI KỲ)
-                    </h4>
-
-                    <p className="font-body text-slate-300 text-[15.5px] sm:text-[16.5px] max-w-3xl leading-relaxed">
-                      Khoanh vùng kiến thức trọng tâm, bóc tách từng câu trong đề cương thực tế của các trường <strong className="text-white">THCS Lê Độ, Nguyễn Chí Thanh, Phạm Ngọc Thạch, Phan Bội Châu, Lý Tự Trọng, Ngô Quyền...</strong> Chi phí ưu đãi chỉ <strong className="text-amber-300 font-mono font-bold bg-amber-950/60 px-2 py-0.5 rounded border border-amber-600/60">299.000đ – 399.000đ</strong> / trọn khóa 14 ngày.
-                    </p>
-
-                    <div className="flex items-center justify-center lg:justify-start gap-2 text-xs sm:text-sm font-semibold text-rose-300">
-                      <ShieldCheck className="w-4 h-4 text-rose-400 shrink-0" />
-                      <span>Cam kết đặc biệt: Hoàn tiền 100% nếu điểm thi của con không tăng từ 1,0 – 1,5 điểm!</span>
-                    </div>
-                  </div>
-
-                  <div className="shrink-0 w-full sm:w-auto">
+                  {/* Nút Đăng Ký Gói 1 */}
+                  <div className="pt-4">
                     <button
                       type="button"
                       onClick={handleOpenRegisterModal}
-                      className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all active:scale-95 cursor-pointer whitespace-nowrap flex items-center justify-center gap-2 border-none outline-none"
+                      className="w-full py-3 sm:py-3.5 px-3 sm:px-4 rounded-2xl bg-[#0A78F3] hover:bg-[#096ad8] text-white font-heading font-extrabold text-[10.5px] min-[360px]:text-[11.5px] min-[390px]:text-xs sm:text-sm uppercase tracking-tight sm:tracking-wider shadow-[0_8px_20px_rgba(10,120,243,0.35)] hover:shadow-[0_12px_28px_rgba(10,120,243,0.45)] transition-all active:scale-98 cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 border-none outline-none"
                     >
-                      <span>ĐĂNG KÝ TRẠI CẤP TỐC 14 NGÀY</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <span className="whitespace-nowrap">ĐĂNG KÝ TEST 1-1 &amp; GIỮ CHỖ GÓI LỚP 6 – 8</span>
+                      <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                     </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* ── GÓI 2: PRE-GRADE 10 SPRINT (LỚP 9) THEO 2-BLOCK RECESSED WELL CARD ── */}
+              <div className="relative bg-[#ff4757]/10 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border-2 border-[#ff4757]/60 shadow-[0_10px_30px_rgba(255,71,87,0.12)] flex flex-col gap-1.5 sm:gap-2">
+                {/* ── KHỐI 1 (TRÊN): HEADER & HỌC PHÍ ── */}
+                <div className="relative bg-white/95 rounded-2xl p-5 sm:p-6 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
+                  <div className="absolute -top-3.5 left-4 sm:left-6 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#ff4757] text-white text-[11px] sm:text-xs font-heading font-extrabold uppercase tracking-wider shadow-xs border border-white/30 z-10">
+                    <span>CHUYÊN BIỆT LỚP 9</span>
+                  </div>
+
+                  <div className="hidden sm:flex absolute -top-3.5 right-4 sm:right-6 bg-[#ff4757] text-white text-[10.5px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-sm items-center gap-1 border border-white/30">
+                    <Flame className="w-3.5 h-3.5 fill-white" />
+                    <span>MỤC TIÊU VÀO 10 CÔNG LẬP</span>
+                  </div>
+
+                  <h4 className="font-heading font-black text-xl sm:text-2xl text-slate-900 leading-tight mt-1">
+                    GÓI 2: &ldquo;PRE-GRADE 10 SPRINT&rdquo;
+                  </h4>
+                  <p
+                    className="text-[11.5px] min-[360px]:text-[12.5px] min-[390px]:text-[13.5px] sm:text-base font-extrabold uppercase tracking-tight sm:tracking-wide mt-1 !text-[#ff4757] whitespace-nowrap overflow-hidden text-ellipsis"
+                    style={{ color: "#ff4757" }}
+                  >
+                    Tăng Tốc Luyện Thi Vào Lớp 10 Công Lập
+                  </p>
+                  <div className="w-14 h-1 rounded-full bg-[#ff4757] mt-2 mb-1" style={{ backgroundColor: "#ff4757" }} />
+
+                  {/* Hộp Học Phí (Chỉ text, không background xám, không viền) */}
+                  <div className="mt-4 space-y-1.5">
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-heading font-extrabold text-3xl sm:text-4xl md:text-5xl text-slate-900 leading-tight">
+                        800.000
+                      </span>
+                      <span className="text-sm sm:text-base md:text-lg font-bold text-slate-600 uppercase">
+                        VNĐ / tháng
+                      </span>
+                    </div>
+                    <p className="text-sm sm:text-base text-slate-600 font-medium">
+                      Học phí 3 tháng: <span className="font-bold text-slate-900">2.100.000 VNĐ</span>
+                    </p>
+                  </div>
+                </div>
+
+                {/* ── KHỐI 2 (DƯỚI): NỘI DUNG & VALUE STACK ── */}
+                <div className="bg-white/95 rounded-2xl p-5 sm:p-6 border border-white/80 shadow-xs flex-1 flex flex-col justify-between space-y-4">
+                  <div className="space-y-4">
+                    {/* Mục Tiêu & Thời Lượng */}
+                    <div className="space-y-2.5 font-body text-[15.5px] sm:text-[16.5px] leading-relaxed">
+                      <div className="flex items-start gap-2.5 text-slate-700">
+                        <Target className="w-5 h-5 text-[#ff4757] shrink-0 mt-0.5" />
+                        <span><strong className="text-slate-900 font-bold">Mục tiêu:</strong> Làm chủ ma trận 36 câu Sở GD&amp;ĐT Đà Nẵng, nắm chắc tối thiểu 70% phổ điểm để đỗ THPT Công lập.</span>
+                      </div>
+                      <div className="flex items-start gap-2.5 text-slate-700">
+                        <Calendar className="w-5 h-5 text-[#ff4757] shrink-0 mt-0.5" />
+                        <span><strong className="text-slate-900 font-bold">Thời lượng:</strong> 90 ngày (24 buổi học, 2 buổi/tuần, 90 phút/buổi).</span>
+                      </div>
+                    </div>
+
+                    {/* Nội Dung Đào Tạo 3 Tháng Lớp 9 */}
+                    <div className="space-y-2.5 pt-3.5 border-t-2 border-slate-200">
+                      <span className="text-xs sm:text-sm uppercase font-extrabold tracking-wider text-slate-800 block">
+                        Lộ Trình Đào Tạo Thực Chiến 3 Tháng:
+                      </span>
+                      <ul className="space-y-2 font-body text-[15.5px] sm:text-[16.5px] text-slate-700 leading-relaxed">
+                        <li className="flex items-start gap-2.5">
+                          <Check className="w-5 h-5 text-[#ff4757] shrink-0 mt-0.5" />
+                          <span><strong className="text-slate-900 font-bold">Tháng 1:</strong> Hệ thống hóa ngữ pháp cốt lõi &amp; kỹ thuật Dịch bắt buộc.</span>
+                        </li>
+                        <li className="flex items-start gap-2.5">
+                          <Check className="w-5 h-5 text-[#ff4757] shrink-0 mt-0.5" />
+                          <span><strong className="text-slate-900 font-bold">Tháng 2:</strong> Trị dứt điểm Word Form, Verb Tense &amp; Viết lại câu.</span>
+                        </li>
+                        <li className="flex items-start gap-2.5">
+                          <Check className="w-5 h-5 text-[#ff4757] shrink-0 mt-0.5" />
+                          <span><strong className="text-slate-900 font-bold">Tháng 3:</strong> Luyện đề thực chiến 36 câu chuẩn Sở GD&amp;ĐT Đà Nẵng.</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    {/* Value Stack Bonuses Gói 2 */}
+                    <div className="space-y-2.5 pt-3.5 border-t-2 border-slate-200">
+                      <span className="text-xs sm:text-sm uppercase font-extrabold tracking-wider text-[#ff4757] block">
+                        🔥 Trọn Bộ Đặc Quyền VIP + 2 Quà Tặng Độc Quyền Lớp 9:
+                      </span>
+                      <div className="space-y-2.5 font-body text-[15.5px] sm:text-[16.5px] text-slate-700 leading-relaxed">
+                        <div className="p-3 rounded-xl bg-[#f8fafc] border border-slate-200">
+                          <strong>Bonus 1–4:</strong> Đầy đủ quyền lợi LMS Zalo 20h, Zalo SOS 1:1, Kho đề thi &amp; Sổ 100 Tokens.
+                        </div>
+                        <div className="p-3 rounded-xl bg-rose-50/80 border border-rose-200 text-rose-950">
+                          <strong className="text-[#ff4757]">🔥 Đặc quyền Lớp 9 (1):</strong> 3 Buổi Thi thử Thực tế (Mock Tests) mô phỏng 100% áp lực phòng thi thật kèm phân tích lỗ hổng 1-1.
+                        </div>
+                        <div className="p-3 rounded-xl bg-rose-50/80 border border-rose-200 text-rose-950">
+                          <strong className="text-[#ff4757]">🔥 Đặc quyền Lớp 9 (2):</strong> Cẩm nang Tránh bẫy – Tổng hợp 100 lỗi sai chí mạng học sinh Đà Nẵng hay mất điểm oan.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Nút Đăng Ký Gói 2 */}
+                  <div className="pt-4">
+                    <button
+                      type="button"
+                      onClick={handleOpenRegisterModal}
+                      className="w-full py-3 sm:py-3.5 px-3 sm:px-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white font-heading font-extrabold text-[10.5px] min-[360px]:text-[11.5px] min-[390px]:text-xs sm:text-sm uppercase tracking-tight sm:tracking-wider shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] transition-all active:scale-98 cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 border-none outline-none"
+                    >
+                      <span className="whitespace-nowrap">ĐĂNG KÝ TEST 1-1 &amp; GIỮ CHỖ GÓI LỚP 9</span>
+                      <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ── BĂNG RÔN NỔI BẬT: TRẠI ÔN THI CẤP TỐC 14 NGÀY (THEO UI MẪU ĐÍNH KÈM) ── */}
+            <div className="rounded-3xl p-6 sm:p-8 lg:p-10 bg-[#0f172a] text-white border-2 border-amber-500 shadow-[0_16px_40px_rgba(0,0,0,0.25)] relative overflow-hidden">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                {/* ── CỘT TRÁI (7/12): THÔNG TIN CHƯƠNG TRÌNH, CHECKLIST & TAGS TRƯỜNG THCS ── */}
+                <div className="lg:col-span-7 flex flex-col justify-between space-y-5 sm:space-y-6">
+                  <div>
+                    {/* Badge Pill viền vàng: Chỉ viết hoa chữ cái đầu tiên */}
+                    <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-amber-500/90 bg-amber-950/40 text-amber-400 text-xs sm:text-[13.5px] font-heading font-extrabold tracking-wide">
+                      Chương trình đặc biệt ngắn hạn
+                    </div>
+
+                    {/* Tiêu đề chính: Dòng 1 'TRẠI ÔN THI CẤP TỐC', Dòng 2 '14 NGÀY' */}
+                    <h4
+                      className="font-heading font-black uppercase tracking-tight text-white mt-3 sm:mt-4 flex flex-col"
+                      style={{ fontSize: "clamp(26px, 4.2vw, 50px)", lineHeight: 1.15 }}
+                    >
+                      <span>TRẠI ÔN THI CẤP TỐC</span>
+                      <span className="text-[#f59e0b] font-black drop-shadow-md">
+                        14 NGÀY
+                      </span>
+                    </h4>
+
+                    {/* Subtitle: Thu nhỏ lại làm phụ đề tinh tế */}
+                    <p
+                      className="font-heading font-bold uppercase tracking-wider text-slate-200 mt-1.5 sm:mt-2"
+                      style={{ fontSize: "clamp(13px, 1.6vw, 18px)" }}
+                    >
+                      GỠ ĐIỂM GIỮA KỲ / CUỐI KỲ
+                    </p>
+
+                    {/* Checklist 2 dòng */}
+                    <ul className="space-y-2 mt-4 text-white text-[15px] sm:text-base font-medium font-body">
+                      <li className="flex items-center gap-2.5">
+                        <span className="font-bold text-white text-base leading-none">✓</span>
+                        <span>Khoanh vùng kiến thức trọng tâm</span>
+                      </li>
+                      <li className="flex items-center gap-2.5">
+                        <span className="font-bold text-white text-base leading-none">✓</span>
+                        <span>Bóc tách từng câu trong đề cương thực tế</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Đề cương thực tế từ các trường THCS: Chữ màu trắng + đường line ngắn dưới chân */}
+                  <div className="pt-2">
+                    <span className="text-xs sm:text-[13px] font-heading font-extrabold tracking-wider uppercase text-white block">
+                      ĐỀ CƯƠNG THỰC TẾ TỪ CÁC TRƯỜNG THCS
+                    </span>
+                    <div className="w-12 h-1 rounded-full bg-amber-400 mt-2 mb-3" style={{ backgroundColor: "#f59e0b" }} />
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+                      {["Lê Độ", "Nguyễn Chí Thanh", "Phạm Ngọc Thạch", "Phan Bội Châu", "Lý Tự Trọng", "Ngô Quyền", "..."].map((school, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3.5 py-1.5 rounded-full bg-slate-800/90 border border-slate-700 text-white text-xs sm:text-sm font-semibold shadow-xs"
+                        >
+                          {school}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* ── CỘT PHẢI (5/12): THẺ VÀNG GIÁ ƯU ĐÃI & HỘP CAM KẾT XANH LÁ (CĂN TỪ DƯỚI, KHÔNG KÉO GIÃN) ── */}
+                <div className="lg:col-span-5 flex flex-col justify-end gap-3.5 sm:gap-4">
+                  {/* Card Vàng Chi Phí Ưu Đãi: Chiều cao tự nhiên, không bị giãn */}
+                  <div className="rounded-2xl sm:rounded-3xl p-5 sm:p-6 bg-[#f59e0b] text-slate-950 flex flex-col shadow-md">
+                    <div>
+                      <span className="font-heading font-extrabold text-xs sm:text-[13px] tracking-wider uppercase text-slate-950 block">
+                        CHI PHÍ ƯU ĐÃI - TRỌN KHÓA
+                      </span>
+                      <div className="font-heading font-black text-4xl sm:text-[44px] text-slate-950 mt-2 sm:mt-2.5 leading-none tracking-tight">
+                        285.000đ
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={handleOpenRegisterModal}
+                      className="w-full mt-4 sm:mt-5 py-3 sm:py-3.5 px-4 rounded-2xl bg-[#111827] hover:bg-black text-white font-heading font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2 border-none outline-none"
+                    >
+                      <span>ĐĂNG KÝ NGAY</span>
+                      <span className="text-base font-bold leading-none">→</span>
+                    </button>
+                  </div>
+
+                  {/* Hộp Cam Kết Xanh Lá: Size text đồng bộ body text sale page ([15.5px] sm:[16.5px]) */}
+                  <div className="relative mt-2 rounded-2xl bg-[#064e3b]/30 border border-emerald-500/80 p-4 pt-5 sm:p-5 sm:pt-5.5 shadow-xs">
+                    <div className="absolute -top-3.5 left-4 sm:left-5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-600 text-white text-[11px] sm:text-xs font-bold tracking-wide shadow-sm border border-emerald-400/50">
+                      <Check className="w-3.5 h-3.5 stroke-[3]" />
+                      <span>Cam kết đặc biệt</span>
+                    </div>
+                    <p className="font-body text-[15.5px] sm:text-[16.5px] text-emerald-100 font-medium leading-relaxed">
+                      Hoàn tiền 100% nếu điểm thi của con không tăng từ 1,5 – 3,0 điểm!
+                    </p>
                   </div>
                 </div>
               </div>
