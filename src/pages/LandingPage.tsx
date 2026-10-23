@@ -2162,7 +2162,7 @@ export const LandingPage: React.FC = () => {
                   NGƯỜI <span className="text-[#0A78F3]">TRỰC TIẾP ĐỒNG HÀNH</span>
                 </span>
                 <span className="block font-bold sm:font-extrabold text-slate-800 text-[16px] min-[390px]:text-[18px] sm:text-2xl md:text-[26px] lg:text-[29px] leading-tight mt-1 sm:mt-1.5">
-                  <span className="text-[#C43838] font-black underline decoration-[#C43838]/40 decoration-2 underline-offset-4">CHỮA LÀNH TÂM LÝ HỌC TẬP</span> CHO CON LÀ AI?
+                  <span className="text-[#C43838] font-black underline decoration-[#C43838]/40 decoration-2 underline-offset-4">CHỮA LÀNH TÂM LÝ HỌC TẬP</span> CHO CON<span className="hidden sm:inline"> LÀ AI?</span>
                 </span>
               </h2>
 
