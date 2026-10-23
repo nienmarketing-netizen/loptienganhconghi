@@ -393,6 +393,12 @@ const FEEDBACK_SLIDES: FeedbackSlideItem[] = [
   { id: 5, title: "Ảnh tin nhắn Zalo 05", image: "" },
 ];
 
+const infiniteFeedbackSlides = [
+  ...FEEDBACK_SLIDES.map((s, idx) => ({ ...s, cloneKey: `fb-c1-${idx}` })),
+  ...FEEDBACK_SLIDES.map((s, idx) => ({ ...s, cloneKey: `fb-c2-${idx}` })),
+  ...FEEDBACK_SLIDES.map((s, idx) => ({ ...s, cloneKey: `fb-c3-${idx}` })),
+];
+
 export const LandingPage: React.FC = () => {
   const [isPlayingVsl, setIsPlayingVsl] = useState(false);
   const [isVslMuted, setIsVslMuted] = useState(true);
@@ -469,7 +475,30 @@ export const LandingPage: React.FC = () => {
     }
     return false;
   });
-  const [feedbackSlideIndex, setFeedbackSlideIndex] = useState(0);
+  // State cho slide feedback tin nhắn Zalo (cuộn tròn liên tục 1->5->1 với tốc độ chậm, căn giữa mobile)
+  const [feedbackSlideIndex, setFeedbackSlideIndex] = useState(5); // Vị trí trung tâm trong 3 bộ thẻ (0..4, 5..9, 10..14)
+  const [isFeedbackTransitionEnabled, setIsFeedbackTransitionEnabled] = useState(true);
+  const [isFeedbackPaused, setIsFeedbackPaused] = useState(false);
+
+  const handleNextFeedback = () => {
+    setIsFeedbackTransitionEnabled(true);
+    setFeedbackSlideIndex((prev) => prev + 1);
+  };
+
+  const handlePrevFeedback = () => {
+    setIsFeedbackTransitionEnabled(true);
+    setFeedbackSlideIndex((prev) => prev - 1);
+  };
+
+  const handleFeedbackTransitionEnd = () => {
+    if (feedbackSlideIndex >= 10) {
+      setIsFeedbackTransitionEnabled(false);
+      setFeedbackSlideIndex((prev) => prev - 5);
+    } else if (feedbackSlideIndex < 5) {
+      setIsFeedbackTransitionEnabled(false);
+      setFeedbackSlideIndex((prev) => prev + 5);
+    }
+  };
 
   const toggleDropdown = (key: string) => {
     setOpenDropdowns((prev) => ({
@@ -529,6 +558,28 @@ export const LandingPage: React.FC = () => {
     }, 6750); // Giảm tốc độ auto cuộn thêm 50%
     return () => clearInterval(interval);
   }, [isSymptomPaused, hasOpenDropdown]);
+
+  // Khôi phục transition sau khi snap vị trí vòng tròn feedback
+  useEffect(() => {
+    if (!isFeedbackTransitionEnabled) {
+      const raf = requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsFeedbackTransitionEnabled(true);
+        });
+      });
+      return () => cancelAnimationFrame(raf);
+    }
+  }, [isFeedbackTransitionEnabled]);
+
+  // Auto cuộn vòng tròn liên tục với tốc độ chậm (4s/slide), pause khi tương tác/hover
+  useEffect(() => {
+    if (isFeedbackPaused) return;
+    const interval = setInterval(() => {
+      setIsFeedbackTransitionEnabled(true);
+      setFeedbackSlideIndex((prev) => prev + 1);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [isFeedbackPaused]);
 
   const handleVslThumbnailUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -3274,41 +3325,64 @@ export const LandingPage: React.FC = () => {
               {/* 4. Slideshow hình ảnh feedback Zalo */}
               <div className="relative pt-1 sm:pt-2">
                 {/* Khung Slide Container */}
-                <div className="relative overflow-hidden rounded-2xl bg-slate-900/90 border border-slate-700/80 p-3 sm:p-4">
+                <div
+                  className="relative overflow-hidden rounded-2xl bg-slate-900/90 border border-slate-700/80 p-3 sm:p-4"
+                  onMouseEnter={() => setIsFeedbackPaused(true)}
+                  onMouseLeave={() => setIsFeedbackPaused(false)}
+                  onTouchStart={() => setIsFeedbackPaused(true)}
+                  onTouchEnd={() => setIsFeedbackPaused(false)}
+                >
                   <div
-                    className="flex transition-transform duration-500 ease-out gap-4"
+                    className={`flex items-center ${isFeedbackTransitionEnabled ? "transition-transform duration-700 ease-in-out" : ""}`}
                     style={{
-                      transform: `translateX(-${feedbackSlideIndex * (isDesktop ? 33.333333 : 100)}%)`,
+                      transform: isDesktop
+                        ? `translateX(-${feedbackSlideIndex * (100 / 3)}%)`
+                        : `translateX(calc(9% - ${feedbackSlideIndex * 82}%))`,
                     }}
+                    onTransitionEnd={handleFeedbackTransitionEnd}
                   >
-                    {FEEDBACK_SLIDES.map((item) => (
-                      <div
-                        key={item.id}
-                        className="shrink-0 w-full md:w-[calc(33.333333%-11px)]"
-                      >
-                        {item.image ? (
-                          <div className="relative rounded-xl overflow-hidden border border-slate-700 bg-slate-950 aspect-[3/4] sm:aspect-[4/5] flex items-center justify-center group shadow-md">
-                            <img
-                              src={item.image}
-                              alt={item.title}
-                              className="w-full h-full object-contain object-center"
-                            />
+                    {infiniteFeedbackSlides.map((item, itemIdx) => {
+                      const activeIndex = ((feedbackSlideIndex % FEEDBACK_SLIDES.length) + FEEDBACK_SLIDES.length) % FEEDBACK_SLIDES.length;
+                      const isCurrentCentered = activeIndex === (item.id - 1);
+                      return (
+                        <div
+                          key={item.cloneKey || `fb-${itemIdx}`}
+                          className="shrink-0 w-[82%] sm:w-[86%] md:w-1/3 px-2 sm:px-2.5 transition-all duration-500"
+                        >
+                          <div
+                            className={`transition-all duration-500 ${
+                              !isDesktop
+                                ? isCurrentCentered
+                                  ? "scale-100 opacity-100 ring-2 ring-[#ff4757]/50 shadow-xl"
+                                  : "scale-[0.94] opacity-50"
+                                : "scale-100 opacity-100"
+                            }`}
+                          >
+                            {item.image ? (
+                              <div className="relative rounded-xl overflow-hidden border border-slate-700 bg-slate-950 aspect-[3/4] sm:aspect-[4/5] flex items-center justify-center group shadow-md">
+                                <img
+                                  src={item.image}
+                                  alt={item.title}
+                                  className="w-full h-full object-contain object-center"
+                                />
+                              </div>
+                            ) : (
+                              <div className="relative rounded-xl overflow-hidden border-2 border-dashed border-slate-700 hover:border-slate-500 bg-slate-950/70 p-5 aspect-[3/4] sm:aspect-[4/5] flex flex-col items-center justify-center text-center transition-all group shadow-inner">
+                                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slate-800/90 border border-slate-700 flex items-center justify-center text-[#ff4757] mb-3 shadow-md group-hover:scale-105 transition-transform">
+                                  <Camera className="w-6 h-6 sm:w-7 sm:h-7" />
+                                </div>
+                                <span className="font-heading font-bold text-xs sm:text-sm text-slate-200 uppercase tracking-wide">
+                                  {item.title}
+                                </span>
+                                <span className="text-[11px] sm:text-xs text-slate-400 mt-1 max-w-[190px] leading-relaxed">
+                                  Vị trí hình ảnh chụp màn hình Zalo sẽ hiển thị tại đây
+                                </span>
+                              </div>
+                            )}
                           </div>
-                        ) : (
-                          <div className="relative rounded-xl overflow-hidden border-2 border-dashed border-slate-700 hover:border-slate-500 bg-slate-950/70 p-5 aspect-[3/4] sm:aspect-[4/5] flex flex-col items-center justify-center text-center transition-all group shadow-inner">
-                            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slate-800/90 border border-slate-700 flex items-center justify-center text-[#ff4757] mb-3 shadow-md group-hover:scale-105 transition-transform">
-                              <Camera className="w-6 h-6 sm:w-7 sm:h-7" />
-                            </div>
-                            <span className="font-heading font-bold text-xs sm:text-sm text-slate-200 uppercase tracking-wide">
-                              {item.title}
-                            </span>
-                            <span className="text-[11px] sm:text-xs text-slate-400 mt-1 max-w-[190px] leading-relaxed">
-                              Vị trí hình ảnh chụp màn hình Zalo sẽ hiển thị tại đây
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                    ))}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -3317,7 +3391,7 @@ export const LandingPage: React.FC = () => {
                   <div className="flex items-center gap-2">
                     <button
                       type="button"
-                      onClick={() => setFeedbackSlideIndex((prev) => (prev > 0 ? prev - 1 : (isDesktop ? Math.max(0, FEEDBACK_SLIDES.length - 3) : FEEDBACK_SLIDES.length - 1)))}
+                      onClick={handlePrevFeedback}
                       className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-800 hover:bg-[#ff4757] border border-slate-600 hover:border-[#ff4757] text-white flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
                       aria-label="Ảnh trước"
                     >
@@ -3325,7 +3399,7 @@ export const LandingPage: React.FC = () => {
                     </button>
                     <button
                       type="button"
-                      onClick={() => setFeedbackSlideIndex((prev) => (prev < (isDesktop ? Math.max(0, FEEDBACK_SLIDES.length - 3) : FEEDBACK_SLIDES.length - 1) ? prev + 1 : 0))}
+                      onClick={handleNextFeedback}
                       className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-800 hover:bg-[#ff4757] border border-slate-600 hover:border-[#ff4757] text-white flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
                       aria-label="Ảnh tiếp theo"
                     >
@@ -3333,21 +3407,28 @@ export const LandingPage: React.FC = () => {
                     </button>
                   </div>
 
-                  {/* Chấm tròn định vị slide */}
+                  {/* Chấm tròn định vị slide (5 dots tương ứng 5 ảnh) */}
                   <div className="flex items-center gap-1.5 sm:gap-2">
-                    {Array.from({ length: (isDesktop ? Math.max(1, FEEDBACK_SLIDES.length - 2) : FEEDBACK_SLIDES.length) }).map((_, idx) => (
-                      <button
-                        key={idx}
-                        type="button"
-                        onClick={() => setFeedbackSlideIndex(idx)}
-                        className={`h-2 rounded-full transition-all cursor-pointer ${
-                          feedbackSlideIndex === idx
-                            ? "w-6 bg-[#ff4757]"
-                            : "w-2 bg-slate-600 hover:bg-slate-500"
-                        }`}
-                        aria-label={`Slide ${idx + 1}`}
-                      />
-                    ))}
+                    {FEEDBACK_SLIDES.map((_, idx) => {
+                      const activeDot = ((feedbackSlideIndex % FEEDBACK_SLIDES.length) + FEEDBACK_SLIDES.length) % FEEDBACK_SLIDES.length;
+                      const isDotActive = activeDot === idx;
+                      return (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => {
+                            setIsFeedbackTransitionEnabled(true);
+                            setFeedbackSlideIndex(5 + idx);
+                          }}
+                          className={`h-2 rounded-full transition-all cursor-pointer ${
+                            isDotActive
+                              ? "w-6 bg-[#ff4757]"
+                              : "w-2 bg-slate-600 hover:bg-slate-500"
+                          }`}
+                          aria-label={`Slide ${idx + 1}`}
+                        />
+                      );
+                    })}
                   </div>
                 </div>
               </div>
