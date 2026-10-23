@@ -3382,7 +3382,7 @@ export const LandingPage: React.FC = () => {
                       ĐĂNG KÝ NGAY ĐỂ CON ĐẠT KẾT QUẢ NHƯ TRÊN
                     </span>
                     <span className="font-body text-[9.5px] min-[360px]:text-[10px] min-[390px]:text-[11px] sm:text-xs font-medium text-rose-100 normal-case mt-0.5 tracking-tight whitespace-nowrap">
-                      Nhận bản phác đồ bóc tách lỗ hổng &amp; bộ sổ tay ma thuật miễn phí
+                      Nhận phác đồ bóc tách lỗ hổng &amp; bộ sổ tay ma thuật miễn phí
                     </span>
                   </div>
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
