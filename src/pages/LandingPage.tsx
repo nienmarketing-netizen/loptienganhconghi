@@ -2990,182 +2990,292 @@ export const LandingPage: React.FC = () => {
         ────────────────────────────────────────────────────────────── */}
         <section className="py-14 sm:py-16 bg-white bg-grid-pattern relative border-t border-slate-200">
           <div className="w-[90%] lg:w-[80%] mx-auto space-y-10 sm:space-y-12">
-            {/* Header Khối 6 */}
+            {/* Header Khối 6 đồng bộ chuẩn Section 'Đồng hành cùng con' */}
             <div className="text-center max-w-4xl mx-auto space-y-3 sm:space-y-4">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-xs text-xs sm:text-[13px] font-bold">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Người Thật · Việc Thật · Kết Quả Thật</span>
+                <span>Người thật · việc thật · kết quả thật</span>
               </div>
 
-              <h2 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-xl min-[390px]:text-2xl sm:text-3xl md:text-4xl lg:text-[38px] leading-tight text-center">
-                NHỮNG &ldquo;CHIẾN THẮNG NHỎ&rdquo; TẠO NÊN BƯỚC NHẢY VỌT LỚN TỪ HỌC VIÊN TẠI SƠN TRÀ
+              <h2 className="font-heading uppercase tracking-tight text-center max-w-4xl mx-auto">
+                <span className="block font-black text-slate-900 text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-4xl lg:text-[38px] leading-tight">
+                  NHỮNG <span className="text-[#0A78F3]">&ldquo;CHIẾN THẮNG NHỎ&rdquo;</span>
+                </span>
+                <span className="block font-bold sm:font-extrabold text-slate-800 text-[16px] min-[390px]:text-[18px] sm:text-2xl md:text-[26px] lg:text-[29px] leading-tight mt-1 sm:mt-1.5">
+                  TẠO NÊN <span className="text-[#ff4757] font-black underline decoration-[#ff4757]/40 decoration-2 underline-offset-4">BƯỚC NHẢY VỌT LỚN</span> TỪ HỌC SINH TẠI SƠN TRÀ
+                </span>
               </h2>
 
-              <p className="font-body text-slate-600 text-[15.5px] sm:text-[17px] leading-relaxed max-w-3xl mx-auto text-center">
-                Minh chứng thực tế từ các học sinh từng bế tắc, sợ Tiếng Anh và tự ti đã lấy lại niềm tin, bứt phá ngoạn mục sau khi được Cô Nghi đồng hành 1-1:
+              <p className="font-body text-slate-600 text-[15.5px] sm:text-base md:text-[17.5px] lg:text-[18px] leading-relaxed max-w-3xl mx-auto text-center">
+                <span className="font-bold text-slate-800 underline decoration-slate-300 decoration-1 underline-offset-2">Minh chứng thực tế từ học sinh</span> từng bế tắc, sợ hãi môn Tiếng Anh đã lấy lại tự tin và <strong className="text-[#ff4757] font-bold bg-rose-50 px-2 py-0.5 rounded-lg border border-rose-200/80 shadow-2xs inline-block">bứt phá từ 2.5 – 3.5 điểm</strong> sau khi được <strong className="text-[#0A78F3] font-bold bg-sky-50 px-2 py-0.5 rounded-lg border border-sky-200/80 shadow-2xs inline-block">Cô Nghi trực tiếp kèm sát 1-1</strong>:
               </p>
             </div>
 
-            {/* 2 CASE STUDIES CHI TIẾT THEO DESIGN SYSTEM VÀ AGENTS.MD */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            {/* 2 CASE STUDIES CHI TIẾT THEO 2-BLOCK RECESSED WELL CARD VÀ DESIGN SYSTEM */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
               {/* ── CASE STUDY 1: EM HÂN (LỚP 7 TẠI SƠN TRÀ) ── */}
-              <div className="bg-slate-50 rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-md flex flex-col justify-between space-y-5">
-                {/* Score Banner Recessed Well theo đúng AGENTS.md */}
-                <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-2xl p-3.5 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-[var(--shadow-recessed-sm)]">
-                  <div className="flex items-center gap-3.5 text-left w-full sm:w-auto">
-                    <div className="relative shrink-0 flex flex-col items-center justify-center w-16 h-16 rounded-2xl bg-[#ff4757] text-white shadow-[var(--shadow-accent-sm)] border border-white/30">
-                      <span className="text-xl sm:text-2xl font-bold font-mono leading-none tracking-tight">
-                        8.5
+              <div className="relative bg-[#d1d9e6]/50 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border border-[#babecc]/50 shadow-[var(--shadow-recessed-sm)] flex flex-col gap-1.5 sm:gap-2 group transition-all duration-300 hover:shadow-lg">
+                {/* ── KHỐI 1 (TRÊN): SCORE TRANSFORMATION FLOW & CASE STUDY HEADER THEO MOCKUP ── */}
+                <div className="relative bg-white/95 rounded-2xl p-4 sm:p-5 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
+                  {/* Tag nổi khối 50% trong 50% ngoài theo mockup */}
+                  <div className="absolute -top-3.5 left-4 sm:left-6 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#117a55] text-white shadow-xs border border-white/30 z-10">
+                    <span className="font-heading font-extrabold text-[11px] sm:text-xs uppercase tracking-wider">
+                      CASE STUDY #01 · LỚP 7 SƠN TRÀ
+                    </span>
+                  </div>
+
+                  {/* Flow Điểm số biến đổi theo mockup */}
+                  <div className="flex items-center justify-between gap-2 sm:gap-4 pt-1">
+                    {/* Box điểm bắt đầu */}
+                    <div className="w-[84px] min-[390px]:w-24 sm:w-28 py-2.5 sm:py-3 px-2 rounded-xl sm:rounded-2xl border-2 border-amber-400 bg-white flex flex-col items-center justify-center shrink-0 shadow-2xs">
+                      <span className="text-2xl sm:text-3xl font-black font-mono text-[#0f2444] leading-tight">
+                        6.0
                       </span>
-                      <span className="text-[10px] font-medium uppercase tracking-wider opacity-90 mt-0.5">
-                        / 10 điểm
+                      <span className="text-[11px] sm:text-xs font-semibold text-slate-500 mt-0.5">
+                        Giữa kỳ
                       </span>
                     </div>
 
-                    <div>
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-xs sm:text-sm font-bold text-[#1a1a1a]">
-                          Em Hân (Lớp 7 - Sơn Trà)
-                        </span>
-                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-900 border border-emerald-300 leading-tight">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                          +2.5 Điểm
-                        </span>
-                      </div>
-                      <p className="text-xs sm:text-sm font-semibold text-[#ff4757] mt-0.5">
-                        Từ 6.0 Giữa kỳ vọt lên 8.5 Cuối kỳ I
-                      </p>
+                    {/* Mũi tên chuyển đổi */}
+                    <div className="flex-1 flex items-center justify-center">
+                      <ArrowRight className="w-5 h-5 sm:w-7 sm:h-7 text-amber-500 stroke-[2.5] shrink-0" />
+                    </div>
+
+                    {/* Box điểm đạt được (Đỏ sậm) */}
+                    <div className="w-[84px] min-[390px]:w-24 sm:w-28 py-2.5 sm:py-3 px-2 rounded-xl sm:rounded-2xl bg-[#780d15] text-white flex flex-col items-center justify-center shrink-0 shadow-md">
+                      <span className="text-2xl sm:text-3xl font-black font-mono leading-none text-white">
+                        8.5
+                      </span>
+                      <span className="text-[11px] sm:text-xs font-semibold text-white/95 mt-1 whitespace-nowrap">
+                        Cuối kỳ I
+                      </span>
                     </div>
                   </div>
 
-                  <div className="shrink-0 w-full sm:w-auto flex flex-col justify-center sm:items-end gap-1 border-t sm:border-t-0 pt-2 sm:pt-0 border-[#babecc]/50 sm:border-l sm:border-[#babecc]/50 sm:pl-3.5 text-xs">
-                    <div className="flex items-center justify-between sm:justify-end gap-1.5 w-full sm:w-auto">
-                      <span className="text-[#666666]">Trường:</span>
-                      <span className="font-semibold text-[#1a1a1a]">THCS Sơn Trà</span>
+                  {/* Headline theo mockup */}
+                  <h3 className="text-base sm:text-lg font-bold text-[#0f2d59] leading-snug mt-4 sm:mt-5 text-left">
+                    Từ 6.0 Giữa kỳ vọt lên 8.5 Cuối kỳ I
+                  </h3>
+
+                  {/* Đường kẻ ngang separator */}
+                  <div className="w-full h-px bg-slate-200/80 mt-2 mb-3 sm:mb-3.5" />
+
+                  {/* Metadata trường học & đồng hành */}
+                  <div className="space-y-1.5 text-xs sm:text-sm text-left">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[#556987] font-medium">Trường:</span>
+                      <strong className="text-[#0f2444] font-bold">THCS Sơn Trà</strong>
                     </div>
-                    <div className="flex items-center justify-between sm:justify-end gap-1.5 w-full sm:w-auto">
-                      <span className="text-[#666666]">Đồng hành:</span>
-                      <span className="font-semibold text-[#1a1a1a]">Cô Nghi</span>
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[#556987] font-medium">Đồng hành:</span>
+                      <strong className="text-[#0f2444] font-bold">Cô Nghi</strong>
                     </div>
                   </div>
                 </div>
 
-                {/* 3 Cột Mốc Bóc Tách Thực Tế */}
-                <div className="space-y-3 font-body text-[15.5px] sm:text-[16.5px] leading-relaxed">
-                  {/* Trạng thái trước khi học */}
-                  <div className="p-3.5 rounded-xl bg-white border border-rose-100">
-                    <span className="font-bold text-rose-700 uppercase tracking-wider text-[11px] block mb-1">
-                      ⚠️ Trạng thái trước khi học:
-                    </span>
-                    <p className="text-slate-700 leading-relaxed">
-                      Điểm Giữa kỳ I dừng ở <strong>6,0 điểm</strong>. Trên lớp luôn thu mình vì sợ bị gọi trả bài, sợ phát âm sai và thường xuyên quên từ vựng ngay sau khi học.
-                    </p>
+                {/* ── KHỐI 2 (DƯỚI): NỘI DUNG 3 BƯỚC BÓC TÁCH THỰC TẾ ── */}
+                <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-white/80 shadow-xs flex-1 flex flex-col justify-between space-y-3.5">
+                  <div className="flex flex-col gap-3 font-body text-[15px] sm:text-[16px] leading-relaxed">
+                    {/* Sub-box 1: Trạng thái trước khi học */}
+                    <div className="p-3.5 rounded-xl bg-[#f8fafc] border border-slate-200/80 shadow-2xs">
+                      <div className="mb-2">
+                        <span className="text-xs font-bold text-rose-700 uppercase tracking-wide inline-flex items-center gap-1.5">
+                          <AlertTriangle className="w-3.5 h-3.5 text-rose-500" />
+                          Trạng thái trước khi học
+                        </span>
+                        <div className="w-8 h-0.5 rounded-full bg-rose-400 mt-1" />
+                      </div>
+                      <p className="text-slate-700">
+                        Điểm Giữa kỳ I dừng ở <strong className="text-slate-900 font-bold">6,0 điểm</strong>. Trên lớp luôn thu mình vì sợ bị gọi trả bài, sợ phát âm sai và thường xuyên <strong className="text-rose-700 font-bold">quên từ vựng ngay sau khi học</strong>.
+                      </p>
+                    </div>
+
+                    {/* Sub-box 2: Phác đồ can thiệp */}
+                    <div className="p-3.5 rounded-xl bg-sky-50/80 border border-sky-200/80 shadow-2xs">
+                      <div className="mb-2">
+                        <span className="text-xs font-bold text-[#0A78F3] uppercase tracking-wide inline-flex items-center gap-1.5">
+                          <Sparkles className="w-3.5 h-3.5 text-[#0A78F3]" />
+                          Phác đồ can thiệp vi mô tại lớp
+                        </span>
+                        <div className="w-8 h-0.5 rounded-full bg-[#0A78F3] mt-1" />
+                      </div>
+                      <p className="text-slate-700">
+                        Ôn luyện từ vựng bóc tách kết hợp <strong className="text-[#0A78F3] font-bold">lặp lại ngắt quãng (Spaced Repetition)</strong> qua Quizizz, kiên nhẫn sửa chi tiết từng câu trong đề cương trường và luyện nghe chuyên sâu <strong className="text-slate-900 font-bold">không hề trách phạt khi làm sai</strong>.
+                      </p>
+                    </div>
+
+                    {/* Sub-box 3: Kết quả điểm số & Tâm lý */}
+                    <div className="p-3.5 rounded-xl bg-emerald-50/80 border border-emerald-200/80 shadow-2xs">
+                      <div className="mb-2">
+                        <span className="text-xs font-bold text-emerald-800 uppercase tracking-wide inline-flex items-center gap-1.5">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                          Kết quả điểm số &amp; Tâm lý
+                        </span>
+                        <div className="w-8 h-0.5 rounded-full bg-emerald-600 mt-1" />
+                      </div>
+                      <p className="text-slate-800 italic font-medium">
+                        &ldquo;Con sướng nhất vì ở lớp cô không bị la khi làm sai, được chơi game tích Token và hiểu bài từ gốc&rdquo; — Ba mẹ <strong className="text-emerald-800 font-bold not-italic">giải tỏa hoàn toàn áp lực</strong> canh con học mỗi tối.
+                      </p>
+                    </div>
                   </div>
 
-                  {/* Phác đồ can thiệp */}
-                  <div className="p-3.5 rounded-xl bg-white border border-sky-100">
-                    <span className="font-bold text-[#0A78F3] uppercase tracking-wider text-[11px] block mb-1">
-                      🔬 Phác đồ can thiệp vi mô tại lớp:
-                    </span>
-                    <p className="text-slate-700 leading-relaxed">
-                      Ôn luyện từ vựng bóc tách kết hợp lặp lại ngắt quãng qua Quizizz, kiên nhẫn sửa chi tiết từng câu trong đề cương trường và luyện nghe chuyên sâu mà không hề trách phạt khi làm sai.
-                    </p>
-                  </div>
-
-                  {/* Kết quả đầu ra */}
-                  <div className="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200">
-                    <span className="font-bold text-emerald-800 uppercase tracking-wider text-[11px] block mb-1">
-                      🎉 Kết quả điểm số &amp; Tâm lý:
-                    </span>
-                    <p className="text-slate-800 leading-relaxed italic">
-                      &ldquo;Con sướng nhất vì ở lớp cô không bị la khi làm sai, được chơi game tích Token và hiểu bài từ gốc&rdquo; — Ba mẹ giải tỏa hoàn toàn áp lực canh con học mỗi tối.
-                    </p>
+                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-emerald-700 font-bold">
+                    <div className="flex items-center gap-1.5">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span>Tăng vọt +2.5 điểm thi cuối kỳ I</span>
+                    </div>
+                    <span className="text-[#666666] font-medium">Bảo chứng học bạ thật</span>
                   </div>
                 </div>
               </div>
 
               {/* ── CASE STUDY 2: EM VIỆT (HỌC VIÊN PHỔ THÔNG MỞ RỘNG) ── */}
-              <div className="bg-slate-50 rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-md flex flex-col justify-between space-y-5">
-                {/* Score Banner Recessed Well theo đúng AGENTS.md */}
-                <div className="bg-[#d1d9e6] border border-[#babecc]/60 rounded-2xl p-3.5 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-[var(--shadow-recessed-sm)]">
-                  <div className="flex items-center gap-3.5 text-left w-full sm:w-auto">
-                    <div className="relative shrink-0 flex flex-col items-center justify-center w-16 h-16 rounded-2xl bg-[#ff4757] text-white shadow-[var(--shadow-accent-sm)] border border-white/30">
-                      <span className="text-xl sm:text-2xl font-bold font-mono leading-none tracking-tight">
-                        9.0
+              <div className="relative bg-[#d1d9e6]/50 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border border-[#babecc]/50 shadow-[var(--shadow-recessed-sm)] flex flex-col gap-1.5 sm:gap-2 group transition-all duration-300 hover:shadow-lg">
+                {/* ── KHỐI 1 (TRÊN): SCORE TRANSFORMATION FLOW & CASE STUDY HEADER THEO MOCKUP ── */}
+                <div className="relative bg-white/95 rounded-2xl p-4 sm:p-5 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
+                  {/* Tag nổi khối 50% trong 50% ngoài theo mockup */}
+                  <div className="absolute -top-3.5 left-4 sm:left-6 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#117a55] text-white shadow-xs border border-white/30 z-10">
+                    <span className="font-heading font-extrabold text-[11px] sm:text-xs uppercase tracking-wider">
+                      CASE STUDY #02 · BỨT PHÁ 9.0 ĐIỂM
+                    </span>
+                  </div>
+
+                  {/* Flow Điểm số biến đổi theo mockup */}
+                  <div className="flex items-center justify-between gap-2 sm:gap-4 pt-1">
+                    {/* Box điểm bắt đầu */}
+                    <div className="w-[84px] min-[390px]:w-24 sm:w-28 py-2.5 sm:py-3 px-2 rounded-xl sm:rounded-2xl border-2 border-amber-400 bg-white flex flex-col items-center justify-center shrink-0 shadow-2xs">
+                      <span className="text-2xl sm:text-3xl font-black font-mono text-[#0f2444] leading-tight">
+                        5.5
                       </span>
-                      <span className="text-[10px] font-medium uppercase tracking-wider opacity-90 mt-0.5">
-                        / 10 điểm
+                      <span className="text-[11px] sm:text-xs font-semibold text-slate-500 mt-0.5">
+                        Giữa kỳ
                       </span>
                     </div>
 
-                    <div>
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-xs sm:text-sm font-bold text-[#1a1a1a]">
-                          Em Việt (Khối Phổ thông)
-                        </span>
-                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-900 border border-emerald-300 leading-tight">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                          +3.5 Điểm
-                        </span>
-                      </div>
-                      <p className="text-xs sm:text-sm font-semibold text-[#ff4757] mt-0.5">
-                        Bứt phá ngoạn mục từ 5.5 lên 9.0 điểm
-                      </p>
+                    {/* Mũi tên chuyển đổi */}
+                    <div className="flex-1 flex items-center justify-center">
+                      <ArrowRight className="w-5 h-5 sm:w-7 sm:h-7 text-amber-500 stroke-[2.5] shrink-0" />
+                    </div>
+
+                    {/* Box điểm đạt được (Đỏ sậm) */}
+                    <div className="w-[84px] min-[390px]:w-24 sm:w-28 py-2.5 sm:py-3 px-2 rounded-xl sm:rounded-2xl bg-[#780d15] text-white flex flex-col items-center justify-center shrink-0 shadow-md">
+                      <span className="text-2xl sm:text-3xl font-black font-mono leading-none text-white">
+                        9.0
+                      </span>
+                      <span className="text-[11px] sm:text-xs font-semibold text-white/95 mt-1 whitespace-nowrap">
+                        Cuối kỳ
+                      </span>
                     </div>
                   </div>
 
-                  <div className="shrink-0 w-full sm:w-auto flex flex-col justify-center sm:items-end gap-1 border-t sm:border-t-0 pt-2 sm:pt-0 border-[#babecc]/50 sm:border-l sm:border-[#babecc]/50 sm:pl-3.5 text-xs">
-                    <div className="flex items-center justify-between sm:justify-end gap-1.5 w-full sm:w-auto">
-                      <span className="text-[#666666]">Mục tiêu:</span>
-                      <span className="font-semibold text-[#1a1a1a]">Gỡ điểm gấp</span>
+                  {/* Headline theo mockup */}
+                  <h3 className="text-base sm:text-lg font-bold text-[#0f2d59] leading-snug mt-4 sm:mt-5 text-left">
+                    Bứt phá ngoạn mục từ 5.5 lên 9.0 điểm
+                  </h3>
+
+                  {/* Đường kẻ ngang separator */}
+                  <div className="w-full h-px bg-slate-200/80 mt-2 mb-3 sm:mb-3.5" />
+
+                  {/* Metadata trường học & đồng hành */}
+                  <div className="space-y-1.5 text-xs sm:text-sm text-left">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[#556987] font-medium">Trường:</span>
+                      <strong className="text-[#0f2444] font-bold">THCS tại Đà Nẵng</strong>
                     </div>
-                    <div className="flex items-center justify-between sm:justify-end gap-1.5 w-full sm:w-auto">
-                      <span className="text-[#666666]">Đồng hành:</span>
-                      <span className="font-semibold text-[#1a1a1a]">Cô Nghi</span>
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[#556987] font-medium">Đồng hành:</span>
+                      <strong className="text-[#0f2444] font-bold">Cô Nghi</strong>
                     </div>
                   </div>
                 </div>
 
-                {/* 3 Cột Mốc Bóc Tách Thực Tế */}
-                <div className="space-y-3 font-body text-[15.5px] sm:text-[16.5px] leading-relaxed">
-                  {/* Trạng thái trước khi học */}
-                  <div className="p-3.5 rounded-xl bg-white border border-rose-100">
-                    <span className="font-bold text-rose-700 uppercase tracking-wider text-[11px] block mb-1">
-                      ⚠️ Trạng thái trước khi học:
-                    </span>
-                    <p className="text-slate-700 leading-relaxed">
-                      Điểm Giữa kỳ dừng ở <strong>5,5 điểm</strong> do hổng nền tảng ngữ pháp và thường xuyên sập bẫy ở các câu trắc nghiệm phân hóa và biến đổi từ loại Word Form.
-                    </p>
+                {/* ── KHỐI 2 (DƯỚI): NỘI DUNG 3 BƯỚC BÓC TÁCH THỰC TẾ ── */}
+                <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-white/80 shadow-xs flex-1 flex flex-col justify-between space-y-3.5">
+                  <div className="flex flex-col gap-3 font-body text-[15px] sm:text-[16px] leading-relaxed">
+                    {/* Sub-box 1: Trạng thái trước khi học */}
+                    <div className="p-3.5 rounded-xl bg-[#f8fafc] border border-slate-200/80 shadow-2xs">
+                      <div className="mb-2">
+                        <span className="text-xs font-bold text-rose-700 uppercase tracking-wide inline-flex items-center gap-1.5">
+                          <AlertTriangle className="w-3.5 h-3.5 text-rose-500" />
+                          Trạng thái trước khi học
+                        </span>
+                        <div className="w-8 h-0.5 rounded-full bg-rose-400 mt-1" />
+                      </div>
+                      <p className="text-slate-700">
+                        Điểm Giữa kỳ dừng ở <strong className="text-slate-900 font-bold">5,5 điểm</strong> do hổng nền tảng ngữ pháp và thường xuyên <strong className="text-rose-700 font-bold">sập bẫy các câu phân hóa</strong> và biến đổi từ loại Word Form.
+                      </p>
+                    </div>
+
+                    {/* Sub-box 2: Phác đồ can thiệp */}
+                    <div className="p-3.5 rounded-xl bg-sky-50/80 border border-sky-200/80 shadow-2xs">
+                      <div className="mb-2">
+                        <span className="text-xs font-bold text-[#0A78F3] uppercase tracking-wide inline-flex items-center gap-1.5">
+                          <Sparkles className="w-3.5 h-3.5 text-[#0A78F3]" />
+                          Phác đồ can thiệp vi mô tại lớp
+                        </span>
+                        <div className="w-8 h-0.5 rounded-full bg-[#0A78F3] mt-1" />
+                      </div>
+                      <p className="text-slate-700">
+                        Qua phiên chẩn đoán 1-1, Cô Nghi khoanh vùng chính xác những <strong className="text-[#0A78F3] font-bold">&ldquo;mắt xích bị gãy&rdquo;</strong>, áp dụng kỹ thuật <strong className="text-[#0A78F3] font-bold">&ldquo;Dịch bắt buộc&rdquo;</strong> và sửa trực tiếp từng câu trong đề cương ôn tập.
+                      </p>
+                    </div>
+
+                    {/* Sub-box 3: Kết quả điểm số & Năng lực */}
+                    <div className="p-3.5 rounded-xl bg-emerald-50/80 border border-emerald-200/80 shadow-2xs">
+                      <div className="mb-2">
+                        <span className="text-xs font-bold text-emerald-800 uppercase tracking-wide inline-flex items-center gap-1.5">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                          Kết quả điểm số &amp; Năng lực
+                        </span>
+                        <div className="w-8 h-0.5 rounded-full bg-emerald-600 mt-1" />
+                      </div>
+                      <p className="text-slate-800 italic font-medium">
+                        Kỳ thi Cuối kỳ ngay sau đó đạt <strong className="text-emerald-800 font-bold not-italic">9,0 điểm (+3,5 điểm)</strong> – Minh chứng đanh thép cho tốc độ bứt phá khi học sinh được <strong className="text-slate-900 font-bold not-italic">bắt đúng bệnh và kèm 1-1</strong>.
+                      </p>
+                    </div>
                   </div>
 
-                  {/* Phác đồ can thiệp */}
-                  <div className="p-3.5 rounded-xl bg-white border border-sky-100">
-                    <span className="font-bold text-[#0A78F3] uppercase tracking-wider text-[11px] block mb-1">
-                      🔬 Phác đồ can thiệp vi mô tại lớp:
-                    </span>
-                    <p className="text-slate-700 leading-relaxed">
-                      Qua phiên chẩn đoán 1-1, Cô Nghi khoanh vùng chính xác những &ldquo;mắt xích bị gãy&rdquo; hay mất điểm nhất, áp dụng chế độ &ldquo;Dịch bắt buộc&rdquo; và sửa trực tiếp từng câu trong đề cương ôn tập.
-                    </p>
-                  </div>
-
-                  {/* Kết quả đầu ra */}
-                  <div className="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200">
-                    <span className="font-bold text-emerald-800 uppercase tracking-wider text-[11px] block mb-1">
-                      🎉 Kết quả điểm số &amp; Năng lực:
-                    </span>
-                    <p className="text-slate-800 leading-relaxed italic">
-                      Kỳ thi Cuối kỳ ngay sau đó đạt <strong className="text-emerald-800 font-bold">9,0 điểm (+3,5 điểm)</strong> – Minh chứng đanh thép cho tốc độ bứt phá khi học sinh được bắt đúng bệnh và sửa lỗi 1-1.
-                    </p>
+                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-emerald-700 font-bold">
+                    <div className="flex items-center gap-1.5">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span>Bứt phá ngoạn mục +3.5 điểm thi</span>
+                    </div>
+                    <span className="text-[#666666] font-medium">Bảo chứng học bạ thật</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* BẰNG CHỨNG XÃ HỘI: FEEDBACK ZALO & KHÔNG GIAN LỚP HỌC */}
-            <div className="bg-[#2d3436] rounded-3xl p-6 sm:p-8 text-white space-y-6 shadow-xl">
+            {/* ── CTA BUTTON CHÈN GIỮA SECTION (ĐỒNG BỘ CHUẨN SECTION 'ĐỒNG HÀNH CÙNG CON') ── */}
+            <div className="flex flex-col items-center justify-center pt-2 sm:pt-4">
+              <button
+                type="button"
+                onClick={handleOpenRegisterModal}
+                className="w-full sm:w-auto px-5 py-3 sm:px-8 sm:py-3.5 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none active:scale-98"
+              >
+                <div className="flex flex-col items-center text-center leading-snug min-w-0">
+                  <span className="font-heading font-extrabold text-[11px] min-[360px]:text-[12px] min-[390px]:text-[13px] sm:text-base uppercase tracking-tight whitespace-nowrap">
+                    ĐĂNG KÝ TEST HỌC LỰC 1-1 ĐỂ CON ĐẠT KẾT QUẢ NHƯ TRÊN
+                  </span>
+                  <span className="font-body text-[9.5px] min-[360px]:text-[10px] min-[390px]:text-[11px] sm:text-xs font-medium text-rose-100 normal-case mt-0.5 tracking-tight whitespace-nowrap">
+                    Nhận bản phác đồ bóc tách lỗ hổng &amp; bộ sổ tay ma thuật miễn phí
+                  </span>
+                </div>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+
+            {/* BẰNG CHỨNG XÃ HỘI: FEEDBACK ZALO & KHÔNG GIAN LỚP HỌC (TACTILE CHASSIS CONTAINER) */}
+            <div className="bg-[#2d3436] rounded-3xl p-6 sm:p-8 text-white space-y-6 shadow-xl border border-slate-700/80 relative overflow-hidden">
+              {/* Chi tiết ốc vít kỹ thuật ở các góc theo AGENTS.md */}
+              <div className="absolute top-3 left-3 w-2 h-2 rounded-full bg-slate-600 shadow-inner pointer-events-none" />
+              <div className="absolute top-3 right-3 w-2 h-2 rounded-full bg-slate-600 shadow-inner pointer-events-none" />
+              <div className="absolute bottom-3 left-3 w-2 h-2 rounded-full bg-slate-600 shadow-inner pointer-events-none" />
+              <div className="absolute bottom-3 right-3 w-2 h-2 rounded-full bg-slate-600 shadow-inner pointer-events-none" />
+
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-700 pb-4">
                 <div className="flex items-center gap-3 text-center sm:text-left">
-                  <div className="w-10 h-10 rounded-2xl bg-[#ff4757] flex items-center justify-center text-white shrink-0 shadow-sm">
+                  <div className="w-10 h-10 rounded-2xl bg-[#ff4757] flex items-center justify-center text-white shrink-0 shadow-sm border border-white/20">
                     <MessageCircle className="w-5 h-5" />
                   </div>
                   <div>
@@ -3178,69 +3288,87 @@ export const LandingPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800 border border-slate-600 text-xs text-emerald-400 font-semibold">
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800 border border-slate-600 text-xs text-emerald-400 font-semibold shadow-inner">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   <span>Cập nhật liên tục 2026</span>
                 </div>
               </div>
 
-              {/* Lưới 3 Feedback Zalo Quotes / Testimonials */}
+              {/* Lưới 3 Feedback Zalo Quotes / Testimonials (Tactile Recessed Panels) */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="p-4 rounded-2xl bg-slate-800/90 border border-slate-700 space-y-2.5">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="font-bold text-sky-400">Mẹ Thảo (PH bé Hân - Lớp 7)</span>
-                    <span className="text-slate-400 text-[11px]">Qua Zalo</span>
+                <div className="p-4 sm:p-5 rounded-2xl bg-slate-800/95 border border-slate-700/90 shadow-sm flex flex-col justify-between space-y-3">
+                  <div>
+                    <div className="flex items-center justify-between text-xs pb-2 border-b border-slate-700/60">
+                      <div className="flex items-center gap-1.5 font-bold text-sky-400">
+                        <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+                        <span>Mẹ Thảo (PH bé Hân - Lớp 7)</span>
+                      </div>
+                      <span className="text-[11px] text-slate-400 font-medium">Qua Zalo</span>
+                    </div>
+                    <p className="font-body text-[15px] sm:text-[16px] text-slate-200 leading-relaxed italic mt-2.5">
+                      &ldquo;Cảm ơn cô Nghi nhiều lắm, bé Hân thi kỳ này được <strong className="text-emerald-400 font-bold not-italic">8.5 tiếng Anh</strong> rồi cô ơi. Trước đây con sợ học lắm, giờ về nhà <strong className="text-sky-300 font-bold not-italic">tự giác làm bài tập</strong> không cần mẹ giục nữa.&rdquo;
+                    </p>
                   </div>
-                  <p className="font-body text-[15.5px] sm:text-[16.5px] text-slate-200 leading-relaxed italic">
-                    &ldquo;Cảm ơn cô Nghi nhiều lắm, bé Hân thi kỳ này được 8.5 tiếng Anh rồi cô ơi. Trước đây con sợ học lắm, giờ về nhà tự giác làm bài tập không cần mẹ giục nữa.&rdquo;
-                  </p>
                   <div className="pt-2 border-t border-slate-700/60 flex items-center justify-between text-[11px] text-slate-400">
                     <span>THCS Sơn Trà</span>
-                    <span className="text-emerald-400 font-bold">Điểm thi: 8.5đ</span>
+                    <span className="text-emerald-400 font-bold bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/60">Điểm thi: 8.5đ</span>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-slate-800/90 border border-slate-700 space-y-2.5">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="font-bold text-amber-400">Ba Minh (PH bé Quân - Lớp 8)</span>
-                    <span className="text-slate-400 text-[11px]">Qua Zalo</span>
+                <div className="p-4 sm:p-5 rounded-2xl bg-slate-800/95 border border-slate-700/90 shadow-sm flex flex-col justify-between space-y-3">
+                  <div>
+                    <div className="flex items-center justify-between text-xs pb-2 border-b border-slate-700/60">
+                      <div className="flex items-center gap-1.5 font-bold text-amber-400">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                        <span>Ba Minh (PH bé Quân - Lớp 8)</span>
+                      </div>
+                      <span className="text-[11px] text-slate-400 font-medium">Qua Zalo</span>
+                    </div>
+                    <p className="font-body text-[15px] sm:text-[16px] text-slate-200 leading-relaxed italic mt-2.5">
+                      &ldquo;Rất thích hệ thống báo cáo <strong className="text-amber-300 font-bold not-italic">LMS 8h tối</strong> của lớp cô Nghi. Đi làm về mở điện thoại là nắm được con làm đúng sai câu nào, <strong className="text-slate-100 font-bold not-italic">ba mẹ hoàn toàn yên tâm</strong>.&rdquo;
+                    </p>
                   </div>
-                  <p className="font-body text-[15.5px] sm:text-[16.5px] text-slate-200 leading-relaxed italic">
-                    &ldquo;Rất thích hệ thống báo cáo LMS 8h tối của lớp cô Nghi. Đi làm về mở điện thoại là nắm được con làm đúng sai câu nào, ba mẹ hoàn toàn yên tâm.&rdquo;
-                  </p>
                   <div className="pt-2 border-t border-slate-700/60 flex items-center justify-between text-[11px] text-slate-400">
                     <span>THCS Lê Độ</span>
-                    <span className="text-sky-400 font-bold">LMS Zalo 20h00</span>
+                    <span className="text-sky-400 font-bold bg-sky-950/60 px-2 py-0.5 rounded border border-sky-800/60">LMS Zalo 20h00</span>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-slate-800/90 border border-slate-700 space-y-2.5">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="font-bold text-rose-400">Mẹ Mai Hương (PH bé Việt)</span>
-                    <span className="text-slate-400 text-[11px]">Qua Zalo</span>
+                <div className="p-4 sm:p-5 rounded-2xl bg-slate-800/95 border border-slate-700/90 shadow-sm flex flex-col justify-between space-y-3">
+                  <div>
+                    <div className="flex items-center justify-between text-xs pb-2 border-b border-slate-700/60">
+                      <div className="flex items-center gap-1.5 font-bold text-rose-400">
+                        <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
+                        <span>Mẹ Mai Hương (PH bé Việt)</span>
+                      </div>
+                      <span className="text-[11px] text-slate-400 font-medium">Qua Zalo</span>
+                    </div>
+                    <p className="font-body text-[15px] sm:text-[16px] text-slate-200 leading-relaxed italic mt-2.5">
+                      &ldquo;Nhờ cô Nghi bắt đúng bệnh mất gốc phần Word form và kèm sát từng câu đề cương, con thi cuối kỳ được <strong className="text-rose-400 font-bold not-italic">9.0 điểm</strong>. <strong className="text-slate-100 font-bold not-italic">Cả nhà mừng rơi nước mắt!</strong>&rdquo;
+                    </p>
                   </div>
-                  <p className="font-body text-[15.5px] sm:text-[16.5px] text-slate-200 leading-relaxed italic">
-                    &ldquo;Nhờ cô Nghi bắt đúng bệnh mất gốc phần Word form và kèm sát từng câu đề cương, con thi cuối kỳ được 9.0 điểm. Cả nhà mừng rơi nước mắt!&rdquo;
-                  </p>
                   <div className="pt-2 border-t border-slate-700/60 flex items-center justify-between text-[11px] text-slate-400">
                     <span>Đà Nẵng</span>
-                    <span className="text-rose-400 font-bold">Điểm thi: 9.0đ</span>
+                    <span className="text-rose-400 font-bold bg-rose-950/60 px-2 py-0.5 rounded border border-rose-800/60">Điểm thi: 9.0đ</span>
                   </div>
                 </div>
               </div>
 
-              {/* Thông tin lớp học 12 chỗ */}
-              <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-sm">
-                <div className="flex items-center gap-2 text-slate-300">
-                  <MapPin className="w-4 h-4 text-[#ff4757] shrink-0" />
-                  <span>Phòng học ấm cúng 12 chỗ ngồi trang bị máy lạnh, bảng chiếu hiện đại tại <strong>866/25 Ngô Quyền, Sơn Trà</strong>.</span>
+              {/* Thông tin lớp học 12 chỗ & Nút CTA chuẩn xúc giác */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-slate-700/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm">
+                <div className="flex items-center gap-2.5 text-slate-300 text-center sm:text-left">
+                  <MapPin className="w-5 h-5 text-[#ff4757] shrink-0" />
+                  <span className="font-body text-[14.5px] sm:text-[15.5px] leading-relaxed">
+                    Phòng học ấm cúng 12 chỗ ngồi trang bị máy lạnh, bảng chiếu hiện đại tại <strong className="text-white font-bold">866/25 Ngô Quyền, Sơn Trà</strong>.
+                  </span>
                 </div>
                 <button
                   type="button"
                   onClick={handleOpenRegisterModal}
-                  className="px-4 py-2 rounded-xl bg-[#ff4757] hover:bg-[#e03949] text-white font-bold text-xs uppercase tracking-wider shrink-0 transition-all cursor-pointer"
+                  className="w-full sm:w-auto px-5 py-3 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_6px_18px_rgba(255,71,87,0.35)] hover:shadow-[0_10px_24px_rgba(255,71,87,0.45)] font-heading font-extrabold text-xs sm:text-sm uppercase tracking-wider shrink-0 transition-all flex items-center justify-center gap-2 cursor-pointer border-none outline-none active:scale-98"
                 >
-                  Đăng Ký Đến Thăm Lớp &amp; Test 1-1
+                  <span>Đến Thăm Lớp &amp; Test 1-1 Miễn Phí</span>
+                  <ArrowRight className="w-4 h-4 shrink-0" />
                 </button>
               </div>
             </div>
