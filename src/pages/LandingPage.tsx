@@ -2394,201 +2394,297 @@ export const LandingPage: React.FC = () => {
         ────────────────────────────────────────────────────────────── */}
         <section className="py-14 sm:py-16 bg-[#eef3f9] bg-grid-pattern relative border-t border-slate-200">
           <div className="w-[90%] lg:w-[80%] mx-auto space-y-10 sm:space-y-12">
-            {/* Header Khối 5 */}
+            {/* Header Khối 5 đồng bộ chuẩn Section 'Đồng hành cùng con' */}
             <div className="text-center max-w-4xl mx-auto space-y-3 sm:space-y-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs text-xs sm:text-[13px] text-[#ff4757] font-bold">
-                <span className="w-2 h-2 rounded-full bg-[#ff4757] animate-pulse" />
-                <span>Lộ Trình Đo Lường Thực Tế</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 text-[#0A78F3] border border-sky-200 shadow-xs text-xs sm:text-[13px] font-bold">
+                <span className="w-2 h-2 rounded-full bg-[#0A78F3] animate-pulse" />
+                <span>Lộ trình đo lường thực tế</span>
               </div>
 
-              <h2 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-xl min-[390px]:text-2xl sm:text-3xl md:text-4xl lg:text-[38px] leading-tight text-center">
-                BẢN ĐỒ CHUYỂN ĐỔI RÕ RỆT CỦA CON THEO TỪNG CỘT MỐC THỜI GIAN
+              <h2 className="font-heading uppercase tracking-tight text-center max-w-4xl mx-auto">
+                <span className="block font-black text-slate-900 text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-4xl lg:text-[38px] leading-tight">
+                  BẢN ĐỒ CHUYỂN ĐỔI <span className="text-[#0A78F3]">RÕ RỆT CỦA CON</span>
+                </span>
+                <span className="block font-bold sm:font-extrabold text-slate-800 text-[16px] min-[390px]:text-[18px] sm:text-2xl md:text-[26px] lg:text-[29px] leading-tight mt-1 sm:mt-1.5">
+                  THEO <span className="text-[#ff4757] font-black underline decoration-[#ff4757]/40 decoration-2 underline-offset-4">TỪNG CỘT MỐC ĐO LƯỜNG</span> THỜI GIAN CỤ THỂ
+                </span>
               </h2>
 
-              <p className="font-body text-slate-600 text-[15.5px] sm:text-[17px] leading-relaxed max-w-3xl mx-auto text-center">
-                Phụ huynh không cần phải chờ đợi mơ hồ hàng năm trời để thấy sự thay đổi. Lộ trình 90 ngày (12 tuần / 24 buổi học) tại Lớp Tiếng Anh Cô Nghi được thiết kế với các chỉ số đo lường cụ thể ở từng giai đoạn:
+              <p className="font-body text-slate-600 text-[15.5px] sm:text-base md:text-[17.5px] lg:text-[18px] leading-relaxed max-w-3xl mx-auto text-center">
+                <span className="font-bold text-slate-800 underline decoration-slate-300 decoration-1 underline-offset-2">Phụ huynh không cần phải chờ đợi mơ hồ hàng năm trời</span>. <strong className="text-[#0A78F3] font-bold bg-sky-50 px-2 py-0.5 rounded-lg border border-sky-200/80 shadow-2xs inline-block">Lộ trình 90 ngày (12 tuần / 24 buổi học)</strong> tại Lớp Tiếng Anh Cô Nghi được thiết lập với <strong className="text-[#ff4757] font-bold">chỉ số đo lường thực tế</strong> rõ ràng qua từng chặng:
               </p>
             </div>
 
-            {/* TIMELINE 3 CỘT MỐC CHUYỂN ĐỔI (GRID 3 THẺ) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Cột Mốc 1: Sau 1 Tuần */}
-              <div className="relative bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-md transition-all group">
-                <div className="absolute top-0 inset-x-0 h-1 rounded-t-3xl bg-gradient-to-r from-sky-400 to-[#0A78F3]" />
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-100">
-                    <span className="text-xs uppercase font-extrabold tracking-wider text-[#0A78F3] bg-sky-50 px-2.5 py-1 rounded-lg border border-sky-200">
-                      CỘT MỐC 01
-                    </span>
-                    <span className="text-xs text-slate-500 font-semibold flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-slate-400" />
-                      2 Buổi học
-                    </span>
-                  </div>
+            {/* TIMELINE 3 CỘT MỐC: MOBILE SÁT LỀ TRÁI, PC BỐ TRÍ SO LE 2 BÊN VỚI ĐƯỜNG LINE Ở GIỮA */}
+            <div className="relative w-full max-w-5xl lg:max-w-6xl mx-auto py-4">
+              {/* Đường line dọc: Mobile nằm sát lề trái, PC nằm chính giữa */}
+              <div className="absolute left-2 sm:left-2.5 md:left-1/2 top-6 bottom-6 -translate-x-1/2 w-0.5 md:w-1 bg-gradient-to-b from-[#0A78F3] via-emerald-500 to-[#ff4757] rounded-full opacity-60 pointer-events-none z-0" />
 
-                  <h3 className="font-heading font-black text-lg sm:text-xl text-slate-900 leading-snug">
-                    Sau 1 Tuần Đầu Tiên
-                  </h3>
-
-                  <div className="space-y-3 font-body text-[15.5px] sm:text-[16.5px] leading-relaxed">
-                    <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/70">
-                      <span className="text-xs font-bold text-slate-500 uppercase tracking-wide block mb-1">
-                        Thái độ &amp; Tâm lý học tập
-                      </span>
-                      <p className="text-slate-700">
-                        Phá băng hoàn toàn cảm giác sợ hãi và chống đối; con <strong className="text-slate-900">hào hứng đi học</strong> mà không cần bố mẹ giục giã hay càu nhàu.
-                      </p>
-                    </div>
-
-                    <div className="p-3 bg-sky-50/70 rounded-xl border border-sky-200/70">
-                      <span className="text-xs font-bold text-[#0A78F3] uppercase tracking-wide block mb-1">
-                        Bứt phá học thuật
-                      </span>
-                      <p className="text-slate-700">
-                        Chủ động tham gia trò chơi Quizizz và tích lũy ngay <strong className="text-[#0A78F3]">15–20% chặng đường đổi quà lớn</strong> nhờ điểm thưởng Kickstart Bonus trong cuốn sổ 100 Tokens.
-                      </p>
-                    </div>
-                  </div>
+              {/* CỘT MỐC 1 (MOBILE: SÁT LỀ TRÁI / PC: BÊN TRÁI ĐƯỜNG LINE) */}
+              <div className="relative flex items-start w-full">
+                {/* Điểm mốc tròn: Mobile ở lề trái (left-2), PC ở chính giữa (md:left-1/2) */}
+                <div className="absolute left-2 sm:left-2.5 md:left-1/2 top-7 sm:top-8 -translate-x-1/2 w-4 h-4 md:w-7 md:h-7 rounded-full bg-white border border-[#0A78F3] md:border-2 shadow-sm md:shadow-md flex items-center justify-center z-20">
+                  <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-[#0A78F3] shadow-xs" />
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs text-[#0A78F3] font-bold">
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>Xoá bỏ rào cản sợ môn Tiếng Anh</span>
-                </div>
-              </div>
+                {/* Box cột mốc 1 */}
+                <div className="w-full pl-6 sm:pl-8 md:pl-0 md:w-[calc(50%-2rem)] md:mr-auto z-10">
+                  <div className="relative bg-[#d1d9e6]/50 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border border-[#babecc]/50 shadow-[var(--shadow-recessed-sm)] flex flex-col gap-1.5 sm:gap-2 group transition-all duration-300 hover:shadow-lg">
+                    {/* ── KHỐI 1 (TRÊN): HEADER CỘT MỐC & TAG NỔI KHỐI ── */}
+                    <div className="relative bg-white/95 rounded-2xl p-4 sm:p-5 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
+                      <div className="absolute -top-3.5 left-4 sm:left-5 inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#0A78F3] text-white shadow-xs border border-white/30 z-10">
+                        <span className="font-heading font-extrabold text-[10.5px] sm:text-xs uppercase tracking-wider">
+                          CỘT MỐC 01
+                        </span>
+                      </div>
 
-              {/* Cột Mốc 2: Sau 1 Tháng */}
-              <div className="relative bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-md transition-all group">
-                <div className="absolute top-0 inset-x-0 h-1 rounded-t-3xl bg-gradient-to-r from-emerald-400 to-teal-500" />
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-100">
-                    <span className="text-xs uppercase font-extrabold tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
-                      CỘT MỐC 02
-                    </span>
-                    <span className="text-xs text-slate-500 font-semibold flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-slate-400" />
-                      4 Tuần / 8 Buổi
-                    </span>
-                  </div>
+                      <h3 className="font-heading font-black text-lg sm:text-xl md:text-2xl text-slate-900 leading-snug">
+                        Sau 1 tuần đầu tiên
+                      </h3>
 
-                  <h3 className="font-heading font-black text-lg sm:text-xl text-slate-900 leading-snug">
-                    Sau 1 Tháng Đầu Tiên
-                  </h3>
-
-                  <div className="space-y-3 font-body text-[15.5px] sm:text-[16.5px] leading-relaxed">
-                    <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/70">
-                      <span className="text-xs font-bold text-slate-500 uppercase tracking-wide block mb-1">
-                        Thái độ &amp; Tâm lý học tập
-                      </span>
-                      <p className="text-slate-700">
-                        Con <strong className="text-slate-900">tự giác hoàn thành bài tập</strong> về nhà và tự ôn từ vựng theo phương pháp lặp lại ngắt quãng (Spaced Repetition) mỗi tối.
-                      </p>
+                      <div className="pt-2">
+                        <div className="w-14 h-1 rounded-full bg-gradient-to-r from-[#0A78F3] to-sky-400" />
+                      </div>
                     </div>
 
-                    <div className="p-3 bg-emerald-50/70 rounded-xl border border-emerald-200/70">
-                      <span className="text-xs font-bold text-emerald-700 uppercase tracking-wide block mb-1">
-                        Bứt phá học thuật
-                      </span>
-                      <p className="text-slate-700">
-                        Chuẩn hóa phát âm IPA, biết bật âm cuối; thuộc lòng <strong className="text-emerald-700">80–90% từ vựng cốt lõi</strong> các Unit trên trường; hiểu rõ bản chất ngữ pháp.
-                      </p>
+                    {/* ── KHỐI 2 (DƯỚI): NỘI DUNG CHI TIẾT & KẾT QUẢ ĐẦU RA ── */}
+                    <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-white/80 shadow-xs flex-1 flex flex-col justify-between space-y-3.5">
+                      <div className="flex flex-col gap-3.5 font-body text-[15px] sm:text-[16px] leading-relaxed">
+                        {/* Hộp Thái độ & Tâm lý */}
+                        <div className="p-3.5 rounded-xl bg-[#f8fafc] border border-slate-200/80 shadow-2xs">
+                          <div className="mb-2">
+                            <span className="text-xs font-bold text-slate-800 uppercase tracking-wide inline-block">
+                              Thái độ &amp; tâm lý học tập
+                            </span>
+                            <div className="w-8 h-0.5 rounded-full bg-slate-400 mt-1" />
+                          </div>
+                          <p className="text-slate-700">
+                            Phá băng hoàn toàn cảm giác sợ hãi và chống đối; con <strong className="text-slate-900 font-bold">hào hứng đi học</strong> mà không cần bố mẹ giục giã hay càu nhàu.
+                          </p>
+                        </div>
+
+                        {/* Hộp Bứt phá học thuật */}
+                        <div className="p-3.5 rounded-xl bg-sky-50/80 border border-sky-200/80 shadow-2xs">
+                          <div className="mb-2">
+                            <span className="text-xs font-bold text-[#0A78F3] uppercase tracking-wide inline-block">
+                              Bứt phá học thuật
+                            </span>
+                            <div className="w-8 h-0.5 rounded-full bg-[#0A78F3] mt-1" />
+                          </div>
+                          <p className="text-slate-700">
+                            Chủ động tham gia trò chơi Quizizz và tích lũy ngay <strong className="text-[#0A78F3] font-bold">15–20% chặng đường đổi quà lớn</strong> nhờ điểm thưởng Kickstart Bonus trong cuốn sổ 100 Tokens.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs text-[#0A78F3] font-bold">
+                        <CheckCircle2 className="w-4 h-4 shrink-0" />
+                        <span>Xoá bỏ rào cản sợ môn Tiếng Anh</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-
-                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs text-emerald-700 font-bold">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                  <span>Xây dựng thói quen tự giác mỗi tối</span>
                 </div>
               </div>
 
-              {/* Cột Mốc 3: Sau 3 Tháng */}
-              <div className="relative bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-rose-200/90 shadow-md flex flex-col justify-between hover:shadow-lg transition-all group ring-2 ring-[#ff4757]/20">
-                <div className="absolute top-0 inset-x-0 h-1.5 rounded-t-3xl bg-gradient-to-r from-[#ff4757] via-rose-500 to-amber-500" />
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between gap-2 pb-3 border-b border-rose-100">
-                    <span className="text-xs uppercase font-extrabold tracking-wider text-[#ff4757] bg-rose-50 px-2.5 py-1 rounded-lg border border-rose-200">
-                      CỘT MỐC VÀNG 03
-                    </span>
-                    <span className="text-xs text-slate-500 font-semibold flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-slate-400" />
-                      12 Tuần / 24 Buổi
-                    </span>
-                  </div>
+              {/* CỘT MỐC 2 (MOBILE: SÁT LỀ TRÁI / PC: BÊN PHẢI ĐƯỜNG LINE, BẮT ĐẦU Ở 1/3 DƯỚI BOX 1) */}
+              <div className="relative flex items-start w-full mt-6 sm:mt-8 md:-mt-24 lg:-mt-28">
+                {/* Điểm mốc tròn: Mobile ở lề trái (left-2), PC ở chính giữa (md:left-1/2) */}
+                <div className="absolute left-2 sm:left-2.5 md:left-1/2 top-7 sm:top-8 -translate-x-1/2 w-4 h-4 md:w-7 md:h-7 rounded-full bg-white border border-emerald-500 md:border-2 shadow-sm md:shadow-md flex items-center justify-center z-20">
+                  <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-emerald-600 shadow-xs" />
+                </div>
 
-                  <h3 className="font-heading font-black text-lg sm:text-xl text-slate-900 leading-snug">
-                    Sau 3 Tháng (90 Ngày)
-                  </h3>
+                {/* Box cột mốc 2 */}
+                <div className="w-full pl-6 sm:pl-8 md:pl-0 md:w-[calc(50%-2rem)] md:ml-auto z-10">
+                  <div className="relative bg-[#d1d9e6]/50 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border border-[#babecc]/50 shadow-[var(--shadow-recessed-sm)] flex flex-col gap-1.5 sm:gap-2 group transition-all duration-300 hover:shadow-lg">
+                    {/* ── KHỐI 1 (TRÊN): HEADER CỘT MỐC & TAG NỔI KHỐI ── */}
+                    <div className="relative bg-white/95 rounded-2xl p-4 sm:p-5 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
+                      <div className="absolute -top-3.5 left-4 sm:left-5 inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-emerald-600 text-white shadow-xs border border-white/30 z-10">
+                        <span className="font-heading font-extrabold text-[10.5px] sm:text-xs uppercase tracking-wider">
+                          CỘT MỐC 02
+                        </span>
+                      </div>
 
-                  <div className="space-y-3 font-body text-[15.5px] sm:text-[16.5px] leading-relaxed">
-                    <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/70">
-                      <span className="text-xs font-bold text-slate-500 uppercase tracking-wide block mb-1">
-                        Thái độ &amp; Tâm lý học tập
-                      </span>
-                      <p className="text-slate-700">
-                        Hình thành <strong className="text-slate-900">sự tự tin vững chắc</strong>, chủ động giơ tay phát biểu trên lớp và hoàn toàn làm chủ áp lực phòng thi.
-                      </p>
+                      <h3 className="font-heading font-black text-lg sm:text-xl md:text-2xl text-slate-900 leading-snug">
+                        Sau 1 tháng đầu tiên
+                      </h3>
+
+                      <div className="pt-2">
+                        <div className="w-14 h-1 rounded-full bg-gradient-to-r from-emerald-500 to-teal-400" />
+                      </div>
                     </div>
 
-                    <div className="p-3 bg-rose-50/70 rounded-xl border border-rose-200/70">
-                      <span className="text-xs font-bold text-[#ff4757] uppercase tracking-wide block mb-1">
-                        Bứt phá học thuật
-                      </span>
-                      <p className="text-slate-700">
-                        <strong className="text-[#ff4757]">Tăng từ 1,0 đến 3,0 điểm</strong> bài kiểm tra định kỳ; tăng 30% độ chính xác dạng bài vận dụng; dịch trôi chảy đọc hiểu dài không cần đoán mò.
-                      </p>
+                    {/* ── KHỐI 2 (DƯỚI): NỘI DUNG CHI TIẾT & KẾT QUẢ ĐẦU RA ── */}
+                    <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-white/80 shadow-xs flex-1 flex flex-col justify-between space-y-3.5">
+                      <div className="flex flex-col gap-3.5 font-body text-[15px] sm:text-[16px] leading-relaxed">
+                        <div className="p-3.5 rounded-xl bg-[#f8fafc] border border-slate-200/80 shadow-2xs">
+                          <div className="mb-2">
+                            <span className="text-xs font-bold text-slate-800 uppercase tracking-wide inline-block">
+                              Thái độ &amp; tâm lý học tập
+                            </span>
+                            <div className="w-8 h-0.5 rounded-full bg-slate-400 mt-1" />
+                          </div>
+                          <p className="text-slate-700">
+                            Con <strong className="text-slate-900 font-bold">tự giác hoàn thành bài tập</strong> về nhà và tự ôn từ vựng theo phương pháp lặp lại ngắt quãng (Spaced Repetition) mỗi tối.
+                          </p>
+                        </div>
+
+                        <div className="p-3.5 rounded-xl bg-emerald-50/80 border border-emerald-200/80 shadow-2xs">
+                          <div className="mb-2">
+                            <span className="text-xs font-bold text-emerald-700 uppercase tracking-wide inline-block">
+                              Bứt phá học thuật
+                            </span>
+                            <div className="w-8 h-0.5 rounded-full bg-emerald-600 mt-1" />
+                          </div>
+                          <p className="text-slate-700">
+                            Chuẩn hóa phát âm IPA, biết bật âm cuối; thuộc lòng <strong className="text-emerald-700 font-bold">80–90% từ vựng cốt lõi</strong> các Unit trên trường; hiểu rõ bản chất ngữ pháp.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs text-emerald-700 font-bold">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                        <span>Xây dựng thói quen tự giác mỗi tối</span>
+                      </div>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <div className="mt-4 pt-3 border-t border-rose-100 flex items-center gap-1.5 text-xs text-[#ff4757] font-bold">
-                  <CheckCircle2 className="w-4 h-4 text-[#ff4757]" />
-                  <span>Bứt phá điểm số thi giữa kỳ, cuối kỳ</span>
+              {/* CỘT MỐC 3 (MOBILE: SÁT LỀ TRÁI / PC: BÊN TRÁI ĐƯỜNG LINE, BẮT ĐẦU Ở 1/3 DƯỚI BOX 2) */}
+              <div className="relative flex items-start w-full mt-6 sm:mt-8 md:-mt-24 lg:-mt-28">
+                {/* Điểm mốc tròn: Mobile ở lề trái (left-2), PC ở chính giữa (md:left-1/2) */}
+                <div className="absolute left-2 sm:left-2.5 md:left-1/2 top-7 sm:top-8 -translate-x-1/2 w-4 h-4 md:w-7 md:h-7 rounded-full bg-white border border-[#ff4757] md:border-2 shadow-sm md:shadow-md flex items-center justify-center z-20">
+                  <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-[#ff4757] shadow-xs" />
+                </div>
+
+                {/* Box cột mốc 3 */}
+                <div className="w-full pl-6 sm:pl-8 md:pl-0 md:w-[calc(50%-2rem)] md:mr-auto z-10">
+                  <div className="relative bg-[#d1d9e6]/50 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border-2 border-[#ff4757]/60 shadow-[0_10px_30px_rgba(255,71,87,0.12)] flex flex-col gap-1.5 sm:gap-2 group transition-all duration-300 hover:shadow-xl">
+                    {/* ── KHỐI 1 (TRÊN): HEADER CỘT MỐC & TAG NỔI KHỐI ── */}
+                    <div className="relative bg-white/95 rounded-2xl p-4 sm:p-5 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
+                      <div className="absolute -top-3.5 left-4 sm:left-5 inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#ff4757] text-white shadow-xs border border-white/30 z-10">
+                        <Flame className="w-3 h-3 fill-white" />
+                        <span className="font-heading font-extrabold text-[10.5px] sm:text-xs uppercase tracking-wider">
+                          CỘT MỐC VÀNG 03
+                        </span>
+                      </div>
+
+                      <h3 className="font-heading font-black text-lg sm:text-xl md:text-2xl text-slate-900 leading-snug">
+                        Sau 3 tháng (90 ngày)
+                      </h3>
+
+                      <div className="pt-2">
+                        <div className="w-14 h-1 rounded-full bg-gradient-to-r from-[#ff4757] to-amber-500" />
+                      </div>
+                    </div>
+
+                    {/* ── KHỐI 2 (DƯỚI): NỘI DUNG CHI TIẾT & KẾT QUẢ ĐẦU RA ── */}
+                    <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-white/80 shadow-xs flex-1 flex flex-col justify-between space-y-3.5">
+                      <div className="flex flex-col gap-3.5 font-body text-[15px] sm:text-[16px] leading-relaxed">
+                        <div className="p-3.5 rounded-xl bg-[#f8fafc] border border-slate-200/80 shadow-2xs">
+                          <div className="mb-2">
+                            <span className="text-xs font-bold text-slate-800 uppercase tracking-wide inline-block">
+                              Thái độ &amp; tâm lý học tập
+                            </span>
+                            <div className="w-8 h-0.5 rounded-full bg-slate-400 mt-1" />
+                          </div>
+                          <p className="text-slate-700">
+                            Hình thành <strong className="text-slate-900 font-bold">sự tự tin vững chắc</strong>, chủ động giơ tay phát biểu trên lớp và hoàn toàn làm chủ áp lực phòng thi.
+                          </p>
+                        </div>
+
+                        <div className="p-3.5 rounded-xl bg-rose-50/80 border border-rose-200/80 shadow-2xs">
+                          <div className="mb-2">
+                            <span className="text-xs font-bold text-[#ff4757] uppercase tracking-wide inline-block">
+                              Bứt phá học thuật
+                            </span>
+                            <div className="w-8 h-0.5 rounded-full bg-[#ff4757] mt-1" />
+                          </div>
+                          <p className="text-slate-700">
+                            <strong className="text-[#ff4757] font-bold">Tăng từ 1,0 đến 3,0 điểm</strong> bài kiểm tra định kỳ; tăng 30% độ chính xác dạng bài vận dụng; dịch trôi chảy đọc hiểu dài không cần đoán mò.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="pt-3 border-t border-rose-100 flex items-center gap-1.5 text-xs text-[#ff4757] font-bold">
+                        <CheckCircle2 className="w-4 h-4 text-[#ff4757] shrink-0" />
+                        <span>Bứt phá điểm số thi giữa kỳ, cuối kỳ</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* ── BẢNG GIÁ GRAND SLAM OFFERS (2 PRICING CARDS LỚN) ── */}
+            {/* ── CTA BUTTON CHÈN GIỮA SECTION (ĐỒNG BỘ CHUẨN SECTION 'ĐỒNG HÀNH CÙNG CON') ── */}
+            <div className="flex flex-col items-center justify-center pt-2 sm:pt-4">
+              <button
+                type="button"
+                onClick={handleOpenRegisterModal}
+                className="w-full sm:w-auto px-5 py-3 sm:px-8 sm:py-3.5 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none active:scale-98"
+              >
+                <div className="flex flex-col items-center text-center leading-snug min-w-0">
+                  <span className="font-heading font-extrabold text-[11px] min-[360px]:text-[12px] min-[390px]:text-[13px] sm:text-base uppercase tracking-tight whitespace-nowrap">
+                    ĐĂNG KÝ ĐÁNH GIÁ HỌC LỰC 1-1 MIỄN PHÍ
+                  </span>
+                  <span className="font-body text-[9.5px] min-[360px]:text-[10px] min-[390px]:text-[11px] sm:text-xs font-medium text-rose-100 normal-case mt-0.5 tracking-tight whitespace-nowrap">
+                    Thiết kế phác đồ học tập cá nhân hoá cùng Thạc sĩ TESOL
+                  </span>
+                </div>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+
+            {/* ── BẢNG GIÁ GRAND SLAM OFFERS (2 PRICING CARDS LỚN VỚI NGÔN NGỮ THIẾT KẾ SOFT-UI TACTILE) ── */}
             <div className="pt-6 sm:pt-8 space-y-6">
-              <div className="text-center max-w-3xl mx-auto space-y-2">
-                <h3 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-xl sm:text-2xl md:text-3xl">
-                  LỰA CHỌN LỘ TRÌNH PHÙ HỢP VỚI KHỐI LỚP CỦA CON
+              <div className="text-center max-w-3xl mx-auto space-y-3">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 text-[#0A78F3] border border-sky-200 shadow-xs text-xs sm:text-[13px] font-bold">
+                  <span className="w-2 h-2 rounded-full bg-[#0A78F3] animate-pulse" />
+                  <span>Học Phí Minh Bạch · Trọn Gói 90 Ngày</span>
+                </div>
+
+                <h3 className="font-heading uppercase tracking-tight text-center max-w-3xl mx-auto">
+                  <span className="block font-black text-slate-900 text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-[34px] leading-tight">
+                    LỰA CHỌN <span className="text-[#0A78F3]">LỘ TRÌNH ĐÀO TẠO</span>
+                  </span>
+                  <span className="block font-bold sm:font-extrabold text-slate-800 text-[15px] min-[390px]:text-[17px] sm:text-xl md:text-[23px] leading-tight mt-1 sm:mt-1.5">
+                    PHÙ HỢP CHO <span className="text-[#ff4757] font-black underline decoration-[#ff4757]/40 decoration-2 underline-offset-4">TỪNG KHỐI LỚP</span> CỦA CON
+                  </span>
                 </h3>
-                <p className="font-body text-slate-600 text-[15.5px] sm:text-[16.5px] leading-relaxed">
-                  Học Phí Minh Bạch – Trọn Gói 3 Tháng – Cam Kết Tuyệt Đối Không Phát Sinh Chi Phí Phụ
+
+                <p className="font-body text-slate-600 text-[15.5px] sm:text-base md:text-[17px] leading-relaxed max-w-2xl mx-auto text-center">
+                  <strong className="text-slate-900 font-bold bg-white px-2 py-0.5 rounded-md border border-slate-200 shadow-2xs inline-block">Trọn gói 3 tháng (24 buổi học)</strong> – <strong className="text-[#ff4757] font-bold">Cam kết minh bạch tuyệt đối</strong>, không phát sinh bất kỳ khoản phụ phí nào.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
-                {/* ── GÓI 1: SMALL WIN BLUEPRINT (LỚP 6, 7, 8) ── */}
-                <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-md hover:shadow-xl transition-all flex flex-col justify-between relative">
-                  <div className="space-y-6">
-                    {/* Header Thẻ Gói 1 */}
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-sky-50 text-[#0A78F3] border border-sky-200">
-                          DÀNH CHO LỚP 6 – 7 – 8
-                        </span>
-                        <span className="text-xs font-semibold text-slate-500">
-                          Sĩ số: Tối đa 12 em
-                        </span>
-                      </div>
-                      <h4 className="font-heading font-black text-2xl sm:text-[26px] text-slate-900 leading-tight">
-                        GÓI 1: &ldquo;SMALL WIN BLUEPRINT&rdquo;
-                      </h4>
-                      <p className="text-xs sm:text-sm font-bold text-slate-500 uppercase tracking-wide">
-                        Tái Thiết Căn Bản &amp; Xoá Mất Gốc Cấp 2
-                      </p>
+                {/* ── GÓI 1: SMALL WIN BLUEPRINT (LỚP 6, 7, 8) THEO 2-BLOCK RECESSED WELL CARD ── */}
+                <div className="relative bg-[#d1d9e6]/50 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border border-[#babecc]/50 shadow-[var(--shadow-recessed-sm)] flex flex-col gap-1.5 sm:gap-2">
+                  {/* ── KHỐI 1 (TRÊN): HEADER & HỌC PHÍ RECESSED WELL ── */}
+                  <div className="relative bg-white/95 rounded-2xl p-5 sm:p-6 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
+                    <div className="absolute -top-3.5 left-4 sm:left-6 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0A78F3] text-white text-[11px] sm:text-xs font-heading font-extrabold uppercase tracking-wider shadow-xs border border-white/30 z-10">
+                      <span>DÀNH CHO LỚP 6 – 7 – 8</span>
                     </div>
 
-                    {/* Mức Học Phí */}
-                    <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-baseline justify-between gap-2">
+                    <div className="absolute -top-3 right-4 sm:right-6 bg-slate-100 text-slate-700 px-3 py-1 rounded-full border border-slate-200 text-xs font-bold shadow-2xs">
+                      Sĩ số: Tối đa 12 em
+                    </div>
+
+                    <h4 className="font-heading font-black text-xl sm:text-2xl text-slate-900 leading-tight mt-1">
+                      GÓI 1: &ldquo;SMALL WIN BLUEPRINT&rdquo;
+                    </h4>
+                    <p className="text-xs sm:text-sm font-bold text-[#0A78F3] uppercase tracking-wide mt-1">
+                      Tái Thiết Căn Bản &amp; Xoá Mất Gốc Cấp 2
+                    </p>
+
+                    {/* Hộp Học Phí Recessed Well */}
+                    <div className="mt-4 p-3.5 sm:p-4 rounded-2xl bg-[#d1d9e6]/70 border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)] flex items-center justify-between gap-2">
                       <div>
-                        <span className="text-xs text-slate-500 font-medium block">
+                        <span className="text-xs text-[#666666] font-medium block">
                           Học phí niêm yết trọn khóa
                         </span>
                         <div className="flex items-baseline gap-1.5 mt-0.5">
-                          <span className="font-mono text-2xl sm:text-3xl font-extrabold text-slate-900">
+                          <span className="font-mono text-2xl sm:text-3xl font-extrabold text-[#1a1a1a]">
                             1.800.000
                           </span>
                           <span className="text-xs font-bold text-slate-600 uppercase">
@@ -2597,115 +2693,113 @@ export const LandingPage: React.FC = () => {
                         </div>
                       </div>
                       <div className="text-right">
-                        <span className="inline-block px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-bold">
+                        <span className="inline-block px-3 py-1 rounded-lg bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs font-bold shadow-2xs">
                           ~600.000đ / tháng
                         </span>
                       </div>
                     </div>
-
-                    {/* Mục Tiêu & Thời Lượng */}
-                    <div className="space-y-2 text-xs sm:text-sm font-body">
-                      <div className="flex items-start gap-2 text-slate-700">
-                        <Target className="w-4 h-4 text-[#0A78F3] shrink-0 mt-0.5" />
-                        <span><strong className="text-slate-900">Mục tiêu:</strong> Trị dứt điểm mất gốc SGK Global Success / Friends Plus, xóa bệnh khoanh lụi, tăng 1.0 – 3.0 điểm trên trường.</span>
-                      </div>
-                      <div className="flex items-start gap-2 text-slate-700">
-                        <Calendar className="w-4 h-4 text-[#0A78F3] shrink-0 mt-0.5" />
-                        <span><strong className="text-slate-900">Thời lượng:</strong> 90 ngày (24 buổi học, 2 buổi/tuần, 90 phút/buổi).</span>
-                      </div>
-                    </div>
-
-                    {/* Nội Dung Đào Tạo Cốt Lõi */}
-                    <div className="space-y-2 pt-2 border-t border-slate-100">
-                      <span className="text-xs uppercase font-extrabold tracking-wider text-slate-800 block">
-                        Nội Dung Đào Tạo Cốt Lõi:
-                      </span>
-                      <ul className="space-y-2 text-xs sm:text-[13.5px] text-slate-600 font-body">
-                        <li className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                          <span>Chuẩn hóa phát âm IPA, trọng âm &amp; từ vựng Spaced Repetition.</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                          <span>Ngữ pháp trong ngữ cảnh &amp; kỹ thuật Bóc tách 4 bước – Dịch bắt buộc.</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                          <span>Sửa chi tiết 100% đề cương ôn tập các trường THCS tại Sơn Trà.</span>
-                        </li>
-                      </ul>
-                    </div>
-
-                    {/* Value Stack Bonuses */}
-                    <div className="space-y-2.5 pt-2 border-t border-slate-100">
-                      <span className="text-xs uppercase font-extrabold tracking-wider text-[#0A78F3] block">
-                        🎁 Trọn Bộ 4 Đặc Quyền Giá Trị Đi Kèm:
-                      </span>
-                      <div className="space-y-2 text-xs sm:text-[13px] text-slate-700 font-body">
-                        <div className="p-2.5 rounded-xl bg-sky-50/70 border border-sky-100">
-                          <strong>Bonus 1:</strong> Tài khoản VIP Hệ thống LMS báo cáo Zalo tự động mỗi tối lúc 20h00.
-                        </div>
-                        <div className="p-2.5 rounded-xl bg-sky-50/70 border border-sky-100">
-                          <strong>Bonus 2:</strong> Kênh Zalo SOS 1:1 giải bài tập khó buổi tối ở nhà cùng cô giáo.
-                        </div>
-                        <div className="p-2.5 rounded-xl bg-sky-50/70 border border-sky-100">
-                          <strong>Bonus 3:</strong> &ldquo;Kho vũ khí&rdquo; Ngân hàng đề thi THCS Sơn Trà + Bộ Speaking &amp; Writing.
-                        </div>
-                        <div className="p-2.5 rounded-xl bg-sky-50/70 border border-sky-100">
-                          <strong>Bonus 4:</strong> Sổ tích điểm &ldquo;100 Tokens&rdquo; + Bộ dụng cụ học tập/Balo in logo.
-                        </div>
-                      </div>
-                    </div>
                   </div>
 
-                  {/* Nút Đăng Ký */}
-                  <div className="pt-6">
-                    <button
-                      type="button"
-                      onClick={handleOpenRegisterModal}
-                      className="w-full py-3.5 px-4 rounded-2xl bg-[#0A78F3] hover:bg-[#096ad8] text-white font-heading font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
-                    >
-                      <span>ĐĂNG KÝ TEST 1-1 &amp; GIỮ CHỖ GÓI LỚP 6 – 8</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
+                  {/* ── KHỐI 2 (DƯỚI): NỘI DUNG & VALUE STACK ── */}
+                  <div className="bg-white/95 rounded-2xl p-5 sm:p-6 border border-white/80 shadow-xs flex-1 flex flex-col justify-between space-y-4">
+                    <div className="space-y-4">
+                      {/* Mục Tiêu & Thời Lượng */}
+                      <div className="space-y-2 text-xs sm:text-sm font-body">
+                        <div className="flex items-start gap-2 text-slate-700">
+                          <Target className="w-4 h-4 text-[#0A78F3] shrink-0 mt-0.5" />
+                          <span><strong className="text-slate-900">Mục tiêu:</strong> Trị dứt điểm mất gốc SGK Global Success / Friends Plus, xóa bệnh khoanh lụi, tăng 1.0 – 3.0 điểm trên trường.</span>
+                        </div>
+                        <div className="flex items-start gap-2 text-slate-700">
+                          <Calendar className="w-4 h-4 text-[#0A78F3] shrink-0 mt-0.5" />
+                          <span><strong className="text-slate-900">Thời lượng:</strong> 90 ngày (24 buổi học, 2 buổi/tuần, 90 phút/buổi).</span>
+                        </div>
+                      </div>
+
+                      {/* Nội Dung Đào Tạo Cốt Lõi */}
+                      <div className="space-y-2 pt-3 border-t border-slate-100">
+                        <span className="text-xs uppercase font-extrabold tracking-wider text-slate-800 block">
+                          Nội Dung Đào Tạo Cốt Lõi:
+                        </span>
+                        <ul className="space-y-2 text-xs sm:text-[13.5px] text-slate-600 font-body">
+                          <li className="flex items-start gap-2">
+                            <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                            <span>Chuẩn hóa phát âm IPA, trọng âm &amp; từ vựng Spaced Repetition.</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                            <span>Ngữ pháp trong ngữ cảnh &amp; kỹ thuật Bóc tách 4 bước – Dịch bắt buộc.</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                            <span>Sửa chi tiết 100% đề cương ôn tập các trường THCS tại Sơn Trà.</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      {/* Value Stack Bonuses */}
+                      <div className="space-y-2.5 pt-3 border-t border-slate-100">
+                        <span className="text-xs uppercase font-extrabold tracking-wider text-[#0A78F3] block">
+                          🎁 Trọn Bộ 4 Đặc Quyền Giá Trị Đi Kèm:
+                        </span>
+                        <div className="space-y-2 text-xs sm:text-[13px] text-slate-700 font-body">
+                          <div className="p-2.5 rounded-xl bg-sky-50/70 border border-sky-100">
+                            <strong>Bonus 1:</strong> Tài khoản VIP Hệ thống LMS báo cáo Zalo tự động mỗi tối lúc 20h00.
+                          </div>
+                          <div className="p-2.5 rounded-xl bg-sky-50/70 border border-sky-100">
+                            <strong>Bonus 2:</strong> Kênh Zalo SOS 1:1 giải bài tập khó buổi tối ở nhà cùng cô giáo.
+                          </div>
+                          <div className="p-2.5 rounded-xl bg-sky-50/70 border border-sky-100">
+                            <strong>Bonus 3:</strong> &ldquo;Kho vũ khí&rdquo; Ngân hàng đề thi THCS Sơn Trà + Bộ Speaking &amp; Writing.
+                          </div>
+                          <div className="p-2.5 rounded-xl bg-sky-50/70 border border-sky-100">
+                            <strong>Bonus 4:</strong> Sổ tích điểm &ldquo;100 Tokens&rdquo; + Bộ dụng cụ học tập/Balo in logo.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Nút Đăng Ký Gói 1 */}
+                    <div className="pt-4">
+                      <button
+                        type="button"
+                        onClick={handleOpenRegisterModal}
+                        className="w-full py-3.5 px-4 rounded-2xl bg-[#0A78F3] hover:bg-[#096ad8] text-white font-heading font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-[0_8px_20px_rgba(10,120,243,0.35)] hover:shadow-[0_12px_28px_rgba(10,120,243,0.45)] transition-all active:scale-98 cursor-pointer flex items-center justify-center gap-2 border-none outline-none"
+                      >
+                        <span>ĐĂNG KÝ TEST 1-1 &amp; GIỮ CHỖ GÓI LỚP 6 – 8</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
                 </div>
 
-                {/* ── GÓI 2: PRE-GRADE 10 SPRINT (LỚP 9) ── */}
-                <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-[#ff4757] shadow-xl hover:shadow-2xl transition-all flex flex-col justify-between relative overflow-hidden">
-                  {/* Badge Bestseller / Trọng Điểm */}
-                  <div className="absolute top-4 right-4 bg-[#ff4757] text-white text-[10.5px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-sm flex items-center gap-1">
-                    <Flame className="w-3.5 h-3.5 fill-white" />
-                    <span>MỤC TIÊU VÀO 10 CÔNG LẬP</span>
-                  </div>
-
-                  <div className="space-y-6">
-                    {/* Header Thẻ Gói 2 */}
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2">
-                        <span className="px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-rose-50 text-[#ff4757] border border-rose-200">
-                          CHUYÊN BIỆT LỚP 9
-                        </span>
-                        <span className="text-xs font-semibold text-slate-500">
-                          Sĩ số: Tối đa 12 em
-                        </span>
-                      </div>
-                      <h4 className="font-heading font-black text-2xl sm:text-[26px] text-slate-900 leading-tight">
-                        GÓI 2: &ldquo;PRE-GRADE 10 SPRINT&rdquo;
-                      </h4>
-                      <p className="text-xs sm:text-sm font-bold text-[#ff4757] uppercase tracking-wide">
-                        Tăng Tốc Luyện Thi Vào Lớp 10 Công Lập
-                      </p>
+                {/* ── GÓI 2: PRE-GRADE 10 SPRINT (LỚP 9) THEO 2-BLOCK RECESSED WELL CARD ── */}
+                <div className="relative bg-[#ff4757]/10 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border-2 border-[#ff4757]/60 shadow-[0_10px_30px_rgba(255,71,87,0.12)] flex flex-col gap-1.5 sm:gap-2">
+                  {/* ── KHỐI 1 (TRÊN): HEADER & HỌC PHÍ RECESSED WELL ── */}
+                  <div className="relative bg-white/95 rounded-2xl p-5 sm:p-6 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
+                    <div className="absolute -top-3.5 left-4 sm:left-6 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#ff4757] text-white text-[11px] sm:text-xs font-heading font-extrabold uppercase tracking-wider shadow-xs border border-white/30 z-10">
+                      <span>CHUYÊN BIỆT LỚP 9</span>
                     </div>
 
-                    {/* Mức Học Phí */}
-                    <div className="p-4 rounded-2xl bg-rose-50/50 border border-rose-200 flex items-baseline justify-between gap-2">
+                    <div className="absolute -top-3.5 right-4 sm:right-6 bg-[#ff4757] text-white text-[10.5px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-sm flex items-center gap-1 border border-white/30">
+                      <Flame className="w-3.5 h-3.5 fill-white" />
+                      <span>MỤC TIÊU VÀO 10 CÔNG LẬP</span>
+                    </div>
+
+                    <h4 className="font-heading font-black text-xl sm:text-2xl text-slate-900 leading-tight mt-1">
+                      GÓI 2: &ldquo;PRE-GRADE 10 SPRINT&rdquo;
+                    </h4>
+                    <p className="text-xs sm:text-sm font-bold text-[#ff4757] uppercase tracking-wide mt-1">
+                      Tăng Tốc Luyện Thi Vào Lớp 10 Công Lập
+                    </p>
+
+                    {/* Hộp Học Phí Recessed Well */}
+                    <div className="mt-4 p-3.5 sm:p-4 rounded-2xl bg-rose-50/80 border border-rose-200/80 shadow-[var(--shadow-recessed-sm)] flex items-center justify-between gap-2">
                       <div>
-                        <span className="text-xs text-slate-500 font-medium block">
+                        <span className="text-xs text-[#666666] font-medium block">
                           Học phí niêm yết trọn khóa
                         </span>
                         <div className="flex items-baseline gap-1.5 mt-0.5">
-                          <span className="font-mono text-2xl sm:text-3xl font-extrabold text-slate-900">
+                          <span className="font-mono text-2xl sm:text-3xl font-extrabold text-[#1a1a1a]">
                             1.800.000
                           </span>
                           <span className="text-xs font-bold text-slate-600 uppercase">
@@ -2714,84 +2808,95 @@ export const LandingPage: React.FC = () => {
                         </div>
                       </div>
                       <div className="text-right">
-                        <span className="inline-block px-2.5 py-1 rounded-lg bg-rose-100 text-[#ff4757] text-xs font-bold">
+                        <span className="inline-block px-3 py-1 rounded-lg bg-rose-100 text-[#ff4757] border border-rose-300 text-xs font-bold shadow-2xs">
                           ~600.000đ / tháng
                         </span>
                       </div>
                     </div>
-
-                    {/* Mục Tiêu & Thời Lượng */}
-                    <div className="space-y-2 text-xs sm:text-sm font-body">
-                      <div className="flex items-start gap-2 text-slate-700">
-                        <Target className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
-                        <span><strong className="text-slate-900">Mục tiêu:</strong> Làm chủ ma trận 36 câu Sở GD&amp;ĐT Đà Nẵng, nắm chắc tối thiểu 70% phổ điểm để đỗ THPT Công lập.</span>
-                      </div>
-                      <div className="flex items-start gap-2 text-slate-700">
-                        <Calendar className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
-                        <span><strong className="text-slate-900">Thời lượng:</strong> 90 ngày (24 buổi học, 2 buổi/tuần, 90 phút/buổi).</span>
-                      </div>
-                    </div>
-
-                    {/* Nội Dung Đào Tạo 3 Tháng Lớp 9 */}
-                    <div className="space-y-2 pt-2 border-t border-slate-100">
-                      <span className="text-xs uppercase font-extrabold tracking-wider text-slate-800 block">
-                        Lộ Trình Đào Tạo Thực Chiến 3 Tháng:
-                      </span>
-                      <ul className="space-y-2 text-xs sm:text-[13.5px] text-slate-600 font-body">
-                        <li className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
-                          <span><strong className="text-slate-800">Tháng 1:</strong> Hệ thống hóa ngữ pháp cốt lõi &amp; kỹ thuật Dịch bắt buộc.</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
-                          <span><strong className="text-slate-800">Tháng 2:</strong> Trị dứt điểm Word Form, Verb Tense &amp; Viết lại câu.</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
-                          <span><strong className="text-slate-800">Tháng 3:</strong> Luyện đề thực chiến 36 câu chuẩn Sở GD&amp;ĐT Đà Nẵng.</span>
-                        </li>
-                      </ul>
-                    </div>
-
-                    {/* Value Stack Bonuses Gói 2 */}
-                    <div className="space-y-2.5 pt-2 border-t border-slate-100">
-                      <span className="text-xs uppercase font-extrabold tracking-wider text-[#ff4757] block">
-                        🔥 Trọn Bộ Đặc Quyền VIP + 2 Quà Tặng Độc Quyền Lớp 9:
-                      </span>
-                      <div className="space-y-2 text-xs sm:text-[13px] text-slate-700 font-body">
-                        <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
-                          <strong>Bonus 1–4:</strong> Đầy đủ quyền lợi LMS Zalo 20h, Zalo SOS 1:1, Kho đề thi &amp; Sổ 100 Tokens.
-                        </div>
-                        <div className="p-2.5 rounded-xl bg-rose-50/80 border border-rose-200 text-rose-950">
-                          <strong className="text-[#ff4757]">🔥 Đặc quyền Lớp 9 (1):</strong> 3 Buổi Thi thử Thực tế (Mock Tests) mô phỏng 100% áp lực phòng thi thật kèm phân tích lỗ hổng 1-1.
-                        </div>
-                        <div className="p-2.5 rounded-xl bg-rose-50/80 border border-rose-200 text-rose-950">
-                          <strong className="text-[#ff4757]">🔥 Đặc quyền Lớp 9 (2):</strong> Cẩm nang Tránh bẫy – Tổng hợp 100 lỗi sai chí mạng học sinh Đà Nẵng hay mất điểm oan.
-                        </div>
-                      </div>
-                    </div>
                   </div>
 
-                  {/* Nút Đăng Ký */}
-                  <div className="pt-6">
-                    <button
-                      type="button"
-                      onClick={handleOpenRegisterModal}
-                      className="w-full py-3.5 px-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white font-heading font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-rose-500/30 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
-                    >
-                      <span>ĐĂNG KÝ TEST 1-1 &amp; GIỮ CHỖ GÓI LỚP 9</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
+                  {/* ── KHỐI 2 (DƯỚI): NỘI DUNG & VALUE STACK ── */}
+                  <div className="bg-white/95 rounded-2xl p-5 sm:p-6 border border-white/80 shadow-xs flex-1 flex flex-col justify-between space-y-4">
+                    <div className="space-y-4">
+                      {/* Mục Tiêu & Thời Lượng */}
+                      <div className="space-y-2 text-xs sm:text-sm font-body">
+                        <div className="flex items-start gap-2 text-slate-700">
+                          <Target className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
+                          <span><strong className="text-slate-900">Mục tiêu:</strong> Làm chủ ma trận 36 câu Sở GD&amp;ĐT Đà Nẵng, nắm chắc tối thiểu 70% phổ điểm để đỗ THPT Công lập.</span>
+                        </div>
+                        <div className="flex items-start gap-2 text-slate-700">
+                          <Calendar className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
+                          <span><strong className="text-slate-900">Thời lượng:</strong> 90 ngày (24 buổi học, 2 buổi/tuần, 90 phút/buổi).</span>
+                        </div>
+                      </div>
+
+                      {/* Nội Dung Đào Tạo 3 Tháng Lớp 9 */}
+                      <div className="space-y-2 pt-3 border-t border-slate-100">
+                        <span className="text-xs uppercase font-extrabold tracking-wider text-slate-800 block">
+                          Lộ Trình Đào Tạo Thực Chiến 3 Tháng:
+                        </span>
+                        <ul className="space-y-2 text-xs sm:text-[13.5px] text-slate-600 font-body">
+                          <li className="flex items-start gap-2">
+                            <Check className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
+                            <span><strong className="text-slate-800">Tháng 1:</strong> Hệ thống hóa ngữ pháp cốt lõi &amp; kỹ thuật Dịch bắt buộc.</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <Check className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
+                            <span><strong className="text-slate-800">Tháng 2:</strong> Trị dứt điểm Word Form, Verb Tense &amp; Viết lại câu.</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <Check className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
+                            <span><strong className="text-slate-800">Tháng 3:</strong> Luyện đề thực chiến 36 câu chuẩn Sở GD&amp;ĐT Đà Nẵng.</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      {/* Value Stack Bonuses Gói 2 */}
+                      <div className="space-y-2.5 pt-3 border-t border-slate-100">
+                        <span className="text-xs uppercase font-extrabold tracking-wider text-[#ff4757] block">
+                          🔥 Trọn Bộ Đặc Quyền VIP + 2 Quà Tặng Độc Quyền Lớp 9:
+                        </span>
+                        <div className="space-y-2 text-xs sm:text-[13px] text-slate-700 font-body">
+                          <div className="p-2.5 rounded-xl bg-[#f8fafc] border border-slate-200">
+                            <strong>Bonus 1–4:</strong> Đầy đủ quyền lợi LMS Zalo 20h, Zalo SOS 1:1, Kho đề thi &amp; Sổ 100 Tokens.
+                          </div>
+                          <div className="p-2.5 rounded-xl bg-rose-50/80 border border-rose-200 text-rose-950">
+                            <strong className="text-[#ff4757]">🔥 Đặc quyền Lớp 9 (1):</strong> 3 Buổi Thi thử Thực tế (Mock Tests) mô phỏng 100% áp lực phòng thi thật kèm phân tích lỗ hổng 1-1.
+                          </div>
+                          <div className="p-2.5 rounded-xl bg-rose-50/80 border border-rose-200 text-rose-950">
+                            <strong className="text-[#ff4757]">🔥 Đặc quyền Lớp 9 (2):</strong> Cẩm nang Tránh bẫy – Tổng hợp 100 lỗi sai chí mạng học sinh Đà Nẵng hay mất điểm oan.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Nút Đăng Ký Gói 2 */}
+                    <div className="pt-4">
+                      <button
+                        type="button"
+                        onClick={handleOpenRegisterModal}
+                        className="w-full py-3.5 px-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white font-heading font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] transition-all active:scale-98 cursor-pointer flex items-center justify-center gap-2 border-none outline-none"
+                      >
+                        <span>ĐĂNG KÝ TEST 1-1 &amp; GIỮ CHỖ GÓI LỚP 9</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* ── BĂNG RÔN NỔI BẬT: TRẠI ÔN THI CẤP TỐC 14 NGÀY ── */}
-              <div className="rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-[#1e272e] via-slate-900 to-[#2d3436] text-white border-2 border-amber-400/80 shadow-xl relative overflow-hidden">
-                <div className="absolute -top-16 -right-16 w-48 h-48 bg-amber-400/20 rounded-full blur-3xl pointer-events-none" />
+              {/* ── BĂNG RÔN NỔI BẬT: TRẠI ÔN THI CẤP TỐC 14 NGÀY (INDUSTRIAL TACTILE HEADER #2d3436) ── */}
+              <div className="rounded-3xl p-6 sm:p-8 bg-[#2d3436] text-white border-2 border-amber-400/80 shadow-[0_12px_32px_rgba(0,0,0,0.22)] relative overflow-hidden">
+                {/* 4 Chi tiết đinh vít máy (Screw Dots) theo chuẩn AGENTS.md */}
+                <div className="absolute top-3 left-3 w-2 h-2 rounded-full bg-slate-500 shadow-inner" />
+                <div className="absolute top-3 right-3 w-2 h-2 rounded-full bg-slate-500 shadow-inner" />
+                <div className="absolute bottom-3 left-3 w-2 h-2 rounded-full bg-slate-500 shadow-inner" />
+                <div className="absolute bottom-3 right-3 w-2 h-2 rounded-full bg-slate-500 shadow-inner" />
+
+                <div className="absolute -top-16 -right-16 w-48 h-48 bg-amber-400/15 rounded-full blur-3xl pointer-events-none" />
                 <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
                   <div className="space-y-3 text-center lg:text-left">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/20 border border-amber-400/50 text-amber-300 text-xs font-bold uppercase tracking-wider">
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-400/20 border border-amber-400/50 text-amber-300 text-xs font-bold uppercase tracking-wider">
                       <Zap className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
                       <span>Chương Trình Đặc Biệt Ngắn Hạn</span>
                     </div>
@@ -2801,7 +2906,7 @@ export const LandingPage: React.FC = () => {
                     </h4>
 
                     <p className="font-body text-slate-300 text-[15.5px] sm:text-[16.5px] max-w-3xl leading-relaxed">
-                      Khoanh vùng kiến thức trọng tâm, bóc tách từng câu trong đề cương thực tế của các trường <strong className="text-white">THCS Lê Độ, Nguyễn Chí Thanh, Phạm Ngọc Thạch, Phan Bội Châu, Lý Tự Trọng, Ngô Quyền...</strong> Chi phí ưu đãi chỉ <strong className="text-amber-300 font-mono font-bold">299.000đ – 399.000đ</strong> / trọn khóa 14 ngày.
+                      Khoanh vùng kiến thức trọng tâm, bóc tách từng câu trong đề cương thực tế của các trường <strong className="text-white">THCS Lê Độ, Nguyễn Chí Thanh, Phạm Ngọc Thạch, Phan Bội Châu, Lý Tự Trọng, Ngô Quyền...</strong> Chi phí ưu đãi chỉ <strong className="text-amber-300 font-mono font-bold bg-amber-950/60 px-2 py-0.5 rounded border border-amber-600/60">299.000đ – 399.000đ</strong> / trọn khóa 14 ngày.
                     </p>
 
                     <div className="flex items-center justify-center lg:justify-start gap-2 text-xs sm:text-sm font-semibold text-rose-300">
@@ -2814,7 +2919,7 @@ export const LandingPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={handleOpenRegisterModal}
-                      className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all active:scale-95 cursor-pointer whitespace-nowrap flex items-center justify-center gap-2"
+                      className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all active:scale-95 cursor-pointer whitespace-nowrap flex items-center justify-center gap-2 border-none outline-none"
                     >
                       <span>ĐĂNG KÝ TRẠI CẤP TỐC 14 NGÀY</span>
                       <ArrowRight className="w-4 h-4" />
