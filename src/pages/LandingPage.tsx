@@ -379,6 +379,20 @@ const WEAPONS_DATA: WeaponItem[] = [
   },
 ];
 
+interface FeedbackSlideItem {
+  id: number;
+  title: string;
+  image: string;
+}
+
+const FEEDBACK_SLIDES: FeedbackSlideItem[] = [
+  { id: 1, title: "Ảnh tin nhắn Zalo 01", image: "" },
+  { id: 2, title: "Ảnh tin nhắn Zalo 02", image: "" },
+  { id: 3, title: "Ảnh tin nhắn Zalo 03", image: "" },
+  { id: 4, title: "Ảnh tin nhắn Zalo 04", image: "" },
+  { id: 5, title: "Ảnh tin nhắn Zalo 05", image: "" },
+];
+
 export const LandingPage: React.FC = () => {
   const [isPlayingVsl, setIsPlayingVsl] = useState(false);
   const [isVslMuted, setIsVslMuted] = useState(true);
@@ -455,6 +469,7 @@ export const LandingPage: React.FC = () => {
     }
     return false;
   });
+  const [feedbackSlideIndex, setFeedbackSlideIndex] = useState(0);
 
   const toggleDropdown = (key: string) => {
     setOpenDropdowns((prev) => ({
@@ -3259,110 +3274,118 @@ export const LandingPage: React.FC = () => {
               </button>
             </div>
 
-            {/* BẰNG CHỨNG XÃ HỘI: FEEDBACK ZALO & KHÔNG GIAN LỚP HỌC (TACTILE CHASSIS CONTAINER) */}
-            <div className="bg-[#2d3436] rounded-3xl p-6 sm:p-8 text-white space-y-6 shadow-xl border border-slate-700/80 relative overflow-hidden">
+            {/* BẰNG CHỨNG XÃ HỘI: FEEDBACK ZALO (SLIDESHOW HÌNH ẢNH CÓ NHÃN TREO) */}
+            <div className="relative bg-[#2d3436] rounded-3xl p-5 sm:p-8 pt-7 sm:pt-9 text-white space-y-6 shadow-xl border border-slate-700/80 overflow-visible">
+              {/* 1. Nhãn treo ở ngay đường borderline phía trên */}
+              <div className="absolute -top-3.5 left-4 sm:left-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ff4757] text-white shadow-md border border-white/30 z-20">
+                <MessageCircle className="w-4 h-4 text-white shrink-0" />
+                <span className="font-heading font-extrabold text-[11px] sm:text-xs uppercase tracking-wider">
+                  Tin Nhắn Phụ Huynh Báo Điểm &amp; Cảm Ơn
+                </span>
+              </div>
+
               {/* Chi tiết ốc vít kỹ thuật ở các góc theo AGENTS.md */}
-              <div className="absolute top-3 left-3 w-2 h-2 rounded-full bg-slate-600 shadow-inner pointer-events-none" />
               <div className="absolute top-3 right-3 w-2 h-2 rounded-full bg-slate-600 shadow-inner pointer-events-none" />
               <div className="absolute bottom-3 left-3 w-2 h-2 rounded-full bg-slate-600 shadow-inner pointer-events-none" />
               <div className="absolute bottom-3 right-3 w-2 h-2 rounded-full bg-slate-600 shadow-inner pointer-events-none" />
 
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-700 pb-4">
-                <div className="flex items-center gap-3 text-center sm:text-left">
-                  <div className="w-10 h-10 rounded-2xl bg-[#ff4757] flex items-center justify-center text-white shrink-0 shadow-sm border border-white/20">
-                    <MessageCircle className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="font-heading font-black text-lg sm:text-xl text-white uppercase tracking-tight">
-                      Tin Nhắn Phụ Huynh Báo Điểm &amp; Cảm Ơn
-                    </h4>
-                    <p className="text-xs text-slate-300">
-                      Chụp màn hình Zalo thực tế từ các phụ huynh tại Sơn Trà gửi về cho Cô Nghi
-                    </p>
+              {/* 4. Slideshow hình ảnh feedback Zalo */}
+              <div className="relative pt-1 sm:pt-2">
+                {/* Khung Slide Container */}
+                <div className="relative overflow-hidden rounded-2xl bg-slate-900/90 border border-slate-700/80 p-3 sm:p-4">
+                  <div
+                    className="flex transition-transform duration-500 ease-out gap-4"
+                    style={{
+                      transform: `translateX(-${feedbackSlideIndex * (isDesktop ? 33.333333 : 100)}%)`,
+                    }}
+                  >
+                    {FEEDBACK_SLIDES.map((item) => (
+                      <div
+                        key={item.id}
+                        className="shrink-0 w-full md:w-[calc(33.333333%-11px)]"
+                      >
+                        {item.image ? (
+                          <div className="relative rounded-xl overflow-hidden border border-slate-700 bg-slate-950 aspect-[3/4] sm:aspect-[4/5] flex items-center justify-center group shadow-md">
+                            <img
+                              src={item.image}
+                              alt={item.title}
+                              className="w-full h-full object-contain object-center"
+                            />
+                          </div>
+                        ) : (
+                          <div className="relative rounded-xl overflow-hidden border-2 border-dashed border-slate-700 hover:border-slate-500 bg-slate-950/70 p-5 aspect-[3/4] sm:aspect-[4/5] flex flex-col items-center justify-center text-center transition-all group shadow-inner">
+                            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slate-800/90 border border-slate-700 flex items-center justify-center text-[#ff4757] mb-3 shadow-md group-hover:scale-105 transition-transform">
+                              <Camera className="w-6 h-6 sm:w-7 sm:h-7" />
+                            </div>
+                            <span className="font-heading font-bold text-xs sm:text-sm text-slate-200 uppercase tracking-wide">
+                              {item.title}
+                            </span>
+                            <span className="text-[11px] sm:text-xs text-slate-400 mt-1 max-w-[190px] leading-relaxed">
+                              Vị trí hình ảnh chụp màn hình Zalo sẽ hiển thị tại đây
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800 border border-slate-600 text-xs text-emerald-400 font-semibold shadow-inner">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>Cập nhật liên tục 2026</span>
+                {/* Thanh điều khiển Slide: Nút Prev / Next & Chấm tròn Dots */}
+                <div className="flex items-center justify-between pt-3.5 px-1">
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setFeedbackSlideIndex((prev) => (prev > 0 ? prev - 1 : (isDesktop ? Math.max(0, FEEDBACK_SLIDES.length - 3) : FEEDBACK_SLIDES.length - 1)))}
+                      className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-800 hover:bg-[#ff4757] border border-slate-600 hover:border-[#ff4757] text-white flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
+                      aria-label="Ảnh trước"
+                    >
+                      <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setFeedbackSlideIndex((prev) => (prev < (isDesktop ? Math.max(0, FEEDBACK_SLIDES.length - 3) : FEEDBACK_SLIDES.length - 1) ? prev + 1 : 0))}
+                      className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-800 hover:bg-[#ff4757] border border-slate-600 hover:border-[#ff4757] text-white flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
+                      aria-label="Ảnh tiếp theo"
+                    >
+                      <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </button>
+                  </div>
+
+                  {/* Chấm tròn định vị slide */}
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    {Array.from({ length: (isDesktop ? Math.max(1, FEEDBACK_SLIDES.length - 2) : FEEDBACK_SLIDES.length) }).map((_, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => setFeedbackSlideIndex(idx)}
+                        className={`h-2 rounded-full transition-all cursor-pointer ${
+                          feedbackSlideIndex === idx
+                            ? "w-6 bg-[#ff4757]"
+                            : "w-2 bg-slate-600 hover:bg-slate-500"
+                        }`}
+                        aria-label={`Slide ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              {/* Lưới 3 Feedback Zalo Quotes / Testimonials (Tactile Recessed Panels) */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="p-4 sm:p-5 rounded-2xl bg-slate-800/95 border border-slate-700/90 shadow-sm flex flex-col justify-between space-y-3">
-                  <div>
-                    <div className="flex items-center justify-between text-xs pb-2 border-b border-slate-700/60">
-                      <div className="flex items-center gap-1.5 font-bold text-sky-400">
-                        <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-                        <span>Mẹ Thảo (PH bé Hân - Lớp 7)</span>
-                      </div>
-                      <span className="text-[11px] text-slate-400 font-medium">Qua Zalo</span>
-                    </div>
-                    <p className="font-body text-[15px] sm:text-[16px] text-slate-200 leading-relaxed italic mt-2.5">
-                      &ldquo;Cảm ơn cô Nghi nhiều lắm, bé Hân thi kỳ này được <strong className="text-emerald-400 font-bold not-italic">8.5 tiếng Anh</strong> rồi cô ơi. Trước đây con sợ học lắm, giờ về nhà <strong className="text-sky-300 font-bold not-italic">tự giác làm bài tập</strong> không cần mẹ giục nữa.&rdquo;
-                    </p>
-                  </div>
-                  <div className="pt-2 border-t border-slate-700/60 flex items-center justify-between text-[11px] text-slate-400">
-                    <span>THCS Sơn Trà</span>
-                    <span className="text-emerald-400 font-bold bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/60">Điểm thi: 8.5đ</span>
-                  </div>
-                </div>
-
-                <div className="p-4 sm:p-5 rounded-2xl bg-slate-800/95 border border-slate-700/90 shadow-sm flex flex-col justify-between space-y-3">
-                  <div>
-                    <div className="flex items-center justify-between text-xs pb-2 border-b border-slate-700/60">
-                      <div className="flex items-center gap-1.5 font-bold text-amber-400">
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-                        <span>Ba Minh (PH bé Quân - Lớp 8)</span>
-                      </div>
-                      <span className="text-[11px] text-slate-400 font-medium">Qua Zalo</span>
-                    </div>
-                    <p className="font-body text-[15px] sm:text-[16px] text-slate-200 leading-relaxed italic mt-2.5">
-                      &ldquo;Rất thích hệ thống báo cáo <strong className="text-amber-300 font-bold not-italic">LMS 8h tối</strong> của lớp cô Nghi. Đi làm về mở điện thoại là nắm được con làm đúng sai câu nào, <strong className="text-slate-100 font-bold not-italic">ba mẹ hoàn toàn yên tâm</strong>.&rdquo;
-                    </p>
-                  </div>
-                  <div className="pt-2 border-t border-slate-700/60 flex items-center justify-between text-[11px] text-slate-400">
-                    <span>THCS Lê Độ</span>
-                    <span className="text-sky-400 font-bold bg-sky-950/60 px-2 py-0.5 rounded border border-sky-800/60">LMS Zalo 20h00</span>
-                  </div>
-                </div>
-
-                <div className="p-4 sm:p-5 rounded-2xl bg-slate-800/95 border border-slate-700/90 shadow-sm flex flex-col justify-between space-y-3">
-                  <div>
-                    <div className="flex items-center justify-between text-xs pb-2 border-b border-slate-700/60">
-                      <div className="flex items-center gap-1.5 font-bold text-rose-400">
-                        <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
-                        <span>Mẹ Mai Hương (PH bé Việt)</span>
-                      </div>
-                      <span className="text-[11px] text-slate-400 font-medium">Qua Zalo</span>
-                    </div>
-                    <p className="font-body text-[15px] sm:text-[16px] text-slate-200 leading-relaxed italic mt-2.5">
-                      &ldquo;Nhờ cô Nghi bắt đúng bệnh mất gốc phần Word form và kèm sát từng câu đề cương, con thi cuối kỳ được <strong className="text-rose-400 font-bold not-italic">9.0 điểm</strong>. <strong className="text-slate-100 font-bold not-italic">Cả nhà mừng rơi nước mắt!</strong>&rdquo;
-                    </p>
-                  </div>
-                  <div className="pt-2 border-t border-slate-700/60 flex items-center justify-between text-[11px] text-slate-400">
-                    <span>Đà Nẵng</span>
-                    <span className="text-rose-400 font-bold bg-rose-950/60 px-2 py-0.5 rounded border border-rose-800/60">Điểm thi: 9.0đ</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Thông tin lớp học 12 chỗ & Nút CTA chuẩn xúc giác */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-slate-700/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm">
-                <div className="flex items-center gap-2.5 text-slate-300 text-center sm:text-left">
-                  <MapPin className="w-5 h-5 text-[#ff4757] shrink-0" />
-                  <span className="font-body text-[14.5px] sm:text-[15.5px] leading-relaxed">
-                    Phòng học ấm cúng 12 chỗ ngồi trang bị máy lạnh, bảng chiếu hiện đại tại <strong className="text-white font-bold">866/25 Ngô Quyền, Sơn Trà</strong>.
-                  </span>
-                </div>
+              {/* 5. Nút CTA Button thay thế phần box phòng học ở cuối */}
+              <div className="flex flex-col items-center justify-center pt-2 sm:pt-4 border-t border-slate-700/80">
                 <button
                   type="button"
                   onClick={handleOpenRegisterModal}
-                  className="w-full sm:w-auto px-5 py-3 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_6px_18px_rgba(255,71,87,0.35)] hover:shadow-[0_10px_24px_rgba(255,71,87,0.45)] font-heading font-extrabold text-xs sm:text-sm uppercase tracking-wider shrink-0 transition-all flex items-center justify-center gap-2 cursor-pointer border-none outline-none active:scale-98"
+                  className="w-full sm:w-auto px-5 py-3 sm:px-8 sm:py-3.5 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none active:scale-98"
                 >
-                  <span>Đến Thăm Lớp &amp; Test 1-1 Miễn Phí</span>
-                  <ArrowRight className="w-4 h-4 shrink-0" />
+                  <div className="flex flex-col items-center text-center leading-snug min-w-0">
+                    <span className="font-heading font-extrabold text-[11px] min-[360px]:text-[12px] min-[390px]:text-[13px] sm:text-base uppercase tracking-tight whitespace-nowrap">
+                      ĐĂNG KÝ NGAY ĐỂ CON ĐẠT KẾT QUẢ NHƯ TRÊN
+                    </span>
+                    <span className="font-body text-[9.5px] min-[360px]:text-[10px] min-[390px]:text-[11px] sm:text-xs font-medium text-rose-100 normal-case mt-0.5 tracking-tight whitespace-nowrap">
+                      Nhận bản phác đồ bóc tách lỗ hổng &amp; bộ sổ tay ma thuật miễn phí
+                    </span>
+                  </div>
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
             </div>
