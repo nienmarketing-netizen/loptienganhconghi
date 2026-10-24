@@ -386,17 +386,19 @@ interface FeedbackSlideItem {
 }
 
 const FEEDBACK_SLIDES: FeedbackSlideItem[] = [
-  { id: 1, title: "Ảnh tin nhắn Zalo 01", image: "" },
-  { id: 2, title: "Ảnh tin nhắn Zalo 02", image: "" },
-  { id: 3, title: "Ảnh tin nhắn Zalo 03", image: "" },
-  { id: 4, title: "Ảnh tin nhắn Zalo 04", image: "" },
-  { id: 5, title: "Ảnh tin nhắn Zalo 05", image: "" },
+  { id: 1, title: "Ảnh tin nhắn Zalo 01 - Phụ huynh báo điểm", image: "/image/feedback-1.webp" },
+  { id: 2, title: "Ảnh tin nhắn Zalo 02 - Phụ huynh cảm ơn", image: "/image/feedback-2.webp" },
+  { id: 3, title: "Ảnh tin nhắn Zalo 03 - Học sinh tiến bộ", image: "/image/feedback-3.webp" },
+  { id: 4, title: "Ảnh tin nhắn Zalo 04 - Bứt phá điểm số", image: "/image/feedback-4.webp" },
+  { id: 5, title: "Ảnh tin nhắn Zalo 05 - Tự giác học tập", image: "/image/feedback-5.webp" },
 ];
 
 const infiniteFeedbackSlides = [
   ...FEEDBACK_SLIDES.map((s, idx) => ({ ...s, cloneKey: `fb-c1-${idx}` })),
   ...FEEDBACK_SLIDES.map((s, idx) => ({ ...s, cloneKey: `fb-c2-${idx}` })),
   ...FEEDBACK_SLIDES.map((s, idx) => ({ ...s, cloneKey: `fb-c3-${idx}` })),
+  ...FEEDBACK_SLIDES.map((s, idx) => ({ ...s, cloneKey: `fb-c4-${idx}` })),
+  ...FEEDBACK_SLIDES.map((s, idx) => ({ ...s, cloneKey: `fb-c5-${idx}` })),
 ];
 
 export const LandingPage: React.FC = () => {
@@ -476,28 +478,74 @@ export const LandingPage: React.FC = () => {
     return false;
   });
   // State cho slide feedback tin nhắn Zalo (cuộn tròn liên tục 1->5->1 với tốc độ chậm, căn giữa mobile)
-  const [feedbackSlideIndex, setFeedbackSlideIndex] = useState(5); // Vị trí trung tâm trong 3 bộ thẻ (0..4, 5..9, 10..14)
+  const [feedbackSlideIndex, setFeedbackSlideIndex] = useState(10); // Vị trí trung tâm trong 5 bộ thẻ (bộ 3: 10..14)
   const [isFeedbackTransitionEnabled, setIsFeedbackTransitionEnabled] = useState(true);
   const [isFeedbackPaused, setIsFeedbackPaused] = useState(false);
+  const touchStartXRef = React.useRef<number | null>(null);
+  const touchStartYRef = React.useRef<number | null>(null);
+  const [touchDeltaX, setTouchDeltaX] = useState<number>(0);
+  const pauseTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
-  const handleNextFeedback = () => {
+  const triggerPauseOnInteraction = () => {
+    setIsFeedbackPaused(true);
+    if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+    pauseTimeoutRef.current = setTimeout(() => {
+      setIsFeedbackPaused(false);
+    }, 12000);
+  };
+
+  const handleNextFeedback = (isUserAction = false) => {
+    if (isUserAction) triggerPauseOnInteraction();
     setIsFeedbackTransitionEnabled(true);
     setFeedbackSlideIndex((prev) => prev + 1);
   };
 
   const handlePrevFeedback = () => {
+    triggerPauseOnInteraction();
     setIsFeedbackTransitionEnabled(true);
     setFeedbackSlideIndex((prev) => prev - 1);
   };
 
   const handleFeedbackTransitionEnd = () => {
-    if (feedbackSlideIndex >= 10) {
+    if (feedbackSlideIndex >= 15) {
       setIsFeedbackTransitionEnabled(false);
       setFeedbackSlideIndex((prev) => prev - 5);
-    } else if (feedbackSlideIndex < 5) {
+    } else if (feedbackSlideIndex < 10) {
       setIsFeedbackTransitionEnabled(false);
       setFeedbackSlideIndex((prev) => prev + 5);
     }
+  };
+
+  const handleFeedbackTouchStart = (e: React.TouchEvent) => {
+    triggerPauseOnInteraction();
+    touchStartXRef.current = e.touches[0].clientX;
+    touchStartYRef.current = e.touches[0].clientY;
+    setTouchDeltaX(0);
+  };
+
+  const handleFeedbackTouchMove = (e: React.TouchEvent) => {
+    if (touchStartXRef.current === null || touchStartYRef.current === null) return;
+    const currentX = e.touches[0].clientX;
+    const currentY = e.touches[0].clientY;
+    const diffX = currentX - touchStartXRef.current;
+    const diffY = currentY - touchStartYRef.current;
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+      setTouchDeltaX(diffX);
+    }
+  };
+
+  const handleFeedbackTouchEnd = () => {
+    triggerPauseOnInteraction();
+    if (touchStartXRef.current !== null) {
+      if (touchDeltaX < -40) {
+        handleNextFeedback(true);
+      } else if (touchDeltaX > 40) {
+        handlePrevFeedback();
+      }
+    }
+    touchStartXRef.current = null;
+    touchStartYRef.current = null;
+    setTouchDeltaX(0);
   };
 
   const toggleDropdown = (key: string) => {
@@ -571,15 +619,17 @@ export const LandingPage: React.FC = () => {
     }
   }, [isFeedbackTransitionEnabled]);
 
-  // Auto cuộn vòng tròn liên tục với tốc độ chậm (4s/slide), pause khi tương tác/hover
+  // Auto cuộn vòng tròn liên tục với tốc độ chậm (6.5s/slide), pause khi tương tác/hover/background tab
   useEffect(() => {
     if (isFeedbackPaused) return;
     const interval = setInterval(() => {
-      setIsFeedbackTransitionEnabled(true);
-      setFeedbackSlideIndex((prev) => prev + 1);
-    }, 4000);
+      if (typeof document !== "undefined" && document.hidden) return;
+      handleNextFeedback(false);
+    }, 6500); // Giảm tốc độ từ 4000ms xuống 6500ms theo yêu cầu
     return () => clearInterval(interval);
   }, [isFeedbackPaused]);
+
+
 
   const handleVslThumbnailUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -3324,13 +3374,15 @@ export const LandingPage: React.FC = () => {
 
               {/* 4. Slideshow hình ảnh feedback Zalo */}
               <div className="relative pt-1 sm:pt-2">
-                {/* Khung Slide Container */}
+                {/* Khung Slide Container - Trong suốt, không còn background đen thừa */}
                 <div
-                  className="relative overflow-hidden rounded-2xl bg-slate-900/90 border border-slate-700/80 p-3 sm:p-4"
+                  className="relative overflow-hidden rounded-2xl bg-transparent border-0 p-0 sm:py-2 select-none"
                   onMouseEnter={() => setIsFeedbackPaused(true)}
                   onMouseLeave={() => setIsFeedbackPaused(false)}
-                  onTouchStart={() => setIsFeedbackPaused(true)}
-                  onTouchEnd={() => setIsFeedbackPaused(false)}
+                  onTouchStart={handleFeedbackTouchStart}
+                  onTouchMove={handleFeedbackTouchMove}
+                  onTouchEnd={handleFeedbackTouchEnd}
+                  style={{ touchAction: "pan-y" }}
                 >
                   <div
                     className={`flex items-center ${isFeedbackTransitionEnabled ? "transition-transform duration-700 ease-in-out" : ""}`}
@@ -3342,32 +3394,35 @@ export const LandingPage: React.FC = () => {
                     onTransitionEnd={handleFeedbackTransitionEnd}
                   >
                     {infiniteFeedbackSlides.map((item, itemIdx) => {
-                      const activeIndex = ((feedbackSlideIndex % FEEDBACK_SLIDES.length) + FEEDBACK_SLIDES.length) % FEEDBACK_SLIDES.length;
-                      const isCurrentCentered = activeIndex === (item.id - 1);
                       return (
                         <div
                           key={item.cloneKey || `fb-${itemIdx}`}
-                          className="shrink-0 w-[82%] sm:w-[86%] md:w-1/3 px-2 sm:px-2.5 transition-all duration-500"
+                          className="shrink-0 w-[82%] sm:w-[86%] md:w-1/3 px-2 sm:px-2.5"
                         >
-                          <div
-                            className={`transition-all duration-500 ${
-                              !isDesktop
-                                ? isCurrentCentered
-                                  ? "scale-100 opacity-100 ring-2 ring-[#ff4757]/50 shadow-xl"
-                                  : "scale-[0.94] opacity-50"
-                                : "scale-100 opacity-100"
-                            }`}
-                          >
+                          <div className="scale-100 opacity-100 shadow-xl rounded-2xl">
                             {item.image ? (
-                              <div className="relative rounded-xl overflow-hidden border border-slate-700 bg-slate-950 aspect-[3/4] sm:aspect-[4/5] flex items-center justify-center group shadow-md">
+                              <div className="relative rounded-2xl overflow-hidden border border-slate-700/60 bg-white aspect-[1000/1131] w-full shadow-lg group">
                                 <img
                                   src={item.image}
                                   alt={item.title}
-                                  className="w-full h-full object-contain object-center"
+                                  loading="eager"
+                                  decoding="async"
+                                  draggable={false}
+                                  className="w-full h-full object-cover object-top select-none block"
+                                  onError={(e) => {
+                                    const img = e.currentTarget;
+                                    if (!img.dataset.fallback) {
+                                      img.dataset.fallback = "1";
+                                      img.src = `/image/Feedback-${item.id}.webp`;
+                                    } else if (img.dataset.fallback === "1") {
+                                      img.dataset.fallback = "2";
+                                      img.src = `/image/Feedback ${item.id}.webp`;
+                                    }
+                                  }}
                                 />
                               </div>
                             ) : (
-                              <div className="relative rounded-xl overflow-hidden border-2 border-dashed border-slate-700 hover:border-slate-500 bg-slate-950/70 p-5 aspect-[3/4] sm:aspect-[4/5] flex flex-col items-center justify-center text-center transition-all group shadow-inner">
+                              <div className="relative rounded-2xl overflow-hidden border-2 border-dashed border-slate-700 hover:border-slate-500 bg-slate-900/60 p-5 aspect-[1000/1131] flex flex-col items-center justify-center text-center transition-all group shadow-inner">
                                 <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slate-800/90 border border-slate-700 flex items-center justify-center text-[#ff4757] mb-3 shadow-md group-hover:scale-105 transition-transform">
                                   <Camera className="w-6 h-6 sm:w-7 sm:h-7" />
                                 </div>
@@ -3399,7 +3454,7 @@ export const LandingPage: React.FC = () => {
                     </button>
                     <button
                       type="button"
-                      onClick={handleNextFeedback}
+                      onClick={() => handleNextFeedback(true)}
                       className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-800 hover:bg-[#ff4757] border border-slate-600 hover:border-[#ff4757] text-white flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
                       aria-label="Ảnh tiếp theo"
                     >
@@ -3417,8 +3472,9 @@ export const LandingPage: React.FC = () => {
                           key={idx}
                           type="button"
                           onClick={() => {
+                            triggerPauseOnInteraction();
                             setIsFeedbackTransitionEnabled(true);
-                            setFeedbackSlideIndex(5 + idx);
+                            setFeedbackSlideIndex(10 + idx);
                           }}
                           className={`h-2 rounded-full transition-all cursor-pointer ${
                             isDotActive
