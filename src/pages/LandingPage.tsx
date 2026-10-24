@@ -447,7 +447,7 @@ export const LandingPage: React.FC = () => {
     problems: ["Mất gốc hoàn toàn, học trước quên sau"],
     priorityChoice: "Đăng ký Phiên Chẩn đoán 1-1 Miễn phí (45 phút) + Nhận trọn bộ 4 Quà tặng",
   });
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [isOnPageSubmitted, setIsOnPageSubmitted] = useState(false);
 
   const handleToggleProblem = (problem: string) => {
@@ -3978,7 +3978,7 @@ export const LandingPage: React.FC = () => {
             <div className="text-center max-w-4xl mx-auto space-y-3 sm:space-y-4">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 text-[#0A78F3] border border-sky-200 shadow-xs text-xs sm:text-[13px] font-bold">
                 <span className="w-2 h-2 rounded-full bg-[#0A78F3] animate-pulse" />
-                <span>Giải Tỏa Băn Khoăn Phụ Huynh</span>
+                <span>Giải tỏa băn khoăn phụ huynh</span>
               </div>
 
               <h2 className="font-heading uppercase tracking-tight text-center max-w-4xl mx-auto">
@@ -4064,7 +4064,7 @@ export const LandingPage: React.FC = () => {
                       >
                         <div className="flex items-center gap-3 sm:gap-3.5 flex-1 min-w-0">
                           <span
-                            className={`w-7 h-7 sm:w-8 sm:h-8 rounded-xl font-mono text-xs sm:text-[13px] font-black flex items-center justify-center shrink-0 transition-colors duration-200 ${
+                            className={`w-7 h-7 sm:w-8 sm:h-8 rounded-xl font-heading text-xs sm:text-[13px] font-black flex items-center justify-center shrink-0 transition-colors duration-200 ${
                               isOpen
                                 ? "bg-[#0A78F3] text-white shadow-xs"
                                 : "bg-[#d1d9e6]/70 text-[#0A78F3] border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)]"
@@ -4084,7 +4084,7 @@ export const LandingPage: React.FC = () => {
                       </button>
 
                       {isOpen && (
-                        <div className="px-4 pb-5 sm:px-5 sm:pb-6 pt-1 border-t border-slate-100 animate-in fade-in slide-in-from-top-1 duration-200">
+                        <div className="px-4 pb-5 sm:px-5 sm:pb-6 pt-2 border-t-[3px] border-slate-200 animate-in fade-in slide-in-from-top-1 duration-200">
                           <p className="font-body text-slate-700 text-[15.5px] sm:text-[16.5px] leading-relaxed pl-10 sm:pl-11">
                             {faq.a}
                           </p>
@@ -4105,10 +4105,10 @@ export const LandingPage: React.FC = () => {
               >
                 <div className="flex flex-col items-center text-center leading-snug min-w-0">
                   <span className="font-heading font-extrabold text-[12px] min-[390px]:text-[13px] sm:text-base uppercase tracking-tight whitespace-nowrap">
-                    ĐẶT LỊCH CHẨN ĐOÁN 1-1 &amp; GIẢI ĐÁP TRỰC TIẾP VỚI CÔ NGHI
+                    ĐẶT LỊCH TƯ VẤN TRỰC TIẾP VỚI CÔ NGHI
                   </span>
                   <span className="font-body text-[10px] min-[390px]:text-[11px] sm:text-xs font-medium text-rose-100 normal-case mt-0.5 tracking-tight whitespace-nowrap">
-                    Đánh giá chuyên sâu 5 kỹ năng · Thiết kế phác đồ riêng · Hoàn toàn miễn phí
+                    Đánh giá chuyên sâu 5 kỹ năng · Thiết kế phác đồ riêng
                   </span>
                 </div>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
