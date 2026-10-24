@@ -3514,122 +3514,217 @@ export const LandingPage: React.FC = () => {
         {/* ─────────────────────────────────────────────────────────────
             KHỐI 7: CHÍNH SÁCH BẢO HIỂM HỌC TẬP 2 LỚP – ĐẢO NGƯỢC RỦI RO TUYỆT ĐỐI (HYPER-RISK REVERSAL)
         ────────────────────────────────────────────────────────────── */}
-        <section className="py-14 sm:py-16 bg-[#e0e5ec] bg-grid-pattern relative border-t border-slate-300">
+        <section className="py-14 sm:py-16 bg-[#eef3f9] bg-grid-pattern relative border-t border-slate-200">
           <div className="w-[90%] lg:w-[80%] mx-auto space-y-8 sm:space-y-10">
-            {/* Header Khối 7 */}
+            {/* Header Khối 7 đồng bộ chuẩn Section 'Đồng hành cùng con' */}
             <div className="text-center max-w-4xl mx-auto space-y-3 sm:space-y-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#ff4757]/10 text-[#ff4757] border border-[#ff4757]/30 shadow-xs text-xs sm:text-[13px] font-bold">
-                <ShieldCheck className="w-4 h-4 text-[#ff4757]" />
-                <span>Cam Kết Bảo Vệ Quyền Lợi Phụ Huynh Bằng Văn Bản</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 text-[#0A78F3] border border-sky-200 shadow-xs text-xs sm:text-[13px] font-bold normal-case">
+                <span className="w-2 h-2 rounded-full bg-[#0A78F3] animate-pulse" />
+                <span>Cam kết bằng văn bản</span>
               </div>
 
-              <h2 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-xl min-[390px]:text-2xl sm:text-3xl md:text-4xl lg:text-[38px] leading-tight text-center">
-                BẢO HIỂM HỌC TẬP 2 LỚP – RỦI RO BẰNG 0!
+              <h2 className="font-heading uppercase tracking-tight text-center max-w-4xl mx-auto">
+                <span className="block font-black text-slate-900 text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-4xl lg:text-[38px] leading-tight">
+                  BẢO HIỂM HỌC TẬP 2 LỚP – <span className="text-[#0A78F3]">RỦI RO BẰNG 0</span>
+                </span>
+                <span className="block font-bold sm:font-extrabold text-slate-800 text-[16px] min-[390px]:text-[18px] sm:text-2xl md:text-[26px] lg:text-[29px] leading-tight mt-1 sm:mt-1.5">
+                  ĐẶT TOÀN BỘ <span className="text-[#C43838] font-black underline decoration-[#C43838]/40 decoration-2 underline-offset-4">TRÁCH NHIỆM VÀ HIỆU QUẢ</span> LÊN VAI NGƯỜI DẠY
+                </span>
               </h2>
 
-              <p className="font-body text-slate-700 text-[15.5px] sm:text-[17px] leading-relaxed max-w-3xl mx-auto text-center">
-                Thấu hiểu tâm lý e ngại của phụ huynh từng mất niềm tin vào các lớp học thêm đại trà, Lớp Tiếng Anh Cô Nghi thiết lập cơ chế bảo hiểm minh bạch, đặt toàn bộ trách nhiệm hiệu quả lên vai người dạy:
+              <p className="font-body text-slate-600 text-[15.5px] sm:text-base md:text-[17.5px] lg:text-[18px] leading-relaxed max-w-3xl mx-auto text-center">
+                <span className="font-bold text-slate-800 underline decoration-slate-300 decoration-1 underline-offset-2">Thấu hiểu tâm lý e ngại của phụ huynh</span> từng mất niềm tin vào các lớp học thêm đại trà, <strong className="text-[#0A78F3] font-bold bg-sky-50 px-2 py-0.5 rounded-lg border border-sky-200/80 shadow-2xs inline-block">Lớp Tiếng Anh Cô Nghi thiết lập cơ chế bảo hiểm minh bạch bằng văn bản</strong>, cam kết <strong className="text-[#ff4757] font-bold">hoàn 100% học phí</strong> và <strong className="text-[#ff4757] font-bold">dạy kèm 1-1 miễn phí</strong> đến khi con tiến bộ vượt bậc!
               </p>
             </div>
 
-            {/* 2 KHỐI BẢO HIỂM LỚN (SOFT-UI EMBOSSED TACTILE) */}
+            {/* 2 KHỐI BẢO HIỂM LỚN (2-BLOCK TACTILE RECESSED WELL THEO CHUẨN ĐỒNG HÀNH CÙNG CON) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
               {/* LỚP BẢO HIỂM 1 */}
-              <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-emerald-400 shadow-[0_8px_25px_rgba(16,185,129,0.12)] flex flex-col justify-between relative group hover:shadow-xl transition-all">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-100">
-                    <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-300">
-                      🛡️ LỚP BẢO HIỂM 1
-                    </span>
-                    <span className="text-xs font-bold text-emerald-700 bg-emerald-100/70 px-2.5 py-0.5 rounded-lg">
-                      7 Ngày / 2 Buổi Đầu
+              <div className="relative bg-[#d1d9e6]/50 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border border-[#babecc]/50 shadow-[var(--shadow-recessed-sm)] flex flex-col gap-1.5 sm:gap-2 group transition-all duration-300 hover:shadow-lg">
+                {/* ── KHỐI 1 (TRÊN): TIÊU ĐỀ, BADGE NỔI & MÔ TẢ ── */}
+                <div className="relative bg-white/95 rounded-2xl p-4 sm:p-6 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
+                  {/* Nhãn 50% ngoài 50% trong ở góc trên bên trái */}
+                  <div className="absolute -top-3.5 sm:-top-4 left-4 sm:left-6 inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-xl bg-emerald-600 text-white shadow-xs border border-white/30 z-10">
+                    <ShieldCheck className="w-3.5 h-3.5 text-white shrink-0" />
+                    <span className="font-heading font-extrabold text-[11px] sm:text-xs uppercase tracking-wider">
+                      LỚP BẢO HIỂM 01
                     </span>
                   </div>
 
-                  <h3 className="font-heading font-black text-xl sm:text-2xl text-slate-900 leading-snug">
+                  <h3 className="font-heading font-black text-xl sm:text-2xl text-slate-900 leading-snug mt-2">
                     CAM KẾT THÁI ĐỘ &amp; TÂM LÝ HỌC TẬP
                   </h3>
 
-                  <div className="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200 text-slate-800 font-body text-sm sm:text-[15.5px] leading-relaxed">
-                    Nếu sau <strong className="text-emerald-800">1 tuần đầu tiên (2 buổi học)</strong> trải nghiệm phương pháp Small Win và môi trường lớp học, con vẫn giữ tâm lý sợ hãi Tiếng Anh, cảm thấy không phù hợp hoặc không chủ động muốn đi học tiếp:
+                  {/* Đường line màu xanh có độ dài vừa phải đặt ngay dưới chân text */}
+                  <div className="pt-2 pb-1">
+                    <div className="w-20 sm:w-24 h-1 sm:h-1.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-400" />
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-white border-2 border-emerald-500 shadow-sm text-center">
-                    <p className="font-heading font-extrabold text-base sm:text-lg text-emerald-700 uppercase tracking-tight">
-                      CÔ NGHI CAM KẾT HOÀN TRẢ 100% HỌC PHÍ NGAY LẬP TỨC
-                    </p>
-                    <span className="text-xs text-slate-500 font-medium mt-1 block">
-                      (Không hỏi thêm bất kỳ lý do nào – Hoàn toàn thoải mái và tôn trọng cảm xúc của con)
-                    </span>
-                  </div>
+                  <p className="font-body text-[15.5px] sm:text-[16.5px] text-[#1a1a1a] leading-relaxed mt-2 font-normal">
+                    Nếu sau <strong className="text-emerald-700 font-bold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200/80">1 tuần đầu tiên</strong> trải nghiệm phương pháp Small Win và môi trường lớp học, con vẫn giữ tâm lý sợ hãi Tiếng Anh, cảm thấy <strong className="text-slate-900 font-bold">không phù hợp</strong> hoặc <strong className="text-slate-900 font-bold">không chủ động muốn đi học tiếp</strong>:
+                  </p>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-slate-100 flex items-center gap-2 text-xs text-emerald-800 font-bold">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>Trải nghiệm không rủi ro tài chính cho gia đình</span>
+                {/* ── KHỐI 2 (DƯỚI): CAM KẾT HOÀN PHÍ & CTA TRỰC TIẾP ── */}
+                <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-white/80 shadow-xs flex-1 flex flex-col justify-between gap-4">
+                  <div className="bg-[#d1d9e6]/70 border border-[#babecc]/60 rounded-2xl p-3.5 sm:p-4 shadow-[var(--shadow-recessed-sm)] text-center space-y-1.5">
+                    <p className="font-heading font-extrabold text-base sm:text-lg text-emerald-800 uppercase tracking-tight">
+                      CÔ NGHI CAM KẾT HOÀN TRẢ 100% HỌC PHÍ NGAY LẬP TỨC
+                    </p>
+                    <span className="font-body text-[14.5px] sm:text-[15.5px] md:text-[16px] text-slate-600 font-medium block leading-relaxed">
+                      (Không hỏi thêm bất kỳ lý do nào – Hoàn toàn tôn trọng và nâng niu cảm xúc của con)
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2 font-body text-[15px] sm:text-[16px] text-emerald-800 font-bold">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>Trải nghiệm không rủi ro</span>
+                  </div>
+
+                  {/* CTA Button trực tiếp cho Card 1 */}
+                  <div className="pt-1">
+                    <button
+                      type="button"
+                      onClick={handleOpenRegisterModal}
+                      className="w-full px-3.5 sm:px-5 py-2.5 sm:py-3 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                    >
+                      <div className="flex flex-col items-center text-center leading-snug min-w-0">
+                        <span className="font-heading font-extrabold text-[11px] sm:text-xs uppercase tracking-tight sm:tracking-wider whitespace-nowrap">
+                          ĐĂNG KÝ HỌC THỬ – HOÀN PHÍ 100%
+                        </span>
+                        <span className="font-body text-[9.5px] sm:text-[11px] font-medium text-rose-100 normal-case mt-0.5 tracking-tight whitespace-nowrap">
+                          Trải nghiệm phương pháp Small Win không áp lực
+                        </span>
+                      </div>
+                      <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                    </button>
+                  </div>
                 </div>
               </div>
 
               {/* LỚP BẢO HIỂM 2 */}
-              <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-[#ff4757] shadow-[0_8px_25px_rgba(255,71,87,0.15)] flex flex-col justify-between relative group hover:shadow-xl transition-all">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-100">
-                    <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-rose-50 text-[#ff4757] border border-rose-300">
-                      🛡️ LỚP BẢO HIỂM 2
-                    </span>
-                    <span className="text-xs font-bold text-[#ff4757] bg-rose-100/70 px-2.5 py-0.5 rounded-lg">
-                      Xuyên Suốt 3 Tháng (90 Ngày)
+              <div className="relative bg-[#d1d9e6]/50 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border border-[#babecc]/50 shadow-[var(--shadow-recessed-sm)] flex flex-col gap-1.5 sm:gap-2 group transition-all duration-300 hover:shadow-lg">
+                {/* ── KHỐI 1 (TRÊN): TIÊU ĐỀ, BADGE NỔI & MÔ TẢ ── */}
+                <div className="relative bg-white/95 rounded-2xl p-4 sm:p-6 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
+                  {/* Nhãn 50% ngoài 50% trong ở góc trên bên trái */}
+                  <div className="absolute -top-3.5 sm:-top-4 left-4 sm:left-6 inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-xl bg-[#ff4757] text-white shadow-xs border border-white/30 z-10">
+                    <ShieldCheck className="w-3.5 h-3.5 text-white shrink-0" />
+                    <span className="font-heading font-extrabold text-[11px] sm:text-xs uppercase tracking-wider">
+                      LỚP BẢO HIỂM 02
                     </span>
                   </div>
 
-                  <h3 className="font-heading font-black text-xl sm:text-2xl text-slate-900 leading-snug">
+                  <h3 className="font-heading font-black text-xl sm:text-2xl text-slate-900 leading-snug mt-2">
                     CAM KẾT ĐIỂM SỐ &amp; NĂNG LỰC ĐẦU RA
                   </h3>
 
-                  <div className="p-4 rounded-2xl bg-rose-50/60 border border-rose-200 text-slate-800 font-body text-sm sm:text-[15.5px] leading-relaxed">
-                    Cam kết con bứt phá từ <strong className="text-[#ff4757]">1,0 đến 3,0 điểm</strong> trong các kỳ kiểm tra trên trường. Nếu sau 3 tháng điểm số của con chưa đạt mốc tăng trưởng theo đúng phác đồ:
+                  {/* Đường line màu đỏ có độ dài vừa phải đặt ngay dưới chân text */}
+                  <div className="pt-2 pb-1">
+                    <div className="w-20 sm:w-24 h-1 sm:h-1.5 rounded-full bg-gradient-to-r from-[#ff4757] to-rose-400" />
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-white border-2 border-[#ff4757] shadow-sm text-center">
+                  <p className="font-body text-[15.5px] sm:text-[16.5px] text-[#1a1a1a] leading-relaxed mt-2 font-normal">
+                    Cam kết con bứt phá từ <strong className="text-[#C43838] font-bold bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200/80">1,5 đến 3,0 điểm</strong> trong các kỳ kiểm tra chính khóa trên trường. Nếu sau 3 tháng điểm số của con chưa đạt mốc tăng trưởng theo đúng phác đồ:
+                  </p>
+                </div>
+
+                {/* ── KHỐI 2 (DƯỚI): CAM KẾT DẠY PHỤ ĐẠO 1-1 & CTA TRỰC TIẾP ── */}
+                <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-white/80 shadow-xs flex-1 flex flex-col justify-between gap-4">
+                  <div className="bg-[#d1d9e6]/70 border border-[#babecc]/60 rounded-2xl p-3.5 sm:p-4 shadow-[var(--shadow-recessed-sm)] text-center space-y-1.5">
                     <p className="font-heading font-extrabold text-base sm:text-lg text-[#ff4757] uppercase tracking-tight">
                       TRỰC TIẾP DẠY PHỤ ĐẠO 1 KÈM 1 MIỄN PHÍ NGOÀI GIỜ
                     </p>
-                    <span className="text-xs text-slate-500 font-medium mt-1 block">
+                    <span className="font-body text-[14.5px] sm:text-[15.5px] md:text-[16px] text-slate-600 font-medium block leading-relaxed">
                       (Dạy kèm riêng đến khi con đạt điểm số mong muốn, hoặc hoàn trả 100% học phí tháng cuối)
                     </span>
                   </div>
-                </div>
 
-                <div className="mt-5 pt-3 border-t border-slate-100 flex items-center gap-2 text-xs text-[#ff4757] font-bold">
-                  <CheckCircle2 className="w-4 h-4 text-[#ff4757] shrink-0" />
-                  <span>Trách nhiệm tuyệt đối đến cùng với điểm số của con</span>
+                  <div className="flex items-center gap-2 font-body text-[15px] sm:text-[16px] text-[#ff4757] font-bold">
+                    <CheckCircle2 className="w-4 h-4 text-[#ff4757] shrink-0" />
+                    <span>Trách nhiệm với sự tiến bộ của con</span>
+                  </div>
+
+                  {/* CTA Button trực tiếp cho Card 2 */}
+                  <div className="pt-1">
+                    <button
+                      type="button"
+                      onClick={handleOpenRegisterModal}
+                      className="w-full px-3.5 sm:px-5 py-2.5 sm:py-3 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                    >
+                      <div className="flex flex-col items-center text-center leading-snug min-w-0">
+                        <span className="font-heading font-extrabold text-[11px] sm:text-xs uppercase tracking-tight sm:tracking-wider whitespace-nowrap">
+                          KÍCH HOẠT CAM KẾT BỨT PHÁ 1.5–3 ĐIỂM
+                        </span>
+                        <span className="font-body text-[9.5px] sm:text-[11px] font-medium text-rose-100 normal-case mt-0.5 tracking-tight whitespace-nowrap">
+                          Kèm riêng 1-1 miễn phí ngoài giờ đến khi đạt mục tiêu
+                        </span>
+                      </div>
+                      <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Điều Kiện Áp Dụng Chuẩn Mực */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#d1d9e6]/80 border border-[#babecc]/70 text-xs sm:text-sm text-slate-700 max-w-4xl mx-auto shadow-inner">
-              <span className="font-bold text-slate-900 block mb-1">
-                📌 Điều kiện áp dụng minh bạch &amp; công bằng:
-              </span>
-              <p className="leading-relaxed">
-                Học sinh tham gia tối thiểu 90% số buổi học chính khóa, hoàn thành đầy đủ bài tập và tích cực tương tác theo hướng dẫn của Cô Nghi, đồng thời phụ huynh cung cấp bảng điểm gần nhất trên trường để làm cơ sở đối chiếu tăng trưởng.
-              </p>
+            {/* Hộp Điều Kiện Áp Dụng Minh Bạch Theo Chuẩn 'Đồng hành cùng con' */}
+            <div className="relative w-full bg-[#d1d9e6]/50 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border border-[#babecc]/50 shadow-[var(--shadow-recessed-sm)] flex flex-col gap-1.5 sm:gap-2">
+              <div className="relative bg-white/95 rounded-2xl p-5 sm:p-6 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
+                {/* Nhãn floating ở trên */}
+                <div className="absolute -top-3.5 left-4 sm:left-6 inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#2d3436] text-white shadow-xs border border-white/30 z-10">
+                  <FileCheck className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+                  <span className="font-heading font-extrabold text-[11px] sm:text-xs uppercase tracking-wider">
+                    Điều kiện áp dụng minh bạch
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 mt-2">
+                  <div className="relative bg-[#f8fafc] rounded-xl p-3.5 sm:p-4 border border-slate-200/80 flex items-start gap-3 shadow-2xs">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-sky-50 text-[#0A78F3] border border-sky-200 flex items-center justify-center shrink-0 font-bold text-sm sm:text-base">
+                      01
+                    </div>
+                    <p className="font-body text-[14.5px] sm:text-[15.5px] md:text-[16px] text-slate-700 leading-relaxed">
+                      Tham gia <strong className="text-slate-900 font-bold">tối thiểu 90%</strong> số buổi học chính khóa.
+                    </p>
+                  </div>
+
+                  <div className="relative bg-[#f8fafc] rounded-xl p-3.5 sm:p-4 border border-slate-200/80 flex items-start gap-3 shadow-2xs">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center shrink-0 font-bold text-sm sm:text-base">
+                      02
+                    </div>
+                    <p className="font-body text-[14.5px] sm:text-[15.5px] md:text-[16px] text-slate-700 leading-relaxed">
+                      Hoàn thành <strong className="text-slate-900 font-bold">đầy đủ bài tập</strong> &amp; tương tác theo hướng dẫn.
+                    </p>
+                  </div>
+
+                  <div className="relative bg-[#f8fafc] rounded-xl p-3.5 sm:p-4 border border-slate-200/80 flex items-start gap-3 shadow-2xs">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-rose-50 text-[#ff4757] border border-rose-200 flex items-center justify-center shrink-0 font-bold text-sm sm:text-base">
+                      03
+                    </div>
+                    <p className="font-body text-[14.5px] sm:text-[15.5px] md:text-[16px] text-slate-700 leading-relaxed">
+                      Cung cấp <strong className="text-slate-900 font-bold">bảng điểm gần nhất</strong> để đối chiếu tăng trưởng.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* CTA Xác Nhận Quyền Lợi */}
+            {/* CTA Tổng Kết Khối 7 Đồng Bộ Chuẩn Thiết Kế */}
             <div className="pt-2 flex flex-col items-center justify-center">
               <button
                 type="button"
                 onClick={handleOpenRegisterModal}
-                className="w-full sm:w-auto px-6 py-3.5 sm:px-10 sm:py-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white font-heading font-black text-xs sm:text-base uppercase tracking-tight shadow-[0_10px_25px_rgba(255,71,87,0.38)] transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2.5"
+                className="w-full sm:w-auto px-4 sm:px-8 py-3 sm:py-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] transition-all flex items-center justify-center gap-2.5 sm:gap-3.5 cursor-pointer active:scale-98"
               >
-                <span>ĐĂNG KÝ PHIÊN CHẨN ĐOÁN 1-1 &amp; NHẬN BẢO HIỂM 2 LỚP</span>
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                <div className="flex flex-col items-center text-center leading-snug min-w-0">
+                  <span className="font-heading font-extrabold text-xs min-[390px]:text-sm sm:text-base uppercase tracking-tight sm:tracking-wider whitespace-nowrap">
+                    ĐĂNG KÝ ĐÁNH GIÁ HỌC LỰC 1-1 MIỄN PHÍ
+                  </span>
+                  <span className="font-body text-[10px] sm:text-xs font-medium text-rose-100 normal-case mt-0.5 tracking-tight whitespace-nowrap">
+                    Thiết kế phác đồ học tập cá nhân hoá cùng Thạc sĩ TESOL
+                  </span>
+                </div>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
               </button>
-              <span className="text-xs text-slate-500 font-medium mt-2">
-                ⚡ Hoàn toàn miễn phí 45 phút đầu tiên – Không ràng buộc tài chính!
-              </span>
             </div>
           </div>
         </section>
