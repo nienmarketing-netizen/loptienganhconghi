@@ -3731,137 +3731,238 @@ export const LandingPage: React.FC = () => {
 
         {/* ─────────────────────────────────────────────────────────────
             KHỐI 8: ĐẶC QUYỀN KHI ĐĂNG KÝ PHIÊN CHẨN ĐOÁN NĂNG LỰC 1-1 HÔM NAY (LEAD MAGNET STACK)
+            ĐỒNG BỘ TIÊU CHUẨN NGÔN NGỮ THIẾT KẾ & UI SECTION 'ĐỒNG HÀNH CÙNG CON'
         ────────────────────────────────────────────────────────────── */}
         <section className="py-14 sm:py-16 bg-white bg-grid-pattern relative border-t border-slate-200">
           <div className="w-[90%] lg:w-[80%] mx-auto space-y-10 sm:space-y-12">
-            {/* Header Khối 8 */}
+            {/* Header Khối 8 đồng bộ chuẩn Section 'Đồng hành cùng con' */}
             <div className="text-center max-w-4xl mx-auto space-y-3 sm:space-y-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 text-amber-800 border border-amber-300 shadow-xs text-xs sm:text-[13px] font-bold">
-                <Gift className="w-4 h-4 text-amber-600" />
-                <span>Trọn Bộ 4 Quà Tặng Đồng Hành</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 text-[#0A78F3] border border-sky-200 shadow-xs text-xs sm:text-[13px] font-bold">
+                <span className="w-2 h-2 rounded-full bg-[#0A78F3] animate-pulse" />
+                <span>Trọn bộ 4 quà tặng đồng hành</span>
               </div>
 
-              <h2 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-xl min-[390px]:text-2xl sm:text-3xl md:text-4xl lg:text-[38px] leading-tight text-center">
-                ĐẶT LỊCH TEST TRÌNH ĐỘ &amp; TƯ VẤN 1-1 HÔM NAY (MIỄN PHÍ 100%) – NHẬN NGAY TRỌN BỘ 4 QUÀ TẶNG ĐỒNG HÀNH!
+              <h2 className="font-heading uppercase tracking-tight text-center max-w-4xl mx-auto">
+                <span className="block font-black text-slate-900 text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-4xl lg:text-[38px] leading-tight">
+                  ĐẶT LỊCH TEST 1-1 <span className="text-[#0A78F3]">MIỄN PHÍ 100% HÔM NAY</span>
+                </span>
+                <span className="block font-bold sm:font-extrabold text-slate-800 text-[16px] min-[390px]:text-[18px] sm:text-2xl md:text-[26px] lg:text-[29px] leading-tight mt-1 sm:mt-1.5">
+                  NHẬN NGAY <span className="text-[#C43838] font-black underline decoration-[#C43838]/40 decoration-2 underline-offset-4">TRỌN BỘ 4 QUÀ TẶNG</span> ĐỒNG HÀNH ĐỘC QUYỀN
+                </span>
               </h2>
 
-              <p className="font-body text-slate-600 text-[15.5px] sm:text-[17px] leading-relaxed max-w-3xl mx-auto text-center">
-                Trước khi quyết định đóng bất kỳ khoản học phí nào, ba mẹ hãy đưa con đến địa chỉ <strong className="text-slate-900 font-bold">866/25 Ngô Quyền, Sơn Trà</strong> để tham gia Phiên Chẩn Đoán Năng Lực Học Thuật 1-1 (Kéo dài 30 – 45 phút) trực tiếp cùng Cô Nghi. Quy trình bao gồm 30 phút đánh giá toàn diện 5 kỹ năng (Phát âm IPA, Vốn từ vựng, Phản xạ, Ngữ pháp cốt lõi, Kỹ năng dịch thuật) và 15 phút tư vấn chuyên sâu riêng cho phụ huynh. Dù gia đình có quyết định đăng ký học ngay hay chưa, phụ huynh và con vẫn được <strong className="text-[#ff4757] font-bold">TẶNG NGAY BỘ 4 QUÀ TẶNG ĐỒNG HÀNH HOÀN TOÀN MIỄN PHÍ</strong>:
+              <p className="font-body text-slate-600 text-[15.5px] sm:text-base md:text-[17.5px] lg:text-[18px] leading-relaxed max-w-3xl mx-auto text-center">
+                <span className="font-bold text-slate-800 underline decoration-slate-300 decoration-1 underline-offset-2">Trước khi đóng bất kỳ khoản học phí nào</span>, ba mẹ hãy đưa con đến <strong className="text-[#0A78F3] font-bold bg-sky-50 px-2 py-0.5 rounded-lg border border-sky-200/80 shadow-2xs inline-block">866/25 Ngô Quyền, Sơn Trà</strong> tham gia <strong className="text-slate-900 font-bold">Phiên chẩn đoán năng lực 1-1 (45 phút)</strong> trực tiếp cùng Cô Nghi. Dù gia đình có quyết định học ngay hay chưa, con và mẹ vẫn được <strong className="text-[#ff4757] font-bold">TẶNG TRỌN BỘ 4 QUÀ TẶNG HOÀN TOÀN MIỄN PHÍ</strong>:
               </p>
             </div>
 
-            {/* 4 HỘP QUÀ TẶNG (GRID 4 CARDS) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-              {/* Quà 1 */}
-              <div className="bg-slate-50 rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group">
-                <div className="space-y-3">
-                  <div className="w-12 h-12 rounded-2xl bg-sky-100 text-[#0A78F3] flex items-center justify-center border border-sky-200 shadow-2xs group-hover:scale-105 transition-transform">
-                    <FileText className="w-6 h-6" />
+            {/* 4 HỘP QUÀ TẶNG (2-BLOCK TACTILE RECESSED WELL THEO CHUẨN ĐỒNG HÀNH CÙNG CON - 2 HÀNG x 2 CỘT FULL WIDTH TRÊN PC) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch w-full">
+              {/* Quà 1: Diagnostic Report */}
+              <div className="relative bg-[#d1d9e6]/50 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border border-[#babecc]/50 shadow-[var(--shadow-recessed-sm)] flex flex-col gap-1.5 sm:gap-2 group transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                {/* ── KHỐI 1 (TRÊN): Icon, Badge nổi, Giá trị & Tiêu đề ── */}
+                <div className="relative bg-white/95 rounded-2xl p-4 sm:p-5 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
+                  {/* Nhãn 50% ngoài 50% trong ở góc trên bên trái */}
+                  <div className="absolute -top-3.5 sm:-top-4 left-4 sm:left-5 inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-xl bg-[#0A78F3] text-white shadow-xs border border-white/30 z-10">
+                    <FileText className="w-3.5 h-3.5 text-white shrink-0" />
+                    <span className="font-heading font-extrabold text-[10px] sm:text-[11px] tracking-wider">
+                      Quà tặng 01
+                    </span>
                   </div>
-                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#0A78F3] bg-sky-50 px-2 py-0.5 rounded-md border border-sky-200 block w-fit">
-                    Quà tặng 01 · Trị giá 500k
-                  </span>
-                  <h3 className="font-heading font-black text-base sm:text-lg text-slate-900 leading-snug">
-                    Bản Phác Đồ &ldquo;Bắt Bệnh &amp; Lộ Trình Cá Nhân Hóa&rdquo;
+
+                  <div className="flex items-center justify-between gap-2 mt-1">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-50 to-blue-50 text-[#0A78F3] flex items-center justify-center border border-sky-200/80 shadow-2xs group-hover:scale-105 transition-transform">
+                      <FileText className="w-5 h-5" />
+                    </div>
+                    <span className="text-[11px] sm:text-xs font-bold text-[#0A78F3] bg-sky-50 px-2.5 py-1 rounded-lg border border-sky-200 shadow-2xs">
+                      Trị giá 500.000đ
+                    </span>
+                  </div>
+
+                  <h3 className="font-heading font-black text-base sm:text-[17px] text-slate-900 leading-snug mt-3">
+                    Bản phác đồ &ldquo;Bắt bệnh &amp; lộ trình cá nhân hóa&rdquo;
                   </h3>
-                  <span className="text-xs text-slate-500 font-medium block">
+                  <span className="text-xs text-slate-500 font-semibold italic mt-0.5 block">
                     (Diagnostic Report)
                   </span>
-                  <p className="font-body text-[15.5px] sm:text-[16px] text-slate-600 leading-relaxed pt-1">
-                    Chỉ rõ chính xác từng &ldquo;mắt xích kiến thức bị gãy&rdquo; của con từ các lớp dưới và thiết lập lộ trình 3 bước khắc phục cụ thể.
-                  </p>
+
+                  {/* Đường line màu nhận diện dưới tiêu đề */}
+                  <div className="pt-2">
+                    <div className="w-16 h-1 rounded-full bg-gradient-to-r from-[#0A78F3] to-sky-400" />
+                  </div>
                 </div>
-                <div className="mt-4 pt-3 border-t border-slate-200/80 text-[11px] font-bold text-[#0A78F3] flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Độc quyền sau buổi test 1-1</span>
+
+                {/* ── KHỐI 2 (DƯỚI): Nội dung mô tả & Footer badge dập chìm ── */}
+                <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-white/80 shadow-xs flex-1 flex flex-col justify-between">
+                  <p className="font-body text-[15px] sm:text-[15.5px] text-slate-700 leading-relaxed">
+                    Chỉ rõ chính xác từng <strong className="text-[#0A78F3] font-bold">mắt xích kiến thức bị gãy</strong> của con từ các lớp dưới và thiết lập <strong className="text-slate-900 font-semibold">lộ trình 3 bước khắc phục</strong> cụ thể.
+                  </p>
+
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs text-[#0A78F3] font-bold">
+                    <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                    <span>Độc quyền sau buổi test 1-1</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Quà 2 */}
-              <div className="bg-slate-50 rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group">
-                <div className="space-y-3">
-                  <div className="w-12 h-12 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center border border-purple-200 shadow-2xs group-hover:scale-105 transition-transform">
-                    <BookOpen className="w-6 h-6" />
+              {/* Quà 2: Bộ Sổ Tay Ma Thuật */}
+              <div className="relative bg-[#d1d9e6]/50 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border border-[#babecc]/50 shadow-[var(--shadow-recessed-sm)] flex flex-col gap-1.5 sm:gap-2 group transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                {/* ── KHỐI 1 (TRÊN): Icon, Badge nổi, Giá trị & Tiêu đề ── */}
+                <div className="relative bg-white/95 rounded-2xl p-4 sm:p-5 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
+                  {/* Nhãn 50% ngoài 50% trong ở góc trên bên trái */}
+                  <div className="absolute -top-3.5 sm:-top-4 left-4 sm:left-5 inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-xl bg-purple-700 text-white shadow-xs border border-white/30 z-10">
+                    <BookOpen className="w-3.5 h-3.5 text-white shrink-0" />
+                    <span className="font-heading font-extrabold text-[10px] sm:text-[11px] tracking-wider">
+                      Quà tặng 02
+                    </span>
                   </div>
-                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md border border-purple-200 block w-fit">
-                    Quà tặng 02 · Trị giá 350k
-                  </span>
-                  <h3 className="font-heading font-black text-base sm:text-lg text-slate-900 leading-snug">
-                    Bộ &ldquo;Sổ Tay Ma Thuật&rdquo; Lớp 6–9
+
+                  <div className="flex items-center justify-between gap-2 mt-1">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-50 to-violet-50 text-purple-700 flex items-center justify-center border border-purple-200/80 shadow-2xs group-hover:scale-105 transition-transform">
+                      <BookOpen className="w-5 h-5" />
+                    </div>
+                    <span className="text-[11px] sm:text-xs font-bold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-lg border border-purple-200 shadow-2xs">
+                      Trị giá 350.000đ
+                    </span>
+                  </div>
+
+                  <h3 className="font-heading font-black text-base sm:text-[17px] text-slate-900 leading-snug mt-3">
+                    Bộ &ldquo;Sổ tay ma thuật&rdquo; lớp 6–9
                   </h3>
-                  <span className="text-xs text-slate-500 font-medium block">
-                    (Magic Book PDF / Infographic)
+                  <span className="text-xs text-slate-500 font-semibold italic mt-0.5 block">
+                    (Magic Book Infographic &amp; Video)
                   </span>
-                  <p className="font-body text-[15.5px] sm:text-[16px] text-slate-600 leading-relaxed pt-1">
-                    Sơ đồ tư duy tóm gọn 80% ngữ pháp cốt lõi &amp; 100 từ vựng trọng tâm SGK, kèm 3 Video hướng dẫn tránh bẫy Word Form và Câu bị động.
-                  </p>
+
+                  {/* Đường line màu nhận diện dưới tiêu đề */}
+                  <div className="pt-2">
+                    <div className="w-16 h-1 rounded-full bg-gradient-to-r from-purple-600 to-violet-400" />
+                  </div>
                 </div>
-                <div className="mt-4 pt-3 border-t border-slate-200/80 text-[11px] font-bold text-purple-700 flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Mẹ dễ kiểm tra bài con ở nhà</span>
+
+                {/* ── KHỐI 2 (DƯỚI): Nội dung mô tả & Footer badge dập chìm ── */}
+                <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-white/80 shadow-xs flex-1 flex flex-col justify-between">
+                  <p className="font-body text-[15px] sm:text-[15.5px] text-slate-700 leading-relaxed">
+                    Sơ đồ tư duy tóm gọn <strong className="text-[#0A78F3] font-bold">80% ngữ pháp cốt lõi</strong> &amp; <strong className="text-slate-900 font-semibold">100 từ vựng trọng tâm SGK</strong>, kèm <strong className="text-purple-700 font-bold">3 Video tránh bẫy Word Form</strong>.
+                  </p>
+
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs text-purple-700 font-bold">
+                    <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                    <span>Mẹ dễ kiểm tra bài con ở nhà</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Quà 3 */}
-              <div className="bg-slate-50 rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group">
-                <div className="space-y-3">
-                  <div className="w-12 h-12 rounded-2xl bg-rose-100 text-[#ff4757] flex items-center justify-center border border-rose-200 shadow-2xs group-hover:scale-105 transition-transform">
-                    <ShieldCheck className="w-6 h-6" />
+              {/* Quà 3: Bộ Cứu Thương SOS */}
+              <div className="relative bg-[#d1d9e6]/50 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border border-[#babecc]/50 shadow-[var(--shadow-recessed-sm)] flex flex-col gap-1.5 sm:gap-2 group transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                {/* ── KHỐI 1 (TRÊN): Icon, Badge nổi, Giá trị & Tiêu đề ── */}
+                <div className="relative bg-white/95 rounded-2xl p-4 sm:p-5 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
+                  {/* Nhãn 50% ngoài 50% trong ở góc trên bên trái */}
+                  <div className="absolute -top-3.5 sm:-top-4 left-4 sm:left-5 inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-xl bg-[#ff4757] text-white shadow-xs border border-white/30 z-10">
+                    <ShieldCheck className="w-3.5 h-3.5 text-white shrink-0" />
+                    <span className="font-heading font-extrabold text-[10px] sm:text-[11px] tracking-wider">
+                      Quà tặng 03
+                    </span>
                   </div>
-                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#ff4757] bg-rose-50 px-2 py-0.5 rounded-md border border-rose-200 block w-fit">
-                    Quà tặng 03 · Trị giá 450k
-                  </span>
-                  <h3 className="font-heading font-black text-base sm:text-lg text-slate-900 leading-snug">
-                    Bộ Cứu Thương Ngữ Pháp SOS &amp; Kho Đề Sơn Trà
+
+                  <div className="flex items-center justify-between gap-2 mt-1">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-50 to-red-50 text-[#ff4757] flex items-center justify-center border border-rose-200/80 shadow-2xs group-hover:scale-105 transition-transform">
+                      <ShieldCheck className="w-5 h-5" />
+                    </div>
+                    <span className="text-[11px] sm:text-xs font-bold text-[#ff4757] bg-rose-50 px-2.5 py-1 rounded-lg border border-rose-200 shadow-2xs">
+                      Trị giá 450.000đ
+                    </span>
+                  </div>
+
+                  <h3 className="font-heading font-black text-base sm:text-[17px] text-slate-900 leading-snug mt-3">
+                    Bộ cứu thương ngữ pháp SOS &amp; kho đề Sơn Trà
                   </h3>
-                  <span className="text-xs text-slate-500 font-medium block">
-                    (PDF &amp; Video Giải Chi Tiết)
+                  <span className="text-xs text-slate-500 font-semibold italic mt-0.5 block">
+                    (PDF &amp; video giải chi tiết)
                   </span>
-                  <p className="font-body text-[15.5px] sm:text-[16px] text-slate-600 leading-relaxed pt-1">
-                    File PDF &amp; Video hướng dẫn kỹ thuật &ldquo;Bóc tách 4 bước&rdquo; trên 20 câu trắc nghiệm bẫy, kèm bộ đề cương thực tế THCS Lê Độ, Ngô Quyền...
-                  </p>
+
+                  {/* Đường line màu nhận diện dưới tiêu đề */}
+                  <div className="pt-2">
+                    <div className="w-16 h-1 rounded-full bg-gradient-to-r from-[#ff4757] to-rose-400" />
+                  </div>
                 </div>
-                <div className="mt-4 pt-3 border-t border-slate-200/80 text-[11px] font-bold text-[#ff4757] flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Trúng tủ ma trận 36 câu Đà Nẵng</span>
+
+                {/* ── KHỐI 2 (DƯỚI): Nội dung mô tả & Footer badge dập chìm ── */}
+                <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-white/80 shadow-xs flex-1 flex flex-col justify-between">
+                  <p className="font-body text-[15px] sm:text-[15.5px] text-slate-700 leading-relaxed">
+                    File PDF &amp; Video hướng dẫn kỹ thuật <strong className="text-[#ff4757] font-bold">&ldquo;Bóc tách 4 bước&rdquo;</strong> trên <strong className="text-slate-900 font-semibold">20 câu trắc nghiệm bẫy</strong>, bám sát đề thi Sơn Trà.
+                  </p>
+
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs text-[#ff4757] font-bold">
+                    <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                    <span>Trúng tủ ma trận 36 câu Đà Nẵng</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Quà 4 */}
-              <div className="bg-slate-50 rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group">
-                <div className="space-y-3">
-                  <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center border border-amber-200 shadow-2xs group-hover:scale-105 transition-transform">
-                    <Gamepad2 className="w-6 h-6" />
+              {/* Quà 4: Thẻ Kickstart & 100 Tokens */}
+              <div className="relative bg-[#d1d9e6]/50 backdrop-blur-xs p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border border-[#babecc]/50 shadow-[var(--shadow-recessed-sm)] flex flex-col gap-1.5 sm:gap-2 group transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                {/* ── KHỐI 1 (TRÊN): Icon, Badge nổi, Giá trị & Tiêu đề ── */}
+                <div className="relative bg-white/95 rounded-2xl p-4 sm:p-5 pt-6 sm:pt-7 border border-white/80 shadow-xs overflow-visible">
+                  {/* Nhãn 50% ngoài 50% trong ở góc trên bên trái */}
+                  <div className="absolute -top-3.5 sm:-top-4 left-4 sm:left-5 inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-xl bg-amber-600 text-white shadow-xs border border-white/30 z-10">
+                    <Gamepad2 className="w-3.5 h-3.5 text-white shrink-0" />
+                    <span className="font-heading font-extrabold text-[10px] sm:text-[11px] tracking-wider">
+                      Quà tặng 04
+                    </span>
                   </div>
-                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-amber-800 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-300 block w-fit">
-                    Quà tặng 04 · Thẻ Đặc Quyền
-                  </span>
-                  <h3 className="font-heading font-black text-base sm:text-lg text-slate-900 leading-snug">
-                    &ldquo;Thẻ Kickstart&rdquo; + Sổ 100 Tokens
+
+                  <div className="flex items-center justify-between gap-2 mt-1">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-50 to-orange-50 text-amber-700 flex items-center justify-center border border-amber-200/80 shadow-2xs group-hover:scale-105 transition-transform">
+                      <Gamepad2 className="w-5 h-5" />
+                    </div>
+                    <span className="text-[11px] sm:text-xs font-bold text-amber-800 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-300 shadow-2xs">
+                      Thẻ đặc quyền
+                    </span>
+                  </div>
+
+                  <h3 className="font-heading font-black text-base sm:text-[17px] text-slate-900 leading-snug mt-3">
+                    &ldquo;Thẻ Kickstart&rdquo; + sổ 100 Tokens
                   </h3>
-                  <span className="text-xs text-slate-500 font-medium block">
-                    (Thử Thách 5 Ngày Xóa Mù Từ Vựng)
+                  <span className="text-xs text-slate-500 font-semibold italic mt-0.5 block">
+                    (Thử thách 5 ngày xóa mù từ vựng)
                   </span>
-                  <p className="font-body text-[15.5px] sm:text-[16px] text-slate-600 leading-relaxed pt-1">
-                    Tặng riêng cho con cuốn sổ tích điểm &ldquo;100 Tokens&rdquo; được CỘNG SẴN 10 ĐIỂM THƯỞNG ĐẦU TIÊN và quyền tham gia thử thách game hóa qua Zalo/Quizizz lúc 19h30.
-                  </p>
+
+                  {/* Đường line màu nhận diện dưới tiêu đề */}
+                  <div className="pt-2">
+                    <div className="w-16 h-1 rounded-full bg-gradient-to-r from-amber-500 to-orange-400" />
+                  </div>
                 </div>
-                <div className="mt-4 pt-3 border-t border-slate-200/80 text-[11px] font-bold text-amber-800 flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Tặng sẵn +10 Tokens kích thích Dopamine</span>
+
+                {/* ── KHỐI 2 (DƯỚI): Nội dung mô tả & Footer badge dập chìm ── */}
+                <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-white/80 shadow-xs flex-1 flex flex-col justify-between">
+                  <p className="font-body text-[15px] sm:text-[15.5px] text-slate-700 leading-relaxed">
+                    Tặng riêng cuốn sổ tích điểm <strong className="text-amber-800 font-bold">&ldquo;100 Tokens&rdquo;</strong> được <strong className="text-emerald-700 font-bold">CỘNG SẴN 10 TOKENS</strong> và quyền tham gia thử thách game hóa qua Zalo/Quizizz.
+                  </p>
+
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs text-amber-800 font-bold">
+                    <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                    <span>Tặng sẵn +10 Tokens kích thích Dopamine</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* CTA Nhận Quà */}
+            {/* ── CTA BUTTON CHÈN CUỐI SECTION (ĐỒNG BỘ CHUẨN SECTION 'ĐỒNG HÀNH CÙNG CON') ── */}
             <div className="pt-2 flex flex-col items-center justify-center">
               <button
                 type="button"
                 onClick={handleOpenRegisterModal}
-                className="w-full sm:w-auto px-6 py-3.5 sm:px-10 sm:py-4 rounded-2xl bg-[#0A78F3] hover:bg-[#096ad8] text-white font-heading font-extrabold text-xs sm:text-base uppercase tracking-tight shadow-[0_10px_25px_rgba(10,120,243,0.35)] transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2.5"
+                className="w-full sm:w-auto px-6 sm:px-10 py-3.5 sm:py-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] transition-all flex items-center justify-center gap-3 cursor-pointer active:scale-98 border border-white/30 group"
               >
-                <span>ĐĂNG KÝ TEST 1-1 ĐỂ NHẬN TRỌN BỘ 4 QUÀ TẶNG MIỄN PHÍ</span>
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                <div className="flex flex-col items-center text-center leading-snug min-w-0">
+                  <span className="font-heading font-extrabold text-[12px] min-[390px]:text-[13px] sm:text-base uppercase tracking-tight whitespace-nowrap">
+                    ĐĂNG KÝ NHẬN TRỌN BỘ 4 QUÀ TẶNG MIỄN PHÍ
+                  </span>
+                  <span className="font-body text-[10px] min-[390px]:text-[11px] sm:text-xs font-medium text-rose-100 normal-case mt-0.5 tracking-tight whitespace-nowrap">
+                    Không ràng buộc học phí · Quà tặng chuyển giao ngay
+                  </span>
+                </div>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
@@ -3869,86 +3970,149 @@ export const LandingPage: React.FC = () => {
 
         {/* ─────────────────────────────────────────────────────────────
             KHỐI 9: GIẢI ĐÁP THẮC MẮC THƯỜNG GẶP CỦA PHỤ HUYNH (OBJECTION-KILLING FAQ ACCORDION)
+            ĐỒNG BỘ TIÊU CHUẨN NGÔN NGỮ THIẾT KẾ & UI SECTION 'ĐỒNG HÀNH CÙNG CON'
         ────────────────────────────────────────────────────────────── */}
         <section className="py-14 sm:py-16 bg-[#eef3f9] bg-grid-pattern relative border-t border-slate-200">
           <div className="w-[90%] lg:w-[80%] mx-auto space-y-10 sm:space-y-12">
-            {/* Header Khối 9 */}
+            {/* Header Khối 9 đồng bộ chuẩn Section 'Đồng hành cùng con' */}
             <div className="text-center max-w-4xl mx-auto space-y-3 sm:space-y-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs text-xs sm:text-[13px] text-slate-800 font-bold">
-                <HelpCircle className="w-4 h-4 text-[#0A78F3]" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 text-[#0A78F3] border border-sky-200 shadow-xs text-xs sm:text-[13px] font-bold">
+                <span className="w-2 h-2 rounded-full bg-[#0A78F3] animate-pulse" />
                 <span>Giải Tỏa Băn Khoăn Phụ Huynh</span>
               </div>
 
-              <h2 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-xl min-[390px]:text-2xl sm:text-3xl md:text-4xl lg:text-[38px] leading-tight text-center">
-                CÁC CÂU HỎI THƯỜNG GẶP TỪ PHỤ HUYNH TẠI QUẬN SƠN TRÀ
+              <h2 className="font-heading uppercase tracking-tight text-center max-w-4xl mx-auto">
+                <span className="block font-black text-slate-900 text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-4xl lg:text-[38px] leading-tight">
+                  GIẢI TỎA MỌI BĂN KHOĂN – <span className="text-[#0A78F3]">AN TÂM ĐỒNG HÀNH</span>
+                </span>
+                <span className="block font-bold sm:font-extrabold text-slate-800 text-[16px] min-[390px]:text-[18px] sm:text-2xl md:text-[26px] lg:text-[29px] leading-tight mt-1 sm:mt-1.5">
+                  CÙNG CON VỚI <span className="text-[#C43838] font-black underline decoration-[#C43838]/40 decoration-2 underline-offset-4">SỰ MINH BẠCH &amp; TẬN TÂM</span> TỪ CÔ NGHI
+                </span>
               </h2>
 
-              <p className="font-body text-slate-600 text-[15.5px] sm:text-[17px] leading-relaxed max-w-3xl mx-auto text-center">
-                Những chia sẻ thẳng thắn, chân thành từ Cô Nghi giúp ba mẹ hoàn toàn an tâm trước khi gửi gắm con:
+              <p className="font-body text-slate-600 text-[15.5px] sm:text-base md:text-[17.5px] lg:text-[18px] leading-relaxed max-w-3xl mx-auto text-center">
+                <span className="font-bold text-slate-800 underline decoration-slate-300 decoration-1 underline-offset-2">Mỗi lo lắng của ba mẹ đều xứng đáng được lắng nghe</span>. Dưới đây là <strong className="text-[#0A78F3] font-bold bg-sky-50 px-2 py-0.5 rounded-lg border border-sky-200/80 shadow-2xs inline-block">những chia sẻ thẳng thắn, chân thành nhất</strong> từ Cô Nghi giúp ba mẹ hoàn toàn thảnh thơi và tin tưởng:
               </p>
             </div>
 
-            {/* DANH SÁCH 5 CÂU HỎI FAQ ACCORDION */}
-            <div className="max-w-4xl mx-auto space-y-3.5">
+            {/* DANH SÁCH 5 CÂU HỎI FAQ ACCORDION (TACTILE RECESSED WELL CHASSIS) */}
+            <div className="max-w-4xl mx-auto space-y-4">
               {[
                 {
                   id: 0,
-                  q: '1. "Con mất gốc nặng lắm, ở nhà lười học từ vựng và không chịu đụng vào sách vở thì theo học có kịp không?"',
-                  a: "Phụ huynh hoàn toàn yên tâm. Lớp học khống chế tối đa 12 học sinh nên Cô Nghi kèm sát từng bước theo đúng trình độ hiện tại của con, tuyệt đối không để con bị ngợp. Đối với thói quen lười học từ vựng, hệ thống trò chơi hóa Quizizz kết hợp tích điểm 100 Tokens đổi quà (dành tới 30% điểm cho thái độ nỗ lực) sẽ kích thích con tự giác mở bài ra ôn tập mỗi tối mà mẹ không cần nhắc nhở.",
+                  badge: "01",
+                  q: '“Con mất gốc nặng lắm, ở nhà lười học từ vựng và không chịu đụng vào sách vở thì theo học có kịp không?”',
+                  a: (
+                    <>
+                      Phụ huynh hoàn toàn yên tâm. Lớp học khống chế <strong className="text-[#0A78F3] font-bold">tối đa 12 học sinh</strong> nên Cô Nghi kèm sát từng bước theo đúng trình độ hiện tại của con, tuyệt đối không để con bị ngợp. Đối với thói quen lười học từ vựng, hệ thống trò chơi hóa <strong className="text-[#0A78F3] font-bold">Quizizz</strong> kết hợp tích điểm <strong className="text-[#ff4757] font-bold">100 Tokens</strong> đổi quà (dành tới 30% điểm cho thái độ nỗ lực) sẽ kích thích con <strong className="text-slate-900 font-semibold">tự giác mở bài ra ôn tập mỗi tối</strong> mà mẹ không cần nhắc nhở.
+                    </>
+                  ),
                 },
                 {
                   id: 1,
-                  q: '2. "Sắp tới kỳ thi Giữa kỳ / Cuối kỳ trên trường rồi, bây giờ cho con vào học liệu có kịp gỡ điểm không?"',
-                  a: "Rất kịp thời! Với kho dữ liệu đề cương thực tế từ các trường THCS tại Sơn Trà (Lê Độ, Nguyễn Chí Thanh, Phạm Ngọc Thạch, Phan Bội Châu, Lý Tự Trọng, Ngô Quyền...), Cô Nghi sẽ khoanh vùng ngay các dạng bài trọng tâm và sửa trực tiếp đề cương trên trường của con. Thực tế tại lớp, nhiều học viên như em Hân (Lớp 7) hay em Việt chỉ sau một giai đoạn ôn tập sát sườn đã bứt phá từ 5,5–6,0 điểm lên 8,5 – 9,0 điểm.",
+                  badge: "02",
+                  q: '“Sắp tới kỳ thi Giữa kỳ / Cuối kỳ trên trường rồi, bây giờ cho con vào học liệu có kịp gỡ điểm không?”',
+                  a: (
+                    <>
+                      Rất kịp thời! Với <strong className="text-[#0A78F3] font-bold">kho dữ liệu đề cương thực tế</strong> từ các trường THCS tại Sơn Trà (<span className="bg-sky-50 text-[#0A78F3] font-bold px-1.5 py-0.5 rounded border border-sky-200/80 text-xs sm:text-sm inline-block">Lê Độ, Nguyễn Chí Thanh, Phạm Ngọc Thạch, Phan Bội Châu, Lý Tự Trọng, Ngô Quyền...</span>), Cô Nghi sẽ khoanh vùng ngay các dạng bài trọng tâm và trực tiếp kèm cặp. Thực tế tại lớp, nhiều học viên chỉ sau một giai đoạn ôn tập sát sườn đã <strong className="text-[#ff4757] font-bold">bứt phá từ 5,5–6,0 điểm lên 8,5–9,0 điểm</strong>.
+                    </>
+                  ),
                 },
                 {
                   id: 2,
-                  q: '3. "Lớp học có dạy giao tiếp không hay chỉ giải bài tập ngữ pháp khô khan?"',
-                  a: "Lớp tập trung vào 'Học thuật Thực chiến' nhằm giải quyết mục tiêu cấp bách nhất là điểm số trên trường và kỳ thi tuyển sinh lớp 10 Đà Nẵng. Tuy nhiên, con không hề học lý thuyết câm: thông qua phương pháp chuẩn hóa phiên âm IPA, đọc ngắt nghỉ và bộ chuẩn bị bài Speaking & Writing định kỳ, con vừa nắm chắc ngữ pháp để thi đạt điểm cao, vừa phát âm chuẩn và phản xạ ngôn ngữ tự nhiên.",
+                  badge: "03",
+                  q: '“Lớp học có dạy giao tiếp không hay chỉ giải bài tập ngữ pháp khô khan?”',
+                  a: (
+                    <>
+                      Lớp tập trung vào <strong className="text-[#0A78F3] font-bold">&ldquo;Học thuật Thực chiến&rdquo;</strong> nhằm giải quyết mục tiêu cấp bách nhất là điểm số trên trường và <strong className="text-slate-900 font-semibold">kỳ thi tuyển sinh lớp 10 Đà Nẵng</strong>. Tuy nhiên, con không hề học lý thuyết câm: thông qua phương pháp <strong className="text-[#0A78F3] font-bold">chuẩn hóa phiên âm IPA</strong>, đọc ngắt nghỉ và bộ chuẩn bị bài Speaking &amp; Writing định kỳ, con vừa nắm chắc ngữ pháp để thi đạt điểm cao, vừa phát âm chuẩn và phản xạ ngôn ngữ tự nhiên.
+                    </>
+                  ),
                 },
                 {
                   id: 3,
-                  q: '4. "Lịch học tại lớp có bị trùng với lịch học chính khóa và học thêm môn khác của con không?"',
-                  a: "Lớp Tiếng Anh Cô Nghi có nhiều khung giờ linh hoạt vào các ca chiều tối trong tuần và cuối tuần dành riêng cho học sinh THCS khu vực Sơn Trà. Trong buổi Chẩn đoán năng lực 1-1, Cô Nghi sẽ đối chiếu thời khóa biểu của con để xếp ca học thuận tiện nhất.",
+                  badge: "04",
+                  q: '“Lịch học tại lớp có bị trùng với lịch học chính khóa và học thêm môn khác của con không?”',
+                  a: (
+                    <>
+                      Lớp Tiếng Anh Cô Nghi có nhiều <strong className="text-[#0A78F3] font-bold">khung giờ linh hoạt</strong> vào các ca chiều tối trong tuần và cuối tuần dành riêng cho học sinh THCS khu vực Sơn Trà. Trong <strong className="text-[#ff4757] font-bold">buổi Chẩn đoán năng lực 1-1</strong>, Cô Nghi sẽ đối chiếu thời khóa biểu của con để xếp ca học thuận tiện nhất, đảm bảo con không bị quá tải.
+                    </>
+                  ),
                 },
                 {
                   id: 4,
-                  q: '5. "Gia đình cần về hỏi thêm ý kiến của con và bố cháu trước khi đăng ký khóa 3 tháng thì phải làm sao?"',
-                  a: "Phụ huynh chưa cần phải quyết định đóng học phí ngay hôm nay! Hãy đăng ký trước 'Phiên Chẩn Đoán Năng Lực 1-1 Miễn Phí (45 phút)' bên dưới. Đây là buổi đánh giá hoàn toàn miễn phí và không có bất kỳ ràng buộc tài chính nào, giúp con trực tiếp trải nghiệm sự tận tâm của Cô Nghi và giúp ba mẹ cầm trên tay Bản Phác Đồ Bắt Bệnh chính xác trước khi đưa ra quyết định.",
+                  badge: "05",
+                  q: '“Gia đình cần về hỏi thêm ý kiến của con và bố cháu trước khi đăng ký khóa 3 tháng thì phải làm sao?”',
+                  a: (
+                    <>
+                      Phụ huynh chưa cần phải quyết định đóng học phí ngay hôm nay! Hãy đăng ký trước <strong className="text-[#0A78F3] font-bold bg-sky-50 px-2 py-0.5 rounded-lg border border-sky-200/80 shadow-2xs inline-block">&ldquo;Phiên Chẩn Đoán Năng Lực 1-1 Miễn Phí (45 phút)&rdquo;</strong> bên dưới. Đây là buổi đánh giá hoàn toàn miễn phí và <strong className="text-slate-900 font-semibold">không có bất kỳ ràng buộc tài chính nào</strong>, giúp con trực tiếp trải nghiệm sự tận tâm của Cô Nghi và giúp ba mẹ cầm trên tay <strong className="text-[#ff4757] font-bold">Bản Phác Đồ Bắt Bệnh</strong> chính xác trước khi đưa ra quyết định.
+                    </>
+                  ),
                 },
               ].map((faq) => {
                 const isOpen = openFaqIndex === faq.id;
                 return (
                   <div
                     key={faq.id}
-                    className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden transition-all duration-200"
+                    className="relative bg-[#d1d9e6]/50 backdrop-blur-xs p-1 sm:p-1.5 rounded-2xl border border-[#babecc]/50 shadow-[var(--shadow-recessed-sm)] overflow-hidden transition-all duration-200"
                   >
-                    <button
-                      type="button"
-                      onClick={() => setOpenFaqIndex(isOpen ? null : faq.id)}
-                      className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 cursor-pointer select-none hover:bg-slate-50 transition-colors"
-                      aria-expanded={isOpen}
-                    >
-                      <span className="font-heading font-extrabold text-sm sm:text-base text-slate-900 leading-snug">
-                        {faq.q}
-                      </span>
-                      <ChevronDown
-                        className={`w-5 h-5 text-slate-500 shrink-0 transition-transform duration-200 ${
-                          isOpen ? "rotate-180 text-[#0A78F3]" : ""
-                        }`}
-                      />
-                    </button>
+                    <div className="bg-white/95 rounded-xl border border-white/80 overflow-hidden">
+                      <button
+                        type="button"
+                        onClick={() => setOpenFaqIndex(isOpen ? null : faq.id)}
+                        className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-3.5 sm:gap-4 cursor-pointer select-none hover:bg-slate-50 transition-colors"
+                        aria-expanded={isOpen}
+                      >
+                        <div className="flex items-center gap-3 sm:gap-3.5 flex-1 min-w-0">
+                          <span
+                            className={`w-7 h-7 sm:w-8 sm:h-8 rounded-xl font-mono text-xs sm:text-[13px] font-black flex items-center justify-center shrink-0 transition-colors duration-200 ${
+                              isOpen
+                                ? "bg-[#0A78F3] text-white shadow-xs"
+                                : "bg-[#d1d9e6]/70 text-[#0A78F3] border border-[#babecc]/60 shadow-[var(--shadow-recessed-sm)]"
+                            }`}
+                          >
+                            {faq.badge}
+                          </span>
+                          <span className="font-heading font-extrabold text-sm sm:text-base text-slate-900 leading-snug">
+                            {faq.q}
+                          </span>
+                        </div>
+                        <ChevronDown
+                          className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-200 ${
+                            isOpen ? "rotate-180 text-[#0A78F3]" : ""
+                          }`}
+                        />
+                      </button>
 
-                    {isOpen && (
-                      <div className="px-4 pb-5 sm:px-5 sm:pb-6 pt-1 border-t border-slate-100 animate-in fade-in slide-in-from-top-1 duration-200">
-                        <p className="font-body text-slate-700 text-[15.5px] sm:text-[16.5px] leading-relaxed">
-                          {faq.a}
-                        </p>
-                      </div>
-                    )}
+                      {isOpen && (
+                        <div className="px-4 pb-5 sm:px-5 sm:pb-6 pt-1 border-t border-slate-100 animate-in fade-in slide-in-from-top-1 duration-200">
+                          <p className="font-body text-slate-700 text-[15.5px] sm:text-[16.5px] leading-relaxed pl-10 sm:pl-11">
+                            {faq.a}
+                          </p>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 );
               })}
+            </div>
+
+            {/* ── CTA BUTTON CHÈN CUỐI SECTION (ĐỒNG BỘ CHUẨN SECTION 'ĐỒNG HÀNH CÙNG CON') ── */}
+            <div className="pt-2 flex flex-col items-center justify-center">
+              <button
+                type="button"
+                onClick={handleOpenRegisterModal}
+                className="w-full sm:w-auto px-6 sm:px-10 py-3.5 sm:py-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] transition-all flex items-center justify-center gap-3 cursor-pointer active:scale-98 border border-white/30 group"
+              >
+                <div className="flex flex-col items-center text-center leading-snug min-w-0">
+                  <span className="font-heading font-extrabold text-[12px] min-[390px]:text-[13px] sm:text-base uppercase tracking-tight whitespace-nowrap">
+                    ĐẶT LỊCH CHẨN ĐOÁN 1-1 &amp; GIẢI ĐÁP TRỰC TIẾP VỚI CÔ NGHI
+                  </span>
+                  <span className="font-body text-[10px] min-[390px]:text-[11px] sm:text-xs font-medium text-rose-100 normal-case mt-0.5 tracking-tight whitespace-nowrap">
+                    Đánh giá chuyên sâu 5 kỹ năng · Thiết kế phác đồ riêng · Hoàn toàn miễn phí
+                  </span>
+                </div>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
+              </button>
             </div>
           </div>
         </section>
@@ -3958,24 +4122,139 @@ export const LandingPage: React.FC = () => {
         ────────────────────────────────────────────────────────────── */}
         <section className="py-14 sm:py-16 bg-[#1e272e] bg-grid-pattern text-white border-t border-slate-700 relative overflow-hidden" id="dang-ky">
           <div className="w-[90%] lg:w-[80%] max-w-4xl mx-auto space-y-8 relative z-10">
-            {/* Urgency Box Sĩ Số */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-red-950/80 via-rose-900/60 to-red-950/80 border-2 border-[#ff4757] text-center shadow-lg">
-              <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#ff6b81] mb-1">
-                <span className="w-2 h-2 rounded-full bg-[#ff4757] animate-pulse shrink-0" />
-                ⚠️ LƯU Ý GIỚI HẠN SĨ SỐ (URGENCY &amp; SCARCITY)
-              </span>
-              <p className="font-body text-[15.5px] sm:text-[16px] text-slate-200 leading-relaxed mt-1">
-                Do mô hình lớp học cam kết giới hạn <strong className="text-white">tối đa 12 học sinh/lớp</strong> để đảm bảo chất lượng chấm chữa 1-1, hiện tại Lớp Tiếng Anh Cô Nghi chỉ còn nhận thêm <strong className="text-amber-300 font-extrabold underline decoration-amber-400">08 suất Chẩn đoán năng lực &amp; Giữ chỗ</strong> cho khóa mới trong tuần này!
-              </p>
+            {/* ── SECTION LƯU Ý GIỚI HẠN SĨ SỐ (URGENCY & SCARCITY) ──
+                ĐỒNG BỘ TIÊU CHUẨN NGÔN NGỮ THIẾT KẾ & 2-BLOCK TACTILE RECESSED WELL SECTION 'ĐỒNG HÀNH CÙNG CON' ── */}
+            <div className="relative bg-[#252f38] p-1.5 sm:p-2 rounded-2xl sm:rounded-3xl border border-red-500/40 shadow-[0_10px_30px_rgba(0,0,0,0.35)] flex flex-col gap-1.5 sm:gap-2 overflow-visible">
+              {/* ── KHỐI 1 (TRÊN): Badge nổi, Tiêu đề khẩn cấp & 3 Chỉ số đo lường Tactile Counters ── */}
+              <div className="relative bg-[#1e272e] rounded-2xl p-4 sm:p-6 pt-6 sm:pt-7 border border-slate-700/80 shadow-xs overflow-visible">
+                {/* Nhãn 50% ngoài 50% trong ở góc trên bên trái */}
+                <div className="absolute -top-3.5 sm:-top-4 left-4 sm:left-6 inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-xl bg-[#ff4757] text-white shadow-md border border-white/30 z-10 font-heading font-extrabold text-[11px] sm:text-xs uppercase tracking-wider">
+                  <AlertTriangle className="w-3.5 h-3.5 text-white shrink-0" />
+                  <span>LƯU Ý GIỚI HẠN SĨ SỐ · URGENCY &amp; SCARCITY</span>
+                </div>
+
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-1">
+                  <div>
+                    <h3 className="font-heading font-black text-lg min-[390px]:text-xl sm:text-2xl text-white uppercase tracking-tight">
+                      THÔNG BÁO KHÓA CỨNG SĨ SỐ <span className="text-[#ff6b81]">· CHỈ 12 HỌC SINH/LỚP</span>
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-300 font-medium mt-1">
+                      Cam kết chất lượng chấm chữa 1-1 tuyệt đối – không mở thêm lớp đại trà
+                    </p>
+                  </div>
+                </div>
+
+                {/* Đường line màu đỏ san hô gradient */}
+                <div className="pt-2 pb-3">
+                  <div className="w-20 sm:w-24 h-1 sm:h-1.5 rounded-full bg-gradient-to-r from-[#ff4757] via-rose-500 to-amber-400" />
+                </div>
+
+                {/* 3 Hộp Đo Lường Suất Học Tactile Counters */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
+                  <div className="bg-[#151c22] border border-slate-700/70 rounded-xl p-3 text-center shadow-[inset_0_2px_4px_rgba(0,0,0,0.4)]">
+                    <span className="text-[10.5px] uppercase font-bold text-slate-400 block tracking-wider">
+                      Sĩ số tối đa
+                    </span>
+                    <span className="text-xl sm:text-2xl font-black font-mono text-white mt-0.5 block">
+                      12 em/lớp
+                    </span>
+                  </div>
+
+                  <div className="bg-[#151c22] border border-slate-700/70 rounded-xl p-3 text-center shadow-[inset_0_2px_4px_rgba(0,0,0,0.4)]">
+                    <span className="text-[10.5px] uppercase font-bold text-slate-400 block tracking-wider">
+                      Đã xác nhận &amp; Giữ chỗ
+                    </span>
+                    <span className="text-xl sm:text-2xl font-black font-mono text-emerald-400 mt-0.5 block">
+                      04 em
+                    </span>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-red-950/80 to-[#2c1418] border-2 border-[#ff4757] rounded-xl p-3 text-center shadow-[0_0_15px_rgba(255,71,87,0.3)]">
+                    <span className="text-[10.5px] uppercase font-extrabold text-[#ff6b81] flex items-center justify-center gap-1 tracking-wider">
+                      <span className="w-2 h-2 rounded-full bg-[#ff4757] animate-pulse shrink-0" />
+                      CÒN LẠI DUY NHẤT
+                    </span>
+                    <span className="text-xl sm:text-2xl font-black font-mono text-amber-300 mt-0.5 block">
+                      08 SUẤT CUỐI
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* ── KHỐI 2 (DƯỚI): Lý do giới hạn, Cam kết & Quick CTA Button ── */}
+              <div className="bg-[#1e272e] rounded-2xl p-4 sm:p-5 border border-slate-700/80 shadow-xs">
+                <p className="font-heading font-extrabold text-xs sm:text-[13px] text-[#ff6b81] uppercase tracking-wider mb-2.5">
+                  VÌ SAO CÔ NGHI BẮT BUỘC KHỐNG CHẾ SĨ SỐ 12 HỌC SINH?
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+                  <div className="bg-[#151c22] rounded-xl p-2.5 border border-slate-700/70 flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#0A78F3] shrink-0 mt-0.5" />
+                    <span className="text-slate-200 leading-snug">
+                      <strong className="text-white">Giám sát vi mô:</strong> Trực tiếp sửa từng lỗi chia thì, phát âm và dịch bài.
+                    </span>
+                  </div>
+                  <div className="bg-[#151c22] rounded-xl p-2.5 border border-slate-700/70 flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span className="text-slate-200 leading-snug">
+                      <strong className="text-white">Báo cáo Zalo 20h00:</strong> LMS gửi chi tiết điểm số về máy mẹ mỗi tối.
+                    </span>
+                  </div>
+                  <div className="bg-[#151c22] rounded-xl p-2.5 border border-slate-700/70 flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
+                    <span className="text-slate-200 leading-snug">
+                      <strong className="text-white">Bảo hiểm 2 lớp:</strong> Hoàn học phí 100% nếu con không tiến bộ rõ rệt.
+                    </span>
+                  </div>
+                </div>
+
+                <p className="font-body text-[15px] sm:text-[15.5px] text-slate-300 leading-relaxed mt-3.5">
+                  Do chỉ nhận <strong className="text-white">tối đa 12 em/lớp</strong>, hiện tại Lớp Tiếng Anh Cô Nghi chỉ còn nhận thêm <strong className="text-amber-300 font-extrabold underline decoration-amber-400">08 suất Chẩn đoán năng lực 1-1 &amp; Giữ chỗ</strong> cho khóa mới tuần này. Cổng đăng ký sẽ tự động đóng ngay khi đủ số lượng!
+                </p>
+
+                {/* Quick CTA chèn ngay trong Urgency Card */}
+                <div className="mt-4 pt-3.5 border-t border-slate-700/70 flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <div className="flex items-center gap-2 text-xs text-amber-300 font-medium">
+                    <Clock className="w-4 h-4 shrink-0 text-amber-400" />
+                    <span>Ưu tiên phụ huynh đăng ký sớm theo thứ tự gửi biểu mẫu</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const formEl = document.querySelector("#dang-ky form");
+                      if (formEl) {
+                        formEl.scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        handleOpenRegisterModal();
+                      }
+                    }}
+                    className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#ff4757] hover:bg-[#e03949] text-white font-heading font-extrabold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 border border-white/20"
+                  >
+                    <span>GIỮ 1 TRONG 08 SUẤT NGAY</span>
+                    <ArrowDown className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
             </div>
 
-            {/* Header Form */}
-            <div className="text-center space-y-3">
-              <h2 className="font-heading font-extrabold uppercase tracking-tight text-white text-xl min-[390px]:text-2xl sm:text-3xl md:text-4xl leading-tight">
-                ĐỪNG ĐỂ TIẾNG ANH TRỞ THÀNH RÀO CẢN KHIẾN CON TRƯỢT LỚP 10 CÔNG LẬP
+            {/* Header Form đồng bộ chuẩn Section 'Đồng hành cùng con' */}
+            <div className="text-center space-y-3 sm:space-y-4">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800 text-sky-400 border border-slate-700 shadow-xs text-xs sm:text-[13px] font-bold">
+                <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
+                <span>Đăng ký giữ chỗ &amp; nhận quà</span>
+              </div>
+
+              <h2 className="font-heading uppercase tracking-tight text-center max-w-4xl mx-auto">
+                <span className="block font-black text-white text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-4xl lg:text-[38px] leading-tight">
+                  ĐỪNG ĐỂ TIẾNG ANH <span className="text-[#0A78F3]">TRỞ THÀNH RÀO CẢN</span>
+                </span>
+                <span className="block font-bold sm:font-extrabold text-slate-200 text-[16px] min-[390px]:text-[18px] sm:text-2xl md:text-[26px] lg:text-[29px] leading-tight mt-1 sm:mt-1.5">
+                  KHIẾN CON <span className="text-[#ff4757] font-black underline decoration-[#ff4757]/40 decoration-2 underline-offset-4">TRƯỢT LỚP 10 CÔNG LẬP</span> TẠI ĐÀ NẴNG
+                </span>
               </h2>
-              <p className="font-body text-slate-300 text-[15.5px] sm:text-[16.5px] leading-relaxed max-w-2xl mx-auto">
-                Đăng ký bắt bệnh năng lực 1-1 miễn phí ngay hôm nay để nhận trọn bộ Phác Đồ Cá Nhân Hóa &amp; Bộ Sổ Tay Ma Thuật từ Cô Nghi!
+
+              <p className="font-body text-slate-300 text-[15.5px] sm:text-base md:text-[17.5px] lg:text-[18px] leading-relaxed max-w-2xl mx-auto text-center">
+                <span className="font-bold text-white underline decoration-slate-600 decoration-1 underline-offset-2">Chỉ mất 30 giây điền thông tin</span>, con sẽ được <strong className="text-[#0A78F3] font-bold bg-sky-950/60 px-2 py-0.5 rounded-lg border border-sky-600/60 shadow-2xs inline-block">bắt bệnh năng lực 1-1 miễn phí</strong> và gia đình nhận ngay <strong className="text-[#ff4757] font-bold">trọn bộ 4 quà tặng độc quyền</strong> từ Cô Nghi:
               </p>
             </div>
 
