@@ -4130,13 +4130,16 @@ export const LandingPage: React.FC = () => {
                 {/* Nhãn 50% ngoài 50% trong ở góc trên bên trái */}
                 <div className="absolute -top-3.5 sm:-top-4 left-4 sm:left-6 inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-xl bg-[#ff4757] text-white shadow-md border border-white/30 z-10 font-heading font-extrabold text-[11px] sm:text-xs uppercase tracking-wider">
                   <AlertTriangle className="w-3.5 h-3.5 text-white shrink-0" />
-                  <span>LƯU Ý GIỚI HẠN SĨ SỐ · URGENCY &amp; SCARCITY</span>
+                  <span>LƯU Ý GIỚI HẠN SĨ SỐ</span>
                 </div>
 
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-1">
                   <div>
-                    <h3 className="font-heading font-black text-lg min-[390px]:text-xl sm:text-2xl text-white uppercase tracking-tight">
-                      THÔNG BÁO KHÓA CỨNG SĨ SỐ <span className="text-[#ff6b81]">· CHỈ 12 HỌC SINH/LỚP</span>
+                    <h3 className="font-heading font-black text-lg min-[390px]:text-xl sm:text-2xl text-white uppercase tracking-tight flex flex-col sm:inline-block">
+                      <span>THÔNG BÁO KHÓA CỨNG SĨ SỐ</span>
+                      <span className="text-[#ff6b81]">
+                        <span className="hidden sm:inline"> · </span>CHỈ 12 HỌC SINH/LỚP
+                      </span>
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-300 font-medium mt-1">
                       Cam kết chất lượng chấm chữa 1-1 tuyệt đối – không mở thêm lớp đại trà
@@ -4152,30 +4155,30 @@ export const LandingPage: React.FC = () => {
                 {/* 3 Hộp Đo Lường Suất Học Tactile Counters */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
                   <div className="bg-[#151c22] border border-slate-700/70 rounded-xl p-3 text-center shadow-[inset_0_2px_4px_rgba(0,0,0,0.4)]">
-                    <span className="text-[10.5px] uppercase font-bold text-slate-400 block tracking-wider">
+                    <span className="text-[10.5px] uppercase font-heading font-bold text-slate-400 block tracking-wider">
                       Sĩ số tối đa
                     </span>
-                    <span className="text-xl sm:text-2xl font-black font-mono text-white mt-0.5 block">
+                    <span className="text-xl sm:text-2xl font-heading font-black text-white mt-0.5 block">
                       12 em/lớp
                     </span>
                   </div>
 
                   <div className="bg-[#151c22] border border-slate-700/70 rounded-xl p-3 text-center shadow-[inset_0_2px_4px_rgba(0,0,0,0.4)]">
-                    <span className="text-[10.5px] uppercase font-bold text-slate-400 block tracking-wider">
+                    <span className="text-[10.5px] uppercase font-heading font-bold text-slate-400 block tracking-wider">
                       Đã xác nhận &amp; Giữ chỗ
                     </span>
-                    <span className="text-xl sm:text-2xl font-black font-mono text-emerald-400 mt-0.5 block">
-                      04 em
+                    <span className="text-xl sm:text-2xl font-heading font-black text-emerald-400 mt-0.5 block">
+                      07 em
                     </span>
                   </div>
 
                   <div className="bg-gradient-to-br from-red-950/80 to-[#2c1418] border-2 border-[#ff4757] rounded-xl p-3 text-center shadow-[0_0_15px_rgba(255,71,87,0.3)]">
-                    <span className="text-[10.5px] uppercase font-extrabold text-[#ff6b81] flex items-center justify-center gap-1 tracking-wider">
+                    <span className="text-[10.5px] uppercase font-heading font-extrabold text-[#ff6b81] flex items-center justify-center gap-1 tracking-wider">
                       <span className="w-2 h-2 rounded-full bg-[#ff4757] animate-pulse shrink-0" />
                       CÒN LẠI DUY NHẤT
                     </span>
-                    <span className="text-xl sm:text-2xl font-black font-mono text-amber-300 mt-0.5 block">
-                      08 SUẤT CUỐI
+                    <span className="text-xl sm:text-2xl font-heading font-black text-amber-300 mt-0.5 block">
+                      05 SUẤT CUỐI
                     </span>
                   </div>
                 </div>
@@ -4184,40 +4187,36 @@ export const LandingPage: React.FC = () => {
               {/* ── KHỐI 2 (DƯỚI): Lý do giới hạn, Cam kết & Quick CTA Button ── */}
               <div className="bg-[#1e272e] rounded-2xl p-4 sm:p-5 border border-slate-700/80 shadow-xs">
                 <p className="font-heading font-extrabold text-xs sm:text-[13px] text-[#ff6b81] uppercase tracking-wider mb-2.5">
-                  VÌ SAO CÔ NGHI BẮT BUỘC KHỐNG CHẾ SĨ SỐ 12 HỌC SINH?
+                  VÌ SAO SĨ SỐ TỐI ĐA LẠI LÀ 12 HỌC SINH?
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
-                  <div className="bg-[#151c22] rounded-xl p-2.5 border border-slate-700/70 flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#0A78F3] shrink-0 mt-0.5" />
-                    <span className="text-slate-200 leading-snug">
-                      <strong className="text-white">Giám sát vi mô:</strong> Trực tiếp sửa từng lỗi chia thì, phát âm và dịch bài.
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 text-[14.5px] sm:text-[15.5px]">
+                  <div className="bg-[#151c22] rounded-xl p-3 sm:p-3.5 border border-slate-700/70 flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#0A78F3] shrink-0 mt-0.5" />
+                    <span className="text-slate-200 leading-relaxed font-body">
+                      <strong className="text-white font-semibold">Giám sát vi mô:</strong> Trực tiếp sửa từng lỗi chia thì, phát âm và dịch bài.
                     </span>
                   </div>
-                  <div className="bg-[#151c22] rounded-xl p-2.5 border border-slate-700/70 flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                    <span className="text-slate-200 leading-snug">
-                      <strong className="text-white">Báo cáo Zalo 20h00:</strong> LMS gửi chi tiết điểm số về máy mẹ mỗi tối.
+                  <div className="bg-[#151c22] rounded-xl p-3 sm:p-3.5 border border-slate-700/70 flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                    <span className="text-slate-200 leading-relaxed font-body">
+                      <strong className="text-white font-semibold">Báo cáo Zalo 20h00:</strong> LMS gửi chi tiết điểm số về máy mẹ mỗi tối.
                     </span>
                   </div>
-                  <div className="bg-[#151c22] rounded-xl p-2.5 border border-slate-700/70 flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#ff4757] shrink-0 mt-0.5" />
-                    <span className="text-slate-200 leading-snug">
-                      <strong className="text-white">Bảo hiểm 2 lớp:</strong> Hoàn học phí 100% nếu con không tiến bộ rõ rệt.
+                  <div className="bg-[#151c22] rounded-xl p-3 sm:p-3.5 border border-slate-700/70 flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#ff4757] shrink-0 mt-0.5" />
+                    <span className="text-slate-200 leading-relaxed font-body">
+                      <strong className="text-white font-semibold">Bảo hiểm 2 lớp:</strong> Hoàn học phí 100% nếu con không tiến bộ rõ rệt.
                     </span>
                   </div>
                 </div>
 
                 <p className="font-body text-[15px] sm:text-[15.5px] text-slate-300 leading-relaxed mt-3.5">
-                  Do chỉ nhận <strong className="text-white">tối đa 12 em/lớp</strong>, hiện tại Lớp Tiếng Anh Cô Nghi chỉ còn nhận thêm <strong className="text-amber-300 font-extrabold underline decoration-amber-400">08 suất Chẩn đoán năng lực 1-1 &amp; Giữ chỗ</strong> cho khóa mới tuần này. Cổng đăng ký sẽ tự động đóng ngay khi đủ số lượng!
+                  Do chỉ nhận <strong className="text-white">tối đa 12 em/lớp</strong>, hiện tại Lớp Tiếng Anh Cô Nghi chỉ còn nhận thêm <strong className="text-amber-300 font-extrabold underline decoration-amber-400">05 suất Chẩn đoán năng lực 1-1 &amp; Giữ chỗ</strong> cho khóa mới tuần này. Cổng đăng ký sẽ tự động đóng ngay khi đủ số lượng!
                 </p>
 
                 {/* Quick CTA chèn ngay trong Urgency Card */}
-                <div className="mt-4 pt-3.5 border-t border-slate-700/70 flex flex-col sm:flex-row items-center justify-between gap-3">
-                  <div className="flex items-center gap-2 text-xs text-amber-300 font-medium">
-                    <Clock className="w-4 h-4 shrink-0 text-amber-400" />
-                    <span>Ưu tiên phụ huynh đăng ký sớm theo thứ tự gửi biểu mẫu</span>
-                  </div>
+                <div className="mt-4 pt-3.5 border-t border-slate-700/70 flex flex-col sm:flex-row items-center justify-end gap-3">
                   <button
                     type="button"
                     onClick={() => {
@@ -4230,7 +4229,7 @@ export const LandingPage: React.FC = () => {
                     }}
                     className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#ff4757] hover:bg-[#e03949] text-white font-heading font-extrabold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 border border-white/20"
                   >
-                    <span>GIỮ 1 TRONG 08 SUẤT NGAY</span>
+                    <span>GIỮ 1 TRONG 05 SUẤT NGAY</span>
                     <ArrowDown className="w-3.5 h-3.5" />
                   </button>
                 </div>
