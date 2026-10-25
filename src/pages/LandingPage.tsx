@@ -2518,7 +2518,7 @@ export const LandingPage: React.FC = () => {
               </div>
 
               <h2 className="font-heading uppercase tracking-tight text-center max-w-4xl mx-auto">
-                <span className="block font-black text-slate-900 text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-4xl lg:text-[38px] leading-tight">
+                <span className="block font-black text-slate-900 text-[18px] min-[390px]:text-[20px] sm:text-3xl md:text-4xl lg:text-[38px] leading-tight">
                   BẢN ĐỒ CHUYỂN ĐỔI <span className="text-[#0A78F3]">RÕ RỆT CỦA CON</span>
                 </span>
                 <span className="block font-bold sm:font-extrabold text-slate-800 text-[16px] min-[390px]:text-[18px] sm:text-2xl md:text-[26px] lg:text-[29px] leading-tight mt-1 sm:mt-1.5">
@@ -2527,7 +2527,7 @@ export const LandingPage: React.FC = () => {
               </h2>
 
               <p className="font-body text-slate-600 text-[15.5px] sm:text-base md:text-[17.5px] lg:text-[18px] leading-relaxed max-w-3xl mx-auto text-center">
-                <span className="font-bold text-slate-800 underline decoration-slate-300 decoration-1 underline-offset-2">Phụ huynh không cần phải chờ đợi mơ hồ hàng năm trời</span>. <strong className="text-[#0A78F3] font-bold bg-sky-50 px-2 py-0.5 rounded-lg border border-sky-200/80 shadow-2xs inline-block">Lộ trình 90 ngày (12 tuần / 24 buổi học)</strong> tại Lớp Tiếng Anh Cô Nghi được thiết lập với <strong className="text-[#ff4757] font-bold">chỉ số đo lường thực tế</strong> rõ ràng qua từng chặng:
+                Phụ huynh <span className="font-bold text-slate-800">không cần phải chờ đợi mơ hồ hàng năm trời</span>. <strong className="text-[#0A78F3] font-bold">Lộ trình 03 tháng</strong> tại Lớp Tiếng Anh Cô Nghi được thiết lập với <strong className="text-[#ff4757] font-bold">chỉ số đo lường thực tế</strong> rõ ràng qua từng chặng:
               </p>
             </div>
 
