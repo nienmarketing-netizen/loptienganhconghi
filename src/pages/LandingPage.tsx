@@ -442,11 +442,17 @@ export const LandingPage: React.FC = () => {
   const [formData, setFormData] = useState({
     parentName: "",
     phoneZalo: "",
+    studentName: "",
+    studentGrade: "",
     studentNameAndGrade: "",
-    school: "THCS Lê Độ",
+    school: "",
     problems: ["Mất gốc hoàn toàn, học trước quên sau"],
     priorityChoice: "Đăng ký Phiên Chẩn đoán 1-1 Miễn phí (45 phút) + Nhận trọn bộ 4 Quà tặng",
   });
+  const [otherProblemText, setOtherProblemText] = useState("");
+  const [isOtherProblemChecked, setIsOtherProblemChecked] = useState(false);
+  const [otherPriorityText, setOtherPriorityText] = useState("");
+  const [isOtherPriority, setIsOtherPriority] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [isOnPageSubmitted, setIsOnPageSubmitted] = useState(false);
 
@@ -2518,8 +2524,8 @@ export const LandingPage: React.FC = () => {
               </div>
 
               <h2 className="font-heading uppercase tracking-tight text-center max-w-4xl mx-auto">
-                <span className="block font-black text-slate-900 text-[18px] min-[390px]:text-[20px] sm:text-3xl md:text-4xl lg:text-[38px] leading-tight">
-                  BẢN ĐỒ CHUYỂN ĐỔI <span className="text-[#0A78F3]">RÕ RỆT CỦA CON</span>
+                <span className="block font-black text-slate-900 text-[21px] min-[390px]:text-[23px] sm:text-3xl md:text-4xl lg:text-[38px] leading-tight">
+                  BẢN ĐỒ CHUYỂN ĐỔI <span className="text-[#0A78F3]">CỦA CON</span>
                 </span>
                 <span className="block font-bold sm:font-extrabold text-slate-800 text-[16px] min-[390px]:text-[18px] sm:text-2xl md:text-[26px] lg:text-[29px] leading-tight mt-1 sm:mt-1.5">
                   THEO <span className="text-[#ff4757] font-black underline decoration-[#ff4757]/40 decoration-2 underline-offset-4">TỪNG CỘT MỐC ĐO LƯỜNG</span> THỜI GIAN CỤ THỂ
@@ -3525,7 +3531,10 @@ export const LandingPage: React.FC = () => {
 
               <h2 className="font-heading uppercase tracking-tight text-center max-w-4xl mx-auto">
                 <span className="block font-black text-slate-900 text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-4xl lg:text-[38px] leading-tight">
-                  BẢO HIỂM HỌC TẬP 2 LỚP – <span className="text-[#0A78F3]">RỦI RO BẰNG 0</span>
+                  <span className="block sm:inline">BẢO HIỂM HỌC TẬP 2 LỚP</span>{" "}
+                  <span className="block sm:inline">
+                    – <span className="text-[#0A78F3]">RỦI RO BẰNG 0</span>
+                  </span>
                 </span>
                 <span className="block font-bold sm:font-extrabold text-slate-800 text-[16px] min-[390px]:text-[18px] sm:text-2xl md:text-[26px] lg:text-[29px] leading-tight mt-1 sm:mt-1.5">
                   ĐẶT TOÀN BỘ <span className="text-[#C43838] font-black underline decoration-[#C43838]/40 decoration-2 underline-offset-4">TRÁCH NHIỆM VÀ HIỆU QUẢ</span> LÊN VAI NGƯỜI DẠY
@@ -3744,7 +3753,7 @@ export const LandingPage: React.FC = () => {
 
               <h2 className="font-heading uppercase tracking-tight text-center max-w-4xl mx-auto">
                 <span className="block font-black text-slate-900 text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-4xl lg:text-[38px] leading-tight">
-                  ĐẶT LỊCH TEST 1-1 <span className="text-[#0A78F3]">MIỄN PHÍ 100% HÔM NAY</span>
+                  ĐẶT LỊCH TEST 1-1 <span className="text-[#0A78F3]">MIỄN PHÍ 100%</span>
                 </span>
                 <span className="block font-bold sm:font-extrabold text-slate-800 text-[16px] min-[390px]:text-[18px] sm:text-2xl md:text-[26px] lg:text-[29px] leading-tight mt-1 sm:mt-1.5">
                   NHẬN NGAY <span className="text-[#C43838] font-black underline decoration-[#C43838]/40 decoration-2 underline-offset-4">TRỌN BỘ 4 QUÀ TẶNG</span> ĐỒNG HÀNH ĐỘC QUYỀN
@@ -3983,7 +3992,10 @@ export const LandingPage: React.FC = () => {
 
               <h2 className="font-heading uppercase tracking-tight text-center max-w-4xl mx-auto">
                 <span className="block font-black text-slate-900 text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-4xl lg:text-[38px] leading-tight">
-                  GIẢI TỎA MỌI BĂN KHOĂN – <span className="text-[#0A78F3]">AN TÂM ĐỒNG HÀNH</span>
+                  <span className="block sm:inline">GIẢI TỎA MỌI BĂN KHOĂN</span>{" "}
+                  <span className="block sm:inline">
+                    – <span className="text-[#0A78F3]">AN TÂM ĐỒNG HÀNH</span>
+                  </span>
                 </span>
                 <span className="block font-bold sm:font-extrabold text-slate-800 text-[16px] min-[390px]:text-[18px] sm:text-2xl md:text-[26px] lg:text-[29px] leading-tight mt-1 sm:mt-1.5">
                   CÙNG CON VỚI <span className="text-[#C43838] font-black underline decoration-[#C43838]/40 decoration-2 underline-offset-4">SỰ MINH BẠCH &amp; TẬN TÂM</span> TỪ CÔ NGHI
@@ -3991,7 +4003,7 @@ export const LandingPage: React.FC = () => {
               </h2>
 
               <p className="font-body text-slate-600 text-[15.5px] sm:text-base md:text-[17.5px] lg:text-[18px] leading-relaxed max-w-3xl mx-auto text-center">
-                <span className="font-bold text-slate-800 underline decoration-slate-300 decoration-1 underline-offset-2">Mỗi lo lắng của ba mẹ đều xứng đáng được lắng nghe</span>. Dưới đây là <strong className="text-[#0A78F3] font-bold bg-sky-50 px-2 py-0.5 rounded-lg border border-sky-200/80 shadow-2xs inline-block">những chia sẻ thẳng thắn, chân thành nhất</strong> từ Cô Nghi giúp ba mẹ hoàn toàn thảnh thơi và tin tưởng:
+                <span className="font-bold text-slate-800 underline decoration-slate-300 decoration-1 underline-offset-2">Mỗi lo lắng của ba mẹ đều xứng đáng được lắng nghe</span>. Dưới đây là <strong className="text-[#0A78F3] font-bold">những chia sẻ thẳng thắn, chân thành nhất</strong> từ Cô Nghi giúp ba mẹ hoàn toàn thảnh thơi và tin tưởng:
               </p>
             </div>
 
@@ -4245,10 +4257,11 @@ export const LandingPage: React.FC = () => {
 
               <h2 className="font-heading uppercase tracking-tight text-center max-w-4xl mx-auto">
                 <span className="block font-black text-white text-[20px] min-[390px]:text-[22px] sm:text-3xl md:text-4xl lg:text-[38px] leading-tight">
-                  ĐỪNG ĐỂ TIẾNG ANH <span className="text-[#0A78F3]">TRỞ THÀNH RÀO CẢN</span>
+                  <span className="block sm:inline">ĐỪNG ĐỂ TIẾNG ANH</span>{" "}
+                  <span className="block sm:inline text-[#0A78F3]">TRỞ THÀNH RÀO CẢN</span>
                 </span>
                 <span className="block font-bold sm:font-extrabold text-slate-200 text-[16px] min-[390px]:text-[18px] sm:text-2xl md:text-[26px] lg:text-[29px] leading-tight mt-1 sm:mt-1.5">
-                  KHIẾN CON <span className="text-[#ff4757] font-black underline decoration-[#ff4757]/40 decoration-2 underline-offset-4">TRƯỢT LỚP 10 CÔNG LẬP</span> TẠI ĐÀ NẴNG
+                  KHIẾN CON <span className="text-[#ff4757] font-black underline decoration-[#ff4757]/40 decoration-2 underline-offset-4">TRƯỢT LỚP 10 CÔNG LẬP</span>
                 </span>
               </h2>
 
@@ -4261,10 +4274,10 @@ export const LandingPage: React.FC = () => {
             <div className="bg-white text-slate-900 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200">
               {!isOnPageSubmitted ? (
                 <form onSubmit={handleOnPageSubmit} className="space-y-4">
-                  {/* Trường 1: Họ tên phụ huynh */}
+                  {/* Trường 1: Tên phụ huynh */}
                   <div>
-                    <label className="block text-xs sm:text-[13px] font-extrabold uppercase tracking-wider text-slate-800 mb-1">
-                      1. Họ và tên Phụ huynh (*)
+                    <label className="block text-xs sm:text-[13px] font-extrabold text-slate-800 mb-1">
+                      1. Tên Phụ huynh (*)
                     </label>
                     <input
                       required
@@ -4278,7 +4291,7 @@ export const LandingPage: React.FC = () => {
 
                   {/* Trường 2: Số điện thoại Zalo */}
                   <div>
-                    <label className="block text-xs sm:text-[13px] font-extrabold uppercase tracking-wider text-slate-800 mb-1">
+                    <label className="block text-xs sm:text-[13px] font-extrabold text-slate-800 mb-1">
                       2. Số điện thoại Zalo (*)
                     </label>
                     <input
@@ -4291,47 +4304,68 @@ export const LandingPage: React.FC = () => {
                     />
                   </div>
 
-                  {/* Trường 3: Họ tên con & Khối lớp */}
+                  {/* Trường 3: Họ tên con */}
                   <div>
-                    <label className="block text-xs sm:text-[13px] font-extrabold uppercase tracking-wider text-slate-800 mb-1">
-                      3. Họ tên con &amp; Khối lớp hiện tại (*)
+                    <label className="block text-xs sm:text-[13px] font-extrabold text-slate-800 mb-1">
+                      3. Họ tên con (*)
                     </label>
                     <input
                       required
                       type="text"
-                      placeholder="Ví dụ: Nguyễn Minh An - Lớp 8..."
-                      value={formData.studentNameAndGrade}
-                      onChange={(e) =>
-                        setFormData({ ...formData, studentNameAndGrade: e.target.value })
-                      }
+                      placeholder="Ví dụ: Nguyễn Minh An..."
+                      value={formData.studentName}
+                      onChange={(e) => {
+                        const name = e.target.value;
+                        setFormData((prev) => ({
+                          ...prev,
+                          studentName: name,
+                          studentNameAndGrade: `${name}${prev.studentGrade ? ` - ${prev.studentGrade}` : ""}`,
+                        }));
+                      }}
                       className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#ff4757] focus:ring-1 focus:ring-[#ff4757] text-slate-900 transition-colors"
                     />
                   </div>
 
-                  {/* Trường 4: Trường THCS con đang học */}
+                  {/* Trường 4: Khối lớp hiện tại */}
                   <div>
-                    <label className="block text-xs sm:text-[13px] font-extrabold uppercase tracking-wider text-slate-800 mb-1">
-                      4. Trường THCS con đang theo học tại Đà Nẵng
+                    <label className="block text-xs sm:text-[13px] font-extrabold text-slate-800 mb-1">
+                      4. Khối lớp hiện tại (*)
                     </label>
-                    <select
-                      value={formData.school}
-                      onChange={(e) => setFormData({ ...formData, school: e.target.value })}
-                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#ff4757] focus:ring-1 focus:ring-[#ff4757] text-slate-900 transition-colors cursor-pointer"
-                    >
-                      <option value="THCS Lê Độ">THCS Lê Độ (Sơn Trà)</option>
-                      <option value="THCS Ngô Quyền">THCS Ngô Quyền (Sơn Trà)</option>
-                      <option value="THCS Nguyễn Chí Thanh">THCS Nguyễn Chí Thanh (Sơn Trà)</option>
-                      <option value="THCS Phạm Ngọc Thạch">THCS Phạm Ngọc Thạch (Sơn Trà)</option>
-                      <option value="THCS Phan Bội Châu">THCS Phan Bội Châu (Sơn Trà)</option>
-                      <option value="THCS Lý Tự Trọng">THCS Lý Tự Trọng</option>
-                      <option value="Trường khác tại Đà Nẵng">Trường khác tại Đà Nẵng</option>
-                    </select>
+                    <input
+                      required
+                      type="text"
+                      placeholder="Ví dụ: Lớp 7, Lớp 8, Lớp 9..."
+                      value={formData.studentGrade}
+                      onChange={(e) => {
+                        const grade = e.target.value;
+                        setFormData((prev) => ({
+                          ...prev,
+                          studentGrade: grade,
+                          studentNameAndGrade: `${prev.studentName}${grade ? ` - ${grade}` : ""}`,
+                        }));
+                      }}
+                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#ff4757] focus:ring-1 focus:ring-[#ff4757] text-slate-900 transition-colors"
+                    />
                   </div>
 
-                  {/* Trường 5: Tình trạng hiện tại của con (Checkboxes) */}
+                  {/* Trường 5: Trường THCS con đang học */}
                   <div>
-                    <label className="block text-xs sm:text-[13px] font-extrabold uppercase tracking-wider text-slate-800 mb-1.5">
-                      5. Tình trạng hiện tại của con (Chọn các ý phù hợp)
+                    <label className="block text-xs sm:text-[13px] font-extrabold text-slate-800 mb-1">
+                      5. Trường THCS con đang theo học tại Đà Nẵng
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Ví dụ: THCS Lê Độ, THCS Ngô Quyền, THCS Nguyễn Chí Thanh..."
+                      value={formData.school}
+                      onChange={(e) => setFormData({ ...formData, school: e.target.value })}
+                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#ff4757] focus:ring-1 focus:ring-[#ff4757] text-slate-900 transition-colors"
+                    />
+                  </div>
+
+                  {/* Trường 6: Tình trạng hiện tại của con (Checkboxes) */}
+                  <div>
+                    <label className="block text-xs sm:text-[13px] font-extrabold text-slate-800 mb-1.5">
+                      6. Tình trạng hiện tại của con (Chọn các ý phù hợp)
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
                       {[
@@ -4353,13 +4387,54 @@ export const LandingPage: React.FC = () => {
                           <span className="font-body text-slate-700 leading-snug">{prob}</span>
                         </label>
                       ))}
+
+                      {/* Ô Khác:... */}
+                      <div className="sm:col-span-2 flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-200 hover:bg-slate-100 transition-colors">
+                        <label className="flex items-center gap-2 cursor-pointer shrink-0">
+                          <input
+                            type="checkbox"
+                            checked={isOtherProblemChecked}
+                            onChange={(e) => {
+                              const checked = e.target.checked;
+                              setIsOtherProblemChecked(checked);
+                              if (checked && otherProblemText) {
+                                handleToggleProblem(`Khác: ${otherProblemText}`);
+                              } else if (!checked && otherProblemText) {
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  problems: prev.problems.filter((p) => !p.startsWith("Khác:")),
+                                }));
+                              }
+                            }}
+                            className="text-[#ff4757] rounded-sm focus:ring-[#ff4757]"
+                          />
+                          <span className="font-body text-slate-700 leading-snug font-medium text-xs sm:text-sm">
+                            Khác:
+                          </span>
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Nhập tình trạng cụ thể khác của con..."
+                          value={otherProblemText}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            setOtherProblemText(val);
+                            setIsOtherProblemChecked(true);
+                            setFormData((prev) => {
+                              const filtered = prev.problems.filter((p) => !p.startsWith("Khác:"));
+                              return val ? { ...prev, problems: [...filtered, `Khác: ${val}`] } : { ...prev, problems: filtered };
+                            });
+                          }}
+                          className="flex-1 text-xs sm:text-sm px-3 py-1.5 rounded-lg bg-white border border-slate-200 focus:outline-none focus:border-[#ff4757] text-slate-900"
+                        />
+                      </div>
                     </div>
                   </div>
 
-                  {/* Trường 6: Nhu cầu ưu tiên */}
+                  {/* Trường 7: Nhu cầu ưu tiên */}
                   <div>
-                    <label className="block text-xs sm:text-[13px] font-extrabold uppercase tracking-wider text-slate-800 mb-1.5">
-                      6. Nhu cầu ưu tiên của Phụ huynh
+                    <label className="block text-xs sm:text-[13px] font-extrabold text-slate-800 mb-1.5">
+                      7. Nhu cầu ưu tiên của Phụ huynh
                     </label>
                     <div className="space-y-1.5 text-xs sm:text-sm">
                       {[
@@ -4374,13 +4449,60 @@ export const LandingPage: React.FC = () => {
                           <input
                             type="radio"
                             name="onpage-priority"
-                            checked={formData.priorityChoice === choice}
-                            onChange={() => setFormData({ ...formData, priorityChoice: choice })}
+                            checked={!isOtherPriority && formData.priorityChoice === choice}
+                            onChange={() => {
+                              setIsOtherPriority(false);
+                              setFormData({ ...formData, priorityChoice: choice });
+                            }}
                             className="text-[#ff4757] focus:ring-[#ff4757]"
                           />
                           <span className="font-body text-[13.5px] sm:text-[15px] leading-snug">{choice}</span>
                         </label>
                       ))}
+
+                      {/* Lựa chọn Khác:... */}
+                      <div className="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 hover:bg-rose-50/50 hover:border-rose-200 transition-colors">
+                        <label className="flex items-center gap-2.5 cursor-pointer shrink-0">
+                          <input
+                            type="radio"
+                            name="onpage-priority"
+                            checked={isOtherPriority}
+                            onChange={() => {
+                              setIsOtherPriority(true);
+                              setFormData({
+                                ...formData,
+                                priorityChoice: otherPriorityText ? `Khác: ${otherPriorityText}` : "Khác",
+                              });
+                            }}
+                            className="text-[#ff4757] focus:ring-[#ff4757]"
+                          />
+                          <span className="font-body text-[13.5px] sm:text-[15px] leading-snug font-medium">
+                            Khác:
+                          </span>
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Nhập nhu cầu ưu tiên cụ thể khác..."
+                          value={otherPriorityText}
+                          onFocus={() => {
+                            setIsOtherPriority(true);
+                            setFormData({
+                              ...formData,
+                              priorityChoice: otherPriorityText ? `Khác: ${otherPriorityText}` : "Khác",
+                            });
+                          }}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            setOtherPriorityText(val);
+                            setIsOtherPriority(true);
+                            setFormData({
+                              ...formData,
+                              priorityChoice: val ? `Khác: ${val}` : "Khác",
+                            });
+                          }}
+                          className="flex-1 text-xs sm:text-sm px-3 py-1.5 rounded-lg bg-white border border-slate-200 focus:outline-none focus:border-[#ff4757] text-slate-900"
+                        />
+                      </div>
                     </div>
                   </div>
 
@@ -4388,19 +4510,22 @@ export const LandingPage: React.FC = () => {
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full py-4 px-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white font-heading font-black text-xs sm:text-base uppercase tracking-tight shadow-xl shadow-rose-500/30 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
+                      className="w-full py-3.5 sm:py-4 px-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-xl shadow-rose-500/30 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2.5"
                     >
-                      <span>🔴 XÁC NHẬN ĐĂNG KÝ – GIỮ LỊCH TEST 1-1 &amp; NHẬN PHÁC ĐỒ MIỄN PHÍ NGAY</span>
-                      <ArrowRight className="w-5 h-5" />
+                      <div className="flex flex-col items-center text-center leading-snug">
+                        <span className="font-heading font-black text-sm sm:text-base md:text-lg uppercase tracking-tight">
+                          XÁC NHẬN ĐĂNG KÝ
+                        </span>
+                        <span className="font-body text-[11px] sm:text-xs text-rose-100 normal-case mt-0.5 font-normal">
+                          Giữ lịch test 1-1 &amp; nhận phác đồ miễn phí
+                        </span>
+                      </div>
+                      <ArrowRight className="w-5 h-5 shrink-0" />
                     </button>
                   </div>
 
-                  {/* Cam Kết Tốc Độ & Bảo Mật */}
-                  <div className="pt-2 space-y-1 text-center font-body text-xs sm:text-[13px] text-slate-500">
-                    <p className="flex items-center justify-center gap-1.5 text-amber-700 font-medium">
-                      <Zap className="w-4 h-4 text-amber-600 shrink-0" />
-                      <span>Cam kết tốc độ: Hệ thống LMS gửi ngay Bộ Sổ Tay qua Zalo &amp; Cô Nghi trực tiếp gọi điện xác nhận trong 15 phút.</span>
-                    </p>
+                  {/* Bảo Mật */}
+                  <div className="pt-2 text-center font-body text-xs sm:text-[13px] text-slate-500">
                     <p className="flex items-center justify-center gap-1.5 text-slate-500">
                       <Lock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                       <span>Thông tin cá nhân của phụ huynh và học sinh được bảo mật tuyệt đối 100%.</span>
