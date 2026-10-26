@@ -4638,8 +4638,8 @@ export const LandingPage: React.FC = () => {
           MODAL ĐĂNG KÝ PHIÊN CHẨN ĐOÁN 1-1 (LEAD CAPTURE MODAL THEO SHOFU)
       ────────────────────────────────────────────────────────────── */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 max-w-lg w-full shadow-2xl max-h-[92vh] overflow-y-auto relative">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn">
+          <div className="bg-white text-slate-900 border border-slate-200 rounded-2xl p-6 sm:p-8 max-w-lg w-full shadow-2xl max-h-[92vh] overflow-y-auto relative">
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
@@ -4652,86 +4652,190 @@ export const LandingPage: React.FC = () => {
                 <div className="flex items-center gap-2 mb-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#C43838] animate-pulse" />
                   <span className="uppercase text-xs tracking-wider text-[#C43838] font-bold">
-                    Chỉ Còn 08 Suất Test Trong Tuần Này
+                    Chỉ Còn 05 Suất Test Trong Tuần Này
                   </span>
                 </div>
 
-                <h3 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-lg sm:text-xl">
-                  Đăng Ký Phiên Chẩn Đoán Năng Lực 1-1 Miễn Phí (45 Phút)
+                <h3
+                  style={{ color: "#0f172a" }}
+                  className="font-heading font-black uppercase tracking-tight text-slate-900 text-lg sm:text-xl leading-snug"
+                >
+                  <span style={{ color: "#0f172a" }}>Đăng Ký Phiên Chẩn Đoán Năng Lực 1-1</span>{" "}
+                  <span className="text-[#0A78F3] underline decoration-[#0A78F3]/40 decoration-2 underline-offset-4">
+                    Miễn Phí
+                  </span>{" "}
+                  <span className="text-slate-500 font-semibold text-sm sm:text-base lowercase">
+                    (45 phút)
+                  </span>
                 </h3>
-                <p className="font-body text-slate-600 text-[15.5px] sm:text-[16px] mt-1.5 leading-relaxed">
-                  Trực tiếp cùng Cô Nghi tại 866/25 Ngô Quyền, Sơn Trà. Nhận ngay Bản Phác Đồ Lộ Trình &amp; Bộ Sổ Tay Ma Thuật.
+                <p className="font-body text-slate-700 text-[15px] sm:text-[15.5px] mt-2 leading-relaxed">
+                  <strong className="text-[#0A78F3] font-bold">Trực tiếp cùng Cô Nghi</strong> tại <strong className="text-slate-900 font-bold bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">866/25 Ngô Quyền, Sơn Trà</strong>. Nhận ngay <strong className="text-[#ff4757] font-bold">Bản Phác Đồ Lộ Trình</strong> &amp; <strong className="text-purple-700 font-bold">Bộ Sổ Tay Ma Thuật</strong>.
                 </p>
 
-                <form onSubmit={handleSubmitForm} className="mt-5 space-y-3.5">
+                <form onSubmit={handleSubmitForm} className="mt-5 space-y-4">
+                  {/* Trường 1: Tên phụ huynh */}
                   <div>
-                    <label className="block uppercase text-xs sm:text-[13px] tracking-wider text-slate-700 font-bold mb-1">
-                      1. Họ và tên Phụ huynh (*)
+                    <label className="block text-xs sm:text-[13px] font-extrabold text-slate-800 mb-1">
+                      1. Tên Phụ huynh (*)
                     </label>
                     <input
                       required
                       type="text"
-                      placeholder="Ví dụ: Mẹ Thảo Nguyên..."
+                      placeholder="Ví dụ: Mẹ Thảo Nguyên, Ba Minh..."
                       value={formData.parentName}
                       onChange={(e) => setFormData({ ...formData, parentName: e.target.value })}
-                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#0A78F3] focus:ring-1 focus:ring-[#0A78F3] text-slate-900 transition-colors"
+                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#ff4757] focus:ring-1 focus:ring-[#ff4757] text-slate-900 transition-colors"
                     />
                   </div>
 
+                  {/* Trường 2: Số điện thoại Zalo */}
                   <div>
-                    <label className="block uppercase text-xs sm:text-[13px] tracking-wider text-slate-700 font-bold mb-1">
+                    <label className="block text-xs sm:text-[13px] font-extrabold text-slate-800 mb-1">
                       2. Số điện thoại Zalo (*)
                     </label>
                     <input
                       required
                       type="tel"
-                      placeholder="Nhập SĐT Zalo để nhận Phác đồ & Sổ tay PDF..."
+                      placeholder="Nhập SĐT Zalo để nhận Phác đồ &amp; Bộ Sổ tay PDF..."
                       value={formData.phoneZalo}
                       onChange={(e) => setFormData({ ...formData, phoneZalo: e.target.value })}
-                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#0A78F3] focus:ring-1 focus:ring-[#0A78F3] text-slate-900 transition-colors"
+                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#ff4757] focus:ring-1 focus:ring-[#ff4757] text-slate-900 transition-colors"
                     />
                   </div>
 
+                  {/* Trường 3: Họ tên con */}
                   <div>
-                    <label className="block uppercase text-xs sm:text-[13px] tracking-wider text-slate-700 font-bold mb-1">
-                      3. Họ tên con &amp; Khối lớp hiện tại (*)
+                    <label className="block text-xs sm:text-[13px] font-extrabold text-slate-800 mb-1">
+                      3. Họ tên con (*)
                     </label>
                     <input
                       required
                       type="text"
-                      placeholder="Ví dụ: Nguyễn Minh An - Lớp 8..."
-                      value={formData.studentNameAndGrade}
-                      onChange={(e) =>
-                        setFormData({ ...formData, studentNameAndGrade: e.target.value })
-                      }
-                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#0A78F3] focus:ring-1 focus:ring-[#0A78F3] text-slate-900 transition-colors"
+                      placeholder="Ví dụ: Nguyễn Minh An..."
+                      value={formData.studentName}
+                      onChange={(e) => {
+                        const name = e.target.value;
+                        setFormData((prev) => ({
+                          ...prev,
+                          studentName: name,
+                          studentNameAndGrade: `${name}${prev.studentGrade ? ` - ${prev.studentGrade}` : ""}`,
+                        }));
+                      }}
+                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#ff4757] focus:ring-1 focus:ring-[#ff4757] text-slate-900 transition-colors"
                     />
                   </div>
 
+                  {/* Trường 4: Khối lớp hiện tại */}
                   <div>
-                    <label className="block uppercase text-xs sm:text-[13px] tracking-wider text-slate-700 font-bold mb-1">
-                      4. Trường THCS con đang học tại Đà Nẵng
+                    <label className="block text-xs sm:text-[13px] font-extrabold text-slate-800 mb-1">
+                      4. Khối lớp hiện tại (*)
                     </label>
-                    <select
-                      value={formData.school}
-                      onChange={(e) => setFormData({ ...formData, school: e.target.value })}
-                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#0A78F3] focus:ring-1 focus:ring-[#0A78F3] text-slate-900 transition-colors"
-                    >
-                      <option value="THCS Lê Độ">THCS Lê Độ (Sơn Trà)</option>
-                      <option value="THCS Ngô Quyền">THCS Ngô Quyền (Sơn Trà)</option>
-                      <option value="THCS Nguyễn Chí Thanh">THCS Nguyễn Chí Thanh (Sơn Trà)</option>
-                      <option value="THCS Phạm Ngọc Thạch">THCS Phạm Ngọc Thạch (Sơn Trà)</option>
-                      <option value="THCS Phan Bội Châu">THCS Phan Bội Châu (Sơn Trà)</option>
-                      <option value="THCS Lý Tự Trọng">THCS Lý Tự Trọng</option>
-                      <option value="Khác">Trường khác tại Đà Nẵng</option>
-                    </select>
+                    <input
+                      required
+                      type="text"
+                      placeholder="Ví dụ: Lớp 7, Lớp 8, Lớp 9..."
+                      value={formData.studentGrade}
+                      onChange={(e) => {
+                        const grade = e.target.value;
+                        setFormData((prev) => ({
+                          ...prev,
+                          studentGrade: grade,
+                          studentNameAndGrade: `${prev.studentName}${grade ? ` - ${grade}` : ""}`,
+                        }));
+                      }}
+                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#ff4757] focus:ring-1 focus:ring-[#ff4757] text-slate-900 transition-colors"
+                    />
                   </div>
 
+                  {/* Trường 5: Trường THCS con đang học */}
                   <div>
-                    <label className="block uppercase text-xs sm:text-[13px] tracking-wider text-slate-700 font-bold mb-1">
-                      5. Nhu cầu ưu tiên của Phụ huynh
+                    <label className="block text-xs sm:text-[13px] font-extrabold text-slate-800 mb-1">
+                      5. Trường THCS con đang theo học tại Đà Nẵng
                     </label>
-                    <div className="space-y-1.5 text-xs">
+                    <input
+                      type="text"
+                      placeholder="Ví dụ: THCS Lê Độ, THCS Ngô Quyền, THCS Nguyễn Chí Thanh..."
+                      value={formData.school}
+                      onChange={(e) => setFormData({ ...formData, school: e.target.value })}
+                      className="w-full text-sm sm:text-base px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#ff4757] focus:ring-1 focus:ring-[#ff4757] text-slate-900 transition-colors"
+                    />
+                  </div>
+
+                  {/* Trường 6: Tình trạng hiện tại của con (Checkboxes) */}
+                  <div>
+                    <label className="block text-xs sm:text-[13px] font-extrabold text-slate-800 mb-1.5">
+                      6. Tình trạng hiện tại của con (Chọn các ý phù hợp)
+                    </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                      {[
+                        "Mất gốc hoàn toàn, học trước quên sau",
+                        "Hay 'khoanh lụi' trắc nghiệm, không dịch được câu",
+                        "Sợ sai, tự ti, thiếu tự giác học ở nhà",
+                        "Cần gỡ điểm gấp cho kỳ thi Giữa kỳ, Cuối kỳ, Lớp 10",
+                      ].map((prob, i) => (
+                        <label
+                          key={i}
+                          className="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-200 hover:bg-slate-100 cursor-pointer transition-colors"
+                        >
+                          <input
+                            type="checkbox"
+                            checked={formData.problems.includes(prob)}
+                            onChange={() => handleToggleProblem(prob)}
+                            className="mt-0.5 text-[#ff4757] rounded-sm focus:ring-[#ff4757]"
+                          />
+                          <span className="font-body text-slate-700 leading-snug">{prob}</span>
+                        </label>
+                      ))}
+
+                      {/* Ô Khác:... */}
+                      <div className="sm:col-span-2 flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-200 hover:bg-slate-100 transition-colors">
+                        <label className="flex items-center gap-2 cursor-pointer shrink-0">
+                          <input
+                            type="checkbox"
+                            checked={isOtherProblemChecked}
+                            onChange={(e) => {
+                              const checked = e.target.checked;
+                              setIsOtherProblemChecked(checked);
+                              if (checked && otherProblemText) {
+                                handleToggleProblem(`Khác: ${otherProblemText}`);
+                              } else if (!checked && otherProblemText) {
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  problems: prev.problems.filter((p) => !p.startsWith("Khác:")),
+                                }));
+                              }
+                            }}
+                            className="text-[#ff4757] rounded-sm focus:ring-[#ff4757]"
+                          />
+                          <span className="font-body text-slate-700 leading-snug font-medium text-xs sm:text-sm">
+                            Khác:
+                          </span>
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Nhập tình trạng cụ thể khác của con..."
+                          value={otherProblemText}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            setOtherProblemText(val);
+                            setIsOtherProblemChecked(true);
+                            setFormData((prev) => {
+                              const filtered = prev.problems.filter((p) => !p.startsWith("Khác:"));
+                              return val ? { ...prev, problems: [...filtered, `Khác: ${val}`] } : { ...prev, problems: filtered };
+                            });
+                          }}
+                          className="flex-1 text-xs sm:text-sm px-3 py-1.5 rounded-lg bg-white border border-slate-200 focus:outline-none focus:border-[#ff4757] text-slate-900"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Trường 7: Nhu cầu ưu tiên */}
+                  <div>
+                    <label className="block text-xs sm:text-[13px] font-extrabold text-slate-800 mb-1.5">
+                      7. Nhu cầu ưu tiên của Phụ huynh
+                    </label>
+                    <div className="space-y-1.5 text-xs sm:text-sm">
                       {[
                         "Đăng ký Phiên Chẩn đoán 1-1 Miễn phí (45 phút) + Nhận trọn bộ 4 Quà tặng",
                         "Tư vấn Lộ trình 90 ngày (Bứt phá 1-3 điểm)",
@@ -4739,46 +4843,107 @@ export const LandingPage: React.FC = () => {
                       ].map((choice, i) => (
                         <label
                           key={i}
-                          className="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 cursor-pointer text-slate-800 hover:bg-sky-50/50 hover:border-sky-200 transition-colors"
+                          className="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer text-slate-800 hover:bg-rose-50/50 hover:border-rose-200 transition-colors"
                         >
                           <input
                             type="radio"
-                            name="priority"
-                            checked={formData.priorityChoice === choice}
-                            onChange={() => setFormData({ ...formData, priorityChoice: choice })}
-                            className="text-[#0A78F3] focus:ring-[#0A78F3]"
+                            name="modal-priority"
+                            checked={!isOtherPriority && formData.priorityChoice === choice}
+                            onChange={() => {
+                              setIsOtherPriority(false);
+                              setFormData({ ...formData, priorityChoice: choice });
+                            }}
+                            className="text-[#ff4757] focus:ring-[#ff4757]"
                           />
                           <span className="font-body text-[13.5px] sm:text-[15px] leading-snug">{choice}</span>
                         </label>
                       ))}
+
+                      {/* Lựa chọn Khác:... */}
+                      <div className="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 hover:bg-rose-50/50 hover:border-rose-200 transition-colors">
+                        <label className="flex items-center gap-2.5 cursor-pointer shrink-0">
+                          <input
+                            type="radio"
+                            name="modal-priority"
+                            checked={isOtherPriority}
+                            onChange={() => {
+                              setIsOtherPriority(true);
+                              setFormData({
+                                ...formData,
+                                priorityChoice: otherPriorityText ? `Khác: ${otherPriorityText}` : "Khác",
+                              });
+                            }}
+                            className="text-[#ff4757] focus:ring-[#ff4757]"
+                          />
+                          <span className="font-body text-[13.5px] sm:text-[15px] leading-snug font-medium">
+                            Khác:
+                          </span>
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Nhập nhu cầu ưu tiên cụ thể khác..."
+                          value={otherPriorityText}
+                          onFocus={() => {
+                            setIsOtherPriority(true);
+                            setFormData({
+                              ...formData,
+                              priorityChoice: otherPriorityText ? `Khác: ${otherPriorityText}` : "Khác",
+                            });
+                          }}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            setOtherPriorityText(val);
+                            setIsOtherPriority(true);
+                            setFormData({
+                              ...formData,
+                              priorityChoice: val ? `Khác: ${val}` : "Khác",
+                            });
+                          }}
+                          className="flex-1 text-xs sm:text-sm px-3 py-1.5 rounded-lg bg-white border border-slate-200 focus:outline-none focus:border-[#ff4757] text-slate-900"
+                        />
+                      </div>
                     </div>
                   </div>
 
-                  <button
-                    type="submit"
-                    className="w-full mt-4 py-4 px-4 rounded-xl bg-[#0A78F3] hover:bg-sky-500 text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg shadow-sky-500/25 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
-                  >
-                    <span>XÁC NHẬN ĐĂNG KÝ – GIỮ LỊCH TEST 1-1 MIỄN PHÍ</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
+                  {/* Nút Bấm Xác Nhận Final CTA Button */}
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      className="w-full py-3.5 sm:py-4 px-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-xl shadow-rose-500/30 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2.5"
+                    >
+                      <div className="flex flex-col items-center text-center leading-snug">
+                        <span className="font-heading font-black text-sm sm:text-base md:text-lg uppercase tracking-tight">
+                          XÁC NHẬN ĐĂNG KÝ
+                        </span>
+                        <span className="font-body text-[11px] sm:text-xs text-rose-100 normal-case mt-0.5 font-normal">
+                          Giữ lịch test 1-1 &amp; nhận phác đồ miễn phí
+                        </span>
+                      </div>
+                      <ArrowRight className="w-5 h-5 shrink-0" />
+                    </button>
+                  </div>
 
-                  <p className="font-body text-xs sm:text-[13px] text-center text-slate-500">
-                    ⚡ Cô Nghi sẽ trực tiếp liên hệ qua Zalo hoặc điện thoại trong vòng 15 phút để xác nhận lịch hẹn!
-                  </p>
+                  {/* Bảo Mật */}
+                  <div className="pt-2 text-center font-body text-xs sm:text-[13px] text-slate-500">
+                    <p className="flex items-center justify-center gap-1.5 text-slate-500">
+                      <Lock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                      <span>Thông tin cá nhân của phụ huynh và học sinh được bảo mật tuyệt đối 100%.</span>
+                    </p>
+                  </div>
                 </form>
               </div>
             ) : (
               <div className="py-6 text-center space-y-3">
-                <div className="w-16 h-16 rounded-full bg-sky-100 text-[#0A78F3] mx-auto flex items-center justify-center border-2 border-sky-300 shadow-sm">
+                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center border-2 border-emerald-300 shadow-sm">
                   <Check className="w-8 h-8" />
                 </div>
                 <h4 className="font-heading font-extrabold uppercase tracking-tight text-slate-900 text-lg">
                   Đăng Ký Thành Công!
                 </h4>
                 <p className="font-body text-[15.5px] sm:text-base text-slate-600 leading-relaxed">
-                  Cảm ơn phụ huynh <strong>{formData.parentName}</strong> đã gửi gắm thông tin của bé <strong>{formData.studentNameAndGrade}</strong>.
+                  Cảm ơn phụ huynh <strong>{formData.parentName}</strong> đã gửi gắm thông tin của bé <strong>{formData.studentName || formData.studentNameAndGrade}</strong>.
                 </p>
-                <div className="p-4 bg-sky-50 rounded-xl border border-sky-100 text-sm sm:text-base text-slate-800">
+                <div className="p-4 bg-emerald-50 rounded-xl border border-emerald-100 text-sm sm:text-base text-slate-800">
                   Cô Nghi sẽ liên hệ qua Zalo số <strong>{formData.phoneZalo}</strong> để gửi Bản Phác Đồ Lộ Trình &amp; chốt khung giờ test 1-1 phù hợp nhất với lịch học của con.
                 </div>
                 <button
