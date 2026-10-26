@@ -30,10 +30,11 @@ const GOOGLE_SHEET_URL =
   "https://docs.google.com/spreadsheets/d/1icicHi2LTdOSRD8TSLHjb8zgK4xWlhnSVRZFKEGLulA/edit?usp=sharing";
 
 const APPS_SCRIPT_CODE = `/**
- * Webhook nhận dữ liệu JSON từ Form đăng ký và ghi vào Google Sheets
+ * Webhook nhận dữ liệu JSON từ Form đăng ký và ghi vào Google Sheets (Đủ 10 cột A -> J)
  */
 function doPost(e) {
   try {
+    // 1. Kiểm tra payload gửi lên
     if (!e || !e.postData || !e.postData.contents) {
       throw new Error("Không tìm thấy dữ liệu gửi lên (Empty payload).");
     }
@@ -45,34 +46,44 @@ function doPost(e) {
       payload = e.parameter || {};
     }
 
-    // Trích xuất các biến (hỗ trợ cả tiếng Việt và tiếng Anh)
-    var tenPhuHuynh = payload.tenPhuHuynh || payload.parentName || "";
-    var sdtRaw      = payload.sdtZalo || payload.phoneZalo || "";
-    // Thêm nháy đơn ' phía trước số điện thoại để Google Sheets giữ nguyên số 0
-    var sdtZalo     = sdtRaw ? "'" + sdtRaw : "";
-    var hoTenCon    = payload.hoTenCon || payload.studentName || "";
-    var khoiLop     = payload.khoiLop || payload.studentGrade || "";
-    var truongTHCS  = payload.truongTHCS || payload.school || "";
-    var tinhTrang   = payload.tinhTrang || (Array.isArray(payload.problems) ? payload.problems.join("; ") : (payload.problems || ""));
-    var nhuCau      = payload.nhuCau || payload.priorityChoice || payload.priority || "";
+    // 2. Trích xuất các trường thông tin từ payload (hỗ trợ cả tiếng Việt và tiếng Anh)
+    var tenPhuHuynh  = payload.tenPhuHuynh || payload.parentName || "";
+    var sdtRaw       = payload.sdtZalo || payload.phoneZalo || "";
+    // Thêm nháy đơn ' để giữ nguyên số 0 ở đầu số điện thoại trong Sheets
+    var sdtZalo      = sdtRaw ? "'" + sdtRaw : "";
+    var hoTenCon     = payload.hoTenCon || payload.studentName || "";
+    var khoiLop      = payload.khoiLop || payload.studentGrade || "";
+    var truongTHCS   = payload.truongTHCS || payload.school || "";
+    var tinhTrang    = payload.tinhTrang || (Array.isArray(payload.problems) ? payload.problems.join("; ") : (payload.problems || ""));
+    var nhuCau       = payload.nhuCau || payload.priorityChoice || payload.priority || "";
 
+    // Cột I: Trạng thái xử lý (Mặc định là "Mới tiếp nhận" nếu form không truyền)
+    var trangThai    = payload.trangThaiXuLy || payload.trangThai || payload.status || "Mới tiếp nhận";
+
+    // Cột J: Vị trí nút CTA mà người dùng đã bấm
+    var viTriCTA     = payload.viTriCTA || payload.ctaLocation || payload.viTri || "Form cuối trang";
+
+    // 3. Lấy trang tính và nối dòng mới theo đúng thứ tự 10 cột (A -> J)
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
     var timestamp = new Date();
 
     sheet.appendRow([
-      timestamp,
-      tenPhuHuynh,
-      sdtZalo,
-      hoTenCon,
-      khoiLop,
-      truongTHCS,
-      tinhTrang,
-      nhuCau
+      timestamp,     // Cột A: Thời gian đăng ký (Timestamp)
+      tenPhuHuynh,   // Cột B: Tên Phụ huynh
+      sdtZalo,       // Cột C: Số điện thoại Zalo
+      hoTenCon,      // Cột D: Họ tên con
+      khoiLop,       // Cột E: Khối lớp hiện tại
+      truongTHCS,    // Cột F: Trường THCS
+      tinhTrang,     // Cột G: Tình trạng hiện tại
+      nhuCau,        // Cột H: Nhu cầu ưu tiên
+      trangThai,     // Cột I: Trạng thái xử lý
+      viTriCTA       // Cột J: Vị trí CTA
     ]);
 
+    // 4. Trả về phản hồi JSON báo trạng thái thành công
     var responseData = {
       status: "success",
-      message: "Dữ liệu đăng ký đã được ghi nhận thành công!",
+      message: "Ghi nhận đăng ký thành công!",
       timestamp: timestamp.toISOString()
     };
 

@@ -34,6 +34,17 @@ export interface FormattedLeadPayload {
   trangThaiXuLy: string;
   viTriCTA: string;
 
+  // Các bí danh bổ trợ tương thích tối đa với Apps Script
+  trangThai?: string;
+  trang_thai_xu_ly?: string;
+  status?: string;
+  processingStatus?: string;
+  viTri?: string;
+  vi_tri_cta?: string;
+  ctaLocation?: string;
+  cta_location?: string;
+  cta?: string;
+
   // Trường chuẩn hóa & tiếng Anh dự phòng
   timestamp: string;
   parentName: string;
@@ -52,14 +63,12 @@ const STORAGE_LEADS_BACKUP_KEY = "co_nghi_leads_backup";
 export const DEFAULT_GOOGLE_SHEET_WEBHOOK_URL =
   "https://script.google.com/macros/s/AKfycbwI6aZOtz5cESS3kdN037C74cX_Sx5Oxn05Q31ujWH0IdWxuBhK_euC15TAFhd9a9CN/exec";
 
-let cachedWebhookUrl = DEFAULT_GOOGLE_SHEET_WEBHOOK_URL;
+let cachedWebhookUrl: string | null = null;
 
 /**
  * Get configured Google Apps Script Webhook URL synchronously (from memory, localStorage, env, or default)
  */
 export function getGoogleSheetWebhookUrl(): string {
-  if (cachedWebhookUrl) return cachedWebhookUrl;
-
   try {
     const customUrl = localStorage.getItem(STORAGE_WEBHOOK_KEY);
     if (customUrl && customUrl.trim().length > 0) {
@@ -69,6 +78,7 @@ export function getGoogleSheetWebhookUrl(): string {
   } catch {
     // Ignore localStorage errors
   }
+  if (cachedWebhookUrl) return cachedWebhookUrl;
   return (
     (import.meta.env.VITE_GOOGLE_SHEET_WEBHOOK_URL as string) ||
     DEFAULT_GOOGLE_SHEET_WEBHOOK_URL
@@ -199,6 +209,17 @@ export async function submitLead(
     trangThaiXuLy,
     viTriCTA,
 
+    // Bí danh tương thích tối đa với bất kỳ script Google Sheets nào:
+    trangThai: trangThaiXuLy,
+    trang_thai_xu_ly: trangThaiXuLy,
+    status: trangThaiXuLy,
+    processingStatus: trangThaiXuLy,
+    viTri: viTriCTA,
+    vi_tri_cta: viTriCTA,
+    ctaLocation: viTriCTA,
+    cta_location: viTriCTA,
+    cta: viTriCTA,
+
     // 2. Các trường dự phòng & metadata:
     timestamp,
     parentName,
@@ -303,6 +324,15 @@ export async function syncAllFirestoreLeadsToGoogleSheet(): Promise<{
         nhuCau: data.nhuCau || data.priorityChoice || "",
         trangThaiXuLy: data.trangThaiXuLy || "Mới tiếp nhận",
         viTriCTA: data.viTriCTA || (data.source === "on_page_form" ? "Form cuối trang" : "CTA Pop-up"),
+        trangThai: data.trangThaiXuLy || "Mới tiếp nhận",
+        trang_thai_xu_ly: data.trangThaiXuLy || "Mới tiếp nhận",
+        status: data.trangThaiXuLy || "Mới tiếp nhận",
+        processingStatus: data.trangThaiXuLy || "Mới tiếp nhận",
+        viTri: data.viTriCTA || (data.source === "on_page_form" ? "Form cuối trang" : "CTA Pop-up"),
+        vi_tri_cta: data.viTriCTA || (data.source === "on_page_form" ? "Form cuối trang" : "CTA Pop-up"),
+        ctaLocation: data.viTriCTA || (data.source === "on_page_form" ? "Form cuối trang" : "CTA Pop-up"),
+        cta_location: data.viTriCTA || (data.source === "on_page_form" ? "Form cuối trang" : "CTA Pop-up"),
+        cta: data.viTriCTA || (data.source === "on_page_form" ? "Form cuối trang" : "CTA Pop-up"),
         timestamp: data.clientTimestamp || data.timestamp || "",
         parentName: data.parentName || "",
         phoneZalo: data.phoneZalo || "",
