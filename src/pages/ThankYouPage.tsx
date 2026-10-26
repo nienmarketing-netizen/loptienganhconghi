@@ -29,6 +29,8 @@ export interface SubmissionData {
   priorityChoice?: string;
   ticketCode?: string;
   submittedAt?: string;
+  trangThaiXuLy?: string;
+  viTriCTA?: string;
 }
 
 interface ThankYouPageProps {

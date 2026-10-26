@@ -468,6 +468,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
   const [isOnPageSubmitted, setIsOnPageSubmitted] = useState(false);
   const [isSubmittingLead, setIsSubmittingLead] = useState(false);
   const [isSheetConfigOpen, setIsSheetConfigOpen] = useState(false);
+  const [currentCtaLocation, setCurrentCtaLocation] = useState<string>("CTA Hero - Đăng ký Test học lực 1-1");
 
   const handleToggleProblem = (problem: string) => {
     setFormData((prev) => {
@@ -522,6 +523,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
           new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }) +
           ", " +
           new Date().toLocaleDateString("vi-VN"),
+        trangThaiXuLy: "Mới tiếp nhận",
+        viTriCTA: "Form cuối trang",
       };
 
       await submitLead(
@@ -529,8 +532,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
           ...formData,
           problems: allProblems,
           priorityChoice: finalPriority,
+          trangThaiXuLy: "Mới tiếp nhận",
+          viTriCTA: "Form cuối trang",
         },
-        "on_page_form"
+        "on_page_form",
+        "Form cuối trang"
       );
 
       try {
@@ -741,7 +747,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
     }
   };
 
-  const handleOpenRegisterModal = () => {
+  const handleOpenRegisterModal = (location: string = "CTA chung - Đăng ký Test 1-1") => {
+    setCurrentCtaLocation(location);
     setIsModalOpen(true);
     setRegistrationSubmitted(false);
   };
@@ -788,6 +795,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
           new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }) +
           ", " +
           new Date().toLocaleDateString("vi-VN"),
+        trangThaiXuLy: "Mới tiếp nhận",
+        viTriCTA: currentCtaLocation,
       };
 
       await submitLead(
@@ -795,8 +804,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
           ...formData,
           problems: allProblems,
           priorityChoice: finalPriority,
+          trangThaiXuLy: "Mới tiếp nhận",
+          viTriCTA: currentCtaLocation,
         },
-        "cta_popup_modal"
+        "cta_popup_modal",
+        currentCtaLocation
       );
 
       try {
@@ -1127,7 +1139,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
             <div className="flex flex-col items-center justify-center pt-3 pb-1">
               <button
                 type="button"
-                onClick={handleOpenRegisterModal}
+                onClick={() => handleOpenRegisterModal("CTA Hero - Đăng ký Test học lực 1-1")}
                 className="w-full sm:w-auto px-4 py-2.5 sm:px-8 sm:py-3 rounded-2xl bg-[#0A78F3] hover:bg-[#096ad8] text-white shadow-[0_10px_25px_rgba(10,120,243,0.35)] hover:shadow-[0_14px_32px_rgba(10,120,243,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none"
               >
                 <div className="flex flex-col items-center text-center leading-snug">
@@ -1518,7 +1530,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
                 <div className="pt-2 flex flex-col items-center lg:items-start">
                   <button
                     type="button"
-                    onClick={handleOpenRegisterModal}
+                    onClick={() => handleOpenRegisterModal("CTA Video VSL - Đăng ký Test 1-1")}
                     className="w-full sm:w-auto px-4 py-2.5 sm:px-7 sm:py-3 rounded-2xl bg-[#0A78F3] hover:bg-[#096ad8] text-white shadow-[0_10px_25px_rgba(10,120,243,0.35)] hover:shadow-[0_14px_32px_rgba(10,120,243,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none"
                   >
                     <div className="flex flex-col items-center sm:items-start text-center sm:text-left leading-snug">
@@ -1766,7 +1778,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
               <div className="flex flex-col items-center justify-center pt-5 pb-1">
                 <button
                   type="button"
-                  onClick={handleOpenRegisterModal}
+                  onClick={() => handleOpenRegisterModal("CTA 4 Triệu Chứng - Đăng ký Test 1-1")}
                   className="w-full sm:w-auto px-4 py-2.5 sm:px-8 sm:py-3 rounded-2xl bg-[#0A78F3] hover:bg-[#096ad8] text-white shadow-[0_10px_25px_rgba(10,120,243,0.35)] hover:shadow-[0_14px_32px_rgba(10,120,243,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none"
                 >
                   <div className="flex flex-col items-center text-center leading-snug">
@@ -2168,7 +2180,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
                   <div className="flex flex-col items-center justify-center pt-2">
                     <button
                       type="button"
-                      onClick={handleOpenRegisterModal}
+                      onClick={() => handleOpenRegisterModal("CTA Sau Box Tâm Lý - Đăng ký Test 1-1")}
                       className="w-full sm:w-auto px-5 py-3 sm:px-8 sm:py-3.5 rounded-2xl bg-[#0A78F3] hover:bg-[#096ad8] text-white shadow-[0_10px_25px_rgba(10,120,243,0.35)] hover:shadow-[0_14px_32px_rgba(10,120,243,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none"
                     >
                       <div className="flex flex-col items-center text-center leading-snug">
@@ -2234,13 +2246,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
             </div>
 
           {/* 3 Thẻ Lật Như Lật Sách Đối Chiếu (Book Flip Comparison Cards) */}
-          <ComparisonBookCards onRegisterClick={handleOpenRegisterModal} />
+          <ComparisonBookCards onRegisterClick={() => handleOpenRegisterModal("CTA Bảng So Sánh Lật Sách")} />
 
           {/* ── CTA BUTTON BÊN DƯỚI BẢNG SO SÁNH (HIỂN THỊ CẢ MOBILE & DESKTOP) ── */}
           <div className="flex flex-col items-center justify-center pt-2 sm:pt-4">
             <button
               type="button"
-              onClick={handleOpenRegisterModal}
+              onClick={() => handleOpenRegisterModal("CTA Dưới Bảng So Sánh Lật Sách")}
               className="w-full sm:w-auto px-4 py-2.5 sm:px-8 sm:py-3 rounded-2xl bg-[#0A78F3] hover:bg-[#096ad8] text-white shadow-[0_10px_25px_rgba(10,120,243,0.35)] hover:shadow-[0_14px_32px_rgba(10,120,243,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none"
             >
               <div className="flex flex-col items-center text-center leading-snug">
@@ -2408,7 +2420,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
           <div className="pt-4 flex justify-center">
             <button
               type="button"
-              onClick={handleOpenRegisterModal}
+              onClick={() => handleOpenRegisterModal("CTA Khối 3 - 5 Phương Pháp Độc Quyền")}
               className="w-full sm:w-auto px-4 py-2.5 sm:px-8 sm:py-3 rounded-2xl bg-[#0A78F3] hover:bg-[#096ad8] text-white shadow-[0_10px_25px_rgba(10,120,243,0.35)] hover:shadow-[0_14px_32px_rgba(10,120,243,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none"
             >
               <div className="flex flex-col items-center text-center leading-snug">
@@ -2650,7 +2662,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
                 <div className="pt-2 flex items-center">
                   <button
                     type="button"
-                    onClick={handleOpenRegisterModal}
+                    onClick={() => handleOpenRegisterModal("CTA Khối 4 - Bóc Tách 4 Bước")}
                     className="w-full sm:w-auto px-3.5 sm:px-6 py-2.5 sm:py-3.5 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] transition-all flex items-center justify-center gap-2 sm:gap-3 cursor-pointer active:scale-98"
                   >
                     <div className="flex flex-col items-center text-center leading-snug min-w-0">
@@ -2900,7 +2912,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
             <div className="flex flex-col items-center justify-center pt-2 sm:pt-4">
               <button
                 type="button"
-                onClick={handleOpenRegisterModal}
+                onClick={() => handleOpenRegisterModal("CTA Khối 5 - 100 Tokens Đổi Quà")}
                 className="w-full sm:w-auto px-5 py-3 sm:px-8 sm:py-3.5 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none active:scale-98"
               >
                 <div className="flex flex-col items-center text-center leading-snug min-w-0">
@@ -3044,7 +3056,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
                   <div className="pt-4">
                     <button
                       type="button"
-                      onClick={handleOpenRegisterModal}
+                      onClick={() => handleOpenRegisterModal("CTA Khối 6 - Gói Lớp 6-8")}
                       className="w-full py-3 sm:py-3.5 px-3 sm:px-4 rounded-2xl bg-[#0A78F3] hover:bg-[#096ad8] text-white font-heading font-extrabold text-[10.5px] min-[360px]:text-[11.5px] min-[390px]:text-xs sm:text-sm uppercase tracking-tight sm:tracking-wider shadow-[0_8px_20px_rgba(10,120,243,0.35)] hover:shadow-[0_12px_28px_rgba(10,120,243,0.45)] transition-all active:scale-98 cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 border-none outline-none"
                     >
                       <span className="whitespace-nowrap">ĐĂNG KÝ TEST 1-1 &amp; GIỮ CHỖ GÓI LỚP 6 – 8</span>
@@ -3153,7 +3165,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
                   <div className="pt-4">
                     <button
                       type="button"
-                      onClick={handleOpenRegisterModal}
+                      onClick={() => handleOpenRegisterModal("CTA Khối 6 - Gói Lớp 9")}
                       className="w-full py-3 sm:py-3.5 px-3 sm:px-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white font-heading font-extrabold text-[10.5px] min-[360px]:text-[11.5px] min-[390px]:text-xs sm:text-sm uppercase tracking-tight sm:tracking-wider shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] transition-all active:scale-98 cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 border-none outline-none"
                     >
                       <span className="whitespace-nowrap">ĐĂNG KÝ TEST 1-1 &amp; GIỮ CHỖ GÓI LỚP 9</span>
@@ -3241,7 +3253,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
 
                     <button
                       type="button"
-                      onClick={handleOpenRegisterModal}
+                      onClick={() => handleOpenRegisterModal("CTA Trại Ôn Thi Cấp Tốc 14 Ngày")}
                       className="w-full mt-4 sm:mt-5 py-3 sm:py-3.5 px-4 rounded-2xl bg-[#111827] hover:bg-black text-white font-heading font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2 border-none outline-none"
                     >
                       <span>ĐĂNG KÝ NGAY</span>
@@ -3658,7 +3670,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
             <div className="flex flex-col items-center justify-center pt-2 sm:pt-4">
               <button
                 type="button"
-                onClick={handleOpenRegisterModal}
+                onClick={() => handleOpenRegisterModal("CTA Khối 7 - Feedback Zalo Phụ Huynh")}
                 className="w-full sm:w-auto px-5 py-3 sm:px-8 sm:py-3.5 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 sm:gap-3.5 group cursor-pointer border-none outline-none active:scale-98"
               >
                 <div className="flex flex-col items-center text-center leading-snug min-w-0">
@@ -3752,7 +3764,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
                   <div className="pt-1">
                     <button
                       type="button"
-                      onClick={handleOpenRegisterModal}
+                      onClick={() => handleOpenRegisterModal("CTA Bảo Hiểm Lớp 1 - Hoàn Phí 100%")}
                       className="w-full px-3.5 sm:px-5 py-2.5 sm:py-3 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
                     >
                       <div className="flex flex-col items-center text-center leading-snug min-w-0">
@@ -3815,7 +3827,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
                   <div className="pt-1">
                     <button
                       type="button"
-                      onClick={handleOpenRegisterModal}
+                      onClick={() => handleOpenRegisterModal("CTA Bảo Hiểm Lớp 2 - Kèm Cặp 1-1 Tăng 1.5-3 Điểm")}
                       className="w-full px-3.5 sm:px-5 py-2.5 sm:py-3 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
                     >
                       <div className="flex flex-col items-center text-center leading-snug min-w-0">
@@ -3879,7 +3891,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
             <div className="pt-2 flex flex-col items-center justify-center">
               <button
                 type="button"
-                onClick={handleOpenRegisterModal}
+                onClick={() => handleOpenRegisterModal("CTA Tổng Kết Bảo Hiểm Học Tập 2 Lớp")}
                 className="w-full sm:w-auto px-4 sm:px-8 py-3 sm:py-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] transition-all flex items-center justify-center gap-2.5 sm:gap-3.5 cursor-pointer active:scale-98"
               >
                 <div className="flex flex-col items-center text-center leading-snug min-w-0">
@@ -4118,7 +4130,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
             <div className="pt-2 flex flex-col items-center justify-center">
               <button
                 type="button"
-                onClick={handleOpenRegisterModal}
+                onClick={() => handleOpenRegisterModal("CTA Khối 8 - Nhận Trọn Bộ 4 Quà Tặng")}
                 className="w-full sm:w-auto px-6 sm:px-10 py-3.5 sm:py-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] transition-all flex items-center justify-center gap-3 cursor-pointer active:scale-98 border border-white/30 group"
               >
                 <div className="flex flex-col items-center text-center leading-snug min-w-0">
@@ -4270,7 +4282,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
             <div className="pt-2 flex flex-col items-center justify-center">
               <button
                 type="button"
-                onClick={handleOpenRegisterModal}
+                onClick={() => handleOpenRegisterModal("CTA Khối 9 - Sau Bảng FAQ")}
                 className="w-full sm:w-auto px-6 sm:px-10 py-3.5 sm:py-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-[0_8px_20px_rgba(255,71,87,0.35)] hover:shadow-[0_12px_28px_rgba(255,71,87,0.45)] transition-all flex items-center justify-center gap-3 cursor-pointer active:scale-98 border border-white/30 group"
               >
                 <div className="flex flex-col items-center text-center leading-snug min-w-0">
@@ -4394,7 +4406,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
                       if (formEl) {
                         formEl.scrollIntoView({ behavior: "smooth" });
                       } else {
-                        handleOpenRegisterModal();
+                        handleOpenRegisterModal("CTA Giữ 1 Trong 05 Suất Cuối");
                       }
                     }}
                     className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#ff4757] hover:bg-[#e03949] text-white font-heading font-extrabold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 border border-white/20"
@@ -4790,7 +4802,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
       ────────────────────────────────────────────────────────────── */}
       <div className="fixed bottom-3 sm:bottom-4 inset-x-0 z-40 flex justify-center md:hidden pointer-events-none pb-[env(safe-area-inset-bottom)]">
         <button
-          onClick={handleOpenRegisterModal}
+          onClick={() => handleOpenRegisterModal("CTA Nổi Chân Trang Mobile (Sticky Floating)")}
           className="pointer-events-auto w-[90%] py-2.5 sm:py-3 px-4 rounded-2xl bg-gradient-to-r from-[#C43838] via-rose-500 to-amber-500 hover:from-[#b33131] hover:to-amber-600 active:scale-[0.98] text-white shadow-[0_8px_24px_rgba(196,56,56,0.38)] transition-all flex flex-col items-center justify-center cursor-pointer border-none outline-none animate-subtle-zoom"
         >
           <span className="font-heading font-extrabold uppercase tracking-tight text-xs sm:text-sm leading-tight flex items-center gap-1.5 text-white">

@@ -18,10 +18,12 @@ export interface LeadFormData {
   school: string;
   problems: string[];
   priorityChoice: string;
+  trangThaiXuLy?: string;
+  viTriCTA?: string;
 }
 
 export interface FormattedLeadPayload {
-  // Các trường tiếng Việt khớp 100% với Google Apps Script doPost()
+  // Các trường tiếng Việt khớp 100% với Google Apps Script doPost() (10 cột A -> J)
   tenPhuHuynh: string;
   sdtZalo: string;
   hoTenCon: string;
@@ -29,6 +31,8 @@ export interface FormattedLeadPayload {
   truongTHCS: string;
   tinhTrang: string;
   nhuCau: string;
+  trangThaiXuLy: string;
+  viTriCTA: string;
 
   // Trường chuẩn hóa & tiếng Anh dự phòng
   timestamp: string;
@@ -152,7 +156,8 @@ export function getVietnamTimestamp(): string {
  */
 export async function submitLead(
   formData: LeadFormData,
-  source: "on_page_form" | "cta_popup_modal" = "on_page_form"
+  source: "on_page_form" | "cta_popup_modal" = "on_page_form",
+  ctaLocation?: string
 ): Promise<{ success: boolean; error?: string }> {
   const timestamp = getVietnamTimestamp();
   
@@ -179,9 +184,11 @@ export async function submitLead(
   const phoneZalo = formData.phoneZalo.trim();
   const school = (formData.school || "").trim();
   const priorityChoice = (formData.priorityChoice || "").trim();
+  const trangThaiXuLy = (formData.trangThaiXuLy || "Mới tiếp nhận").trim();
+  const viTriCTA = (ctaLocation || formData.viTriCTA || (source === "on_page_form" ? "Form cuối trang" : "CTA Pop-up")).trim();
 
   const payload: FormattedLeadPayload = {
-    // 1. Các trường tiếng Việt khớp 100% với Google Apps Script doPost() của bạn:
+    // 1. Các trường tiếng Việt khớp 100% với Google Apps Script doPost() (10 cột A -> J):
     tenPhuHuynh: parentName,
     sdtZalo: phoneZalo,
     hoTenCon: studentName,
@@ -189,6 +196,8 @@ export async function submitLead(
     truongTHCS: school,
     tinhTrang: problemsString,
     nhuCau: priorityChoice,
+    trangThaiXuLy,
+    viTriCTA,
 
     // 2. Các trường dự phòng & metadata:
     timestamp,
@@ -292,6 +301,8 @@ export async function syncAllFirestoreLeadsToGoogleSheet(): Promise<{
         truongTHCS: data.truongTHCS || data.school || "",
         tinhTrang: data.tinhTrang || data.problems || "",
         nhuCau: data.nhuCau || data.priorityChoice || "",
+        trangThaiXuLy: data.trangThaiXuLy || "Mới tiếp nhận",
+        viTriCTA: data.viTriCTA || (data.source === "on_page_form" ? "Form cuối trang" : "CTA Pop-up"),
         timestamp: data.clientTimestamp || data.timestamp || "",
         parentName: data.parentName || "",
         phoneZalo: data.phoneZalo || "",
