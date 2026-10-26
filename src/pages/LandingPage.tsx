@@ -47,6 +47,7 @@ import { ComparisonBookCards } from "../components/ComparisonBookCards";
 import { submitLead } from "../lib/leadService";
 import { GoogleSheetConfigModal } from "../components/GoogleSheetConfigModal";
 import { SubmissionData } from "./ThankYouPage";
+import { useLockBodyScroll } from "../lib/useLockBodyScroll";
 
 export interface LandingPageProps {
   onNavigateToThanks?: (data: SubmissionData) => void;
@@ -426,6 +427,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [registrationSubmitted, setRegistrationSubmitted] = useState(false);
+  useLockBodyScroll(isModalOpen);
   const [teacherPhoto, setTeacherPhoto] = useState<string>(() => {
     try {
       return (
@@ -4816,8 +4818,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
           MODAL ĐĂNG KÝ PHIÊN CHẨN ĐOÁN 1-1 (LEAD CAPTURE MODAL THEO SHOFU)
       ────────────────────────────────────────────────────────────── */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-white text-slate-900 border border-slate-200 rounded-2xl p-6 sm:p-8 md:p-9 max-w-lg md:max-w-2xl lg:max-w-[720px] w-full shadow-2xl max-h-[92vh] overflow-y-auto relative">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-sm animate-fadeIn overscroll-none"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setIsModalOpen(false);
+          }}
+        >
+          <div className="bg-white text-slate-900 border border-slate-200 rounded-2xl p-5 sm:p-8 md:p-9 max-w-lg md:max-w-2xl lg:max-w-[720px] w-full shadow-2xl max-h-[80vh] max-h-[80dvh] sm:max-h-[90vh] overflow-y-auto overscroll-contain relative">
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
