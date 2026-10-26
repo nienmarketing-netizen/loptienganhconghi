@@ -45,10 +45,13 @@ export interface FormattedLeadPayload {
 const STORAGE_WEBHOOK_KEY = "co_nghi_google_sheet_webhook";
 const STORAGE_LEADS_BACKUP_KEY = "co_nghi_leads_backup";
 
-let cachedWebhookUrl = "";
+export const DEFAULT_GOOGLE_SHEET_WEBHOOK_URL =
+  "https://script.google.com/macros/s/AKfycbwI6aZOtz5cESS3kdN037C74cX_Sx5Oxn05Q31ujWH0IdWxuBhK_euC15TAFhd9a9CN/exec";
+
+let cachedWebhookUrl = DEFAULT_GOOGLE_SHEET_WEBHOOK_URL;
 
 /**
- * Get configured Google Apps Script Webhook URL synchronously (from memory, localStorage or env)
+ * Get configured Google Apps Script Webhook URL synchronously (from memory, localStorage, env, or default)
  */
 export function getGoogleSheetWebhookUrl(): string {
   if (cachedWebhookUrl) return cachedWebhookUrl;
@@ -62,7 +65,10 @@ export function getGoogleSheetWebhookUrl(): string {
   } catch {
     // Ignore localStorage errors
   }
-  return (import.meta.env.VITE_GOOGLE_SHEET_WEBHOOK_URL as string) || "";
+  return (
+    (import.meta.env.VITE_GOOGLE_SHEET_WEBHOOK_URL as string) ||
+    DEFAULT_GOOGLE_SHEET_WEBHOOK_URL
+  );
 }
 
 /**

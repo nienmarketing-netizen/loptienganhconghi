@@ -4780,17 +4780,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
 
           <div className="pt-6 border-t border-slate-700/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
             <p>© 2026 Lớp Tiếng Anh Cô Nghi. Bản quyền nội dung đã được đăng ký.</p>
-            <div className="flex items-center gap-4 flex-wrap justify-center sm:justify-end">
-              <button
-                type="button"
-                onClick={() => setIsSheetConfigOpen(true)}
-                className="inline-flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer font-semibold underline decoration-emerald-500/50 underline-offset-2"
-              >
-                <FileSpreadsheet className="w-3.5 h-3.5" />
-                <span>Cấu hình Google Sheet</span>
-              </button>
-              <p>Vận hành trên nền tảng Hệ sinh thái Quản lý Học tập LMS Độc quyền.</p>
-            </div>
+            <p>Vận hành trên nền tảng Hệ sinh thái Quản lý Học tập LMS Độc quyền.</p>
           </div>
         </div>
       </footer>
