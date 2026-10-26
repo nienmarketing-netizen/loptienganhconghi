@@ -46,6 +46,11 @@ import {
 import { ComparisonBookCards } from "../components/ComparisonBookCards";
 import { submitLead } from "../lib/leadService";
 import { GoogleSheetConfigModal } from "../components/GoogleSheetConfigModal";
+import { SubmissionData } from "./ThankYouPage";
+
+export interface LandingPageProps {
+  onNavigateToThanks?: (data: SubmissionData) => void;
+}
 
 
 interface VslScene {
@@ -405,7 +410,7 @@ const infiniteFeedbackSlides = [
   ...FEEDBACK_SLIDES.map((s, idx) => ({ ...s, cloneKey: `fb-c5-${idx}` })),
 ];
 
-export const LandingPage: React.FC = () => {
+export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) => {
   const [isPlayingVsl, setIsPlayingVsl] = useState(false);
   const [isVslMuted, setIsVslMuted] = useState(true);
   const [isVslLoaded, setIsVslLoaded] = useState(false);
@@ -488,6 +493,32 @@ export const LandingPage: React.FC = () => {
           ? `Khác: ${otherPriorityText.trim()}`
           : formData.priorityChoice;
 
+      const submissionPayload: SubmissionData = {
+        parentName: formData.parentName.trim(),
+        phoneZalo: formData.phoneZalo.trim(),
+        studentName: (
+          formData.studentName ||
+          (formData.studentNameAndGrade ? formData.studentNameAndGrade.split("-")[0].trim() : "")
+        ).trim(),
+        studentGrade: (
+          formData.studentGrade ||
+          (formData.studentNameAndGrade && formData.studentNameAndGrade.includes("-")
+            ? formData.studentNameAndGrade.split("-")[1].trim()
+            : "")
+        ).trim(),
+        studentNameAndGrade:
+          formData.studentNameAndGrade ||
+          `${formData.studentName}${formData.studentGrade ? ` - ${formData.studentGrade}` : ""}`,
+        school: formData.school.trim(),
+        problems: allProblems,
+        priorityChoice: finalPriority,
+        ticketCode: `CN-${Math.floor(100000 + Math.random() * 900000)}`,
+        submittedAt:
+          new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }) +
+          ", " +
+          new Date().toLocaleDateString("vi-VN"),
+      };
+
       await submitLead(
         {
           ...formData,
@@ -496,11 +527,28 @@ export const LandingPage: React.FC = () => {
         },
         "on_page_form"
       );
+
+      try {
+        sessionStorage.setItem("co_nghi_last_submission", JSON.stringify(submissionPayload));
+        localStorage.setItem("co_nghi_last_submission", JSON.stringify(submissionPayload));
+      } catch {
+        // ignore
+      }
+
+      setIsOnPageSubmitted(true);
+
+      if (onNavigateToThanks) {
+        onNavigateToThanks(submissionPayload);
+      } else {
+        window.history.pushState({ route: "thanks" }, "", "/thanks");
+        window.dispatchEvent(new PopStateEvent("popstate"));
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     } catch (err) {
       console.error("Lỗi gửi đăng ký:", err);
+      setIsOnPageSubmitted(true);
     } finally {
       setIsSubmittingLead(false);
-      setIsOnPageSubmitted(true);
     }
   };
 
@@ -708,6 +756,32 @@ export const LandingPage: React.FC = () => {
           ? `Khác: ${otherPriorityText.trim()}`
           : formData.priorityChoice;
 
+      const submissionPayload: SubmissionData = {
+        parentName: formData.parentName.trim(),
+        phoneZalo: formData.phoneZalo.trim(),
+        studentName: (
+          formData.studentName ||
+          (formData.studentNameAndGrade ? formData.studentNameAndGrade.split("-")[0].trim() : "")
+        ).trim(),
+        studentGrade: (
+          formData.studentGrade ||
+          (formData.studentNameAndGrade && formData.studentNameAndGrade.includes("-")
+            ? formData.studentNameAndGrade.split("-")[1].trim()
+            : "")
+        ).trim(),
+        studentNameAndGrade:
+          formData.studentNameAndGrade ||
+          `${formData.studentName}${formData.studentGrade ? ` - ${formData.studentGrade}` : ""}`,
+        school: formData.school.trim(),
+        problems: allProblems,
+        priorityChoice: finalPriority,
+        ticketCode: `CN-${Math.floor(100000 + Math.random() * 900000)}`,
+        submittedAt:
+          new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }) +
+          ", " +
+          new Date().toLocaleDateString("vi-VN"),
+      };
+
       await submitLead(
         {
           ...formData,
@@ -716,11 +790,29 @@ export const LandingPage: React.FC = () => {
         },
         "cta_popup_modal"
       );
+
+      try {
+        sessionStorage.setItem("co_nghi_last_submission", JSON.stringify(submissionPayload));
+        localStorage.setItem("co_nghi_last_submission", JSON.stringify(submissionPayload));
+      } catch {
+        // ignore
+      }
+
+      setIsModalOpen(false);
+      setRegistrationSubmitted(true);
+
+      if (onNavigateToThanks) {
+        onNavigateToThanks(submissionPayload);
+      } else {
+        window.history.pushState({ route: "thanks" }, "", "/thanks");
+        window.dispatchEvent(new PopStateEvent("popstate"));
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     } catch (err) {
       console.error("Lỗi gửi đăng ký modal:", err);
+      setRegistrationSubmitted(true);
     } finally {
       setIsSubmittingLead(false);
-      setRegistrationSubmitted(true);
     }
   };
 

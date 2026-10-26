@@ -5,6 +5,7 @@ import { StudentDashboard } from "./pages/StudentDashboard";
 import { AdminDashboard } from "./pages/AdminDashboard";
 import { LoginPortal } from "./pages/LoginPortal";
 import { LandingPage } from "./pages/LandingPage";
+import { ThankYouPage, SubmissionData } from "./pages/ThankYouPage";
 import { MainHeader } from "./components/MainHeader";
 import {
   seedInitialStudentsIfEmpty,
@@ -15,7 +16,7 @@ import {
 } from "./lib/firebase";
 import { getStudentTokenBalance } from "./lib/studentUtils";
 
-type AppRoute = "portal" | "student" | "admin" | "ldp";
+type AppRoute = "portal" | "student" | "admin" | "ldp" | "thanks";
 
 export default function App() {
   // Global state for students to allow reactive live scoring
@@ -48,6 +49,16 @@ export default function App() {
     const pathname = window.location.pathname.toLowerCase();
     const search = window.location.search.toLowerCase();
     const hash = window.location.hash.toLowerCase();
+
+    // Thank you page route: /thanks
+    if (
+      pathname === "/thanks" ||
+      pathname.startsWith("/thanks/") ||
+      search.includes("route=thanks") ||
+      hash.includes("thanks")
+    ) {
+      return "thanks";
+    }
 
     // Landing page (sale page) route: /ldp
     if (
@@ -123,11 +134,40 @@ export default function App() {
   const [currentStudentSlug, setCurrentStudentSlug] = useState<string>(() =>
     getInitialStudentSlug(MOCK_STUDENTS)
   );
+  const [latestSubmission, setLatestSubmission] = useState<SubmissionData | null>(() => {
+    try {
+      const stored =
+        sessionStorage.getItem("co_nghi_last_submission") ||
+        localStorage.getItem("co_nghi_last_submission");
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      return null;
+    }
+  });
 
   const currentStudent =
     studentsMap[currentStudentSlug] || studentsMap["duc-minh"] || studentsMap["hoang-nam"];
 
   // Navigation handlers
+  const handleNavigateToThanks = (data: SubmissionData) => {
+    setLatestSubmission(data);
+    try {
+      sessionStorage.setItem("co_nghi_last_submission", JSON.stringify(data));
+      localStorage.setItem("co_nghi_last_submission", JSON.stringify(data));
+    } catch {
+      // Ignore storage errors
+    }
+    setCurrentRoute("thanks");
+    window.history.pushState({ route: "thanks" }, "", "/thanks");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleNavigateToLdp = () => {
+    setCurrentRoute("ldp");
+    window.history.pushState({ route: "ldp" }, "", "/ldp");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const handleNavigateToAdmin = () => {
     setCurrentRoute("admin");
     window.history.pushState({ route: "admin" }, "", "/giao-vien");
@@ -277,9 +317,19 @@ export default function App() {
     return () => window.removeEventListener("popstate", onPopState);
   }, [studentsMap]);
 
+  // When on Thank You Page Route (/thanks), render dedicated ThankYouPage
+  if (currentRoute === "thanks") {
+    return (
+      <ThankYouPage
+        submissionData={latestSubmission}
+        onNavigateToLdp={handleNavigateToLdp}
+      />
+    );
+  }
+
   // When on Landing Page Route (/ldp), render dedicated Tactile Soft-UI Landing Page
   if (currentRoute === "ldp") {
-    return <LandingPage />;
+    return <LandingPage onNavigateToThanks={handleNavigateToThanks} />;
   }
 
   // When on Portal Route, render dedicated full-page Tactile Soft-UI Login Portal
