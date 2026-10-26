@@ -1,4 +1,12 @@
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  doc,
+  getDoc,
+  setDoc,
+  getDocs,
+} from "firebase/firestore";
 import { db } from "./firebase";
 
 export interface LeadFormData {
@@ -37,14 +45,19 @@ export interface FormattedLeadPayload {
 const STORAGE_WEBHOOK_KEY = "co_nghi_google_sheet_webhook";
 const STORAGE_LEADS_BACKUP_KEY = "co_nghi_leads_backup";
 
+let cachedWebhookUrl = "";
+
 /**
- * Get configured Google Apps Script Webhook URL
+ * Get configured Google Apps Script Webhook URL synchronously (from memory, localStorage or env)
  */
 export function getGoogleSheetWebhookUrl(): string {
+  if (cachedWebhookUrl) return cachedWebhookUrl;
+
   try {
     const customUrl = localStorage.getItem(STORAGE_WEBHOOK_KEY);
     if (customUrl && customUrl.trim().length > 0) {
-      return customUrl.trim();
+      cachedWebhookUrl = customUrl.trim();
+      return cachedWebhookUrl;
     }
   } catch {
     // Ignore localStorage errors
@@ -53,13 +66,57 @@ export function getGoogleSheetWebhookUrl(): string {
 }
 
 /**
- * Save Google Apps Script Webhook URL
+ * Get configured Google Apps Script Webhook URL asynchronously (from Firestore if not found locally)
  */
-export function setGoogleSheetWebhookUrl(url: string): void {
+export async function getGoogleSheetWebhookUrlAsync(): Promise<string> {
+  const local = getGoogleSheetWebhookUrl();
+  if (local) return local;
+
   try {
-    localStorage.setItem(STORAGE_WEBHOOK_KEY, url.trim());
+    const snap = await getDoc(doc(db, "settings", "google_sheet"));
+    if (snap.exists()) {
+      const data = snap.data();
+      const url = (data?.webhookUrl as string)?.trim() || "";
+      if (url) {
+        cachedWebhookUrl = url;
+        try {
+          localStorage.setItem(STORAGE_WEBHOOK_KEY, url);
+        } catch {
+          // ignore
+        }
+        return url;
+      }
+    }
+  } catch (err) {
+    console.warn("Không thể tải webhook từ Firestore:", err);
+  }
+
+  return (import.meta.env.VITE_GOOGLE_SHEET_WEBHOOK_URL as string) || "";
+}
+
+/**
+ * Save Google Apps Script Webhook URL to both LocalStorage and Firestore
+ */
+export async function setGoogleSheetWebhookUrl(url: string): Promise<void> {
+  const cleanUrl = url.trim();
+  cachedWebhookUrl = cleanUrl;
+  try {
+    localStorage.setItem(STORAGE_WEBHOOK_KEY, cleanUrl);
   } catch {
     // Ignore localStorage errors
+  }
+
+  try {
+    await setDoc(
+      doc(db, "settings", "google_sheet"),
+      {
+        webhookUrl: cleanUrl,
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true }
+    );
+  } catch (err) {
+    console.warn("Lưu webhook lên Firestore gặp lỗi:", err);
   }
 }
 
@@ -161,14 +218,20 @@ export async function submitLead(
   }
 
   // 3. Gửi đến Google Sheets qua Webhook (Google Apps Script)
-  const webhookUrl = getGoogleSheetWebhookUrl();
+  let webhookUrl = getGoogleSheetWebhookUrl();
+  if (!webhookUrl) {
+    webhookUrl = await getGoogleSheetWebhookUrlAsync();
+  }
+
   if (webhookUrl) {
     try {
-      // mode: "no-cors" và Content-Type: "text/plain;charset=utf-8"
-      // đảm bảo không bị chặn bởi CORS preflight trong trình duyệt
+      // mode: "no-cors", keepalive: true và Content-Type: "text/plain;charset=utf-8"
+      // đảm bảo không bị chặn bởi CORS preflight và không bị ngắt kết nối khi chuyển trang
       await fetch(webhookUrl, {
         method: "POST",
         mode: "no-cors",
+        keepalive: true,
+        credentials: "omit",
         headers: {
           "Content-Type": "text/plain;charset=utf-8",
         },
@@ -179,7 +242,80 @@ export async function submitLead(
       console.error("Lỗi gửi dữ liệu sang Google Sheet:", sheetError);
       return { success: true, error: "Đã lưu thông tin, đang kết nối lại Google Sheet." };
     }
+  } else {
+    console.warn("Chưa cấu hình Google Sheet Webhook URL. Dữ liệu đã được lưu an toàn tại Firebase Firestore.");
   }
 
   return { success: true };
+}
+
+/**
+ * Đồng bộ toàn bộ leads từ Firestore sang Google Sheets
+ */
+export async function syncAllFirestoreLeadsToGoogleSheet(): Promise<{
+  success: boolean;
+  totalSynced: number;
+  error?: string;
+}> {
+  let webhookUrl = getGoogleSheetWebhookUrl();
+  if (!webhookUrl) {
+    webhookUrl = await getGoogleSheetWebhookUrlAsync();
+  }
+  if (!webhookUrl) {
+    return {
+      success: false,
+      totalSynced: 0,
+      error: "Chưa cấu hình Google Sheet Webhook URL. Vui lòng dán URL và nhấn Lưu URL trước khi đồng bộ.",
+    };
+  }
+
+  try {
+    const leadsSnap = await getDocs(collection(db, "leads"));
+    if (leadsSnap.empty) {
+      return { success: true, totalSynced: 0 };
+    }
+
+    let count = 0;
+    for (const docSnap of leadsSnap.docs) {
+      const data = docSnap.data();
+      const payload: FormattedLeadPayload = {
+        tenPhuHuynh: data.tenPhuHuynh || data.parentName || "",
+        sdtZalo: data.sdtZalo || data.phoneZalo || "",
+        hoTenCon: data.hoTenCon || data.studentName || "",
+        khoiLop: data.khoiLop || data.studentGrade || "",
+        truongTHCS: data.truongTHCS || data.school || "",
+        tinhTrang: data.tinhTrang || data.problems || "",
+        nhuCau: data.nhuCau || data.priorityChoice || "",
+        timestamp: data.clientTimestamp || data.timestamp || "",
+        parentName: data.parentName || "",
+        phoneZalo: data.phoneZalo || "",
+        studentName: data.studentName || "",
+        studentGrade: data.studentGrade || "",
+        school: data.school || "",
+        problems: data.problems || "",
+        priorityChoice: data.priorityChoice || "",
+        source: data.source || "firestore_resync",
+      };
+
+      await fetch(webhookUrl, {
+        method: "POST",
+        mode: "no-cors",
+        keepalive: true,
+        credentials: "omit",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      count++;
+      // Chờ 250ms giữa các request để Google Sheets xử lý tuần tự không bị nghẽn
+      await new Promise((r) => setTimeout(r, 250));
+    }
+
+    return { success: true, totalSynced: count };
+  } catch (err: any) {
+    console.error("Lỗi đồng bộ leads sang Google Sheet:", err);
+    return { success: false, totalSynced: 0, error: err?.message || String(err) };
+  }
 }

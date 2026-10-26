@@ -14,8 +14,10 @@ import {
 } from "lucide-react";
 import {
   getGoogleSheetWebhookUrl,
+  getGoogleSheetWebhookUrlAsync,
   setGoogleSheetWebhookUrl,
   submitLead,
+  syncAllFirestoreLeadsToGoogleSheet,
   getVietnamTimestamp,
 } from "../lib/leadService";
 
@@ -104,6 +106,7 @@ export const GoogleSheetConfigModal: React.FC<GoogleSheetConfigModalProps> = ({
   const [copiedCode, setCopiedCode] = useState(false);
   const [savedSuccess, setSavedSuccess] = useState(false);
   const [isTesting, setIsTesting] = useState(false);
+  const [isSyncingAll, setIsSyncingAll] = useState(false);
   const [testResult, setTestResult] = useState<{
     success: boolean;
     message: string;
@@ -111,7 +114,14 @@ export const GoogleSheetConfigModal: React.FC<GoogleSheetConfigModalProps> = ({
 
   useEffect(() => {
     if (isOpen) {
-      setWebhookUrlState(getGoogleSheetWebhookUrl());
+      const local = getGoogleSheetWebhookUrl();
+      if (local) {
+        setWebhookUrlState(local);
+      } else {
+        getGoogleSheetWebhookUrlAsync().then((url) => {
+          if (url) setWebhookUrlState(url);
+        });
+      }
       setTestResult(null);
       setSavedSuccess(false);
     }
@@ -119,8 +129,8 @@ export const GoogleSheetConfigModal: React.FC<GoogleSheetConfigModalProps> = ({
 
   if (!isOpen) return null;
 
-  const handleSave = () => {
-    setGoogleSheetWebhookUrl(webhookUrl);
+  const handleSave = async () => {
+    await setGoogleSheetWebhookUrl(webhookUrl);
     setSavedSuccess(true);
     setTimeout(() => setSavedSuccess(false), 3000);
   };
@@ -129,6 +139,35 @@ export const GoogleSheetConfigModal: React.FC<GoogleSheetConfigModalProps> = ({
     navigator.clipboard.writeText(APPS_SCRIPT_CODE);
     setCopiedCode(true);
     setTimeout(() => setCopiedCode(false), 2500);
+  };
+
+  const handleSyncAllLeads = async () => {
+    setIsSyncingAll(true);
+    setTestResult(null);
+    try {
+      if (webhookUrl.trim()) {
+        await setGoogleSheetWebhookUrl(webhookUrl.trim());
+      }
+      const res = await syncAllFirestoreLeadsToGoogleSheet();
+      if (res.success) {
+        setTestResult({
+          success: true,
+          message: `Đã đồng bộ thành công ${res.totalSynced} đơn đăng ký từ hệ thống sang Google Sheet!`,
+        });
+      } else {
+        setTestResult({
+          success: false,
+          message: `Lỗi đồng bộ: ${res.error || "Không thể gửi dữ liệu"}`,
+        });
+      }
+    } catch (err: any) {
+      setTestResult({
+        success: false,
+        message: `Lỗi: ${err?.message || "Không thể đồng bộ"}`,
+      });
+    } finally {
+      setIsSyncingAll(false);
+    }
   };
 
   const handleSendTestLead = async () => {
@@ -315,31 +354,62 @@ export const GoogleSheetConfigModal: React.FC<GoogleSheetConfigModalProps> = ({
           {savedSuccess && (
             <p className="text-xs text-emerald-600 font-semibold flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5" />
-              <span>Đã lưu URL thành công! Hệ thống sẵn sàng đồng bộ.</span>
+              <span>Đã lưu URL thành công lên hệ thống đám mây! Mọi thiết bị đều đã sẵn sàng đồng bộ.</span>
+            </p>
+          )}
+
+          {!webhookUrl && (
+            <p className="text-xs text-amber-800 font-semibold bg-amber-50 p-2.5 rounded-xl border border-amber-200 flex items-start gap-2">
+              <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+              <span>
+                Chưa có Webhook URL! Các đơn đăng ký hiện được lưu an toàn tuyệt đối trên Firebase Firestore nhưng chưa có đường truyền sang Google Sheet. Hãy dán URL Web App của bạn vào ô trên và bấm &quot;Lưu URL&quot;.
+              </span>
             </p>
           )}
         </div>
 
-        {/* Nút Kiểm Tra Đồng Bộ Thử Nghiệm */}
+        {/* Nút Kiểm Tra Đồng Bộ Thử Nghiệm & Đồng Bộ Dữ Liệu Cũ */}
         <div className="pt-2 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <button
-            type="button"
-            disabled={isTesting}
-            onClick={handleSendTestLead}
-            className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-[#2d3436] hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-2"
-          >
-            {isTesting ? (
-              <>
-                <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-                <span>Đang gửi thử...</span>
-              </>
-            ) : (
-              <>
-                <Send className="w-3.5 h-3.5" />
-                <span>Gửi Thử 1 Dữ Liệu Mẫu Lên Sheet</span>
-              </>
-            )}
-          </button>
+          <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
+            <button
+              type="button"
+              disabled={isTesting}
+              onClick={handleSendTestLead}
+              className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-[#2d3436] hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-2"
+            >
+              {isTesting ? (
+                <>
+                  <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                  <span>Đang gửi thử...</span>
+                </>
+              ) : (
+                <>
+                  <Send className="w-3.5 h-3.5" />
+                  <span>Gửi Thử 1 Dữ Liệu Mẫu</span>
+                </>
+              )}
+            </button>
+
+            <button
+              type="button"
+              disabled={isSyncingAll}
+              onClick={handleSyncAllLeads}
+              className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-2 shadow-sm"
+              title="Đẩy toàn bộ các đơn đăng ký đã lưu trong Firestore sang Google Sheet"
+            >
+              {isSyncingAll ? (
+                <>
+                  <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                  <span>Đang đẩy dữ liệu...</span>
+                </>
+              ) : (
+                <>
+                  <FileSpreadsheet className="w-3.5 h-3.5" />
+                  <span>Đồng Bộ Lại Các Đơn Đã Lưu Sang Sheet</span>
+                </>
+              )}
+            </button>
+          </div>
 
           <button
             type="button"
