@@ -482,12 +482,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
     e.preventDefault();
     setIsSubmittingLead(true);
     try {
-      const allProblems = [
-        ...formData.problems,
-        ...(isOtherProblemChecked && otherProblemText.trim()
-          ? [`Khác: ${otherProblemText.trim()}`]
-          : []),
-      ];
+      const cleanProblems = formData.problems.filter((p) => !p.startsWith("Khác:"));
+      const allProblems = Array.from(
+        new Set([
+          ...cleanProblems,
+          ...(isOtherProblemChecked && otherProblemText.trim()
+            ? [`Khác: ${otherProblemText.trim()}`]
+            : []),
+        ].filter(Boolean))
+      );
       const finalPriority =
         isOtherPriority && otherPriorityText.trim()
           ? `Khác: ${otherPriorityText.trim()}`
@@ -542,8 +545,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
       } else {
         window.history.pushState({ route: "thanks" }, "", "/thanks");
         window.dispatchEvent(new PopStateEvent("popstate"));
-        window.scrollTo({ top: 0, behavior: "smooth" });
       }
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     } catch (err) {
       console.error("Lỗi gửi đăng ký:", err);
       setIsOnPageSubmitted(true);
@@ -745,12 +748,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
     e.preventDefault();
     setIsSubmittingLead(true);
     try {
-      const allProblems = [
-        ...formData.problems,
-        ...(isOtherProblemChecked && otherProblemText.trim()
-          ? [`Khác: ${otherProblemText.trim()}`]
-          : []),
-      ];
+      const cleanProblems = formData.problems.filter((p) => !p.startsWith("Khác:"));
+      const allProblems = Array.from(
+        new Set([
+          ...cleanProblems,
+          ...(isOtherProblemChecked && otherProblemText.trim()
+            ? [`Khác: ${otherProblemText.trim()}`]
+            : []),
+        ].filter(Boolean))
+      );
       const finalPriority =
         isOtherPriority && otherPriorityText.trim()
           ? `Khác: ${otherPriorityText.trim()}`
@@ -806,8 +812,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
       } else {
         window.history.pushState({ route: "thanks" }, "", "/thanks");
         window.dispatchEvent(new PopStateEvent("popstate"));
-        window.scrollTo({ top: 0, behavior: "smooth" });
       }
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     } catch (err) {
       console.error("Lỗi gửi đăng ký modal:", err);
       setRegistrationSubmitted(true);
@@ -4811,7 +4817,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateToThanks }) 
       ────────────────────────────────────────────────────────────── */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-white text-slate-900 border border-slate-200 rounded-2xl p-6 sm:p-8 max-w-lg w-full shadow-2xl max-h-[92vh] overflow-y-auto relative">
+          <div className="bg-white text-slate-900 border border-slate-200 rounded-2xl p-6 sm:p-8 md:p-9 max-w-lg md:max-w-2xl lg:max-w-[720px] w-full shadow-2xl max-h-[92vh] overflow-y-auto relative">
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"

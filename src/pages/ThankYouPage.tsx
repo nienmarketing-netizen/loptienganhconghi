@@ -72,6 +72,10 @@ export const ThankYouPage: React.FC<ThankYouPageProps> = ({
   });
 
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
+
+  useEffect(() => {
     if (propData) {
       setData(propData);
     }
@@ -110,6 +114,7 @@ export const ThankYouPage: React.FC<ThankYouPageProps> = ({
       : "");
 
   const ticketNumber = data.ticketCode || "CN-86625";
+  const uniqueProblems = Array.from(new Set(data.problems || [])).filter(Boolean);
 
   return (
     <div className="min-h-screen bg-slate-50 bg-grid-pattern text-slate-900 selection:bg-sky-200 selection:text-sky-900 relative overflow-x-clip font-body flex flex-col justify-between">
@@ -295,9 +300,9 @@ export const ThankYouPage: React.FC<ThankYouPageProps> = ({
                   <AlertCircle className="w-4 h-4 text-[#ff4757] shrink-0" />
                   <span>Tình trạng học tập ghi nhận ban đầu:</span>
                 </div>
-                {data.problems && data.problems.length > 0 ? (
+                {uniqueProblems && uniqueProblems.length > 0 ? (
                   <div className="flex flex-wrap gap-2.5">
-                    {data.problems.map((prob, idx) => (
+                    {uniqueProblems.map((prob, idx) => (
                       <span
                         key={idx}
                         className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200/90 text-[14px] sm:text-[15.5px] font-medium text-slate-800 shadow-sm leading-snug"
