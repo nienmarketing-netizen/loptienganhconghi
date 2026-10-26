@@ -13,6 +13,16 @@ export interface LeadFormData {
 }
 
 export interface FormattedLeadPayload {
+  // Các trường tiếng Việt khớp 100% với Google Apps Script doPost()
+  tenPhuHuynh: string;
+  sdtZalo: string;
+  hoTenCon: string;
+  khoiLop: string;
+  truongTHCS: string;
+  tinhTrang: string;
+  nhuCau: string;
+
+  // Trường chuẩn hóa & tiếng Anh dự phòng
   timestamp: string;
   parentName: string;
   phoneZalo: string;
@@ -102,15 +112,30 @@ export async function submitLead(
     ? formData.problems.filter(Boolean).join("; ")
     : String(formData.problems || "");
 
+  const parentName = formData.parentName.trim();
+  const phoneZalo = formData.phoneZalo.trim();
+  const school = (formData.school || "").trim();
+  const priorityChoice = (formData.priorityChoice || "").trim();
+
   const payload: FormattedLeadPayload = {
+    // 1. Các trường tiếng Việt khớp 100% với Google Apps Script doPost() của bạn:
+    tenPhuHuynh: parentName,
+    sdtZalo: phoneZalo,
+    hoTenCon: studentName,
+    khoiLop: studentGrade,
+    truongTHCS: school,
+    tinhTrang: problemsString,
+    nhuCau: priorityChoice,
+
+    // 2. Các trường dự phòng & metadata:
     timestamp,
-    parentName: formData.parentName.trim(),
-    phoneZalo: formData.phoneZalo.trim(),
+    parentName,
+    phoneZalo,
     studentName,
     studentGrade,
-    school: (formData.school || "").trim(),
+    school,
     problems: problemsString,
-    priorityChoice: (formData.priorityChoice || "").trim(),
+    priorityChoice,
     source,
   };
 

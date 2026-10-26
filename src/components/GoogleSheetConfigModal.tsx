@@ -27,51 +27,73 @@ interface GoogleSheetConfigModalProps {
 const GOOGLE_SHEET_URL =
   "https://docs.google.com/spreadsheets/d/1icicHi2LTdOSRD8TSLHjb8zgK4xWlhnSVRZFKEGLulA/edit?usp=sharing";
 
-const APPS_SCRIPT_CODE = `function doPost(e) {
-  var lock = LockService.getScriptLock();
-  lock.tryLock(10000);
+const APPS_SCRIPT_CODE = `/**
+ * Webhook nhận dữ liệu JSON từ Form đăng ký và ghi vào Google Sheets
+ */
+function doPost(e) {
   try {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    var data = {};
-    if (e.postData && e.postData.contents) {
-      try {
-        data = JSON.parse(e.postData.contents);
-      } catch (err) {
-        data = e.parameter || {};
-      }
-    } else if (e.parameter) {
-      data = e.parameter;
+    if (!e || !e.postData || !e.postData.contents) {
+      throw new Error("Không tìm thấy dữ liệu gửi lên (Empty payload).");
     }
 
-    var timestamp = data.timestamp || Utilities.formatDate(new Date(), "Asia/Ho_Chi_Minh", "dd/MM/yyyy HH:mm:ss");
-    var parentName = data.parentName || "";
-    var phoneZalo = data.phoneZalo || "";
-    var studentName = data.studentName || "";
-    var studentGrade = data.studentGrade || "";
-    var school = data.school || "";
-    var problems = Array.isArray(data.problems) ? data.problems.join("; ") : (data.problems || "");
-    var priority = data.priorityChoice || data.priority || "";
+    var payload = {};
+    try {
+      payload = JSON.parse(e.postData.contents);
+    } catch (err) {
+      payload = e.parameter || {};
+    }
 
-    // Ghi đúng 8 cột A -> H theo mẫu của Cô Nghi
+    // Trích xuất các biến (hỗ trợ cả tiếng Việt và tiếng Anh)
+    var tenPhuHuynh = payload.tenPhuHuynh || payload.parentName || "";
+    var sdtRaw      = payload.sdtZalo || payload.phoneZalo || "";
+    // Thêm nháy đơn ' phía trước số điện thoại để Google Sheets giữ nguyên số 0
+    var sdtZalo     = sdtRaw ? "'" + sdtRaw : "";
+    var hoTenCon    = payload.hoTenCon || payload.studentName || "";
+    var khoiLop     = payload.khoiLop || payload.studentGrade || "";
+    var truongTHCS  = payload.truongTHCS || payload.school || "";
+    var tinhTrang   = payload.tinhTrang || (Array.isArray(payload.problems) ? payload.problems.join("; ") : (payload.problems || ""));
+    var nhuCau      = payload.nhuCau || payload.priorityChoice || payload.priority || "";
+
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var timestamp = new Date();
+
     sheet.appendRow([
       timestamp,
-      parentName,
-      phoneZalo,
-      studentName,
-      studentGrade,
-      school,
-      problems,
-      priority
+      tenPhuHuynh,
+      sdtZalo,
+      hoTenCon,
+      khoiLop,
+      truongTHCS,
+      tinhTrang,
+      nhuCau
     ]);
 
-    return ContentService.createTextOutput(JSON.stringify({ result: "success" }))
+    var responseData = {
+      status: "success",
+      message: "Dữ liệu đăng ký đã được ghi nhận thành công!",
+      timestamp: timestamp.toISOString()
+    };
+
+    return ContentService.createTextOutput(JSON.stringify(responseData))
       .setMimeType(ContentService.MimeType.JSON);
-  } catch (err) {
-    return ContentService.createTextOutput(JSON.stringify({ result: "error", error: err.toString() }))
+
+  } catch (error) {
+    var errorResponse = {
+      status: "error",
+      message: error.toString()
+    };
+
+    return ContentService.createTextOutput(JSON.stringify(errorResponse))
       .setMimeType(ContentService.MimeType.JSON);
-  } finally {
-    lock.releaseLock();
   }
+}
+
+/**
+ * Xử lý preflight request (OPTIONS) từ trình duyệt nhằm hỗ trợ CORS
+ */
+function doOptions(e) {
+  return ContentService.createTextOutput("")
+    .setMimeType(ContentService.MimeType.TEXT);
 }`;
 
 export const GoogleSheetConfigModal: React.FC<GoogleSheetConfigModalProps> = ({
