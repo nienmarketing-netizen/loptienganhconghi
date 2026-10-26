@@ -1,0 +1,350 @@
+import React, { useState, useEffect } from "react";
+import {
+  X,
+  FileSpreadsheet,
+  ExternalLink,
+  Copy,
+  Check,
+  Send,
+  CheckCircle2,
+  AlertCircle,
+  HelpCircle,
+  Sparkles,
+  RefreshCw,
+} from "lucide-react";
+import {
+  getGoogleSheetWebhookUrl,
+  setGoogleSheetWebhookUrl,
+  submitLead,
+  getVietnamTimestamp,
+} from "../lib/leadService";
+
+interface GoogleSheetConfigModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const GOOGLE_SHEET_URL =
+  "https://docs.google.com/spreadsheets/d/1icicHi2LTdOSRD8TSLHjb8zgK4xWlhnSVRZFKEGLulA/edit?usp=sharing";
+
+const APPS_SCRIPT_CODE = `function doPost(e) {
+  var lock = LockService.getScriptLock();
+  lock.tryLock(10000);
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var data = {};
+    if (e.postData && e.postData.contents) {
+      try {
+        data = JSON.parse(e.postData.contents);
+      } catch (err) {
+        data = e.parameter || {};
+      }
+    } else if (e.parameter) {
+      data = e.parameter;
+    }
+
+    var timestamp = data.timestamp || Utilities.formatDate(new Date(), "Asia/Ho_Chi_Minh", "dd/MM/yyyy HH:mm:ss");
+    var parentName = data.parentName || "";
+    var phoneZalo = data.phoneZalo || "";
+    var studentName = data.studentName || "";
+    var studentGrade = data.studentGrade || "";
+    var school = data.school || "";
+    var problems = Array.isArray(data.problems) ? data.problems.join("; ") : (data.problems || "");
+    var priority = data.priorityChoice || data.priority || "";
+
+    // Ghi đúng 8 cột A -> H theo mẫu của Cô Nghi
+    sheet.appendRow([
+      timestamp,
+      parentName,
+      phoneZalo,
+      studentName,
+      studentGrade,
+      school,
+      problems,
+      priority
+    ]);
+
+    return ContentService.createTextOutput(JSON.stringify({ result: "success" }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({ result: "error", error: err.toString() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } finally {
+    lock.releaseLock();
+  }
+}`;
+
+export const GoogleSheetConfigModal: React.FC<GoogleSheetConfigModalProps> = ({
+  isOpen,
+  onClose,
+}) => {
+  const [webhookUrl, setWebhookUrlState] = useState("");
+  const [copiedCode, setCopiedCode] = useState(false);
+  const [savedSuccess, setSavedSuccess] = useState(false);
+  const [isTesting, setIsTesting] = useState(false);
+  const [testResult, setTestResult] = useState<{
+    success: boolean;
+    message: string;
+  } | null>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      setWebhookUrlState(getGoogleSheetWebhookUrl());
+      setTestResult(null);
+      setSavedSuccess(false);
+    }
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
+  const handleSave = () => {
+    setGoogleSheetWebhookUrl(webhookUrl);
+    setSavedSuccess(true);
+    setTimeout(() => setSavedSuccess(false), 3000);
+  };
+
+  const handleCopyCode = () => {
+    navigator.clipboard.writeText(APPS_SCRIPT_CODE);
+    setCopiedCode(true);
+    setTimeout(() => setCopiedCode(false), 2500);
+  };
+
+  const handleSendTestLead = async () => {
+    setIsTesting(true);
+    setTestResult(null);
+    try {
+      const testLead = {
+        parentName: "Phụ huynh Kiểm tra (Test Lead)",
+        phoneZalo: "0905000999",
+        studentName: "Học sinh Mẫu",
+        studentGrade: "Lớp 8",
+        school: "THCS Lê Độ",
+        problems: [
+          "Mất gốc hoàn toàn, học trước quên sau",
+          "Cần gỡ điểm gấp cho kỳ thi",
+        ],
+        priorityChoice:
+          "Đăng ký Phiên Chẩn đoán 1-1 Miễn phí (45 phút) + Nhận trọn bộ 4 Quà tặng",
+      };
+
+      await submitLead(testLead, "cta_popup_modal");
+
+      setTestResult({
+        success: true,
+        message:
+          "Đã gửi thành công dữ liệu mẫu! Dữ liệu đã được lưu trữ an toàn và đẩy sang Google Sheet.",
+      });
+    } catch (err: any) {
+      setTestResult({
+        success: false,
+        message: `Lỗi kiểm tra: ${err?.message || "Không thể kết nối"}`,
+      });
+    } finally {
+      setIsTesting(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn font-body">
+      <div className="bg-white text-slate-900 border border-slate-200 rounded-3xl p-6 sm:p-8 max-w-2xl w-full shadow-2xl max-h-[92vh] overflow-y-auto relative">
+        <button
+          onClick={onClose}
+          className="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
+        >
+          <X className="w-4 h-4" />
+        </button>
+
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center border border-emerald-200 shadow-sm">
+            <FileSpreadsheet className="w-5 h-5" />
+          </div>
+          <div>
+            <h3 className="font-heading font-black text-lg sm:text-xl text-slate-900 uppercase tracking-tight">
+              Cấu Hình Đồng Bộ Google Sheet
+            </h3>
+            <p className="text-xs text-slate-500">
+              Tự động lưu toàn bộ lượt đăng ký từ Sale Page vào bảng tính của bạn
+            </p>
+          </div>
+        </div>
+
+        {/* Thông tin File Google Sheet Đang Kết Nối */}
+        <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-2 mb-5">
+          <div className="flex items-center justify-between flex-wrap gap-2">
+            <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+              File Google Sheet Đích:
+            </span>
+            <a
+              href={GOOGLE_SHEET_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0A78F3] hover:underline"
+            >
+              <span>Mở File Google Sheet Trên Tab Mới</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
+          <div className="p-2.5 bg-white rounded-xl border border-slate-200 font-mono text-[11.5px] text-slate-600 truncate">
+            {GOOGLE_SHEET_URL}
+          </div>
+          <p className="text-[11.5px] text-slate-500">
+            Hệ thống sẽ điền dữ liệu tương ứng chính xác vào <strong>8 cột A → H</strong>: Thời gian đăng ký (Timestamp), Tên Phụ huynh, Số điện thoại Zalo, Họ tên con, Khối lớp hiện tại, Trường THCS, Tình trạng hiện tại, Nhu cầu ưu tiên.
+          </p>
+        </div>
+
+        {/* Hướng Dẫn 3 Bước Kèm Code Apps Script */}
+        <div className="space-y-4 mb-5">
+          <h4 className="font-heading font-extrabold text-sm uppercase text-slate-800 flex items-center gap-2">
+            <span>Hướng Dẫn Kết Nối 3 Bước Nhanh (Chỉ Làm 1 Lần)</span>
+          </h4>
+
+          <div className="text-xs text-slate-700 space-y-2.5">
+            <div className="flex items-start gap-2.5 p-3 rounded-xl bg-sky-50/70 border border-sky-100">
+              <span className="w-5 h-5 rounded-full bg-[#0A78F3] text-white flex items-center justify-center font-bold text-[11px] shrink-0">
+                1
+              </span>
+              <div>
+                <p className="font-semibold text-slate-900">
+                  Mở file Google Sheet &gt; Chọn menu{" "}
+                  <code className="bg-white px-1.5 py-0.5 rounded border border-slate-200 text-sky-700">
+                    Tiện ích mở rộng (Extensions)
+                  </code>{" "}
+                  &gt;{" "}
+                  <code className="bg-white px-1.5 py-0.5 rounded border border-slate-200 text-sky-700">
+                    Apps Script
+                  </code>
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2.5 p-3 rounded-xl bg-sky-50/70 border border-sky-100">
+              <span className="w-5 h-5 rounded-full bg-[#0A78F3] text-white flex items-center justify-center font-bold text-[11px] shrink-0">
+                2
+              </span>
+              <div className="space-y-2 w-full">
+                <p className="font-semibold text-slate-900">
+                  Xóa code cũ trong Apps Script và dán đoạn mã bên dưới vào:
+                </p>
+
+                <div className="relative">
+                  <pre className="bg-slate-900 text-slate-200 p-3 rounded-xl font-mono text-[11px] max-h-36 overflow-y-auto leading-relaxed border border-slate-800">
+                    {APPS_SCRIPT_CODE}
+                  </pre>
+                  <button
+                    onClick={handleCopyCode}
+                    className="absolute top-2 right-2 px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white font-medium text-[11px] flex items-center gap-1.5 transition-colors cursor-pointer"
+                  >
+                    {copiedCode ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-emerald-400" />
+                        <span className="text-emerald-400">Đã copy!</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5" />
+                        <span>Copy Mã</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2.5 p-3 rounded-xl bg-sky-50/70 border border-sky-100">
+              <span className="w-5 h-5 rounded-full bg-[#0A78F3] text-white flex items-center justify-center font-bold text-[11px] shrink-0">
+                3
+              </span>
+              <div>
+                <p className="font-semibold text-slate-900">
+                  Nhấn <strong className="text-slate-900">Triển khai (Deploy)</strong> &gt;{" "}
+                  <strong className="text-slate-900">Tùy chọn triển khai mới (New deployment)</strong> &gt; Chọn loại:{" "}
+                  <strong className="text-[#0A78F3]">Ứng dụng web (Web app)</strong>.
+                </p>
+                <p className="mt-1 text-slate-600">
+                  * Mục <em>&quot;Người có quyền truy cập (Who has access)&quot;</em>: Chọn{" "}
+                  <strong className="text-[#ff4757]">Bất kỳ ai (Anyone)</strong> &gt; Nhấn{" "}
+                  <strong className="text-slate-900">Triển khai</strong> &gt; Copy URL Web App dán vào ô bên dưới.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Ô Nhập URL Web App */}
+        <div className="space-y-2 mb-5">
+          <label className="block text-xs font-extrabold text-slate-800">
+            Dán URL Ứng Dụng Web (Google Apps Script Web App URL) vào đây:
+          </label>
+          <div className="flex gap-2">
+            <input
+              type="url"
+              placeholder="https://script.google.com/macros/s/.../exec"
+              value={webhookUrl}
+              onChange={(e) => setWebhookUrlState(e.target.value)}
+              className="flex-1 text-xs sm:text-sm px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#0A78F3] text-slate-900 font-mono"
+            />
+            <button
+              onClick={handleSave}
+              className="px-4 py-2.5 rounded-xl bg-[#0A78F3] hover:bg-sky-600 text-white text-xs font-bold uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap"
+            >
+              Lưu URL
+            </button>
+          </div>
+          {savedSuccess && (
+            <p className="text-xs text-emerald-600 font-semibold flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              <span>Đã lưu URL thành công! Hệ thống sẵn sàng đồng bộ.</span>
+            </p>
+          )}
+        </div>
+
+        {/* Nút Kiểm Tra Đồng Bộ Thử Nghiệm */}
+        <div className="pt-2 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <button
+            type="button"
+            disabled={isTesting}
+            onClick={handleSendTestLead}
+            className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-[#2d3436] hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-2"
+          >
+            {isTesting ? (
+              <>
+                <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                <span>Đang gửi thử...</span>
+              </>
+            ) : (
+              <>
+                <Send className="w-3.5 h-3.5" />
+                <span>Gửi Thử 1 Dữ Liệu Mẫu Lên Sheet</span>
+              </>
+            )}
+          </button>
+
+          <button
+            type="button"
+            onClick={onClose}
+            className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
+          >
+            Hoàn tất &amp; Đóng
+          </button>
+        </div>
+
+        {testResult && (
+          <div
+            className={`mt-3 p-3 rounded-xl border text-xs flex items-center gap-2 ${
+              testResult.success
+                ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+                : "bg-red-50 text-red-800 border-red-200"
+            }`}
+          >
+            {testResult.success ? (
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+            ) : (
+              <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+            )}
+            <span>{testResult.message}</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};

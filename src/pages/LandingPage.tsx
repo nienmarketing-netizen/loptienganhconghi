@@ -40,8 +40,12 @@ import {
   Lock,
   HelpCircle,
   Send,
+  FileSpreadsheet,
+  Loader2,
 } from "lucide-react";
 import { ComparisonBookCards } from "../components/ComparisonBookCards";
+import { submitLead } from "../lib/leadService";
+import { GoogleSheetConfigModal } from "../components/GoogleSheetConfigModal";
 
 
 interface VslScene {
@@ -455,6 +459,8 @@ export const LandingPage: React.FC = () => {
   const [isOtherPriority, setIsOtherPriority] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [isOnPageSubmitted, setIsOnPageSubmitted] = useState(false);
+  const [isSubmittingLead, setIsSubmittingLead] = useState(false);
+  const [isSheetConfigOpen, setIsSheetConfigOpen] = useState(false);
 
   const handleToggleProblem = (problem: string) => {
     setFormData((prev) => {
@@ -467,9 +473,35 @@ export const LandingPage: React.FC = () => {
     });
   };
 
-  const handleOnPageSubmit = (e: React.FormEvent) => {
+  const handleOnPageSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsOnPageSubmitted(true);
+    setIsSubmittingLead(true);
+    try {
+      const allProblems = [
+        ...formData.problems,
+        ...(isOtherProblemChecked && otherProblemText.trim()
+          ? [`Khác: ${otherProblemText.trim()}`]
+          : []),
+      ];
+      const finalPriority =
+        isOtherPriority && otherPriorityText.trim()
+          ? `Khác: ${otherPriorityText.trim()}`
+          : formData.priorityChoice;
+
+      await submitLead(
+        {
+          ...formData,
+          problems: allProblems,
+          priorityChoice: finalPriority,
+        },
+        "on_page_form"
+      );
+    } catch (err) {
+      console.error("Lỗi gửi đăng ký:", err);
+    } finally {
+      setIsSubmittingLead(false);
+      setIsOnPageSubmitted(true);
+    }
   };
 
   // State cho slide 4 triệu chứng (cuộn tròn liên tục 1->4->1, PC 2 thẻ, Mobile full-width 1 thẻ)
@@ -661,9 +693,35 @@ export const LandingPage: React.FC = () => {
     setRegistrationSubmitted(false);
   };
 
-  const handleSubmitForm = (e: React.FormEvent) => {
+  const handleSubmitForm = async (e: React.FormEvent) => {
     e.preventDefault();
-    setRegistrationSubmitted(true);
+    setIsSubmittingLead(true);
+    try {
+      const allProblems = [
+        ...formData.problems,
+        ...(isOtherProblemChecked && otherProblemText.trim()
+          ? [`Khác: ${otherProblemText.trim()}`]
+          : []),
+      ];
+      const finalPriority =
+        isOtherPriority && otherPriorityText.trim()
+          ? `Khác: ${otherPriorityText.trim()}`
+          : formData.priorityChoice;
+
+      await submitLead(
+        {
+          ...formData,
+          problems: allProblems,
+          priorityChoice: finalPriority,
+        },
+        "cta_popup_modal"
+      );
+    } catch (err) {
+      console.error("Lỗi gửi đăng ký modal:", err);
+    } finally {
+      setIsSubmittingLead(false);
+      setRegistrationSubmitted(true);
+    }
   };
 
   const infiniteSymptomItems = [...SYMPTOMS_DATA, ...SYMPTOMS_DATA, ...SYMPTOMS_DATA];
@@ -4510,17 +4568,29 @@ export const LandingPage: React.FC = () => {
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full py-3.5 sm:py-4 px-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-xl shadow-rose-500/30 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2.5"
+                      disabled={isSubmittingLead}
+                      className="w-full py-3.5 sm:py-4 px-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-xl shadow-rose-500/30 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2.5 disabled:opacity-80 disabled:cursor-not-allowed"
                     >
-                      <div className="flex flex-col items-center text-center leading-snug">
-                        <span className="font-heading font-black text-sm sm:text-base md:text-lg uppercase tracking-tight">
-                          XÁC NHẬN ĐĂNG KÝ
-                        </span>
-                        <span className="font-body text-[11px] sm:text-xs text-rose-100 normal-case mt-0.5 font-normal">
-                          Giữ lịch test 1-1 &amp; nhận phác đồ miễn phí
-                        </span>
-                      </div>
-                      <ArrowRight className="w-5 h-5 shrink-0" />
+                      {isSubmittingLead ? (
+                        <div className="flex items-center gap-2.5 py-1">
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          <span className="font-heading font-black text-sm sm:text-base uppercase tracking-tight">
+                            ĐANG GỬI THÔNG TIN VÀO BẢNG TÍNH...
+                          </span>
+                        </div>
+                      ) : (
+                        <>
+                          <div className="flex flex-col items-center text-center leading-snug">
+                            <span className="font-heading font-black text-sm sm:text-base md:text-lg uppercase tracking-tight">
+                              XÁC NHẬN ĐĂNG KÝ
+                            </span>
+                            <span className="font-body text-[11px] sm:text-xs text-rose-100 normal-case mt-0.5 font-normal">
+                              Giữ lịch test 1-1 &amp; nhận phác đồ miễn phí
+                            </span>
+                          </div>
+                          <ArrowRight className="w-5 h-5 shrink-0" />
+                        </>
+                      )}
                     </button>
                   </div>
 
@@ -4610,7 +4680,17 @@ export const LandingPage: React.FC = () => {
 
           <div className="pt-6 border-t border-slate-700/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
             <p>© 2026 Lớp Tiếng Anh Cô Nghi. Bản quyền nội dung đã được đăng ký.</p>
-            <p>Vận hành trên nền tảng Hệ sinh thái Quản lý Học tập LMS Độc quyền.</p>
+            <div className="flex items-center gap-4 flex-wrap justify-center sm:justify-end">
+              <button
+                type="button"
+                onClick={() => setIsSheetConfigOpen(true)}
+                className="inline-flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer font-semibold underline decoration-emerald-500/50 underline-offset-2"
+              >
+                <FileSpreadsheet className="w-3.5 h-3.5" />
+                <span>Cấu hình Google Sheet</span>
+              </button>
+              <p>Vận hành trên nền tảng Hệ sinh thái Quản lý Học tập LMS Độc quyền.</p>
+            </div>
           </div>
         </div>
       </footer>
@@ -4909,17 +4989,29 @@ export const LandingPage: React.FC = () => {
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full py-3.5 sm:py-4 px-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-xl shadow-rose-500/30 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2.5"
+                      disabled={isSubmittingLead}
+                      className="w-full py-3.5 sm:py-4 px-4 rounded-2xl bg-[#ff4757] hover:bg-[#e03949] text-white shadow-xl shadow-rose-500/30 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2.5 disabled:opacity-80 disabled:cursor-not-allowed"
                     >
-                      <div className="flex flex-col items-center text-center leading-snug">
-                        <span className="font-heading font-black text-sm sm:text-base md:text-lg uppercase tracking-tight">
-                          XÁC NHẬN ĐĂNG KÝ
-                        </span>
-                        <span className="font-body text-[11px] sm:text-xs text-rose-100 normal-case mt-0.5 font-normal">
-                          Giữ lịch test 1-1 &amp; nhận phác đồ miễn phí
-                        </span>
-                      </div>
-                      <ArrowRight className="w-5 h-5 shrink-0" />
+                      {isSubmittingLead ? (
+                        <div className="flex items-center gap-2.5 py-1">
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          <span className="font-heading font-black text-sm sm:text-base uppercase tracking-tight">
+                            ĐANG GỬI THÔNG TIN VÀO BẢNG TÍNH...
+                          </span>
+                        </div>
+                      ) : (
+                        <>
+                          <div className="flex flex-col items-center text-center leading-snug">
+                            <span className="font-heading font-black text-sm sm:text-base md:text-lg uppercase tracking-tight">
+                              XÁC NHẬN ĐĂNG KÝ
+                            </span>
+                            <span className="font-body text-[11px] sm:text-xs text-rose-100 normal-case mt-0.5 font-normal">
+                              Giữ lịch test 1-1 &amp; nhận phác đồ miễn phí
+                            </span>
+                          </div>
+                          <ArrowRight className="w-5 h-5 shrink-0" />
+                        </>
+                      )}
                     </button>
                   </div>
 
@@ -4957,6 +5049,12 @@ export const LandingPage: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Modal Cấu Hình Google Sheet */}
+      <GoogleSheetConfigModal
+        isOpen={isSheetConfigOpen}
+        onClose={() => setIsSheetConfigOpen(false)}
+      />
     </div>
   );
 };
